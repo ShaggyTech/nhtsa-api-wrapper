@@ -1,0 +1,29 @@
+{
+  "name": "@shaggytools/vin-decoder",
+  "version": "0.1.0",
+  "description": "A package to verify and decode Vehicle Indentification Numbers (VIN) using the NHTSA.gov public API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShaggyTech/vin-decoder-js.git"
+  },
+  "keywords": [
+    "VIN",
+    "Vehicle",
+    "Identification",
+    "Number",
+    "NHTSA.gov",
+    "NHTSA",
+    "decode",
+    "decoder"
+  ],
+  "author": "Brandon Eichler <ShaggyTech>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShaggyTech/vin-decoder-js/issues"
+  },
+  "homepage": "https://github.com/ShaggyTech/vin-decoder-js"
+}
