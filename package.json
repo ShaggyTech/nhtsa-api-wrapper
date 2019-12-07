@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/ShaggyTech/vin-decoder-js/issues"
   },
-  "homepage": "https://github.com/ShaggyTech/vin-decoder-js"
+  "homepage": "https://github.com/ShaggyTech/vin-decoder-js",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
 }
