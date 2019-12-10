@@ -8,6 +8,6 @@ test('recognizes a valid VIN', () => {
 
 test('API - returns results with known good VIN', () => {
   const results = decoder.decodeVin('3VWD07AJ5EM388202')
-  console.log(results)
-  expect(results).toBe(true)
+  // console.log(await results)
+  expect(results).toBeTruthy()
 })
