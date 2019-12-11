@@ -23,6 +23,7 @@ describe('VIN Validation Algorithm', () => {
     expect(isValidVin()).toBe(false)
     // invalid check digit (vin[8])
     expect(isValidVin('3VWD07AJAEM388203')).toBe(false)
+    // check digit is equal to 'X'
     expect(isValidVin('3VWD07AJXEM388203')).toBe(false)
   })
 })
