@@ -1,6 +1,6 @@
-const { filterFalsey } = require('./apiFilters.js')
+const { filterEmpty } = require('./apiFilters.js')
 
-test('filterFalsey() API response filter', () => {
+test('filterEmpty() API response filter', () => {
   const mockResponse = [
     {
       Value: '',
@@ -25,7 +25,7 @@ test('filterFalsey() API response filter', () => {
     }
   ]
 
-  const filtered = filterFalsey(mockResponse)
+  const filtered = filterEmpty(mockResponse)
 
   expect(filtered).toStrictEqual(desiredResult)
 })

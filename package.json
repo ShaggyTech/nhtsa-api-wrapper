@@ -4,7 +4,7 @@
   "description": "A package to verify and decode Vehicle Indentification Numbers (VIN) using the NHTSA.gov public API",
   "main": "src/main.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",

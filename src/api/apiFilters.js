@@ -20,4 +20,8 @@ module.exports = {
 
     return filteredResultsArray
   }
+
+  /**
+   * @description Catch error objects in the api response and add them as 'Error': object in response
+   */
 }

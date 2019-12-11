@@ -1,13 +1,13 @@
 'use strict'
 
 // NHTSA.gov API response filters
-const { filterFalsey } = require('../src/api/apiFilters')
+const { filterEmpty } = require('./api/apiFilters')
 
-const { get } = require('axios')
+const { get } = require('./api/api')
 
 // https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json
 
-const isValidVin = require('../libs/isValidVin')
+const { isValidVin } = require('./util')
 
 class VinDecoder {
   constructor(options = {}) {
@@ -18,23 +18,18 @@ class VinDecoder {
     // Options
     this.format = options.format || 'json'
     this.mode = options.mode || 'DecodeVinValuesExtended' // flat file format
-    this.isDevMode = options.isDevMode || false
-  }
-
-  // check vin validity without making a network request
-  isValid(/** String */ vin) {
-    return isValidVin(vin)
+    this.debug = options.debug || false
   }
 
   prepareApiUrl(vin, mode, format) {
     mode = mode || this.mode
     format = format || this.format
-    return `${this.baseUrl}${mode}/${vin}?format=${format}`
+    return `${this.baseUrl}/${mode}/${vin}?format=${format}`
   }
 
   async decodeVin(/** String */ vin, options = {}) {
     // make sure we have a valid vin before making any network requests
-    if (!this.isValid(vin)) {
+    if (isValidVin(vin)) {
       console.log('INVALID VIN, TRY AGAIN')
       return null
     }
@@ -43,14 +38,14 @@ class VinDecoder {
     // example: https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json
     const apiUrl = this.prepareApiUrl(vin, 'decodeVin', options.format)
 
-    // TODO - move api requests into it's own file - src/api/apiRequest.js
-
     return await get(apiUrl)
-      .then(result => {
-        // TODO: FILTER RESULT OF NULL VALUES
-        // libs/api.js ---> filterFalsey(ResultsArr)
-        const filtered = filterFalsey(result)
-        return filtered
+      .then(response => {
+        // console.log(response)
+        const results  = response.Results
+
+        // return the unfiltered response if this.debug option is true (false by default)
+        if (this.debug) return response
+        else return { ...response, Results: filterEmpty(results) }
       })
       .catch(err => {
         console.warn(err)
