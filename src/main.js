@@ -1,5 +1,7 @@
 'use strict'
 
+require('dotenv').config()
+
 // NHTSA.gov API response filters
 const { filterEmpty } = require('./api/apiFilters')
 // Axios wrapper to fetch data from the nhtsa.gov api
@@ -10,8 +12,9 @@ const { get } = require('./api/api')
 const { isValidVin } = require('./util')
 const { generateUrl } = require('./apiUtils')
 
-const DEFAULT_API_DECODE_MODE = 'DecodeVinValuesExtended' // returns a flat file
-const DEFAULT_API_RESPONSE_FORMAT = 'json'
+// Setup API defaults
+const DEFAULT_API_ENDPOINT =  process.env.API_ENDPOINT// returns a flat file by default
+const DEFAULT_API_RESPONSE_FORMAT = process.env.API_RESPONSE_FORMAT // json
 
 class VinDecoder {
   constructor(options = {}) {
@@ -21,8 +24,8 @@ class VinDecoder {
     this.baseUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles'
     // Options
     this.format = options.format || 'json'
-    this.decodeMode = options.decodeMode || DEFAULT_API_DECODE_MODE // flat file format
-    this.responseFormat = options.responseFormat || DEFAULT_API_RESPONSE_FORMAT // json
+    this.apiEndpoint = options.apiEndpoint || API_ENDPOINT // flat file format
+    this.responseFormat = options.responseFormat || API_RESPONSE_FORMAT // json
     this.debug = options.debug || false
   }
 

@@ -1,22 +1,28 @@
-const generateUrl = (vin, decodeMode, responseFormat) => {
-  // NHTSA.gov API Base Url
-  const API_BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles'
-
+/**
+ *
+ * @param {string} vin VIN to decode
+ * @param {string} apiEndpoint nhtsa.gov api to request from
+ */
+const generateUrl = (vin, apiEndpoint, responseFormat) => {
   // Gatekeeping
   if (!vin || typeof vin !== 'string') {
     return { errMsg: 'api.generateUrl(): invalid argument (vin)' }
   }
-  if (!decodeMode || typeof decodeMode !== 'string') {
-    return { errMsg: 'api.generateUrl(): invalid argument (decodeMode)' }
-  }
-  if (!responseFormat || typeof responseFormat !== 'string') {
-    return { errMsg: 'api.generateUrl(): invalid argument (responseFormat)' }
-  }
 
-  else return `${API_BASE_URL}/${decodeMode}/${vin}?format=${responseFormat}`
+  // NHTSA.gov API Base Url
+  const baseUrl =
+    process.env.API_BASE_URL || 'https://vpic.nhtsa.dot.gov/api/vehicles'
+
+  // API url options
+  apiEndpoint =
+    apiEndpoint || process.env.DEFAULT_API_ENDPOINT || 'DecodeVinValuesExtended'
+  responseFormat =
+    responseFormat || process.env.DEFAULT_API_RESPONSE_FORMAT || 'json'
+
+  return `${baseUrl}/${apiEndpoint}/${vin}?format=${responseFormat}`
 }
 
-const handleResponseError = (error) => {
+const handleResponseError = error => {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
@@ -34,13 +40,11 @@ const handleResponseError = (error) => {
     // Something happened in setting up the request that triggered an Error
     // console.log('Error', error.message)
     return error.message
-  }
-  else {
+  } else {
     // console.log('Error', error)
     return error
   }
 }
-
 
 exports.generateUrl = generateUrl
 exports.handleResponseError = handleResponseError
