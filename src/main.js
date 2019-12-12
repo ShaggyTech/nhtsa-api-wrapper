@@ -2,12 +2,16 @@
 
 // NHTSA.gov API response filters
 const { filterEmpty } = require('./api/apiFilters')
-
+// Axios wrapper to fetch data from the nhtsa.gov api
 const { get } = require('./api/api')
 
 // https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json
 
 const { isValidVin } = require('./util')
+const { generateUrl } = require('./apiUtils')
+
+const DEFAULT_API_DECODE_MODE = 'DecodeVinValuesExtended' // returns a flat file
+const DEFAULT_API_RESPONSE_FORMAT = 'json'
 
 class VinDecoder {
   constructor(options = {}) {
@@ -17,14 +21,9 @@ class VinDecoder {
     this.baseUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles'
     // Options
     this.format = options.format || 'json'
-    this.mode = options.mode || 'DecodeVinValuesExtended' // flat file format
+    this.decodeMode = options.decodeMode || DEFAULT_API_DECODE_MODE // flat file format
+    this.responseFormat = options.responseFormat || DEFAULT_API_RESPONSE_FORMAT // json
     this.debug = options.debug || false
-  }
-
-  prepareApiUrl(vin, mode, format) {
-    mode = mode || this.mode
-    format = format || this.format
-    return `${this.baseUrl}/${mode}/${vin}?format=${format}`
   }
 
   async decodeVin(/** String */ vin, options = {}) {
@@ -36,7 +35,7 @@ class VinDecoder {
 
     //  url we are fetching from
     // example: https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json
-    const apiUrl = this.prepareApiUrl(vin, 'decodeVin', options.format)
+    const apiUrl = generateUrl(vin, 'decodeVin', 'json')
 
     return await get(apiUrl)
       .then(response => {

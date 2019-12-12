@@ -1,15 +1,19 @@
-const generateUrl = (vin, decodeType, responseFormat) => {
+const generateUrl = (vin, decodeMode, responseFormat) => {
+  // NHTSA.gov API Base Url
   const API_BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles'
-  // Gatekeeping
-  if (!vin || typeof vin !== 'string')
-    return { errMsg: 'api.generateUrl(): invalid argument (vin)' }
-  if (!decodeType || typeof decodeType !== 'string') {
-    return { errMsg: 'api.generateUrl(): invalid argument (decodeType)' }
-  }
-  if (!responseFormat || typeof responseFormat !== 'string')
-    return { errMsg: 'api.generateUrl(): invalid argument (responseFormat)' }
 
-  else return `${API_BASE_URL}/${decodeType}/${vin}?format=${responseFormat}`
+  // Gatekeeping
+  if (!vin || typeof vin !== 'string') {
+    return { errMsg: 'api.generateUrl(): invalid argument (vin)' }
+  }
+  if (!decodeMode || typeof decodeMode !== 'string') {
+    return { errMsg: 'api.generateUrl(): invalid argument (decodeMode)' }
+  }
+  if (!responseFormat || typeof responseFormat !== 'string') {
+    return { errMsg: 'api.generateUrl(): invalid argument (responseFormat)' }
+  }
+
+  else return `${API_BASE_URL}/${decodeMode}/${vin}?format=${responseFormat}`
 }
 
 const handleResponseError = (error) => {

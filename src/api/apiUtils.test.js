@@ -32,10 +32,18 @@ describe('generateUrl() API Utility Method', () => {
 })
 
 describe('handleResponseError() API Utility Method', () => {
-  test('it should correctly handle API response errors', () => {
-    expect(handleResponseError({response: 'Response error'})).toStrictEqual('Response error')
-    expect(handleResponseError({request: 'Request error'})).toStrictEqual('Request error')
-    expect(handleResponseError({message: 'Message error'})).toStrictEqual('Message error')
+  
+  test('it should correctly handle API response errors', async () => {
+    expect(handleResponseError({ response: 'Response error' })).toStrictEqual(
+      'Response error'
+    )
+    expect(handleResponseError({ request: 'Request error' })).toStrictEqual(
+      'Request error'
+    )
+    expect(handleResponseError({ message: 'Message error' })).toStrictEqual(
+      'Message error'
+    )
     expect(handleResponseError('Generic error')).toStrictEqual('Generic error')
   })
+  
 })
