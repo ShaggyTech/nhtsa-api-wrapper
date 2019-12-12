@@ -10,11 +10,11 @@ const { get } = require('./api/api')
 // https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json
 
 const { isValidVin } = require('./util')
-const { generateUrl } = require('./apiUtils')
+const { generateUrl } = require('./api/apiUtils')
 
 // Setup API defaults
-const DEFAULT_API_ENDPOINT =  process.env.API_ENDPOINT// returns a flat file by default
-const DEFAULT_API_RESPONSE_FORMAT = process.env.API_RESPONSE_FORMAT // json
+const API_ENDPOINT = process.env.API_ENDPOINT // returns a flat file by default
+const API_RESPONSE_FORMAT = process.env.API_RESPONSE_FORMAT // json
 
 class VinDecoder {
   constructor(options = {}) {
@@ -43,7 +43,7 @@ class VinDecoder {
     return await get(apiUrl)
       .then(response => {
         // console.log(response)
-        const results  = response.Results
+        const results = response.Results
 
         // return the unfiltered response if this.debug option is true (false by default)
         if (this.debug) return response

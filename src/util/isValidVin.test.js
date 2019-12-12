@@ -7,7 +7,7 @@ describe('VIN Validation Algorithm', () => {
     // valid lowercase
     expect(isValidVin('3vwd07aj5em388202')).toBe(true)
   })
-  
+
   test('it should fail with invalid arguments', () => {
     // invalid
     expect(isValidVin('3VWD07AJ5EM388203')).toBe(false)

@@ -2,6 +2,9 @@
   "name": "@shaggytools/vin-decoder",
   "version": "0.1.0",
   "description": "A package to verify and decode Vehicle Indentification Numbers (VIN) using the NHTSA.gov public API",
+  "engines": {
+    "node": ">=8.10.0"
+  },
   "main": "src/main.js",
   "scripts": {
     "test": "jest --watchAll",
