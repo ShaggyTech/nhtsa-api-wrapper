@@ -6,13 +6,15 @@ module.exports = {
     es2020: true,
     jest: true
   },
+  ignorePatterns: ["node_modules/", "docs/", "dist/", "coverage/"],
+  plugins: ['babel', 'prettier', 'jsdoc'],
   extends: [
     'eslint:recommended',
     'plugin:prettier/recommended',
     'plugin:node/recommended',
+    // 'plugin:jsdoc/recommended',
     'prettier/babel'
   ],
-  plugins: ['babel', 'prettier'],
   // add your custom rules here
   rules: {
     'dot-notation': 'off',

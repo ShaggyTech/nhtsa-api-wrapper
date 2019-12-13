@@ -6,15 +6,15 @@
  * Returns a url used to fetch data from the NHTSA.gov API
  *
  * @alias module:apiUtils.generateUrl
- * @example
- * ```javascript
- * generateUrl({
- *  url: 'https://vpic.nhtsa.dot.gov/api',
- *  endpoint: 'DecodeVin',
- *  vin: '3VW...',
- *  format: 'json'
- *  })
- * ```
+ * @example <caption>With no options</caption>
+ * generateUrl('3VW71KX938M100334')
+ * @example <caption>With options</caption>
+ * const opts = {
+ *     url: 'https://test.api.com',
+ *     endpoint: 'DecodeVinValues',
+ *     format: 'xml'
+ * }
+ * * generateUrl('3VW71KX938M100334', opts)
  * @param {string} vin <p>Vehicle Identification Number (VIN) to decode</p>
  * <p>Default: <code>undefined</code></p>
  * <p>Note: Cannot be overridden by <code>process.env</code> variables
@@ -23,16 +23,13 @@
  * <p>Defaults can be overridden by providing them in the options object (ex: options.{param}).</p>
  * <p>Defaults can also be overridden by setting their corresponding <code>process.env</code> envirorment variable.</p>
  * <p>Precedence: <code>options.{param} -> process.env variable -> default</code></p>
- * @param {string} options.url <p>NHTSA API base URL</p>
- * <p>Default: <code>"https://vpic.nhtsa.dot.gov/api/vehicles"</code></p>
+ * @param {string} {options.url="https://vpic.nhtsa.dot.gov/api/vehicles" <p>NHTSA API base URL</p>
  * <p><code>process.env.NHTSA_API_URL</code></p>
- * @param {string} options.endpoint <p>Endpoint of the NHTSA API to request from</p>
- * <p>Default: <code>"DecodeVin"</code></p>
+ * @param {string} options.endpoint="DecodeVin" <p>Endpoint of the NHTSA API to request from</p>
  * <p><code>process.env.NHTSA_API_ENDPOINT</code></p>
- * @param {string} options.format <p>Requested response format from the NHTSA API request</p>
- * <p>Default: <code>"json"</code></p>
+ * @param {string} options.format="json"} <p>Requested response format from the NHTSA API request</p>
  * <p><code>process.env.NHTSA_API_RESPONSE_FORMAT</code></p>
- * @returns {string} "<code>${url}/${apiEndpoint}/${vin}?format=${responseFormat}</code>"
+ * @returns {string} `${url}/${apiEndpoint}/${vin}?format=${responseFormat}`
  *
  */
 const generateUrl = (vin, { url, endpoint, format } = {}) => {
@@ -51,6 +48,7 @@ const generateUrl = (vin, { url, endpoint, format } = {}) => {
 
 /**
  * Handles any axios errors or custom errors from the api response
+ *
  * @alias module:apiUtils.handleResponseError
  * @param {any} error Response error to handle
  * @returns {Error} Either the modified axios response or the original error
@@ -82,6 +80,7 @@ const handleResponseError = error => {
 
 /**
  * Api Utility/Helper Methods
+ *
  * @module apiUtils
  */
 module.exports.generateUrl = generateUrl
