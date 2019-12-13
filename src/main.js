@@ -13,8 +13,8 @@ const { isValidVin } = require('./util')
 const { generateUrl } = require('./api/apiUtils')
 
 // Setup API defaults
-const API_ENDPOINT = process.env.API_ENDPOINT // returns a flat file by default
-const API_RESPONSE_FORMAT = process.env.API_RESPONSE_FORMAT // json
+const API_ENDPOINT = process.env.NHTSA_API_ENDPOINT // will return a flat file by default
+const API_RESPONSE_FORMAT = process.env.NHTSA_API_RESPONSE_FORMAT // json
 
 class VinDecoder {
   constructor(options = {}) {

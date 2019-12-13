@@ -4,30 +4,49 @@
 
 /**
  * Returns a url used to fetch data from the NHTSA.gov API
+ *
  * @alias module:apiUtils.generateUrl
- * @param {string} vin VIN to decode
- * @param {string=} apiEndpoint=DecodeVinValuesExtended Endpoint of the NHTSA.gov API to request from
- * @param {string=} responseFormat=json Requested response format from NHTSA.gov API call
- * @returns {string} url ex: https://vpic.nhtsa.dot.gov/api/vehicles/{apiEndpoint}/{vin}?format={responseFormat}
+ * @example
+ * ```javascript
+ * generateUrl({
+ *  url: 'https://vpic.nhtsa.dot.gov/api',
+ *  endpoint: 'DecodeVin',
+ *  vin: '3VW...',
+ *  format: 'json'
+ *  })
+ * ```
+ * @param {string} vin <p>Vehicle Identification Number (VIN) to decode</p>
+ * <p>Default: <code>undefined</code></p>
+ * <p>Note: Cannot be overridden by <code>process.env</code> variables
+ * and always defaults to <code>undefined</code> if not provided.</p>
+ * @param {object} options
+ * <p>Defaults can be overridden by providing them in the options object (ex: options.{param}).</p>
+ * <p>Defaults can also be overridden by setting their corresponding <code>process.env</code> envirorment variable.</p>
+ * <p>Precedence: <code>options.{param} -> process.env variable -> default</code></p>
+ * @param {string} options.url <p>NHTSA API base URL</p>
+ * <p>Default: <code>"https://vpic.nhtsa.dot.gov/api/vehicles"</code></p>
+ * <p><code>process.env.NHTSA_API_URL</code></p>
+ * @param {string} options.endpoint <p>Endpoint of the NHTSA API to request from</p>
+ * <p>Default: <code>"DecodeVin"</code></p>
+ * <p><code>process.env.NHTSA_API_ENDPOINT</code></p>
+ * @param {string} options.format <p>Requested response format from the NHTSA API request</p>
+ * <p>Default: <code>"json"</code></p>
+ * <p><code>process.env.NHTSA_API_RESPONSE_FORMAT</code></p>
+ * @returns {string} "<code>${url}/${apiEndpoint}/${vin}?format=${responseFormat}</code>"
  *
  */
-const generateUrl = (vin, apiEndpoint, responseFormat) => {
-  // Gatekeeping
-  if (!vin || typeof vin !== 'string') {
-    return { errMsg: 'api.generateUrl(): invalid argument (vin)' }
-  }
+const generateUrl = (vin, { url, endpoint, format } = {}) => {
+  // API base Url
+  url =
+    url ||
+    process.env.NHTSA_API_URL ||
+    'https://vpic.nhtsa.dot.gov/api/vehicles'
+  // what API endpoint to fetch from
+  endpoint = endpoint || process.env.NHTSA_API_ENDPOINT || 'DecodeVin'
+  // what is the requested response format
+  format = format || process.env.NHTSA_API_RESPONSE_FORMAT || 'json'
 
-  // API url options
-  apiEndpoint =
-    apiEndpoint || process.env.DEFAULT_API_ENDPOINT || 'DecodeVinValuesExtended'
-  responseFormat =
-    responseFormat || process.env.DEFAULT_API_RESPONSE_FORMAT || 'json'
-
-  // NHTSA.gov API Base Url
-  const baseUrl =
-    process.env.API_BASE_URL || 'https://vpic.nhtsa.dot.gov/api/vehicles'
-
-  return `${baseUrl}/${apiEndpoint}/${vin}?format=${responseFormat}`
+  return `${url}/${endpoint}/${vin}?format=${format}`
 }
 
 /**
