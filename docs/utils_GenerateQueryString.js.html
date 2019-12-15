@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: utils/GenerateQueryString.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -44,249 +46,57 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-endpoints_DecodeVin.html">endpoints/DecodeVin</a></li><li><a href="module-utils_genQueryString.html">utils/genQueryString</a></li></ul><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-DecodeVin.html">DecodeVin</a></li></ul><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#genQueryString">genQueryString</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Global</h1>
+                        <p>Source</p>
+                        <h1>utils/GenerateQueryString.js</h1>
                     </header>
                     
                     
 
 
 
-
-<section>
-
-<header>
     
-        <h2></h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="filterEmpty">
-        <a class="href-link" href="#filterEmpty">#</a>
-        
-        <span class="code-name">
-            
-                filterEmpty<span class="signature">(apiResultsArray)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Filter empty objects from the NHTSA.gov api response</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>apiResultsArray</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="utils_filterEmpty.js.html" class="button">View Source</a>
-            <span>
-                <a href="utils_filterEmpty.js.html">utils/filterEmpty.js</a>, <a href="utils_filterEmpty.js.html#line4">line 4</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @description Generates a query string for use with the NHTSA.gov API base URL
+ */
+const genQueryString = params => {
+  // Gatekeeping - return empty string if params are invalid
+  if (!params || typeof params !== 'object') return ''
+
+  // Setup QueryString for Array mapping
+  const entries = Object.entries(params)
+  const paramsLength = entries.length
+
+  // return empty if there is nothing in params entries
+  // if (paramsLength &lt; 1) return ''
+  // else build the query string, into a single string, and return
+  // else {
+  // Normalize the parameters to "key=value" strings used in the endpoint
+  const queryStringArray = entries.map(([key, value], index) => {
+    // if first param we need to prepend the '?' char
+    let prepend = index &lt; 1 ? '?' : ''
+    // if there is another param coming after this one we need to append the '&amp;' char
+    let append = index &lt; paramsLength - 1 ? '&amp;' : ''
+    // return the completed string
+    return `${prepend}${key}=${value}${append}`
+  })
+
+  return queryStringArray.join('')
+  // }
+}
+
+exports.genQuery = genQueryString
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -299,7 +109,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 15 2019 16:41:24 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Dec 14 2019 23:09:32 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

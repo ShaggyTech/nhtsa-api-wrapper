@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: utils/genQueryString</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +51,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Global</h1>
+                        <p>Module</p>
+                        <h1>utils/genQueryString</h1>
                     </header>
                     
                     
@@ -64,7 +64,8 @@
 
 <header>
     
-        <h2></h2>
+        
+            
         
     
 </header>
@@ -73,89 +74,14 @@
     <div class="container-overview">
     
         
-
+            <div class="description"><p>Generates a query string for use with the NHTSA.gov API base URL</p>
+<p>Example return:   <code>"?format=json&modelYear=2019"</code></p>
+<p></p></div>
         
 
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-</dl>
-
-
         
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
             
-                <div class="member">
 
-
-    
-    <h4 class="name" id="filterEmpty">
-        <a class="href-link" href="#filterEmpty">#</a>
-        
-        <span class="code-name">
-            
-                filterEmpty<span class="signature">(apiResultsArray)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Filter empty objects from the NHTSA.gov api response</p>
-    </div>
-    
 
 
 
@@ -191,10 +117,15 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>apiResultsArray</code></td>
+      <td class="name"><code>params</code></td>
   
 
   <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
   
   </td>
 
@@ -202,7 +133,7 @@
 
   
 
-  <td class="description last"></td>
+  <td class="description last"><p>An object of key:value api query parameters to use</p></td>
 </tr>
 
 
@@ -247,9 +178,9 @@
 
     
         <p class="tag-source">
-            <a href="utils_filterEmpty.js.html" class="button">View Source</a>
+            <a href="utils_genQueryString.js.html" class="button">View Source</a>
             <span>
-                <a href="utils_filterEmpty.js.html">utils/filterEmpty.js</a>, <a href="utils_filterEmpty.js.html#line4">line 4</a>
+                <a href="utils_genQueryString.js.html">utils/genQueryString.js</a>, <a href="utils_genQueryString.js.html#line1">line 1</a>
             </span>
         </p>
     
@@ -272,13 +203,77 @@
 
 
 
-
-
-
-</div>
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            </div>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>&quot;?:param1=param1.value&amp;:param2=param2.value&quot;</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise(String)</span>
+|
+
+<span class="param-type">Error</span>
+
+
+    </div>
+    
+</div>
+
+                
         </div>
+    </div>
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Single Param:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json'}).catch(err => err)// => "?format=json"</code></pre>
+    
+
+        <p class="code-caption">Multiple Params:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(err => err)// => "?format=json&amp;modelYear=2006&amp;page=2"</code></pre>
+    
+
+        <p class="code-caption">Error Handling -   invalid params will reject with an Error: </p>
+    
+    
+        <pre class="prettyprint"><code>// Simple await and catch that returns the Error as isconst qs = await genQueryString().catch(err => err)// => &lt;Error> err</code></pre>
+    
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     

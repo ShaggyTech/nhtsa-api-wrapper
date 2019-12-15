@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: utils/genQueryString.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,242 +53,93 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Global</h1>
+                        <p>Source</p>
+                        <h1>utils/genQueryString.js</h1>
                     </header>
                     
                     
 
 
 
-
-<section>
-
-<header>
     
-        <h2></h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="filterEmpty">
-        <a class="href-link" href="#filterEmpty">#</a>
-        
-        <span class="code-name">
-            
-                filterEmpty<span class="signature">(apiResultsArray)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Filter empty objects from the NHTSA.gov api response</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>apiResultsArray</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="utils_filterEmpty.js.html" class="button">View Source</a>
-            <span>
-                <a href="utils_filterEmpty.js.html">utils/filterEmpty.js</a>, <a href="utils_filterEmpty.js.html#line4">line 4</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module utils/genQueryString
+ * @description Generates a query string for use with the NHTSA.gov API base URL
+ *
+ * &lt;p>Example return:   &lt;code>"?format=json&amp;modelYear=2019"&lt;/code>&lt;/p>
+ * &lt;p>&lt;/p>
+ * @param {object} params An object of key:value api query parameters to use
+ * @promise
+ * @returns {Promise(String)|Error} "?:param1=param1.value&amp;:param2=param2.value"
+ *
+ * @example &lt;caption>Single Param:&lt;/caption>
+ * const qs = await genQueryString({
+ *   format: 'json'
+ * }).catch(err => err)
+ * // => "?format=json"
+ *
+ * @example &lt;caption>Multiple Params:&lt;/caption>
+ * const qs = await genQueryString({
+ *   format: 'json',
+ *   modelYear: 2006,
+ *   page: "2"
+ * }).catch(err => err)
+ * // => "?format=json&amp;modelYear=2006&amp;page=2"
+ *
+ * @example &lt;caption>Error Handling -   invalid params will reject with an Error: &lt;/caption>
+ * // Simple await and catch that returns the Error as is
+ *
+ * const qs = await genQueryString().catch(err => err)
+ * // => &lt;Error> err
+ *
+ */
+
+const genQueryString = async params =>
+  new Promise((resolve, reject) => {
+    // Gatekeeping
+    if (!params)
+      return reject(
+        new Error(`genQueryString(params) got invalid params: ${params}`)
+      )
+
+    // Type check params to ensure it is an object
+    const typeofParams = Object.prototype.toString.call(params)
+    if (typeofParams !== '[object Object]')
+      return reject(
+        new Error(
+          `genQueryString(params) expected params to be of type Object, got: ${typeofParams}`
+        )
+      )
+
+    // Setup QueryString for Array mapping
+    const entries = Object.entries(params)
+    const paramsLength = entries.length
+
+    // More gatekeeping
+    if (paramsLength &lt; 1)
+      return reject(
+        new Error(`genQueryString(params): got invalid params: ${params}`)
+      )
+
+    // Make an array with [key]:value entries => array of strings equal to ":key=:value"
+    const queryStringArray = entries.map(([key, value], index) => {
+      // if first param we need to prepend the '?' char
+      let prepend = index &lt; 1 ? '?' : ''
+      // if there is another param coming after this one we need to append the '&amp;' char
+      let append = index &lt; paramsLength - 1 ? '&amp;' : ''
+      // return the completed string
+      return `${prepend}${key}=${value}${append}`
+    })
+
+    return resolve(queryStringArray.join(''))
+  })
+
+exports.genQueryString = genQueryString
+</code></pre>
+        </article>
+    </section>
 
 
 

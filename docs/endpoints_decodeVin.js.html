@@ -46,7 +46,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-DecodeVin.html">DecodeVin</a></li></ul><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-endpoints_DecodeVin.html">endpoints/DecodeVin</a></li><li><a href="module-utils_genQueryString.html">utils/genQueryString</a></li></ul><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -65,37 +65,40 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module DecodeVin
+ * @module endpoints/DecodeVin
+ * @requires utils/genQueryString Helper to build api query strings
  * @description Returns a DecodeVin endpoint (path + query)
  *  for https://vpic.nhtsa.dot.gov/api/vehicles
  * &lt;p>Example return: &lt;code>"/DecodeVin/3VWD07AJ5EM388202?format=json"&lt;/code>&lt;/p>
- * &lt;p>
+ *
  * @param {string} vin VIN to decode
  * @param {object} params={} Query Parameters
  * @param {string} params.format=xml Any of: `xml`, `csv`, or `json`
  * &lt;div>Can be set globally with &lt;code>process.env.NHTSA_API_FORMAT&lt;/code>&lt;/div>
  * @param {string} params.modelYear Optional: Model year of vehicle
  *
- * @returns {string} "/DecodeVin/:vin?:format&amp;:modelYear"
+ * @returns {string|Error} "/DecodeVin/:vin?:format&amp;:modelYear"
  *
- * @example &lt;caption>No Params&lt;/caption>
+ * @example &lt;caption>No Params:&lt;/caption>
  * decodeVin("3VWD07AJ5EM388202")
+ * decodeVin("3VWD07AJ5EM388202", {})
  * // returns "/decodevin/3VWD07AJ5EM388202"
  *
- * @example &lt;caption>With single param&lt;/caption>
+ * @example &lt;caption>With single param:&lt;/caption>
  * decodeVin("3VWD07AJ5EM388202", {
  *  format: "json"
  * })
  * // returns "/decodevin/3VWD07AJ5EM388202?format=json"
  *
- * @example &lt;caption>With multiple params&lt;/caption>
+ * @example &lt;caption>With multiple params:&lt;/caption>
  * decodeVin("3VWD07AJ5EM388202", {
  *  format: "json",
  *  modelYear: "2014"
  * })
  * // returns "/decodevin/3VWD07AJ5EM388202?format=json&amp;modelyear=2014"
  *
- * @example &lt;caption>Invalid or missing VIN argument&lt;/caption>
+ * @example &lt;caption>Invalid or missing arguments, all of the below will return an Error:&lt;/caption>
+ * // Invalid vin
  * decodeVin()
  * decodeVin('')
  * decodeVin(['vin_number'])
@@ -110,38 +113,35 @@
  *  format: 'json',
  *  modelYear: '2014'
  * })
- * // ALL of the above return: "/decodevin/INVALID_VIN"
+ *
+ * // Invalid params
+ * decodeVin('vin_number', ['invalid', 'array'])
+ * decodeVin('vin_number', 'invalid string')
  */
 
-const decodeVin = (vin, params = {}) => {
-  //
-  if (!vin || typeof vin !== 'string') return '/DecodeVin/INVALID_VIN'
+const { genQueryString } = require('../utils/genQueryString')
+
+const decodeVin = async (vin, params = {}) => {
+  let endpoint = '/DecodeVin/'
+
+  // Gatekeeping vin arg
+  const typeofVin = Object.prototype.toString.call(vin)
+  if (!vin || typeofVin !== '[object String]')
+    return new Error(`decodeVin(vin, params) - invalid vin arg: ${vin}`)
+
   // Default endpoint with no parameters
-  let endpoint = `/DecodeVin/${vin}`
+  endpoint += vin
 
-  // Setup QueryString
-  const entries = Object.entries(params)
-  const paramsLength = entries.length
-
-  // if there are no params provided, we're done and can return the endpoint
+  // Gatekeeping params arg
+  const paramsLength = Object.entries(params).length
   if (paramsLength &lt; 1) return endpoint
-  // else build the query string, add it to the endpoint, and return
-  else {
-    // Normalize the parameters to "key=value" strings used in the endpoint
-    const queryStringArray = entries.map(([key, value], index) => {
-      // if first param we need to prepend with '?' char
-      let prepend = index &lt; 1 ? '?' : ''
-      // if there is another param coming after this one we need to append with '&amp;' char
-      let append = index &lt; paramsLength - 1 ? '&amp;' : ''
 
-      // return the completed string
-      return `${prepend}${key}=${value}${append}`
-    })
+  // Build the query string based on provied params arg
+  const queryString = await genQueryString(params).catch(err => err)
+  if (queryString instanceof Error)
+    return new Error(`decodeVin(vin, params) - invalid params: ${params}`)
 
-    const queryString = queryStringArray.join('')
-
-    return (endpoint += queryString)
-  }
+  return (endpoint += queryString)
 }
 
 module.exports = decodeVin
@@ -160,7 +160,7 @@ module.exports = decodeVin
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Dec 14 2019 21:24:47 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 15 2019 16:41:23 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
