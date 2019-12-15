@@ -13,9 +13,9 @@ module.exports = {
   filterEmpty: (/** JSON */ apiResultsArray) => {
     // Filter empty results objects from the array
     const filteredResultsArray = apiResultsArray.filter(resultsObj => {
-      const id = resultsObj.ValueId
-      if (id !== null && id !== '' && id !== '0') return true
-      return false
+      const value = resultsObj.Value
+      if (!value) return false
+      return true
     })
 
     return filteredResultsArray

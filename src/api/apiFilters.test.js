@@ -9,6 +9,18 @@ test('filterEmpty() API response filter', () => {
       VariableId: 142
     },
     {
+      Value: null,
+      ValueId: '',
+      Variable: 'Suggested VIN',
+      VariableId: 142
+    },
+    {
+      Value: '',
+      ValueId: '',
+      Variable: 'Suggested VIN',
+      VariableId: 142
+    },
+    {
       Value: 'VOLKSWAGEN',
       ValueId: '482',
       Variable: 'Make',
