@@ -5,9 +5,15 @@
 /**
  * @async
  * @function genQueryString
- * @description Generates a query string for use with an NHTSA.gov API endpoint URL string
+ * @description Generates a query string for use with an NHTSA.gov API endpoint URL string. <br>
+ * Used in: {@link module:utils/genEndpoint}
  *
- * @param {object} params An object containing `key<ParamName>` <b>:</b> `value<String>` api query parameters to use.
+ * @param {object} params An object containing key:value <br>
+ *  { `key<ParamName>` <b>:</b> `value<String>`}<br>
+ *  api query parameters to use.
+ *
+ * @see {@link module:utils/genEndpoint}
+ *
  * @returns {Promise<string>|Error} An API query string <br>
  * On resolve: `Promise(<string>)`<br>
  * On reject: `new Error(error<string>)`
@@ -26,18 +32,17 @@
  * }).catch(error => error)
  * // => Promise("?format=json&modelYear=2006&page=2")
  *
- * @example <caption>Error Handling -   invalid params will reject with an Error: </caption>
- * // No params provided; produces an error which is caught and returned as is
- * const qs = await genQueryString().catch(error => error)
- * // => error<Error>
- *
  */
 const genQueryString = async params =>
   new Promise((resolve, reject) => {
-    // Gatekeeping
+    // Error message begins with
+    const errorBase = 'genQueryString(params) - '
+    // Params are required
     if (!params)
       return reject(
-        new Error(`genQueryString(params) got invalid params: ${params}`)
+        new Error(
+          `${errorBase} params are required to build a query string: ${params}`
+        )
       )
 
     // Type check params to ensure it is an object
@@ -45,7 +50,7 @@ const genQueryString = async params =>
     if (typeofParams !== '[object Object]')
       return reject(
         new Error(
-          `genQueryString(params) expected params to be of type Object, got: ${typeofParams}`
+          `${errorBase} expected params to be of type Object, got: ${typeofParams}`
         )
       )
 
@@ -56,7 +61,7 @@ const genQueryString = async params =>
     // More gatekeeping
     if (paramsLength < 1)
       return reject(
-        new Error(`genQueryString(params): got invalid params: ${params}`)
+        new Error(`${errorBase} params are required, got: ${params}`)
       )
 
     /**
