@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: endpoints/DecodeVin</title>
+    <title>JSDoc: utils/genEndpoint</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -44,7 +44,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-endpoints_DecodeVin.html">endpoints/DecodeVin</a></li><li><a href="module-utils_genQueryString.html">utils/genQueryString</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-utils_genEndpoint.html">utils/genEndpoint</a></li><li><a href="module-utils_genQueryString.html">utils/genQueryString</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>endpoints/DecodeVin</h1>
+                        <h1>utils/genEndpoint</h1>
                     </header>
                     
                     
@@ -106,8 +106,8 @@
 
 
     
-    <h4 class="name" id="~DecodeVin">
-        <a class="href-link" href="#~DecodeVin">#</a>
+    <h4 class="name" id="~genEndpoint">
+        <a class="href-link" href="#~genEndpoint">#</a>
         
             
                 <span class='tag'>async</span>
@@ -117,7 +117,7 @@
         
         <span class="code-name">
             
-                DecodeVin<span class="signature">(vin, params)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
+                genEndpoint<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
             
         </span>
     </h4>
@@ -126,7 +126,8 @@
     
     
     <div class="description">
-        <p>Build and return a /DecodeVin/ endpoint (VIN + optional query string)</p>
+        <p>Generates an endpoint string, with optional query string,
+for use in combination with the base URL of the NHTSA.gov API</p>
     </div>
     
 
@@ -153,8 +154,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -165,6 +164,53 @@
 
         
 <tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>endpoint</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p><code>REQUIRED</code><br> Type of API endpoint we want to use, ex: <code>DecodeVinValuesExtended</code></p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
   
       <td class="name"><code>vin</code></td>
   
@@ -181,19 +227,13 @@
   
 
   
-      <td class="default">
-      
-      </td>
-  
 
-  <td class="description last"><p>VIN to decode</p></td>
+  <td class="description last"><p><code>REQUIRED</code><br> Vehicle Identifcation Number for the endpoint</p></td>
 </tr>
 
-
+  
     
-
-        
-<tr class="deep-level-0">
+<tr class="deep-level-1">
   
       <td class="name"><code>params</code></td>
   
@@ -210,70 +250,8 @@
   
 
   
-      <td class="default">
-      
-      </td>
-  
 
-  <td class="description last"><p>Query Parameters</p></td>
-</tr>
-
-  
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>format</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-      <td class="default">
-      
-          xml
-      
-      </td>
-  
-
-  <td class="description last"><p>Any of: <code>xml</code>, <code>csv</code>, or <code>json</code></p>
-<div>Can be set globally with <code>process.env.NHTSA_API_FORMAT</code></div></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>modelYear</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-      <td class="default">
-      
-      </td>
-  
-
-  <td class="description last"><p>Optional: Model year of vehicle</p></td>
+  <td class="description last"><p><code>OPTIONAL</code><br> Parameters to transform into an API URL Query String</p></td>
 </tr>
 
   
@@ -320,9 +298,9 @@
 
     
         <p class="tag-source">
-            <a href="endpoints_DecodeVin.js.html" class="button">View Source</a>
+            <a href="utils_genEndpoint.js.html" class="button">View Source</a>
             <span>
-                <a href="endpoints_DecodeVin.js.html">endpoints/DecodeVin.js</a>, <a href="endpoints_DecodeVin.js.html#line8">line 8</a>
+                <a href="utils_genEndpoint.js.html">utils/genEndpoint.js</a>, <a href="utils_genEndpoint.js.html#line8">line 8</a>
             </span>
         </p>
     
@@ -353,7 +331,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>API Endpoint w/ optional Query String<br>
+    <div class='param-desc column is-7'><p>An API endpoint string with optional query string appended<br>
 On resolve: <code>Promise(&lt;string&gt;)</code><br>
 On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
     
@@ -380,28 +358,16 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
 
     <h5>Examples</h5>
     
-        <p class="code-caption">No Params:</p>
+        <p class="code-caption">With no params, and therefore no query string appended</p>
     
     
-        <pre class="prettyprint"><code>const decodeVin = require('.api/utils/DecodeVin')decodeVin("3VWD07AJ5EM388202")decodeVin("3VWD07AJ5EM388202", {})// returns "/DecodeVin/3VWD07AJ5EM388202"</code></pre>
-    
-
-        <p class="code-caption">With single param:</p>
-    
-    
-        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202", { format: "json"})// returns "/DecodeVin/3VWD07AJ5EM388202?format=json"</code></pre>
+        <pre class="prettyprint"><code>const ep = await genEndpoint({  endpoint: 'DecodeVin',  vin = '3VWD07AJ5EM388202'}).catch(err => err)// => Promise("/DecodeVin/3VWD07AJ5EM388202")</code></pre>
     
 
-        <p class="code-caption">With multiple params:</p>
+        <p class="code-caption">With params, used to build a query string:</p>
     
     
-        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202", { format: "json", modelYear: "2014"})// returns "/DecodeVin/3VWD07AJ5EM388202?format=json&amp;modelyear=2014"</code></pre>
-    
-
-        <p class="code-caption">Invalid or missing arguments, all of the below will return an Error:</p>
-    
-    
-        <pre class="prettyprint"><code>// Invalid vindecodeVin()decodeVin('')decodeVin(['vin_number'])decodeVin({vin: 'vin_number'})decodeVin('', { format: 'json', modelYear: '2014'})decodeVin({ format: 'json', modelYear: '2014'})// Invalid paramsdecodeVin('vin_number', ['invalid', 'array'])decodeVin('vin_number', 'invalid string')</code></pre>
+        <pre class="prettyprint"><code>const ep = await genEndpoint({  endpoint: 'DecodeVinValues',  vin = '3VWD07AJ5EM388202',  params: {    format: 'xml',    modelYear: 2001,    page: '2'  }}).catch(err => err)// => Promise("/DecodeVinValues/3VWD07AJ5EM388202?format=xml&amp;modelYear=2001&amp;page=2")</code></pre>
     
 
 
@@ -429,7 +395,7 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 15 2019 20:29:53 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019 02:27:37 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
