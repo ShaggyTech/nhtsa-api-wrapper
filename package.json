@@ -12,7 +12,7 @@
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
     "docs:build": "jsdoc -c ./jsdoc.json",
-    "docs:watch": "npx nodemon --exec jsdoc -c ./jsdoc.json --ext js,json --watch src"
+    "docs:watch": "npx nodemon --exec jsdoc -c ./jsdoc.dev.json --ext js,json --watch src"
   },
   "repository": {
     "type": "git",
