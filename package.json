@@ -11,8 +11,8 @@
     "test:clearCache": "./node_modules/.bin/jest --clearCache",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
-    "docs:build": "jsdoc -c ./docs/jsdoc.json",
-    "docs:watch": "npx nodemon --exec jsdoc -c ./docs/jsdoc.json --ext js,json --watch src"
+    "docs:build": "jsdoc -c ./jsdoc.json",
+    "docs:watch": "npx nodemon --exec jsdoc -c ./jsdoc.json --ext js,json --watch src"
   },
   "repository": {
     "type": "git",

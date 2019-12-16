@@ -1,32 +1,33 @@
 /**
+ * @async
  * @module utils/genQueryString
  * @description Generates a query string for use with the NHTSA.gov API base URL
  *
- * <p>Example return:   <code>"?format=json&modelYear=2019"</code></p>
- * <p></p>
- * @param {object} params An object of key:value api query parameters to use
- * @promise
- * @returns {Promise(String)|Error} "?:param1=param1.value&:param2=param2.value"
+ * <p>Example return: <code>"?format=json&modelYear=2019"</code></p><br>
+ *
+ * @param {object} params An object containing `key<ParamName>` <b>:</b> `value<String>` api query parameters to use.
+ * @returns {Promise<string>|Error} An API query string <br>
+ * On resolve: `Promise(<string>)`<br>
+ * On reject: `new Error(error<string>)`
  *
  * @example <caption>Single Param:</caption>
  * const qs = await genQueryString({
  *   format: 'json'
- * }).catch(err => err)
- * // => "?format=json"
+ * }).catch(error => error)
+ * // => Promise("?format=json")
  *
  * @example <caption>Multiple Params:</caption>
  * const qs = await genQueryString({
  *   format: 'json',
  *   modelYear: 2006,
  *   page: "2"
- * }).catch(err => err)
- * // => "?format=json&modelYear=2006&page=2"
+ * }).catch(error => error)
+ * // => Promise("?format=json&modelYear=2006&page=2")
  *
  * @example <caption>Error Handling -   invalid params will reject with an Error: </caption>
- * // Simple await and catch that returns the Error as is
- *
- * const qs = await genQueryString().catch(err => err)
- * // => <Error> err
+ * // No params provided; produces an error which is caught and returned as is
+ * const qs = await genQueryString().catch(error => error)
+ * // => error<Error>
  *
  */
 
@@ -57,7 +58,9 @@ const genQueryString = async params =>
         new Error(`genQueryString(params): got invalid params: ${params}`)
       )
 
-    // Make an array with [key]:value entries => array of strings equal to ":key=:value"
+    /**
+     * Map an array with [key]:value entries, to ":key=:value" strings
+     */
     const queryStringArray = entries.map(([key, value], index) => {
       // if first param we need to prepend the '?' char
       let prepend = index < 1 ? '?' : ''
