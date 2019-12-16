@@ -1,9 +1,11 @@
 /**
- * @async
  * @module utils/genQueryString
- * @description Generates a query string for use with the NHTSA.gov API base URL
- *
- * <p>Example return: <code>"?format=json&modelYear=2019"</code></p><br>
+ */
+
+/**
+ * @async
+ * @function genQueryString
+ * @description Generates a query string for use with an NHTSA.gov API endpoint URL string
  *
  * @param {object} params An object containing `key<ParamName>` <b>:</b> `value<String>` api query parameters to use.
  * @returns {Promise<string>|Error} An API query string <br>
@@ -30,7 +32,6 @@
  * // => error<Error>
  *
  */
-
 const genQueryString = async params =>
   new Promise((resolve, reject) => {
     // Gatekeeping

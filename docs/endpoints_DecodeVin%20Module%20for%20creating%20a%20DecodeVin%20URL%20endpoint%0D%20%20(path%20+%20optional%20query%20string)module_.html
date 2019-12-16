@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: endpoints/DecodeVin</title>
+    <title>JSDoc: endpoints/DecodeVin Module for creating a DecodeVin URL endpoint  (path + optional query string)</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -44,7 +44,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-endpoints_DecodeVin.html">endpoints/DecodeVin</a></li><li><a href="module-utils_genQueryString.html">utils/genQueryString</a></li></ul><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="endpoints_DecodeVin%2520Module%2520for%2520creating%2520a%2520DecodeVin%2520URL%2520endpoint%250D%2520%2520(path%2520+%2520optional%2520query%2520string)module_.html">endpoints/DecodeVin Module for creating a DecodeVin URL endpoint  (path + optional query string)</a></li><li><a href="module-apiUtils.html">apiUtils</a></li><li><a href="module-utils_genQueryString.html">utils/genQueryString</a></li></ul><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>endpoints/DecodeVin</h1>
+                        <h1>endpoints/DecodeVin Module for creating a DecodeVin URL endpoint  (path + optional query string)</h1>
                     </header>
                     
                     
@@ -64,14 +64,57 @@
 
 <header>
     
-        
-    
 </header>
 
 <article>
     <div class="container-overview">
     
         
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="endpoints_DecodeVin.js.html" class="button">View Source</a>
+            <span>
+                <a href="endpoints_DecodeVin.js.html">endpoints/DecodeVin.js</a>, <a href="endpoints_DecodeVin.js.html#line1">line 1</a>
+            </span>
+        </p>
+    
+</dl>
+
 
         
     
@@ -106,8 +149,8 @@
 
 
     
-    <h4 class="name" id="~DecodeVin">
-        <a class="href-link" href="#~DecodeVin">#</a>
+    <h4 class="name" id="~decodeVinBuildandreturnaDecodeVinpathandoptionalquerystring*@descriptionReturnsaDecodeVinendpoint(path+query)forhttps://vpic.nhtsa.dot.gov/api/vehicles%3Cp%3EExamplereturn:%3Ccode%3E%22/DecodeVin/3VWD07AJ5EM388202?format=json%22%3C/code%3E%3C/p%3E">
+        <a class="href-link" href="#~decodeVinBuildandreturnaDecodeVinpathandoptionalquerystring*@descriptionReturnsaDecodeVinendpoint(path+query)forhttps://vpic.nhtsa.dot.gov/api/vehicles%3Cp%3EExamplereturn:%3Ccode%3E%22/DecodeVin/3VWD07AJ5EM388202?format=json%22%3C/code%3E%3C/p%3E">#</a>
         
             
                 <span class='tag'>async</span>
@@ -117,17 +160,13 @@
         
         <span class="code-name">
             
-                DecodeVin<span class="signature">(vin, params)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
+                decodeVin Build and return a DecodeVin path and optional query string* @description Returns a DecodeVin endpoint (path + query) for https://vpic.nhtsa.dot.gov/api/vehicles<p>Example return: <code>"/DecodeVin/3VWD07AJ5EM388202?format=json"</code></p><span class="signature">(vin, params)</span><span class="type-signature"> &rarr; {string|Error}</span>
             
         </span>
     </h4>
     
 
     
-    
-    <div class="description">
-        <p>Build and return a /DecodeVin/ endpoint (VIN + optional query string)</p>
-    </div>
     
 
 
@@ -211,6 +250,8 @@
 
   
       <td class="default">
+      
+          {}
       
       </td>
   
@@ -322,7 +363,7 @@
         <p class="tag-source">
             <a href="endpoints_DecodeVin.js.html" class="button">View Source</a>
             <span>
-                <a href="endpoints_DecodeVin.js.html">endpoints/DecodeVin.js</a>, <a href="endpoints_DecodeVin.js.html#line8">line 8</a>
+                <a href="endpoints_DecodeVin.js.html">endpoints/DecodeVin.js</a>, <a href="endpoints_DecodeVin.js.html#line9">line 9</a>
             </span>
         </p>
     
@@ -353,15 +394,13 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>API Endpoint w/ optional Query String<br>
-On resolve: <code>Promise(&lt;string&gt;)</code><br>
-On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
+    <div class='param-desc column is-7'><p>&quot;/DecodeVin/:vin?:format&amp;:modelYear&quot;</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Promise.&lt;string></span>
+<span class="param-type">string</span>
 |
 
 <span class="param-type">Error</span>
@@ -383,19 +422,19 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
         <p class="code-caption">No Params:</p>
     
     
-        <pre class="prettyprint"><code>const decodeVin = require('.api/utils/DecodeVin')decodeVin("3VWD07AJ5EM388202")decodeVin("3VWD07AJ5EM388202", {})// returns "/DecodeVin/3VWD07AJ5EM388202"</code></pre>
+        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202")decodeVin("3VWD07AJ5EM388202", {})// returns "/decodevin/3VWD07AJ5EM388202"</code></pre>
     
 
         <p class="code-caption">With single param:</p>
     
     
-        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202", { format: "json"})// returns "/DecodeVin/3VWD07AJ5EM388202?format=json"</code></pre>
+        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202", { format: "json"})// returns "/decodevin/3VWD07AJ5EM388202?format=json"</code></pre>
     
 
         <p class="code-caption">With multiple params:</p>
     
     
-        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202", { format: "json", modelYear: "2014"})// returns "/DecodeVin/3VWD07AJ5EM388202?format=json&amp;modelyear=2014"</code></pre>
+        <pre class="prettyprint"><code>decodeVin("3VWD07AJ5EM388202", { format: "json", modelYear: "2014"})// returns "/decodevin/3VWD07AJ5EM388202?format=json&amp;modelyear=2014"</code></pre>
     
 
         <p class="code-caption">Invalid or missing arguments, all of the below will return an Error:</p>
@@ -429,7 +468,7 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 15 2019 19:50:25 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 15 2019 19:27:04 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

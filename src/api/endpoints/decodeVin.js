@@ -1,35 +1,42 @@
 /**
  * @module endpoints/DecodeVin
  * @requires utils/genQueryString Helper to build api query strings
- * @description Returns a DecodeVin endpoint (path + query)
- *  for https://vpic.nhtsa.dot.gov/api/vehicles
- * <p>Example return: <code>"/DecodeVin/3VWD07AJ5EM388202?format=json"</code></p>
+ */
+
+const { genQueryString } = require('../utils/genQueryString')
+
+/**
+ * @async
+ * @function DecodeVin
+ * @description Build and return a /DecodeVin/ endpoint (VIN + optional query string)
+ * @returns {Promise<string>|Error} API Endpoint w/ optional Query String<br>
+ *   On resolve: `Promise(<string>)`<br>
+ *   On reject: `new Error(error<string>)`
  *
  * @param {string} vin VIN to decode
- * @param {object} params={} Query Parameters
+ * @param {object} params Query Parameters
  * @param {string} params.format=xml Any of: `xml`, `csv`, or `json`
  * <div>Can be set globally with <code>process.env.NHTSA_API_FORMAT</code></div>
  * @param {string} params.modelYear Optional: Model year of vehicle
  *
- * @returns {string|Error} "/DecodeVin/:vin?:format&:modelYear"
- *
  * @example <caption>No Params:</caption>
+ * const decodeVin = require('.api/utils/DecodeVin')
  * decodeVin("3VWD07AJ5EM388202")
  * decodeVin("3VWD07AJ5EM388202", {})
- * // returns "/decodevin/3VWD07AJ5EM388202"
+ * // returns "/DecodeVin/3VWD07AJ5EM388202"
  *
  * @example <caption>With single param:</caption>
  * decodeVin("3VWD07AJ5EM388202", {
  *  format: "json"
  * })
- * // returns "/decodevin/3VWD07AJ5EM388202?format=json"
+ * // returns "/DecodeVin/3VWD07AJ5EM388202?format=json"
  *
  * @example <caption>With multiple params:</caption>
  * decodeVin("3VWD07AJ5EM388202", {
  *  format: "json",
  *  modelYear: "2014"
  * })
- * // returns "/decodevin/3VWD07AJ5EM388202?format=json&modelyear=2014"
+ * // returns "/DecodeVin/3VWD07AJ5EM388202?format=json&modelyear=2014"
  *
  * @example <caption>Invalid or missing arguments, all of the below will return an Error:</caption>
  * // Invalid vin
@@ -53,15 +60,13 @@
  * decodeVin('vin_number', 'invalid string')
  */
 
-const { genQueryString } = require('../utils/genQueryString')
-
-const decodeVin = async (vin, params = {}) => {
+const DecodeVin = async (vin, params = {}) => {
   let endpoint = '/DecodeVin/'
 
   // Gatekeeping vin arg
   const typeofVin = Object.prototype.toString.call(vin)
   if (!vin || typeofVin !== '[object String]')
-    return new Error(`decodeVin(vin, params) - invalid vin arg: ${vin}`)
+    return new Error(`DecodeVin(vin, params) - invalid vin arg: ${vin}`)
 
   // Default endpoint with no parameters
   endpoint += vin
@@ -72,10 +77,11 @@ const decodeVin = async (vin, params = {}) => {
 
   // Build the query string based on provied params arg
   const queryString = await genQueryString(params).catch(err => err)
+  // Error catcher
   if (queryString instanceof Error)
-    return new Error(`decodeVin(vin, params) - invalid params: ${params}`)
+    return new Error(`DecodeVin(vin, params) - invalid params: ${queryString}`)
 
   return (endpoint += queryString)
 }
 
-module.exports = decodeVin
+module.exports = DecodeVin
