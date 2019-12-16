@@ -3,7 +3,7 @@
 require('dotenv').config()
 
 // NHTSA.gov API response filters
-const { filterEmpty } = require('./api/apiFilters')
+const { filterEmpty } = require('./api/utils/filterEmpty')
 // Axios wrapper to fetch data from the nhtsa.gov api
 const { get } = require('./api/api')
 
