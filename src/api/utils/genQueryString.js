@@ -1,22 +1,19 @@
 /**
- * @module utils/genQueryString
- */
-
-/**
+ * @category api/utils
+ * @alias genQueryString
  * @async
- * @function genQueryString
- * @description Generates a query string for use with an NHTSA.gov API endpoint URL string. <br>
- * Used in: {@link module:utils/genEndpoint}
+ * @description API utility method to generates a query string,<br>
+ *  for use with an NHTSA.gov API endpoint URL string. <br>
+ *
+ * @see {@link module:api/utils}
  *
  * @param {object} params An object containing key:value <br>
  *  { `key<ParamName>` <b>:</b> `value<String>`}<br>
  *  api query parameters to use.
  *
- * @see {@link module:utils/genEndpoint}
- *
  * @returns {Promise<string>|Error} An API query string <br>
- * On resolve: `Promise(<string>)`<br>
- * On reject: `new Error(error<string>)`
+ *  On resolve: `Promise(<string>)`<br>
+ *  On reject: `new Error(error<string>)`
  *
  * @example <caption>Single Param:</caption>
  * const qs = await genQueryString({
@@ -33,6 +30,7 @@
  * // => Promise("?format=json&modelYear=2006&page=2")
  *
  */
+
 const genQueryString = async params =>
   new Promise((resolve, reject) => {
     // Error message begins with

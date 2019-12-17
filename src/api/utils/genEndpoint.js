@@ -1,15 +1,12 @@
 /**
- * @module utils/genEndpoint
- * @requires utils/genQueryString
- */
-
-const { genQueryString } = require('./genQueryString')
-
-/**
+ * @category api/utils
+ * @alias genQueryString
  * @async
  * @function genEndpoint
- * @description Generates an endpoint string, with optional query string,
- *   for use in combination with the base URL of the NHTSA.gov API
+ * @description API utility method to generate an endpoint string, with optional query string,<br>
+ *   for use in combination with the base URL of the NHTSA.gov API</br>
+ *
+ * @see {@link module:api/utils}
  *
  * @param {object} options
  * @param {string} options.endpoint `REQUIRED`<br> Type of API endpoint we want to use, ex: `DecodeVinValuesExtended`
@@ -40,6 +37,8 @@ const { genQueryString } = require('./genQueryString')
  * // => Promise("/DecodeVinValues/3VWD07AJ5EM388202?format=xml&modelYear=2001&page=2")
  *
  */
+
+const { genQueryString } = require('./genQueryString')
 
 const genEndpoint = async ({ endpoint, vin, params }) => {
   // beginning string for error messages
