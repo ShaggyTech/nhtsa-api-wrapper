@@ -1,8 +1,7 @@
 /**
  * @category api/utils
- * @alias genQueryString
+ * @alias genEndpoint
  * @async
- * @function genEndpoint
  * @description API utility method to generate an endpoint string, with optional query string,<br>
  *   for use in combination with the base URL of the NHTSA.gov API</br>
  *
