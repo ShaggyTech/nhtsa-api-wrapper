@@ -129,111 +129,6 @@
     
 
     
-        <div class='vertical-section'>
-            <h3 class="title"><span>Members</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id="genEndpoint">
-    <a class="href-link" href="#genEndpoint">#</a>
-    
-        
-            <span class='tag'>async</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        genEndpoint
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>API utility method to generate an endpoint string, with optional query string,<br>
-for use in combination with the base URL of the NHTSA.gov API</br></p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="module-api_utils.html"><code>module:api/utils</code></a></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="utils_genEndpoint.js.html" class="button">View Source</a>
-            <span>
-                <a href="utils_genEndpoint.js.html">utils/genEndpoint.js</a>, <a href="utils_genEndpoint.js.html#line40">line 40</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">With no params, and therefore no query string appended</p>
-    
-    
-        <pre class="prettyprint"><code>const ep = await genEndpoint({  endpoint: 'DecodeVin',  vin = '3VWD07AJ5EM388202'}).catch(err => err)// => Promise("/DecodeVin/3VWD07AJ5EM388202")</code></pre>
-    
-
-        <p class="code-caption">With params, used to build a query string:</p>
-    
-    
-        <pre class="prettyprint"><code>const ep = await genEndpoint({  endpoint: 'DecodeVinValues',  vin = '3VWD07AJ5EM388202',  params: {    format: 'xml',    modelYear: 2001,    page: '2'  }}).catch(err => err)// => Promise("/DecodeVinValues/3VWD07AJ5EM388202?format=xml&amp;modelYear=2001&amp;page=2")</code></pre>
-    
-
-
-</div>
-            
-            </div>
-        </div>
-    
 
     
         <div class='vertical-section'>
@@ -378,6 +273,282 @@ for use in combination with the base URL of the NHTSA.gov API</br></p>
 
 
 
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="genEndpoint">
+        <a class="href-link" href="#genEndpoint">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                genEndpoint<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>API utility method to generate an endpoint string, with optional query string,<br>
+for use in combination with the base URL of the NHTSA.gov API</br></p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>endpoint</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p><code>REQUIRED</code><br> Type of API endpoint we want to use, ex: <code>DecodeVinValuesExtended</code></p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>vin</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p><code>REQUIRED</code><br> Vehicle Identifcation Number for the endpoint</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p><code>OPTIONAL</code><br> Parameters to transform into an API URL Query String</p></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-api_utils.html"><code>module:api/utils</code></a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_genEndpoint.js.html" class="button">View Source</a>
+            <span>
+                <a href="utils_genEndpoint.js.html">utils/genEndpoint.js</a>, <a href="utils_genEndpoint.js.html#line42">line 42</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>An API endpoint string with optional query string appended<br>
+On resolve: <code>Promise(&lt;string&gt;)</code><br>
+On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">With no params, and therefore no query string appended</p>
+    
+    
+        <pre class="prettyprint"><code>const ep = await genEndpoint({  endpoint: 'DecodeVin',  vin = '3VWD07AJ5EM388202'}).catch(err => err)// => Promise("/DecodeVin/3VWD07AJ5EM388202")</code></pre>
+    
+
+        <p class="code-caption">With params, used to build a query string:</p>
+    
+    
+        <pre class="prettyprint"><code>const ep = await genEndpoint({  endpoint: 'DecodeVinValues',  vin = '3VWD07AJ5EM388202',  params: {    format: 'xml',    modelYear: 2001,    page: '2'  }}).catch(err => err)// => Promise("/DecodeVinValues/3VWD07AJ5EM388202?format=xml&amp;modelYear=2001&amp;page=2")</code></pre>
+    
 
 
 </div>
@@ -610,7 +781,7 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 17 2019 01:28:02 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 17 2019 01:34:44 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

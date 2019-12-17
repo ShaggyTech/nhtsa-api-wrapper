@@ -1,3 +1,5 @@
+const { genQueryString } = require('./genQueryString')
+
 /**
  * @category api/utils
  * @alias genEndpoint
@@ -36,8 +38,6 @@
  * // => Promise("/DecodeVinValues/3VWD07AJ5EM388202?format=xml&modelYear=2001&page=2")
  *
  */
-
-const { genQueryString } = require('./genQueryString')
 
 const genEndpoint = async ({ endpoint, vin, params }) => {
   // beginning string for error messages
