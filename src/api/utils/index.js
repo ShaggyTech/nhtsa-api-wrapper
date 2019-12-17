@@ -30,7 +30,7 @@
  * @async
  * @function genEndpoint
  * @description Generates an api endpoint string with an optional query string appended.<br>
- * @see {@link genQueryString} for more complete documentation
+ * @see {@link genEndpoint} for more complete documentation
  */
 
 /**
