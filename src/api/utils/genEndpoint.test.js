@@ -57,7 +57,7 @@ describe('genEndpoint() - API Utils Method', () => {
   })
 
   /**************
-   * Errors
+   * Failures
    **************/
   describe('Fails with ', () => {
     test('missing endpoint', async () => {
