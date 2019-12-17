@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: utils/index.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +53,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>utils/index.js</h1>
                     </header>
                     
                     
@@ -60,25 +62,62 @@
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module api/utils
+ * @description A collection of api utility and helper methods
+ *
+ * @example
+ * // Import All utils functions:
+ * const utils = require('./api/utils')
+ * // then:
+ * const genEndpoint = utils.genEndpoint({ ...options })
+ *
+ * // Import individual functions:
+ * const makeMeAnEndpoint = require('./api/utils').genEndpoint
+ * // then:
+ * const endpoint = await makeMeAnEndpoint({ ...options })
+ *
+ * // Import individual functions by using spread operator:
+ * const { genEndpoint } = require('./api/utils')
+ * // then:
+ * const endpoint = await genEndpoint({ ...options })
+ *
+ * // Not Recommended but it's also possible to:
+ * // Import individual functions directly from their file:
+ * const { genEndpoint } = require('./api/utils/genEndpoint')
+ * // then:
+ * const endpoint = await genEndpoint({ ...options })
+ *
+ */
 
+/**
+ * @async
+ * @function genEndpoint
+ * @description Generates an api endpoint string with an optional query string appended.&lt;br>
+ * @see {@link genQueryString} for more complete documentation
+ */
 
-    <h3> </h3>
+/**
+ * @async
+ * @function genQueryString
+ * @description Generates a query string for use with an NHTSA.gov API endpoint URL string. &lt;br>
+ * Used in: {@link module:utils/genEndpoint}&lt;br>
+ * @see {@link genQueryString} for more complete documentation
+ */
+const { filterEmpty } = require('./filterEmpty')
+const { genEndpoint } = require('./genEndpoint')
+const { genQueryString } = require('./genQueryString')
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = {
+  filterEmpty,
+  genQueryString,
+  genEndpoint
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
