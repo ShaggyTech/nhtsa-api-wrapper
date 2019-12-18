@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: ApiWrapper</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api/utils</h2><h3>Global</h3><ul><li><a href="global.html#genEndpoint">genEndpoint</a></li><li><a href="global.html#genQueryString">genQueryString</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Class</p>
+                        <h1>ApiWrapper</h1>
+                    </header>
+                    
+                    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>ApiWrapper<span class="signature">(options)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>ApiWrapper to fetch or post(coming soon)
+data to the NHTSA.dot.gov API <br></p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
+
+
+    
+    <h4 class="name" id="ApiWrapper">
+        <a class="href-link" href="#ApiWrapper">#</a>
+        
+        <span class="code-name">
+            
+                new ApiWrapper<span class="signature">(options)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+      <td class="default">
+      
+          {}
+      
+      </td>
+  
+
+  <td class="description last"><h4 id="options-to-pass-to-the-apiwrapper-class-constructor.">Options to pass to the ApiWrapper class constructor. <br></h4>
+<ul>
+<li>
+<p>Defaults can be overridden by passing an object of options to the class constructor,
+or by changing them on the class instance after instantiation. </br></p>
+</li>
+<li>
+<p>Order of Precedence upon instantiation, Highest to Lowest: <br></p>
+<ol>
+<li><code>options.option</code></li>
+<li><code>process.env.OPTION</code></li>
+<li><code>Default</code></li>
+</ol>
+</li>
+<li>
+<p>Defaults can also be overridden by setting their corresponding <code>process.env.OPTION</code> envirorment variable. </br></p>
+</li>
+</ul></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>baseURL</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+      <td class="default">
+      
+          https://vpic.nhtsa.dot.gov/api/vehicles
+      
+      </td>
+  
+
+  <td class="description last"><h4 id="used-when-generating-the-url-to-fetch-from-or-post-to.">Used when generating the url to fetch from or post to.</h4>
+<ul>
+<li>Should <em>only</em> be overridden <em>if</em> the NHTSA URL changes in the future.</li>
+</ul>
+<blockquote>
+<p><b>NOTE:</b>
+Override this option via Node envirorment variable with:<br>
+<code>process.env.NHTSA_API_URL</code></p>
+</blockquote></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>endpoint</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+      <td class="default">
+      
+          DecodeVinValues
+      
+      </td>
+  
+
+  <td class="description last"><h4 id="endpoint-of-the-nhtsa-api-to-request-from.">Endpoint of the NHTSA API to request from.</h4>
+<ul>
+<li>&quot;DecodeVinValues&quot; requests that <code>response.Results</code> be a flattened array,
+containing a single object of Key:Value pairs, for easier consumption. <br></li>
+<li>See <code>TODO:ListOfEndpoints</code> for a valid list of NHTSA Endpoints <br></li>
+</ul>
+<blockquote>
+<p><b>NOTE:</b>
+Override this option via Node envirorment variable with:<br>
+<code>process.env.NHTSA_API_ENDPOINT</code></p>
+</blockquote></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>format</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+      <td class="default">
+      
+          json
+      
+      </td>
+  
+
+  <td class="description last"><h4 id="format-we-want-the-nhtsa-api-response-to-be-returned-in.">Format we want the NHTSA API response to be returned in.</h4>
+<p><code>'json'</code> to append &quot;?format=json&quot; to url and receive JSON response. <code>Default</code> <br>
+<code>'csv'</code> to append &quot;?format=csv&quot; to url and receive CSV response. <br>
+<code>'xml'</code> to append &quot;?format=xml&quot; to url and receive XML response. <br>
+<code>''</code> to omit '?format=' param entirely and receive XML response. <br></p>
+<hr>
+<ul>
+<li>The default response from the NHTSA api, with no <code>?format=</code> query param, is <code>XML</code>.</li>
+<li>Most endpoints have an optional &quot;?format=&quot; query param, used to override this default behaviour.</li>
+<li>By default, this class appends a <code>?format=json</code> query string to every NHTSA fetch or post request.</li>
+</ul>
+<blockquote>
+<p><b>NOTE:</b>
+Override this option via Node envirorment variable with: <br>
+<code>process.env.NHTSA_API_FORMAT</code></p>
+</blockquote></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="ApiWrapper.js.html" class="button">View Source</a>
+            <span>
+                <a href="ApiWrapper.js.html">ApiWrapper.js</a>, <a href="ApiWrapper.js.html#line1">line 1</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+    <div class="method-parameter columns">
+        <div class="column is-2"><label>Requires:</label></div>
+        <div class="column is-10">
+            <ul>
+                <li><a href="module-api_utils.html">module:api/utils</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">TODO ROADMAP</p>
+    
+    
+        <pre class="prettyprint"><code>// TODO RENAME FILE TO index.jsconst { ApiWrapper } = require('./api')const wrapper = new ApiWrapper({ baseUrl, endpoint, format })const apiReponseNamedAnthing = ApiWrapper.fetch(vin)// Under the hood:// api/utils requires genEndpointconst apiUrl = genApiUrl(vin, options = {})// Should fetch(apiUrl) after genApiUrl(vin, options = {}) and return api/fetch()// Should return the fetched response with new Response(\&lt;\>) class</code></pre>
+    
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+    
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li><a href="module-api_utils.html">module:api/utils</a></li>
+        </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".generateApiUrl">
+        <a class="href-link" href="#.generateApiUrl">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                generateApiUrl<span class="signature">(vin, params)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>vin</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Vehicle Indentification Number to decode</p></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Optional query string parameters to append to the generated url.</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="ApiWrapper.js.html" class="button">View Source</a>
+            <span>
+                <a href="ApiWrapper.js.html">ApiWrapper.js</a>, <a href="ApiWrapper.js.html#line96">line 96</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>// With ApiWrapper default options: ApiWrapper.generateApiUrl('EXAMPLEVIN', { format: 'csv' }) // Returns https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=csv"</code></pre>
+    
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 01:26:06 GMT-0600 (Central Standard Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
