@@ -44,7 +44,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api/utils</h2><h3>Global</h3><ul><li><a href="global.html#genEndpoint">genEndpoint</a></li><li><a href="global.html#genQueryString">genQueryString</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api/utils</h2><h3>Global</h3><ul><li><a href="global.html#genApiUrl">genApiUrl</a></li><li><a href="global.html#genEndpoint">genEndpoint</a></li><li><a href="global.html#genQueryString">genQueryString</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -247,9 +247,9 @@
 
     
         <p class="tag-source">
-            <a href="utils_filterEmpty.js.html" class="button">View Source</a>
+            <a href="api_utils_filterEmpty.js.html" class="button">View Source</a>
             <span>
-                <a href="utils_filterEmpty.js.html">utils/filterEmpty.js</a>, <a href="utils_filterEmpty.js.html#line4">line 4</a>
+                <a href="api_utils_filterEmpty.js.html">api/utils/filterEmpty.js</a>, <a href="api_utils_filterEmpty.js.html#line4">line 4</a>
             </span>
         </p>
     
@@ -271,6 +271,333 @@
 
 
 
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="genApiUrl">
+        <a class="href-link" href="#genApiUrl">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                genApiUrl<span class="signature">(args)</span><span class="type-signature"> &rarr; {Promise.&lt;String>|Error}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>An api/utils module that generates a full url for the NHTSA API</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>args</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>baseUrl</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">String</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Base url of the API</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>action</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">String</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Action or collection to add to the url</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>resource</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">String</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Resource to retrieve information about</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Parameter key:value pairs to convert into a query string</p></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_utils_genApiUrl.js.html" class="button">View Source</a>
+            <span>
+                <a href="api_utils_genApiUrl.js.html">api/utils/genApiUrl.js</a>, <a href="api_utils_genApiUrl.js.html#line18">line 18</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+    <div class="method-parameter columns">
+        <div class="column is-2"><label>Requires:</label></div>
+        <div class="column is-10">
+            <ul>
+                <li><a href="module-api_utils.html">module:api/utils</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Full API url</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;String></span>
+|
+
+<span class="param-type">Error</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
 
 
 
@@ -478,9 +805,9 @@ for use in combination with the base URL of the NHTSA.gov API</br></p>
 
     
         <p class="tag-source">
-            <a href="utils_genEndpoint.js.html" class="button">View Source</a>
+            <a href="api_utils_genEndpoint.js.html" class="button">View Source</a>
             <span>
-                <a href="utils_genEndpoint.js.html">utils/genEndpoint.js</a>, <a href="utils_genEndpoint.js.html#line42">line 42</a>
+                <a href="api_utils_genEndpoint.js.html">api/utils/genEndpoint.js</a>, <a href="api_utils_genEndpoint.js.html#line42">line 42</a>
             </span>
         </p>
     
@@ -684,9 +1011,9 @@ api query parameters to use.</p></td>
 
     
         <p class="tag-source">
-            <a href="utils_genQueryString.js.html" class="button">View Source</a>
+            <a href="api_utils_genQueryString.js.html" class="button">View Source</a>
             <span>
-                <a href="utils_genQueryString.js.html">utils/genQueryString.js</a>, <a href="utils_genQueryString.js.html#line34">line 34</a>
+                <a href="api_utils_genQueryString.js.html">api/utils/genQueryString.js</a>, <a href="api_utils_genQueryString.js.html#line34">line 34</a>
             </span>
         </p>
     
@@ -759,6 +1086,237 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
 
 </div>
             
+                <div class="member">
+
+
+    
+    <h4 class="name" id="isValidType">
+        <a class="href-link" href="#isValidType">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                isValidType<span class="signature">(args)</span><span class="type-signature"> &rarr; {Promise.Boolean}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Validate types and existence of various input values.<br></p>
+<hr>
+<p>Returns <code>false</code> if:</p>
+<ul>
+<li>type or value args are not provided</li>
+<li>type arg is not of type 'String'</li>
+</ul>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>args</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>What type should the value be in order to pass the test and return true</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>value</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>What value are we testing against</p></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="util_isValidType.js.html" class="button">View Source</a>
+            <span>
+                <a href="util_isValidType.js.html">util/isValidType.js</a>, <a href="util_isValidType.js.html#line15">line 15</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>True if type arg matches type of value</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.Boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
             </div>
         </div>
     
@@ -781,7 +1339,7 @@ On reject: <code>new Error(error&lt;string&gt;)</code></p></div>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 22:24:07 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Dec 19 2019 01:18:58 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

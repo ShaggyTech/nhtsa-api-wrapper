@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: api/apiUtils.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +53,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>api/apiUtils.js</h1>
                     </header>
                     
                     
@@ -60,25 +62,98 @@
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/******************************
+ * Api Utility/Helper Methods
+ *******************************/
 
+/**
+ * Returns a url used to fetch data from the NHTSA.gov API
+ *
+ * @alias module:apiUtils.generateUrl
+ * @example &lt;caption>With no options&lt;/caption>
+ * generateUrl('3VW71KX938M100334')
+ * @example &lt;caption>With options&lt;/caption>
+ * const opts = {
+ *     url: 'https://test.api.com',
+ *     endpoint: 'DecodeVinValues',
+ *     format: 'xml'
+ * }
+ * * generateUrl('3VW71KX938M100334', opts)
+ * @param {string} vin &lt;p>Vehicle Identification Number (VIN) to decode&lt;/p>
+ * &lt;p>Default: &lt;code>undefined&lt;/code>&lt;/p>
+ * &lt;p>Note: Cannot be overridden by &lt;code>process.env&lt;/code> variables
+ * and always defaults to &lt;code>undefined&lt;/code> if not provided.&lt;/p>
+ * @param {object} options
+ * &lt;p>Defaults can be overridden by providing them in the options object (ex: options.{param}).&lt;/p>
+ * &lt;p>Defaults can also be overridden by setting their corresponding &lt;code>process.env&lt;/code> envirorment variable.&lt;/p>
+ * &lt;p>Precedence: &lt;code>options.{param} -> process.env variable -> default&lt;/code>&lt;/p>
+ * @param {string} {options.url="https://vpic.nhtsa.dot.gov/api/vehicles" &lt;p>NHTSA API base URL&lt;/p>
+ * &lt;p>&lt;code>process.env.NHTSA_API_URL&lt;/code>&lt;/p>
+ * @param {string} options.endpoint="DecodeVin" &lt;p>Endpoint of the NHTSA API to request from&lt;/p>
+ * &lt;p>&lt;code>process.env.NHTSA_API_ENDPOINT&lt;/code>&lt;/p>
+ * @param {string} options.format="json"} &lt;p>Requested response format from the NHTSA API request&lt;/p>
+ * &lt;p>&lt;code>process.env.NHTSA_API_RESPONSE_FORMAT&lt;/code>&lt;/p>
+ * @returns {string} `${url}/${apiEndpoint}/${vin}?format=${responseFormat}`
+ *
+ */
+const generateUrl = (vin, { url, endpoint, format } = {}) => {
+  // API base Url
+  url =
+    url ||
+    process.env.NHTSA_API_URL ||
+    'https://vpic.nhtsa.dot.gov/api/vehicles'
+  // what API endpoint to fetch from
+  endpoint = endpoint || process.env.NHTSA_API_ENDPOINT || 'DecodeVin'
+  // what is the requested response format
+  format = format || process.env.NHTSA_API_RESPONSE_FORMAT || 'json'
 
-    <h3> </h3>
+  return `${url}/${endpoint}/${vin}?format=${format}`
+}
 
+/**
+ * Handles any axios errors or custom errors from the api response
+ *
+ * @alias module:apiUtils.handleResponseError
+ * @param {any} error Response error to handle
+ * @returns {Error} Either the modified axios response or the original error
+ *
+ */
+const handleResponseError = error => {
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    // console.log('Error', error.response.data)
+    // console.log('Error', error.response.status)
+    // console.log('Error', error.response.headers)
+    return error.response
+  } else if (error.request) {
+    // The request was made but no response was received
+    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
+    // console.log('Error', error.request)
+    return error.request
+  } else if (error.message) {
+    // Something happened in setting up the request that triggered an Error
+    // console.log('Error', error.message)
+    return error.message
+  } else {
+    // console.log('Error', error)
+    return error
+  }
+}
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Api Utility/Helper Methods
+ *
+ * @module apiUtils
+ */
+module.exports.generateUrl = generateUrl
+module.exports.handleResponseError = handleResponseError
+</code></pre>
+        </article>
+    </section>
 
 
 

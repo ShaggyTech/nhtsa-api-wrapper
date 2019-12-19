@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: util/isValidType.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +53,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>util/isValidType.js</h1>
                     </header>
                     
                     
@@ -60,25 +62,39 @@
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Validate types and existence of various input values.&lt;br>
+ *
+ * ---
+ *
+ * Returns `false` if:
+ *   - type or value args are not provided
+ *   - type arg is not of type 'String'
+ *
+ * @param {object} args
+ * @param {string} args.type What type should the value be in order to pass the test and return true
+ * @param {string} args.value What value are we testing against
+ * @returns {Promise.Boolean} True if type arg matches type of value
+ */
+const isValidType = async ({ type, value }) => {
+  // Gatekeeping
+  if (!type || !value) return false
+  if (Object.prototype.toString.call(type) !== '[object String]') return false
+  // normalize type
+  const _type = type.toLowerCase()
 
+  const expected = `[object ${_type}]`
+  const actual = Object.prototype.toString.call(value).toLowerCase()
 
-    <h3> </h3>
+  return Promise.resolve(expected === actual)
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports.isValidType = isValidType
+</code></pre>
+        </article>
+    </section>
 
 
 

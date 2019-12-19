@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: api/utils/genQueryString.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +53,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>api/utils/genQueryString.js</h1>
                     </header>
                     
                     
@@ -60,25 +62,91 @@
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @category api/utils
+ * @alias genQueryString
+ * @async
+ * @description API utility method to generates a query string,&lt;br>
+ *  for use with an NHTSA.gov API endpoint URL string. &lt;br>
+ *
+ * @see {@link module:api/utils}
+ *
+ * @param {object} params An object containing key:value &lt;br>
+ *  { `key&lt;ParamName>` &lt;b>:&lt;/b> `value&lt;String>`}&lt;br>
+ *  api query parameters to use.
+ *
+ * @returns {Promise&lt;string>|Error} An API query string &lt;br>
+ *  On resolve: `Promise(&lt;string>)`&lt;br>
+ *  On reject: `new Error(error&lt;string>)`
+ *
+ * @example &lt;caption>Single Param:&lt;/caption>
+ * const qs = await genQueryString({
+ *   format: 'json'
+ * }).catch(error => error)
+ * // => Promise("?format=json")
+ *
+ * @example &lt;caption>Multiple Params:&lt;/caption>
+ * const qs = await genQueryString({
+ *   format: 'json',
+ *   modelYear: 2006,
+ *   page: "2"
+ * }).catch(error => error)
+ * // => Promise("?format=json&amp;modelYear=2006&amp;page=2")
+ *
+ */
 
+const genQueryString = async params =>
+  new Promise((resolve, reject) => {
+    // Error message begins with
+    const errorBase = 'genQueryString(params) - '
+    // Params are required
+    if (!params)
+      return reject(
+        new Error(
+          `${errorBase} params are required to build a query string: ${params}`
+        )
+      )
 
-    <h3> </h3>
+    // Type check params to ensure it is an object
+    const typeofParams = Object.prototype.toString.call(params)
+    if (typeofParams !== '[object Object]')
+      return reject(
+        new Error(
+          `${errorBase} expected params to be of type Object, got: ${typeofParams}`
+        )
+      )
 
+    // Setup QueryString for Array mapping
+    const entries = Object.entries(params)
+    const paramsLength = entries.length
 
+    // More gatekeeping
+    if (paramsLength &lt; 1)
+      return reject(
+        new Error(`${errorBase} params are required, got: ${params}`)
+      )
 
+    /**
+     * Map an array with [key]:value entries, to ":key=:value" strings
+     */
+    const queryStringArray = entries.map(([key, value], index) => {
+      // if first param we need to prepend the '?' char
+      let prepend = index &lt; 1 ? '?' : ''
+      // if there is another param coming after this one we need to append the '&amp;' char
+      let append = index &lt; paramsLength - 1 ? '&amp;' : ''
+      // return the completed string
+      return `${prepend}${key}=${value}${append}`
+    })
 
+    return resolve(queryStringArray.join(''))
+  })
 
-
-
-
-
-
-    
-
-
-
-
-
+exports.genQueryString = genQueryString
+</code></pre>
+        </article>
+    </section>
 
 
 

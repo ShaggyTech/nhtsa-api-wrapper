@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: api/utils/filterEmpty.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +53,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>api/utils/filterEmpty.js</h1>
                     </header>
                     
                     
@@ -60,25 +62,29 @@
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @description Filter empty objects from the NHTSA.gov api response
+ */
+const filterEmpty = (/** JSON */ apiResultsArray) => {
+  // Filter empty results objects from the array
+  const filteredResultsArray = apiResultsArray.filter(resultsObj => {
+    const value = resultsObj.Value
+    // empty or null value
+    if (!value) return false
+    // value is == error text indicating no errors
+    else if (value[0] === '0') return false
+    return true
+  })
 
+  return filteredResultsArray
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+exports.filterEmpty = filterEmpty
+</code></pre>
+        </article>
+    </section>
 
 
 
