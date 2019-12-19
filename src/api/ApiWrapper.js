@@ -1,77 +1,91 @@
-/**
+/** Class ApiWrapper - Wrapper for the vpic.NHTSA.dot.gov Vehicle VIN Decoding API
  * @category api
  * @requires api/utils
- * @class ApiWrapper
  * @alias api/ApiWrapper
- * @classdesc ApiWrapper to fetch or post(coming soon)
- *  data to the NHTSA.dot.gov API <br>
- * 
- * @constructor
- * @param {object} options={}
- * #### Options to pass to the ApiWrapper class constructor. <br>
- *  - Defaults can be overridden by passing an object of options to the class constructor,
- *    or by changing them on the class instance after instantiation. </br>
- *  - Order of Precedence upon instantiation, Highest to Lowest: <br>
- *    1. `options.option`
- *    2. `process.env.OPTION`
- *    3. `Default`
- * 
- *  - Defaults can also be overridden by setting their corresponding `process.env.OPTION` envirorment variable. </br>
-
  *
- * @param {string} options.baseURL=https://vpic.nhtsa.dot.gov/api/vehicles
- *  #### Used when generating the url to fetch from or post to.
- *  - Should *only* be overridden *if* the NHTSA URL changes in the future.
- *  > <b>NOTE:</b>
- *    Override this option via Node envirorment variable with:<br>
- *    `process.env.NHTSA_API_URL`
- * @param {string} options.endpoint=DecodeVinValues
- *  #### Endpoint of the NHTSA API to request from.
- *  - "DecodeVinValues" requests that `response.Results` be a flattened array,
- *  containing a single object of Key:Value pairs, for easier consumption. <br>
- *  - See {@link TODO:ListOfEndpoints} for a valid list of NHTSA Endpoints <br>
- *  > <b>NOTE:</b>
- *    Override this option via Node envirorment variable with:<br>
- *    `process.env.NHTSA_API_ENDPOINT`
+ * @example <caption>Create a new ApiWrapper</caption>
+ * // TODO COMPLETED:
  *
- * @param {string} options.format=json
- *  #### Format we want the NHTSA API response to be returned in.
- *  `'json'` to append "?format=json" to url and receive JSON response. `Default` <br>
- *  `'csv'` to append "?format=csv" to url and receive CSV response. <br>
- *  `'xml'` to append "?format=xml" to url and receive XML response. <br>
- *  `''` to omit '?format=' param entirely and receive XML response. <br>
- *
- *  ---
- * 
- *  - The default response from the NHTSA api, with no `?format=` query param, is `XML`.
- *  - Most endpoints have an optional "?format=" query param, used to override this default behaviour.
- *  - By default, this class appends a `?format=json` query string to every NHTSA fetch or post request.
- *
- *  > <b>NOTE:</b>
- *    Override this option via Node envirorment variable with: <br>
- *    `process.env.NHTSA_API_FORMAT`
- *
- * @example <caption>TODO ROADMAP</caption>
- * // TODO RENAME FILE TO index.js
  * const { ApiWrapper } = require('./api')
  * const wrapper = new ApiWrapper({ baseUrl, endpoint, format })
- * const apiReponseNamedAnthing = ApiWrapper.fetch(vin)
+ * const apiUrl = wrapper.generateApiUrl({
+ *   vin,
+ *   params: {
+ *     modelYear: 2001
+ *   }
+ * })
  *
- * // Under the hood:
- * // api/utils requires genEndpoint
- * const apiUrl = genApiUrl(vin, options = {})
+ * // TODO NEXT UP:
+ * const apiReponse = wrapper.fetch(apiUrl)
+ * // Should have fetch(apiUrl)
+ * // Should return the fetched response within new Response() class
  *
- * // Should fetch(apiUrl) after genApiUrl(vin, options = {}) and return api/fetch()
- * // Should return the fetched response with new Response(\<\>) class
  */
-
-module.exports = class ApiWrapper {
+class ApiWrapper {
+  /**
+   * @param {object} options={} <a name="options"></a>
+   * #### Options to pass to the ApiWrapper class constructor. <br>
+   *  - *Defaults* can be overridden by passing an object of options to the class constructor,
+   *    or by changing them on the class instance after instantiation. </br>
+   *  - *Order of Precedence* of options upon <b>instantiation</b>, Highest to Lowest: <br>
+   *    1. `options.option`
+   *    2. `process.env.OPTION`
+   *    3. `Default`
+   *
+   * @param {string} options.baseURL=https://vpic.nhtsa.dot.gov/api/vehicles <a name="options.baseUrl"></a>
+   *  The base string of the full url to fetch/post requests to
+   *  - Should *only* be overridden *if* the NHTSA URL changes in the future.
+   *  > <b>INFO:</b>
+   *    Default can also be overridden before or after class instantiation via: <br>
+   *    `process.env.NHTSA_API_URL`
+   *
+   * @param {string} options.endpoint=DecodeVinValues <a name="options.endpoint"></a>
+   *  #### Endpoint of the NHTSA API to request from.
+   *  - <b>Default</b>: `DecodeVinValues` requests that `response.Results` be a flattened array,
+   *  containing a single object of Key:Value pairs, for easier consumption. <br>
+   *  - See {@link TODO:ListOfEndpoints} for a valid list of NHTSA Endpoints <br>
+   *  > <b>INFO:</b>
+   *    Default can also be overridden before or after class instantiation via: <br>
+   *    `process.env.NHTSA_API_ENDPOINT`
+   *
+   * @param {string} options.format=json <a name="options.format"></a>
+   *  #### Option to specify what the response format be, when requesting data from the NHTSA API.
+   *
+   *  ---
+   *
+   *  <b>Default</b>: `'json'` - append "?format=json" to url and receive JSON response. <br>
+   *  `'csv'` - to append "?format=csv" to url and receive CSV response. <br>
+   *  `'xml'` - to append "?format=xml" to url and receive XML response. <br>
+   *
+   *  ---
+   *
+   * > <b>INFO:</b>
+   *   Default can also be overridden before or after class instantiation via: <br>
+   *   `process.env.NHTSA_API_FORMAT`<br>
+   *
+   * > <b>INFO:</b>
+   *   The default response format from the NHTSA api, with no `?format=` query param, is `XML`.<br><br>
+   *   Most endpoints have an optional "?format=" query param, used to override this default behaviour.<br><br>
+   *   By default, this class appends a `?format=json` query string to every NHTSA fetch or post request.<br><br>
+   */
   constructor(options = {}) {
-    this._baseUrl = options.baseUrl || 'https://vpic.nhtsa.dot.gov/api/vehicles'
-    this._endpoint = options.endpoint || 'DecodeVinValues'
-    this._format = options.format || 'json'
+    this._baseUrl =
+      options.baseUrl ||
+      process.env.NHTSA_API_URL ||
+      'https://vpic.nhtsa.dot.gov/api/vehicles'
+
+    this._endpoint =
+      options.endpoint || process.env.NHTSA_API_URL || 'DecodeVinValues'
+
+    this._format = options.format || process.env.NHTSA_API_FORMAT || 'json'
   }
 
+  /**
+   * @property {string} baseUrl='https://vpic.nhtsa.dot.gov/api/vehicles' Set this property via:<br>
+   *  `ApiWrapper.baseUrl` or `process.env.NHTSA_API_URL`
+   * @description The base url of the NHTSA API.
+   * @see #options.baseUrl
+   */
   get baseUrl() {
     return this._baseUrl
   }
@@ -79,6 +93,12 @@ module.exports = class ApiWrapper {
     this._baseUrl = value
   }
 
+  /**
+   * @property {string} endpoint=DecodeVinValues Set this property via:<br>
+   *  `ApiWrapper.endpoint` or `process.env.NHTSA_API_ENDPOINT`
+   * @description The NHTSA API endpoint to request data from.
+   * @see #options.endpoint
+   */
   get endpoint() {
     return this._endpoint
   }
@@ -86,6 +106,12 @@ module.exports = class ApiWrapper {
     this._endpoint = value
   }
 
+  /**
+   * @property {string} format=json Set this propety via:<br>
+   *  `ApiWrapper.format` or `process.env.NHTSA_API_FORMAT`
+   * @description Format to use when building url query strings.<br>
+   * @see #options.format
+   */
   get format() {
     return this._format
   }
@@ -94,26 +120,67 @@ module.exports = class ApiWrapper {
   }
 
   /**
-   * @method generateApiUrl
-   * @memberof ApiWrapper
-   *
-   * @param {string} vin Vehicle Indentification Number to decode
-   * @param {object} params Optional query string parameters to append to the generated url.
+   * @async
+   * @param {object} options Key:Value pairs of options to pass the function
+   * @param {string} options.vin `Required` Vehicle Indentification Number to decode
+   * @param {string} [options.endpoint] Which api url endpoint to request data from.<br>
+   *  - Defaults to [ApiWrapper.endpoint](#endpoint) if not provided
+   * @param {object} [options.params] Query string parameters to append to the generated url
+   * - See api/utils.{@link genQueryString}
    *
    * @example
-   *  // With ApiWrapper default options:
-   *  ApiWrapper.generateApiUrl('EXAMPLEVIN', { format: 'csv' })
-   *  // Returns https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=csv"
+   *  // Called with only vin option, uses internal variables of ApiWrapper as default:
+   *  ApiWrapper.generateApiUrl({ vin: 'EXAMPLEVIN' })
+   *  // Returns:
+   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=json"
+   *
+   *  // Called with vin, endpoint, and params option, overriding ApiWrapper internal variables:
+   *  ApiWrapper.generateApiUrl({
+   *   vin: 'EXAMPLEVIN',
+   *   endpoint: 'DecodeVinValuesExtended',
+   *   params: {
+   *    format: 'csv',
+   *    modelYear: 2001
+   *   }
+   * })
+   *  // Returns:
+   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/EXAMPLEVIN?format=csv&modelYear=2001"
+   *
+   *  // Called with vin, and params option, omitting endpoint and params.format
+   *  // so that it defaults to internal variable value "format = 'json'" and default endpoint:
+   *  ApiWrapper.generateApiUrl({
+   *   vin: 'EXAMPLEVIN',
+   *   params: {
+   *    modelYear: 2001
+   *   }
+   * })
+   *  // Returns:
+   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=json&modelYear=2001"
+   *
    */
-  async generateApiUrl(vin, params) {
-    params = params || { format: this.format }
+  async generateApiUrl({ vin, endpoint, params }) {
+    // Use default endpoint if not provided
+    endpoint = endpoint || this.endpoint
+
+    // Use params with default format if no params are provided
+    if (!params) {
+      params = { format: this.format }
+    }
+    // Ensure we always have a format:'json' param by adding it to provided params
+    else if (!params.format) {
+      params = { ...params, format: this.format }
+    }
+
+    // Import genEndPoint api/utls method
     const genEndpoint = require('./utils').genEndpoint
+    // and generate an endpoint to append to the baseUrl
     const ep = await genEndpoint({
       vin,
-      endpoint: this.endpoint,
+      endpoint,
       params
     })
 
+    // Return the complete API url
     return `${this.baseUrl}${ep}`
   }
 
@@ -121,3 +188,5 @@ module.exports = class ApiWrapper {
     return 'testing'
   }
 }
+
+module.exports = ApiWrapper
