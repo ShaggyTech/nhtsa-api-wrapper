@@ -7,7 +7,7 @@
 // const genEndpoint = utils.genEndpoint
 // const genQueryString = utils.genQueryString
 const filter = require('../utils').filterEmpty
-const { genEndpoint, genQueryString } = require('../utils')
+const { genEndpoint, genQueryString, genApiUrl } = require('../utils')
 
 describe('api/utils/index - Index for API Utility Methods', () => {
   test('filterEmpty() is correctly exported/imported', async () => {
@@ -23,5 +23,10 @@ describe('api/utils/index - Index for API Utility Methods', () => {
   test('genQueryString() is correctly exported/imported', async () => {
     expect(genQueryString).toBeDefined()
     expect(genQueryString).toBeInstanceOf(Function)
+  })
+
+  test('genApiUrl() is correctly exported/imported', async () => {
+    expect(genApiUrl).toBeDefined()
+    expect(genApiUrl).toBeInstanceOf(Function)
   })
 })

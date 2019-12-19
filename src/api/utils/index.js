@@ -40,12 +40,22 @@
  * Used in: {@link module:utils/genEndpoint}<br>
  * @see {@link genQueryString} for more complete documentation
  */
+
+/**
+ * @async
+ * @function genApiUrl
+ * @description Generates a full url or the NHTSA API <br>
+ * Used in: {@link module:utils/genEndpoint}<br>
+ * @see {@link genApiUrl} for more complete documentation
+ */
 const { filterEmpty } = require('./filterEmpty')
 const { genEndpoint } = require('./genEndpoint')
 const { genQueryString } = require('./genQueryString')
+const { genApiUrl } = require('./genApiUrl')
 
 module.exports = {
   filterEmpty,
   genQueryString,
-  genEndpoint
+  genEndpoint,
+  genApiUrl
 }
