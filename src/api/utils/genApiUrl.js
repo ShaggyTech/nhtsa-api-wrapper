@@ -26,7 +26,9 @@ const genApiUrl = async ({ baseUrl, action, resource, params }) => {
   const typeofBaseUrl = Object.prototype.toString.call(baseUrl)
   if (typeofBaseUrl !== '[object String]') {
     return Promise.reject(
-      `${errorBase} expected baseUrl to be of type String, got: ${typeofBaseUrl}`
+      new Error(
+        `${errorBase} expected baseUrl to be of type String, got: ${typeofBaseUrl}`
+      )
     )
   }
 
@@ -34,7 +36,9 @@ const genApiUrl = async ({ baseUrl, action, resource, params }) => {
   const typeofAction = Object.prototype.toString.call(action)
   if (typeofAction !== '[object String]') {
     return Promise.reject(
-      `${errorBase} expected action to be of type String, got: ${typeofAction}`
+      new Error(
+        `${errorBase} expected action to be of type String, got: ${typeofAction}`
+      )
     )
   }
 
@@ -42,17 +46,22 @@ const genApiUrl = async ({ baseUrl, action, resource, params }) => {
   const typeofResource = Object.prototype.toString.call(resource)
   if (typeofResource !== '[object String]') {
     return Promise.reject(
-      `${errorBase} expected action to be of type String, got: ${typeofResource}`
+      new Error(
+        `${errorBase} expected action to be of type String, got: ${typeofResource}`
+      )
     )
   }
 
-  // generate and return with query string if params are provided and of the correct type
+  // Generate and return with url with appended query string
+  // if params are provided and of the correct type
   if (params) {
     // Gatekeeping params
     const typeofParams = Object.prototype.toString.call(params)
     if (typeofParams !== '[object Object]') {
       return Promise.reject(
-        `${errorBase} expected params to be of type Object, got: ${typeofParams}`
+        new Error(
+          `${errorBase} expected params to be of type Object, got: ${typeofParams}`
+        )
       )
     }
 
@@ -63,8 +72,8 @@ const genApiUrl = async ({ baseUrl, action, resource, params }) => {
     const queryString = await genQueryString(params).catch(err => err)
     // and handle any errors
     if (queryString instanceof Error) {
-      return new Error(
-        `${errorBase} error creating queryString: ${queryString}`
+      return Promise.reject(
+        new Error(`${errorBase} error creating queryString: ${queryString}`)
       )
     } else return Promise.resolve(`${url}${queryString}`) // return the completed url with queryString
   } else return Promise.resolve(url) // return the completed url with no queryString
