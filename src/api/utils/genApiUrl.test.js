@@ -1,3 +1,6 @@
+jest.mock('./genQueryString')
+const { genQueryString } = require('./genQueryString')
+
 const { genApiUrl } = require('./genApiUrl')
 
 describe('api/utils genApiUrl() method', () => {
@@ -12,6 +15,14 @@ describe('api/utils genApiUrl() method', () => {
     const baseUrl = 'https://test-url.com'
     const action = 'TEST_ACTION'
     const resource = 'TEST_RESOURCE'
+
+    beforeEach(() => {
+      // We don't want to use the mocked version of genQueryString for this test
+      // as the mocked version always returns a rejected Promise containing an error
+      genQueryString.mockImplementationOnce(
+        jest.requireActual('./genQueryString').genQueryString
+      )
+    })
 
     test('valid args, but no params', async () => {
       const url = await genApiUrl({
@@ -35,6 +46,16 @@ describe('api/utils genApiUrl() method', () => {
       expect(url).toEqual(
         'https://test-url.com/TEST_ACTION/TEST_RESOURCE?format=test_format&modelYear=1991'
       )
+    })
+
+    test('valid args, with empty params object', async () => {
+      const url = await genApiUrl({
+        baseUrl,
+        action,
+        resource,
+        params: {}
+      }).catch(err => err)
+      expect(url).toEqual('https://test-url.com/TEST_ACTION/TEST_RESOURCE')
     })
   })
 
@@ -108,6 +129,25 @@ describe('api/utils genApiUrl() method', () => {
         action,
         resource,
         params: ['this should fail']
+      }).catch(err => {
+        expect(err).toEqual(expect.any(Error))
+      })
+      expect(url).toBeUndefined()
+    })
+
+    test('when genQueryString returns an error', async () => {
+      // Mock an error returned from genQueryString to test that it is properly caught
+      genQueryString.mockReturnValue(
+        Promise.reject(new Error('mocked return value from inside the test'))
+      )
+
+      url = await genApiUrl({
+        baseUrl,
+        action,
+        resource,
+        params: {
+          should: 'not_show_up_in_return'
+        }
       }).catch(err => {
         expect(err).toEqual(expect.any(Error))
       })
