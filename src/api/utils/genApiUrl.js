@@ -5,15 +5,46 @@ const { genQueryString } = require('./genQueryString')
  * @category api/utils
  * @alias genApiUrl
  * @async
- * @requires api/utils
+ * @requires api/utils genQueryString
  *
  * @param {Object} args
  * @param {String} args.baseUrl Base url of the API
- * @param {String} args.action Action or collection to add to the url
- * @param {String} args.resource Resource to retrieve information about
- * @param {Object} [args.params] Parameter key:value pairs to convert into a query string
+ * @param {String} args.action Action or collection to request from<br>
+ *   (DecodeVinValues, GetModelsForMake, GetManufacturerDetails, etc.)
+ * @param {String} args.resource Resource to retrieve information about<br>
+ *   (VIN, Make, Manufacturer, etc.)
+ * @param {Object} [args.params] Parameter key:value pairs to convert into a query string<br>
+ *   ex: `?format=json&modelYear=2001`
  *
- * @returns {Promise<String>|Error} Full API url
+ * @returns {Promise<String>|Error} Fully formed API url
+ *
+ * @example
+ * const { genApiUrl } = require('./genApiUrl')
+ *
+ * const baseUrl = 'https://test-url.com'
+ * const action = 'TEST_ACTION'
+ * const resource = 'TEST_RESOURCE'
+ *
+ * const url = await genApiUrl({
+ *   baseUrl,
+ *   action,
+ *   resource
+ * }).catch(err => err)
+ *   // Returns:
+ *   'https://test-url.com/TEST_ACTION/TEST_RESOURCE'
+ *
+ * const urlWithQueryString = await genApiUrl({
+ *   baseUrl,
+ *   action,
+ *   resource,
+ *   params: {
+ *     format: 'csv',
+ *     modelYear: 1991
+ *   }
+ * }).catch(err => err)
+ *   // Returns:
+ *   'https://test-url.com/TEST_ACTION/TEST_RESOURCE?format=csv&modelYear=1991'
+ *
  */
 const genApiUrl = async ({ baseUrl, action, resource, params }) => {
   // beginning of error messages
