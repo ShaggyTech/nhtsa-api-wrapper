@@ -1,10 +1,9 @@
 const { genQueryString } = require('./genQueryString')
 
 /**
- * @description An api/utils module that generates a full url for the NHTSA API
- * @category api/utils
- * @alias genApiUrl
+ * @module
  * @async
+ * @description An api/utils module that generates a full url for the NHTSA API
  * @requires api/utils genQueryString
  *
  * @param {Object} args

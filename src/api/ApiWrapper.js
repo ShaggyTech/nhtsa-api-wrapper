@@ -1,13 +1,17 @@
+const { isValidType } = require('../util/isValidType')
+const { genApiUrl } = require('./utils')
+
 /** Class ApiWrapper - Wrapper for the vpic.NHTSA.dot.gov Vehicle VIN Decoding API
  * @category api
  * @requires api/utils
+ * @requires isValidType
  * @alias api/ApiWrapper
  *
  * @example <caption>Create a new ApiWrapper</caption>
  * // TODO COMPLETED:
  *
  * const { ApiWrapper } = require('./api')
- * const wrapper = new ApiWrapper({ baseUrl, endpoint, format })
+ * const wrapper = new ApiWrapper({ baseUrl, action, format })
  * const apiUrl = wrapper.generateApiUrl({
  *   vin,
  *   params: {
@@ -37,16 +41,16 @@ class ApiWrapper {
    *  - Should *only* be overridden *if* the NHTSA URL changes in the future.
    *  > <b>INFO:</b>
    *    Default can also be overridden before or after class instantiation via: <br>
-   *    `process.env.NHTSA_API_URL`
+   *    `process.env.NHTSA_API_BASE_URL`
    *
-   * @param {string} options.endpoint=DecodeVinValues <a name="options.endpoint"></a>
-   *  #### Endpoint of the NHTSA API to request from.
-   *  - <b>Default</b>: `DecodeVinValues` requests that `response.Results` be a flattened array,
-   *  containing a single object of Key:Value pairs, for easier consumption. <br>
-   *  - See {@link TODO:ListOfEndpoints} for a valid list of NHTSA Endpoints <br>
+   * @param {string} options.action=DecodeVinValues <a name="options.action"></a>
+   *  #### Action (collection) of the NHTSA API to request data from.
+   *  - <b>Default</b> is `DecodeVinValues`, which requests that `response.Results` be a flattened array,
+   *    containing a single object of Key:Value pairs, for easier data consumption. <br>
+   *  - See {@link TODO:ListOfActions} for a valid list of NHTSA Actions and their purpose. <br>
    *  > <b>INFO:</b>
    *    Default can also be overridden before or after class instantiation via: <br>
-   *    `process.env.NHTSA_API_ENDPOINT`
+   *    `process.env.NHTSA_API_ACTION`
    *
    * @param {string} options.format=json <a name="options.format"></a>
    *  #### Option to specify what the response format be, when requesting data from the NHTSA API.
@@ -64,25 +68,25 @@ class ApiWrapper {
    *   `process.env.NHTSA_API_FORMAT`<br>
    *
    * > <b>INFO:</b>
-   *   The default response format from the NHTSA api, with no `?format=` query param, is `XML`.<br><br>
-   *   Most endpoints have an optional "?format=" query param, used to override this default behaviour.<br><br>
-   *   By default, this class appends a `?format=json` query string to every NHTSA fetch or post request.<br><br>
+   *   - Most api actions have an optional `?format=` query param, used to override this default behaviour.<br><br>
+   *   - By default, this class appends a `?format=json` query string to every NHTSA fetch or post request.<br><br>
+   *   - FYI, the default response format from the NHTSA api, with no `?format=` query param, is `XML`.<br><br>
    */
   constructor(options = {}) {
     this._baseUrl =
       options.baseUrl ||
-      process.env.NHTSA_API_URL ||
+      process.env.NHTSA_API_BASE_URL ||
       'https://vpic.nhtsa.dot.gov/api/vehicles'
 
-    this._endpoint =
-      options.endpoint || process.env.NHTSA_API_URL || 'DecodeVinValues'
+    this._action =
+      options.action || process.env.NHTSA_API_ACTION || 'DecodeVinValues'
 
     this._format = options.format || process.env.NHTSA_API_FORMAT || 'json'
   }
 
   /**
    * @property {string} baseUrl='https://vpic.nhtsa.dot.gov/api/vehicles' Set this property via:<br>
-   *  `ApiWrapper.baseUrl` or `process.env.NHTSA_API_URL`
+   *  `ApiWrapper.baseUrl` or `process.env.NHTSA_API_BASE_URL`
    * @description The base url of the NHTSA API.
    * @see #options.baseUrl
    */
@@ -90,20 +94,20 @@ class ApiWrapper {
     return this._baseUrl
   }
   set baseUrl(/** string */ value) {
-    this._baseUrl = value
+    this._baseUrl = value.toString()
   }
 
   /**
-   * @property {string} endpoint=DecodeVinValues Set this property via:<br>
-   *  `ApiWrapper.endpoint` or `process.env.NHTSA_API_ENDPOINT`
-   * @description The NHTSA API endpoint to request data from.
-   * @see #options.endpoint
+   * @property {string} action=DecodeVinValues Set this property via:<br>
+   *  `ApiWrapper.action` or `process.env.NHTSA_API_ACTION`
+   * @description The NHTSA API action/collection to request data from.
+   * @see #options.action
    */
-  get endpoint() {
-    return this._endpoint
+  get action() {
+    return this._action
   }
-  set endpoint(/** string */ value) {
-    this._endpoint = value
+  set action(/** string */ value) {
+    this._action = value.toString()
   }
 
   /**
@@ -116,76 +120,94 @@ class ApiWrapper {
     return this._format
   }
   set format(/** string */ value) {
-    this._format = value
+    this._format = value.toString()
   }
 
   /**
    * @async
-   * @param {object} options Key:Value pairs of options to pass the function
-   * @param {string} options.vin `Required` Vehicle Indentification Number to decode
-   * @param {string} [options.endpoint] Which api url endpoint to request data from.<br>
-   *  - Defaults to [ApiWrapper.endpoint](#endpoint) if not provided
-   * @param {object} [options.params] Query string parameters to append to the generated url
+   * @param {object} options Key:Value pairs of options to build our URL with.
+   * @param {string} options.resource `Required` Which Resource to retrieve information about<br>
+   *   (VIN, Make, Manufacturer, etc.)
+   * @param {string} [options.baseUrl] Base URL of the API<br>
+   *   - Defaults to [ApiWrapper.baseUrl](#options.baseUrl) if not provided
+   * @param {string} [options.action] Which Action/collection to request data from<br>
+   *   (DecodeVinValues, GetModelsForMake, GetManufacturerDetails, etc.)
+   *   - Defaults to [ApiWrapper.action](#options.action) if not provided
+   * @param {object} [options.params] Query string parameters to append to the generated URL
    * - See api/utils.{@link genQueryString}
    *
-   * @example
-   *  // Called with only vin option, uses internal variables of ApiWrapper as default:
-   *  ApiWrapper.generateApiUrl({ vin: 'EXAMPLEVIN' })
-   *  // Returns:
-   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=json"
+   * @returns {Promise<string>|Error}
+   *   On resolve: Promise(<string>)<br>
+   *   On reject: Promise(new Error(error<string>))
    *
-   *  // Called with vin, endpoint, and params option, overriding ApiWrapper internal variables:
+   * @example
+   *  // Providing only the resource option, uses internal variables of ApiWrapper as default:
+   *  ApiWrapper.generateApiUrl({ resource: '3VWD07AJ5EM388202' })
+   *  // Returns:
+   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/3VWD07AJ5EM388202?format=json"
+   *
+   *  // Providing resource, action, and params option, overriding cooresponding ApiWrapper internal variables:
    *  ApiWrapper.generateApiUrl({
-   *   vin: 'EXAMPLEVIN',
-   *   endpoint: 'DecodeVinValuesExtended',
+   *   resource: '3VWD07AJ5EM388202',
+   *   action: 'DecodeVinValuesExtended',
    *   params: {
    *    format: 'csv',
    *    modelYear: 2001
    *   }
    * })
    *  // Returns:
-   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/EXAMPLEVIN?format=csv&modelYear=2001"
+   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/3VWD07AJ5EM388202?format=csv&modelYear=2001"
    *
-   *  // Called with vin, and params option, omitting endpoint and params.format
-   *  // so that it defaults to internal variable value "format = 'json'" and default endpoint:
+   *  // Providing resource and params option, omitting action and params.format
+   *  // such that "format=json" is added to query string and ApiWrapper.action is used as default action
    *  ApiWrapper.generateApiUrl({
-   *   vin: 'EXAMPLEVIN',
+   *   resource: '3VWD07AJ5EM388202',
    *   params: {
    *    modelYear: 2001
    *   }
    * })
    *  // Returns:
-   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=json&modelYear=2001"
+   *  // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/3VWD07AJ5EM388202?format=json&modelYear=2001"
    *
    */
-  async generateApiUrl({ vin, endpoint, params }) {
-    // Use default endpoint if not provided
-    endpoint = endpoint || this.endpoint
-
-    // Use params with default format if no params are provided
-    if (!params) {
-      params = { format: this.format }
+  async generateApiUrl({ resource, baseUrl, action, params }) {
+    const validResource = await isValidType({ type: 'String', value: resource })
+    if (!validResource) {
+      return Promise.reject(
+        new Error(
+          'ApiWrapper.generateApiUrl() - resource is required to generate an API URL, none provided.'
+        )
+      )
     }
-    // Ensure we always have a format:'json' param by adding it to provided params
-    else if (!params.format) {
+
+    /** Uses default baseUrl if none provided */
+    baseUrl = baseUrl || this.baseUrl
+    /** Uses default action if none provided */
+    action = action || this.action
+
+    /** Ensure we always generate with a query string containing the 'format' param */
+    if (!params) {
+      /** If no params are provided, set params to include this.format */
+      params = { format: this.format }
+    } else if (!params.format) {
+      /** If user didn't provide a 'format' param in their params object,
+       *  add it to the user provided params */
       params = { ...params, format: this.format }
     }
 
-    // Import genEndPoint api/utls method
-    const genEndpoint = require('./utils').genEndpoint
-    // and generate an endpoint to append to the baseUrl
-    const ep = await genEndpoint({
-      vin,
-      endpoint,
+    /** Generate and return the completed API URL */
+    return await genApiUrl({
+      baseUrl,
+      resource,
+      action,
       params
+    }).catch(err => {
+      return Promise.reject(
+        new Error(
+          `ApiWrapper.generateApiUrl() - Error generating url --> ${err}`
+        )
+      )
     })
-
-    // Return the complete API url
-    return `${this.baseUrl}${ep}`
-  }
-
-  request() {
-    return 'testing'
   }
 }
 

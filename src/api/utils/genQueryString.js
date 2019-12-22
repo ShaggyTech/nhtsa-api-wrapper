@@ -1,9 +1,8 @@
 /**
- * @category api/utils
- * @alias genQueryString
+ * @module
  * @async
- * @description API utility method to generates a query string,<br>
- *  for use with an NHTSA.gov API endpoint URL string. <br>
+ * @description API utility method to generate a query string,<br>
+ *  for use with an NHTSA.gov API URL string. <br>
  *
  * @see {@link module:api/utils}
  *
