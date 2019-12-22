@@ -30,7 +30,7 @@
  * @async
  * @function genQueryString
  * @description Generates a query string for use with an NHTSA.gov API URL string. <br>
- * Used in: {@link class:ApiWrapper}<br>
+ * Used in: {@link module:api/utils/genApiUrl}<br>
  * @see {@link module:api/utils/genQueryString} for more complete documentation
  */
 
@@ -38,7 +38,7 @@
  * @async
  * @function genApiUrl
  * @description Generates a full url or the NHTSA API <br>
- * Used in: {@link class:ApiWrapper}<br>
+ * Used in: {@link api/ApiWrapper}<br>
  * @see {@link module:api/utils/genApiUrl} for more complete documentation
  */
 const { filterEmpty } = require('./filterEmpty')
