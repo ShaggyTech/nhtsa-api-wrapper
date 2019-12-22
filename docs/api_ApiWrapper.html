@@ -44,7 +44,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api/utils</h2><h3>Global</h3><ul><li><a href="global.html#genApiUrl">genApiUrl</a></li><li><a href="global.html#genEndpoint">genEndpoint</a></li><li><a href="global.html#genQueryString">genQueryString</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -204,7 +204,7 @@ The base string of the full url to fetch/post requests to</p>
 <blockquote>
 <p><b>INFO:</b>
 Default can also be overridden before or after class instantiation via: <br>
-<code>process.env.NHTSA_API_URL</code></p>
+<code>process.env.NHTSA_API_BASE_URL</code></p>
 </blockquote></td>
 </tr>
 
@@ -212,7 +212,7 @@ Default can also be overridden before or after class instantiation via: <br>
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>endpoint</code></td>
+      <td class="name"><code>action</code></td>
   
 
   <td class="type">
@@ -234,17 +234,17 @@ Default can also be overridden before or after class instantiation via: <br>
       </td>
   
 
-  <td class="description last"><p><a name="options.endpoint"></a></p>
-<h4 id="endpoint-of-the-nhtsa-api-to-request-from.">Endpoint of the NHTSA API to request from.</h4>
+  <td class="description last"><p><a name="options.action"></a></p>
+<h4 id="action-(collection)-of-the-nhtsa-api-to-request-data-from.">Action (collection) of the NHTSA API to request data from.</h4>
 <ul>
-<li><b>Default</b>: <code>DecodeVinValues</code> requests that <code>response.Results</code> be a flattened array,
-containing a single object of Key:Value pairs, for easier consumption. <br></li>
-<li>See <code>TODO:ListOfEndpoints</code> for a valid list of NHTSA Endpoints <br></li>
+<li><b>Default</b> is <code>DecodeVinValues</code>, which requests that <code>response.Results</code> be a flattened array,
+containing a single object of Key:Value pairs, for easier data consumption. <br></li>
+<li>See <code>TODO:ListOfActions</code> for a valid list of NHTSA Actions and their purpose. <br></li>
 </ul>
 <blockquote>
 <p><b>INFO:</b>
 Default can also be overridden before or after class instantiation via: <br>
-<code>process.env.NHTSA_API_ENDPOINT</code></p>
+<code>process.env.NHTSA_API_ACTION</code></p>
 </blockquote></td>
 </tr>
 
@@ -287,11 +287,13 @@ Default can also be overridden before or after class instantiation via: <br>
 <code>process.env.NHTSA_API_FORMAT</code><br></p>
 </blockquote>
 <blockquote>
-<p><b>INFO:</b>
-The default response format from the NHTSA api, with no <code>?format=</code> query param, is <code>XML</code>.<br><br>
-Most endpoints have an optional &quot;?format=&quot; query param, used to override this default behaviour.<br><br>
-By default, this class appends a <code>?format=json</code> query string to every NHTSA fetch or post request.<br><br></p>
-</blockquote></td>
+<p><b>INFO:</b></p>
+</blockquote>
+<ul>
+<li>Most api actions have an optional <code>?format=</code> query param, used to override this default behaviour.<br><br></li>
+<li>By default, this class appends a <code>?format=json</code> query string to every NHTSA fetch or post request.<br><br></li>
+<li>FYI, the default response format from the NHTSA api, with no <code>?format=</code> query param, is <code>XML</code>.<br><br></li>
+</ul></td>
 </tr>
 
   
@@ -340,7 +342,7 @@ By default, this class appends a <code>?format=json</code> query string to every
         <p class="tag-source">
             <a href="api_ApiWrapper.js.html" class="button">View Source</a>
             <span>
-                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line71">line 71</a>
+                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line75">line 75</a>
             </span>
         </p>
     
@@ -353,6 +355,8 @@ By default, this class appends a <code>?format=json</code> query string to every
         <div class="column is-10">
             <ul>
                 <li><a href="module-api_utils.html">module:api/utils</a></li>
+            
+                <li>module:isValidType</li>
             </ul>
         </div>
     </div>
@@ -380,7 +384,7 @@ By default, this class appends a <code>?format=json</code> query string to every
         <p class="code-caption">Create a new ApiWrapper</p>
     
     
-        <pre class="prettyprint"><code>// TODO COMPLETED:const { ApiWrapper } = require('./api')const wrapper = new ApiWrapper({ baseUrl, endpoint, format })const apiUrl = wrapper.generateApiUrl({  vin,  params: {    modelYear: 2001  }})// TODO NEXT UP:const apiReponse = wrapper.fetch(apiUrl)// Should have fetch(apiUrl)// Should return the fetched response within new Response() class</code></pre>
+        <pre class="prettyprint"><code>// TODO COMPLETED:const { ApiWrapper } = require('./api')const wrapper = new ApiWrapper({ baseUrl, action, format })const apiUrl = wrapper.generateApiUrl({  vin,  params: {    modelYear: 2001  }})// TODO NEXT UP:const apiReponse = wrapper.fetch(apiUrl)// Should have fetch(apiUrl)// Should return the fetched response within new Response() class</code></pre>
     
 
 
@@ -398,6 +402,8 @@ By default, this class appends a <code>?format=json</code> query string to every
 
         <ul>
             <li><a href="module-api_utils.html">module:api/utils</a></li>
+        
+            <li>module:isValidType</li>
         </ul>
     
 
@@ -413,6 +419,143 @@ By default, this class appends a <code>?format=json</code> query string to every
         <div class='vertical-section'>
             <h3 class="title"><span>Members</span></h3>
             <div class="members">
+            
+                <div class="member">
+
+<h4 class="name" id="action">
+    <a class="href-link" href="#action">#</a>
+    
+    <span class="code-name">
+        action
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>The NHTSA API action/collection to request data from.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>action</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            DecodeVinValues
+        
+        </td>
+    
+
+    <td class="description last"><p>Set this property via:<br>
+<code>ApiWrapper.action</code> or <code>process.env.NHTSA_API_ACTION</code></p></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="api_ApiWrapper.html#options.action">#options.action</a></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_ApiWrapper.js.html" class="button">View Source</a>
+            <span>
+                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line106">line 106</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
             
                 <div class="member">
 
@@ -487,7 +630,7 @@ By default, this class appends a <code>?format=json</code> query string to every
     
 
     <td class="description last"><p>Set this property via:<br>
-<code>ApiWrapper.baseUrl</code> or <code>process.env.NHTSA_API_URL</code></p></td>
+<code>ApiWrapper.baseUrl</code> or <code>process.env.NHTSA_API_BASE_URL</code></p></td>
 </tr>
 
     
@@ -539,144 +682,7 @@ By default, this class appends a <code>?format=json</code> query string to every
         <p class="tag-source">
             <a href="api_ApiWrapper.js.html" class="button">View Source</a>
             <span>
-                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line89">line 89</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-<h4 class="name" id="endpoint">
-    <a class="href-link" href="#endpoint">#</a>
-    
-    <span class="code-name">
-        endpoint
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>The NHTSA API endpoint to request data from.</p>
-</div>
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-        
-<tr class="deep-level-0">
-    
-        <td class="name"><code>endpoint</code></td>
-    
-
-    <td class="type">
-    
-        
-<span class="param-type">string</span>
-
-
-    
-    </td>
-
-    
-
-    
-        <td class="default">
-        
-            DecodeVinValues
-        
-        </td>
-    
-
-    <td class="description last"><p>Set this property via:<br>
-<code>ApiWrapper.endpoint</code> or <code>process.env.NHTSA_API_ENDPOINT</code></p></td>
-</tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="api_ApiWrapper.html#options.endpoint">#options.endpoint</a></li>
-        </ul>
-    </dd>
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="api_ApiWrapper.js.html" class="button">View Source</a>
-            <span>
-                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line102">line 102</a>
+                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line93">line 93</a>
             </span>
         </p>
     
@@ -813,7 +819,7 @@ By default, this class appends a <code>?format=json</code> query string to every
         <p class="tag-source">
             <a href="api_ApiWrapper.js.html" class="button">View Source</a>
             <span>
-                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line115">line 115</a>
+                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line119">line 119</a>
             </span>
         </p>
     
@@ -847,7 +853,7 @@ By default, this class appends a <code>?format=json</code> query string to every
         
         <span class="code-name">
             
-                generateApiUrl<span class="signature">(options)</span><span class="type-signature"></span>
+                generateApiUrl<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
             
         </span>
     </h4>
@@ -916,7 +922,7 @@ By default, this class appends a <code>?format=json</code> query string to every
 
   
 
-  <td class="description last"><p>Key:Value pairs of options to pass the function</p></td>
+  <td class="description last"><p>Key:Value pairs of options to build our URL with.</p></td>
 </tr>
 
   
@@ -924,7 +930,7 @@ By default, this class appends a <code>?format=json</code> query string to every
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>vin</code></td>
+      <td class="name"><code>resource</code></td>
   
 
   <td class="type">
@@ -948,14 +954,15 @@ By default, this class appends a <code>?format=json</code> query string to every
 
   
 
-  <td class="description last"><p><code>Required</code> Vehicle Indentification Number to decode</p></td>
+  <td class="description last"><p><code>Required</code> Which Resource to retrieve information about<br>
+(VIN, Make, Manufacturer, etc.)</p></td>
 </tr>
 
   
     
 <tr class="deep-level-1">
   
-      <td class="name"><code>endpoint</code></td>
+      <td class="name"><code>baseUrl</code></td>
   
 
   <td class="type">
@@ -981,9 +988,46 @@ By default, this class appends a <code>?format=json</code> query string to every
 
   
 
-  <td class="description last"><p>Which api url endpoint to request data from.<br></p>
+  <td class="description last"><p>Base URL of the API<br></p>
 <ul>
-<li>Defaults to <a href="#endpoint">ApiWrapper.endpoint</a> if not provided</li>
+<li>Defaults to <a href="#options.baseUrl">ApiWrapper.baseUrl</a> if not provided</li>
+</ul></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>action</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Which Action/collection to request data from<br>
+(DecodeVinValues, GetModelsForMake, GetManufacturerDetails, etc.)</p>
+<ul>
+<li>Defaults to <a href="#options.action">ApiWrapper.action</a> if not provided</li>
 </ul></td>
 </tr>
 
@@ -1017,9 +1061,9 @@ By default, this class appends a <code>?format=json</code> query string to every
 
   
 
-  <td class="description last"><p>Query string parameters to append to the generated url</p>
+  <td class="description last"><p>Query string parameters to append to the generated URL</p>
 <ul>
-<li>See api/utils.<a href="global.html#genQueryString"><code>genQueryString</code></a></li>
+<li>See api/utils.<code>genQueryString</code></li>
 </ul></td>
 </tr>
 
@@ -1069,7 +1113,7 @@ By default, this class appends a <code>?format=json</code> query string to every
         <p class="tag-source">
             <a href="api_ApiWrapper.js.html" class="button">View Source</a>
             <span>
-                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line161">line 161</a>
+                <a href="api_ApiWrapper.js.html">api/ApiWrapper.js</a>, <a href="api_ApiWrapper.js.html#line173">line 173</a>
             </span>
         </p>
     
@@ -1092,13 +1136,42 @@ By default, this class appends a <code>?format=json</code> query string to every
 
 
 
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>On resolve: Promise(<string>)<br>
+On reject: Promise(new Error(error<string>))</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
 
 
 
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>// Called with only vin option, uses internal variables of ApiWrapper as default: ApiWrapper.generateApiUrl({ vin: 'EXAMPLEVIN' }) // Returns: // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=json" // Called with vin, endpoint, and params option, overriding ApiWrapper internal variables: ApiWrapper.generateApiUrl({  vin: 'EXAMPLEVIN',  endpoint: 'DecodeVinValuesExtended',  params: {   format: 'csv',   modelYear: 2001  }}) // Returns: // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/EXAMPLEVIN?format=csv&amp;modelYear=2001" // Called with vin, and params option, omitting endpoint and params.format // so that it defaults to internal variable value "format = 'json'" and default endpoint: ApiWrapper.generateApiUrl({  vin: 'EXAMPLEVIN',  params: {   modelYear: 2001  }}) // Returns: // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/EXAMPLEVIN?format=json&amp;modelYear=2001"</code></pre>
+        <pre class="prettyprint"><code>// Providing only the resource option, uses internal variables of ApiWrapper as default: ApiWrapper.generateApiUrl({ resource: '3VWD07AJ5EM388202' }) // Returns: // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/3VWD07AJ5EM388202?format=json" // Providing resource, action, and params option, overriding cooresponding ApiWrapper internal variables: ApiWrapper.generateApiUrl({  resource: '3VWD07AJ5EM388202',  action: 'DecodeVinValuesExtended',  params: {   format: 'csv',   modelYear: 2001  }}) // Returns: // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/3VWD07AJ5EM388202?format=csv&amp;modelYear=2001" // Providing resource and params option, omitting action and params.format // such that "format=json" is added to query string and ApiWrapper.action is used as default action ApiWrapper.generateApiUrl({  resource: '3VWD07AJ5EM388202',  params: {   modelYear: 2001  }}) // Returns: // https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/3VWD07AJ5EM388202?format=json&amp;modelYear=2001"</code></pre>
     
 
 
@@ -1126,7 +1199,7 @@ By default, this class appends a <code>?format=json</code> query string to every
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Dec 21 2019 01:08:35 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 22 2019 16:49:44 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
