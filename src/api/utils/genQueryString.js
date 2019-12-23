@@ -66,11 +66,25 @@ const genQueryString = async params =>
      */
     const queryStringArray = entries.map(([key, value], index) => {
       // if first param we need to prepend the '?' char
-      let prepend = index < 1 ? '?' : ''
-      // if there is another param coming after this one we need to append the '&' char
-      let append = index < paramsLength - 1 ? '&' : ''
-      // return the completed string
-      return `${prepend}${key}=${value}${append}`
+      let prepend = ''
+      let append = ''
+
+      if (value) {
+        // if this is the first param we need to prepend the '?' char
+        if (index < 1) {
+          prepend = '?'
+        }
+        // if there is another param coming after this one we need to append the '&' char
+        if (index < paramsLength - 1) {
+          // but only if the value is not empty
+          if (entries[index + 1][1] !== '') {
+            append = '&'
+          }
+        }
+
+        // return the completed string
+        return `${prepend}${key}=${value}${append}`
+      }
     })
 
     return resolve(queryStringArray.join(''))
