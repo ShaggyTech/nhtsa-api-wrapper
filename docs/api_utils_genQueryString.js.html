@@ -66,15 +66,28 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @module
+ * @requires utils/isValidType
  * @async
  * @description API utility method to generate a query string,&lt;br>
- *  for use with an NHTSA.gov API URL string. &lt;br>
+ *  for use with an NHTSA.gov API URL string. &lt;br>&lt;br>
  *
  * @see {@link module:api/utils}
  *
- * @param {object} params An object containing key:value &lt;br>
- *  { `key&lt;ParamName>` &lt;b>:&lt;/b> `value&lt;String>`}&lt;br>
- *  api query parameters to use.
+ * @param {object} params &lt;a name="params">&lt;/a> `REQUIRED`&lt;br>
+ *  #### An object containing key:value API query parameters to use.&lt;br>
+ *   - `{key&lt;String> : value&lt;String|Number>}`&lt;br>
+ *   > &lt;b>INFO:&lt;/b>&lt;br>
+ *     Param values must be of type `String` or `Number`&lt;br>
+ *     - Invalid params types or empty params values will be
+ *         transformed into empty strings: `""`&lt;br>
+ *     - If params argument is an empty object,
+ *       will resolve with `""`&lt;br>
+ *     - If there are no valid param values,
+ *       will resolve with an empty string: `""`&lt;br>
+ *
+ *   > &lt;b>INFO:&lt;/b> &lt;br>
+ *       If params argument is missing or params argument is not of type Object,
+ *         will reject with an `Error`.&lt;br>
  *
  * @returns {Promise&lt;string>|Error} An API query string &lt;br>
  *  On resolve: `Promise(&lt;string>)`&lt;br>
@@ -84,7 +97,7 @@
  * const qs = await genQueryString({
  *   format: 'json'
  * }).catch(error => error)
- * // => Promise("?format=json")
+ * // => Promise.resolve("?format=json")
  *
  * @example &lt;caption>Multiple Params:&lt;/caption>
  * const qs = await genQueryString({
@@ -92,55 +105,75 @@
  *   modelYear: 2006,
  *   page: "2"
  * }).catch(error => error)
- * // => Promise("?format=json&amp;modelYear=2006&amp;page=2")
+ * // => Promise.resolve("?format=json&amp;modelYear=2006&amp;page=2")
+ *
+ * @example &lt;caption>Empty Params Object:&lt;/caption>
+ * const qs = await genQueryString({}).catch(error => error)
+ * // => Promise.resolve("")
  *
  */
 
-const genQueryString = async params =>
-  new Promise((resolve, reject) => {
-    // Error message begins with
-    const errorBase = 'genQueryString(params) - '
-    // Params are required
-    if (!params)
-      return reject(
-        new Error(
-          `${errorBase} params are required to build a query string: ${params}`
-        )
+const { isValidType } = require('../../util/isValidType')
+
+const genQueryString = async params => {
+  // Error message begins with
+  const errorBase = 'genQueryString(params&lt;object>) - '
+
+  // Params are required
+  if (!params)
+    return Promise.reject(
+      new Error(
+        `${errorBase} params are required to build a query string: ${params}`
       )
+    )
 
-    // Type check params to ensure it is an object
-    const typeofParams = Object.prototype.toString.call(params)
-    if (typeofParams !== '[object Object]')
-      return reject(
-        new Error(
-          `${errorBase} expected params to be of type Object, got: ${typeofParams}`
-        )
+  // Type check params to ensure it is an object
+  if (!(await isValidType({ type: 'object', value: params }))) {
+    return Promise.reject(
+      new Error(
+        `${errorBase} expected params to be of type Object but got params: ${params}`
       )
+    )
+  }
 
-    // Setup QueryString for Array mapping
-    const entries = Object.entries(params)
-    const paramsLength = entries.length
+  // Setup QueryString for Array mapping
+  const entries = Object.entries(params)
+  const paramsLength = entries.length
 
-    // More gatekeeping
-    if (paramsLength &lt; 1)
-      return reject(
-        new Error(`${errorBase} params are required, got: ${params}`)
-      )
+  // Return an empty string if params are an empty object
+  if (paramsLength &lt; 1) return Promise.resolve('')
 
-    /**
-     * Map an array with [key]:value entries, to ":key=:value" strings
-     */
-    const queryStringArray = entries.map(([key, value], index) => {
-      // if first param we need to prepend the '?' char
-      let prepend = index &lt; 1 ? '?' : ''
+  // Check to see if we've already prepended a valid query param
+  let isPrepended = false
+
+  // Map an array with [key]:value entries, to ":key=:value" strings
+  const queryStringArray = entries.map(([key, value], index) => {
+    let prepend = ''
+    let append = ''
+
+    // skip any invalid values
+    if (value &amp;&amp; (typeof value === 'string' || typeof value === 'number')) {
+      // if this is the first param we need to prepend the '?' char
+      if (value !== '' &amp;&amp; !isPrepended) {
+        prepend = '?'
+        isPrepended = true
+      }
       // if there is another param coming after this one we need to append the '&amp;' char
-      let append = index &lt; paramsLength - 1 ? '&amp;' : ''
-      // return the completed string
-      return `${prepend}${key}=${value}${append}`
-    })
+      if (index &lt; paramsLength - 1) {
+        // but only if the value is not empty
+        if (entries[index + 1][1] !== '') {
+          append = '&amp;'
+        }
+      }
 
-    return resolve(queryStringArray.join(''))
+      // map the completed partial query string to queryStringArray
+      return `${prepend}${key}=${value}${append}`
+    }
   })
+
+  // Join and return the completed query string
+  return Promise.resolve(queryStringArray.join(''))
+}
 
 exports.genQueryString = genQueryString
 </code></pre>
@@ -158,7 +191,7 @@ exports.genQueryString = genQueryString
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 22 2019 17:22:59 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 24 2019 15:28:08 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
