@@ -2,7 +2,5 @@
 // 100% test coverage or bust
 
 module.exports.genQueryString = jest.fn(() => {
-  return Promise.reject(
-    new Error('mocked genQueryString error from __mocks__ folder')
-  )
+  return Promise.resolve('mocked genQueryString resolve from __mocks__ folder')
 })
