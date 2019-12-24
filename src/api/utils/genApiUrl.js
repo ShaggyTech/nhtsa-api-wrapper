@@ -77,7 +77,7 @@ const genApiUrl = async ({ baseUrl, action, resource, params }) => {
   if (typeofResource !== '[object String]') {
     return Promise.reject(
       new Error(
-        `${errorBase} expected action to be of type String, got: ${typeofResource}`
+        `${errorBase} expected resource to be of type String, got: ${typeofResource}`
       )
     )
   }
