@@ -14,7 +14,6 @@ describe('test request.get() method', () => {
 
     expect(response).toBeDefined()
     expect(response.data).toEqual({ mockedData: 'test data' })
-    expect(response.url).toEqual('http://test.api.com/')
   })
 
   test('handles errors thrown by axios.get', async () => {

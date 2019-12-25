@@ -11,17 +11,9 @@ describe('Tests ApiWrapper (main.js class export)', () => {
     })
 
     test('it returns true', async () => {
-      const result = await wrapper.DecodeVin('TEST_VIN')
-      expect(result).toEqual({
-        config: {},
-        data: { mockedData: 'from __mocks__ folder' },
-        headers: {},
-        request: {},
-        status: 200,
-        statusText: 'OK',
-        url:
-          'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/TEST_VIN?format=json'
-      })
+      const result = await wrapper.DecodeVin('TEST_VIN').catch(err => err)
+      expect(result).toEqual(expect.any(Object))
+      expect(result.Results[0].Variable).toEqual('Mocked Data')
     })
   })
 })

@@ -3,9 +3,9 @@ const axios = require('axios')
 const { isValidType } = require('./util/isValidType')
 
 const get = async url => {
-  const validUrl = await isValidType({ type: 'string', value: url })
   // Gatekeeping url
-  if (!url || !validUrl) {
+  const validUrlType = await isValidType({ type: 'string', value: url })
+  if (!url || !validUrlType) {
     return Promise.reject(
       new Error(
         `request.get(url) - invalid url arg, url must be of type String, got: ${url}`
@@ -15,7 +15,7 @@ const get = async url => {
 
   return await axios
     .get(url)
-    .then(response => ({ ...response, url }))
+    .then(response => response)
     .catch(err =>
       Promise.reject(
         new Error(`request.get() - axios.get error follows >>>: ${err}`)
