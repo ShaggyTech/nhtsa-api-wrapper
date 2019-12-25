@@ -18,6 +18,7 @@
   "opts": {
     "recurse": true,
     "destination": "./docsDev/",
-    "template": "node_modules/better-docs"
+    "template": "node_modules/better-docs",
+    "tutorials": "./docsSrc/tutorials"
   }
 }
