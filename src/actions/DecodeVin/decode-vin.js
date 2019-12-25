@@ -84,9 +84,9 @@ const { isValidType } = require('../../util/isValidType')
  * @see [ApiWrapper.DecodeVin](ApiWrapper.html#.DecodeVin)
  *
  * @example <caption>Basic Usage:</caption>
- * const wrapper = require('./main.js')
+ * const { DecodeVin } = require('./main.js').ApiWrapper
  *
- * const result = async wrapper.DecodeVin('WVWKG61J34D132375').catch(err => err)
+ * const result = await DecodeVin('WVWKG61J34D132375').catch(err => err)
  *
  * // => Promise.resolve(result<object>),
  */
