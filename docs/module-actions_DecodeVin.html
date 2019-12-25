@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: api/utils/genApiUrl</title>
+    <title>JSDoc: actions/DecodeVin</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>api/utils/genApiUrl</h1>
+                        <h1>actions/DecodeVin</h1>
                     </header>
                     
                     
@@ -65,8 +65,6 @@
 <header>
     
         
-            
-        
     
 </header>
 
@@ -74,12 +72,79 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>An api/utils module that generates a full URL for the NHTSA API.</p></div>
-        
 
+        
+    
+    </div>
+    
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li><code>module:node_modules/axios</code></li>
+        
+            <li><a href="module-api_utils_genApiUrl.html"><code>module:api/utils/genApiUrl</code></a></li>
+        
+            <li><a href="module-api_utils_genQueryString.html"><code>module:api/utils/genQueryString</code></a></li>
+        
+            <li><a href="global.html#isValidType"><code>isValidType</code></a></li>
+        
+            <li><a href="ApiWrapper.html#.DEFAULT_FORMAT"><code>ApiWrapper.DEFAULT_FORMAT</code></a></li>
+        
+            <li><a href="ApiWrapper.html#.DEFAULT_FORMAT"><code>ApiWrapper.DEFAULT_FORMAT</code></a></li>
+        </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~DecodeVin">
+        <a class="href-link" href="#~DecodeVin">#</a>
         
             
+                <span class='tag'>async</span>
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                DecodeVin<span class="signature">(vin, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>|Error}</span>
+            
+        </span>
+    </h4>
+    
 
+    
+    
+    <div class="description">
+        <p>DecodeVin - NHTSA.dot.gov/vehicles API Action<br></p>
+<blockquote>
+<p><strong>INFO:</strong><br>
+<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></strong> Tutorial for more information on what</em>
+<em>this returns from the NHTSA API.</em></p>
+</blockquote>
+<br>
+    </div>
+    
 
 
 
@@ -106,6 +171,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -117,13 +184,13 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>args</code></td>
+      <td class="name"><code>vin</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
   
@@ -140,117 +207,27 @@
   
 
   
-
-  <td class="description last"></td>
-</tr>
-
-  
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>baseUrl</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">String</span>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-
-      
-
+      <td class="default">
       
       </td>
   
 
-  
-
-  <td class="description last"><p>Base URL of the API</p></td>
+  <td class="description last"><p><code>REQUIRED</code> <br> Vehicle Identification Number to decode</p></td>
 </tr>
 
-  
+
     
-<tr class="deep-level-1">
+
+        
+<tr class="deep-level-0">
   
-      <td class="name"><code>action</code></td>
+      <td class="name"><code>options</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">String</span>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-
-      
-
-      
-      </td>
-  
-
-  
-
-  <td class="description last"><p>Action or collection to request from<br>
-(DecodeVinValues, GetModelsForMake, GetManufacturerDetails, etc.)</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>resource</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">String</span>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-
-      
-
-      
-      </td>
-  
-
-  
-
-  <td class="description last"><p>Resource to retrieve information about<br>
-(VIN, Make, Manufacturer, etc.)</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>params</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Object</span>
+<span class="param-type">object</span>
 
 
   
@@ -269,9 +246,131 @@
   
 
   
+      <td class="default">
+      
+      </td>
+  
 
-  <td class="description last"><p>Parameter key:value pairs to convert into a query string<br>
-ex: <code>?format=json&amp;modelYear=2001</code></p></td>
+  <td class="description last"><p><code>baseUrl</code>, <code>format</code>, <code>modelYear</code></p></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>baseUrl</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          <a href="ApiWrapper.html#.BASE_URL"><code>ApiWrapper.BASE_URL</code></a>
+      
+      </td>
+  
+
+  <td class="description last"><p>Base URL of the API call to make</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>format</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          <a href="ApiWrapper.html#.DEFAULT_FORMAT"><code>ApiWrapper.DEFAULT_FORMAT</code></a>
+      
+      </td>
+  
+
+  <td class="description last"><p>Output format of the API response</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>modelYear</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>Model Year of the vehicle (if known)</p></td>
 </tr>
 
   
@@ -311,16 +410,30 @@ ex: <code>?format=json&amp;modelYear=2001</code></p></td>
 
     
     
+    <dt class="tag-tutorial">Tutorials:</dt>
+    <dd class="tag-tutorial">
+        <ul>
+            <li><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></li>
+        </ul>
+    </dd>
+    
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><p><a href="ApiWrapper.html#.DecodeVin">ApiWrapper.DecodeVin</a></p></li>
+        </ul>
+    </dd>
     
 
     
 
     
         <p class="tag-source">
-            <a href="api_utils_genApiUrl.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
             <span>
-                <a href="api_utils_genApiUrl.js.html">api/utils/genApiUrl.js</a>, <a href="api_utils_genApiUrl.js.html#line3">line 3</a>
+                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line18">line 18</a>
             </span>
         </p>
     
@@ -351,13 +464,52 @@ ex: <code>?format=json&amp;modelYear=2001</code></p></td>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>Fully formed API url</p></div>
+    <div class='param-desc column is-7'><p>Returns a response from the NHTSA API request with additional values
+(url and action), to aid in debugging results.</p>
+<hr>
+<h4 id="on-resolve%3A-promise(%3Cobject%3E)">On resolve: <code>Promise(&lt;Object&gt;)</code></h4>
+<ul>
+<li>Empty options arg object or empty/invalid options.value(s) will be transformed
+to empty strings internally and will not reject with any Error</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>Promise.resolve({
+  // Results from NHTSA API response
+  &quot;Count&quot;: Number,
+  &quot;Message&quot;: String,
+  &quot;SearchCriteria&quot;: String,
+  &quot;Results&quot;: [
+    {
+      &quot;Value&quot;: String|Number,
+      &quot;ValueId&quot;: String,
+      &quot;Variable&quot;: String,
+      &quot;VariableId&quot;: Number
+    }
+  ],
+  // URL that was used in axios.get()
+  url: String,
+  // Action this result came from
+  action: String,
+})
+</code></pre>
+<hr>
+<h4 id="on-reject%3A-new-error(error%3Cstring%3E)">On reject: <code>new Error(error&lt;String&gt;)</code></h4>
+<ul>
+<li>If no or invalid vin argument is provided, an Error will be thrown
+to prevent unneccesary http calls that would not result in a valid return</li>
+<li>Most invalid options will reject with Error(s) inside the modules
+they are used in and can be caught with a Try/Catch or async .catch blocks</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>Promise.reject(
+ new Error('Error message...')
+)
+</code></pre>
+<hr></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Promise.&lt;String></span>
+<span class="param-type">Promise.&lt;Object></span>
 |
 
 <span class="param-type">Error</span>
@@ -376,36 +528,17 @@ ex: <code>?format=json&amp;modelYear=2001</code></p></td>
 
     <h5>Example</h5>
     
+        <p class="code-caption">Basic Usage:</p>
     
-        <pre class="prettyprint"><code>const { genApiUrl } = require('./genApiUrl')const baseUrl = 'https://test-url.com'const action = 'TEST_ACTION'const resource = 'TEST_RESOURCE'const url = await genApiUrl({  baseUrl,  action,  resource}).catch(err => err)  // Returns:  'https://test-url.com/TEST_ACTION/TEST_RESOURCE'const urlWithQueryString = await genApiUrl({  baseUrl,  action,  resource,  params: {    format: 'csv',    modelYear: 1991  }}).catch(err => err)  // Returns:  'https://test-url.com/TEST_ACTION/TEST_RESOURCE?format=csv&amp;modelYear=1991'</code></pre>
     
-
-
-
-        
-    
-    </div>
-    
+        <pre class="prettyprint"><code>const wrapper = require('./main.js')const result = async wrapper.DecodeVin('WVWKG61J34D132375').catch(err => err)// => Promise.resolve(result&lt;Object>),</code></pre>
     
 
-    
-        <h3 class="subsection-title">Requires</h3>
 
-        <ul>
-            <li><a href="module-api_utils_genQueryString.html">module:api/utils/genQueryString</a></li>
-        </ul>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
+</div>
+            
+            </div>
+        </div>
     
 
     

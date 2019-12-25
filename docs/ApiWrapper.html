@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: apiUtils</title>
+    <title>JSDoc: ApiWrapper</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +51,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>apiUtils</h1>
+                        <p>Class</p>
+                        <h1>ApiWrapper</h1>
                     </header>
                     
                     
@@ -64,8 +64,7 @@
 
 <header>
     
-        
-            
+        <h2><span class="attribs"><span class="type-signature"></span></span>ApiWrapper<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -74,12 +73,26 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Api Utility/Helper Methods</p></div>
-        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
 
+
+    
+    <h4 class="name" id="ApiWrapper">
+        <a class="href-link" href="#ApiWrapper">#</a>
         
+        <span class="code-name">
             
+                new ApiWrapper<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
 
+    
+    
 
 
 
@@ -126,9 +139,9 @@
 
     
         <p class="tag-source">
-            <a href="api_apiUtils.js.html" class="button">View Source</a>
+            <a href="main.js.html" class="button">View Source</a>
             <span>
-                <a href="api_apiUtils.js.html">api/apiUtils.js</a>, <a href="api_apiUtils.js.html#line81">line 81</a>
+                <a href="main.js.html">main.js</a>, <a href="main.js.html#line17">line 17</a>
             </span>
         </p>
     
@@ -154,7 +167,9 @@
 
 
 
-
+</div>
+                </div>
+            </div>
         
     
     </div>
@@ -172,6 +187,271 @@
     
 
     
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+<h4 class="name" id=".BASE_URL">
+    <a class="href-link" href="#.BASE_URL">#</a>
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        BASE_URL
+    </span>
+    
+</h4>
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>ApiWrapper.BASE_URL</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            https://vpic.nhtsa.dot.gov/api/vehicles
+        
+        </td>
+    
+
+    <td class="description last"><p>Base URL of the API call to make, used in Actions</p></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="main.js.html" class="button">View Source</a>
+            <span>
+                <a href="main.js.html">main.js</a>, <a href="main.js.html#line53">line 53</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+<h4 class="name" id=".DEFAULT_FORMAT">
+    <a class="href-link" href="#.DEFAULT_FORMAT">#</a>
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        DEFAULT_FORMAT
+    </span>
+    
+</h4>
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>ApiWrapper.DEFAULT_FORMAT</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            json
+        
+        </td>
+    
+
+    <td class="description last"><p>Output format of the API response</p></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="main.js.html" class="button">View Source</a>
+            <span>
+                <a href="main.js.html">main.js</a>, <a href="main.js.html#line59">line 59</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
 
     
         <div class='vertical-section'>
@@ -182,16 +462,18 @@
 
 
     
-    <h4 class="name" id=".generateUrl">
-        <a class="href-link" href="#.generateUrl">#</a>
+    <h4 class="name" id=".DecodeVin">
+        <a class="href-link" href="#.DecodeVin">#</a>
         
+            
+                <span class='tag'>async</span>
             
                 <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                generateUrl<span class="signature">(vin, options)</span><span class="type-signature"> &rarr; {string}</span>
+                DecodeVin<span class="signature">(vin, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -200,7 +482,16 @@
     
     
     <div class="description">
-        <p>Returns a url used to fetch data from the NHTSA.gov API</p>
+        <p><strong>DecodeVin</strong> - NHTSA.dot.gov/vehicles API Action<br><br></p>
+<blockquote>
+<p><strong>INFO:</strong><br>
+<em>See <strong><a href="module-actions_DecodeVin.html"><code>module:actions/DecodeVin</code></a></strong> for more information on how to use this function.</em></p>
+</blockquote>
+<blockquote>
+<p><strong>INFO:</strong><br>
+<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></strong> Tutorial for more information on what</em>
+<em>this returns from the NHTSA API.</em></p>
+</blockquote>
     </div>
     
 
@@ -224,6 +515,8 @@
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -253,6 +546,14 @@
   </td>
 
   
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
 
   
       <td class="default">
@@ -260,10 +561,7 @@
       </td>
   
 
-  <td class="description last"><p>Vehicle Identification Number (VIN) to decode</p>
-<p>Default: <code>undefined</code></p>
-<p>Note: Cannot be overridden by <code>process.env</code> variables
-and always defaults to <code>undefined</code> if not provided.</p></td>
+  <td class="description last"><p><code>REQUIRED</code> <br> Vehicle Identification Number to decode</p></td>
 </tr>
 
 
@@ -285,112 +583,26 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
   </td>
 
   
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
 
-  
-      <td class="default">
+      
+
       
       </td>
-  
-
-  <td class="description last"><p>Defaults can be overridden by providing them in the options object (ex: options.{param}).</p>
-<p>Defaults can also be overridden by setting their corresponding <code>process.env</code> envirorment variable.</p>
-<p>Precedence: <code>options.{param} -> process.env variable -> default</code></p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>{options.url</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
   
 
   
       <td class="default">
       
-          "https://vpic.nhtsa.dot.gov/api/vehicles"
+          {}
       
       </td>
   
 
-  <td class="description last"><p>NHTSA API base URL</p>
-<p><code>process.env.NHTSA_API_URL</code></p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options.endpoint</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-      <td class="default">
-      
-          "DecodeVin"
-      
-      </td>
-  
-
-  <td class="description last"><p>Endpoint of the NHTSA API to request from</p>
-<p><code>process.env.NHTSA_API_ENDPOINT</code></p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options.format</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-      <td class="default">
-      
-          "json"}
-      
-      </td>
-  
-
-  <td class="description last"><p>Requested response format from the NHTSA API request</p>
-<p><code>process.env.NHTSA_API_RESPONSE_FORMAT</code></p></td>
+  <td class="description last"><p>See <strong><a href="module-actions_DecodeVin.html"><code>module:actions/DecodeVin</code></a></strong></p></td>
 </tr>
 
 
@@ -430,14 +642,21 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-actions_DecodeVin.html">module:actions/DecodeVin</a></li>
+        </ul>
+    </dd>
+    
 
     
 
     
         <p class="tag-source">
-            <a href="api_apiUtils.js.html" class="button">View Source</a>
+            <a href="main.js.html" class="button">View Source</a>
             <span>
-                <a href="api_apiUtils.js.html">api/apiUtils.js</a>, <a href="api_apiUtils.js.html#line35">line 35</a>
+                <a href="main.js.html">main.js</a>, <a href="main.js.html#line40">line 40</a>
             </span>
         </p>
     
@@ -459,222 +678,6 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
 
 
 
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p><code>${url}/${apiEndpoint}/${vin}?format=${responseFormat}</code></p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">string</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">With no options</p>
-    
-    
-        <pre class="prettyprint"><code>generateUrl('3VW71KX938M100334')</code></pre>
-    
-
-        <p class="code-caption">With options</p>
-    
-    
-        <pre class="prettyprint"><code>const opts = {    url: 'https://test.api.com',    endpoint: 'DecodeVinValues',    format: 'xml'}* generateUrl('3VW71KX938M100334', opts)</code></pre>
-    
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".handleResponseError">
-        <a class="href-link" href="#.handleResponseError">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                handleResponseError<span class="signature">(error)</span><span class="type-signature"> &rarr; {Error}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Handles any axios errors or custom errors from the api response</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>error</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Response error to handle</p></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="api_apiUtils.js.html" class="button">View Source</a>
-            <span>
-                <a href="api_apiUtils.js.html">api/apiUtils.js</a>, <a href="api_apiUtils.js.html#line57">line 57</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Either the modified axios response or the original error</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Error</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
 
 
 

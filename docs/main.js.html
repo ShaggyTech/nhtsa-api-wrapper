@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: main.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -51,8 +53,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>main.js</h1>
                     </header>
                     
                     
@@ -60,25 +62,72 @@
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict'
 
+require('dotenv').config()
 
-    <h3> </h3>
+// NHTSA.gov API response filters
+const { filterEmpty } = require('./api/utils/filterEmpty')
+// Axios wrapper to fetch data from the nhtsa.gov api
+const { get } = require('./api/api')
 
+// https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json
 
+const { isValidVin } = require('./util')
+const { generateUrl } = require('./api/apiUtils')
 
+// const { DecodeVin } = require('./actions')
 
+/**
+ * @category Main
+ * @class ApiWrapper
+ * @alias ApiWrapper
+ */
+class ApiWrapper {
+  /**
+   * -------------------
+   * Action - DecodeVin
+   * -------------------
+   * @description **DecodeVin** - NHTSA.dot.gov/vehicles API Action&lt;br>&lt;br>
+   *  > **INFO:**&lt;br>
+   *    *See **{@link module:actions/DecodeVin}** for more information on how to use this function.*
+   *
+   *  > **INFO:**&lt;br>
+   *    *See **{@tutorial Tutorial-Action-DecodeVin}** Tutorial for more information on what*
+   *      *this returns from the NHTSA API.*
+   *
+   * @param {string} vin `REQUIRED` &lt;br> Vehicle Identification Number to decode
+   * @param {object} [options={}] See **{@link module:actions/DecodeVin}**
+   *
+   * @see module:actions/DecodeVin
+   */
+  static async DecodeVin(vin, options = {}) {
+    return new Promise((resolve, reject) => {
+      resolve(require('./actions').DecodeVin(vin, options)).catch(err =>
+        reject(err)
+      )
+    })
+  }
+}
 
+/**
+ * @property {string} ApiWrapper.BASE_URL=https://vpic.nhtsa.dot.gov/api/vehicles
+ *   Base URL of the API call to make, used in Actions
+ */
+ApiWrapper.BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles'
 
+/**
+ * @property {string} ApiWrapper.DEFAULT_FORMAT=json
+ *   Output format of the API response
+ */
+ApiWrapper.DEFAULT_FORMAT = 'json'
 
-
-
-
-    
-
-
-
-
-
+module.exports = ApiWrapper
+</code></pre>
+        </article>
+    </section>
 
 
 
