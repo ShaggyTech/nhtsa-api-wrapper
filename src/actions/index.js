@@ -1,3 +1,3 @@
-const DecodeVin = require('./decode-vin')
+const DecodeVin = require('./DecodeVin/decode-vin')
 
 exports.DecodeVin = DecodeVin
