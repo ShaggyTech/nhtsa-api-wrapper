@@ -1,8 +1,8 @@
-jest.mock('axios', () => require('./__mockApi__/axios'))
+jest.mock('axios', () => require('../__mockApi__/axios'))
 
 const axios = require('axios')
 
-const DecodeVinValues = require('./decode-vin-values').DecodeVinValues
+const DecodeVinValues = require('../../DecodeVinValues')
 
 describe('DecodeVinValues API Action', () => {
   test('it exists', () => {

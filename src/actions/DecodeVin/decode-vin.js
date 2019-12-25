@@ -2,7 +2,7 @@
  * @category Actions
  * @module actions/DecodeVin
  *
- * @requires {@link ApiWrapper.DEFAULT_FORMAT}
+ * @requires {@link ApiWrapper.BASE_URL}
  * @requires {@link ApiWrapper.DEFAULT_FORMAT}
  *
  * @requires {@link module:api/utils/genApiUrl}
@@ -20,7 +20,7 @@ const { genApiUrl } = require('../../api/utils')
 const { isValidType } = require('../../util/isValidType')
 
 /**
- * @method DecodeVin
+ * @function DecodeVin
  * @async
  *
  * @description DecodeVin - NHTSA.dot.gov/vehicles API Action<br>
@@ -33,12 +33,12 @@ const { isValidType } = require('../../util/isValidType')
  * @param {object} [options] <a name="options"></a> `baseUrl`, `format`, `modelYear`
  * @param {string} [options.baseUrl={@link ApiWrapper.BASE_URL}]
  *  Base URL of the API call to make
- * @param {string} [options.format={@link ApiWrapper.DEFAULT_FORMAT}  ]
+ * @param {string} [options.format={@link ApiWrapper.DEFAULT_FORMAT}]
  *  Output format of the API response
  * @param {string|number} [options.modelYear]
  *  Model Year of the vehicle (if known)
  *
- * @returns {Promise<Object>|Error} Returns a response from the NHTSA API request with additional values
+ * @returns {Promise<object>|Error} Returns a response from the NHTSA API request with additional values
  *   (url and action), to aid in debugging results.
  *
  *  -----
@@ -88,21 +88,21 @@ const { isValidType } = require('../../util/isValidType')
  *
  * const result = async wrapper.DecodeVin('WVWKG61J34D132375').catch(err => err)
  *
- * // => Promise.resolve(result<Object>),
+ * // => Promise.resolve(result<object>),
  */
 
 const DecodeVin = async (vin, options = {}) => {
   /**
-   * @constant {string} DecodeVin.BASE_URL=https://vpic.nhtsa.dot.gov/api/vehicles
+   * @constant {string} [BASE_URL={@link ApiWrapper.BASE_URL}]
    *   Base URL of the API call to make, used in Actions
    */
-  const BASE_URL = require('../../main').BASE_URL
+  const BASE_URL = require('../../main').ApiWrapper.BASE_URL
 
   /**
-   * @constant {string} DecodeVin.DEFAULT_FORMAT=https://vpic.nhtsa.dot.gov/api/vehicles
+   * @constant {string} [DEFAULT_FORMAT={@link ApiWrapper.DEFAULT_FORMAT}]
    *   Base URL of the API call to make, used in Actions
    */
-  const DEFAULT_FORMAT = require('../../main').DEFAULT_FORMAT
+  const DEFAULT_FORMAT = require('../../main').ApiWrapper.DEFAULT_FORMAT
 
   // Gatekeeping vin arg
   if (!(await isValidType({ type: 'string', value: vin })) || vin.length < 1) {
@@ -140,4 +140,4 @@ const DecodeVin = async (vin, options = {}) => {
     })
 }
 
-module.exports.DecodeVin = DecodeVin
+module.exports = DecodeVin
