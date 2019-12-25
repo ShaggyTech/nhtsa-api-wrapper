@@ -11,7 +11,6 @@ const actions = require('./actions')
  * @requires actions
  */
 class ApiWrapper {
-  constructor() {}
   /**
    * @property {string} BASE_URL=https://vpic.nhtsa.dot.gov/api/vehicles
    *   Base URL of the API call to make, used in Actions
@@ -46,10 +45,10 @@ class ApiWrapper {
    *
    * @see module:actions/DecodeVin
    */
-  async DecodeVin(vin, options = {}) {
-    return new Promise((resolve, reject) => {
-      resolve(actions.DecodeVin(vin, options)).catch(err => reject(err))
-    })
+  static async DecodeVin(vin, options = {}) {
+    return new Promise((resolve, reject) =>
+      resolve(actions.DecodeVin(vin, options).catch(err => reject(err)))
+    )
   }
 
   /**
@@ -71,10 +70,10 @@ class ApiWrapper {
    *
    * @see module:actions/DecodeVinValues
    */
-  async DecodeVinValues(vin, options = {}) {
-    return new Promise((resolve, reject) => {
-      resolve(actions.DecodeVinValues(vin, options)).catch(err => reject(err))
-    })
+  static async DecodeVinValues(vin, options = {}) {
+    return new Promise((resolve, reject) =>
+      resolve(actions.DecodeVinValues(vin, options).catch(err => reject(err)))
+    )
   }
 }
 

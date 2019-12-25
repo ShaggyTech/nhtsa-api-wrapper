@@ -1,6 +1,6 @@
-const ApiWrapper = require('./main').ApiWrapper
+const wrapper = require('./main').ApiWrapper
 
-const wrapper = new ApiWrapper()
+const { DecodeVin, DecodeVinValues } = require('./main').ApiWrapper
 
 describe('Tests ApiWrapper (main.js class export)', () => {
   test('it exists', () => {
@@ -9,17 +9,18 @@ describe('Tests ApiWrapper (main.js class export)', () => {
 
   describe('has correct properties', () => {
     test('BASE_URL exists', () => {
-      expect(ApiWrapper.BASE_URL).toBeDefined()
+      expect(wrapper.BASE_URL).toBeDefined()
     })
 
     test('DEFAULT_FORMAT exists', () => {
-      expect(ApiWrapper.DEFAULT_FORMAT).toBeDefined()
+      expect(wrapper.DEFAULT_FORMAT).toBeDefined()
     })
   })
 
   describe('Tests DecodeVin static class function', () => {
     test('it exists', () => {
       expect(wrapper.DecodeVin).toBeDefined()
+      expect(DecodeVin).toBeDefined()
     })
 
     test('it returns true', async () => {
@@ -32,10 +33,22 @@ describe('Tests ApiWrapper (main.js class export)', () => {
       )
     })
 
+    test('it returns true when required via its own variable', async () => {
+      const result = await DecodeVin('TEST_VIN').catch(err => err)
+      expect(result).toEqual(expect.any(Object))
+      expect(result.Results).toEqual(expect.any(Array))
+      expect(result.Results[0].Variable).toEqual('Mocked Data')
+      expect(result.Results[0].Value).toEqual(
+        'axios is being mocked from src/__mocks__ folder'
+      )
+    })
+
     test('it handles errors', async () => {
-      const result = await wrapper.DecodeVin().catch(err => {
-        expect(err).toEqual(expect.any(Error))
-      })
+      const result = await wrapper
+        .DecodeVin('TEST_VIN', { baseUrl: { should: 'fail' } })
+        .catch(err => {
+          expect(err).rejects.toEqual(expect.any(Error))
+        })
       expect(result).toBeUndefined()
     })
   })
@@ -43,6 +56,7 @@ describe('Tests ApiWrapper (main.js class export)', () => {
   describe('Tests DecodeVinValues static class function', () => {
     test('it exists', () => {
       expect(wrapper.DecodeVinValues).toBeDefined()
+      expect(DecodeVin).toBeDefined()
     })
 
     test('it returns true', async () => {
@@ -55,9 +69,19 @@ describe('Tests ApiWrapper (main.js class export)', () => {
       )
     })
 
+    test('it returns true when required via its own variable', async () => {
+      const result = await DecodeVinValues('TEST_VIN').catch(err => err)
+      expect(result).toEqual(expect.any(Object))
+      expect(result.Results).toEqual(expect.any(Array))
+      expect(result.Results[0].Variable).toEqual('Mocked Data')
+      expect(result.Results[0].Value).toEqual(
+        'axios is being mocked from src/__mocks__ folder'
+      )
+    })
+
     test('it handles errors', async () => {
       const result = await wrapper.DecodeVinValues().catch(err => {
-        expect(err).toEqual(expect.any(Error))
+        expect(err).rejects.toEqual(expect.any(Error))
       })
       expect(result).toBeUndefined()
     })

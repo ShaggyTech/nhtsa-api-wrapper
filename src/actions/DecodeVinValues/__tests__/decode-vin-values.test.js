@@ -2,7 +2,7 @@ jest.mock('axios', () => require('../__mockApi__/axios'))
 
 const axios = require('axios')
 
-const DecodeVinValues = require('../../DecodeVinValues')
+const DecodeVinValues = require('../decode-vin-values')
 
 describe('DecodeVinValues API Action', () => {
   test('it exists', () => {

@@ -135,9 +135,7 @@ const DecodeVin = async (vin, options = {}) => {
       // add url and action to the response.data and return
       return { ...response.data, url, action }
     })
-    .catch(err => {
-      return Promise.reject(err)
-    })
+    .catch(err => Promise.reject(err))
 }
 
 module.exports = DecodeVin
