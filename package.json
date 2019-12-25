@@ -1,9 +1,10 @@
 {
-  "name": "@shaggytools/vin-decoder",
+  "name": "@shaggytools/nhtsa-api-wrapper",
   "version": "0.1.0",
-  "description": "A package to verify and decode Vehicle Indentification Numbers (VIN) using the NHTSA.gov public API",
+  "description": "A package to verify and decode vehicle information using the NHTSA.dot.gov/vehicles public API",
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=12.14.0 <13.0.0",
+    "npm": "6.11.3"
   },
   "main": "src/main.js",
   "scripts": {
@@ -16,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShaggyTech/vin-decoder-js.git"
+    "url": "git+https://github.com/ShaggyTech/nhtsa-api-wrapper.git"
   },
   "keywords": [
     "VIN",
@@ -25,15 +26,17 @@
     "Number",
     "NHTSA.gov",
     "NHTSA",
+    "wrapper",
+    "api",
     "decode",
     "decoder"
   ],
   "author": "Brandon Eichler <ShaggyTech>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ShaggyTech/vin-decoder-js/issues"
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
   },
-  "homepage": "https://github.com/ShaggyTech/vin-decoder-js",
+  "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper",
   "devDependencies": {
     "@babel/core": "7.7.5",
     "@babel/preset-env": "7.7.6",
@@ -45,6 +48,7 @@
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-jsdoc": "^18.4.3",
     "jest": "24.9.0",
     "jsdoc": "^3.6.3",
     "nodemon": "^2.0.2",
@@ -53,7 +57,6 @@
   },
   "dependencies": {
     "axios": "0.19.0",
-    "dotenv": "^8.2.0",
-    "eslint-plugin-jsdoc": "^18.4.3"
+    "dotenv": "^8.2.0"
   }
 }

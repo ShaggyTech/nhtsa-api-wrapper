@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: apiUtils</title>
+    <title>JSDoc: actions/DecodeVinValues</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>apiUtils</h1>
+                        <h1>actions/DecodeVinValues</h1>
                     </header>
                     
                     
@@ -65,8 +65,6 @@
 <header>
     
         
-            
-        
     
 </header>
 
@@ -74,86 +72,6 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Api Utility/Helper Methods</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="api_apiUtils.js.html" class="button">View Source</a>
-            <span>
-                <a href="api_apiUtils.js.html">api/apiUtils.js</a>, <a href="api_apiUtils.js.html#line81">line 81</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
     
@@ -161,6 +79,22 @@
     
     
 
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li><a href="ApiWrapper.html#.DEFAULT_FORMAT"><code>ApiWrapper.DEFAULT_FORMAT</code></a></li>
+        
+            <li><a href="ApiWrapper.html#.DEFAULT_FORMAT"><code>ApiWrapper.DEFAULT_FORMAT</code></a></li>
+        
+            <li><a href="module-api_utils_genApiUrl.html"><code>module:api/utils/genApiUrl</code></a></li>
+        
+            <li><a href="module-api_utils_genQueryString.html"><code>module:api/utils/genQueryString</code></a></li>
+        
+            <li><a href="global.html#isValidType"><code>isValidType</code></a></li>
+        
+            <li><code>module:node_modules/axios</code></li>
+        </ul>
     
 
     
@@ -182,16 +116,18 @@
 
 
     
-    <h4 class="name" id=".generateUrl">
-        <a class="href-link" href="#.generateUrl">#</a>
+    <h4 class="name" id="~DecodeVinValues">
+        <a class="href-link" href="#~DecodeVinValues">#</a>
         
             
-                <span class='tag'>static</span>
+                <span class='tag'>async</span>
+            
+                <span class='tag'>inner</span>
             
         
         <span class="code-name">
             
-                generateUrl<span class="signature">(vin, options)</span><span class="type-signature"> &rarr; {string}</span>
+                DecodeVinValues<span class="signature">(vin, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>|Error}</span>
             
         </span>
     </h4>
@@ -200,7 +136,13 @@
     
     
     <div class="description">
-        <p>Returns a url used to fetch data from the NHTSA.gov API</p>
+        <p>DecodeVinValues - NHTSA.dot.gov/vehicles API Action<br></p>
+<blockquote>
+<p><strong>INFO:</strong><br>
+<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVinValues.html">DecodeVinValues (flat format)</a></strong> Tutorial for more information on what</em>
+<em>this returns from the NHTSA API.</em></p>
+</blockquote>
+<br>
     </div>
     
 
@@ -224,6 +166,8 @@
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -253,6 +197,14 @@
   </td>
 
   
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
 
   
       <td class="default">
@@ -260,10 +212,7 @@
       </td>
   
 
-  <td class="description last"><p>Vehicle Identification Number (VIN) to decode</p>
-<p>Default: <code>undefined</code></p>
-<p>Note: Cannot be overridden by <code>process.env</code> variables
-and always defaults to <code>undefined</code> if not provided.</p></td>
+  <td class="description last"><p><code>REQUIRED</code> <br> Vehicle Identification Number to decode</p></td>
 </tr>
 
 
@@ -285,6 +234,16 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
   </td>
 
   
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
 
   
       <td class="default">
@@ -292,18 +251,15 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
       </td>
   
 
-  <td class="description last"><p>Defaults can be overridden by providing them in the options object (ex: options.{param}).</p>
-<p>Defaults can also be overridden by setting their corresponding <code>process.env</code> envirorment variable.</p>
-<p>Precedence: <code>options.{param} -> process.env variable -> default</code></p></td>
+  <td class="description last"><p><a name="options"></a> <code>baseUrl</code>, <code>format</code>, <code>modelYear</code></p></td>
 </tr>
 
-
-    
-
-        
-<tr class="deep-level-0">
   
-      <td class="name"><code>{options.url</code></td>
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>baseUrl</code></td>
   
 
   <td class="type">
@@ -316,26 +272,33 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
   </td>
 
   
-
-  
-      <td class="default">
+      <td class="attributes">
       
-          "https://vpic.nhtsa.dot.gov/api/vehicles"
+          &lt;optional><br>
+      
+
+      
+
       
       </td>
   
 
-  <td class="description last"><p>NHTSA API base URL</p>
-<p><code>process.env.NHTSA_API_URL</code></p></td>
+  
+      <td class="default">
+      
+          <a href="ApiWrapper.html#.BASE_URL"><code>ApiWrapper.BASE_URL</code></a>
+      
+      </td>
+  
+
+  <td class="description last"><p>Base URL of the API call to make</p></td>
 </tr>
 
-
-    
-
-        
-<tr class="deep-level-0">
   
-      <td class="name"><code>options.endpoint</code></td>
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>format</code></td>
   
 
   <td class="type">
@@ -348,50 +311,69 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
   </td>
 
   
-
-  
-      <td class="default">
+      <td class="attributes">
       
-          "DecodeVin"
+          &lt;optional><br>
+      
+
+      
+
       
       </td>
   
 
-  <td class="description last"><p>Endpoint of the NHTSA API to request from</p>
-<p><code>process.env.NHTSA_API_ENDPOINT</code></p></td>
+  
+      <td class="default">
+      
+          <a href="ApiWrapper.html#.DEFAULT_FORMAT"><code>ApiWrapper.DEFAULT_FORMAT</code></a>
+      
+      </td>
+  
+
+  <td class="description last"><p>Output format of the API response</p></td>
 </tr>
 
-
-    
-
-        
-<tr class="deep-level-0">
   
-      <td class="name"><code>options.format</code></td>
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>modelYear</code></td>
   
 
   <td class="type">
   
       
 <span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
   
   </td>
 
   
-
-  
-      <td class="default">
+      <td class="attributes">
       
-          "json"}
+          &lt;optional><br>
+      
+
+      
+
       
       </td>
   
 
-  <td class="description last"><p>Requested response format from the NHTSA API request</p>
-<p><code>process.env.NHTSA_API_RESPONSE_FORMAT</code></p></td>
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>Model Year of the vehicle (if known)</p></td>
 </tr>
+
+  
 
 
     
@@ -428,16 +410,30 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
 
     
     
+    <dt class="tag-tutorial">Tutorials:</dt>
+    <dd class="tag-tutorial">
+        <ul>
+            <li><a href="tutorial-Tutorial-Action-DecodeVinValues.html">DecodeVinValues (flat format)</a></li>
+        </ul>
+    </dd>
+    
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><p><a href="ApiWrapper.html#.DecodeVinValues">ApiWrapper.DecodeVinValues</a></p></li>
+        </ul>
+    </dd>
     
 
     
 
     
         <p class="tag-source">
-            <a href="api_apiUtils.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinValues_decode-vin-values.js.html" class="button">View Source</a>
             <span>
-                <a href="api_apiUtils.js.html">api/apiUtils.js</a>, <a href="api_apiUtils.js.html#line35">line 35</a>
+                <a href="actions_DecodeVinValues_decode-vin-values.js.html">actions/DecodeVinValues/decode-vin-values.js</a>, <a href="actions_DecodeVinValues_decode-vin-values.js.html#line22">line 22</a>
             </span>
         </p>
     
@@ -468,203 +464,61 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p><code>${url}/${apiEndpoint}/${vin}?format=${responseFormat}</code></p></div>
+    <div class='param-desc column is-7'><p>Returns a response from the NHTSA API request with additional values
+(url and action), to aid in debugging results.</p>
+<hr>
+<h4 id="on-resolve%3A-promise(%3Cobject%3E)">On resolve: <code>Promise(&lt;Object&gt;)</code></h4>
+<ul>
+<li>Empty options arg object or empty/invalid options.value(s) will be transformed
+to empty strings internally and will not reject with any Error</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>Promise.resolve({
+  // Results from NHTSA API response
+  &quot;Count&quot;: Number,
+  &quot;Message&quot;: String,
+  &quot;SearchCriteria&quot;: String,
+  &quot;Results&quot;: [
+    // Results is a Single Object containing key:value&lt;String> pairs
+    {
+      // ...etc,
+      ManufacturerId: '1147',
+      Model: 'R32',
+      ModelYear: '2004',
+      // ...etc,
+      ValveTrainDesign: '',
+      VehicleType: 'PASSENGER CAR',
+      WheelBaseLong: '',
+      WheelBaseShort: '',
+      // ...etc
+    }
+  ],
+  // URL that was used in axios.get()
+  url: String,
+  // Action this result came from
+  action: String,
+})
+</code></pre>
+<hr>
+<h4 id="on-reject%3A-new-error(error%3Cstring%3E)">On reject: <code>new Error(error&lt;String&gt;)</code></h4>
+<ul>
+<li>If no or invalid vin argument is provided, an Error will be thrown
+to prevent unneccesary http calls that would not result in a valid return</li>
+<li>Most invalid options will reject with Error(s) inside the modules
+they are used in and can be caught with a Try/Catch or async .catch blocks</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>Promise.reject(
+ new Error('Error message...')
+)
+</code></pre>
+<hr></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">string</span>
+<span class="param-type">Promise.&lt;Object></span>
+|
 
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">With no options</p>
-    
-    
-        <pre class="prettyprint"><code>generateUrl('3VW71KX938M100334')</code></pre>
-    
-
-        <p class="code-caption">With options</p>
-    
-    
-        <pre class="prettyprint"><code>const opts = {    url: 'https://test.api.com',    endpoint: 'DecodeVinValues',    format: 'xml'}* generateUrl('3VW71KX938M100334', opts)</code></pre>
-    
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".handleResponseError">
-        <a class="href-link" href="#.handleResponseError">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                handleResponseError<span class="signature">(error)</span><span class="type-signature"> &rarr; {Error}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Handles any axios errors or custom errors from the api response</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>error</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Response error to handle</p></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="api_apiUtils.js.html" class="button">View Source</a>
-            <span>
-                <a href="api_apiUtils.js.html">api/apiUtils.js</a>, <a href="api_apiUtils.js.html#line57">line 57</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Either the modified axios response or the original error</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
 <span class="param-type">Error</span>
 
 
@@ -677,6 +531,15 @@ and always defaults to <code>undefined</code> if not provided.</p></td>
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+        <p class="code-caption">Basic Usage:</p>
+    
+    
+        <pre class="prettyprint"><code>const wrapper = require('./main.js')const result = async wrapper.DecodeVinValues('WVWKG61J34D132375').catch(err => err)// => Promise.resolve(result&lt;Object>),</code></pre>
+    
 
 
 </div>
