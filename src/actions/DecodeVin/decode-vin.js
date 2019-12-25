@@ -1,12 +1,16 @@
 /**
  * @category Actions
  * @module actions/DecodeVin
- * @requires {@link module:node_modules/axios}
+ *
+ * @requires {@link ApiWrapper.DEFAULT_FORMAT}
+ * @requires {@link ApiWrapper.DEFAULT_FORMAT}
+ *
  * @requires {@link module:api/utils/genApiUrl}
  * @requires {@link module:api/utils/genQueryString}
+ *
  * @requires {@link isValidType}
- * @requires {@link ApiWrapper.DEFAULT_FORMAT}
- * @requires {@link ApiWrapper.DEFAULT_FORMAT}
+ *
+ * @requires {@link module:node_modules/axios}
  */
 
 const axios = require('axios')
@@ -26,7 +30,7 @@ const { isValidType } = require('../../util/isValidType')
  *
  * <br>
  * @param {string} vin `REQUIRED` <br> Vehicle Identification Number to decode
- * @param {object} [options] `baseUrl`, `format`, `modelYear`
+ * @param {object} [options] <a name="options"></a> `baseUrl`, `format`, `modelYear`
  * @param {string} [options.baseUrl={@link ApiWrapper.BASE_URL}]
  *  Base URL of the API call to make
  * @param {string} [options.format={@link ApiWrapper.DEFAULT_FORMAT}  ]

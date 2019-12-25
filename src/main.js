@@ -33,7 +33,9 @@ class ApiWrapper {
    *      *this returns from the NHTSA API.*
    *
    * @param {string} vin `REQUIRED` <br> Vehicle Identification Number to decode
-   * @param {object} [options={}] See **{@link module:actions/DecodeVin}**
+   * @param {object} [options={}] Key:Value options to pass the DecodeVin function
+   *   See **[DecodeVin options arg](module-actions_DecodeVin.html#options)**
+   *     for valid keys and value types
    *
    * @see module:actions/DecodeVin
    */
