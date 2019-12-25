@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: api/utils/filterEmpty.js</title>
+    <title>JSDoc: actions/index.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>api/utils/filterEmpty.js</h1>
+                        <h1>actions/index.js</h1>
                     </header>
                     
                     
@@ -65,23 +65,62 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @description Filter empty objects from the NHTSA.gov api response
+ * @category Actions
+ * @module actions
+ * @description A collection of API Action wrappers for use with the NHSTA vehicles API &lt;br>
+ *  > See **[Tutorial - NHSTA API Actions](tutorial-Tutorial-Actions.html)**
+ *  > for all available API Actions&lt;br>
+ *
+ * @example &lt;caption>Import All actions:&lt;/caption>
+ * const actions = require('./actions')
+ * // then:
+ * const response = await actions.DecodeVin(vin, { ...options })
+ * const flatResponse = await actions.DecodeVinValues(vin, { ...options })
+ *
+ * @example &lt;caption>Import individual actions:&lt;/caption>
+ * const DecodeVin = require('./actions').DecodeVin
+ * // then:
+ * const response = await DecodeVin(vin, { ...options })
+ *
+ * @example &lt;caption>Import individual actions by using spread operator:&lt;/caption>
+ * const { DecodeVin, DecodeVinValues } = require('./actions')
+ * // then:
+ * const response = await DecodeVin(vin, { ...options })
+ * const flatResponse = await DecodeVinValues(vin, { ...options })
+ *
+ * @example &lt;caption>Import individual actions from their repsective folder:&lt;/caption>
+ * const DecodeVin = require('./actions/DecodeVin')
+ * // then:
+ * const response = await DecodeVin({ ...options })
+ *
+ * @example &lt;caption>Import individual actions directly from their respective file:&lt;/caption>
+ * const DecodeVin = require('./actions/DecodeVin/decode-vin')
+ * // then:
+ * const response = await DecodeVin({ ...options })
+ *
  */
-const filterEmpty = (/** JSON */ apiResultsArray) => {
-  // Filter empty results objects from the array
-  const filteredResultsArray = apiResultsArray.filter(resultsObj => {
-    const value = resultsObj.Value
-    // empty or null value
-    if (!value) return false
-    // value is == error text indicating no errors
-    else if (value[0] === '0') return false
-    return true
-  })
 
-  return filteredResultsArray
-}
+/**
+ * @async
+ * @function DecodeVin
+ * @description DecodeVin - NHTSA.dot.gov/vehicles API Action &lt;br>
+ * Used in: {@link ApiWrapper}&lt;br>
+ * @see {@link module:actions/DecodeVin} for more complete documentation
+ */
 
-exports.filterEmpty = filterEmpty
+/**
+ * @async
+ * @function DecodeVinValues
+ * @description DecodeVinValues - NHTSA.dot.gov/vehicles API Action &lt;br>
+ * Used in: {@link ApiWrapper}&lt;br>
+ * @see {@link module:actions/DecodeVinValues} for more complete documentation
+ */
+
+const DecodeVin = require('./DecodeVin')
+const DecodeVinValues = require('./DecodeVinValues')
+
+exports.DecodeVin = DecodeVin
+exports.DecodeVinValues = DecodeVinValues
 </code></pre>
         </article>
     </section>

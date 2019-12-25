@@ -46,7 +46,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-Tutorial-Actions.html">NHSTA API Actions</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-actions_DecodeVin.html">actions/DecodeVin</a></li><li><a href="module-actions_DecodeVinValues.html">actions/DecodeVinValues</a></li></ul></div><div class="category"><h2>Main</h2><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-Tutorial-Actions.html">NHSTA API Actions</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-actions.html">actions</a></li><li><a href="module-actions_DecodeVin.html">actions/DecodeVin</a></li><li><a href="module-actions_DecodeVinValues.html">actions/DecodeVinValues</a></li></ul></div><div class="category"><h2>Main</h2><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -68,7 +68,7 @@
  * @category Actions
  * @module actions/DecodeVinValues
  *
- * @requires {@link ApiWrapper.DEFAULT_FORMAT}
+ * @requires {@link ApiWrapper.BASE_URL}
  * @requires {@link ApiWrapper.DEFAULT_FORMAT}
  *
  * @requires {@link module:api/utils/genApiUrl}
@@ -86,7 +86,7 @@ const { genApiUrl } = require('../../api/utils')
 const { isValidType } = require('../../util/isValidType')
 
 /**
- * @method DecodeVinValues
+ * @function DecodeVinValues
  * @async
  *
  * @description DecodeVinValues - NHTSA.dot.gov/vehicles API Action&lt;br>
@@ -99,12 +99,12 @@ const { isValidType } = require('../../util/isValidType')
  * @param {object} [options] &lt;a name="options">&lt;/a> `baseUrl`, `format`, `modelYear`
  * @param {string} [options.baseUrl={@link ApiWrapper.BASE_URL}]
  *  Base URL of the API call to make
- * @param {string} [options.format={@link ApiWrapper.DEFAULT_FORMAT}  ]
+ * @param {string} [options.format={@link ApiWrapper.DEFAULT_FORMAT}]
  *  Output format of the API response
  * @param {string|number} [options.modelYear]
  *  Model Year of the vehicle (if known)
  *
- * @returns {Promise&lt;Object>|Error} Returns a response from the NHTSA API request with additional values
+ * @returns {Promise&lt;object>|Error} Returns a response from the NHTSA API request with additional values
  *   (url and action), to aid in debugging results.
  *
  *  -----
@@ -161,21 +161,21 @@ const { isValidType } = require('../../util/isValidType')
  *
  * const result = async wrapper.DecodeVinValues('WVWKG61J34D132375').catch(err => err)
  *
- * // => Promise.resolve(result&lt;Object>),
+ * // => Promise.resolve(result&lt;object>),
  */
 
 const DecodeVinValues = async (vin, options = {}) => {
   /**
-   * @constant {string} DecodeVinValues.BASE_URL=https://vpic.nhtsa.dot.gov/api/vehicles
+   * @constant {string} [BASE_URL={@link ApiWrapper.BASE_URL}]
    *   Base URL of the API call to make, used in Actions
    */
-  const BASE_URL = require('../../main').BASE_URL
+  const BASE_URL = require('../../main').ApiWrapper.BASE_URL
 
   /**
-   * @constant {string} DecodeVinValues.DEFAULT_FORMAT=https://vpic.nhtsa.dot.gov/api/vehicles
+   * @constant {string} [DEFAULT_FORMAT={@link ApiWrapper.DEFAULT_FORMAT}]
    *   Base URL of the API call to make, used in Actions
    */
-  const DEFAULT_FORMAT = require('../../main').DEFAULT_FORMAT
+  const DEFAULT_FORMAT = require('../../main').ApiWrapper.DEFAULT_FORMAT
 
   // Gatekeeping vin arg
   if (!(await isValidType({ type: 'string', value: vin })) || vin.length &lt; 1) {
@@ -213,7 +213,7 @@ const DecodeVinValues = async (vin, options = {}) => {
     })
 }
 
-module.exports.DecodeVinValues = DecodeVinValues
+module.exports = DecodeVinValues
 </code></pre>
         </article>
     </section>
@@ -229,7 +229,7 @@ module.exports.DecodeVinValues = DecodeVinValues
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 25 2019 12:07:00 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 25 2019 15:16:44 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
