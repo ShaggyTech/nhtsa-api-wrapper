@@ -1,0 +1,206 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: api/utils/genApiUrl.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-Tutorial-Actions.html">NHSTA API Actions</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>api/utils/genApiUrl.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { genQueryString } = require('./genQueryString')
+
+/**
+ * @module
+ * @async
+ * @description An api/utils module that generates a full URL for the NHTSA API.
+ * @requires module:api/utils/genQueryString
+ *
+ * @param {Object} args
+ * @param {String} args.baseUrl Base URL of the API
+ * @param {String} args.action Action or collection to request from&lt;br>
+ *   (DecodeVinValues, GetModelsForMake, GetManufacturerDetails, etc.)
+ * @param {String} args.resource Resource to retrieve information about&lt;br>
+ *   (VIN, Make, Manufacturer, etc.)
+ * @param {Object} [args.params] Parameter key:value pairs to convert into a query string&lt;br>
+ *   ex: `?format=json&amp;modelYear=2001`
+ *
+ * @returns {Promise&lt;String>|Error} Fully formed API url
+ *
+ * @example
+ * const { genApiUrl } = require('./genApiUrl')
+ *
+ * const baseUrl = 'https://test-url.com'
+ * const action = 'TEST_ACTION'
+ * const resource = 'TEST_RESOURCE'
+ *
+ * const url = await genApiUrl({
+ *   baseUrl,
+ *   action,
+ *   resource
+ * }).catch(err => err)
+ *   // Returns:
+ *   'https://test-url.com/TEST_ACTION/TEST_RESOURCE'
+ *
+ * const urlWithQueryString = await genApiUrl({
+ *   baseUrl,
+ *   action,
+ *   resource,
+ *   params: {
+ *     format: 'csv',
+ *     modelYear: 1991
+ *   }
+ * }).catch(err => err)
+ *   // Returns:
+ *   'https://test-url.com/TEST_ACTION/TEST_RESOURCE?format=csv&amp;modelYear=1991'
+ *
+ */
+const genApiUrl = async ({ baseUrl, action, resource, params }) => {
+  // beginning of error messages
+  const errorBase = 'genApiUrl(args) - '
+
+  // holds our generated url if params are provided
+  let url = `${baseUrl}/${action}/${resource}`
+
+  // Gatekeeping baseUrl arg - exists and is a string
+  const typeofBaseUrl = Object.prototype.toString.call(baseUrl)
+  if (typeofBaseUrl !== '[object String]') {
+    return Promise.reject(
+      new Error(
+        `${errorBase} expected baseUrl to be of type String, got: ${typeofBaseUrl}`
+      )
+    )
+  }
+
+  // Gatekeeping action arg - exists and is a string
+  const typeofAction = Object.prototype.toString.call(action)
+  if (typeofAction !== '[object String]') {
+    return Promise.reject(
+      new Error(
+        `${errorBase} expected action to be of type String, got: ${typeofAction}`
+      )
+    )
+  }
+
+  // Gatekeeping resource arg - exists and is a string
+  const typeofResource = Object.prototype.toString.call(resource)
+  if (typeofResource !== '[object String]') {
+    return Promise.reject(
+      new Error(
+        `${errorBase} expected resource to be of type String, got: ${typeofResource}`
+      )
+    )
+  }
+
+  // Generate and return with url with appended query string
+  // if params are provided and of the correct type
+  if (params) {
+    // Gatekeeping params
+    const typeofParams = Object.prototype.toString.call(params)
+    if (typeofParams !== '[object Object]') {
+      return Promise.reject(
+        new Error(
+          `${errorBase} expected params to be of type Object, got: ${typeofParams}`
+        )
+      )
+    }
+
+    // If we have no params(empty object), skip generation of queryString
+    if (Object.entries(params).length &lt; 1) return Promise.resolve(url)
+
+    // Else build the query string based on provied params
+    const queryString = await genQueryString(params).catch(err => err)
+    // and handle any errors
+    if (queryString instanceof Error) {
+      return Promise.reject(
+        new Error(`${errorBase} error creating queryString: ${queryString}`)
+      )
+    } else return Promise.resolve(`${url}${queryString}`) // return the completed url with queryString
+  } else return Promise.resolve(url) // return the completed url with no queryString
+}
+
+exports.genApiUrl = genApiUrl
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 24 2019 19:56:21 GMT-0600 (Central Standard Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

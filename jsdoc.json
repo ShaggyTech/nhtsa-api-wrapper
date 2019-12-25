@@ -17,7 +17,7 @@
   },
   "opts": {
     "recurse": true,
-    "destination": "./docsDev/",
+    "destination": "./docs/",
     "template": "node_modules/better-docs",
     "tutorials": "./docsSrc/tutorials"
   }
