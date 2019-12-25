@@ -24,8 +24,8 @@
  *         will reject with an `Error`.<br>
  *
  * @returns {Promise<string>|Error} An API query string <br>
- *  On resolve: `Promise(<string>)`<br>
- *  On reject: `new Error(error<string>)`
+ *  - On resolve: `Promise(<string>)`<br>
+ *  - On reject: `new Error(error<string>)`
  *
  * @example <caption>Single Param:</caption>
  * const qs = await genQueryString({

@@ -1,6 +1,6 @@
 const mockAxios = require('axios')
 
-const DecodeVin = require('./decode-vin')
+const DecodeVin = require('./decode-vin').DecodeVin
 
 describe('DecodeVin API Action', () => {
   test('it exists', () => {
