@@ -4,6 +4,9 @@
     "children": {
       "Tutorial-Action-DecodeVin": {
         "title": "DecodeVin"
+      },
+      "Tutorial-Action-DecodeVinValues": {
+        "title": "DecodeVinValues (flat format)"
       }
     }
   }

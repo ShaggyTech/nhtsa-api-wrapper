@@ -1,4 +1,4 @@
-const mockResponseData = require('./mockResponse').data
+const mockResponseData = require('./mockResponseData').data
 
 const get = jest.fn(() => {
   // add the request url to data for mimic
