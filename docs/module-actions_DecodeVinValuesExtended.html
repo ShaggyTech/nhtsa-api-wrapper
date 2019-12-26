@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: actions/DecodeVin</title>
+    <title>JSDoc: actions/DecodeVinValuesExtended</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>actions/DecodeVin</h1>
+                        <h1>actions/DecodeVinValuesExtended</h1>
                     </header>
                     
                     
@@ -74,10 +74,10 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>DecodeVin - NHTSA.dot.gov/vehicles API Action<br></p>
+            <div class="description"><p>DecodeVinValuesExtended - NHTSA.dot.gov/vehicles API Action<br></p>
 <blockquote>
 <p><strong>INFO:</strong><br>
-<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></strong> Tutorial for more information on what</em>
+<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVinValuesExtended.html">DecodeVinValuesExtended (flat format)</a></strong> Tutorial for more information on what</em>
 <em>this returns from the NHTSA API.</em></p>
 </blockquote>
 <br></div>
@@ -354,7 +354,7 @@
     <dt class="tag-tutorial">Tutorials:</dt>
     <dd class="tag-tutorial">
         <ul>
-            <li><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></li>
+            <li><a href="tutorial-Tutorial-Action-DecodeVinValuesExtended.html">DecodeVinValuesExtended (flat format)</a></li>
         </ul>
     </dd>
     
@@ -363,7 +363,7 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><p><a href="ApiWrapper.html#.DecodeVin">ApiWrapper.DecodeVin</a></p></li>
+            <li><p><a href="ApiWrapper.html#.DecodeVinValuesExtended">ApiWrapper.DecodeVinValuesExtended</a></p></li>
         </ul>
     </dd>
     
@@ -372,9 +372,9 @@
 
     
         <p class="tag-source">
-            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html" class="button">View Source</a>
             <span>
-                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line7">line 7</a>
+                <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html">actions/DecodeVinValuesExtended/decode-vin-values-extended.js</a>, <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html#line7">line 7</a>
             </span>
         </p>
     
@@ -419,17 +419,25 @@ to empty strings internally and will not reject with any Error</li>
   &quot;Message&quot;: String,
   &quot;SearchCriteria&quot;: String,
   &quot;Results&quot;: [
+    // Results is a Single Object containing key:value&lt;String> pairs
     {
-      &quot;Value&quot;: String|Number,
-      &quot;ValueId&quot;: String,
-      &quot;Variable&quot;: String,
-      &quot;VariableId&quot;: Number
+      // URL that was used in axios.get()
+      url: String,
+      // Action this result came from
+      action: String,
+
+      // ...etc,
+      ManufacturerId: '1147',
+      Model: 'R32',
+      ModelYear: '2004',
+      // ...etc,
+      ValveTrainDesign: '',
+      VehicleType: 'PASSENGER CAR',
+      WheelBaseLong: '',
+      WheelBaseShort: '',
+      // ...etc
     }
-  ],
-  // URL that was used in axios.get()
-  url: String,
-  // Action this result came from
-  action: String,
+  ]
 })
 </code></pre>
 <hr>
@@ -472,7 +480,7 @@ they are used in and can be caught with a Try/Catch or async .catch blocks</li>
         <p class="code-caption">Basic Usage:</p>
     
     
-        <pre class="prettyprint"><code>const { DecodeVin } = require('./main.js').ApiWrapperconst result = await DecodeVin('WVWKG61J34D132375').catch(err => err)// => Promise.resolve(result&lt;object>),</code></pre>
+        <pre class="prettyprint"><code>const { DecodeVinValuesExtended } = require('./main.js').ApiWrapperconst result = await DecodeVinValuesExtended('WVWKG61J34D132375').catch(err => err)// => Promise.resolve(result&lt;object>),</code></pre>
     
 
 
@@ -590,9 +598,9 @@ they are used in and can be caught with a Try/Catch or async .catch blocks</li>
 
     
         <p class="tag-source">
-            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html" class="button">View Source</a>
             <span>
-                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line90">line 90</a>
+                <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html">actions/DecodeVinValuesExtended/decode-vin-values-extended.js</a>, <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html#line98">line 98</a>
             </span>
         </p>
     
@@ -680,9 +688,9 @@ they are used in and can be caught with a Try/Catch or async .catch blocks</li>
 
     
         <p class="tag-source">
-            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html" class="button">View Source</a>
             <span>
-                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line96">line 96</a>
+                <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html">actions/DecodeVinValuesExtended/decode-vin-values-extended.js</a>, <a href="actions_DecodeVinValuesExtended_decode-vin-values-extended.js.html#line104">line 104</a>
             </span>
         </p>
     

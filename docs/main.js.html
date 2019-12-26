@@ -46,7 +46,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-Tutorial-Actions.html">NHSTA API Actions</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-actions.html">actions</a></li><li><a href="module-actions_DecodeVin.html">actions/DecodeVin</a></li><li><a href="module-actions_DecodeVinExtended.html">actions/DecodeVinExtended</a></li><li><a href="module-actions_DecodeVinValues.html">actions/DecodeVinValues</a></li></ul></div><div class="category"><h2>Main</h2><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-Tutorial-Actions.html">NHSTA API Actions</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-actions.html">actions</a></li><li><a href="module-actions_DecodeVin.html">actions/DecodeVin</a></li><li><a href="module-actions_DecodeVinExtended.html">actions/DecodeVinExtended</a></li><li><a href="module-actions_DecodeVinValues.html">actions/DecodeVinValues</a></li><li><a href="module-actions_DecodeVinValuesExtended.html">actions/DecodeVinValuesExtended</a></li></ul></div><div class="category"><h2>Main</h2><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -72,7 +72,6 @@ const actions = require('./actions')
 
 /**
  * @category Main
- * @class ApiWrapper
  * @alias ApiWrapper
  * @requires module:actions
  */
@@ -113,8 +112,14 @@ class ApiWrapper {
    */
 
   static async DecodeVin(vin, options = {}) {
+    const errorBase = 'ApiWrapper DecodeVin internal error'
     return new Promise((resolve, reject) =>
-      resolve(actions.DecodeVin(vin, options).catch(err => reject(err)))
+      resolve(
+        actions
+          .DecodeVin(vin, options)
+          .then(response => response)
+          .catch(err => reject(new Error(`${errorBase}: ${err}`)))
+      )
     )
   }
 
@@ -139,8 +144,14 @@ class ApiWrapper {
    */
 
   static async DecodeVinValues(vin, options = {}) {
+    const errorBase = 'ApiWrapper DecodeVinValues internal error'
     return new Promise((resolve, reject) =>
-      resolve(actions.DecodeVinValues(vin, options).catch(err => reject(err)))
+      resolve(
+        actions
+          .DecodeVinValues(vin, options)
+          .then(response => response)
+          .catch(err => reject(new Error(`${errorBase}: ${err}`)))
+      )
     )
   }
 
@@ -165,8 +176,46 @@ class ApiWrapper {
    */
 
   static async DecodeVinExtended(vin, options = {}) {
+    const errorBase = 'ApiWrapper DecodeVinExtended internal error'
     return new Promise((resolve, reject) =>
-      resolve(actions.DecodeVinExtended(vin, options).catch(err => reject(err)))
+      resolve(
+        actions
+          .DecodeVinExtended(vin, options)
+          .then(response => response)
+          .catch(err => reject(new Error(`${errorBase}: ${err}`)))
+      )
+    )
+  }
+
+  /**
+   * -------------------
+   * Action - DecodeVinValuesExtended
+   * -------------------
+   * @description **DecodeVinValuesExtended** - NHTSA.dot.gov/vehicles API Action&lt;br>&lt;br>
+   *  > **INFO:**&lt;br>
+   *    *See **{@link module:actions/DecodeVinValuesExtended}** for more information on how to use this function.*
+   *
+   *  > **INFO:**&lt;br>
+   *    *See **{@tutorial Tutorial-Action-DecodeVinValuesExtended}** Tutorial for more information on what*
+   *      *this returns from the NHTSA API.*
+   *
+   * @param {string} vin `REQUIRED` &lt;br> Vehicle Identification Number to decode
+   * @param {object} [options={}] Key:Value options to pass the function
+   *   See **[DecodeVinValuesExtended options arg](module-actions_DecodeVinValuesExtended.html#options)**
+   *     for valid keys and value types
+   *
+   * @see module:actions/DecodeVinValuesExtended
+   */
+
+  static async DecodeVinValuesExtended(vin, options = {}) {
+    const errorBase = 'ApiWrapper DecodeVinValuesExtended internal error'
+    return new Promise((resolve, reject) =>
+      resolve(
+        actions
+          .DecodeVinValuesExtended(vin, options)
+          .then(response => response)
+          .catch(err => reject(new Error(`${errorBase}: ${err}`)))
+      )
     )
   }
 }
@@ -187,7 +236,7 @@ module.exports.ApiWrapper = ApiWrapper
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 25 2019 18:28:21 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 25 2019 22:54:23 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
