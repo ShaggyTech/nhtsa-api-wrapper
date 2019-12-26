@@ -50,8 +50,18 @@
  * @see {@link module:actions/DecodeVinValues} for more complete documentation
  */
 
+/**
+ * @async
+ * @function DecodeVinExtended
+ * @description DecodeVinExtended - NHTSA.dot.gov/vehicles API Action <br>
+ * Used in: {@link ApiWrapper}<br>
+ * @see {@link module:actions/DecodeVinExtended} for more complete documentation
+ */
+
 const DecodeVin = require('./DecodeVin')
 const DecodeVinValues = require('./DecodeVinValues')
+const DecodeVinExtended = require('./DecodeVinExtended')
 
 exports.DecodeVin = DecodeVin
 exports.DecodeVinValues = DecodeVinValues
+exports.DecodeVinExtended = DecodeVinExtended

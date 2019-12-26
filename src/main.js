@@ -8,7 +8,7 @@ const actions = require('./actions')
  * @category Main
  * @class ApiWrapper
  * @alias ApiWrapper
- * @requires actions
+ * @requires module:actions
  */
 class ApiWrapper {
   /**
@@ -45,6 +45,7 @@ class ApiWrapper {
    *
    * @see module:actions/DecodeVin
    */
+
   static async DecodeVin(vin, options = {}) {
     return new Promise((resolve, reject) =>
       resolve(actions.DecodeVin(vin, options).catch(err => reject(err)))
@@ -70,9 +71,36 @@ class ApiWrapper {
    *
    * @see module:actions/DecodeVinValues
    */
+
   static async DecodeVinValues(vin, options = {}) {
     return new Promise((resolve, reject) =>
       resolve(actions.DecodeVinValues(vin, options).catch(err => reject(err)))
+    )
+  }
+
+  /**
+   * -------------------
+   * Action - DecodeVinExtended
+   * -------------------
+   * @description **DecodeVinExtended** - NHTSA.dot.gov/vehicles API Action<br><br>
+   *  > **INFO:**<br>
+   *    *See **{@link module:actions/DecodeVinExtended}** for more information on how to use this function.*
+   *
+   *  > **INFO:**<br>
+   *    *See **{@tutorial Tutorial-Action-DecodeVinExtended}** Tutorial for more information on what*
+   *      *this returns from the NHTSA API.*
+   *
+   * @param {string} vin `REQUIRED` <br> Vehicle Identification Number to decode
+   * @param {object} [options={}] Key:Value options to pass the function
+   *   See **[DecodeVinExtended options arg](module-actions_DecodeVinExtended.html#options)**
+   *     for valid keys and value types
+   *
+   * @see module:actions/DecodeVinExtended
+   */
+
+  static async DecodeVinExtended(vin, options = {}) {
+    return new Promise((resolve, reject) =>
+      resolve(actions.DecodeVinExtended(vin, options).catch(err => reject(err)))
     )
   }
 }

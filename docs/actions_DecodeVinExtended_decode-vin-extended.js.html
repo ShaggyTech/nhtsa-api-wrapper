@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: actions/DecodeVin/decode-vin.js</title>
+    <title>JSDoc: actions/DecodeVinExtended/decode-vin-extended.js</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -54,7 +54,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>actions/DecodeVin/decode-vin.js</h1>
+                        <h1>actions/DecodeVinExtended/decode-vin-extended.js</h1>
                     </header>
                     
                     
@@ -66,7 +66,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @category Actions
- * @module actions/DecodeVin
+ * @module actions/DecodeVinExtended
  *
  * @requires {@link ApiWrapper.BASE_URL}
  * @requires {@link ApiWrapper.DEFAULT_FORMAT}
@@ -86,12 +86,12 @@ const { genApiUrl } = require('../../api/utils')
 const { isValidType } = require('../../util/isValidType')
 
 /**
- * @function DecodeVin
+ * @function DecodeVinExtended
  * @async
  *
- * @description DecodeVin - NHTSA.dot.gov/vehicles API Action&lt;br>
+ * @description DecodeVinExtended - NHTSA.dot.gov/vehicles API Action&lt;br>
  *  > **INFO:**&lt;br>
- *      *See **{@tutorial Tutorial-Action-DecodeVin}** Tutorial for more information on what*
+ *      *See **{@tutorial Tutorial-Action-DecodeVinExtended}** Tutorial for more information on what*
  *         *this returns from the NHTSA API.*
  *
  * &lt;br>
@@ -145,19 +145,19 @@ const { isValidType } = require('../../util/isValidType')
  *  ```
  * -----
  *
- * @tutorial Tutorial-Action-DecodeVin
+ * @tutorial Tutorial-Action-DecodeVinExtended
  *
- * @see [ApiWrapper.DecodeVin](ApiWrapper.html#.DecodeVin)
+ * @see [ApiWrapper.DecodeVinExtended](ApiWrapper.html#.DecodeVinExtended)
  *
  * @example &lt;caption>Basic Usage:&lt;/caption>
- * const { DecodeVin } = require('./main.js').ApiWrapper
+ * const { DecodeVinExtended } = require('./main.js').ApiWrapper
  *
- * const result = await DecodeVin('WVWKG61J34D132375').catch(err => err)
+ * const result = await DecodeVinExtended('WVWKG61J34D132375').catch(err => err)
  *
  * // => Promise.resolve(result&lt;object>),
  */
 
-const DecodeVin = async (vin, options = {}) => {
+const DecodeVinExtended = async (vin, options = {}) => {
   /**
    * @constant {string} [BASE_URL={@link ApiWrapper.BASE_URL}]
    *   Base URL of the API call to make, used in Actions
@@ -174,12 +174,12 @@ const DecodeVin = async (vin, options = {}) => {
   if (!(await isValidType({ type: 'string', value: vin })) || vin.length &lt; 1) {
     return Promise.reject(
       new Error(
-        `DecodeVin(vin, opts): vin - expected non-empty String but got: ${vin}`
+        `DecodeVinExtended(vin, opts): vin - expected non-empty String but got: ${vin}`
       )
     )
   }
 
-  const action = 'DecodeVin'
+  const action = 'DecodeVinExtended'
 
   const _baseUrl = options.baseUrl || BASE_URL
   const _format = options.format || DEFAULT_FORMAT
@@ -204,7 +204,7 @@ const DecodeVin = async (vin, options = {}) => {
     .catch(err => Promise.reject(err))
 }
 
-module.exports = DecodeVin
+module.exports = DecodeVinExtended
 </code></pre>
         </article>
     </section>

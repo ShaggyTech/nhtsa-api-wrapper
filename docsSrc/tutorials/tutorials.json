@@ -7,6 +7,9 @@
       },
       "Tutorial-Action-DecodeVinValues": {
         "title": "DecodeVinValues (flat format)"
+      },
+      "Tutorial-Action-DecodeVinExtended": {
+        "title": "DecodeVinExtended"
       }
     }
   }

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: actions/DecodeVin</title>
+    <title>JSDoc: actions/DecodeVinExtended</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,7 +52,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>actions/DecodeVin</h1>
+                        <h1>actions/DecodeVinExtended</h1>
                     </header>
                     
                     
@@ -186,9 +186,9 @@
 
     
         <p class="tag-source">
-            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinExtended_decode-vin-extended.js.html" class="button">View Source</a>
             <span>
-                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line95">line 95</a>
+                <a href="actions_DecodeVinExtended_decode-vin-extended.js.html">actions/DecodeVinExtended/decode-vin-extended.js</a>, <a href="actions_DecodeVinExtended_decode-vin-extended.js.html#line95">line 95</a>
             </span>
         </p>
     
@@ -276,9 +276,9 @@
 
     
         <p class="tag-source">
-            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinExtended_decode-vin-extended.js.html" class="button">View Source</a>
             <span>
-                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line101">line 101</a>
+                <a href="actions_DecodeVinExtended_decode-vin-extended.js.html">actions/DecodeVinExtended/decode-vin-extended.js</a>, <a href="actions_DecodeVinExtended_decode-vin-extended.js.html#line101">line 101</a>
             </span>
         </p>
     
@@ -303,8 +303,8 @@
 
 
     
-    <h4 class="name" id="~DecodeVin">
-        <a class="href-link" href="#~DecodeVin">#</a>
+    <h4 class="name" id="~DecodeVinExtended">
+        <a class="href-link" href="#~DecodeVinExtended">#</a>
         
             
                 <span class='tag'>async</span>
@@ -314,7 +314,7 @@
         
         <span class="code-name">
             
-                DecodeVin<span class="signature">(vin, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;object>|Error}</span>
+                DecodeVinExtended<span class="signature">(vin, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;object>|Error}</span>
             
         </span>
     </h4>
@@ -323,10 +323,10 @@
     
     
     <div class="description">
-        <p>DecodeVin - NHTSA.dot.gov/vehicles API Action<br></p>
+        <p>DecodeVinExtended - NHTSA.dot.gov/vehicles API Action<br></p>
 <blockquote>
 <p><strong>INFO:</strong><br>
-<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></strong> Tutorial for more information on what</em>
+<em>See <strong><a href="tutorial-Tutorial-Action-DecodeVinExtended.html">DecodeVinExtended</a></strong> Tutorial for more information on what</em>
 <em>this returns from the NHTSA API.</em></p>
 </blockquote>
 <br>
@@ -600,7 +600,7 @@
     <dt class="tag-tutorial">Tutorials:</dt>
     <dd class="tag-tutorial">
         <ul>
-            <li><a href="tutorial-Tutorial-Action-DecodeVin.html">DecodeVin</a></li>
+            <li><a href="tutorial-Tutorial-Action-DecodeVinExtended.html">DecodeVinExtended</a></li>
         </ul>
     </dd>
     
@@ -609,7 +609,7 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><p><a href="ApiWrapper.html#.DecodeVin">ApiWrapper.DecodeVin</a></p></li>
+            <li><p><a href="ApiWrapper.html#.DecodeVinExtended">ApiWrapper.DecodeVinExtended</a></p></li>
         </ul>
     </dd>
     
@@ -618,9 +618,9 @@
 
     
         <p class="tag-source">
-            <a href="actions_DecodeVin_decode-vin.js.html" class="button">View Source</a>
+            <a href="actions_DecodeVinExtended_decode-vin-extended.js.html" class="button">View Source</a>
             <span>
-                <a href="actions_DecodeVin_decode-vin.js.html">actions/DecodeVin/decode-vin.js</a>, <a href="actions_DecodeVin_decode-vin.js.html#line22">line 22</a>
+                <a href="actions_DecodeVinExtended_decode-vin-extended.js.html">actions/DecodeVinExtended/decode-vin-extended.js</a>, <a href="actions_DecodeVinExtended_decode-vin-extended.js.html#line22">line 22</a>
             </span>
         </p>
     
@@ -718,7 +718,7 @@ they are used in and can be caught with a Try/Catch or async .catch blocks</li>
         <p class="code-caption">Basic Usage:</p>
     
     
-        <pre class="prettyprint"><code>const { DecodeVin } = require('./main.js').ApiWrapperconst result = await DecodeVin('WVWKG61J34D132375').catch(err => err)// => Promise.resolve(result&lt;object>),</code></pre>
+        <pre class="prettyprint"><code>const { DecodeVinExtended } = require('./main.js').ApiWrapperconst result = await DecodeVinExtended('WVWKG61J34D132375').catch(err => err)// => Promise.resolve(result&lt;object>),</code></pre>
     
 
 
