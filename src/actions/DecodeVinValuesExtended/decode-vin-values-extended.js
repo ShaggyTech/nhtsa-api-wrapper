@@ -6,7 +6,7 @@ const { isValidType } = require('../../util/isValidType')
 
 /**
  * @category Actions
- * @module actions/DecodeVinValues
+ * @module actions/DecodeVinValuesExtended
  *
  * @requires {@link ApiWrapper.BASE_URL}
  * @requires {@link ApiWrapper.DEFAULT_FORMAT}
@@ -18,9 +18,9 @@ const { isValidType } = require('../../util/isValidType')
  *
  * @requires {@link module:node_modules/axios}
  *
- * @description DecodeVinValues - NHTSA.dot.gov/vehicles API Action<br>
+ * @description DecodeVinValuesExtended - NHTSA.dot.gov/vehicles API Action<br>
  *  > **INFO:**<br>
- *      *See **{@tutorial Tutorial-Action-DecodeVinValues}** Tutorial for more information on what*
+ *      *See **{@tutorial Tutorial-Action-DecodeVinValuesExtended}** Tutorial for more information on what*
  *         *this returns from the NHTSA API.*
  *
  * <br>
@@ -82,19 +82,19 @@ const { isValidType } = require('../../util/isValidType')
  *  ```
  * -----
  *
- * @tutorial Tutorial-Action-DecodeVinValues
+ * @tutorial Tutorial-Action-DecodeVinValuesExtended
  *
- * @see [ApiWrapper.DecodeVinValues](ApiWrapper.html#.DecodeVinValues)
+ * @see [ApiWrapper.DecodeVinValuesExtended](ApiWrapper.html#.DecodeVinValuesExtended)
  *
  * @example <caption>Basic Usage:</caption>
- * const { DecodeVinValues } = require('./main.js').ApiWrapper
+ * const { DecodeVinValuesExtended } = require('./main.js').ApiWrapper
  *
- * const result = await DecodeVinValues('WVWKG61J34D132375').catch(err => err)
+ * const result = await DecodeVinValuesExtended('WVWKG61J34D132375').catch(err => err)
  *
  * // => Promise.resolve(result<object>),
  */
 
-const DecodeVinValues = async (vin, options = {}) => {
+const DecodeVinValuesExtended = async (vin, options = {}) => {
   /**
    * @constant {string} [BASE_URL={@link ApiWrapper.BASE_URL}]
    *   Base URL of the API call to make, used in Actions
@@ -111,12 +111,12 @@ const DecodeVinValues = async (vin, options = {}) => {
   if (!(await isValidType({ type: 'string', value: vin })) || vin.length < 1) {
     return Promise.reject(
       new Error(
-        `DecodeVinValues(vin, opts): vin - expected non-empty String but got: ${vin}`
+        `DecodeVinValuesExtended(vin, opts): vin - expected non-empty String but got: ${vin}`
       )
     )
   }
 
-  const action = 'DecodeVinValues'
+  const action = 'DecodeVinValuesExtended'
 
   const _baseUrl = options.baseUrl || BASE_URL
   const _format = options.format || DEFAULT_FORMAT
@@ -141,4 +141,4 @@ const DecodeVinValues = async (vin, options = {}) => {
     .catch(err => Promise.reject(err))
 }
 
-module.exports = DecodeVinValues
+module.exports = DecodeVinValuesExtended

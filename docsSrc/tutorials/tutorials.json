@@ -10,6 +10,9 @@
       },
       "Tutorial-Action-DecodeVinExtended": {
         "title": "DecodeVinExtended"
+      },
+      "Tutorial-Action-DecodeVinValuesExtended": {
+        "title": "DecodeVinValuesExtended (flat format)"
       }
     }
   }

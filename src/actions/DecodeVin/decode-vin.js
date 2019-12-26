@@ -1,3 +1,9 @@
+const axios = require('axios')
+
+// utility helper functions
+const { genApiUrl } = require('../../api/utils')
+const { isValidType } = require('../../util/isValidType')
+
 /**
  * @category Actions
  * @module actions/DecodeVin
@@ -11,17 +17,6 @@
  * @requires {@link isValidType}
  *
  * @requires {@link module:node_modules/axios}
- */
-
-const axios = require('axios')
-
-// utility helper functions
-const { genApiUrl } = require('../../api/utils')
-const { isValidType } = require('../../util/isValidType')
-
-/**
- * @function DecodeVin
- * @async
  *
  * @description DecodeVin - NHTSA.dot.gov/vehicles API Action<br>
  *  > **INFO:**<br>
