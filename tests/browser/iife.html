@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing IIFE bundle imports</title>
 
-    <script type="text/javascript" src="../../dev/dist/browser/iife.js">
-    </script>
-
+    <script
+      type="text/javascript"
+      src="../../dev/dist/browser/iife.js"
+    ></script>
   </head>
   <body>
     <h2>
@@ -18,22 +19,44 @@
       <btn id="isValidType">Click to console.log isValidType() results</btn>
       <div id="isValidTypeResults"></div>
     </h2>
+    <h2>
+      <btn id="makeQueryString"
+        >Click to console.log makeQueryString() results</btn
+      >
+      <div id="makeQueryStringResults"></div>
+    </h2>
   </body>
   <script type="text/javascript">
-    document.getElementById('greet').addEventListener('click', function () {
+    document.getElementById('greet').addEventListener('click', function() {
       // package.libraryName
-      const result = NHSTA.greet("Shaggy", 102)
-      console.log(result)
-      document.getElementById('greetResults').innerText = result
-    })
+      const result = NHTSA.greet('Shaggy', 102);
+      console.log(result);
+      document.getElementById('greetResults').innerText = result;
+    });
 
-    document.getElementById('isValidType').addEventListener('click', async function () {
-      // package.libraryName
-      const result = await NHSTA.isValidType({type: 'string', value: 'testing'})
-      console.log(`isValidType result: ${result}`)
-      document.getElementById('isValidTypeResults').innerText = result
-    })
-    
-    console.log(`Successfully imported via IIFE bundle`, libraryName)
+    document
+      .getElementById('isValidType')
+      .addEventListener('click', async function() {
+        // package.libraryName
+        const result = await NHTSA.isValidType({
+          type: 'string',
+          value: 'testing'
+        });
+        console.log(`isValidType result: ${result}`);
+        document.getElementById('isValidTypeResults').innerText = result;
+      });
+
+    document
+      .getElementById('makeQueryString')
+      .addEventListener('click', async function() {
+        const result = await NHTSA.makeQueryString({
+          format: 'json',
+          modelYear: 2009
+        });
+        console.log(`makeQueryString result: ${result}`);
+        document.getElementById('makeQueryStringResults').innerText = result;
+      });
+
+    console.log(`Successfully imported via IIFE bundle`);
   </script>
 </html>

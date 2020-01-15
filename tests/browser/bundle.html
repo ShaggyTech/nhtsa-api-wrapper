@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing UMD bundle imports</title>
 
-    <script type="text/javascript" src="../../dev/dist/bundle.min.js">
-    </script>
-    
+    <script type="text/javascript" src="../../dev/dist/bundle.min.js"></script>
   </head>
   <body>
     <h2>
@@ -18,22 +16,43 @@
       <btn id="isValidType">Click to console.log isValidType() results</btn>
       <div id="isValidTypeResults"></div>
     </h2>
+    <h2>
+      <btn id="makeQueryString"
+        >Click to console.log makeQueryString() results</btn
+      >
+      <div id="makeQueryStringResults"></div>
+    </h2>
   </body>
   <script type="text/javascript">
-    console.log(`Successfully imported via UMD bundle`, libraryName)
-    
-    document.getElementById('greet').addEventListener('click', function () {
-      // package.libraryName
-      const result = libraryName.greet("Shaggy", 102)
-      console.log(result)
-      document.getElementById('greetResults').innerText = result
-    })
+    console.log(`Successfully imported via UMD bundle`);
 
-    document.getElementById('isValidType').addEventListener('click', async function () {
-      // package.libraryName
-      const result = await libraryName.isValidType({type: 'string', value: 'testing'})
-      console.log(`isValidType result: ${result}`)
-      document.getElementById('isValidTypeResults').innerText = result
-    })
+    document.getElementById('greet').addEventListener('click', function() {
+      const result = NHTSA.greet('Shaggy', 102);
+      console.log(result);
+      document.getElementById('greetResults').innerText = result;
+    });
+
+    document
+      .getElementById('isValidType')
+      .addEventListener('click', async function() {
+        // package.libraryName
+        const result = await NHTSA.isValidType({
+          type: 'string',
+          value: 'testing'
+        });
+        console.log(`isValidType result: ${result}`);
+        document.getElementById('isValidTypeResults').innerText = result;
+      });
+
+    document
+      .getElementById('makeQueryString')
+      .addEventListener('click', async function() {
+        const result = await NHTSA.makeQueryString({
+          format: 'json',
+          modelYear: 2009
+        });
+        console.log(`makeQueryString result: ${result}`);
+        document.getElementById('makeQueryStringResults').innerText = result;
+      });
   </script>
 </html>
