@@ -1,5 +1,5 @@
 // eslint-disable-next-line node/no-missing-import
-import { isValidType as _isValidType } from './isValidType'
+import { isValidType as _isValidType } from './isValidType';
 
 /**
  * Returns a greeting
@@ -8,6 +8,6 @@ import { isValidType as _isValidType } from './isValidType'
  * @returns {string} `Hello ${name}, you are ${age} years old!`
  */
 export const greet = (name: string, age: number) =>
-  `Hello ${name}, you are ${age} years old!`
+  `Hello ${name}, you are ${age} years old!`;
 
-export const isValidType = _isValidType
+export const isValidType = _isValidType;

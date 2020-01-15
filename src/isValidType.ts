@@ -27,13 +27,13 @@ export const isValidType = async ({
   value: any;
 }) => {
   // Gatekeeping
-  if (!type || !value) return Promise.resolve(false)
+  if (!type || !value) return Promise.resolve(false);
 
   // normalize type
-  const _type = type.toLowerCase()
+  const _type = type.toLowerCase();
 
-  const expected = `[object ${_type}]`
-  const actual = Object.prototype.toString.call(value).toLowerCase()
+  const expected = `[object ${_type}]`;
+  const actual = Object.prototype.toString.call(value).toLowerCase();
 
-  return Promise.resolve(expected === actual)
-}
+  return Promise.resolve(expected === actual);
+};

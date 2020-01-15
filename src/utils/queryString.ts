@@ -1,8 +1,7 @@
 // Param union type
-type Param = string | number
+type Param = string | number;
 
 export interface Params {
-  // eslint-disable-next-line prettier/prettier
   [propName: string]: Param;
 }
 
@@ -42,53 +41,50 @@ export interface Params {
 
 export function queryString(params: Params = {}): Promise<string> {
   // Error message begins with
-  const errorBase = 'queryString(params) - '
+  const errorBase =
+    'queryString(params) - expected params in the form of an object ';
 
   // Type guard params argument
   if (Object.prototype.toString.call(params) !== '[object Object]') {
-    return Promise.reject(
-      new Error(
-        `${errorBase} params in the form of an object are required to build a query string, got: ${params}`
-      )
-    )
+    return Promise.reject(new Error(`${errorBase} got: ${params}`));
   }
 
   // Setup QueryString for Array mapping
-  const entries = Object.entries(params)
-  const paramsLength = entries.length
+  const entries = Object.entries(params);
+  const paramsLength = entries.length;
 
   // Return an empty string if params are an empty object
-  if (paramsLength < 1) return Promise.resolve('')
+  if (paramsLength < 1) return Promise.resolve('');
 
   // Used to check if we've already prepended a first valid query param
-  let isPrepended = false
+  let isPrepended = false;
 
   // Map [key]:value entries to "key=value" strings in an array
   const queryStringArray = entries.map(([key, value], index) => {
-    let prepend = ''
-    let append = ''
+    let prepend = '';
+    let append = '';
 
     // skip any invalid values, string or number types are valid
     if (value && (typeof value === 'string' || typeof value === 'number')) {
       // if this is the first param we need to prepend the '?' char
       if (value !== '' && !isPrepended) {
-        prepend = '?'
-        isPrepended = true
+        prepend = '?';
+        isPrepended = true;
       }
       // if there is another param coming after this one we need to append the '&' char
       if (index < paramsLength - 1) {
         // but only if the value is not empty
         if (entries[index + 1][1] !== '') {
-          append = '&'
+          append = '&';
         }
       }
 
       // map the completed partial query string to queryStringArray
-      return `${prepend}${key}=${value}${append}`
+      return `${prepend}${key}=${value}${append}`;
     }
-    return
-  })
+    return;
+  });
 
   // Join and return the completed query string
-  return Promise.resolve(queryStringArray.join(''))
+  return Promise.resolve(queryStringArray.join(''));
 }
