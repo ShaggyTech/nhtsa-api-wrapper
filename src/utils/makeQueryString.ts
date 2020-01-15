@@ -22,7 +22,7 @@ export interface QueryStringParameters {
 /**
  * @category utils
  * @async
- * @module utils/makeQueryString
+ * @method makeQueryString
  * @description Utility method to generate a query string.<br>
  *   Prepend it to an API URL string. <br>
  *   ---
@@ -58,12 +58,12 @@ export interface QueryStringParameters {
 
 export function makeQueryString(
   params: QueryStringParameters = {}
-): Promise<string> {
+): Promise<string | Error> {
   // Error message begins with
   const errorBase =
     'queryString(params) - expected params in the form of an object , got:';
 
-  // Type guard params argument
+  // Type guard params argument, must be of type object
   if (Object.prototype.toString.call(params) !== '[object Object]') {
     return Promise.reject(new Error(`${errorBase} ${params}`));
   }
@@ -107,6 +107,6 @@ export function makeQueryString(
     return;
   });
 
-  // Join and return the completed query string
-  return Promise.resolve(queryStringArray.join(''));
+  // Join and return the completed query string anfter URI encoding
+  return Promise.resolve(encodeURI(queryStringArray.join('')));
 }
