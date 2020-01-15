@@ -26,14 +26,32 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     
-                    
-                        <h1 class="navbar-item">Documentation</h1>
+                     
+                        <h1 class="navbar-item">@shaggytools/nhtsa-api-wrapper</h1>
                     
                     <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                     </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://www.shaggytech.com/nhtsa-api-wrapper" target="_blank">
+                                Github
+                            </a>
+                        </div>
+                    
+                        <div class="navbar-item">
+                            <a href="https://www.github.com/shaggytech" target="_blank">
+                                @shaggytech
+                            </a>
+                        </div>
+                    
+                    </div>
                 </div>
                 
             </nav>
@@ -44,7 +62,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-Tutorial-Actions.html">NHSTA API Actions</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_utils.html">api/utils</a></li><li><a href="module-api_utils_genApiUrl.html">api/utils/genApiUrl</a></li><li><a href="module-api_utils_genQueryString.html">api/utils/genQueryString</a></li><li><a href="module-apiUtils.html">apiUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterEmpty">filterEmpty</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-actions.html">actions</a></li><li><a href="module-actions_DecodeVin.html">actions/DecodeVin</a></li><li><a href="module-actions_DecodeVinExtended.html">actions/DecodeVinExtended</a></li><li><a href="module-actions_DecodeVinValues.html">actions/DecodeVinValues</a></li><li><a href="module-actions_DecodeVinValuesExtended.html">actions/DecodeVinValuesExtended</a></li></ul></div><div class="category"><h2>Main</h2><h3>Classes</h3><ul><li><a href="ApiWrapper.html">ApiWrapper</a></li></ul></div><div class="category"><h2>api</h2><h3>Classes</h3><ul><li><a href="api_ApiWrapper.html">ApiWrapper</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isValidType">isValidType</a></li><li><a href="global.html#queryString">queryString</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -129,86 +147,39 @@
     
 
     
-
-    
         <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
+            <h3 class="title"><span>Members</span></h3>
             <div class="members">
             
                 <div class="member">
 
-
+<h4 class="name" id="isValidType">
+    <a class="href-link" href="#isValidType">#</a>
     
-    <h4 class="name" id="filterEmpty">
-        <a class="href-link" href="#filterEmpty">#</a>
-        
-        <span class="code-name">
-            
-                filterEmpty<span class="signature">(apiResultsArray)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
+    <span class="code-name">
+        isValidType
+    </span>
     
-
-    
-    
-    <div class="description">
-        <p>Filter empty objects from the NHTSA.gov api response</p>
-    </div>
-    
+</h4>
 
 
 
 
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>apiResultsArray</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
+<div class="description">
+    <p>Validate types and existence of various input values.<br>
+Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
+<hr>
+<p>Returns <code>true</code> if:</p>
+<ul>
+<li>type of value is equal to provided type</li>
+</ul>
+<hr>
+<p>Returns <code>false</code> if:</p>
+<ul>
+<li>type arg is missing</li>
+<li>type or value arg is falsey or missing</li>
+</ul>
+</div>
 
 
 
@@ -247,9 +218,9 @@
 
     
         <p class="tag-source">
-            <a href="api_utils_filterEmpty.js.html" class="button">View Source</a>
+            <a href="isValidType.ts.html" class="button">View Source</a>
             <span>
-                <a href="api_utils_filterEmpty.js.html">api/utils/filterEmpty.js</a>, <a href="api_utils_filterEmpty.js.html#line4">line 4</a>
+                <a href="isValidType.ts.html">isValidType.ts</a>, <a href="isValidType.ts.html#line1">line 1</a>
             </span>
         </p>
     
@@ -259,30 +230,23 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
+            
+            </div>
+        </div>
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
             
                 <div class="member">
 
 
     
-    <h4 class="name" id="isValidType">
-        <a class="href-link" href="#isValidType">#</a>
+    <h4 class="name" id="queryString">
+        <a class="href-link" href="#queryString">#</a>
         
             
                 <span class='tag'>async</span>
@@ -290,7 +254,7 @@
         
         <span class="code-name">
             
-                isValidType<span class="signature">(args)</span><span class="type-signature"> &rarr; {Promise.Boolean}</span>
+                queryString<span class="signature">(params)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
             
         </span>
     </h4>
@@ -299,13 +263,8 @@
     
     
     <div class="description">
-        <p>Validate types and existence of various input values.<br></p>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>type or value args are not provided</li>
-<li>type arg is not of type 'String'</li>
-</ul>
+        <p>Utility method to generate a query string,<br>
+for use with an NHTSA.gov API URL string. <br><br></p>
     </div>
     
 
@@ -343,7 +302,7 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>args</code></td>
+      <td class="name"><code>params</code></td>
   
 
   <td class="type">
@@ -359,57 +318,10 @@
 
   
 
-  <td class="description last"></td>
+  <td class="description last"><p><a name="params"></a> <code>REQUIRED</code><br></p>
+<h4 id="an-object-containing-key%3Avalue-api-query-parameters-to-use.">An object containing key:value API query parameters to use.<br></h4>
+<p>All params will be converted into strings with</p></td>
 </tr>
-
-  
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>type</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What type should the value be in order to pass the test and return true</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>value</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What value are we testing against</p></td>
-</tr>
-
-  
 
 
     
@@ -453,9 +365,9 @@
 
     
         <p class="tag-source">
-            <a href="util_isValidType.js.html" class="button">View Source</a>
+            <a href="utils_queryString.ts.html" class="button">View Source</a>
             <span>
-                <a href="util_isValidType.js.html">util/isValidType.js</a>, <a href="util_isValidType.js.html#line15">line 15</a>
+                <a href="utils_queryString.ts.html">utils/queryString.ts</a>, <a href="utils_queryString.ts.html#line9">line 9</a>
             </span>
         </p>
     
@@ -486,13 +398,20 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>True if type arg matches type of value</p></div>
+    <div class='param-desc column is-7'><p>An API query string <br></p>
+<ul>
+<li>On resolve: <code>Promise(&lt;string&gt;)</code><br></li>
+<li>On reject: <code>new Error(error&lt;string&gt;)</code></li>
+</ul></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Promise.Boolean</span>
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
 
 
     </div>
@@ -504,6 +423,27 @@
     </div>
 
 
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Single Param:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json'}).catch(error => error)// => Promise.resolve("?format=json")</code></pre>
+    
+
+        <p class="code-caption">Multiple Params:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(error => error)// => Promise.resolve("?format=json&amp;modelYear=2006&amp;page=2")</code></pre>
+    
+
+        <p class="code-caption">Empty Params Object:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({}).catch(error => error)// => Promise.resolve("")</code></pre>
+    
 
 
 </div>
@@ -530,7 +470,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 25 2019 22:54:23 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Jan 14 2020 20:57:02 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

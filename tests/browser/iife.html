@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing IIFE bundle imports</title>
+
+    <script type="text/javascript" src="../../dev/dist/browser/iife.js">
+    </script>
+
+  </head>
+  <body>
+    <h2>
+      <div id="greet">Click to console.log greet() results</div>
+      <div id="greetResults"></div>
+    </h2>
+    <h2>
+      <btn id="isValidType">Click to console.log isValidType() results</btn>
+      <div id="isValidTypeResults"></div>
+    </h2>
+  </body>
+  <script type="text/javascript">
+    document.getElementById('greet').addEventListener('click', function () {
+      // package.libraryName
+      const result = NHSTA.greet("Shaggy", 102)
+      console.log(result)
+      document.getElementById('greetResults').innerText = result
+    })
+
+    document.getElementById('isValidType').addEventListener('click', async function () {
+      // package.libraryName
+      const result = await NHSTA.isValidType({type: 'string', value: 'testing'})
+      console.log(`isValidType result: ${result}`)
+      document.getElementById('isValidTypeResults').innerText = result
+    })
+    
+    console.log(`Successfully imported via IIFE bundle`, libraryName)
+  </script>
+</html>

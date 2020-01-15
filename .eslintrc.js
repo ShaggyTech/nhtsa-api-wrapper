@@ -1,25 +1,45 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
+    es6: true,
     node: true,
-    es2020: true,
     jest: true
   },
-  ignorePatterns: ["node_modules/", "docs/", "dist/", "coverage/"],
-  plugins: ['babel', 'prettier', 'jsdoc'],
+  ignorePatterns: [
+    '.vscode',
+    'coverage/',
+    'dist/',
+    'dev/',
+    'docs/',
+    'node_modules/',
+    'bin'
+  ],
   extends: [
     'eslint:recommended',
+    'prettier',
     'plugin:prettier/recommended',
-    'plugin:node/recommended',
-    // 'plugin:jsdoc/recommended',
-    'prettier/babel'
+    'prettier/@typescript-eslint',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:node/recommended'
   ],
-  // add your custom rules here
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2016,
+    sourceType: 'module'
+    // "project": "./tsconfig.json"
+  },
+  plugins: ['@typescript-eslint', 'prettier', 'jsdoc'],
   rules: {
     'dot-notation': 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-unused-vars': 'off'
+    'no-console': 'off',
+    'no-debugger': 'off',
+    'no-unused-vars': 'off',
+    'prettier/prettier': ['error'],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+
+    'node/no-unsupported-features/es-syntax': 'off',
+    'node/no-missing-import': 'off'
   }
 }
