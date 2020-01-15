@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const isDev = process.env.JSDOC_ENV === 'development'
-const outDir = isDev ? 'dev/docs/' : 'docs/'
+const isDev = process.env.JSDOC_ENV === 'development';
+const outDir = isDev ? 'dev/docs/' : 'docs/';
 
-const pkg = require('./package.json')
+const pkg = require('./package.json');
 
 module.exports = {
   source: {
@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     'plugins/markdown',
     'node_modules/better-docs/category',
-    'jsdoc-plugin-typescript',
+    'node_modules/better-docs/typescript',
     'node_modules/jsdoc-babel'
   ],
   tags: {
@@ -60,4 +60,4 @@ module.exports = {
     extensions: ['ts', 'tsx'],
     ignore: ['**/*.(test|spec).ts']
   }
-}
+};

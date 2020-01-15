@@ -1,21 +1,21 @@
-import commonjs from '@rollup/plugin-commonjs'
-import json from '@rollup/plugin-json'
-import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import resolve from '@rollup/plugin-node-resolve';
 
-import babel from 'rollup-plugin-babel'
-import gzipPlugin from 'rollup-plugin-gzip'
-import sourceMaps from 'rollup-plugin-sourcemaps'
-import { terser } from 'rollup-plugin-terser'
-import typescript from 'rollup-plugin-typescript2'
+import babel from 'rollup-plugin-babel';
+import gzipPlugin from 'rollup-plugin-gzip';
+import sourceMaps from 'rollup-plugin-sourcemaps';
+import { terser } from 'rollup-plugin-terser';
+import typescript from 'rollup-plugin-typescript2';
 
-import pkg from './package.json'
+import pkg from './package.json';
 
-const libraryName = pkg.libraryName
+const libraryName = pkg.libraryName;
 
 // Set if rollup is used in development/watch mode and switch variables based on that value
-const isDev = process.env.ROLLUP_WATCH === 'true'
-const baseDir = isDev ? 'dev/dist/' : 'dist/'
-const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json'
+const isDev = process.env.ROLLUP_WATCH === 'true';
+const baseDir = isDev ? 'dev/dist/' : 'dist/';
+const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 
 // Rollup plugins used with every build
 const plugins = [
@@ -33,7 +33,7 @@ const plugins = [
   // https://github.com/rollup/rollup-plugin-node-resolve#usage
   sourceMaps(),
   babel({ exclude: 'node_modules/**', extensions: ['.js', '.ts'] })
-]
+];
 
 export default [
   /**
@@ -127,4 +127,4 @@ export default [
     ],
     plugins
   }
-]
+];
