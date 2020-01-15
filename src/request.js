@@ -1,6 +1,8 @@
+/* eslint-disable node/no-extraneous-require */
+
 const axios = require('axios')
 
-const { isValidType } = require('./util/isValidType')
+const { isValidType } = require('@shaggytools/vin-decoder')
 
 const get = async url => {
   // Gatekeeping url
