@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: QueryStringParameters</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,8 +69,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Global</h1>
+                        <p>Interface</p>
+                        <h1>QueryStringParameters</h1>
                     </header>
                     
                     
@@ -82,7 +82,7 @@
 
 <header>
     
-        <h2></h2>
+        <h2>QueryStringParameters</h2>
         
     
 </header>
@@ -91,6 +91,15 @@
     <div class="container-overview">
     
         
+            <div class="description"><h2 id="object-containing-key%3Avalue-pairs-to-build-the-url-query-string-with.parameter-values-may-be-either-strings-or-numbers.">Object containing Key:Value pairs to build the URL query string with.<br>
+Parameter values may be either strings or numbers. <br></h2>
+<pre class="prettyprint source lang-javascript"><code> {
+   format: 'json',
+   modelYear: 2009,
+   whatever: 'something'
+ }
+</code></pre></div>
+        
 
         
 
@@ -123,235 +132,31 @@
     
 
     
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Members</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id="isValidType">
-    <a class="href-link" href="#isValidType">#</a>
-    
-    <span class="code-name">
-        isValidType
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>type arg is missing</li>
-<li>type or value arg is falsey or missing</li>
-</ul>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><p><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></p></li>
+        </ul>
+    </dd>
     
 
     
 
     
         <p class="tag-source">
-            <a href="isValidType.ts.html" class="button">View Source</a>
+            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
             <span>
-                <a href="isValidType.ts.html">isValidType.ts</a>, <a href="isValidType.ts.html#line2">line 2</a>
+                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line81">line 81</a>
             </span>
         </p>
     
 </dl>
 
 
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="greet">
-        <a class="href-link" href="#greet">#</a>
         
-        <span class="code-name">
-            
-                greet<span class="signature">(name, age)</span><span class="type-signature"> &rarr; {string}</span>
-            
-        </span>
-    </h4>
     
-
-    
-    
-    <div class="description">
-        <p>Returns a greeting</p>
     </div>
     
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>name</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What is your name?</p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>age</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">number</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>How many years old are you?</p></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
     
 
     
@@ -366,80 +171,6 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
     
 
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="index.ts.html" class="button">View Source</a>
-            <span>
-                <a href="index.ts.html">index.ts</a>, <a href="index.ts.html#line4">line 4</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p><code>Hello ${name}, you are ${age} years old!</code></p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">string</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
     
 
     

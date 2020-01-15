@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: utils/queryString.ts</title>
+    <title>JSDoc: index.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -64,7 +64,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isValidType">isValidType</a></li><li><a href="global.html#queryString">queryString</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>utils</h2><h3>Modules</h3><ul><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul><h3>Interfaces</h3><ul><li><a href="utils_makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>utils/queryString.ts</h1>
+                        <h1>index.ts</h1>
                     </header>
                     
                     
@@ -82,100 +82,19 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// Param union type
-type Param = string | number
-
-export interface Params {
-  // eslint-disable-next-line prettier/prettier
-  [propName: string]: Param;
-}
+            <pre class="prettyprint source linenums"><code>// eslint-disable-next-line node/no-missing-import
+import { isValidType as _isValidType } from './isValidType';
 
 /**
- * @async
- * @description Utility method to generate a query string,&lt;br>
- *  for use with an NHTSA.gov API URL string. &lt;br>&lt;br>
- *
- * @param {object} params &lt;a name="params">&lt;/a> `REQUIRED`&lt;br>
- *  #### An object containing key:value API query parameters to use.&lt;br>
- *
- * All params will be converted into strings with
- *
- * @returns {Promise&lt;string>|Error} An API query string &lt;br>
- *  - On resolve: `Promise(&lt;string>)`&lt;br>
- *  - On reject: `new Error(error&lt;string>)`
- *
- * @example &lt;caption>Single Param:&lt;/caption>
- * const qs = await genQueryString({
- *   format: 'json'
- * }).catch(error => error)
- * // => Promise.resolve("?format=json")
- *
- * @example &lt;caption>Multiple Params:&lt;/caption>
- * const qs = await genQueryString({
- *   format: 'json',
- *   modelYear: 2006,
- *   page: "2"
- * }).catch(error => error)
- * // => Promise.resolve("?format=json&amp;modelYear=2006&amp;page=2")
- *
- * @example &lt;caption>Empty Params Object:&lt;/caption>
- * const qs = await genQueryString({}).catch(error => error)
- * // => Promise.resolve("")
- *
+ * Returns a greeting
+ * @param {string} name What is your name?
+ * @param {number} age How many years old are you?
+ * @returns {string} `Hello ${name}, you are ${age} years old!`
  */
+export const greet = (name: string, age: number) =>
+  `Hello ${name}, you are ${age} years old!`;
 
-export function queryString(params: Params = {}): Promise&lt;string> {
-  // Error message begins with
-  const errorBase = 'queryString(params) - '
-
-  // Type guard params argument
-  if (Object.prototype.toString.call(params) !== '[object Object]') {
-    return Promise.reject(
-      new Error(
-        `${errorBase} params in the form of an object are required to build a query string, got: ${params}`
-      )
-    )
-  }
-
-  // Setup QueryString for Array mapping
-  const entries = Object.entries(params)
-  const paramsLength = entries.length
-
-  // Return an empty string if params are an empty object
-  if (paramsLength &lt; 1) return Promise.resolve('')
-
-  // Used to check if we've already prepended a first valid query param
-  let isPrepended = false
-
-  // Map [key]:value entries to "key=value" strings in an array
-  const queryStringArray = entries.map(([key, value], index) => {
-    let prepend = ''
-    let append = ''
-
-    // skip any invalid values, string or number types are valid
-    if (value &amp;&amp; (typeof value === 'string' || typeof value === 'number')) {
-      // if this is the first param we need to prepend the '?' char
-      if (value !== '' &amp;&amp; !isPrepended) {
-        prepend = '?'
-        isPrepended = true
-      }
-      // if there is another param coming after this one we need to append the '&amp;' char
-      if (index &lt; paramsLength - 1) {
-        // but only if the value is not empty
-        if (entries[index + 1][1] !== '') {
-          append = '&amp;'
-        }
-      }
-
-      // map the completed partial query string to queryStringArray
-      return `${prepend}${key}=${value}${append}`
-    }
-    return
-  })
-
-  // Join and return the completed query string
-  return Promise.resolve(queryStringArray.join(''))
-}
+export const isValidType = _isValidType;
 </code></pre>
         </article>
     </section>
@@ -191,7 +110,7 @@ export function queryString(params: Params = {}): Promise&lt;string> {
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Jan 14 2020 20:57:02 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 00:02:34 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

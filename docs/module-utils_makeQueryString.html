@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: utils/makeQueryString</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,8 +69,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Global</h1>
+                        <p>Module</p>
+                        <h1>utils/makeQueryString</h1>
                     </header>
                     
                     
@@ -82,7 +82,8 @@
 
 <header>
     
-        <h2></h2>
+        
+            
         
     
 </header>
@@ -91,177 +92,13 @@
     <div class="container-overview">
     
         
-
+            <div class="description"><h2 id="utility-method-to-generate-a-query-string.prepend-it-to-an-api-url-string.">Utility method to generate a query string.<br>
+Prepend it to an API URL string. <br></h2></div>
         
 
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-</dl>
-
-
         
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Members</span></h3>
-            <div class="members">
             
-                <div class="member">
 
-<h4 class="name" id="isValidType">
-    <a class="href-link" href="#isValidType">#</a>
-    
-    <span class="code-name">
-        isValidType
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>type arg is missing</li>
-<li>type or value arg is falsey or missing</li>
-</ul>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="isValidType.ts.html" class="button">View Source</a>
-            <span>
-                <a href="isValidType.ts.html">isValidType.ts</a>, <a href="isValidType.ts.html#line2">line 2</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="greet">
-        <a class="href-link" href="#greet">#</a>
-        
-        <span class="code-name">
-            
-                greet<span class="signature">(name, age)</span><span class="type-signature"> &rarr; {string}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Returns a greeting</p>
-    </div>
-    
 
 
 
@@ -297,13 +134,13 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>name</code></td>
+      <td class="name"><code>params</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">string</span>
+<span class="param-type"><a href="utils_makeQueryString.QueryStringParameters.html">utils/makeQueryString.QueryStringParameters</a></span>
 
 
   
@@ -313,32 +150,9 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
   
 
-  <td class="description last"><p>What is your name?</p></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>age</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">number</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>How many years old are you?</p></td>
+  <td class="description last"><p><a name="params"></a>
+An object containing key:value API query parameters to use.<br>
+Parameter values may be either type 'string' or type 'number'</p></td>
 </tr>
 
 
@@ -383,9 +197,9 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
     
         <p class="tag-source">
-            <a href="index.ts.html" class="button">View Source</a>
+            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
             <span>
-                <a href="index.ts.html">index.ts</a>, <a href="index.ts.html#line4">line 4</a>
+                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line2">line 2</a>
             </span>
         </p>
     
@@ -416,13 +230,20 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p><code>Hello ${name}, you are ${age} years old!</code></p></div>
+    <div class='param-desc column is-7'><p>An API query string <br></p>
+<ul>
+<li>On resolve: <code>Promise(&lt;string&gt;)</code><br></li>
+<li>On reject: <code>new Error(&lt;string&gt;)</code> - if parameters are not of type 'object'</li>
+</ul></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">string</span>
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
 
 
     </div>
@@ -436,10 +257,46 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 
 
-</div>
-            
-            </div>
-        </div>
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Single Param:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json'}).catch(error => error)//  qs = "format=json"</code></pre>
+    
+
+        <p class="code-caption">Multiple Params:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(error => error)// qs = "?format=json&amp;modelYear=2006&amp;page=2"</code></pre>
+    
+
+        <p class="code-caption">Empty Params Object:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({}).catch(error => error)// qs = ""</code></pre>
+    
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     

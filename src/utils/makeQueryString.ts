@@ -2,15 +2,18 @@
  * Object containing Key:Value pairs to build the URL query string with.<br>
  * Parameter values may be either strings or numbers. <br>
  * ---
+ * ```javascript
+ *  {
+ *    format: 'json',
+ *    modelYear: 2009,
+ *    whatever: 'something'
+ *  }
+ * ```
  *
  * @category utils
+ * @memberof utils/makeQueryString
  * @interface
  * @see [utils/makeQueryString](module-utils_makeQueryString.html)
- * @example
- * {
- *   format: 'json',
- *   modelYear: 2009
- * }
  */
 export interface QueryStringParameters {
   [propName: string]: string | number;
@@ -25,7 +28,7 @@ export interface QueryStringParameters {
  *   ---
  *
  *
- * @param {QueryStringParameters} params <a name="params"></a>
+ * @param {utils/makeQueryString.QueryStringParameters} params <a name="params"></a>
  * An object containing key:value API query parameters to use.<br>
  * Parameter values may be either type 'string' or type 'number'
  *
