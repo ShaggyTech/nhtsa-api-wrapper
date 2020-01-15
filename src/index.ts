@@ -1,6 +1,3 @@
-// eslint-disable-next-line node/no-missing-import
-import { isValidType as _isValidType } from './isValidType';
-
 /**
  * Returns a greeting
  * @param {string} name What is your name?
@@ -10,4 +7,4 @@ import { isValidType as _isValidType } from './isValidType';
 export const greet = (name: string, age: number) =>
   `Hello ${name}, you are ${age} years old!`;
 
-export const isValidType = _isValidType;
+export * from './utils/';
