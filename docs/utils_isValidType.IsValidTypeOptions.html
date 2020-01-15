@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: utils/makeQueryString</title>
+    <title>JSDoc: IsValidTypeOptions</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -62,15 +62,15 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>utils</h2><h3>Modules</h3><ul><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul><h3>Interfaces</h3><ul><li><a href="utils_makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li></ul></div><div class="category"><h2>utils</h2><h3>Interfaces</h3><ul><li><a href="utils_isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></li><li><a href="utils_makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul><h3>Global</h3><ul><li><a href="global.html#utils/isValidType">utils/isValidType</a></li><li><a href="global.html#utils/makeQueryString">utils/makeQueryString</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>utils/makeQueryString</h1>
+                        <p>Interface</p>
+                        <h1>IsValidTypeOptions</h1>
                     </header>
                     
                     
@@ -82,8 +82,8 @@
 
 <header>
     
-        
-            
+        <h2>
+            <span class="ancestors"><a href="global.html#utils/isValidType">utils/isValidType</a>.</span>IsValidTypeOptions</h2>
         
     
 </header>
@@ -92,76 +92,8 @@
     <div class="container-overview">
     
         
-            <div class="description"><h2 id="utility-method-to-generate-a-query-string.prepend-it-to-an-api-url-string.">Utility method to generate a query string.<br>
-Prepend it to an API URL string. <br></h2></div>
-        
 
         
-            
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>params</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type"><a href="utils_makeQueryString.QueryStringParameters.html">utils/makeQueryString.QueryStringParameters</a></span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p><a name="params"></a>
-An object containing key:value API query parameters to use.<br>
-Parameter values may be either type 'string' or type 'number'</p></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
 
 
 <dl class="details">
@@ -192,91 +124,31 @@ Parameter values may be either type 'string' or type 'number'</p></td>
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><p><a href="module-utils_isValidType.html">utils/isValidType</a></p>
+<h2 id="options-argument-object-provided-to-utils%2Fisvalidtype()">Options argument object provided to utils/isValidType() <br></h2>
+<pre class="prettyprint source lang-javascript"><code> {
+   type: &lt;string>,
+   value: &lt;any>
+ }
+</code></pre></li>
+        </ul>
+    </dd>
+    
 
     
 
     
         <p class="tag-source">
-            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
+            <a href="utils_isValidType.ts.html" class="button">View Source</a>
             <span>
-                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line2">line 2</a>
+                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line61">line 61</a>
             </span>
         </p>
     
 </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>An API query string <br></p>
-<ul>
-<li>On resolve: <code>Promise(&lt;string&gt;)</code><br></li>
-<li>On reject: <code>new Error(&lt;string&gt;)</code> - if parameters are not of type 'object'</li>
-</ul></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Promise.&lt;string></span>
-|
-
-<span class="param-type">Error</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Single Param:</p>
-    
-    
-        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json'}).catch(error => error)//  qs = "format=json"</code></pre>
-    
-
-        <p class="code-caption">Multiple Params:</p>
-    
-    
-        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(error => error)// qs = "?format=json&amp;modelYear=2006&amp;page=2"</code></pre>
-    
-
-        <p class="code-caption">Empty Params Object:</p>
-    
-    
-        <pre class="prettyprint"><code>const qs = await genQueryString({}).catch(error => error)// qs = ""</code></pre>
-    
-
 
 
         
@@ -317,7 +189,7 @@ Parameter values may be either type 'string' or type 'number'</p></td>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 00:02:34 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 14:03:38 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

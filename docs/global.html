@@ -62,7 +62,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li><li><a href="global.html#isValidType">isValidType</a></li></ul></div><div class="category"><h2>utils</h2><h3>Modules</h3><ul><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul><h3>Interfaces</h3><ul><li><a href="utils_makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li></ul></div><div class="category"><h2>utils</h2><h3>Interfaces</h3><ul><li><a href="utils_isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></li><li><a href="utils_makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul><h3>Global</h3><ul><li><a href="global.html#utils/isValidType">utils/isValidType</a></li><li><a href="global.html#utils/makeQueryString">utils/makeQueryString</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -146,94 +146,6 @@
 
     
 
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Members</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id="isValidType">
-    <a class="href-link" href="#isValidType">#</a>
-    
-    <span class="code-name">
-        isValidType
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>type arg is missing</li>
-<li>type or value arg is falsey or missing</li>
-</ul>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="isValidType.ts.html" class="button">View Source</a>
-            <span>
-                <a href="isValidType.ts.html">isValidType.ts</a>, <a href="isValidType.ts.html#line2">line 2</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
     
 
     
@@ -438,6 +350,471 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 </div>
             
+                <div class="member">
+
+
+    
+    <h4 class="name" id="utils/isValidType">
+        <a class="href-link" href="#utils/isValidType">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                utils/isValidType<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;Boolean>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Validate types and existence of various input values.<br>
+Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
+<hr>
+<p>Returns <code>true</code> if:</p>
+<ul>
+<li>type of value is equal to provided type</li>
+</ul>
+<hr>
+<p>Returns <code>false</code> if:</p>
+<ul>
+<li>'options.value is not of type options.type</li>
+<li>'options.type' is missing from options object</li>
+<li>'options.type' is not of type 'string'</li>
+<li>'options.value' is falsey or not provided</li>
+</ul>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="utils_isValidType.IsValidTypeOptions.html">utils/isValidType.IsValidTypeOptions</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Single argument object containing 'type' and 'value' keys</p></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>What type are you expecting the value to be?</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>value</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">any</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>What value are we testing against?</p></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_isValidType.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line2">line 2</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;Boolean></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Verify type string</p>
+    
+    
+        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'string',  value: 'this is a string'}).catch(error => error)//  isValid = "true"</code></pre>
+    
+
+        <p class="code-caption">Verify type object</p>
+    
+    
+        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'object',  value: { someKey: 'some value' }}).catch(error => error)//  isValid = "true"</code></pre>
+    
+
+        <p class="code-caption">Returns false if type is not valid</p>
+    
+    
+        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'array',  value: 'this is not an array'}).catch(error => error)//  isValid = "false"</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="utils/makeQueryString">
+        <a class="href-link" href="#utils/makeQueryString">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                utils/makeQueryString<span class="signature">(params)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <h2 id="utility-method-to-generate-a-query-string.prepend-it-to-an-api-url-string.">Utility method to generate a query string.<br>
+Prepend it to an API URL string. <br></h2>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="utils_makeQueryString.QueryStringParameters.html">utils/makeQueryString.QueryStringParameters</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p><a name="params"></a>
+An object containing key:value API query parameters to use.<br>
+Parameter values may be either type 'string' or type 'number'</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line2">line 2</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>An API query string <br></p>
+<ul>
+<li>On resolve: <code>Promise(&lt;string&gt;)</code><br></li>
+<li>On reject: <code>new Error(&lt;string&gt;)</code> - if parameters are not of type 'object'</li>
+</ul></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Single Param:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json'}).catch(error => error)//  qs = "format=json"</code></pre>
+    
+
+        <p class="code-caption">Multiple Params:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(error => error)// qs = "?format=json&amp;modelYear=2006&amp;page=2"</code></pre>
+    
+
+        <p class="code-caption">Empty Params Object:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({}).catch(error => error)// qs = ""</code></pre>
+    
+
+
+</div>
+            
             </div>
         </div>
     
@@ -460,7 +837,7 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 00:02:34 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 14:03:38 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
