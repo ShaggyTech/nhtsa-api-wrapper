@@ -22,7 +22,7 @@ export interface QueryStringParameters {
 /**
  * @category utils
  * @async
- * @method makeQueryString
+ * @method utils/makeQueryString
  * @description Utility method to generate a query string.<br>
  *   Prepend it to an API URL string. <br>
  *   ---
