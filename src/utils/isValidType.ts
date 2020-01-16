@@ -1,11 +1,9 @@
 /**
- * @category utils
- * @memberof utils/isValidType
- * @interface
- * @see [utils/isValidType](module-utils_isValidType.html)
+ * @memberof module:isValidType
+ * @category Utils
  *
- * Options argument object provided to utils/isValidType() <br>
- * ---
+ * @description Options argument object provided to utils/isValidType()
+ *
  * ```javascript
  *  {
  *    type: <string>,
@@ -13,16 +11,18 @@
  *  }
  * ```
  */
-export interface IsValidTypeOptions {
+interface IsValidTypeOptions {
   type: string;
   value: any;
 }
 
 /**
- * @category utils
+ * @module isValidType
+ * @category Utils
+ */
+
+/**
  * @async
- * @alias isValidType
- * @method utils/isValidType
  * @description Validate types and existence of various input values.<br>
  * Note: Uses `Object.prototype.toString.call(value)` under the hood
  *
@@ -39,7 +39,7 @@ export interface IsValidTypeOptions {
  *   - 'options.type' is not of type 'string'
  *   - 'options.value' is falsey or not provided
  *
- * @param {utils/isValidType.IsValidTypeOptions} options Single argument object containing 'type' and 'value' keys
+ * @param {object} options Object of Type [IsValidTypeOptions](module-isValidType.IsValidTypeOptions.html)
  * @param {string} options.type What type are you expecting the value to be?
  * @param {any} options.value What value are we testing against?
  * @returns {Promise<Boolean>}

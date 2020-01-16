@@ -1,36 +1,35 @@
 /**
- * Object containing Key:Value pairs to build the URL query string with.<br>
+ * @memberof module:makeQueryString
+ * @category Utils
+ *
+ * @description Object containing Key:Value pairs to build the URL query string with.<br>
  * Parameter values may be either strings or numbers. <br>
  * ---
  * ```javascript
+ *  Example
  *  {
  *    format: 'json',
  *    modelYear: 2009,
  *    whatever: 'something'
  *  }
  * ```
- *
- * @category utils
- * @memberof utils/makeQueryString
- * @interface
- * @see [utils/makeQueryString](module-utils_makeQueryString.html)
  */
 export interface QueryStringParameters {
   [propName: string]: string | number;
 }
 
 /**
- * @category utils
+ * @module makeQueryString
+ * @category Utils
+ */
+
+/**
  * @async
- * @method utils/makeQueryString
  * @description Utility method to generate a query string.<br>
  *   Prepend it to an API URL string. <br>
  *   ---
  *
- *
- * @param {utils/makeQueryString.QueryStringParameters} params <a name="params"></a>
- * An object containing key:value API query parameters to use.<br>
- * Parameter values may be either type 'string' or type 'number'
+ * @param {object} params Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html)
  *
  * @returns {Promise<string>|Error} An API query string <br>
  *  - On resolve: `Promise(<string>)`<br>
