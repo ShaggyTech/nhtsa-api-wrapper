@@ -17,6 +17,13 @@ const isDev = process.env.ROLLUP_WATCH === 'true';
 const baseDir = isDev ? 'dev/dist/' : 'dist/';
 const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 
+const treeShakeBundles = {
+  index: 'src/index.ts',
+  isValidType: 'src/utils/isValidType.ts',
+  isValidVin: 'src/utils/isValidVin.ts',
+  makeQueryString: 'src/utils/makeQueryString.ts'
+};
+
 // Rollup plugins used with every build
 const plugins = [
   json(),
@@ -86,10 +93,7 @@ export default [
    */
   {
     /** Process individual inputs */
-    input: {
-      index: 'src/index.ts',
-      isValidType: 'src/isValidType.ts'
-    },
+    input: { ...treeShakeBundles },
     output: [
       /**
        * ES Module
