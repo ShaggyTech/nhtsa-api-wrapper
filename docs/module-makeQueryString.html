@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: index.ts</title>
+    <title>JSDoc: makeQueryString</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -71,30 +69,275 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Source</p>
-                        <h1>index.ts</h1>
+                        <p>Module</p>
+                        <h1>makeQueryString</h1>
                     </header>
                     
                     
 
 
 
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Returns a greeting
- * @param {string} name What is your name?
- * @param {number} age How many years old are you?
- * @returns {string} `Hello ${name}, you are ${age} years old!`
- */
-export const greet = (name: string, age: number) =>
-  `Hello ${name}, you are ${age} years old!`;
 
-export * from './utils/';
-</code></pre>
-        </article>
-    </section>
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Interfaces</h3>
+
+        <dl>
+            <dt><a href="module-makeQueryString.QueryStringParameters.html">QueryStringParameters</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~makeQueryString">
+        <a class="href-link" href="#~makeQueryString">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                makeQueryString<span class="signature">(params)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <h2 id="utility-method-to-generate-a-query-string.prepend-it-to-an-api-url-string.">Utility method to generate a query string.<br>
+Prepend it to an API URL string. <br></h2>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Object of Type <a href="module-makeQueryString.QueryStringParameters.html">QueryStringParameters</a></p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line6">line 6</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>An API query string <br></p>
+<ul>
+<li>On resolve: <code>Promise(&lt;string&gt;)</code><br></li>
+<li>On reject: <code>new Error(&lt;string&gt;)</code> - if parameters are not of type 'object'</li>
+</ul></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Single Param:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json'}).catch(error => error)//  qs = "format=json"</code></pre>
+    
+
+        <p class="code-caption">Multiple Params:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(error => error)// qs = "?format=json&amp;modelYear=2006&amp;page=2"</code></pre>
+    
+
+        <p class="code-caption">Empty Params Object:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await genQueryString({}).catch(error => error)// qs = ""</code></pre>
+    
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: IsValidTypeOptions</title>
+    <title>JSDoc: isValidVin</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -62,15 +62,15 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li></ul></div><div class="category"><h2>utils</h2><h3>Interfaces</h3><ul><li><a href="utils_isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></li><li><a href="utils_makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul><h3>Global</h3><ul><li><a href="global.html#utils/isValidType">utils/isValidType</a></li><li><a href="global.html#utils/makeQueryString">utils/makeQueryString</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li></ul></div><div class="category"><h2>Utils</h2><h3>Modules</h3><ul><li><a href="module-isValidType.html">isValidType</a></li><li><a href="module-isValidVin.html">isValidVin</a></li><li><a href="module-makeQueryString.html">makeQueryString</a></li></ul><h3>Interfaces</h3><ul><li><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></li><li><a href="module-makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Interface</p>
-                        <h1>IsValidTypeOptions</h1>
+                        <p>Module</p>
+                        <h1>isValidVin</h1>
                     </header>
                     
                     
@@ -82,8 +82,6 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="global.html#utils/isValidType">utils/isValidType</a>.</span>IsValidTypeOptions</h2>
         
     
 </header>
@@ -94,6 +92,117 @@
         
 
         
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~isValidVin">
+        <a class="href-link" href="#~isValidVin">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                isValidVin<span class="signature">(vin)</span><span class="type-signature"> &rarr; {Promise.&lt;boolean>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Offline validation of Vehicle Identification Numbers (VINs) using the
+<a href="https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit">VIN Check Algorithm</a></p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>vin</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Vehicle Identification Number</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
 
 
 <dl class="details">
@@ -124,51 +233,75 @@
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><p><a href="module-utils_isValidType.html">utils/isValidType</a></p>
-<h2 id="options-argument-object-provided-to-utils%2Fisvalidtype()">Options argument object provided to utils/isValidType() <br></h2>
-<pre class="prettyprint source lang-javascript"><code> {
-   type: &lt;string>,
-   value: &lt;any>
- }
-</code></pre></li>
-        </ul>
-    </dd>
-    
 
     
 
     
         <p class="tag-source">
-            <a href="utils_isValidType.ts.html" class="button">View Source</a>
+            <a href="utils_isValidVin.ts.html" class="button">View Source</a>
             <span>
-                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line61">line 61</a>
+                <a href="utils_isValidVin.ts.html">utils/isValidVin.ts</a>, <a href="utils_isValidVin.ts.html#line6">line 6</a>
             </span>
         </p>
     
 </dl>
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
     
+    <div class='param-desc column is-7'><p>true | false</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;boolean></span>
+
+
     </div>
     
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>const isValid = await isValidVin('1CBJD340000X123040').catch(error => error)// isValid = false</code></pre>
     
 
-    
 
-    
-
-    
-
-    
-
-    
-
-    
-
+</div>
+            
+            </div>
+        </div>
     
 
     
@@ -189,7 +322,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 14:03:38 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Jan 15 2020 21:54:50 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
