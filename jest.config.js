@@ -8,7 +8,7 @@ module.exports = {
     '!**/vendor/**',
     '!**/__*__/**'
   ],
-  // setupFiles: ['./test/config/jest.setup.js'],
+  // setupFiles: ['./jest.setup.js'],
   testMatch: ['src/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
@@ -35,4 +35,4 @@ module.exports = {
       tsconfig: './tsconfig.dev.json'
     }
   }
-}
+};
