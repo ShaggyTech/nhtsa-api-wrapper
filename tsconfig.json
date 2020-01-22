@@ -94,5 +94,5 @@
 
   },
   "include": ["src/**/*"],
-  "exclude": ["**/__tests__/*", "docSrc"]
+  "exclude": ["**/__tests__/*", "**/__mocks__/*", "docSrc"]
 }

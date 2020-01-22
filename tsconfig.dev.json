@@ -94,5 +94,5 @@
     "resolveJsonModule": true  /* Allows json files to be imported with "import * from 'something.json'" */
   },
   "include": ["src/**/*"],
-  "exclude": ["**/__tests__/*", "docSrc"]
+  "exclude": ["**/__tests__/*", "**/__mocks__/*", "docSrc"]
 }
