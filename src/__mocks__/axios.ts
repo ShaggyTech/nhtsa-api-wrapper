@@ -4,11 +4,7 @@
 
 import { AxiosResponse } from 'axios';
 
-const mockAxios: any = jest.genMockFromModule('axios');
-
-mockAxios.create = jest.fn(() => mockAxios);
-
-const mockedData = {
+export const mockedData = {
   message: 'This Axios response is being mocked from ./src/__mocks__/axios.ts',
   mockedFrom: './src/__mocks__/axios.ts'
 };
@@ -23,5 +19,10 @@ export const mockedResponse: AxiosResponse = {
   config: {},
   request: {}
 };
+
+const mockAxios: any = jest.genMockFromModule('axios');
+mockAxios.create = jest.fn(() => mockAxios);
+mockAxios.get = jest.fn(() => Promise.resolve(mockedResponse));
+mockAxios.post = jest.fn(() => Promise.resolve(mockedResponse));
 
 export default mockAxios;

@@ -1,56 +1,34 @@
 /** Special thanks to https://laravel-news.com/building-flexible-axios-clients */
 
-import { getClient } from './getClient';
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
-
-class ApiClient {
-  client: AxiosInstance;
-
-  constructor(requestConfig?: AxiosRequestConfig) {
-    this.client = getClient(requestConfig);
-  }
-
-  async get(url: string, config: AxiosRequestConfig = {}): Promise<any> {
-    return await this.client
-      .get(url, config)
-      .then(response => Promise.resolve(response))
-      .catch(err => Promise.reject(err));
-  }
-
-  async post(
-    url: string,
-    data?: object,
-    config?: AxiosRequestConfig
-  ): Promise<any> {
-    return await this.client
-      .post(url, data, config)
-      .then(response => Promise.resolve(response))
-      .catch(err => Promise.reject(err));
-  }
-}
+import { getAxiosInstance } from './getAxiosInstance';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 /**
- * Base HTTP Client
+ * Default HTTP Axios Client
  */
 const baseClient = {
-  async get(url: string, config?: AxiosRequestConfig): Promise<any> {
-    return await getClient()
+  /** A wrapper for axios.get() */
+  async get(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse | Error> {
+    return await getAxiosInstance()
       .get(url, config)
       .then(response => Promise.resolve(response))
       .catch(err => Promise.reject(err));
   },
 
+  /** A wrapper for axios.post() */
   async post(
     url: string,
     data?: object,
     config?: AxiosRequestConfig
-  ): Promise<any> {
-    return getClient()
+  ): Promise<AxiosResponse | Error> {
+    return getAxiosInstance()
       .post(url, data, config)
       .then(response => Promise.resolve(response))
       .catch(err => Promise.reject(err));
   }
 };
 
-export { ApiClient };
 export default baseClient;
