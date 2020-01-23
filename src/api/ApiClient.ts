@@ -31,4 +31,14 @@ export class ApiClient {
       .then(response => Promise.resolve(response))
       .catch(err => Promise.reject(err));
   }
+
+  async DecodeVin(
+    vin: string,
+    params?: {
+      format?: string;
+      modelYear?: string | number;
+    }
+  ): Promise<AxiosResponse> {
+    return await this.get(`/DecodeVin/${vin}`, { params });
+  }
 }
