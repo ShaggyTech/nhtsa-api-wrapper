@@ -11,10 +11,7 @@ export class ApiClient {
     this.config = requestConfig;
   }
 
-  async get(
-    url: string,
-    config: AxiosRequestConfig = {}
-  ): Promise<AxiosResponse> {
+  async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return await this.client
       .get(url, config)
       .then(response => Promise.resolve(response))
@@ -39,6 +36,8 @@ export class ApiClient {
       modelYear?: string | number;
     }
   ): Promise<AxiosResponse> {
-    return await this.get(`/DecodeVin/${vin}`, { params });
+    return await this.get(`/DecodeVin/${vin}`, { params })
+      .then(response => response)
+      .catch(err => Promise.reject(new Error(`DecodeVin API Error: ${err}`)));
   }
 }

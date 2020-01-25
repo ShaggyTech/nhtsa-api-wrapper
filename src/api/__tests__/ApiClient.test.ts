@@ -1,8 +1,9 @@
 import { ApiClient } from '../ApiClient';
 
 import { AxiosRequestConfig } from 'axios';
+import mockAxios from 'axios';
 
-jest.mock('axios');
+import { mockedResponse } from '../../__mocks__/axios';
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -22,5 +23,15 @@ describe('ApiClient class tests', () => {
     expect(API).toBeDefined;
     expect(API.client).toBeDefined;
     expect(API.config).toStrictEqual(config);
+  });
+});
+
+describe('API Action - DecodeVin', () => {
+  test('it succeeds with no parms provided', async () => {
+    const API = new ApiClient();
+    const result = await API.DecodeVin('3VWD07AJ5EM388202');
+
+    expect(mockAxios.get).toBeCalled();
+    expect(result).toEqual(mockedResponse);
   });
 });

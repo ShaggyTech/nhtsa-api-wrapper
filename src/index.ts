@@ -8,3 +8,5 @@ export const greet = (name: string, age: number) =>
   `Hello ${name}, you are ${age} years old!`;
 
 export * from './utils/';
+
+export * from './api';
