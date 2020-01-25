@@ -15,7 +15,7 @@
  * ```
  */
 export interface QueryStringParameters {
-  [propName: string]: string | number;
+  [propName: string]: string | number | undefined;
 }
 
 /**
@@ -85,7 +85,7 @@ export function makeQueryString(
     const typeofValue = typeof value;
 
     if (typeofValue === 'number') {
-      value = value.toString();
+      value = value?.toString();
     }
 
     // skip any invalid values, only string or number types are valid
