@@ -52,7 +52,7 @@
     "watch-docs": "npx nodemon --exec yarn build-dev-docs --config ./nodemon.jsdoc.json",
     "watch-tsc": "tsc -p tsconfig.dev.json -w --module commonjs",
     "watch-test": "jest --watch --onlyChanged",
-    "watch-rollup": "yarn copy-packageJsonToDev && rollup -c rollup.config.ts -w"
+    "watch-rollup": "yarn clean-dev-dist && yarn copy-packageJsonToDev && rollup -c rollup.config.ts -w"
   },
   "repository": {
     "type": "git",
@@ -126,6 +126,6 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "axios": "^0.19.1"
+    "cross-fetch": "^3.0.4"
   }
 }

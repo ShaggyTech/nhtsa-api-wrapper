@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing UMD bundle imports</title>
 
-    <script type="text/javascript" src="../../dev/dist/bundle.min.js"></script>
+    <script type="text/javascript" src="../../dist/bundle.min.js"></script>
   </head>
   <body>
+    <h2>
+      <btn id="client">Click to console.log NHTSA.DecodeVin() results</btn>
+      <div id="clientResults"></div>
+    </h2>
     <h2>
       <div id="greet">Click to console.log greet() results</div>
       <div id="greetResults"></div>
@@ -26,6 +30,14 @@
   <script type="text/javascript">
     console.log(`Successfully imported via UMD bundle`);
 
+    const client = NHTSA.Client;
+
+    document.getElementById('client').addEventListener('click', async function() {
+    const result = await client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
+    console.log(result);
+    document.getElementById('clientResults').innerText = result;
+    });
+  
     document.getElementById('greet').addEventListener('click', function() {
       const result = NHTSA.greet('Shaggy', 102);
       console.log(result);

@@ -9,10 +9,17 @@
       import {
         greet,
         isValidType,
-        makeQueryString
-      } from '../../dev/dist//module/index.js';
+        makeQueryString,
+        Client
+      } from '../../dist//module/index.js';
 
       console.log(`Successfully imported via ESModule import`);
+
+      document.getElementById('client').addEventListener('click', async function() {
+        const result = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
+        console.log(result);
+        document.getElementById('clientResults').innerText = result;
+      });
 
       document.getElementById('greet').addEventListener('click', function() {
         const result = greet('Shaggy', 102);
@@ -44,6 +51,10 @@
     </script>
   </head>
   <body>
+    <h2>
+      <btn id="client">Click to console.log NHTSA.DecodeVin() results</btn>
+      <div id="clientResults"></div>
+    </h2>
     <h2>
       <div id="greet">Click to console.log greet() results</div>
       <div id="greetResults"></div>

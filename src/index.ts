@@ -9,4 +9,6 @@ export const greet = (name: string, age: number) =>
 
 export * from './utils/';
 
-export * from './api';
+// export * from './api';
+
+export { Client, NHTSA } from './api';

@@ -21,14 +21,14 @@ const treeShakeBundles = {
   index: 'src/index.ts',
   isValidType: 'src/utils/isValidType.ts',
   isValidVin: 'src/utils/isValidVin.ts',
-  makeQueryString: 'src/utils/makeQueryString.ts'
+  makeQueryString: 'src/utils/makeQueryString.ts',
+  NHTSA: 'src/api/NHTSA.ts'
 };
 
 // Rollup plugins used with every build
 const plugins = [
   json(),
   commonjs(),
-  resolve(),
   typescript({
     tsconfig,
     typescript: require('typescript'),
@@ -56,7 +56,9 @@ export default [
         file: `${baseDir}bundle.min.js`,
         name: libraryName,
         format: 'umd',
-        // esModule: false,
+        globals: {
+          'cross-fetch': 'fetch'
+        },
         sourcemap: true,
         plugins: [
           gzipPlugin(),
@@ -74,6 +76,9 @@ export default [
         file: `${baseDir}browser/iife.js`,
         name: libraryName,
         format: 'iife',
+        globals: {
+          'cross-fetch': 'fetch'
+        },
         esModule: false,
         sourcemap: true,
         plugins: [
@@ -129,6 +134,6 @@ export default [
         ]
       }
     ],
-    plugins
+    plugins: [resolve({ preferBuiltins: true, browser: true }), ...plugins]
   }
 ];
