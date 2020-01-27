@@ -1,5 +1,8 @@
 import { Fetch, NhtsaConfig } from './Fetch';
 
+/**
+ * @constructor
+ */
 export class NHTSA extends Fetch {
   constructor(userConfig?: NhtsaConfig) {
     super(userConfig);
@@ -7,13 +10,10 @@ export class NHTSA extends Fetch {
 
   public async DecodeVin(
     vin: string,
-    params?: {
+    params: {
       modelYear?: string | number;
-    }
+    } = {}
   ): Promise<any> {
-    // Handle no params
-    if (typeof params !== 'object') params = {};
-
     /* Build the query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch(err =>
       Promise.reject(
@@ -32,7 +32,9 @@ export class NHTSA extends Fetch {
         response.action = action;
         return response;
       })
-      .catch(err => Promise.reject(new Error(`DecodeVin API Error: ${err}`)));
+      .catch(err =>
+        Promise.reject(new Error(`DecodeVin, Fetch.get() error: ${err}`))
+      );
   }
 }
 

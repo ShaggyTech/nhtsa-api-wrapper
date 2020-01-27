@@ -15,8 +15,8 @@ export const DEFAULT_CONFIG = {
 };
 
 export class Fetch {
-  apiResponseFormat: string;
-  baseUrl: string;
+  apiResponseFormat: string | undefined;
+  baseUrl: string | undefined;
   config: NhtsaConfig;
 
   constructor(userConfig?: NhtsaConfig) {
@@ -28,12 +28,9 @@ export class Fetch {
       finalConfig = { ...DEFAULT_CONFIG };
     }
 
-    this.apiResponseFormat = finalConfig.apiResponseFormat || 'json';
-    this.baseUrl = finalConfig.baseUrl || BASE_URL;
-    this.config = finalConfig || {
-      apiResponseFormat: this.apiResponseFormat,
-      baseUrl: BASE_URL
-    };
+    this.apiResponseFormat = finalConfig.apiResponseFormat;
+    this.baseUrl = finalConfig.baseUrl;
+    this.config = finalConfig;
   }
 
   public async buildQueryString(
@@ -44,32 +41,32 @@ export class Fetch {
      * If the user provides a 'format' key in the params, during class instantiation we want to override it to 'json'
      * Support for the other formats (CSV and XML) can be added at a later date by configuring the fetch request
      */
-    if (getTypeof(params) !== 'object') {
+    if (!params || getTypeof(params) !== 'object') {
       params = {
         format: this.apiResponseFormat
       };
     } else {
       params = { ...params, format: this.apiResponseFormat };
     }
-    console.log('PARAMS!!!!!!!', params);
-    return await makeQueryString(params).catch(err => Promise.reject(err));
+
+    return await makeQueryString(params);
   }
 
   public async get(url: string): Promise<any> {
     if (getTypeof(url) !== 'string') {
       return Promise.reject(
-        new Error('client.get(url) - url argument must be of type string')
+        new Error('Fetch.get(url) - url argument must be of type string')
       );
     }
 
     const response = await fetch(url)
       .then(res => {
         if (res.status >= 400) {
-          return new Error('Bad response from server');
+          return new Error('Fetch.get() - Bad response from server');
         }
         return res.json();
       })
-      .catch(err => err);
+      .catch(err => Promise.reject(new Error(`Fetch.get() error: ${err}`)));
 
     return Promise.resolve(response);
   }
