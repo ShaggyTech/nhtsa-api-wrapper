@@ -2,7 +2,14 @@ import { Fetch, DEFAULT_CONFIG } from '../Fetch';
 
 import mockCrossFetch from 'cross-fetch';
 
-import mockData from '../../__mocks__/mockData';
+// import fetch from 'cross-fetch';
+
+import { mockData } from '../../__mocks__/cross-fetch';
+// import { mockedResponse } from '../../__mocks__/cross-fetch';
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('Fetch Class', () => {
   test('it exists', () => {
@@ -46,49 +53,67 @@ describe('Fetch Class', () => {
 describe('buildQueryString() class method', () => {
   test('builds a Query String with no arguments', async () => {
     const client = new Fetch();
-
     const qs = await client.buildQueryString({});
     const expected = '?format=json';
+
     expect(qs).toEqual(expected);
   });
 
   test('builds a Query String with undefined arguments', async () => {
     const client = new Fetch();
-
     const qs = await client.buildQueryString(undefined as any);
     const expected = '?format=json';
+
     expect(qs).toEqual(expected);
   });
 
   test('builds a Query String with users params', async () => {
     const client = new Fetch();
-
     const qs = await client.buildQueryString({ modelYear: 2001 });
     const expected = '?modelYear=2001&format=json';
+
     expect(qs).toEqual(expected);
   });
 
   test('builds a Query String and overrides user "format" param', async () => {
     const client = new Fetch();
-
     const qs = await client.buildQueryString({ format: 'xml' });
     const expected = '?format=json';
+
     expect(qs).toEqual(expected);
   });
 
   test('builds a Query String and overrides user "format" param but allows other params', async () => {
     const client = new Fetch();
-
     const qs = await client.buildQueryString({
       format: 'xml',
       test: 'testing'
     });
     const expected = '?format=json&test=testing';
+
     expect(qs).toEqual(expected);
   });
 });
 
 describe('get() class method', () => {
+  /*
+   * Remove 'skip' from the test call to see a real response.
+   * The test will then fail so that you can see the results.
+   */
+  test.skip('it returns a real response', async () => {
+    (mockCrossFetch as any).mockImplementationOnce(
+      require.requireActual('cross-fetch')
+    );
+
+    const client = new Fetch();
+    const response = await client.get(
+      'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?format=json'
+    );
+
+    expect(response).toEqual('fails');
+    expect(mockCrossFetch).toBeDefined();
+  });
+
   test('it returns a response', async () => {
     const client = new Fetch();
     const response = await client.get('testing.com');
@@ -99,7 +124,6 @@ describe('get() class method', () => {
 
   test('it handles invalid url arguments', async () => {
     const client = new Fetch();
-
     const response = await client.get(['testing'] as any).catch(err => err);
 
     expect(response).toEqual(
@@ -109,7 +133,6 @@ describe('get() class method', () => {
 
   test('it handles undefined url arguments', async () => {
     const client = new Fetch();
-
     const response = await client.get(undefined as any).catch(err => err);
 
     expect(response).toEqual(
@@ -118,22 +141,25 @@ describe('get() class method', () => {
   });
 
   test('it handles Fetch.get response status >= 400 as an Error', async () => {
+    const mockedErrorResponse = { ...mockData, status: 500 };
     (mockCrossFetch as any).mockImplementationOnce(() => {
       return Promise.resolve({
         status: 500,
-        json: () => {
-          return {
-            ...mockData
-          };
-        }
+        statusText: 'mocked error',
+        json: jest.fn(async () => {
+          return Promise.resolve(mockedErrorResponse);
+        })
       });
     });
 
     const client = new Fetch();
+    const response = await client.get('www.shaggytech.com').catch(err => err);
 
-    const response = await client.get('www.testing.com').catch(err => err);
-
-    expect(response).toEqual(Error('Fetch.get() - Bad response from server'));
+    expect(response).toEqual(
+      Error(
+        'Fetch.get() error: Error: Bad response from server, status code: 500, mocked error'
+      )
+    );
   });
 
   test('it handles cross-fetch errors', async () => {
@@ -142,7 +168,6 @@ describe('get() class method', () => {
     });
 
     const client = new Fetch();
-
     const response = await client.get('www.testing.com').catch(err => err);
 
     expect(response).toEqual(Error('Fetch.get() error: mock error'));

@@ -1,9 +1,11 @@
 export default {
-  action: 'DecodeVin',
-  mockedUrl:
-    'https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/3VWD07AJ5EM388202?format=json',
-  queryString: '?format=json',
-  requestUrl:
+  mocked: true,
+  headers: undefined,
+  ok: true,
+  redirected: false,
+  status: 200,
+  statusText: 'OK',
+  url:
     'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?format=json',
   Count: 140,
   Message:

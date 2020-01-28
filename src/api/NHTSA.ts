@@ -3,7 +3,7 @@ import { Fetch, NhtsaConfig } from './Fetch';
 /**
  * @constructor
  */
-export class NHTSA extends Fetch {
+class NHTSA extends Fetch {
   constructor(userConfig?: NhtsaConfig) {
     super(userConfig);
   }
@@ -13,7 +13,7 @@ export class NHTSA extends Fetch {
     params: {
       modelYear?: string | number;
     } = {}
-  ): Promise<any> {
+  ): Promise<object | Error> {
     /* Build the query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch(err =>
       Promise.reject(
@@ -27,9 +27,6 @@ export class NHTSA extends Fetch {
 
     return await this.get(url)
       .then(response => {
-        response.requestUrl = url;
-        response.queryString = queryString;
-        response.action = action;
         return response;
       })
       .catch(err =>
@@ -37,5 +34,7 @@ export class NHTSA extends Fetch {
       );
   }
 }
+
+export { NHTSA };
 
 export const Client = new NHTSA();

@@ -63,16 +63,16 @@ describe('DecodeVin()', () => {
     const client = new NHTSA();
 
     const dataWithParams = {
-      ...mockData,
-      queryString: '?modelYear=2001&format=json',
-      requestUrl:
-        'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?modelYear=2001&format=json'
+      ...mockData
     };
 
-    const response = await client.DecodeVin('3VWD07AJ5EM388202', {
-      modelYear: 2001
-    });
+    const response = await client
+      .DecodeVin('3VWD07AJ5EM388202', {
+        modelYear: 2001
+      })
+      .catch(err => err);
 
+    expect(response).not.toBeInstanceOf(Error);
     expect(response).toEqual(dataWithParams);
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
   });
