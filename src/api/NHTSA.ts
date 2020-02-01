@@ -1,4 +1,4 @@
-import { Fetch, FetchConfig } from './Fetch';
+import { Fetch, FetchConfig, FetchResponse } from './Fetch';
 
 /**
  * @constructor
@@ -8,12 +8,13 @@ class NHTSA extends Fetch {
     super(userConfig);
   }
 
+  // Key-value format
   public async DecodeVin(
     vin: string,
     params: {
       modelYear?: string | number;
     } = {}
-  ): Promise<object | Error> {
+  ): Promise<FetchResponse | Error> {
     const action = 'DecodeVin';
     /* Build the query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch(err =>

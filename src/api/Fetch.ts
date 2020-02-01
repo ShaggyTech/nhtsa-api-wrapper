@@ -7,19 +7,44 @@ export interface FetchConfig {
   baseUrl: string | undefined;
 }
 
-export type FetchResponse = {
-  headers?: Headers;
-  ok?: boolean;
-  redirected?: boolean;
-  status?: number;
-  statusText?: string;
-  url?: string;
-  [propName: string]: any;
+export type NhtsaResultsKeyValue = [
+  {
+    Value: string;
+    ValueId: string;
+    Variable: string;
+    VariableId: number;
+  }
+];
+
+export type NhtsaResultsFlatFile = [
+  {
+    [propName: string]: string;
+  }
+];
+
+export type NhstaResults = NhtsaResultsKeyValue | NhtsaResultsFlatFile;
+
+export type NhtsaResponse = {
+  Count: number;
+  Message: string;
+  SearchCriteria: string;
+  Results: NhstaResults;
 };
+
+export type FetchResponse = {
+  Response: {
+    headers?: Headers;
+    ok?: boolean;
+    redirected?: boolean;
+    status?: number;
+    statusText?: string;
+    url?: string;
+  };
+} & NhtsaResponse;
 
 export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 
-export const DEFAULT_CONFIG = {
+export const DEFAULT_CONFIG: FetchConfig = {
   apiResponseFormat: 'json',
   baseUrl: BASE_URL
 };
@@ -83,9 +108,9 @@ export class Fetch {
         Promise.reject(new Error(`Fetch.get() http error: ${err}`))
       );
 
-    const json = await response.json();
+    const json: NhtsaResponse = await response.json();
 
-    return Promise.resolve({
+    const finalResult: FetchResponse = {
       ...json,
       Response: {
         headers: response.headers,
@@ -95,6 +120,8 @@ export class Fetch {
         statusText: response.statusText,
         url: response.url
       }
-    });
+    };
+
+    return Promise.resolve(finalResult);
   }
 }
