@@ -55,26 +55,21 @@ describe('DecodeVin()', () => {
     const client = new NHTSA();
     const response = await client.DecodeVin('3VWD07AJ5EM388202');
 
-    expect(response).toEqual(mockData);
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
   });
 
   test('it decodes a VIN and handles params', async () => {
     const client = new NHTSA();
-
-    const dataWithParams = {
-      ...mockData
-    };
-
     const response = await client
       .DecodeVin('3VWD07AJ5EM388202', {
         modelYear: 2001
       })
       .catch(err => err);
 
-    expect(response).not.toBeInstanceOf(Error);
-    expect(response).toEqual(dataWithParams);
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).not.toBeInstanceOf(Error);
+    expect(response).toEqual(mockData);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -83,11 +78,11 @@ describe('DecodeVin()', () => {
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
     const client = new NHTSA();
-
     const response = await client
       .DecodeVin('3VWD07AJ5EM388202')
       .catch(err => err);
 
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
     expect(response).toEqual(
       Error('DecodeVin, Error building query string: mock error')
     );
@@ -99,11 +94,11 @@ describe('DecodeVin()', () => {
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
     const client = new NHTSA();
-
     const response = await client
       .DecodeVin('3VWD07AJ5EM388202')
       .catch(err => err);
 
+    expect(client.get).toHaveBeenCalledTimes(1);
     expect(response).toEqual(Error('DecodeVin, Fetch.get() error: mock error'));
   });
 });

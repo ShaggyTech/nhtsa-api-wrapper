@@ -1,12 +1,14 @@
 export default {
   mocked: true,
-  headers: undefined,
-  ok: true,
-  redirected: false,
-  status: 200,
-  statusText: 'OK',
-  url:
-    'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?format=json',
+  Response: {
+    headers: undefined,
+    ok: true,
+    redirected: false,
+    status: 200,
+    statusText: 'OK',
+    url:
+      'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?format=json'
+  },
   Count: 140,
   Message:
     'Results returned successfully. NOTE: Any missing decoded values should be interpreted as NHTSA does not have data on the specific variable. Missing value should NOT be interpreted as an indication that a feature or technology is unavailable for a vehicle.',

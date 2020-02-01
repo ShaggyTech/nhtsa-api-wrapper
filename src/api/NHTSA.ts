@@ -1,10 +1,10 @@
-import { Fetch, NhtsaConfig } from './Fetch';
+import { Fetch, FetchConfig } from './Fetch';
 
 /**
  * @constructor
  */
 class NHTSA extends Fetch {
-  constructor(userConfig?: NhtsaConfig) {
+  constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
 
@@ -14,15 +14,13 @@ class NHTSA extends Fetch {
       modelYear?: string | number;
     } = {}
   ): Promise<object | Error> {
+    const action = 'DecodeVin';
     /* Build the query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch(err =>
       Promise.reject(
-        new Error(`DecodeVin, Error building query string: ${err}`)
+        new Error(`${action}, Error building query string: ${err}`)
       )
     );
-
-    const action = 'DecodeVin';
-
     const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
 
     return await this.get(url)
@@ -30,7 +28,7 @@ class NHTSA extends Fetch {
         return response;
       })
       .catch(err =>
-        Promise.reject(new Error(`DecodeVin, Fetch.get() error: ${err}`))
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );
   }
 }

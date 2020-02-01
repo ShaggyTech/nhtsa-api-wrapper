@@ -2,10 +2,7 @@ import { Fetch, DEFAULT_CONFIG } from '../Fetch';
 
 import mockCrossFetch from 'cross-fetch';
 
-// import fetch from 'cross-fetch';
-
 import { mockData } from '../../__mocks__/cross-fetch';
-// import { mockedResponse } from '../../__mocks__/cross-fetch';
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -146,6 +143,7 @@ describe('get() class method', () => {
       return Promise.resolve({
         status: 500,
         statusText: 'mocked error',
+        headers: 'mocked headers',
         json: jest.fn(async () => {
           return Promise.resolve(mockedErrorResponse);
         })
@@ -154,12 +152,25 @@ describe('get() class method', () => {
 
     const client = new Fetch();
     const response = await client.get('www.shaggytech.com').catch(err => err);
+    const expectedError =
+      'Fetch.get() http error: Error: Bad response from server, code: 500, text: mocked error, headers: mocked headers';
 
-    expect(response).toEqual(
-      Error(
-        'Fetch.get() error: Error: Bad response from server, status code: 500, mocked error'
-      )
-    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(Error(expectedError));
+  });
+
+  test('it handles Fetch.get empty response', async () => {
+    (mockCrossFetch as any).mockImplementationOnce(() => {
+      return Promise.resolve(undefined) as any;
+    });
+
+    const client = new Fetch();
+    const response = await client.get('www.shaggytech.com').catch(err => err);
+    const expectedError =
+      'Fetch.get() http error: Error: Bad response from server, code: undefined, text: undefined, headers: undefined';
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(Error(expectedError));
   });
 
   test('it handles cross-fetch errors', async () => {
@@ -170,6 +181,7 @@ describe('get() class method', () => {
     const client = new Fetch();
     const response = await client.get('www.testing.com').catch(err => err);
 
-    expect(response).toEqual(Error('Fetch.get() error: mock error'));
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(Error('Fetch.get() http error: mock error'));
   });
 });

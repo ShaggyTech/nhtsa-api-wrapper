@@ -2,12 +2,12 @@ import fetch from 'cross-fetch';
 
 import { getTypeof, makeQueryString, QueryStringParameters } from '../utils';
 
-export interface NhtsaConfig {
+export interface FetchConfig {
   apiResponseFormat: string | undefined;
   baseUrl: string | undefined;
 }
 
-export type NhtsaResponse = {
+export type FetchResponse = {
   headers?: Headers;
   ok?: boolean;
   redirected?: boolean;
@@ -25,12 +25,12 @@ export const DEFAULT_CONFIG = {
 };
 
 export class Fetch {
-  apiResponseFormat: string | undefined;
-  baseUrl: string | undefined;
-  config: NhtsaConfig;
+  apiResponseFormat?: string;
+  baseUrl?: string;
+  config?: FetchConfig;
 
-  constructor(userConfig?: NhtsaConfig) {
-    let finalConfig: NhtsaConfig;
+  constructor(userConfig?: FetchConfig) {
+    let finalConfig: FetchConfig;
 
     if (getTypeof(userConfig) === 'object') {
       finalConfig = { ...DEFAULT_CONFIG, ...userConfig };
@@ -62,7 +62,7 @@ export class Fetch {
     return await makeQueryString(params);
   }
 
-  public async get(url: string): Promise<NhtsaResponse | Error> {
+  public async get(url: string): Promise<FetchResponse | Error> {
     if (getTypeof(url) !== 'string') {
       return Promise.reject(
         new Error('Fetch.get(url) - url argument must be of type string')
@@ -71,26 +71,30 @@ export class Fetch {
 
     const response: Response = await fetch(url)
       .then(result => {
-        if (result?.status >= 400) {
+        if (!result?.status || result.status >= 400) {
           throw new Error(
-            `Bad response from server, status code: ${result.status}, ${result.statusText}`
+            `Bad response from server, code: ${result?.status}, text: ${result?.statusText}, headers: ${result?.headers}`
           );
         }
 
         return result;
       })
-      .catch(err => Promise.reject(new Error(`Fetch.get() error: ${err}`)));
+      .catch(err =>
+        Promise.reject(new Error(`Fetch.get() http error: ${err}`))
+      );
 
     const json = await response.json();
 
     return Promise.resolve({
       ...json,
-      headers: response?.headers,
-      ok: response?.ok,
-      redirected: response?.redirected,
-      status: response?.status,
-      statusText: response?.statusText,
-      url: response?.url
+      Response: {
+        headers: response.headers,
+        ok: response.ok,
+        redirected: response.redirected,
+        status: response.status,
+        statusText: response.statusText,
+        url: response.url
+      }
     });
   }
 }
