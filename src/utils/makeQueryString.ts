@@ -84,8 +84,8 @@ export function makeQueryString(
 
     const typeofValue = typeof value;
 
-    if (typeofValue === 'number') {
-      value = value?.toString();
+    if (value && typeofValue === 'number') {
+      value = value.toString();
     }
 
     // skip any invalid values, only string or number types are valid
