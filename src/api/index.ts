@@ -3,22 +3,74 @@ export interface FetchConfig {
   baseUrl: string | undefined;
 }
 
-export type NhtsaResultsKeyValue = [
+export type ResultDecodeVin = [
   {
-    Value: string;
-    ValueId: string;
-    Variable: string;
-    VariableId: number;
+    Value?: string;
+    ValueId?: string;
+    Variable?: string;
+    VariableId?: number;
   }
 ];
 
-export type NhtsaResultsFlatFile = [
+export type ResultDecodeVinValues = [
   {
     [propName: string]: string;
   }
 ];
 
-export type NhstaResults = NhtsaResultsKeyValue | NhtsaResultsFlatFile;
+export type ResultDecodeWMI = [
+  {
+    CommonName?: string;
+    CreatedOn?: string;
+    DateAvailableToPublic?: string;
+    Make?: string;
+    ManufacturerName?: string;
+    ParentCompanyName?: string;
+    URL?: string;
+    UpdatedOn?: string;
+    VehicleType?: string;
+  }
+];
+
+export type ResultGetWMIsForManufacturer = [
+  {
+    Country?: string;
+    CreatedOn?: string;
+    DateAvailableToPublic?: string;
+    Id?: number;
+    Name?: string;
+    UpdatedOn?: string;
+    VehicleType?: string;
+    WMI?: string;
+  }
+];
+
+export type ResponseGetAllMakes = [
+  {
+    Make_ID: number;
+    Make_Name: string;
+  }
+];
+
+export type ResponseGetParts = [
+  {
+    CoverLetterURL?: string;
+    LetterDate?: string;
+    ManufacturerId?: number;
+    ManufacturerName?: string;
+    ModelYearFrom?: string;
+    ModelYearTo?: string;
+    Name?: string;
+    Type?: string;
+    URL?: string;
+  }
+];
+
+export type NhstaResults =
+  | ResultDecodeVin
+  | ResultDecodeVinValues
+  | ResultDecodeWMI
+  | ResultGetWMIsForManufacturer;
 
 export type NhtsaResponse = {
   Count: number;
