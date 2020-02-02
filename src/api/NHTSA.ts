@@ -1,4 +1,8 @@
-import { Fetch, FetchConfig, FetchResponse } from './Fetch';
+/* Parent Class */
+import { Fetch } from './Fetch';
+
+/* Types */
+import { FetchConfig, FetchResponse } from './index';
 
 /**
  * @constructor

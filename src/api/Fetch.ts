@@ -1,49 +1,14 @@
+/* Module Dependencies */
 import fetch from 'cross-fetch';
 
+/* Utilities */
 import { getTypeof, makeQueryString, QueryStringParameters } from '../utils';
 
-export interface FetchConfig {
-  apiResponseFormat: string | undefined;
-  baseUrl: string | undefined;
-}
+/* Types */
+import { FetchConfig, FetchResponse, NhtsaResponse } from './index';
 
-export type NhtsaResultsKeyValue = [
-  {
-    Value: string;
-    ValueId: string;
-    Variable: string;
-    VariableId: number;
-  }
-];
-
-export type NhtsaResultsFlatFile = [
-  {
-    [propName: string]: string;
-  }
-];
-
-export type NhstaResults = NhtsaResultsKeyValue | NhtsaResultsFlatFile;
-
-export type NhtsaResponse = {
-  Count: number;
-  Message: string;
-  SearchCriteria: string;
-  Results: NhstaResults;
-};
-
-export type FetchResponse = {
-  Response: {
-    headers?: Headers;
-    ok?: boolean;
-    redirected?: boolean;
-    status?: number;
-    statusText?: string;
-    url?: string;
-  };
-} & NhtsaResponse;
-
+/* Constants */
 export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
-
 export const DEFAULT_CONFIG: FetchConfig = {
   apiResponseFormat: 'json',
   baseUrl: BASE_URL
