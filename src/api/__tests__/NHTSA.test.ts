@@ -39,7 +39,7 @@ describe('NHTSA Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toEqual('xml');
+    expect(client.apiResponseFormat).toEqual('json');
     expect(client.baseUrl).toEqual('https://www.shaggytech.com');
     expect(client.config).toEqual({ ...DEFAULT_CONFIG, ...userConfig });
 

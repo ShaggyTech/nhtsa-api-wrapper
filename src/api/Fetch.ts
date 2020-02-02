@@ -63,7 +63,7 @@ export class Fetch {
       finalConfig = { ...DEFAULT_CONFIG };
     }
 
-    this.apiResponseFormat = finalConfig.apiResponseFormat;
+    this.apiResponseFormat = 'json';
     this.baseUrl = finalConfig.baseUrl;
     this.config = finalConfig;
   }
