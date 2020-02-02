@@ -157,3 +157,113 @@ describe('DecodeVinValues()', () => {
     );
   });
 });
+
+describe('DecodeVinExtended()', () => {
+  test('it decodes a VIN', async () => {
+    const client = new NHTSA();
+    const response = await client.DecodeVinExtended('3VWD07AJ5EM388202');
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+
+  test('it decodes a VIN and handles params', async () => {
+    const client = new NHTSA();
+    const response = await client
+      .DecodeVinExtended('3VWD07AJ5EM388202', {
+        modelYear: 2001
+      })
+      .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).not.toBeInstanceOf(Error);
+    expect(response).toEqual(mockData);
+  });
+
+  test('it handles Fetch.buildQueryString errors', async () => {
+    jest
+      .spyOn(Fetch.prototype, 'buildQueryString')
+      .mockImplementationOnce(() => Promise.reject('mock error'));
+
+    const client = new NHTSA();
+    const response = await client
+      .DecodeVinExtended('3VWD07AJ5EM388202')
+      .catch(err => err);
+
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(
+      Error('DecodeVinExtended, Error building query string: mock error')
+    );
+  });
+
+  test('it handles Fetch.get errors', async () => {
+    jest
+      .spyOn(Fetch.prototype, 'get')
+      .mockImplementationOnce(() => Promise.reject('mock error'));
+
+    const client = new NHTSA();
+    const response = await client
+      .DecodeVinExtended('3VWD07AJ5EM388202')
+      .catch(err => err);
+
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(
+      Error('DecodeVinExtended, Fetch.get() error: mock error')
+    );
+  });
+});
+
+describe('DecodeVinValuesExtended()', () => {
+  test('it decodes a VIN', async () => {
+    const client = new NHTSA();
+    const response = await client.DecodeVinValuesExtended('3VWD07AJ5EM388202');
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+
+  test('it decodes a VIN and handles params', async () => {
+    const client = new NHTSA();
+    const response = await client
+      .DecodeVinValuesExtended('3VWD07AJ5EM388202', {
+        modelYear: 2001
+      })
+      .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).not.toBeInstanceOf(Error);
+    expect(response).toEqual(mockData);
+  });
+
+  test('it handles Fetch.buildQueryString errors', async () => {
+    jest
+      .spyOn(Fetch.prototype, 'buildQueryString')
+      .mockImplementationOnce(() => Promise.reject('mock error'));
+
+    const client = new NHTSA();
+    const response = await client
+      .DecodeVinValuesExtended('3VWD07AJ5EM388202')
+      .catch(err => err);
+
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(
+      Error('DecodeVinValuesExtended, Error building query string: mock error')
+    );
+  });
+
+  test('it handles Fetch.get errors', async () => {
+    jest
+      .spyOn(Fetch.prototype, 'get')
+      .mockImplementationOnce(() => Promise.reject('mock error'));
+
+    const client = new NHTSA();
+    const response = await client
+      .DecodeVinValuesExtended('3VWD07AJ5EM388202')
+      .catch(err => err);
+
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(
+      Error('DecodeVinValuesExtended, Fetch.get() error: mock error')
+    );
+  });
+});

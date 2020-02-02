@@ -4,9 +4,6 @@ import { Fetch } from './Fetch';
 /* Types */
 import { FetchConfig, FetchResponse } from './index';
 
-/**
- * @constructor
- */
 class NHTSA extends Fetch {
   constructor(userConfig?: FetchConfig) {
     super(userConfig);
@@ -45,6 +42,56 @@ class NHTSA extends Fetch {
     } = {}
   ): Promise<FetchResponse | Error> {
     const action = 'DecodeVinValues';
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString(params).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+    const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
+
+    return await this.get(url)
+      .then(response => {
+        return response;
+      })
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+
+  // Key-value extended format (additional NCSA specific fields)
+  public async DecodeVinExtended(
+    vin: string,
+    params: {
+      modelYear?: string | number;
+    } = {}
+  ): Promise<FetchResponse | Error> {
+    const action = 'DecodeVinExtended';
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString(params).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+    const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
+
+    return await this.get(url)
+      .then(response => {
+        return response;
+      })
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+
+  // Key-value extended format (additional NCSA specific fields)
+  public async DecodeVinValuesExtended(
+    vin: string,
+    params: {
+      modelYear?: string | number;
+    } = {}
+  ): Promise<FetchResponse | Error> {
+    const action = 'DecodeVinValuesExtended';
     /* Build the query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch(err =>
       Promise.reject(
