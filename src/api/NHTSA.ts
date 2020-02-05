@@ -1,113 +1,42 @@
 /* Parent Class */
 import { Fetch } from './Fetch';
 
+/* API Actions */
+import {
+  DecodeVin,
+  DecodeVinValues,
+  DecodeVinExtended,
+  DecodeVinValuesExtended,
+  GetMakesForVehicleType,
+  GetVehicleTypesForMake
+} from './actions';
+
 /* Types */
 import { FetchConfig, FetchResponse } from './index';
 
-class NHTSA extends Fetch {
+class NHTSA extends Fetch
+  implements
+    DecodeVin,
+    DecodeVinValues,
+    DecodeVinExtended,
+    DecodeVinValuesExtended,
+    GetMakesForVehicleType,
+    GetVehicleTypesForMake {
   constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
 
-  // Key-value format
-  public async DecodeVin(
-    vin: string,
-    params: {
-      modelYear?: string | number;
-    } = {}
-  ): Promise<FetchResponse | Error> {
-    const action = 'DecodeVin';
-    /* Build the query string to be appended to the URL*/
-    const queryString = await this.buildQueryString(params).catch(err =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
-    );
-    const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
+  DecodeVin = DecodeVin.prototype.DecodeVin;
+  DecodeVinValues = DecodeVinValues.prototype.DecodeVinValues;
+  DecodeVinExtended = DecodeVinExtended.prototype.DecodeVinExtended;
+  DecodeVinValuesExtended =
+    DecodeVinValuesExtended.prototype.DecodeVinValuesExtended;
 
-    return await this.get(url)
-      .then(response => {
-        return response;
-      })
-      .catch(err =>
-        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
-      );
-  }
+  GetMakesForVehicleType =
+    GetMakesForVehicleType.prototype.GetMakesForVehicleType;
 
-  // Flat-file format
-  public async DecodeVinValues(
-    vin: string,
-    params: {
-      modelYear?: string | number;
-    } = {}
-  ): Promise<FetchResponse | Error> {
-    const action = 'DecodeVinValues';
-    /* Build the query string to be appended to the URL*/
-    const queryString = await this.buildQueryString(params).catch(err =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
-    );
-    const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
-
-    return await this.get(url)
-      .then(response => {
-        return response;
-      })
-      .catch(err =>
-        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
-      );
-  }
-
-  // Key-value extended format (additional NCSA specific fields)
-  public async DecodeVinExtended(
-    vin: string,
-    params: {
-      modelYear?: string | number;
-    } = {}
-  ): Promise<FetchResponse | Error> {
-    const action = 'DecodeVinExtended';
-    /* Build the query string to be appended to the URL*/
-    const queryString = await this.buildQueryString(params).catch(err =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
-    );
-    const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
-
-    return await this.get(url)
-      .then(response => {
-        return response;
-      })
-      .catch(err =>
-        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
-      );
-  }
-
-  // Flat-file extended format (additional NCSA specific fields)
-  public async DecodeVinValuesExtended(
-    vin: string,
-    params: {
-      modelYear?: string | number;
-    } = {}
-  ): Promise<FetchResponse | Error> {
-    const action = 'DecodeVinValuesExtended';
-    /* Build the query string to be appended to the URL*/
-    const queryString = await this.buildQueryString(params).catch(err =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
-    );
-    const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
-
-    return await this.get(url)
-      .then(response => {
-        return response;
-      })
-      .catch(err =>
-        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
-      );
-  }
+  GetVehicleTypesForMake =
+    GetVehicleTypesForMake.prototype.GetVehicleTypesForMake;
 
   // Decode World Manufacturer Identifier (WMI)
   public async DecodeWMI(WMI: string): Promise<FetchResponse | Error> {
@@ -189,6 +118,117 @@ class NHTSA extends Fetch {
       )
     );
     const url = `${this.baseUrl}/${action}${queryString}`;
+
+    return await this.get(url)
+      .then(response => {
+        return response;
+      })
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+
+  // This provides a list of all the Manufacturers available in vPIC Dataset.
+  public async GetAllManufacturers(
+    params: {
+      manufacturerType?: string;
+      page?: string | number;
+    } = {}
+  ): Promise<FetchResponse | Error> {
+    const action = 'GetAllManufacturers';
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString(params).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+    const url = `${this.baseUrl}/${action}${queryString}`;
+
+    return await this.get(url)
+      .then(response => {
+        return response;
+      })
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+
+  // This provides the details for a specific manufacturer that is requested.
+  public async GetManufacturerDetails(
+    manufacturer: string | number
+  ): Promise<FetchResponse | Error> {
+    const action = 'GetManufacturerDetails';
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString({}).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+    const url = `${this.baseUrl}/${action}/${manufacturer}${queryString}`;
+
+    return await this.get(url)
+      .then(response => {
+        return response;
+      })
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+
+  // This returns all the Makes in the vPIC dataset for a specified manufacturer that is requested.
+  public async GetMakeForManufacturer(
+    manufacturer: string | number
+  ): Promise<FetchResponse | Error> {
+    const action = 'GetMakeForManufacturer';
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString({}).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+    const url = `${this.baseUrl}/${action}/${manufacturer}${queryString}`;
+
+    return await this.get(url)
+      .then(response => {
+        return response;
+      })
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+
+  // This returns all the Makes in the vPIC dataset for a specified manufacturer
+  // and whose Year From and Year To range cover the specified year
+  public async GetMakesForManufacturerAndYear(
+    manufacturer: string | number,
+    params: {
+      year: string | number;
+    }
+  ): Promise<FetchResponse | Error> {
+    const action = 'GetMakesForManufacturerAndYear';
+
+    if (!manufacturer) {
+      return Promise.reject(
+        new Error(
+          `${action}, please provide a valid manufacturer arg, either a number or string, got: ${params}`
+        )
+      );
+    }
+
+    if (!params?.year) {
+      return Promise.reject(
+        new Error(
+          `${action}, please provide a valid year parameter, got params: ${params}`
+        )
+      );
+    }
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString(params).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+    const url = `${this.baseUrl}/${action}/${manufacturer}${queryString}`;
 
     return await this.get(url)
       .then(response => {
