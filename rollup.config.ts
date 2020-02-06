@@ -22,7 +22,7 @@ const treeShakeBundles = {
   isValidType: 'src/utils/isValidType.ts',
   isValidVin: 'src/utils/isValidVin.ts',
   makeQueryString: 'src/utils/makeQueryString.ts',
-  NHTSA: 'src/api/NHTSA.ts'
+  Client: 'src/index.ts'
 };
 
 // Rollup plugins used with every build
@@ -35,11 +35,8 @@ const plugins = [
     useTsconfigDeclarationDir: true,
     exclude: ['node_modules']
   }),
-  // Allow node_modules resolution, so you can use 'external' to control
-  // which external modules to include in the bundle
-  // https://github.com/rollup/rollup-plugin-node-resolve#usage
   sourceMaps(),
-  babel({ exclude: 'node_modules/**', extensions: ['.js', '.ts'] })
+  babel({ include: 'node_modules/**', extensions: ['.js', '.ts'] })
 ];
 
 export default [
@@ -47,6 +44,7 @@ export default [
    * Browser/Universal Bundles
    */
   {
+    external: ['cross-fetch'],
     input: `src/index.ts`,
     output: [
       /**
@@ -56,6 +54,7 @@ export default [
         file: `${baseDir}bundle.min.js`,
         name: libraryName,
         format: 'umd',
+        esModule: false,
         globals: {
           'cross-fetch': 'fetch'
         },
@@ -106,6 +105,9 @@ export default [
       {
         dir: `${baseDir}module`,
         format: 'esm',
+        globals: {
+          'cross-fetch': 'fetch'
+        },
         chunkFileNames: 'chunk-[format]-[hash].js',
         sourcemap: true,
         plugins: [
@@ -115,25 +117,12 @@ export default [
             }
           })
         ]
-      },
-      /**
-       * CommonJS
-       */
-      {
-        dir: `${baseDir}cjs`,
-        format: 'cjs',
-        sourcemap: true,
-        chunkFileNames: 'chunk-[format]-[hash].js',
-        plugins: [
-          terser({
-            output: {
-              comments: false
-            },
-            include: [/^.+\.min\.js$/, '*chunk*']
-          })
-        ]
       }
     ],
+    /* Resolve() - Allow node_modules resolution, so you can use 'external' to control
+     * which external modules to include in the bundle
+     * https://github.com/rollup/rollup-plugin-node-resolve#usage
+     */
     plugins: [resolve({ preferBuiltins: true, browser: true }), ...plugins]
   }
 ];

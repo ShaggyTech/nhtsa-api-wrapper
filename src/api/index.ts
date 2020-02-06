@@ -182,4 +182,4 @@ export type FetchResponse = {
   };
 } & NhtsaResponse;
 
-export * from './NHTSA';
+export { NHTSA, Client } from './NHTSA';

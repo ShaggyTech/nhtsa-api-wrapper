@@ -14,7 +14,6 @@
   "types": "dist/types/index.d.ts",
   "files": [
     "dist/*",
-    "dist/cjs/*",
     "dist/module/*",
     "dist/browser/*",
     "dist/types/*"
