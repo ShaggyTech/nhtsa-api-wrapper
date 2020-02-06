@@ -9,7 +9,7 @@ export class GetParts extends Fetch {
    * This provides a list of ORGs with letter date in the given range of the dates and with specified Type of ORG.
    * Up to 1000 results will be returned at a time, get the next page by incrementing the "page" parameter.
    */
-  public async GetParts(
+  async GetParts(
     params: {
       type?: string | number;
       fromDate?: string;
