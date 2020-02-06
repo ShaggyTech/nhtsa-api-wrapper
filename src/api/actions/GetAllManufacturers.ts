@@ -7,7 +7,7 @@ import { Fetch } from '../Fetch';
 export class GetAllManufacturers extends Fetch {
   /**
    * This provides a list of all the Manufacturers available in vPIC Dataset.
-   * Parameter "ManufacturerType" allows to filter the list based on manufacturer type,
+   * Parameter "manufacturerType" allows to filter the list based on manufacturer type,
    * (Incomplete Vehicles, Completed Vehicle Manufacturer, Incomplete Vehicle Manufacturer,
    * Intermediate Manufacturer, Final-Stage Manufacturer, Alterer, or any part of it), optional.
    * You can get a list of all manufacturer types with this API call:

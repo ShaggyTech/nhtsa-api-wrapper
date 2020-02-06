@@ -9,7 +9,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe('GetManufacturerDetails()', () => {
+describe('GetMakeForManufacturer()', () => {
   test('it gets manufacturer makes w/ manufacturer as a string', async () => {
     const client = new GetMakeForManufacturer();
     const response = await client

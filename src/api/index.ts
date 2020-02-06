@@ -3,6 +3,15 @@ export interface FetchConfig {
   baseUrl: string | undefined;
 }
 
+export type RequestManufacturerType =
+  | 'Incomplete Vehicles'
+  | 'Completed Vehicle Manufacturer'
+  | 'Incomplete Vehicle Manufacturer'
+  | 'Intermediate Manufacturer'
+  | 'Final-Stage Manufacturer'
+  | 'Alterer'
+  | string;
+
 export type ResultDecodeVin = [
   {
     Value?: string;
@@ -45,14 +54,14 @@ export type ResultGetWMIsForManufacturer = [
   }
 ];
 
-export type ResponseGetAllMakes = [
+export type ResultGetAllMakes = [
   {
     Make_ID: number;
     Make_Name: string;
   }
 ];
 
-export type ResponseGetParts = [
+export type ResultGetParts = [
   {
     CoverLetterURL?: string;
     LetterDate?: string;
@@ -66,11 +75,94 @@ export type ResponseGetParts = [
   }
 ];
 
+export type ResultGetAllManufacturers = [
+  {
+    Country?: string;
+    Mfr_CommonName?: string;
+    Mfr_ID?: number;
+    Mfr_Name?: string;
+    VehicleTypes?: Array<any>;
+  }
+];
+
+export type ResultGetManufacturerDetails = [
+  {
+    Address?: string;
+    Address2?: string;
+    City?: string;
+    ContactEmail?: string;
+    ContactFax?: string;
+    ContactPhone?: string;
+    Country?: string;
+    DBAs?: string;
+    EquipmentItems?: Array<any>;
+    LastUpdated?: string;
+    ManufacturerTypes?: Array<any>;
+    Mfr_CommonName?: string;
+    Mfr_ID?: number;
+    Mfr_Name?: string;
+    OtherManufacturerDetails?: string;
+    PostalCode?: string;
+    PrimaryProduct?: string;
+    PrincipalFirstName?: string;
+    PrincipalLastName?: string;
+    PrincipalPosition?: string;
+    StateProvince?: string;
+    SubmittedName?: string;
+    SubmittedOn?: string;
+    SubmittedPosition?: string;
+    VehicleTypes?: Array<any>;
+  }
+];
+
+export type ResultGetMakeForManufacturer = [
+  {
+    Make_ID?: number;
+    Make_Name?: string;
+    Mfr_Name?: string;
+  }
+];
+
+export type ResultGetMakesForManufacturerAndYear = [
+  {
+    MakeId?: number;
+    MakeName?: string;
+    MfrId?: number;
+    MfrName?: string;
+  }
+];
+
+export type ResultGetMakesForVehicleType = [
+  {
+    MakeId?: number;
+    MakeName?: string;
+    VehicleTypeId?: number;
+    VehicleTypeName?: string;
+  }
+];
+
+export type ResultGetVehicleTypesForMake = [
+  {
+    MakeId?: number;
+    MakeName?: string;
+    VehicleTypeId?: number;
+    VehicleTypeName?: string;
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues
   | ResultDecodeWMI
-  | ResultGetWMIsForManufacturer;
+  | ResultGetWMIsForManufacturer
+  | ResultGetAllMakes
+  | ResultGetParts
+  | ResultGetAllManufacturers
+  | ResultGetManufacturerDetails
+  | ResultGetMakeForManufacturer
+  | ResultGetMakesForManufacturerAndYear
+  | ResultGetMakesForVehicleType
+  | ResultGetVehicleTypesForMake;
 
 export type NhtsaResponse = {
   Count: number;

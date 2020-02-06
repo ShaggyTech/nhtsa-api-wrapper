@@ -27,7 +27,7 @@ export class GetMakesForVehicleType extends Fetch {
       );
     }
 
-    /* Build the query string to be appended to the URL*/
+    /* Build the 'default' query string to be appended to the URL*/
     const queryString = await this.buildQueryString({}).catch((err: Error) =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
