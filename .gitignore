@@ -20,7 +20,7 @@ backups
 
 prod/client/*
 prod/server/nuxt.config.js
-**/dist/
+### **/dist/
 **/nuxt/
 functions/nuxt.config.js
 .nuxt
