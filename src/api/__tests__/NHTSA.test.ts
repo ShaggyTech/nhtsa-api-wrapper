@@ -209,3 +209,15 @@ describe('GetMakesForManufacturerAndYear()', () => {
     expect(response).toEqual(mockData);
   });
 });
+
+describe('GetVehicleTypesForMakeId()', () => {
+  test('it gets vehicle types with a valid makeId', async () => {
+    const client = new NHTSA();
+    const response = await client
+      .GetVehicleTypesForMakeId(381)
+      .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});

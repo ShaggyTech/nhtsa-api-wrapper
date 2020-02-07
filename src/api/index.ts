@@ -150,6 +150,13 @@ export type ResultGetVehicleTypesForMake = [
   }
 ];
 
+export type ResultGetVehicleTypesForMakeId = [
+  {
+    VehicleTypeId?: number;
+    VehicleTypeName?: string;
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues

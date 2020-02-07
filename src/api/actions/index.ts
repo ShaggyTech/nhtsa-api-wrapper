@@ -12,3 +12,4 @@ export { GetMakeForManufacturer } from './GetMakeForManufacturer';
 export { GetMakesForManufacturerAndYear } from './GetMakesForManufacturerAndYear';
 export { GetMakesForVehicleType } from './GetMakesForVehicleType';
 export { GetVehicleTypesForMake } from './GetVehicleTypesForMake';
+export { GetVehicleTypesForMakeId } from './GetVehicleTypesForMakeId';
