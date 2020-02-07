@@ -19,6 +19,7 @@ export class GetVehicleTypesForMake extends Fetch {
   ): Promise<NhtsaResponse | Error> {
     const action = 'GetVehicleTypesForMake';
 
+    /* Runtime typechecking */
     if (getTypeof(makeName) !== 'string') {
       return Promise.reject(
         new Error(
