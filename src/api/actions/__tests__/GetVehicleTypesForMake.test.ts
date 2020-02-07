@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 describe('GetMakesForVehicleType()', () => {
-  test('it gets all manufacturers', async () => {
+  test('it gets makes for a valid vehicle make', async () => {
     const client = new GetVehicleTypesForMake();
     const response = await client
       .GetVehicleTypesForMake('audi')
