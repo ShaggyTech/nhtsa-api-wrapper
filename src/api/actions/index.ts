@@ -16,3 +16,4 @@ export { GetVehicleTypesForMakeId } from './GetVehicleTypesForMakeId';
 export { GetEquipmentPlantCodes } from './GetEquipmentPlantCodes';
 export { GetModelsForMake } from './GetModelsForMake';
 export { GetModelsForMakeId } from './GetModelsForMakeId';
+export { GetModelsForMakeYear } from './GetModelsForMakeYear';

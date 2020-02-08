@@ -20,7 +20,8 @@ import {
   GetVehicleTypesForMakeId,
   GetEquipmentPlantCodes,
   GetModelsForMake,
-  GetModelsForMakeId
+  GetModelsForMakeId,
+  GetModelsForMakeYear
 } from './actions';
 
 /* Types */
@@ -45,7 +46,8 @@ class NHTSA extends Fetch
     GetVehicleTypesForMakeId,
     GetEquipmentPlantCodes,
     GetModelsForMake,
-    GetModelsForMakeId {
+    GetModelsForMakeId,
+    GetModelsForMakeYear {
   constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
@@ -94,6 +96,8 @@ class NHTSA extends Fetch
   GetModelsForMake = GetModelsForMake.prototype.GetModelsForMake;
 
   GetModelsForMakeId = GetModelsForMakeId.prototype.GetModelsForMakeId;
+
+  GetModelsForMakeYear = GetModelsForMakeYear.prototype.GetModelsForMakeYear;
 }
 
 export { NHTSA };
