@@ -247,3 +247,13 @@ describe('GetModelsForMake()', () => {
     expect(response).toEqual(mockData);
   });
 });
+
+describe('GetModelsForMakeId()', () => {
+  test('it gets vehicle models with a valid makeId', async () => {
+    const client = new NHTSA();
+    const response = await client.GetModelsForMakeId(381).catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});
