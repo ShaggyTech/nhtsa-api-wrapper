@@ -157,6 +157,20 @@ export type ResultGetVehicleTypesForMakeId = [
   }
 ];
 
+export type ResultGetEquipmentPlantCodes = [
+  {
+    Address?: string;
+    City?: string;
+    Country?: string;
+    DOTCode?: string;
+    Name?: string;
+    OldDotCode?: string;
+    PostalCode?: string;
+    StateProvince?: string;
+    Status?: string;
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues
@@ -169,7 +183,9 @@ export type NhstaResults =
   | ResultGetMakeForManufacturer
   | ResultGetMakesForManufacturerAndYear
   | ResultGetMakesForVehicleType
-  | ResultGetVehicleTypesForMake;
+  | ResultGetVehicleTypesForMake
+  | ResultGetVehicleTypesForMakeId
+  | ResultGetEquipmentPlantCodes;
 
 export type NhtsaResponse = {
   Count: number;
