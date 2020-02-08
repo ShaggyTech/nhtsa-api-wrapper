@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 describe('GetEquipmentPlantCodes()', () => {
-  test('it gets equipment plant codes, year as number, equipmentType as string', async () => {
+  test('it gets equipment plant codes', async () => {
     const client = new GetEquipmentPlantCodes();
     const response = await client
       .GetEquipmentPlantCodes({
