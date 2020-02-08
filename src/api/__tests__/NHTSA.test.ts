@@ -223,7 +223,7 @@ describe('GetVehicleTypesForMakeId()', () => {
 });
 
 describe('GetEquipmentPlantCodes()', () => {
-  test('it gets vehicle types with a valid makeId', async () => {
+  test('it gets equipment plant codes', async () => {
     const client = new NHTSA();
     const response = await client
       .GetEquipmentPlantCodes({
@@ -232,6 +232,16 @@ describe('GetEquipmentPlantCodes()', () => {
         reportType: 'All'
       })
       .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});
+
+describe('GetModelsForMake()', () => {
+  test('it gets models for a valid makeName', async () => {
+    const client = new NHTSA();
+    const response = await client.GetModelsForMake('audi').catch(err => err);
 
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
     expect(response).toEqual(mockData);
