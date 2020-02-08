@@ -7,7 +7,6 @@
 
     <script type="module">
       import {
-        greet,
         isValidType,
         makeQueryString,
         Client
@@ -19,12 +18,6 @@
         const result = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
         console.log(result);
         document.getElementById('clientResults').innerText = result;
-      });
-
-      document.getElementById('greet').addEventListener('click', function() {
-        const result = greet('Shaggy', 102);
-        console.log(result);
-        document.getElementById('greetResults').innerText = result;
       });
 
       document
@@ -54,10 +47,6 @@
     <h2>
       <btn id="client">Click to console.log NHTSA.DecodeVin() results</btn>
       <div id="clientResults"></div>
-    </h2>
-    <h2>
-      <div id="greet">Click to console.log greet() results</div>
-      <div id="greetResults"></div>
     </h2>
     <h2>
       <btn id="isValidType">Click to console.log isValidType() results</btn>
