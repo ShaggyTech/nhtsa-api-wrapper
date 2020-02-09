@@ -30,19 +30,22 @@ export interface QueryStringParameters {
  *   ---
  *
  * @param {object} params Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html)
+ * @param {boolean} allowEmptyStringValues=false
+ *   Set to `true` to add empty parameter values to the returned query string.
+ *   GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
  *
  * @returns {Promise<string>|Error} An API query string <br>
  *  - On resolve: `Promise(<string>)`<br>
  *  - On reject: `new Error(<string>)` - if parameters are not of type 'object'
  *
  * @example <caption>Single Param:</caption>
- * const qs = await genQueryString({
+ * const qs = await makeQueryString({
  *   format: 'json'
  * }).catch(error => error)
  * //  qs = "format=json"
  *
  * @example <caption>Multiple Params:</caption>
- * const qs = await genQueryString({
+ * const qs = await makeQueryString({
  *   format: 'json',
  *   modelYear: 2006,
  *   page: "2"
@@ -50,8 +53,16 @@ export interface QueryStringParameters {
  * // qs = "?format=json&modelYear=2006&page=2"
  *
  * @example <caption>Empty Params Object:</caption>
- * const qs = await genQueryString({}).catch(error => error)
+ * const qs = await makeQueryString({}).catch(error => error)
  * // qs = ""
+ *
+ * @example <caption>Using allowEmptyStringValues option:</caption>
+ * const qs = await makeQueryString({
+ *   year: 2016,
+ *   vehicleType: '',
+ *   make: 'Audi'
+ * }, true).catch(error => error)
+ * // qs = "?year=2016&vehicleTYpe=&make=Audi"
  *
  */
 
