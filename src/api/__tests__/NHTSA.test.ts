@@ -311,3 +311,20 @@ describe('GetVehicleVariableValuesList()', () => {
     expect(response).toEqual(mockData);
   });
 });
+
+describe('GetVehicleVariableValuesList()', () => {
+  test('it gets canadian specs with year, make, model, and units params', async () => {
+    const client = new NHTSA();
+    const response = await client
+      .GetCanadianVehicleSpecifications({
+        year: 2011,
+        make: 'audi',
+        model: 'A4',
+        units: 'US'
+      })
+      .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});

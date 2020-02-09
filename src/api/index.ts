@@ -215,6 +215,17 @@ export type ResultGetVehicleVariableValuesList = [
   }
 ];
 
+export type ResultGetCanadianVehicleSpecifications = [
+  {
+    Specs: [
+      {
+        Name: string;
+        Value: string;
+      }
+    ];
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues
@@ -234,7 +245,8 @@ export type NhstaResults =
   | ResultGetModelsForMakeYear
   | ResultGetModelsForMakeIdYear
   | ResultGetVehicleVariableList
-  | ResultGetVehicleVariableValuesList;
+  | ResultGetVehicleVariableValuesList
+  | ResultGetCanadianVehicleSpecifications;
 
 export type NhtsaResponse = {
   Count: number;

@@ -20,3 +20,4 @@ export { GetModelsForMakeYear } from './GetModelsForMakeYear';
 export { GetModelsForMakeIdYear } from './GetModelsForMakeIdYear';
 export { GetVehicleVariableList } from './GetVehicleVariableList';
 export { GetVehicleVariableValuesList } from './GetVehicleVariableValuesList';
+export { GetCanadianVehicleSpecifications } from './GetCanadianVehicleSpecifications';
