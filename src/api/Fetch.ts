@@ -34,7 +34,8 @@ export class Fetch {
   }
 
   public async buildQueryString(
-    params: QueryStringParameters
+    params: QueryStringParameters,
+    allowEmptyStringValues = false
   ): Promise<string | Error> {
     /*
      * Make sure we're always using 'format=json' in the url Query parameters
@@ -49,7 +50,7 @@ export class Fetch {
       params = { ...params, format: this.apiResponseFormat };
     }
 
-    return await makeQueryString(params);
+    return await makeQueryString(params, allowEmptyStringValues);
   }
 
   public async get(url: string): Promise<FetchResponse | Error> {

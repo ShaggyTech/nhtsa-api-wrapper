@@ -90,6 +90,37 @@ describe('buildQueryString() class method', () => {
 
     expect(qs).toEqual(expected);
   });
+
+  describe('it handles allowEmptyStringValues option set to true: ', () => {
+    test('only one param is provided containing an empty string value', async () => {
+      const client = new Fetch();
+      const qs = await client
+        .buildQueryString({ nothingHere: '' }, true)
+        .catch(err => err);
+      expect(qs).toStrictEqual('?nothingHere=&format=json');
+    });
+
+    test('multiple params are provided containing empty string values', async () => {
+      const client = new Fetch();
+      const qs = await client
+        .buildQueryString({ nothingHere: '', second: '' }, true)
+        .catch(err => err);
+      expect(qs).toStrictEqual('?nothingHere=&second=&format=json');
+    });
+
+    test('a mix of non-empty values and emptry string values are provided', async () => {
+      const client = new Fetch();
+      const qs = await client
+        .buildQueryString(
+          { nothingHere: '', test: 'testing', second: '' },
+          true
+        )
+        .catch(err => err);
+      expect(qs).toStrictEqual(
+        '?nothingHere=&test=testing&second=&format=json'
+      );
+    });
+  });
 });
 
 describe('get() class method', () => {
