@@ -198,6 +198,15 @@ export type ResultGetModelsForMakeIdYear = [
   }
 ];
 
+export type ResultGetVehicleVariableList = [
+  {
+    DataType?: string;
+    Description?: string;
+    ID?: number;
+    Name?: string;
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues
@@ -215,7 +224,8 @@ export type NhstaResults =
   | ResultGetEquipmentPlantCodes
   | ResultGetModelsForMake
   | ResultGetModelsForMakeYear
-  | ResultGetModelsForMakeIdYear;
+  | ResultGetModelsForMakeIdYear
+  | ResultGetVehicleVariableList;
 
 export type NhtsaResponse = {
   Count: number;

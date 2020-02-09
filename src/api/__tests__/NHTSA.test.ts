@@ -289,3 +289,13 @@ describe('GetModelsForMakeIdYear()', () => {
     expect(response).toEqual(mockData);
   });
 });
+
+describe('GetVehicleVariableList()', () => {
+  test('it gets all vehicle related variables from the database', async () => {
+    const client = new NHTSA();
+    const response = await client.GetVehicleVariableList().catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});

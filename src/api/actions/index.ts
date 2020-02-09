@@ -18,3 +18,4 @@ export { GetModelsForMake } from './GetModelsForMake';
 export { GetModelsForMakeId } from './GetModelsForMakeId';
 export { GetModelsForMakeYear } from './GetModelsForMakeYear';
 export { GetModelsForMakeIdYear } from './GetModelsForMakeIdYear';
+export { GetVehicleVariableList } from './GetVehicleVariableList';
