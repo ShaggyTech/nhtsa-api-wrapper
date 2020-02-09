@@ -273,3 +273,19 @@ describe('GetModelsForMakeYear()', () => {
     expect(response).toEqual(mockData);
   });
 });
+
+describe('GetModelsForMakeIdYear()', () => {
+  test('it gets models with modelYear and vehicleType params', async () => {
+    const client = new NHTSA();
+    const response = await client
+      .GetModelsForMakeIdYear({
+        makeId: 991,
+        modelYear: 2016,
+        vehicleType: 'moto'
+      })
+      .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});
