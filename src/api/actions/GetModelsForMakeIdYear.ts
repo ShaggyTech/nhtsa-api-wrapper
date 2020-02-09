@@ -10,8 +10,7 @@ import { Fetch } from '../Fetch';
 export class GetModelsForMakeIdYear extends Fetch {
   /**
    * This returns the Models in the vPIC dataset for a specified Model Year and Make whose name is LIKE the Make in vPIC Dataset.
-   *   - params.make can be a partial, or a full for more specificity
-   *     (e.g., "Harley", "Harley Davidson", etc.)
+   *   - params.makeId is a number
    *   - params.modelYear is a number (greater than 1995)
    *   - params.vehicleType can be a partial name, or a full name for more specificity
    *     (e.g., "Vehicle", "Moto", "Low Speed Vehicle", etc.)
