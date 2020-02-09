@@ -15,7 +15,7 @@
  * ```
  */
 export interface QueryStringParameters {
-  [propName: string]: string | number | boolean | undefined;
+  [propName: string]: string | number | undefined;
 }
 
 /**
@@ -61,7 +61,7 @@ export function makeQueryString(
 ): Promise<string | Error> {
   // Error message begins with
   const errorBase =
-    'queryString(params) - expected params in the form of an object , got:';
+    'queryString(params) - expected params in the form of an object, got:';
 
   // Type guard params argument, must be of type object
   if (Object.prototype.toString.call(params) !== '[object Object]') {
@@ -73,7 +73,7 @@ export function makeQueryString(
   const paramsLength = entries.length;
 
   // Return an empty string if params are an empty object
-  if (!allowEmptyStringValues && paramsLength < 1) return Promise.resolve('');
+  if (paramsLength < 1) return Promise.resolve('');
 
   // Used to check if we've already prepended a valid query param
   let isPrepended = false;
@@ -92,9 +92,7 @@ export function makeQueryString(
     // skip any invalid values, only string, number, or boolean types are valid
     if (
       (value || allowEmptyStringValues) &&
-      (typeofValue === 'string' ||
-        typeofValue === 'number' ||
-        typeofValue === 'boolean')
+      (typeofValue === 'string' || typeofValue === 'number')
     ) {
       // if this is the first param we need to prepend the '?' char
       if (!isPrepended) {
