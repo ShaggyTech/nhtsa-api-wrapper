@@ -15,7 +15,7 @@
  * ```
  */
 export interface QueryStringParameters {
-  [propName: string]: string | number | undefined;
+  [propName: string]: string | number | boolean | undefined;
 }
 
 /**
@@ -56,7 +56,8 @@ export interface QueryStringParameters {
  */
 
 export function makeQueryString(
-  params: QueryStringParameters = {}
+  params: QueryStringParameters = {},
+  allowEmptyStringValues = false
 ): Promise<string | Error> {
   // Error message begins with
   const errorBase =
@@ -72,7 +73,7 @@ export function makeQueryString(
   const paramsLength = entries.length;
 
   // Return an empty string if params are an empty object
-  if (paramsLength < 1) return Promise.resolve('');
+  if (!allowEmptyStringValues && paramsLength < 1) return Promise.resolve('');
 
   // Used to check if we've already prepended a valid query param
   let isPrepended = false;
@@ -88,10 +89,15 @@ export function makeQueryString(
       value = value.toString();
     }
 
-    // skip any invalid values, only string or number types are valid
-    if (value && (typeofValue === 'string' || typeofValue === 'number')) {
+    // skip any invalid values, only string, number, or boolean types are valid
+    if (
+      (value || allowEmptyStringValues) &&
+      (typeofValue === 'string' ||
+        typeofValue === 'number' ||
+        typeofValue === 'boolean')
+    ) {
       // if this is the first param we need to prepend the '?' char
-      if (value !== '' && !isPrepended) {
+      if (!isPrepended) {
         prepend = '?';
         isPrepended = true;
       }

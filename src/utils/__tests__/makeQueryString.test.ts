@@ -84,6 +84,31 @@ describe('makeQueryString() - API Utils Method', () => {
     });
   });
 
+  describe('it handles allowEmptyStringValues option set to true: ', () => {
+    test('only one param is provided containing an empty string value', async () => {
+      const qs = await makeQueryString({ nothingHere: '' }, true).catch(
+        err => err
+      );
+      expect(qs).toStrictEqual('?nothingHere=');
+    });
+
+    test('multiple params are provided containing empty string values', async () => {
+      const qs = await makeQueryString(
+        { nothingHere: '', second: '' },
+        true
+      ).catch(err => err);
+      expect(qs).toStrictEqual('?nothingHere=&second=');
+    });
+
+    test('a mix of non-empty values and emptry string values are provided', async () => {
+      const qs = await makeQueryString(
+        { nothingHere: '', format: 'json', second: '' },
+        true
+      ).catch(err => err);
+      expect(qs).toStrictEqual('?nothingHere=&format=json&second=');
+    });
+  });
+
   /**************
    * Failures
    **************/
