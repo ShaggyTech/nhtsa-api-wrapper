@@ -180,6 +180,24 @@ export type ResultGetModelsForMake = [
   }
 ];
 
+export type ResultGetModelsForMakeYear = [
+  {
+    Make_ID?: number;
+    Make_Name?: string;
+    Model_ID?: number;
+    Model_Name?: string;
+  }
+];
+
+export type ResultGetModelsForMakeIdYear = [
+  {
+    Make_ID?: number;
+    Make_Name?: string;
+    Model_ID?: number;
+    Model_Name?: string;
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues
@@ -195,7 +213,9 @@ export type NhstaResults =
   | ResultGetVehicleTypesForMake
   | ResultGetVehicleTypesForMakeId
   | ResultGetEquipmentPlantCodes
-  | ResultGetModelsForMake;
+  | ResultGetModelsForMake
+  | ResultGetModelsForMakeYear
+  | ResultGetModelsForMakeIdYear;
 
 export type NhtsaResponse = {
   Count: number;
