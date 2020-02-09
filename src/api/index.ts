@@ -207,6 +207,14 @@ export type ResultGetVehicleVariableList = [
   }
 ];
 
+export type ResultGetVehicleVariableValuesList = [
+  {
+    ElementName?: string;
+    Id?: number;
+    Name?: string;
+  }
+];
+
 export type NhstaResults =
   | ResultDecodeVin
   | ResultDecodeVinValues
@@ -225,7 +233,8 @@ export type NhstaResults =
   | ResultGetModelsForMake
   | ResultGetModelsForMakeYear
   | ResultGetModelsForMakeIdYear
-  | ResultGetVehicleVariableList;
+  | ResultGetVehicleVariableList
+  | ResultGetVehicleVariableValuesList;
 
 export type NhtsaResponse = {
   Count: number;

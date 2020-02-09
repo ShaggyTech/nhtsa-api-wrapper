@@ -299,3 +299,15 @@ describe('GetVehicleVariableList()', () => {
     expect(response).toEqual(mockData);
   });
 });
+
+describe('GetVehicleVariableValuesList()', () => {
+  test('it gets vehicle variable values with a variable Name', async () => {
+    const client = new NHTSA();
+    const response = await client
+      .GetVehicleVariableValuesList('battery type')
+      .catch(err => err);
+
+    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(mockData);
+  });
+});
