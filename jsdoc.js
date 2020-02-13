@@ -11,13 +11,15 @@ module.exports = {
     excludePattern: '(node_modules/|docs/|dev/|dist/|coverage/)'
   },
   plugins: [
+    // 'node_modules/jsdoc-babel',
+    // 'node_modules/jsdoc-plugin-typescript',
     'plugins/markdown',
-    'node_modules/better-docs/category',
     'node_modules/better-docs/typescript',
-    'node_modules/jsdoc-babel'
+    'node_modules/better-docs/category'
   ],
   tags: {
-    allowUnknownTags: true
+    allowUnknownTags: true,
+    dictionaries: ['jsdoc']
   },
   templates: {
     cleverLinks: true,
@@ -45,6 +47,7 @@ module.exports = {
   },
   opts: {
     recurse: true,
+    verbose: false,
     destination: outDir,
     template: 'node_modules/better-docs',
     tutorials: './docsSrc/tutorials',
