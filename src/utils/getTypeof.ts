@@ -1,17 +1,17 @@
 /**
- * @module getTypeof
+ * @module utils/getTypeof
  * @category Utils
  */
 
 /**
- * Returns the typeof of a given value using Object.prototype.toString.call(value)
- * @param {any} value what value to get the type of
- * @returns {string} Type of value, normalized to a lowercase string
+ * @description Returns the type of of a given value using Object.prototype.toString.call(value)
+ * @param value value <any> that you want to get the type of
+ * @returns Type of value, normalized to a lowercase string
  */
 
 export function getTypeof(value: any): string {
-  const type = Object.prototype.toString
+  const toString: string = Object.prototype.toString
     .call(value)
-    .toLowerCase(); /* ex: => [object string] */
-  return type.slice(8, type.length - 1);
+    .toLowerCase(); /* ex: => '[object string]' or '[object array], etc. */
+  return toString.slice(8, toString.length - 1);
 }
