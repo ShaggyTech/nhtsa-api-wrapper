@@ -1,38 +1,31 @@
 /**
- * @memberof module:makeQueryString
- * @category Utils
- *
- * @description Object containing Key:Value pairs to build the URL query string with.<br>
- * Parameter values may be either strings or numbers. <br>
- * ---
- * ```javascript
- *  Example
+ * Object containing Key:Value pairs to build the URL query string with.<br>
+ * Parameter values may be either strings or numbers.
+ * @memberof module:utils/makeQueryString
+ * @example
  *  {
  *    format: 'json',
  *    modelYear: 2009,
  *    whatever: 'something'
  *  }
- * ```
+ *
  */
-export interface QueryStringParameters {
+export type QueryStringParameters = {
   [propName: string]: string | number | undefined;
-}
+};
 
 /**
- * @module makeQueryString
+ * @module utils/makeQueryString
  * @category Utils
  */
 
 /**
- * @async
- * @description Utility method to generate a query string.<br>
- *   Prepend it to an API URL string. <br>
- *
+ * Utility method to generate a query string compatible with the NHSTA API, for use in an API URL string.
  * @param {object} params Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html)
  * @param {boolean} allowEmptyStringValues=false
  *   Set to `true` to add empty parameter values to the returned query string.
  *   GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
- *
+ * @async
  * @returns {Promise<string>|Error} An API query string for use in a final URL.
  *
  * @example <caption>Single Param:</caption>
@@ -62,7 +55,6 @@ export interface QueryStringParameters {
  * // qs = "?year=2016&vehicleTYpe=&make=Audi"
  *
  */
-
 export function makeQueryString(
   params: QueryStringParameters = {},
   allowEmptyStringValues = false
@@ -86,7 +78,7 @@ export function makeQueryString(
   /* Used to check if we've already prepended a valid query param */
   let isPrepended = false;
 
-  // Map [key]:value entries to "key=value" strings in an array
+  /* Map [key]:value entries to "key=value" strings in an array */
   const queryStringArray = entries.map(([key, value], index) => {
     let prepend = '';
     let append = '';
