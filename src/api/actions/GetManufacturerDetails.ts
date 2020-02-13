@@ -1,20 +1,29 @@
-/* Types */
-import { NhtsaResponse } from '../index';
-
 /* Parent Class */
 import { Fetch } from '../Fetch';
 
+/**
+ * @category Actions
+ * @class GetManufacturerDetails
+ * @extends {module:api/Fetch.Fetch}
+ */
 export class GetManufacturerDetails extends Fetch {
   /**
    * This provides the details for a specific manufacturer that is requested.
-   * If supplied manufacturer is a number - method will do exact match on Manufacturer's Id.
-   * If supplied manufacturer is a string - it will look for manufacturers whose name is LIKE the provided name,
-   * (it accepts a partial manufacturer name as an input).
-   * Multiple results are returned in case of multiple matches.
+   * - If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id.
+   * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided name,
+   *   (it accepts a partial manufacturer name as an input).
+   * - Multiple results are returned in case of multiple matches.
+   *
+   * @async
+   * @memberof GetManufacturerDetails
+   *
+   * @param {string|number} manufacturer Manufacturer Name (string) or Manufacturer ID (number)
+   *
+   * @returns {(Promise<module:api.ApiResponse | Error>)}
    */
   public async GetManufacturerDetails(
     manufacturer: string | number
-  ): Promise<NhtsaResponse | Error> {
+  ): Promise<import('../types').ApiResponse | Error> {
     const action = 'GetManufacturerDetails';
 
     /* Runtime typechecking */
@@ -32,12 +41,13 @@ export class GetManufacturerDetails extends Fetch {
         new Error(`${action}, Error building query string: ${err}`)
       )
     );
+
+    /* Build the final request URL*/
     const url = `${this.baseUrl}/${action}/${manufacturer}${queryString}`;
 
+    /* Return the result */
     return await this.get(url)
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch(err =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );

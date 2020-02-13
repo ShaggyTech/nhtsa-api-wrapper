@@ -1,17 +1,27 @@
+/* Parent Class */
+import { Fetch } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
-/* Types */
-import { NhtsaResponse } from '../index';
-
-/* Parent Class */
-import { Fetch } from '../Fetch';
-
+/**
+ * @category Actions
+ * @class GetModelsForMakeId
+ * @extends {module:api/Fetch.Fetch}
+ */
 export class GetModelsForMakeId extends Fetch {
   /**
    * This returns the Models in the vPIC dataset for a specified Make whose Id is EQUAL the MakeId in vPIC Dataset.
+   *
+   * @async
+   * @memberof GetModelsForMakeId
+   *
+   * @param {number} makeID Vehicle make ID (number)
+   *
+   * @returns {(Promise<module:api.ApiResponse | Error>)}
    */
-  async GetModelsForMakeId(makeID: number): Promise<NhtsaResponse | Error> {
+  async GetModelsForMakeId(
+    makeID: number
+  ): Promise<import('../types').ApiResponse | Error> {
     const action = 'GetModelsForMakeId';
 
     /* Runtime typechecking */
@@ -29,12 +39,13 @@ export class GetModelsForMakeId extends Fetch {
         new Error(`${action}, Error building query string: ${err}`)
       )
     );
+
+    /* Build the final request URL*/
     const url = `${this.baseUrl}/${action}/${makeID}${queryString}`;
 
+    /* Return the result */
     return await this.get(url)
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch((err: Error) =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );

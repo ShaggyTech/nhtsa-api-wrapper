@@ -1,20 +1,28 @@
+/* Parent Class */
+import { Fetch } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
-/* Types */
-import { NhtsaResponse } from '../index';
-
-/* Parent Class */
-import { Fetch } from '../Fetch';
-
+/**
+ * @category Actions
+ * @class GetWMIsForManufacturer
+ * @extends {module:api/Fetch.Fetch}
+ */
 export class GetWMIsForManufacturer extends Fetch {
   /**
-   * Provides information on the all World Manufacturer Identifier (WMI) for a specified Manufacturer.
-   * Only WMI registered in vPICList are displayed.
+   * Provides information on the all World Manufacturer Identifier (WMI) for a specified `manufacturer`.
+   * - Only WMIs registered in vPICList are displayed.
+   *
+   * @async
+   * @memberof GetWMIsForManufacturer
+   *
+   * @param {string|number} manufacturer Manufacturer Name (string) or Manufacturer ID (number)
+   *
+   * @returns {(Promise<module:api.ApiResponse | Error>)}
    */
   async GetWMIsForManufacturer(
     manufacturer: string
-  ): Promise<NhtsaResponse | Error> {
+  ): Promise<import('../types').ApiResponse | Error> {
     const action = 'GetWMIsForManufacturer';
 
     /* Runtime typechecking */
@@ -32,12 +40,13 @@ export class GetWMIsForManufacturer extends Fetch {
         new Error(`${action}, Error building query string: ${err}`)
       )
     );
+
+    /* Build the final request URL*/
     const url = `${this.baseUrl}/${action}/${manufacturer}${queryString}`;
 
+    /* Return the result */
     return await this.get(url)
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch(err =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );

@@ -1,22 +1,29 @@
+/* Parent Class */
+import { Fetch } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
-/* Types */
-import { NhtsaResponse } from '../index';
-
-/* Parent Class */
-import { Fetch } from '../Fetch';
-
+/**
+ * @category Actions
+ * @class GetVehicleTypesForMake
+ * @extends {module:api/Fetch.Fetch}
+ */
 export class GetVehicleTypesForMake extends Fetch {
   /**
-   * This returns all the Vehicle Types in the vPIC dataset for a specified Make,
-   * whose name is LIKE the make name in vPIC Dataset.
-   * Make name can be a partial name, or a full name for more specificity
-   * (e.g., "Merc", "Mercedes Benz", etc.).
+   * This returns all the Vehicle Types in the vPIC dataset for a specified Make, whose name is LIKE the make name in vPIC Dataset.
+   * - `makeName` can be a partial name, or a full name for more specificity
+   *   (e.g., "Merc", "Mercedes Benz", etc.).
+   *
+   * @async
+   * @memberof GetVehicleTypesForMake
+   *
+   * @param {string} makeName Name of the vehicle make to search
+   *
+   * @returns {(Promise<module:api.ApiResponse | Error>)}
    */
   async GetVehicleTypesForMake(
     makeName: string
-  ): Promise<NhtsaResponse | Error> {
+  ): Promise<import('../types').ApiResponse | Error> {
     const action = 'GetVehicleTypesForMake';
 
     /* Runtime typechecking */
@@ -34,12 +41,13 @@ export class GetVehicleTypesForMake extends Fetch {
         new Error(`${action}, Error building query string: ${err}`)
       )
     );
+
+    /* Build the final request URL*/
     const url = `${this.baseUrl}/${action}/${makeName}${queryString}`;
 
+    /* Return the result */
     return await this.get(url)
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch((err: Error) =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );
