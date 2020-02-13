@@ -49,7 +49,7 @@ describe('NHTSA Class', () => {
 });
 
 /******************************************************************************************
- * More complete individual tests for all of the below can be found in ../actions/__tests__
+ * More complete individual tests for all of the below can be found in ./src/actions/__tests__
  ******************************************************************************************/
 
 describe('NHTSA.DecodeVin()', () => {
