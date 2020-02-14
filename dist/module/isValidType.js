@@ -1,2 +1,2 @@
-import{_ as e,a as o}from"./chunk-esm-446f00d6.js";function t(t){var r;return e(this,void 0,void 0,(function(){var e,i,n;return o(this,(function(o){return"string"==typeof(null===(r=t)||void 0===r?void 0:r.type)&&t.value?(e=t.type.toLowerCase(),i="[object "+e+"]",n=Object.prototype.toString.call(t.value).toLowerCase(),[2,Promise.resolve(i===n)]):[2,Promise.resolve(!1)]}))}))}export{t as isValidType};
+import{g as e}from"./chunk-esm-8dc65243.js";function o(o){var r;return"string"===e(null===(r=o)||void 0===r?void 0:r.type)&&o.type.toLowerCase()===e(o.value)}export{o as isValidType};
 //# sourceMappingURL=isValidType.js.map

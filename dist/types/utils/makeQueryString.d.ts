@@ -1,56 +1,58 @@
 /**
- * @memberof module:makeQueryString
+ * @module utils/makeQueryString
  * @category Utils
+ */
+/**
+ * Utility method to generate a query string compatible with the NHSTA API, for use in an API URL string.
  *
- * @description Object containing Key:Value pairs to build the URL query string with.<br>
- * Parameter values may be either strings or numbers. <br>
- * ---
- * ```javascript
- *  Example
- *  {
- *    format: 'json',
- *    modelYear: 2009,
- *    whatever: 'something'
- *  }
- * ```
- */
-export interface QueryStringParameters {
-    [propName: string]: string | number | undefined;
-}
-/**
- * @module makeQueryString
- * @category Utils
- */
-/**
  * @async
- * @description Utility method to generate a query string.<br>
- *   Prepend it to an API URL string. <br>
- *   ---
  *
- * @param {object} params Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html)
+ * @param {object} params - Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html).
+ * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
+ * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
+ * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
  *
- * @returns {Promise<string>|Error} An API query string <br>
- *  - On resolve: `Promise(<string>)`<br>
- *  - On reject: `new Error(<string>)` - if parameters are not of type 'object'
+ * @returns {Promise<string>|Error} A query string of search parameters for use in a final Fetch.get URL.
+ *
+ * @example <caption>When loaded from the browser via html script tags</caption>
+ * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
+ * const qs = await NHTSA.makeQueryString({ modelYear: 2010 }).catch(error => error)
+ * console.log(qs) // "?modelYear=2010"
+ *
+ * @example <caption>When loaded as a module</caption>
+ * import { makeQueryString } from '@shaggytools/nhtsa-api-wrapper'
+ * const qs = await makeQueryString({ modelYear: 2010 }).catch(error => error)
+ * console.log(qs) // "?modelYear=2010"
  *
  * @example <caption>Single Param:</caption>
- * const qs = await genQueryString({
- *   format: 'json'
+ * const qs = await makeQueryString({
+ *   modelYear: 2019
  * }).catch(error => error)
- * //  qs = "format=json"
+ * console.log(qs) // "?modelYear=2019"
  *
  * @example <caption>Multiple Params:</caption>
- * const qs = await genQueryString({
- *   format: 'json',
+ * const qs = await makeQueryString({
+ *   whatever: 'some value',
  *   modelYear: 2006,
  *   page: "2"
  * }).catch(error => error)
- * // qs = "?format=json&modelYear=2006&page=2"
+ *
+ * console.log(qs) // "?whatever=some%20value&modelYear=2006&page=2"
  *
  * @example <caption>Empty Params Object:</caption>
- * const qs = await genQueryString({}).catch(error => error)
- * // qs = ""
+ * const qs = await makeQueryString({}).catch(error => error)
+ *
+ * console.log(qs) // ""
+ *
+ * @example <caption>Using allowEmptyStringValues option:</caption>
+ * const qs = await makeQueryString({
+ *   year: 2016,
+ *   vehicleType: '',
+ *   make: 'Audi'
+ * }, true).catch(error => error)
+ *
+ * console.log(qs) // "?year=2016&vehicleType=&make=Audi"
  *
  */
-export declare function makeQueryString(params?: QueryStringParameters): Promise<string | Error>;
+export declare function makeQueryString(params?: import('./types').QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string | Error>;
 //# sourceMappingURL=makeQueryString.d.ts.map
