@@ -31,7 +31,7 @@ import {
 /**
  * @class NHTSA
  *
- * @extends {Fetch}
+ * @augments {Fetch}
  *
  * @implements {DecodeVin}
  * @implements {DecodeVinExtended}

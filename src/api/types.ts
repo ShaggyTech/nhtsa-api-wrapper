@@ -1,11 +1,12 @@
 /**
- * Used when instantiating a Fetch class or related subclass
+ * Used when instantiating a Fetch class or related subclass.
+ *
  * @memberof module:api/types
  */
 export type FetchConfig = {
-  /** Requests response format from the NHSTA API (hardcoded to 'json' for now) */
+  /** Requests response format from the NHSTA API (hardcoded to 'json' for now). */
   apiResponseFormat?: string;
-  /** Base of the URL to build fetch URLs from */
+  /** Base of the URL to build fetch URLs from. */
   baseUrl?: string;
 };
 
@@ -246,7 +247,8 @@ export type NhstaResults =
   | ResultGetCanadianVehicleSpecifications;
 
 /**
- * Various [Fetch API Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) properties
+ * Various [Fetch API Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) properties.
+ *
  * @memberof module:api/types
  */
 export type FetchResponse = {
@@ -265,32 +267,34 @@ export type FetchResponse = {
 };
 
 /**
- * Response data returned from the NHSTA API
+ * Response data returned from the NHSTA API.
+ *
  * @memberof module:api/types
  */
 export type NhtsaResponse = {
-  /** The number of items returned in the Results object */
+  /** The number of items returned in the Results object. */
   Count: number;
-  /** A message describing the Results */
+  /** A message describing the Results. */
   Message: string;
-  /** Search terms (VIN, WMI, etc) used in the request URL*/
+  /** Search terms (VIN, WMI, etc) used in the request URL. */
   SearchCriteria: string;
-  /** Results of the NHSTSA API request */
+  /** Results of the NHSTSA API request. */
   Results: NhstaResults;
 };
 
 /**
- * Complete response returned by {@link module:api/Fetch.Fetch#get}
+ * Complete response returned by {@link module:api/Fetch.Fetch#get}.
+ *
  * @memberof module:api/types
  */
 export type ApiResponse = {
-  /** The number of items returned in the Results object */
+  /** The number of items returned in the Results object. */
   Count: number;
-  /** A message describing the Results */
+  /** A message describing the Results. */
   Message: string;
-  /** Search terms (VIN, WMI, etc) used in the request URL*/
+  /** Search terms (VIN, WMI, etc) used in the request URL. */
   SearchCriteria: string;
-  /** Results of the NHSTSA API request */
+  /** Results of the NHSTSA API request. */
   Results: NhstaResults;
   /** {@link module:api/types.FetchResponse} */
   Response: FetchResponse;

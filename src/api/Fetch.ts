@@ -8,13 +8,13 @@ import fetch from 'cross-fetch';
 import { getTypeof, makeQueryString } from '../utils';
 
 /**
- * @const {string} BASE_URL Default Fetch base URL string
+ * @constant {string} BASE_URL Default Fetch base URL string
  * @default 'https://vpic.nhtsa.dot.gov/api/vehicles'
  */
 export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 
 /**
- * @const {module:api/types.FetchConfig} DEFAULT_CONFIG Default Fetch configuration options
+ * @constant {module:api/types.FetchConfig} DEFAULT_CONFIG Default Fetch configuration options
  * @property {string} apiResponseFormat=json
  * @property {string} baseUrl=BASE_URL
  */
@@ -23,13 +23,16 @@ export const DEFAULT_CONFIG: import('./types').FetchConfig = {
   baseUrl: BASE_URL
 };
 
-/** Class wrapper containing API wrapper HTTP Fetch logic*/
+/**
+ * Class wrapper containing API wrapper HTTP Fetch logic.
+ *
+ * @param {module:api/types.FetchConfig} [userConfig] - User configuration options to construct the class with.
+ */
 export class Fetch {
   apiResponseFormat?: string;
   baseUrl?: string;
   config?: import('./types').FetchConfig;
 
-  /** @param {module:api/types.FetchConfig} [userConfig] User configuration options to construct the class with */
   constructor(userConfig?: import('./types').FetchConfig) {
     let finalConfig: import('./types').FetchConfig;
 
@@ -48,12 +51,12 @@ export class Fetch {
   }
 
   /**
-   * Builds a query string from QueryStringParameters
+   * Builds a query string from QueryStringParameters.
    *
-   * @param {QueryStringParameters} params [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters)
-   * @param {boolean} [allowEmptyStringValues=false] Allow empty query string parameters (as an empty string)
+   * @param {QueryStringParameters} params - [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters).
+   * @param {boolean} [allowEmptyStringValues=false] - Allow empty query string parameters (as an empty string).
    *
-   * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string
+   * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
    */
   async buildQueryString(
     params: import('../utils/makeQueryString').QueryStringParameters,
@@ -77,12 +80,12 @@ export class Fetch {
   }
 
   /**
-   * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API
-   *
-   * @param {string} url URL to fetch data from
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
-   */
+ * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
+ *
+ * @param {string} url - URL to fetch data from.
+ *
+ * @returns {(Promise<module:api.ApiResponse | Error>)} Response from the API.
+ */
   async get(url: string): Promise<import('./types').ApiResponse | Error> {
     if (getTypeof(url) !== 'string') {
       return Promise.reject(
