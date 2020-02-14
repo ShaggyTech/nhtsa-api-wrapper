@@ -4,11 +4,11 @@
  */
 
 /**
- * @description Returns the type of of a given value using Object.prototype.toString.call(value)
- * @param value value <any> that you want to get the type of
- * @returns Type of value, normalized to a lowercase string
+ * Gets type of `value` using `Object.prototype.toString.call(value)`.
+ *
+ * @param {any} value - Any kind of value (string, object, array, function, etc).
+ * @returns {string} - Type of value, normalized to a lowercase string.
  */
-
 export function getTypeof(value: any): string {
   const toString: string = Object.prototype.toString
     .call(value)
