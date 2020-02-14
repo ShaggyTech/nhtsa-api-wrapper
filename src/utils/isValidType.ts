@@ -1,82 +1,66 @@
 /**
- * @memberof module:isValidType
- * @category Utils
- *
- * @description Options argument object provided to utils/isValidType()
- *
- * ```javascript
- *  {
- *    type: <string>,
- *    value: <any>
- *  }
- * ```
- */
-interface IsValidTypeOptions {
-  type: string;
-  value: any;
-}
-
-/**
- * @module isValidType
+ * @module utils/isValidType
  * @category Utils
  */
 
+import { getTypeof } from './getTypeof';
+
 /**
- * @async
- * @description Validate types and existence of various input values.<br>
- * Note: Uses `Object.prototype.toString.call(value)` under the hood
+ * Provided an object with `type` and `value` keys and it will:
  *
- * ---
+ * Return true if:
+ * - type of `value` is equal to provided `type`.
  *
- * Returns `true` if:
- *   - type of value is equal to provided type
+ * Return false if:
+ * - `value` is not equal to provided `type`
+ * - `type` is missing from options object
+ * - `type` is not of type `string`
+ * - `value` is falsey or otherwise not provided.
  *
- * ---
- *
- * Returns `false` if:
- *   - 'options.value is not of type options.type
- *   - 'options.type' is missing from options object
- *   - 'options.type' is not of type 'string'
- *   - 'options.value' is falsey or not provided
- *
- * @param {object} options Object of Type [IsValidTypeOptions](module-isValidType.IsValidTypeOptions.html)
- * @param {string} options.type What type are you expecting the value to be?
- * @param {any} options.value What value are we testing against?
- * @returns {Promise<Boolean>}
+ * @param {object} options - {@link module:utils/isValidType.IsValidTypeOptions}
+ * [IsValidTypeOptions](module-utils_isValidType.html#.IsValidTypeOptions).
+ * @param {string} options.type - What type are you expecting the value to be?
+ * @param {any} options.value - What value are we testing against?
+ * @returns {boolean} True or false.
  *
  * @example <caption>Verify type string</caption>
- * const isValid = await isValidType({
+ * const isValid = isValidType({
  *   type: 'string',
  *   value: 'this is a string'
  * }).catch(error => error)
- * //  isValid = "true"
+ *
+ * console.log(isValid) // "true"
  *
  * @example <caption>Verify type object</caption>
- * const isValid = await isValidType({
+ * const isValid = isValidType({
  *   type: 'object',
  *   value: { someKey: 'some value' }
  * }).catch(error => error)
- * //  isValid = "true"
+ *
+ * console.log(isValid) // "true"
  *
  * @example <caption>Returns false if type is not valid</caption>
  * const isValid = await isValidType({
  *   type: 'array',
  *   value: 'this is not an array'
  * }).catch(error => error)
- * //  isValid = "false"
+ *
+ * console.log(isValid) // "false"
  */
-
-export async function isValidType(opts: IsValidTypeOptions): Promise<boolean> {
-  // Gatekeeping
-  if (typeof opts?.type !== 'string' || !opts.value) {
-    return Promise.resolve(false);
+export function isValidType(
+  options: import('./types').IsValidTypeOptions
+): boolean {
+  /* Runtime typechecking */
+  if (getTypeof(options?.type) !== 'string') {
+    return false;
   }
 
-  // normalize type
-  const type_ = opts.type.toLowerCase();
+  /* Normalize options.type to lowercase to match the lowercase value returned by getTypeof()*/
+  const type_ = options.type.toLowerCase();
 
-  const expected = `[object ${type_}]`;
-  const actual = Object.prototype.toString.call(opts.value).toLowerCase();
+  /* Use getTypeof to get the actual type of the provided value */
+  const typeofValue = getTypeof(options.value);
 
-  return Promise.resolve(expected === actual);
+  /* Return the result */
+  return type_ === typeofValue;
 }
