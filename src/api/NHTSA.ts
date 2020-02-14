@@ -28,35 +28,61 @@ import {
   GetCanadianVehicleSpecifications
 } from './actions';
 
-/* Types */
-import { FetchConfig } from './index';
-
+/**
+ * @class NHTSA
+ *
+ * @extends {Fetch}
+ *
+ * @implements {DecodeVin}
+ * @implements {DecodeVinExtended}
+ * @implements {DecodeVinValues}
+ * @implements {DecodeVinValuesExtended}
+ * @implements {DecodeWMI}
+ * @implements {GetAllMakes}
+ * @implements {GetAllManufacturers}
+ * @implements {GetCanadianVehicleSpecifications}
+ * @implements {GetEquipmentPlantCodes}
+ * @implements {GetMakeForManufacturer}
+ * @implements {GetMakesForManufacturerAndYear}
+ * @implements {GetMakesForVehicleType}
+ * @implements {GetManufacturerDetails}
+ * @implements {GetModelsForMake}
+ * @implements {GetModelsForMakeId}
+ * @implements {GetModelsForMakeIdYear}
+ * @implements {GetModelsForMakeYear}
+ * @implements {GetParts}
+ * @implements {GetVehicleTypesForMake}
+ * @implements {GetVehicleTypesForMakeId}
+ * @implements {GetVehicleVariableList}
+ * @implements {GetVehicleVariableValuesList}
+ * @implements {GetWMIsForManufacturer}
+ */
 class NHTSA extends Fetch
   implements
     DecodeVin,
-    DecodeVinValues,
     DecodeVinExtended,
+    DecodeVinValues,
     DecodeVinValuesExtended,
     DecodeWMI,
     GetAllMakes,
-    GetParts,
     GetAllManufacturers,
-    GetManufacturerDetails,
+    GetCanadianVehicleSpecifications,
+    GetEquipmentPlantCodes,
     GetMakeForManufacturer,
-    GetWMIsForManufacturer,
     GetMakesForManufacturerAndYear,
     GetMakesForVehicleType,
-    GetVehicleTypesForMake,
-    GetVehicleTypesForMakeId,
-    GetEquipmentPlantCodes,
+    GetManufacturerDetails,
     GetModelsForMake,
     GetModelsForMakeId,
-    GetModelsForMakeYear,
     GetModelsForMakeIdYear,
+    GetModelsForMakeYear,
+    GetParts,
+    GetVehicleTypesForMake,
+    GetVehicleTypesForMakeId,
     GetVehicleVariableList,
     GetVehicleVariableValuesList,
-    GetCanadianVehicleSpecifications {
-  constructor(userConfig?: FetchConfig) {
+    GetWMIsForManufacturer {
+  constructor(userConfig?: import('./types').FetchConfig) {
     super(userConfig);
   }
 
@@ -71,17 +97,15 @@ class NHTSA extends Fetch
 
   DecodeWMI = DecodeWMI.prototype.DecodeWMI;
 
-  GetWMIsForManufacturer =
-    GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
-
   GetAllMakes = GetAllMakes.prototype.GetAllMakes;
-
-  GetParts = GetParts.prototype.GetParts;
 
   GetAllManufacturers = GetAllManufacturers.prototype.GetAllManufacturers;
 
-  GetManufacturerDetails =
-    GetManufacturerDetails.prototype.GetManufacturerDetails;
+  GetCanadianVehicleSpecifications =
+    GetCanadianVehicleSpecifications.prototype.GetCanadianVehicleSpecifications;
+
+  GetEquipmentPlantCodes =
+    GetEquipmentPlantCodes.prototype.GetEquipmentPlantCodes;
 
   GetMakeForManufacturer =
     GetMakeForManufacturer.prototype.GetMakeForManufacturer;
@@ -92,23 +116,25 @@ class NHTSA extends Fetch
   GetMakesForVehicleType =
     GetMakesForVehicleType.prototype.GetMakesForVehicleType;
 
-  GetVehicleTypesForMake =
-    GetVehicleTypesForMake.prototype.GetVehicleTypesForMake;
-
-  GetVehicleTypesForMakeId =
-    GetVehicleTypesForMakeId.prototype.GetVehicleTypesForMakeId;
-
-  GetEquipmentPlantCodes =
-    GetEquipmentPlantCodes.prototype.GetEquipmentPlantCodes;
+  GetManufacturerDetails =
+    GetManufacturerDetails.prototype.GetManufacturerDetails;
 
   GetModelsForMake = GetModelsForMake.prototype.GetModelsForMake;
 
   GetModelsForMakeId = GetModelsForMakeId.prototype.GetModelsForMakeId;
 
-  GetModelsForMakeYear = GetModelsForMakeYear.prototype.GetModelsForMakeYear;
-
   GetModelsForMakeIdYear =
     GetModelsForMakeIdYear.prototype.GetModelsForMakeIdYear;
+
+  GetModelsForMakeYear = GetModelsForMakeYear.prototype.GetModelsForMakeYear;
+
+  GetParts = GetParts.prototype.GetParts;
+
+  GetVehicleTypesForMake =
+    GetVehicleTypesForMake.prototype.GetVehicleTypesForMake;
+
+  GetVehicleTypesForMakeId =
+    GetVehicleTypesForMakeId.prototype.GetVehicleTypesForMakeId;
 
   GetVehicleVariableList =
     GetVehicleVariableList.prototype.GetVehicleVariableList;
@@ -116,8 +142,8 @@ class NHTSA extends Fetch
   GetVehicleVariableValuesList =
     GetVehicleVariableValuesList.prototype.GetVehicleVariableValuesList;
 
-  GetCanadianVehicleSpecifications =
-    GetCanadianVehicleSpecifications.prototype.GetCanadianVehicleSpecifications;
+  GetWMIsForManufacturer =
+    GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
 }
 
 export { NHTSA };
