@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: isValidType</title>
+    <title>JSDoc: api/NHTSA.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,328 +71,171 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>isValidType</h1>
+                        <p>Source</p>
+                        <h1>api/NHTSA.ts</h1>
                     </header>
                     
                     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* Parent Class */
+import { Fetch } from './Fetch';
+
+/* API Actions */
+import {
+  DecodeVin,
+  DecodeVinValues,
+  DecodeVinExtended,
+  DecodeVinValuesExtended,
+  DecodeWMI,
+  GetWMIsForManufacturer,
+  GetAllMakes,
+  GetParts,
+  GetAllManufacturers,
+  GetManufacturerDetails,
+  GetMakeForManufacturer,
+  GetMakesForManufacturerAndYear,
+  GetMakesForVehicleType,
+  GetVehicleTypesForMake,
+  GetVehicleTypesForMakeId,
+  GetEquipmentPlantCodes,
+  GetModelsForMake,
+  GetModelsForMakeId,
+  GetModelsForMakeYear,
+  GetModelsForMakeIdYear,
+  GetVehicleVariableList,
+  GetVehicleVariableValuesList,
+  GetCanadianVehicleSpecifications
+} from './actions';
+
+/**
+ * @class NHTSA
+ *
+ * @extends {Fetch}
+ *
+ * @implements {DecodeVin}
+ * @implements {DecodeVinExtended}
+ * @implements {DecodeVinValues}
+ * @implements {DecodeVinValuesExtended}
+ * @implements {DecodeWMI}
+ * @implements {GetAllMakes}
+ * @implements {GetAllManufacturers}
+ * @implements {GetCanadianVehicleSpecifications}
+ * @implements {GetEquipmentPlantCodes}
+ * @implements {GetMakeForManufacturer}
+ * @implements {GetMakesForManufacturerAndYear}
+ * @implements {GetMakesForVehicleType}
+ * @implements {GetManufacturerDetails}
+ * @implements {GetModelsForMake}
+ * @implements {GetModelsForMakeId}
+ * @implements {GetModelsForMakeIdYear}
+ * @implements {GetModelsForMakeYear}
+ * @implements {GetParts}
+ * @implements {GetVehicleTypesForMake}
+ * @implements {GetVehicleTypesForMakeId}
+ * @implements {GetVehicleVariableList}
+ * @implements {GetVehicleVariableValuesList}
+ * @implements {GetWMIsForManufacturer}
+ */
+class NHTSA extends Fetch
+  implements
+    DecodeVin,
+    DecodeVinExtended,
+    DecodeVinValues,
+    DecodeVinValuesExtended,
+    DecodeWMI,
+    GetAllMakes,
+    GetAllManufacturers,
+    GetCanadianVehicleSpecifications,
+    GetEquipmentPlantCodes,
+    GetMakeForManufacturer,
+    GetMakesForManufacturerAndYear,
+    GetMakesForVehicleType,
+    GetManufacturerDetails,
+    GetModelsForMake,
+    GetModelsForMakeId,
+    GetModelsForMakeIdYear,
+    GetModelsForMakeYear,
+    GetParts,
+    GetVehicleTypesForMake,
+    GetVehicleTypesForMakeId,
+    GetVehicleVariableList,
+    GetVehicleVariableValuesList,
+    GetWMIsForManufacturer {
+  constructor(userConfig?: import('./types').FetchConfig) {
+    super(userConfig);
+  }
+
+  DecodeVin = DecodeVin.prototype.DecodeVin;
+
+  DecodeVinValues = DecodeVinValues.prototype.DecodeVinValues;
+
+  DecodeVinExtended = DecodeVinExtended.prototype.DecodeVinExtended;
+
+  DecodeVinValuesExtended =
+    DecodeVinValuesExtended.prototype.DecodeVinValuesExtended;
+
+  DecodeWMI = DecodeWMI.prototype.DecodeWMI;
+
+  GetAllMakes = GetAllMakes.prototype.GetAllMakes;
 
-<article>
-    <div class="container-overview">
-    
-        
+  GetAllManufacturers = GetAllManufacturers.prototype.GetAllManufacturers;
 
-        
-    
-    </div>
-    
-    
+  GetCanadianVehicleSpecifications =
+    GetCanadianVehicleSpecifications.prototype.GetCanadianVehicleSpecifications;
 
-    
+  GetEquipmentPlantCodes =
+    GetEquipmentPlantCodes.prototype.GetEquipmentPlantCodes;
 
-    
+  GetMakeForManufacturer =
+    GetMakeForManufacturer.prototype.GetMakeForManufacturer;
 
-    
-        <h3 class="subsection-title">Interfaces</h3>
-
-        <dl>
-            <dt><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></dt>
-            <dd></dd>
-        </dl>
-    
+  GetMakesForManufacturerAndYear =
+    GetMakesForManufacturerAndYear.prototype.GetMakesForManufacturerAndYear;
 
-    
+  GetMakesForVehicleType =
+    GetMakesForVehicleType.prototype.GetMakesForVehicleType;
 
-    
+  GetManufacturerDetails =
+    GetManufacturerDetails.prototype.GetManufacturerDetails;
 
-    
+  GetModelsForMake = GetModelsForMake.prototype.GetModelsForMake;
 
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
+  GetModelsForMakeId = GetModelsForMakeId.prototype.GetModelsForMakeId;
 
+  GetModelsForMakeIdYear =
+    GetModelsForMakeIdYear.prototype.GetModelsForMakeIdYear;
 
-    
-    <h4 class="name" id=".isValidType">
-        <a class="href-link" href="#.isValidType">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                isValidType<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;Boolean>}</span>
-            
-        </span>
-    </h4>
-    
+  GetModelsForMakeYear = GetModelsForMakeYear.prototype.GetModelsForMakeYear;
 
-    
-    
-    <div class="description">
-        <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>'options.value is not of type options.type</li>
-<li>'options.type' is missing from options object</li>
-<li>'options.type' is not of type 'string'</li>
-<li>'options.value' is falsey or not provided</li>
-</ul>
-    </div>
-    
+  GetParts = GetParts.prototype.GetParts;
 
+  GetVehicleTypesForMake =
+    GetVehicleTypesForMake.prototype.GetVehicleTypesForMake;
 
+  GetVehicleTypesForMakeId =
+    GetVehicleTypesForMakeId.prototype.GetVehicleTypesForMakeId;
 
+  GetVehicleVariableList =
+    GetVehicleVariableList.prototype.GetVehicleVariableList;
 
+  GetVehicleVariableValuesList =
+    GetVehicleVariableValuesList.prototype.GetVehicleVariableValuesList;
 
+  GetWMIsForManufacturer =
+    GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
+}
 
+export { NHTSA };
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">object</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Object of Type <a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></p></td>
-</tr>
-
-  
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>type</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What type are you expecting the value to be?</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>value</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What value are we testing against?</p></td>
-</tr>
-
-  
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="utils_isValidType.ts.html" class="button">View Source</a>
-            <span>
-                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line50">line 50</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Promise.&lt;Boolean></span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Verify type string</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'string',  value: 'this is a string'}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Verify type object</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'object',  value: { someKey: 'some value' }}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Returns false if type is not valid</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'array',  value: 'this is not an array'}).catch(error => error)//  isValid = "false"</code></pre>
-    
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+export const Client = new NHTSA();
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -64,7 +64,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Global</h3><ul><li><a href="global.html#greet">greet</a></li></ul></div><div class="category"><h2>Utils</h2><h3>Modules</h3><ul><li><a href="module-isValidType.html">isValidType</a></li><li><a href="module-isValidVin.html">isValidVin</a></li><li><a href="module-makeQueryString.html">makeQueryString</a></li></ul><h3>Interfaces</h3><ul><li><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></li><li><a href="module-makeQueryString.QueryStringParameters.html">QueryStringParameters</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Tutorials</h3><ul><li><a href="tutorial-placeholder.html">placeholder</a></li></ul><h3>Modules</h3><ul><li><a href="module-api_Fetch.html">api/Fetch</a></li><li><a href="module-api_types.html">api/types</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_Fetch.Fetch.html">Fetch</a></li><li><a href="NHTSA.html">NHTSA</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Classes</h3><ul><li><a href="DecodeVin.html">DecodeVin</a></li><li><a href="DecodeVinExtended.html">DecodeVinExtended</a></li><li><a href="DecodeVinValues.html">DecodeVinValues</a></li><li><a href="DecodeVinValuesExtended.html">DecodeVinValuesExtended</a></li><li><a href="DecodeWMI.html">DecodeWMI</a></li><li><a href="GetAllMakes.html">GetAllMakes</a></li><li><a href="GetAllManufacturers.html">GetAllManufacturers</a></li><li><a href="GetCanadianVehicleSpecifications.html">GetCanadianVehicleSpecifications</a></li><li><a href="GetEquipmentPlantCodes.html">GetEquipmentPlantCodes</a></li><li><a href="GetMakeForManufacturer.html">GetMakeForManufacturer</a></li><li><a href="GetMakesForManufacturerAndYear.html">GetMakesForManufacturerAndYear</a></li><li><a href="GetMakesForVehicleType.html">GetMakesForVehicleType</a></li><li><a href="GetManufacturerDetails.html">GetManufacturerDetails</a></li><li><a href="GetModelsForMake.html">GetModelsForMake</a></li><li><a href="GetModelsForMakeId.html">GetModelsForMakeId</a></li><li><a href="GetModelsForMakeIdYear.html">GetModelsForMakeIdYear</a></li><li><a href="GetModelsForMakeYear.html">GetModelsForMakeYear</a></li><li><a href="GetParts.html">GetParts</a></li><li><a href="GetVehicleTypesForMake.html">GetVehicleTypesForMake</a></li><li><a href="GetVehicleTypesForMakeId.html">GetVehicleTypesForMakeId</a></li><li><a href="GetVehicleVariableList.html">GetVehicleVariableList</a></li><li><a href="GetVehicleVariableValuesList.html">GetVehicleVariableValuesList</a></li><li><a href="GetWMIsForManufacturer.html">GetWMIsForManufacturer</a></li></ul></div><div class="category"><h2>Utils</h2><h3>Modules</h3><ul><li><a href="module-isValidType.html">isValidType</a></li><li><a href="module-isValidVin.html">isValidVin</a></li><li><a href="module-utils_getTypeof.html">utils/getTypeof</a></li><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul><h3>Interfaces</h3><ul><li><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -83,50 +83,43 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @memberof module:makeQueryString
- * @category Utils
- *
- * @description Object containing Key:Value pairs to build the URL query string with.&lt;br>
- * Parameter values may be either strings or numbers. &lt;br>
- * ---
- * ```javascript
- *  Example
+ * Object containing Key:Value pairs to build the URL query string with.&lt;br>
+ * Parameter values may be either strings or numbers.
+ * @memberof module:utils/makeQueryString
+ * @example
  *  {
  *    format: 'json',
  *    modelYear: 2009,
  *    whatever: 'something'
  *  }
- * ```
+ *
  */
-export interface QueryStringParameters {
-  [propName: string]: string | number;
-}
+export type QueryStringParameters = {
+  [propName: string]: string | number | undefined;
+};
 
 /**
- * @module makeQueryString
+ * @module utils/makeQueryString
  * @category Utils
  */
 
 /**
- * @async
- * @description Utility method to generate a query string.&lt;br>
- *   Prepend it to an API URL string. &lt;br>
- *   ---
- *
+ * Utility method to generate a query string compatible with the NHSTA API, for use in an API URL string.
  * @param {object} params Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html)
- *
- * @returns {Promise&lt;string>|Error} An API query string &lt;br>
- *  - On resolve: `Promise(&lt;string>)`&lt;br>
- *  - On reject: `new Error(&lt;string>)` - if parameters are not of type 'object'
+ * @param {boolean} allowEmptyStringValues=false
+ *   Set to `true` to add empty parameter values to the returned query string.
+ *   GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
+ * @async
+ * @returns {Promise&lt;string>|Error} An API query string for use in a final URL.
  *
  * @example &lt;caption>Single Param:&lt;/caption>
- * const qs = await genQueryString({
+ * const qs = await makeQueryString({
  *   format: 'json'
  * }).catch(error => error)
  * //  qs = "format=json"
  *
  * @example &lt;caption>Multiple Params:&lt;/caption>
- * const qs = await genQueryString({
+ * const qs = await makeQueryString({
  *   format: 'json',
  *   modelYear: 2006,
  *   page: "2"
@@ -134,63 +127,74 @@ export interface QueryStringParameters {
  * // qs = "?format=json&amp;modelYear=2006&amp;page=2"
  *
  * @example &lt;caption>Empty Params Object:&lt;/caption>
- * const qs = await genQueryString({}).catch(error => error)
+ * const qs = await makeQueryString({}).catch(error => error)
  * // qs = ""
  *
+ * @example &lt;caption>Using allowEmptyStringValues option:&lt;/caption>
+ * const qs = await makeQueryString({
+ *   year: 2016,
+ *   vehicleType: '',
+ *   make: 'Audi'
+ * }, true).catch(error => error)
+ * // qs = "?year=2016&amp;vehicleTYpe=&amp;make=Audi"
+ *
  */
-
 export function makeQueryString(
-  params: QueryStringParameters = {}
+  params: QueryStringParameters = {},
+  allowEmptyStringValues = false
 ): Promise&lt;string | Error> {
-  // Error message begins with
+  /* Beginning of error message string */
   const errorBase =
-    'queryString(params) - expected params in the form of an object , got:';
+    'queryString(params) - expected params in the form of an object, got:';
 
-  // Type guard params argument, must be of type object
+  /* Runtime type guard params argument, must be of type object */
   if (Object.prototype.toString.call(params) !== '[object Object]') {
     return Promise.reject(new Error(`${errorBase} ${params}`));
   }
 
-  // Setup QueryString for Array mapping
+  /* Setup QueryString for Array mapping */
   const entries = Object.entries(params);
   const paramsLength = entries.length;
 
-  // Return an empty string if params are an empty object
+  /* Return an empty string if params are an empty object */
   if (paramsLength &lt; 1) return Promise.resolve('');
 
-  // Used to check if we've already prepended a valid query param
+  /* Used to check if we've already prepended a valid query param */
   let isPrepended = false;
 
-  // Map [key]:value entries to "key=value" strings in an array
+  /* Map [key]:value entries to "key=value" strings in an array */
   const queryStringArray = entries.map(([key, value], index) => {
     let prepend = '';
     let append = '';
 
     const typeofValue = typeof value;
 
-    if (typeofValue === 'number') {
+    if (value &amp;&amp; typeofValue === 'number') {
       value = value.toString();
     }
 
-    // skip any invalid values, only string or number types are valid
-    if (value &amp;&amp; (typeofValue === 'string' || typeofValue === 'number')) {
-      // if this is the first param we need to prepend the '?' char
-      if (value !== '' &amp;&amp; !isPrepended) {
+    /* Skip any invalid values, only string and number value types are valid */
+    if (
+      (value || allowEmptyStringValues) &amp;&amp;
+      (typeofValue === 'string' || typeofValue === 'number')
+    ) {
+      /* if this is the first param we need to prepend the '?' char */
+      if (!isPrepended) {
         prepend = '?';
         isPrepended = true;
       }
-      // if there is another param coming after this one we need to append the '&amp;' char
+      /* if there is another param coming after this one we need to append the '&amp;' char */
       if (index &lt; paramsLength - 1) {
         append = '&amp;';
       }
 
-      // map the completed partial query string to queryStringArray
+      /* Add the completed partial query string to queryStringArray */
       return `${prepend}${key}=${value}${append}`;
     }
     return;
   });
 
-  // Join and return the completed query string anfter URI encoding
+  /* Join and return the completed query string after URI encoding */
   return Promise.resolve(encodeURI(queryStringArray.join('')));
 }
 </code></pre>
@@ -208,7 +212,7 @@ export function makeQueryString(
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Jan 16 2020 00:26:30 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 18:00:51 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: isValidType</title>
+    <title>JSDoc: api/Fetch</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -70,7 +70,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>isValidType</h1>
+                        <h1>api/Fetch</h1>
                     </header>
                     
                     
@@ -100,12 +100,10 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Interfaces</h3>
+        <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></dt>
+            <dt><a href="module-api_Fetch.Fetch.html">Fetch</a></dt>
             <dd></dd>
         </dl>
     
@@ -118,63 +116,138 @@
 
     
         <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
+            <h3 class="title"><span>Members</span></h3>
             <div class="members">
             
                 <div class="member">
 
-
-    
-    <h4 class="name" id=".isValidType">
-        <a class="href-link" href="#.isValidType">#</a>
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
         
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id="~BASE_URL">
+    <a class="href-link" href="#~BASE_URL">#</a>
+    
         
-        <span class="code-name">
+            <span class='tag'>inner</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        BASE_URL
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Default Fetch base URL string</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>'https://vpic.nhtsa.dot.gov/api/vehicles'</li>
+        </ul></dd>
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line9">line 9</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
             
-                isValidType<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;Boolean>}</span>
-            
-        </span>
-    </h4>
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="module-api_types.html#.FetchConfig">module:api/types.FetchConfig</a></span>
+
+
+    </span>
+
+<h4 class="name" id="~DEFAULT_CONFIG">
+    <a class="href-link" href="#~DEFAULT_CONFIG">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        DEFAULT_CONFIG
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Default Fetch configuration options</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
     
 
-    
-    
-    <div class="description">
-        <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>'options.value is not of type options.type</li>
-<li>'options.type' is missing from options object</li>
-<li>'options.type' is not of type 'string'</li>
-<li>'options.value' is falsey or not provided</li>
-</ul>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -186,6 +259,8 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -193,83 +268,66 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
     <tbody>
     
-
         
 <tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">object</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Object of Type <a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></p></td>
-</tr>
-
-  
-  
     
-<tr class="deep-level-1">
-  
-      <td class="name"><code>type</code></td>
-  
+        <td class="name"><code>apiResponseFormat</code></td>
+    
 
-  <td class="type">
-  
-      
+    <td class="type">
+    
+        
 <span class="param-type">string</span>
 
 
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What type are you expecting the value to be?</p></td>
-</tr>
-
-  
     
-<tr class="deep-level-1">
-  
-      <td class="name"><code>value</code></td>
-  
+    </td>
 
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
+    
 
+    
+        <td class="default">
+        
+            json
+        
+        </td>
+    
 
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What value are we testing against?</p></td>
+    <td class="description last"></td>
 </tr>
 
-  
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>baseUrl</code></td>
+    
 
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            BASE_URL
+        
+        </td>
+    
+
+    <td class="description last"></td>
+</tr>
 
     
     </tbody>
 </table>
-
 
 
 
@@ -307,9 +365,9 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
     
         <p class="tag-source">
-            <a href="utils_isValidType.ts.html" class="button">View Source</a>
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
             <span>
-                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line50">line 50</a>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line14">line 14</a>
             </span>
         </p>
     
@@ -319,70 +377,12 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Promise.&lt;Boolean></span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Verify type string</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'string',  value: 'this is a string'}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Verify type object</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'object',  value: { someKey: 'some value' }}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Returns false if type is not valid</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'array',  value: 'this is not an array'}).catch(error => error)//  isValid = "false"</code></pre>
-    
-
-
 </div>
             
             </div>
         </div>
+    
+
     
 
     

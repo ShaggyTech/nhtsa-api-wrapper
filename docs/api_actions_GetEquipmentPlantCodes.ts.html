@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: isValidType</title>
+    <title>JSDoc: api/actions/GetEquipmentPlantCodes.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,328 +71,108 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>isValidType</h1>
+                        <p>Source</p>
+                        <h1>api/actions/GetEquipmentPlantCodes.ts</h1>
                     </header>
                     
                     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Interfaces</h3>
-
-        <dl>
-            <dt><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".isValidType">
-        <a class="href-link" href="#.isValidType">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                isValidType<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;Boolean>}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>'options.value is not of type options.type</li>
-<li>'options.type' is missing from options object</li>
-<li>'options.type' is not of type 'string'</li>
-<li>'options.value' is falsey or not provided</li>
-</ul>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">object</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Object of Type <a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></p></td>
-</tr>
-
-  
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>type</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What type are you expecting the value to be?</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>value</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What value are we testing against?</p></td>
-</tr>
-
-  
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="utils_isValidType.ts.html" class="button">View Source</a>
-            <span>
-                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line50">line 50</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Promise.&lt;Boolean></span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Verify type string</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'string',  value: 'this is a string'}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Verify type object</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'object',  value: { someKey: 'some value' }}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Returns false if type is not valid</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'array',  value: 'this is not an array'}).catch(error => error)//  isValid = "false"</code></pre>
-    
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* Parent Class */
+import { Fetch } from '../Fetch';
+
+/**
+ * @category Actions
+ * @class GetEquipmentPlantCodes
+ * @extends {module:api/Fetch.Fetch}
+ */
+export class GetEquipmentPlantCodes extends Fetch {
+  /**
+   * Returns assigned Equipment Plant Codes. Can be filtered by Year, Equipment Type and Report Type.
+   * - `params.year`:
+   *   - Only years >= 2016 are supported
+   * - `params.equipmentType`:
+   *   - 1 (Tires)
+   *   - 3 (Brake Hoses)
+   *   - 13 (Glazing)
+   *   - 16 (Retread)
+   * - `params.reportType`:
+   *   - 'New' (The Equipment Plant Code was assigned during the selected year)
+   *   - 'Updated' (The Equipment Plant data was modified during the selected year)
+   *   - 'Closed' (The Equipment Plant is no longer Active)
+   *   - 'All' (All Equipment Plant Codes regardless of year, including their status (active or closed))
+   *
+   * @async
+   * @memberof GetEquipmentPlantCodes
+   *
+   * @param {object} params Query Search Parameters to append to the URL
+   * @param {number} params.year Model year of the vehicle - Number, >= 2016
+   * @param {string} params.equipmentType number equal to 1, 3, 13, or 16
+   * @param {string} params.reportType 'New', 'Updated', 'Closed', or 'All'
+   *
+   * @returns {(Promise&lt;module:api.ApiResponse | Error>)}
+   */
+  public async GetEquipmentPlantCodes(
+    params: {
+      year: number;
+      equipmentType: 1 | 3 | 13 | 16;
+      reportType: 'New' | 'Updated' | 'Closed' | 'All';
+    } = {
+      year: undefined as any,
+      equipmentType: undefined as any,
+      reportType: undefined as any
+    }
+  ): Promise&lt;import('../types').ApiResponse | Error> {
+    const action = 'GetEquipmentPlantCodes';
+
+    /* Runtime typechecking params*/
+    if (!params.year) {
+      return Promise.reject(
+        new Error(
+          `${action}, "year" parameter is required, got: ${params.year}`
+        )
+      );
+    }
+    if (!params.equipmentType) {
+      return Promise.reject(
+        new Error(
+          `${action}, "equipmentType" parameter is required, got: ${params.equipmentType}`
+        )
+      );
+    }
+    if (!params.reportType) {
+      return Promise.reject(
+        new Error(
+          `${action}, "reportType" parameter is required, got: ${params.reportType}`
+        )
+      );
+    }
+
+    /* Build the query string to be appended to the URL*/
+    const queryString = await this.buildQueryString(params).catch(err =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+
+    /* Build the final request URL*/
+    const url = `${this.baseUrl}/${action}${queryString}`;
+
+    /* Return the result */
+    return await this.get(url)
+      .then(response => response)
+      .catch(err =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -403,7 +185,7 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 18:00:51 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 18:00:50 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

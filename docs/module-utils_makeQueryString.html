@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: isValidType</title>
+    <title>JSDoc: utils/makeQueryString</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -70,7 +70,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>isValidType</h1>
+                        <h1>utils/makeQueryString</h1>
                     </header>
                     
                     
@@ -102,13 +102,6 @@
     
 
     
-        <h3 class="subsection-title">Interfaces</h3>
-
-        <dl>
-            <dt><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
@@ -125,8 +118,8 @@
 
 
     
-    <h4 class="name" id=".isValidType">
-        <a class="href-link" href="#.isValidType">#</a>
+    <h4 class="name" id=".makeQueryString">
+        <a class="href-link" href="#.makeQueryString">#</a>
         
             
                 <span class='tag'>async</span>
@@ -136,7 +129,7 @@
         
         <span class="code-name">
             
-                isValidType<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;Boolean>}</span>
+                makeQueryString<span class="signature">(params, allowEmptyStringValues)</span><span class="type-signature"> &rarr; {Promise.&lt;string>|Error}</span>
             
         </span>
     </h4>
@@ -145,21 +138,7 @@
     
     
     <div class="description">
-        <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>'options.value is not of type options.type</li>
-<li>'options.type' is missing from options object</li>
-<li>'options.type' is not of type 'string'</li>
-<li>'options.value' is falsey or not provided</li>
-</ul>
+        <p>Utility method to generate a query string compatible with the NHSTA API, for use in an API URL string.</p>
     </div>
     
 
@@ -186,6 +165,8 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -197,7 +178,7 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>options</code></td>
+      <td class="name"><code>params</code></td>
   
 
   <td class="type">
@@ -212,22 +193,27 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
   
 
   
+      <td class="default">
+      
+      </td>
+  
 
-  <td class="description last"><p>Object of Type <a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></p></td>
+  <td class="description last"><p>Object of Type <a href="module-makeQueryString.QueryStringParameters.html">QueryStringParameters</a></p></td>
 </tr>
 
-  
-  
+
     
-<tr class="deep-level-1">
+
+        
+<tr class="deep-level-0">
   
-      <td class="name"><code>type</code></td>
+      <td class="name"><code>allowEmptyStringValues</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
   
@@ -236,34 +222,16 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
   
 
   
-
-  <td class="description last"><p>What type are you expecting the value to be?</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>value</code></td>
-  
-
-  <td class="type">
-  
+      <td class="default">
       
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
+          false
+      
+      </td>
   
 
-  
-
-  <td class="description last"><p>What value are we testing against?</p></td>
+  <td class="description last"><p>Set to <code>true</code> to add empty parameter values to the returned query string.
+GetCanadianVehicleSpecifications is the only API Action that requires this functionality.</p></td>
 </tr>
-
-  
 
 
     
@@ -307,9 +275,9 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
     
         <p class="tag-source">
-            <a href="utils_isValidType.ts.html" class="button">View Source</a>
+            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
             <span>
-                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line50">line 50</a>
+                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line42">line 42</a>
             </span>
         </p>
     
@@ -340,11 +308,16 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
 <div class="columns">
     
+    <div class='param-desc column is-7'><p>An API query string for use in a final URL.</p></div>
+    
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Promise.&lt;Boolean></span>
+<span class="param-type">Promise.&lt;string></span>
+|
+
+<span class="param-type">Error</span>
 
 
     </div>
@@ -360,22 +333,28 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
 
     <h5>Examples</h5>
     
-        <p class="code-caption">Verify type string</p>
+        <p class="code-caption">Single Param:</p>
     
     
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'string',  value: 'this is a string'}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Verify type object</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'object',  value: { someKey: 'some value' }}).catch(error => error)//  isValid = "true"</code></pre>
+        <pre class="prettyprint"><code>const qs = await makeQueryString({  format: 'json'}).catch(error => error)//  qs = "format=json"</code></pre>
     
 
-        <p class="code-caption">Returns false if type is not valid</p>
+        <p class="code-caption">Multiple Params:</p>
     
     
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'array',  value: 'this is not an array'}).catch(error => error)//  isValid = "false"</code></pre>
+        <pre class="prettyprint"><code>const qs = await makeQueryString({  format: 'json',  modelYear: 2006,  page: "2"}).catch(error => error)// qs = "?format=json&amp;modelYear=2006&amp;page=2"</code></pre>
+    
+
+        <p class="code-caption">Empty Params Object:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await makeQueryString({}).catch(error => error)// qs = ""</code></pre>
+    
+
+        <p class="code-caption">Using allowEmptyStringValues option:</p>
+    
+    
+        <pre class="prettyprint"><code>const qs = await makeQueryString({  year: 2016,  vehicleType: '',  make: 'Audi'}, true).catch(error => error)// qs = "?year=2016&amp;vehicleTYpe=&amp;make=Audi"</code></pre>
     
 
 
@@ -385,6 +364,156 @@ Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
         </div>
     
 
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Type Definitions</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id=".QueryStringParameters">
+    <a class="href-link" href="#.QueryStringParameters">#</a>
+    
+    <span class="code-name">
+        QueryStringParameters
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Object containing Key:Value pairs to build the URL query string with.<br>
+Parameter values may be either strings or numbers.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>propName:</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>string</p></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="utils_makeQueryString.ts.html" class="button">View Source</a>
+            <span>
+                <a href="utils_makeQueryString.ts.html">utils/makeQueryString.ts</a>, <a href="utils_makeQueryString.ts.html#line86">line 86</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>{   format: 'json',   modelYear: 2009,   whatever: 'something' }</code></pre>
+    
+
+
+</div>
+            
+            </div>
+        </div>
     
 
     

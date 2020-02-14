@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: isValidType</title>
+    <title>JSDoc: api/actions/GetModelsForMakeYear.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,328 +71,128 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Module</p>
-                        <h1>isValidType</h1>
+                        <p>Source</p>
+                        <h1>api/actions/GetModelsForMakeYear.ts</h1>
                     </header>
                     
                     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Interfaces</h3>
-
-        <dl>
-            <dt><a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".isValidType">
-        <a class="href-link" href="#.isValidType">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                isValidType<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;Boolean>}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Validate types and existence of various input values.<br>
-Note: Uses <code>Object.prototype.toString.call(value)</code> under the hood</p>
-<hr>
-<p>Returns <code>true</code> if:</p>
-<ul>
-<li>type of value is equal to provided type</li>
-</ul>
-<hr>
-<p>Returns <code>false</code> if:</p>
-<ul>
-<li>'options.value is not of type options.type</li>
-<li>'options.type' is missing from options object</li>
-<li>'options.type' is not of type 'string'</li>
-<li>'options.value' is falsey or not provided</li>
-</ul>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">object</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Object of Type <a href="module-isValidType.IsValidTypeOptions.html">IsValidTypeOptions</a></p></td>
-</tr>
-
-  
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>type</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What type are you expecting the value to be?</p></td>
-</tr>
-
-  
-    
-<tr class="deep-level-1">
-  
-      <td class="name"><code>value</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>What value are we testing against?</p></td>
-</tr>
-
-  
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="utils_isValidType.ts.html" class="button">View Source</a>
-            <span>
-                <a href="utils_isValidType.ts.html">utils/isValidType.ts</a>, <a href="utils_isValidType.ts.html#line50">line 50</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Promise.&lt;Boolean></span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Examples</h5>
-    
-        <p class="code-caption">Verify type string</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'string',  value: 'this is a string'}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Verify type object</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'object',  value: { someKey: 'some value' }}).catch(error => error)//  isValid = "true"</code></pre>
-    
-
-        <p class="code-caption">Returns false if type is not valid</p>
-    
-    
-        <pre class="prettyprint"><code>const isValid = await isValidType({  type: 'array',  value: 'this is not an array'}).catch(error => error)//  isValid = "false"</code></pre>
-    
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* Parent Class */
+import { Fetch } from '../Fetch';
+/* Utiltiy Functions */
+import { getTypeof } from '../../utils';
+
+/**
+ * @category Actions
+ * @class GetModelsForMakeYear
+ * @extends {module:api/Fetch.Fetch}
+ */
+export class GetModelsForMakeYear extends Fetch {
+  /**
+   * This returns the Models in the vPIC dataset for a specified Model Year and Make whose name is LIKE the Make in vPIC Dataset.
+   *   - `params.make` can be a partial, or a full for more specificity
+   *     (e.g., "Harley", "Harley Davidson", etc.)
+   *
+   * A minimum of one of the following are required (or a combination of both):
+   *   - `params.modelYear` is a number (greater than 1995)
+   *   - `params.vehicleType` can be a partial name, or a full name for more specificity
+   *     (e.g., "Vehicle", "Moto", "Low Speed Vehicle", etc.)
+   *
+   * @async
+   * @memberof GetModelsForMakeYear
+   *
+   * @param {object} params Query Search Parameters to append to the URL
+   * @param {string} params.make Make name to search
+   * @param {number} [params.modelYear] A number representing the model year to search (greater than 1995)
+   * @param {string} [params.vehicleType] String representing the vehicle type to search
+   *
+   * @returns {(Promise&lt;module:api.ApiResponse | Error>)}
+   */
+  async GetModelsForMakeYear(
+    params: {
+      make: string;
+      modelYear?: number;
+      vehicleType?: string;
+    } = {
+      make: undefined as any
+    }
+  ): Promise&lt;import('../types').ApiResponse | Error> {
+    const action = 'GetModelsForMakeYear';
+
+    /* Required make param of type string */
+    const typeofMake = getTypeof(params.make);
+    if (!params.make || typeofMake !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, params.make is required and must be a string, got: ${params.make} of type ${typeofMake}`
+        )
+      );
+    }
+    /* At least one of modelYear or vehicleType params is required */
+    if (!params.modelYear &amp;&amp; !params.vehicleType) {
+      return Promise.reject(
+        new Error(
+          `${action}, one of or both of, params.modelYear or params.vehicleType is required, got params: ${params}`
+        )
+      );
+    }
+    /* valid modelYear param of type number */
+    const typeofModelYear = getTypeof(params.modelYear);
+    if (params.modelYear &amp;&amp; typeofModelYear !== 'number') {
+      return Promise.reject(
+        new Error(
+          `${action}, params.modelYear must be of type number, got type of: ${typeofModelYear}`
+        )
+      );
+    }
+    /* valid vehicleType param of type string */
+    const typeofVehicleType = getTypeof(params.vehicleType);
+    if (params.vehicleType &amp;&amp; getTypeof(params.vehicleType) !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, params.vehicleType must be of type string, got type of: ${typeofVehicleType}`
+        )
+      );
+    }
+
+    /* Build the actionUrl */
+    let actionUrl = `${action}/make/${params.make}/`;
+
+    /* Append params.modelYear and params.vehicleType to the URL, at least one is required by the API */
+    if (params.modelYear &amp;&amp; params.vehicleType) {
+      actionUrl += `modelYear/${params.modelYear}/vehicleType/${params.vehicleType}`;
+    } else if (params.modelYear) {
+      actionUrl += `modelYear/${params.modelYear}`;
+    } else {
+      actionUrl += `vehicleType/${params.vehicleType}`;
+    }
+
+    /* Build the 'default' query string to be appended to the URL*/
+    const queryString = await this.buildQueryString({}).catch((err: Error) =>
+      Promise.reject(
+        new Error(`${action}, Error building query string: ${err}`)
+      )
+    );
+
+    /* Build the final request URL*/
+    const url = `${this.baseUrl}/${actionUrl}${queryString}`;
+
+    /* Return the result */
+    return await this.get(url)
+      .then(response => response)
+      .catch((err: Error) =>
+        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
+      );
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
