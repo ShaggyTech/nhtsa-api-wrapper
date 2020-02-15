@@ -2,9 +2,12 @@
 import { Fetch } from '../Fetch';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetMakesForManufacturerAndYear
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetMakesForManufacturerAndYear extends Fetch {
   /**
@@ -15,16 +18,14 @@ export class GetMakesForManufacturerAndYear extends Fetch {
    *   (it accepts a partial manufacturer name as an input).
    * - Multiple results are returned in case of multiple matches.
    * - Manufacturer can be idenfitied by Id, a partial name, or a full name
-   *   (e.g., "988", "HONDA", "HONDA OF CANADA MFG., INC.", etc.)
+   *   (e.g., "988", "HONDA", "HONDA OF CANADA MFG., INC.", etc.).
    *
    * @async
-   * @memberof GetMakesForManufacturerAndYear
+   * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
+   * @param {object} params - Query Search Parameters to append to the URL.
+   * @param {string|number} params.year - Model year of the vehicle - Number, >= 2016.
    *
-   * @param {string|number} manufacturer Manufacturer Name (string) or Manufacturer ID (number)
-   * @param {object} params Query Search Parameters to append to the URL
-   * @param {string|number} params.year Model year of the vehicle - Number, >= 2016
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   public async GetMakesForManufacturerAndYear(
     manufacturer: string | number,

@@ -2,9 +2,12 @@
 import { Fetch } from '../Fetch';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetVehicleVariableValuesList
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetVehicleVariableValuesList extends Fetch {
   /**
@@ -16,11 +19,8 @@ export class GetVehicleVariableValuesList extends Fetch {
    *   - or Variable ID ("2" in second example).
    *
    * @async
-   * @memberof GetVehicleVariableValuesList
-   *
-   * @param {string|number} variableValue The variable you want to get a values list of
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string|number} variableValue - The variable you want to get a values list of.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async GetVehicleVariableValuesList(
     variableValue: string | number

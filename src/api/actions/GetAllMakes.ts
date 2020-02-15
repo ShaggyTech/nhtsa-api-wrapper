@@ -2,18 +2,19 @@
 import { Fetch } from '../Fetch';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetAllMakes
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetAllMakes extends Fetch {
   /**
    * This provides a list of all the Makes available in the vPIC Dataset.
    *
    * @async
-   * @memberof GetAllMakes
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   public async GetAllMakes(): Promise<import('../types').ApiResponse | Error> {
     const action = 'GetAllMakes';

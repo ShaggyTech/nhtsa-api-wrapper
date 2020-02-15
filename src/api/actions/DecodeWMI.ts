@@ -4,9 +4,12 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class DecodeWMI
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class DecodeWMI extends Fetch {
   /**
@@ -15,11 +18,8 @@ export class DecodeWMI extends Fetch {
    *   representing VIN positions 1-3 & 12-14. Example "JTD", "1T9131".
    *
    * @async
-   * @memberof DecodeWMI
-   *
-   * @param {string} WMI World Manufacturer Identifier
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string} WMI - World Manufacturer Identifier.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async DecodeWMI(
     WMI: string

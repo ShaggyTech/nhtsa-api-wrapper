@@ -4,20 +4,20 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetVehicleTypesForMakeId
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetVehicleTypesForMakeId extends Fetch {
   /**
    * This returns all the Vehicle Types in the vPIC dataset for a specified Make whose ID equals the make ID in vPIC Dataset.
    *
    * @async
-   * @memberof GetVehicleTypesForMakeId
-   *
-   * @param {number} makeID Vehicle make ID
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {number} makeID - Vehicle make ID.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async GetVehicleTypesForMakeId(
     makeID: number

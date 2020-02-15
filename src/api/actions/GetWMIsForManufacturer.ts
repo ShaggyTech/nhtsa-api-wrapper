@@ -4,9 +4,12 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetWMIsForManufacturer
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetWMIsForManufacturer extends Fetch {
   /**
@@ -14,11 +17,8 @@ export class GetWMIsForManufacturer extends Fetch {
    * - Only WMIs registered in vPICList are displayed.
    *
    * @async
-   * @memberof GetWMIsForManufacturer
-   *
-   * @param {string|number} manufacturer Manufacturer Name (string) or Manufacturer ID (number)
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async GetWMIsForManufacturer(
     manufacturer: string

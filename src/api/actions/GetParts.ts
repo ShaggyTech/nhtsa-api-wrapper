@@ -2,9 +2,12 @@
 import { Fetch } from '../Fetch';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetParts
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetParts extends Fetch {
   /**
@@ -14,15 +17,12 @@ export class GetParts extends Fetch {
    * - All query `params` are optional.
    *
    * @async
-   * @memberof GetParts
-   *
-   * @param {object} params Query Search Parameters to append to the URL
-   * @param {string|number} [params.type] Specified type of ORG to search
-   * @param {string} [params.fromDate] Start date of search query
-   * @param {string} [params.toDate] End date of search query
-   * @param {string|number} [params.page] Page number of results to request (100 results per page)
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {object} params - Query Search Parameters to append to the URL.
+   * @param {string|number} [params.type] - Specified type of ORG to search.
+   * @param {string} [params.fromDate] - Start date of search query.
+   * @param {string} [params.toDate] - End date of search query.
+   * @param {string|number} [params.page] - Page number of results to request (100 results per page).
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async GetParts(
     params: {

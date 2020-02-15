@@ -4,9 +4,12 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class DecodeVin
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class DecodeVin extends Fetch {
   /**
@@ -22,13 +25,10 @@ export class DecodeVin extends Fetch {
    *   - The 9th digit is not necessary.
    *
    * @async
-   * @memberof DecodeVin
-   *
-   * @param {string} vin Vehicle Identification Number (full or partial)
-   * @param {object} params={} Query Search Parameters to append to the URL
-   * @param {string|number} [params.modelYear] - Optional Model Year search parameter
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string} vin - Vehicle Identification Number (full or partial).
+   * @param {object} [params={}] - Query Search Parameters to append to the URL.
+   * @param {string|number} [params.modelYear] - Optional Model Year search parameter.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async DecodeVin(
     vin: string,

@@ -2,9 +2,12 @@
 import { Fetch } from '../Fetch';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetManufacturerDetails
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetManufacturerDetails extends Fetch {
   /**
@@ -15,11 +18,8 @@ export class GetManufacturerDetails extends Fetch {
    * - Multiple results are returned in case of multiple matches.
    *
    * @async
-   * @memberof GetManufacturerDetails
-   *
-   * @param {string|number} manufacturer Manufacturer Name (string) or Manufacturer ID (number)
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   public async GetManufacturerDetails(
     manufacturer: string | number

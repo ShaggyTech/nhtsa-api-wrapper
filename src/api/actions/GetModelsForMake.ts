@@ -4,21 +4,21 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetModelsForMake
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetModelsForMake extends Fetch {
   /**
    * This returns the Models in the vPIC dataset for a specified Make whose name is LIKE the Make in vPIC Dataset.
-   * - `makeName` can be a partial, or a full for more specificity (e.g., "Harley", "Harley Davidson", etc.)
+   * - `makeName` can be a partial, or a full for more specificity (e.g., "Harley", "Harley Davidson", etc.).
    *
    * @async
-   * @memberof GetModelsForMake
-   *
-   * @param {string} makeName Vehicle make name (string)
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string} makeName - Vehicle make name (string).
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async GetModelsForMake(
     makeName: string

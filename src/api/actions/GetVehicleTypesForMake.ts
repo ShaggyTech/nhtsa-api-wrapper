@@ -4,9 +4,12 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetVehicleTypesForMake
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetVehicleTypesForMake extends Fetch {
   /**
@@ -15,11 +18,8 @@ export class GetVehicleTypesForMake extends Fetch {
    *   (e.g., "Merc", "Mercedes Benz", etc.).
    *
    * @async
-   * @memberof GetVehicleTypesForMake
-   *
-   * @param {string} makeName Name of the vehicle make to search
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string} makeName - Name of the vehicle make to search.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async GetVehicleTypesForMake(
     makeName: string

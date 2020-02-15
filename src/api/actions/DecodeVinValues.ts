@@ -4,9 +4,12 @@ import { Fetch } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class DecodeVinValues
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class DecodeVinValues extends Fetch {
   /**
@@ -19,13 +22,10 @@ export class DecodeVinValues extends Fetch {
    *   - In case of partial VINs, a "*" could be used to indicate the unavailable characters.
    *
    * @async
-   * @memberof DecodeVinValues
-   *
-   * @param {string} vin Vehicle Identification Number (full or partial)
-   * @param {object} params={} Query Search Parameters to append to the URL
-   * @param {string|number} [params.modelYear] - Optional Model Year search parameter
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {string} vin - Vehicle Identification Number (full or partial).
+   * @param {object} [params={}] - Query Search Parameters to append to the URL.
+   * @param {string|number} [params.modelYear] - Optional Model Year search parameter.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   async DecodeVinValues(
     vin: string,

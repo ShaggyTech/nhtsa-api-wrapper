@@ -2,9 +2,12 @@
 import { Fetch } from '../Fetch';
 
 /**
+ * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ *
+ * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ *
  * @category Actions
- * @class GetEquipmentPlantCodes
- * @extends {module:api/Fetch.Fetch}
+ * @hideconstructor
  */
 export class GetEquipmentPlantCodes extends Fetch {
   /**
@@ -20,17 +23,14 @@ export class GetEquipmentPlantCodes extends Fetch {
    *   - 'New' (The Equipment Plant Code was assigned during the selected year)
    *   - 'Updated' (The Equipment Plant data was modified during the selected year)
    *   - 'Closed' (The Equipment Plant is no longer Active)
-   *   - 'All' (All Equipment Plant Codes regardless of year, including their status (active or closed))
+   *   - 'All' (All Equipment Plant Codes regardless of year, including their status (active or closed)).
    *
    * @async
-   * @memberof GetEquipmentPlantCodes
-   *
-   * @param {object} params Query Search Parameters to append to the URL
-   * @param {number} params.year Model year of the vehicle - Number, >= 2016
-   * @param {string} params.equipmentType number equal to 1, 3, 13, or 16
-   * @param {string} params.reportType 'New', 'Updated', 'Closed', or 'All'
-   *
-   * @returns {(Promise<module:api.ApiResponse | Error>)}
+   * @param {object} params - Query Search Parameters to append to the URL.
+   * @param {number} params.year - Model year of the vehicle - Number, >= 2016.
+   * @param {string} params.equipmentType - Number equal to 1, 3, 13, or 16.
+   * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'.
+   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
    */
   public async GetEquipmentPlantCodes(
     params: {
