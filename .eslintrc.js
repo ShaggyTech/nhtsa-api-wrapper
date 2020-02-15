@@ -53,10 +53,10 @@ module.exports = {
      ****************/
     "jsdoc/check-alignment": 1, // Recommended
     // "jsdoc/check-examples": 1,
-    "jsdoc/check-indentation": 1,
+    // "jsdoc/check-indentation": 1,
     "jsdoc/check-param-names": 1, // Recommended
     "jsdoc/check-syntax": 1,
-    "jsdoc/check-tag-names": 1, // Recommended
+    // "jsdoc/check-tag-names": 1, // Recommended
     "jsdoc/check-types": 1, // Recommended
     "jsdoc/implements-on-classes": 1, // Recommended
     "jsdoc/match-description": 1,
