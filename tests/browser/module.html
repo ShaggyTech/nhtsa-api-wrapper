@@ -7,9 +7,9 @@
 
     <script type="module">
       import {
-        isValidType,
-        makeQueryString,
-        Client
+        isValidVin,
+        Client,
+        NHTSA
       } from '../../dev/dist/module/index.js';
 
       console.log(`Successfully imported via ESModule import`);
@@ -21,25 +21,11 @@
       });
 
       document
-        .getElementById('isValidType')
+        .getElementById('isValidVin')
         .addEventListener('click', async function() {
-          const result = await isValidType({
-            type: 'string',
-            value: 'testing'
-          });
-          console.log(`isValidType result: ${result}`);
-          document.getElementById('isValidTypeResults').innerText = result;
-        });
-
-      document
-        .getElementById('makeQueryString')
-        .addEventListener('click', async function() {
-          const result = await makeQueryString({
-            format: 'json',
-            modelYear: 2009
-          });
-          console.log(`makeQueryString result: ${result}`);
-          document.getElementById('makeQueryStringResults').innerText = result;
+          const result = await isValidVin('WVWHV71K69W144983').catch(err => err);
+          console.log(`isValidVin result: ${result}`);
+          document.getElementById('isValidVinResults').innerText = result;
         });
     </script>
   </head>
@@ -49,14 +35,8 @@
       <div id="clientResults"></div>
     </h2>
     <h2>
-      <btn id="isValidType">Click to console.log isValidType() results</btn>
-      <div id="isValidTypeResults"></div>
-    </h2>
-    <h2>
-      <btn id="makeQueryString"
-        >Click to console.log makeQueryString() results</btn
-      >
-      <div id="makeQueryStringResults"></div>
+      <btn id="isValidVin">Click to console.log isValidVin() results</btn>
+      <div id="isValidVinResults"></div>
     </h2>
   </body>
 </html>

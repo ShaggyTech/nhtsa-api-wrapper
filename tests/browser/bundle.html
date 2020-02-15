@@ -13,18 +13,8 @@
       <div id="clientResults"></div>
     </h2>
     <h2>
-      <div id="greet">Click to console.log greet() results</div>
-      <div id="greetResults"></div>
-    </h2>
-    <h2>
-      <btn id="isValidType">Click to console.log isValidType() results</btn>
-      <div id="isValidTypeResults"></div>
-    </h2>
-    <h2>
-      <btn id="makeQueryString"
-        >Click to console.log makeQueryString() results</btn
-      >
-      <div id="makeQueryStringResults"></div>
+      <div id="isValidVin">Click to console.log isValidVin() results</div>
+      <div id="isValidVinResults"></div>
     </h2>
   </body>
   <script type="text/javascript">
@@ -38,33 +28,10 @@
     document.getElementById('clientResults').innerText = result;
     });
   
-    document.getElementById('greet').addEventListener('click', function() {
-      const result = NHTSA.greet('Shaggy', 102);
+    document.getElementById('isValidVin').addEventListener('click', async function() {
+      const result = await NHTSA.isValidVin('WVWHV71K69W144983').catch(err => err);
       console.log(result);
-      document.getElementById('greetResults').innerText = result;
+      document.getElementById('isValidVinResults').innerText = result;
     });
-
-    document
-      .getElementById('isValidType')
-      .addEventListener('click', async function() {
-        // package.libraryName
-        const result = await NHTSA.isValidType({
-          type: 'string',
-          value: 'testing'
-        });
-        console.log(`isValidType result: ${result}`);
-        document.getElementById('isValidTypeResults').innerText = result;
-      });
-
-    document
-      .getElementById('makeQueryString')
-      .addEventListener('click', async function() {
-        const result = await NHTSA.makeQueryString({
-          format: 'json',
-          modelYear: 2009
-        });
-        console.log(`makeQueryString result: ${result}`);
-        document.getElementById('makeQueryStringResults').innerText = result;
-      });
   </script>
 </html>

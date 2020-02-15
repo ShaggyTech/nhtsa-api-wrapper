@@ -19,10 +19,8 @@ const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 
 const treeShakeBundles = {
   index: 'src/index.ts',
-  isValidType: 'src/utils/isValidType.ts',
-  isValidVin: 'src/utils/isValidVin.ts',
-  makeQueryString: 'src/utils/makeQueryString.ts',
-  Client: 'src/index.ts'
+  Client: 'src/index.ts',
+  isValidVin: 'src/index.ts'
 };
 
 // Rollup plugins used with every build
@@ -41,14 +39,14 @@ const plugins = [
 
 export default [
   /**
-   * Browser/Universal Bundles
+   * Browser/Universal Bundles.
    */
   {
     external: ['cross-fetch'],
     input: `src/index.ts`,
     output: [
       /**
-       * UMD Bundle
+       * UMD Bundle.
        */
       {
         file: `${baseDir}bundle.min.js`,
@@ -69,7 +67,7 @@ export default [
         ]
       },
       /**
-       * Immediately Invoked Function Expression (IIFE)
+       * Immediately Invoked Function Expression (IIFE).
        */
       {
         file: `${baseDir}browser/iife.js`,
@@ -93,14 +91,14 @@ export default [
     plugins
   },
   /**
-   * Treeshaken Bundles
+   * Treeshaken Bundles.
    */
   {
-    /** Process individual inputs */
+    /** Process individual inputs. */
     input: { ...treeShakeBundles },
     output: [
       /**
-       * ES Module
+       * ES Module.
        */
       {
         dir: `${baseDir}module`,
