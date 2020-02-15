@@ -17,8 +17,7 @@ import { getTypeof } from './getTypeof';
  * - `type` is not of type `string`
  * - `value` is falsey or otherwise not provided.
  *
- * @param {object} options - {@link module:utils/isValidType.IsValidTypeOptions}
- * [IsValidTypeOptions](module-utils_isValidType.html#.IsValidTypeOptions).
+ * @param {object} options - [IsValidTypeOptions](module-utils_isValidType.html#.IsValidTypeOptions).
  * @param {string} options.type - What type are you expecting the value to be?
  * @param {any} options.value - What value are we testing against?
  * @returns {boolean} True or false.

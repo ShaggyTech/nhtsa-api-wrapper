@@ -53,13 +53,14 @@ export class Fetch {
   /**
    * Builds a query string from QueryStringParameters.
    *
-   * @param {QueryStringParameters} params - [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters).
-   * @param {boolean} [allowEmptyStringValues=false] - Allow empty query string parameters (as an empty string).
-   *
+   * @param {object} params - Object of Type [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters).
+   * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
+   * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
+   * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
    * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
    */
   async buildQueryString(
-    params: import('../utils/makeQueryString').QueryStringParameters,
+    params: import('../utils/types').QueryStringParameters,
     allowEmptyStringValues = false
   ): Promise<string | Error> {
     /*
@@ -80,12 +81,12 @@ export class Fetch {
   }
 
   /**
- * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
- *
- * @param {string} url - URL to fetch data from.
- *
- * @returns {(Promise<module:api.ApiResponse | Error>)} Response from the API.
- */
+   * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
+   *
+   * @param {string} url - URL to fetch data from.
+   *
+   * @returns {(Promise<module:api/types.ApiResponse | Error>)} Response from the API.
+   */
   async get(url: string): Promise<import('./types').ApiResponse | Error> {
     if (getTypeof(url) !== 'string') {
       return Promise.reject(

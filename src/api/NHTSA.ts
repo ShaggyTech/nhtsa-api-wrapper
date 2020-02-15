@@ -1,7 +1,7 @@
 /* Parent Class */
 import { Fetch } from './Fetch';
 
-/* API Actions */
+/* Import implemented API Action classes */
 import {
   DecodeVin,
   DecodeVinValues,

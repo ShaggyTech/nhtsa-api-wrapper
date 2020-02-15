@@ -1,27 +1,26 @@
 /**
- * @module isValidVin
+ * @module utils/isValidVin
  * @category Utils
  */
 
 /**
- * @async
+ * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
+ * [VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
  *
- * @description Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
- * [VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit)
+ * @param {string} vin - Vehicle Identification Number.
  *
- * @param {string} vin Vehicle Identification Number
+ * @returns {Promise<boolean>} True for a valid VIN, false for an invalid VIN.
  *
- * @returns {Promise<boolean>} true | false
- *
- * @example <caption>When loaded from a bundle via html script tags</caption>
+ * @example <caption>When loaded from the browser via html script tags</caption>
  * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
  * const isValid = await NHTSA.isValidVin('3VWD07AJ5EM388202').catch(error => error)
- * // isValid = true
+ * console.log(isValid) // true
  *
  * @example <caption>When loaded as a module</caption>
  * import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
  * const isValid = await isValidVin('3VWD07AJ5EM388202').catch(error => error)
- * // isValid = true
+ * console.log(isValid) // true
+ *
  */
 export async function isValidVin(vin: string): Promise<boolean> {
   /* A valid VIN must be a string and is always exactly 17 digits */
@@ -120,17 +119,22 @@ export async function isValidVin(vin: string): Promise<boolean> {
    * All 17 of those digitValues are then added together and divided by 11.
    * The remainder, or % modulo, of that division will be the final 'checksum'.
    */
-  const checksum =
+  const checksum: number =
     vinArray
-      .map((digit, index) => {
+      .map((digit: string, index: number) => {
         let digitValue: number;
+        /* Use the transliteration table to convert any Not a Number(NaN) values to numbers */
         isNaN(parseInt(digit))
           ? (digitValue = transliterationTable[digit])
           : (digitValue = parseInt(digit));
 
+        /* Convert the digitValue to a weighted number corresponding to it's position, by index, in the weightsArray. */
         const weight: number = weightsArray[index];
+
+        /* The final step for each digit is to multiply it by it's corresponding weight */
         return digitValue * weight;
       })
+      /* Then get the sum of all digits and divide by 11, the remainder of that operation is the checksum */
       .reduce((acc, currValue) => acc + currValue, 0) % 11;
 
   /*
