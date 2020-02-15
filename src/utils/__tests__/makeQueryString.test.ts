@@ -8,7 +8,7 @@ describe('makeQueryString() - API Utils Method', () => {
   /**************
    * Successes
    **************/
-  describe('Returns correct string with: ', () => {
+  describe('returns correct string with:', () => {
     test('one param', async () => {
       const qs = await makeQueryString({
         format: 'xml'
@@ -61,7 +61,7 @@ describe('makeQueryString() - API Utils Method', () => {
     });
   });
 
-  describe('Returns empty string when: ', () => {
+  describe('returns empty string when:', () => {
     test('params arg is an empty object', async () => {
       const qs = await makeQueryString({}).catch(err => err);
       expect(qs).toStrictEqual('');
@@ -84,7 +84,7 @@ describe('makeQueryString() - API Utils Method', () => {
     });
   });
 
-  describe('it handles allowEmptyStringValues option set to true: ', () => {
+  describe('it handles allowEmptyStringValues option set to true:', () => {
     test('only one param is provided containing an empty string value', async () => {
       const qs = await makeQueryString({ nothingHere: '' }, true).catch(
         err => err
@@ -112,10 +112,10 @@ describe('makeQueryString() - API Utils Method', () => {
   /**************
    * Failures
    **************/
-  describe('Fails when ', () => {
+  describe('fails when:', () => {
     test('sanity check, should not fail', async () => {
       const qs = await makeQueryString({ testParam: 'testing' }).catch(err => {
-        expect(err).toEqual('should never be reached');
+        expect(err).toStrictEqual('should never be reached');
       });
       expect(qs).toBeDefined();
     });
@@ -123,7 +123,7 @@ describe('makeQueryString() - API Utils Method', () => {
     test('arg is array', async () => {
       const qs = await makeQueryString(['test', 'invalid'] as any).catch(
         err => {
-          expect(err).toEqual(expect.any(Error));
+          expect(err).toStrictEqual(expect.any(Error));
         }
       );
       expect(qs).toBeUndefined();
@@ -131,7 +131,7 @@ describe('makeQueryString() - API Utils Method', () => {
 
     test('arg is a string', async () => {
       const qs = await makeQueryString('test' as any).catch(err => {
-        expect(err).toEqual(expect.any(Error));
+        expect(err).toStrictEqual(expect.any(Error));
       });
       expect(qs).toBeUndefined();
     });

@@ -1,18 +1,4 @@
-/**
- * Object containing Key:Value pairs to build the URL query string with.<br>
- * Parameter values may be either strings or numbers.
- * @memberof module:utils/makeQueryString
- * @example
- *  {
- *    format: 'json',
- *    modelYear: 2009,
- *    whatever: 'something'
- *  }
- *
- */
-export type QueryStringParameters = {
-  [propName: string]: string | number | undefined;
-};
+import { getTypeof } from './getTypeof';
 
 /**
  * @module utils/makeQueryString
@@ -21,30 +7,45 @@ export type QueryStringParameters = {
 
 /**
  * Utility method to generate a query string compatible with the NHSTA API, for use in an API URL string.
- * @param {object} params Object of Type [QueryStringParameters](module-makeQueryString.QueryStringParameters.html)
- * @param {boolean} allowEmptyStringValues=false
- *   Set to `true` to add empty parameter values to the returned query string.
- *   GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
+ *
  * @async
- * @returns {Promise<string>|Error} An API query string for use in a final URL.
+ *
+ * @param {object} params - Object of Type [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters).
+ * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
+ * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
+ * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
+ *
+ * @returns {Promise<string>|Error} A query string of search parameters for use in a final Fetch.get URL.
+ *
+ * @example <caption>When loaded from the browser via html script tags</caption>
+ * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
+ * const qs = await NHTSA.makeQueryString({ modelYear: 2010 }).catch(error => error)
+ * console.log(qs) // "?modelYear=2010"
+ *
+ * @example <caption>When loaded as a module</caption>
+ * import { makeQueryString } from '@shaggytools/nhtsa-api-wrapper'
+ * const qs = await makeQueryString({ modelYear: 2010 }).catch(error => error)
+ * console.log(qs) // "?modelYear=2010"
  *
  * @example <caption>Single Param:</caption>
  * const qs = await makeQueryString({
- *   format: 'json'
+ *   modelYear: 2019
  * }).catch(error => error)
- * //  qs = "format=json"
+ * console.log(qs) // "?modelYear=2019"
  *
  * @example <caption>Multiple Params:</caption>
  * const qs = await makeQueryString({
- *   format: 'json',
+ *   whatever: 'some value',
  *   modelYear: 2006,
  *   page: "2"
  * }).catch(error => error)
- * // qs = "?format=json&modelYear=2006&page=2"
+ *
+ * console.log(qs) // "?whatever=some%20value&modelYear=2006&page=2"
  *
  * @example <caption>Empty Params Object:</caption>
  * const qs = await makeQueryString({}).catch(error => error)
- * // qs = ""
+ *
+ * console.log(qs) // ""
  *
  * @example <caption>Using allowEmptyStringValues option:</caption>
  * const qs = await makeQueryString({
@@ -52,11 +53,12 @@ export type QueryStringParameters = {
  *   vehicleType: '',
  *   make: 'Audi'
  * }, true).catch(error => error)
- * // qs = "?year=2016&vehicleTYpe=&make=Audi"
+ *
+ * console.log(qs) // "?year=2016&vehicleType=&make=Audi"
  *
  */
 export function makeQueryString(
-  params: QueryStringParameters = {},
+  params: import('./types').QueryStringParameters = {},
   allowEmptyStringValues = false
 ): Promise<string | Error> {
   /* Beginning of error message string */
@@ -64,7 +66,7 @@ export function makeQueryString(
     'queryString(params) - expected params in the form of an object, got:';
 
   /* Runtime type guard params argument, must be of type object */
-  if (Object.prototype.toString.call(params) !== '[object Object]') {
+  if (getTypeof(params) !== 'object') {
     return Promise.reject(new Error(`${errorBase} ${params}`));
   }
 
@@ -83,8 +85,9 @@ export function makeQueryString(
     let prepend = '';
     let append = '';
 
-    const typeofValue = typeof value;
+    const typeofValue = getTypeof(value);
 
+    /* Convert any number values to a string */
     if (value && typeofValue === 'number') {
       value = value.toString();
     }
