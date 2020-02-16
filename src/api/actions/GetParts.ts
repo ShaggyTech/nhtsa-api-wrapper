@@ -17,7 +17,7 @@ export class GetParts extends Fetch {
    * - All query `params` are optional.
    *
    * @async
-   * @param {object} params - Query Search Parameters to append to the URL.
+   * @param {object} [params={}] - Query Search Parameters to append to the URL.
    * @param {string|number} [params.type] - Specified type of ORG to search.
    * @param {string} [params.fromDate] - Start date of search query.
    * @param {string} [params.toDate] - End date of search query.
