@@ -4,11 +4,11 @@ import mockCrossFetch from 'cross-fetch';
 
 import { mockData } from '../../__mocks__/cross-fetch';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+describe('api/Fetch Class', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-describe('Fetch Class', () => {
   test('it exists', () => {
     expect(Fetch).toBeDefined();
   });
@@ -18,9 +18,11 @@ describe('Fetch Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toEqual('json');
-    expect(client.baseUrl).toEqual('https://vpic.nhtsa.dot.gov/api/vehicles');
-    expect(client.config).toEqual(DEFAULT_CONFIG);
+    expect(client.apiResponseFormat).toStrictEqual('json');
+    expect(client.baseUrl).toStrictEqual(
+      'https://vpic.nhtsa.dot.gov/api/vehicles'
+    );
+    expect(client.options).toStrictEqual(DEFAULT_CONFIG.options);
 
     // Class Methods
     expect(client.get).toBeDefined();
@@ -30,16 +32,19 @@ describe('Fetch Class', () => {
   test('it instantiates with user provided config', () => {
     const userConfig = {
       apiResponseFormat: 'xml',
-      baseUrl: 'https://www.shaggytech.com'
+      baseUrl: 'https://www.shaggytech.com',
+      options: {
+        body: 'test body'
+      }
     };
 
     const client = new Fetch(userConfig);
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toEqual('json');
-    expect(client.baseUrl).toEqual('https://www.shaggytech.com');
-    expect(client.config).toEqual({ ...DEFAULT_CONFIG, ...userConfig });
+    expect(client.apiResponseFormat).toStrictEqual('json');
+    expect(client.baseUrl).toStrictEqual('https://www.shaggytech.com');
+    expect(client.options).toStrictEqual(userConfig.options);
 
     // Class Methods
     expect(client.get).toBeDefined();
@@ -48,12 +53,16 @@ describe('Fetch Class', () => {
 });
 
 describe('buildQueryString() class method', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('builds a Query String with no arguments', async () => {
     const client = new Fetch();
     const qs = await client.buildQueryString({});
     const expected = '?format=json';
 
-    expect(qs).toEqual(expected);
+    expect(qs).toStrictEqual(expected);
   });
 
   test('builds a Query String with undefined arguments', async () => {
@@ -61,7 +70,7 @@ describe('buildQueryString() class method', () => {
     const qs = await client.buildQueryString(undefined as any);
     const expected = '?format=json';
 
-    expect(qs).toEqual(expected);
+    expect(qs).toStrictEqual(expected);
   });
 
   test('builds a Query String with users params', async () => {
@@ -69,7 +78,7 @@ describe('buildQueryString() class method', () => {
     const qs = await client.buildQueryString({ modelYear: 2001 });
     const expected = '?modelYear=2001&format=json';
 
-    expect(qs).toEqual(expected);
+    expect(qs).toStrictEqual(expected);
   });
 
   test('builds a Query String and overrides user "format" param', async () => {
@@ -77,7 +86,7 @@ describe('buildQueryString() class method', () => {
     const qs = await client.buildQueryString({ format: 'xml' });
     const expected = '?format=json';
 
-    expect(qs).toEqual(expected);
+    expect(qs).toStrictEqual(expected);
   });
 
   test('builds a Query String and overrides user "format" param but allows other params', async () => {
@@ -88,10 +97,10 @@ describe('buildQueryString() class method', () => {
     });
     const expected = '?format=json&test=testing';
 
-    expect(qs).toEqual(expected);
+    expect(qs).toStrictEqual(expected);
   });
 
-  describe('it handles allowEmptyStringValues option set to true: ', () => {
+  describe('it handles allowEmptyStringValues option set to true:', () => {
     test('only one param is provided containing an empty string value', async () => {
       const client = new Fetch();
       const qs = await client
@@ -124,6 +133,10 @@ describe('buildQueryString() class method', () => {
 });
 
 describe('get() class method', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   /*
    * Remove 'skip' from the test call to see a real response.
    * The test will then fail so that you can see the results.
@@ -138,7 +151,7 @@ describe('get() class method', () => {
       'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?format=json'
     );
 
-    expect(response).toEqual('fails');
+    expect(response).toStrictEqual('fails');
     expect(mockCrossFetch).toBeDefined();
   });
 
@@ -146,25 +159,53 @@ describe('get() class method', () => {
     const client = new Fetch();
     const response = await client.get('testing.com');
 
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
   });
 
-  test('it handles invalid url arguments', async () => {
+  test('it returns a response with user provided options', async () => {
     const client = new Fetch();
-    const response = await client.get(['testing'] as any).catch(err => err);
+    const response = await client
+      .get('www.shaggytech.com', { method: 'POST', body: 'test body' })
+      .catch(err => err);
 
-    expect(response).toEqual(
-      Error('Fetch.get(url) - url argument must be of type string')
+    expect(response).toStrictEqual(mockData);
+    expect(mockCrossFetch).toHaveBeenCalledWith('www.shaggytech.com', {
+      method: 'POST',
+      body: 'test body'
+    });
+  });
+
+  test('it handles invalid url argument', async () => {
+    const client = new Fetch();
+    const response = await client.get([{}] as any).catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error('Fetch.get(url) - url argument must be of type string, got: array')
     );
   });
 
-  test('it handles undefined url arguments', async () => {
+  test('it handles undefined url argument', async () => {
     const client = new Fetch();
     const response = await client.get(undefined as any).catch(err => err);
 
-    expect(response).toEqual(
-      Error('Fetch.get(url) - url argument must be of type string')
+    expect(response).toStrictEqual(
+      Error(
+        'Fetch.get(url) - url argument must be of type string, got: undefined'
+      )
+    );
+  });
+
+  test('it handles invalid options argument', async () => {
+    const client = new Fetch();
+    const response = await client
+      .get('testurl.test', 'testing' as any)
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        'Fetch.get(url, options) - options argument must be of type object, got: string'
+      )
     );
   });
 
@@ -187,7 +228,7 @@ describe('get() class method', () => {
       'Fetch.get() http error: Error: Bad response from server, code: 500, text: mocked error, headers: mocked headers';
 
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(Error(expectedError));
+    expect(response).toStrictEqual(Error(expectedError));
   });
 
   test('it handles Fetch.get empty response', async () => {
@@ -201,7 +242,7 @@ describe('get() class method', () => {
       'Fetch.get() http error: Error: Bad response from server, code: undefined, text: undefined, headers: undefined';
 
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(Error(expectedError));
+    expect(response).toStrictEqual(Error(expectedError));
   });
 
   test('it handles cross-fetch errors', async () => {
@@ -213,6 +254,6 @@ describe('get() class method', () => {
     const response = await client.get('www.testing.com').catch(err => err);
 
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(Error('Fetch.get() http error: mock error'));
+    expect(response).toStrictEqual(Error('Fetch.get() http error: mock error'));
   });
 });

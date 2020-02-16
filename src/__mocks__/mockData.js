@@ -1,6 +1,6 @@
 export default {
   mocked: true,
-  Response: {
+  FetchResponse: {
     headers: undefined,
     ok: true,
     redirected: false,

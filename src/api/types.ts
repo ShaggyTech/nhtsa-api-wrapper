@@ -1,15 +1,3 @@
-/**
- * Used when instantiating a Fetch class or related subclass.
- *
- * @memberof module:api/types
- */
-export type FetchConfig = {
-  /** Requests response format from the NHSTA API (hardcoded to 'json' for now). */
-  apiResponseFormat?: string;
-  /** Base of the URL to build fetch URLs from. */
-  baseUrl?: string;
-};
-
 export type ResultDecodeVin = [
   {
     Value?: string | null;
@@ -246,10 +234,61 @@ export type NhstaResults =
   | ResultGetVehicleVariableValuesList
   | ResultGetCanadianVehicleSpecifications;
 
+/*******************************
+ * module:api/Fetch
+ *******************************/
+
+/**
+ * Various fetch request body types.
+ *
+ * @memberof module:api/Fetch
+ */
+export type FetchRequestBodyTypes =
+  | URLSearchParams
+  | FormData
+  | Blob
+  | ArrayBuffer
+  | DataView;
+
+/**
+ * Options object provided as the 2nd argument to {@link module:api/Fetch.Fetch#get}.
+ *
+ * @memberof module:api/Fetch
+ */
+export type FetchRequestOptions = {
+  /** HTTP request method - Default: "GET". */
+  method?: string;
+  /** HTTP request body - [FetchRequestBodyTypes](https://github.github.io/fetch/#request-body). */
+  body?: string | FetchRequestBodyTypes;
+  /** [Object, Headers](https://github.github.io/fetch/#Headers) - Default: {}. */
+  headers?: {} | Headers;
+  /**
+   * Default: "omit" - Authentication credentials mode.
+   * - "omit" - don't include authentication credentials (e.g. Cookies) in the request.
+   * - "same-origin" - include credentials in requests to the same site
+   * - "include" - include credentials in requests to all sites.
+   */
+  credentials?: 'omit' | 'same-origin' | 'include';
+};
+
+/**
+ * Used when instantiating a Fetch class or related subclass.
+ *
+ * @memberof module:api/Fetch
+ */
+export type FetchConfig = {
+  /** Requested response format from the NHSTA API (hardcoded to 'json' for now). */
+  apiResponseFormat?: string;
+  /** Base of the URL to build fetch URLs from. */
+  baseUrl?: string;
+  /** Options object provided as the 2nd argument to {@link module:api/Fetch.Fetch#get}. */
+  options?: FetchRequestOptions;
+};
+
 /**
  * Various [Fetch API Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) properties.
  *
- * @memberof module:api/types
+ * @memberof module:api/Fetch
  */
 export type FetchResponse = {
   /** The [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers) object associated with the response. */
@@ -269,7 +308,7 @@ export type FetchResponse = {
 /**
  * Response data returned from the NHSTA API.
  *
- * @memberof module:api/types
+ * @memberof module:api/Fetch
  */
 export type NhtsaResponse = {
   /** The number of items returned in the Results object. */
@@ -285,7 +324,7 @@ export type NhtsaResponse = {
 /**
  * Complete response returned by {@link module:api/Fetch.Fetch#get}.
  *
- * @memberof module:api/types
+ * @memberof module:api/Fetch
  */
 export type ApiResponse = {
   /** The number of items returned in the Results object. */
@@ -294,10 +333,10 @@ export type ApiResponse = {
   Message: string;
   /** Search terms (VIN, WMI, etc) used in the request URL. */
   SearchCriteria: string;
-  /** Results of the NHSTSA API request. */
+  /** {@link module:api/Fetch.NhstaResults} */
   Results: NhstaResults;
-  /** {@link module:api/types.FetchResponse} */
-  Response: FetchResponse;
+  /** {@link module:api/Fetch.FetchResponse} */
+  FetchResponse: FetchResponse;
 };
 
 /**

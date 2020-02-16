@@ -14,7 +14,7 @@ import { getTypeof, makeQueryString } from '../utils';
 export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 
 /**
- * @constant {module:api/types.FetchConfig} DEFAULT_CONFIG Default Fetch configuration options
+ * @constant {module:api/Fetch.FetchConfig} DEFAULT_CONFIG Default Fetch configuration options
  * @property {string} apiResponseFormat=json
  * @property {string} baseUrl=BASE_URL
  */
@@ -26,18 +26,23 @@ export const DEFAULT_CONFIG: import('./types').FetchConfig = {
 /**
  * Class wrapper containing API wrapper HTTP Fetch logic.
  *
- * @param {module:api/types.FetchConfig} [userConfig] - User configuration options to construct the class with.
+ * @param {module:api/Fetch.FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export class Fetch {
-  apiResponseFormat?: string;
+  apiResponseFormat: string;
   baseUrl?: string;
-  config?: import('./types').FetchConfig;
+  options?: import('./types').FetchRequestOptions;
 
   constructor(userConfig?: import('./types').FetchConfig) {
     let finalConfig: import('./types').FetchConfig;
 
-    if (getTypeof(userConfig) === 'object') {
-      finalConfig = { ...DEFAULT_CONFIG, ...userConfig };
+    /* userConfig takes precedence over DEFAULT_CONFIG */
+    if (userConfig && getTypeof(userConfig) === 'object') {
+      finalConfig = {
+        ...DEFAULT_CONFIG,
+        ...userConfig,
+        options: { ...DEFAULT_CONFIG.options, ...userConfig.options }
+      };
     } else {
       finalConfig = { ...DEFAULT_CONFIG };
     }
@@ -47,7 +52,7 @@ export class Fetch {
     /** @private */
     this.baseUrl = finalConfig.baseUrl;
     /** @private */
-    this.config = finalConfig;
+    this.options = finalConfig.options;
   }
 
   /**
@@ -55,7 +60,7 @@ export class Fetch {
    *
    * @param {object} params - Object of Type [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters).
    * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
-   * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
+   * - Given params of `{paramName: ""}` , setting this to true will use 'paramName=' in the final query string.
    * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
    * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
    */
@@ -66,7 +71,7 @@ export class Fetch {
     /*
      * Make sure we're always using 'format=json' in the url Query parameters
      * If the user provides a 'format' key in the params, during class instantiation we want to override it to 'json'
-     * This package will never provide support for the other formats (CSV and XML)
+     * This package may provide support for the other formats (CSV and XML) if requested.
      */
     if (!params || getTypeof(params) !== 'object') {
       params = {
@@ -82,20 +87,40 @@ export class Fetch {
 
   /**
    * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
+   * - In browser environments, [whatwg-fetch](https://github.com/github/fetch/) window.fetch is used.
+   * - In node environments, [node-fetch](https://github.com/bitinn/node-fetch/) NPM package is used.
    *
    * @param {string} url - URL to fetch data from.
-   *
-   * @returns {(Promise<module:api/types.ApiResponse | Error>)} Response from the API.
+   * @param {module:api/Fetch.FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
+   * @returns {(Promise<module:api/Fetch.ApiResponse | Error>)} Response from the API.
    */
-  async get(url: string): Promise<import('./types').ApiResponse | Error> {
-    if (getTypeof(url) !== 'string') {
+  async get(
+    url: string,
+    options: import('./types').FetchRequestOptions = {}
+  ): Promise<import('./types').ApiResponse | Error> {
+    /* Runtime typechecking */
+    const typeofUrl = getTypeof(url);
+    if (typeofUrl !== 'string') {
       return Promise.reject(
-        new Error('Fetch.get(url) - url argument must be of type string')
+        new Error(
+          `Fetch.get(url) - url argument must be of type string, got: ${typeofUrl}`
+        )
+      );
+    }
+    const typeofOptions = getTypeof(options);
+    if (typeofOptions !== 'object') {
+      return Promise.reject(
+        new Error(
+          `Fetch.get(url, options) - options argument must be of type object, got: ${typeofOptions}`
+        )
       );
     }
 
-    /* Use the cross-fetch package to perform an HTTP get request */
-    const response: Response = await fetch(url)
+    /* Combine user provided 'options' and class property 'this.options', user options overwrite class options */
+    const combinedOptions = { ...this.options, ...options };
+
+    /* Use the cross-fetch package to perform an HTTP request */
+    const response: Response = await fetch(url, combinedOptions)
       .then(result => {
         if (!result?.status || result.status >= 400) {
           throw new Error(
@@ -108,12 +133,12 @@ export class Fetch {
       );
 
     /* Convert the NHTSA API data to JSON */
-    const json: import('./types').NhtsaResponse = await response.json();
+    const NhtsaResponse: import('./types').NhtsaResponse = await response.json();
 
     /* Add the fetch response information to the returned NHSTA API data */
     const finalResult: import('./types').ApiResponse = {
-      ...json,
-      Response: {
+      ...NhtsaResponse,
+      FetchResponse: {
         headers: response.headers,
         ok: response.ok,
         redirected: response.redirected,

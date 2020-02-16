@@ -1,15 +1,9 @@
 import { NHTSA } from '../NHTSA';
 import { DEFAULT_CONFIG } from '../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
-
-describe('NHTSA Class', () => {
+describe('the NHTSA Class', () => {
   test('it exists', () => {
     expect(NHTSA).toBeDefined();
   });
@@ -19,9 +13,11 @@ describe('NHTSA Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toEqual('json');
-    expect(client.baseUrl).toEqual('https://vpic.nhtsa.dot.gov/api/vehicles');
-    expect(client.config).toEqual(DEFAULT_CONFIG);
+    expect(client.apiResponseFormat).toStrictEqual('json');
+    expect(client.baseUrl).toStrictEqual(
+      'https://vpic.nhtsa.dot.gov/api/vehicles'
+    );
+    expect(client.options).toStrictEqual(DEFAULT_CONFIG.options);
 
     // Parent Class Methods
     expect(client.get).toBeDefined();
@@ -31,16 +27,21 @@ describe('NHTSA Class', () => {
   test('it instantiates with user provided config', () => {
     const userConfig = {
       apiResponseFormat: 'xml',
-      baseUrl: 'https://www.shaggytech.com'
+      baseUrl: 'https://www.shaggytech.com',
+      options: {
+        body: 'test body'
+      }
     };
 
     const client = new NHTSA(userConfig);
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toEqual('json');
-    expect(client.baseUrl).toEqual('https://www.shaggytech.com');
-    expect(client.config).toEqual({ ...DEFAULT_CONFIG, ...userConfig });
+    expect(client.apiResponseFormat).toStrictEqual('json');
+    expect(client.baseUrl).toStrictEqual('https://www.shaggytech.com');
+    expect(client.options).toStrictEqual({
+      ...userConfig.options
+    });
 
     // Parent Class Methods
     expect(client.get).toBeDefined();
@@ -61,8 +62,7 @@ describe('NHTSA.DecodeVin()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -75,8 +75,7 @@ describe('NHTSA.DecodeVinValues()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -89,8 +88,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -103,8 +101,7 @@ describe('NHTSA.DecodeVinValuesExtended()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -113,8 +110,7 @@ describe('DecodeWMI()', () => {
     const client = new NHTSA();
     const response = await client.DecodeWMI('3VW').catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -125,8 +121,7 @@ describe('GetWMIsForManufacturer()', () => {
       .GetWMIsForManufacturer('audi')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -135,8 +130,7 @@ describe('GetAllMakes()', () => {
     const client = new NHTSA();
     const response = await client.GetAllMakes().catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -152,8 +146,7 @@ describe('GetParts()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -167,8 +160,7 @@ describe('GetAllManufacturers()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -179,8 +171,7 @@ describe('GetManufacturerDetails()', () => {
       .GetManufacturerDetails('audi')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -191,8 +182,7 @@ describe('GetMakeForManufacturer()', () => {
       .GetMakeForManufacturer('audi')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -205,8 +195,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -217,8 +206,7 @@ describe('GetVehicleTypesForMakeId()', () => {
       .GetVehicleTypesForMakeId(381)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -233,8 +221,7 @@ describe('GetEquipmentPlantCodes()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -243,8 +230,7 @@ describe('GetModelsForMake()', () => {
     const client = new NHTSA();
     const response = await client.GetModelsForMake('audi').catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -253,8 +239,7 @@ describe('GetModelsForMakeId()', () => {
     const client = new NHTSA();
     const response = await client.GetModelsForMakeId(381).catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -269,8 +254,7 @@ describe('GetModelsForMakeYear()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -285,8 +269,7 @@ describe('GetModelsForMakeIdYear()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -295,8 +278,7 @@ describe('GetVehicleVariableList()', () => {
     const client = new NHTSA();
     const response = await client.GetVehicleVariableList().catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
@@ -307,12 +289,11 @@ describe('GetVehicleVariableValuesList()', () => {
       .GetVehicleVariableValuesList('battery type')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
 
-describe('GetVehicleVariableValuesList()', () => {
+describe('GetCanadianVehicleSpecifications()', () => {
   test('it gets canadian specs with year, make, model, and units params', async () => {
     const client = new NHTSA();
     const response = await client
@@ -324,7 +305,6 @@ describe('GetVehicleVariableValuesList()', () => {
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(mockData);
   });
 });
