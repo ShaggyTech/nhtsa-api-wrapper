@@ -81,12 +81,15 @@ module.exports = {
     /*****************
      * JEST Rules
      ****************/
-    // "jest/no-disabled-tests": 1,
+    "jest/no-disabled-tests": 0,
     // "jest/no-focused-tests": 1,
     // "jest/no-identical-title": 1,
     // "jest/prefer-to-have-length": 1,
-    // "jest/valid-expect": 1
+    // "jest/valid-expect": 1,
     "jest/prefer-expect-assertions": 0,
-    "jest/consistent-test-it": 0
+    "jest/consistent-test-it": 0,
+    "jest/no-hooks": 0,
+    "jest/lowercase-name": 0,
+    "jest/no-mocks-import": 0
   }
 }
