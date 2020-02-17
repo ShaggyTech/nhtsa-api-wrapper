@@ -2,16 +2,16 @@
  * @module api/Fetch
  * @description API Fetch Logic.
  *
- * > **Exports**:
+ * > **Module Exports**:
  * > - Class: [Fetch](module-api_Fetch.Fetch.html)
- * > - Constant: [BASE_URL](module-api_Fetch.html#~BASE_URL)
- * > - Constant: [DEFAULT_CONFIG](module-api_Fetch.html#~DEFAULT_CONFIG)
- * > - Type: [ApiResponse](https://github.github.io/fetch/#ApiResponse)
- * > - Type: [FetchConfig](https://github.github.io/fetch/#FetchConfig)
- * > - Type: [FetchRequestOptions](https://github.github.io/fetch/#FetchRequestOptions)
+ * > - Constant: [BASE_URL](#~BASE_URL)
+ * > - Constant: [DEFAULT_CONFIG](#~DEFAULT_CONFIG)
+ * > - Type: [ApiResponse](#ApiResponse)
+ * > - Type: [FetchConfig](#FetchConfig)
+ * > - Type: [FetchRequestOptions](#FetchRequestOptions)
  * > - Type: [FetchRequestBodyTypes](https://github.github.io/fetch/#request-body)
- * > - Type: [FetchResponse](https://github.github.io/fetch/#FetchResponse)
- * > - Type: [NhstaResponse](https://github.github.io/fetch/#NhstaResponse)
+ * > - Type: [FetchResponse](#FetchResponse)
+ * > - Type: [NhtsaResponse](#NhtsaResponse)
  */
 
 /* Module Dependencies */
@@ -47,6 +47,10 @@ export const DEFAULT_CONFIG: FetchConfig = {
 
 /**
  * Class wrapper containing API wrapper HTTP Fetch logic.
+ *
+ * > **Static Methods**:
+ * > - [buildQueryString](#buildQueryString)
+ * > - [get](#get)
  *
  * @param {module:api/Fetch.FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
