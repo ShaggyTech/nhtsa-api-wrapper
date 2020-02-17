@@ -1,5 +1,4 @@
-/* Parent Class */
-import { Fetch } from './Fetch';
+import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
 
 /* Import implemented API Action classes */
 import {
@@ -82,7 +81,7 @@ class NHTSA extends Fetch
     GetVehicleVariableList,
     GetVehicleVariableValuesList,
     GetWMIsForManufacturer {
-  constructor(userConfig?: import('./types').FetchConfig) {
+  constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
 
