@@ -4,8 +4,8 @@
  *
  * > **Exports**:
  * > - Class: [DecodeVin](module-api_actions_DecodeVin.DecodeVin.html)
- * > - Type: [DecodeVinResponse](module-api_actions_DecodeVin.html#DecodeVinResponse)
- * > - Type: [DecodeVinResults](module-api_actions_DecodeVin.html#DecodeVinResults)
+ * > - Type: [DecodeVinResponse](#DecodeVinResponse)
+ * > - Type: [DecodeVinResults](#DecodeVinResults)
  *
  */
 
@@ -17,7 +17,7 @@ import { getTypeof } from '../../utils';
 /**
  * Implemented by [NHTSA](NHTSA.html#NHTSA).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
