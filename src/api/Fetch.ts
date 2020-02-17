@@ -1,11 +1,29 @@
 /**
  * @module api/Fetch
+ * @description API Fetch Logic.
+ *
+ * > **Exports**:
+ * > - Class: [Fetch](module-api_Fetch.Fetch.html)
+ * > - Constant: [BASE_URL](module-api_Fetch.html#~BASE_URL)
+ * > - Constant: [DEFAULT_CONFIG](module-api_Fetch.html#~DEFAULT_CONFIG)
+ * > - Type: [ApiResponse](https://github.github.io/fetch/#ApiResponse)
+ * > - Type: [FetchConfig](https://github.github.io/fetch/#FetchConfig)
+ * > - Type: [FetchRequestOptions](https://github.github.io/fetch/#FetchRequestOptions)
+ * > - Type: [FetchRequestBodyTypes](https://github.github.io/fetch/#request-body)
+ * > - Type: [FetchResponse](https://github.github.io/fetch/#FetchResponse)
+ * > - Type: [NhstaResponse](https://github.github.io/fetch/#NhstaResponse)
  */
 
 /* Module Dependencies */
 import fetch from 'cross-fetch';
 /* Utilities */
 import { getTypeof, makeQueryString } from '../utils';
+/* Types */
+import { QueryStringParameters } from '../utils/types';
+
+/*****************
+ * CONSTANTS
+ ****************/
 
 /**
  * @constant {string} BASE_URL Default Fetch base URL string
@@ -18,10 +36,14 @@ export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
  * @property {string} apiResponseFormat=json
  * @property {string} baseUrl=BASE_URL
  */
-export const DEFAULT_CONFIG: import('./types').FetchConfig = {
+export const DEFAULT_CONFIG: FetchConfig = {
   apiResponseFormat: 'json',
   baseUrl: BASE_URL
 };
+
+/*****************
+ * Fetch Class
+ ****************/
 
 /**
  * Class wrapper containing API wrapper HTTP Fetch logic.
@@ -31,10 +53,10 @@ export const DEFAULT_CONFIG: import('./types').FetchConfig = {
 export class Fetch {
   apiResponseFormat: string;
   baseUrl?: string;
-  options?: import('./types').FetchRequestOptions;
+  options?: FetchRequestOptions;
 
-  constructor(userConfig?: import('./types').FetchConfig) {
-    let finalConfig: import('./types').FetchConfig;
+  constructor(userConfig?: FetchConfig) {
+    let finalConfig: FetchConfig;
 
     /* userConfig takes precedence over DEFAULT_CONFIG */
     if (userConfig && getTypeof(userConfig) === 'object') {
@@ -65,7 +87,7 @@ export class Fetch {
    * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
    */
   async buildQueryString(
-    params: import('../utils/types').QueryStringParameters,
+    params: QueryStringParameters,
     allowEmptyStringValues = false
   ): Promise<string | Error> {
     /*
@@ -96,8 +118,8 @@ export class Fetch {
    */
   async get(
     url: string,
-    options: import('./types').FetchRequestOptions = {}
-  ): Promise<import('./types').ApiResponse | Error> {
+    options: FetchRequestOptions = {}
+  ): Promise<ApiResponse | Error> {
     /* Runtime typechecking */
     const typeofUrl = getTypeof(url);
     if (typeofUrl !== 'string') {
@@ -133,10 +155,12 @@ export class Fetch {
       );
 
     /* Convert the NHTSA API data to JSON */
-    const NhtsaResponse: import('./types').NhtsaResponse = await response.json();
+    const NhtsaResponse: NhtsaResponse = await response
+      .json()
+      .then((json: NhtsaResponse): NhtsaResponse => json);
 
     /* Add the fetch response information to the returned NHSTA API data */
-    const finalResult: import('./types').ApiResponse = {
+    const finalResult: ApiResponse = {
       ...NhtsaResponse,
       FetchResponse: {
         headers: response.headers,
@@ -152,3 +176,144 @@ export class Fetch {
     return Promise.resolve(finalResult);
   }
 }
+
+/*****************
+ * Types
+ ****************/
+
+/**
+ * Results from NHSTA API Actions.
+ *
+ * @memberof module:api/Fetch
+ */
+export type NhstaResults = Array<
+  import('./actions/DecodeVin').DecodeVinResults
+  // | ResultDecodeVinValues
+  // | ResultDecodeWMI
+  // | ResultGetWMIsForManufacturer
+  // | ResultGetAllMakes
+  // | ResultGetParts
+  // | ResultGetAllManufacturers
+  // | ResultGetManufacturerDetails
+  // | ResultGetMakeForManufacturer
+  // | ResultGetMakesForManufacturerAndYear
+  // | ResultGetMakesForVehicleType
+  // | ResultGetVehicleTypesForMake
+  // | ResultGetVehicleTypesForMakeId
+  // | ResultGetEquipmentPlantCodes
+  // | ResultGetModelsForMake
+  // | ResultGetModelsForMakeYear
+  // | ResultGetModelsForMakeIdYear
+  // | ResultGetVehicleVariableList
+  // | ResultGetVehicleVariableValuesList
+  // | ResultGetCanadianVehicleSpecifications
+>;
+
+/**
+ * Various fetch request body types.
+ *
+ * @memberof module:api/Fetch
+ * @alias FetchRequestBodyTypes
+ */
+export type FetchRequestBodyTypes =
+  | URLSearchParams
+  | FormData
+  | Blob
+  | ArrayBuffer
+  | DataView;
+
+/**
+ * Options object provided as the 2nd argument to {@link module:api/Fetch.Fetch#get}.
+ *
+ * @memberof module:api/Fetch
+ * @alias FetchRequestOptions
+ */
+export type FetchRequestOptions = {
+  /**HTTP request method - Default: "GET". */
+  method?: string;
+  /** HTTP request body - [FetchRequestBodyTypes](https://github.github.io/fetch/#request-body). */
+  body?: string | FetchRequestBodyTypes;
+  /** [Object, Headers](https://github.github.io/fetch/#Headers) - Default: {}. */
+  headers?: {} | Headers;
+  /**
+   * Default: "omit" - Authentication credentials mode.
+   * - "omit" - don't include authentication credentials (e.g. Cookies) in the request.
+   * - "same-origin" - include credentials in requests to the same site
+   * - "include" - include credentials in requests to all sites.
+   */
+  credentials?: 'omit' | 'same-origin' | 'include';
+};
+
+/**
+ * Used when instantiating a Fetch class or related subclass.
+ *
+ * @memberof module:api/Fetch
+ * @alias FetchConfig
+ */
+export type FetchConfig = {
+  /** Requested response format from the NHSTA API (hardcoded to 'json' for now). */
+  apiResponseFormat?: string;
+  /** Base of the URL to build fetch URLs from. */
+  baseUrl?: string;
+  /** Options object provided as the 2nd argument to {@link module:api/Fetch.Fetch#get}. */
+  options?: FetchRequestOptions;
+};
+
+/**
+ * [Fetch API Response](https://github.github.io/fetch/#Response) properties.
+ *
+ * @memberof module:api/Fetch
+ * @alias FetchResponse
+ */
+export type FetchResponse = {
+  /** The [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers) object associated with the response. */
+  headers: Headers;
+  /** A boolean indicating whether the response was successful (status in the range 200–299) or not. */
+  ok: boolean;
+  /** Indicates whether or not the response is the result of a redirect (that is, its URL list has more than one entry). */
+  redirected: boolean;
+  /** The status code of the response. (This will be 200 for a success). */
+  status: number;
+  /** The status message corresponding to the status code. (e.g., OK for 200). */
+  statusText: string;
+  /** The URL of the response. */
+  url: string;
+};
+
+/**
+ * Response data returned from the NHSTA API.
+ *
+ * @memberof module:api/Fetch
+ * @alias NhtsaResponse
+ */
+export type NhtsaResponse = {
+  /** The number of items returned in the Results object. */
+  Count: number;
+  /** A message describing the Results. */
+  Message: string;
+  /** Search terms (VIN, WMI, etc) used in the request URL. */
+  SearchCriteria: string;
+  /** An array of Results returned by NHSTA, specific to each individual API Action. */
+  Results: Array<any>;
+};
+
+/**
+ * Complete response returned by {@link module:api/Fetch.Fetch#get}.
+ *
+ * @see {@link module:api/Fetch.NhtsaResponse}
+ * @see {@link module:api/Fetch.FetchResponse}
+ * @memberof module:api/Fetch
+ * @alias ApiResponse
+ */
+export type ApiResponse = {
+  /** The number of items returned in the Results object. */
+  Count: number;
+  /** A message describing the Results. */
+  Message: string;
+  /** Search terms (VIN, WMI, etc) used in the request URL. */
+  SearchCriteria: string;
+  /** An array of Results returned by NHSTA, specific to each individual API Action. */
+  Results: Array<any>;
+  /** {@link module:api/Fetch.FetchResponse}. */
+  FetchResponse: FetchResponse;
+};

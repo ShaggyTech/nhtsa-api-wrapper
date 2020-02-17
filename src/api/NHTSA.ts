@@ -33,7 +33,7 @@ import {
  *
  * @augments {Fetch}
  *
- * @implements {DecodeVin}
+ * @implements {module:api/actions/DecodeVin.DecodeVin}
  * @implements {DecodeVinExtended}
  * @implements {DecodeVinValues}
  * @implements {DecodeVinValuesExtended}
