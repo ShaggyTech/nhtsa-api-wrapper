@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: api/actions/GetVehicleTypesForMakeId.ts</title>
+    <title>JSDoc: utils/types.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -72,7 +72,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>api/actions/GetVehicleTypesForMakeId.ts</h1>
+                        <h1>utils/types.ts</h1>
                     </header>
                     
                     
@@ -82,59 +82,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* Parent Class */
-import { Fetch } from '../Fetch';
-/* Utiltiy Functions */
-import { getTypeof } from '../../utils';
+            <pre class="prettyprint source linenums"><code>/**
+ * Options argument object used with isValidType().
+ *
+ * @memberof module:utils/isValidType
+ */
+export type IsValidTypeOptions = {
+  /** What type are you testing for? */
+  type: string;
+  /** The value you are testing. */
+  value: any;
+};
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Object containing Key:Value pairs to build the URL query string with.
+ * - Parameter values may be either strings or numbers.
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * @memberof module:utils/makeQueryString
+ * @example
+ * {
+ * format: 'json',
+ * modelYear: 2009,
+ * whatever: 'something'
+ * }
  *
- * @category Actions
- * @hideconstructor
  */
-export class GetVehicleTypesForMakeId extends Fetch {
-  /**
-   * This returns all the Vehicle Types in the vPIC dataset for a specified Make whose ID equals the make ID in vPIC Dataset.
-   *
-   * @async
-   * @param {number} makeID - Vehicle make ID.
-   * @returns {(Promise&lt;module:api.ApiResponse | Error>)} Api Response object.
-   */
-  async GetVehicleTypesForMakeId(
-    makeID: number
-  ): Promise&lt;import('../types').ApiResponse | Error> {
-    const action = 'GetVehicleTypesForMakeId';
-
-    /* Runtime typechecking */
-    if (getTypeof(makeID) !== 'number') {
-      return Promise.reject(
-        new Error(
-          `${action}, makeID is required and must be a number, got: ${makeID}`
-        )
-      );
-    }
-
-    /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString({}).catch((err: Error) =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
-    );
-
-    /* Build the final request URL*/
-    const url = `${this.baseUrl}/${action}/${makeID}${queryString}`;
-
-    /* Return the result */
-    return await this.get(url)
-      .then(response => response)
-      .catch((err: Error) =>
-        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
-      );
-  }
-}
+export type QueryStringParameters = {
+  [propName: string]: string | number | undefined;
+};
 </code></pre>
         </article>
     </section>

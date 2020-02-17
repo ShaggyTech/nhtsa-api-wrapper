@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: GetAllManufacturers</title>
+    <title>JSDoc: api/actions/DecodeVin</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,8 +69,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Class</p>
-                        <h1>GetAllManufacturers</h1>
+                        <p>Module</p>
+                        <h1>api/actions/DecodeVin</h1>
                     </header>
                     
                     
@@ -82,10 +82,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GetAllManufacturers</h2>
         
-            <div class="class-description"><p>Implemented by <a href="NHTSA.html#NHTSA">NHTSA</a>.</p>
-<p>Extends <a href="module-api_Fetch.Fetch.html">api/Fetch</a>.</p></div>
+            
         
     
 </header>
@@ -93,6 +91,18 @@
 <article>
     <div class="container-overview">
     
+        
+            <div class="description"><p>DecodeVin NHSTA Api Action.</p>
+<blockquote>
+<p><strong>Exports</strong>:</p>
+<ul>
+<li>Class: <a href="module-api_actions_DecodeVin.DecodeVin.html">DecodeVin</a></li>
+<li>Type: <a href="module-api_actions_DecodeVin.html#DecodeVinResponse">DecodeVinResponse</a></li>
+<li>Type: <a href="module-api_actions_DecodeVin.html#DecodeVinResults">DecodeVinResults</a></li>
+</ul>
+</blockquote></div>
+        
+
         
             
 
@@ -142,9 +152,9 @@
 
     
         <p class="tag-source">
-            <a href="api_actions_GetAllManufacturers.ts.html" class="button">View Source</a>
+            <a href="api_actions_DecodeVin.ts.html" class="button">View Source</a>
             <span>
-                <a href="api_actions_GetAllManufacturers.ts.html">api/actions/GetAllManufacturers.ts</a>, <a href="api_actions_GetAllManufacturers.ts.html#line12">line 12</a>
+                <a href="api_actions_DecodeVin.ts.html">api/actions/DecodeVin.ts</a>, <a href="api_actions_DecodeVin.ts.html#line2">line 2</a>
             </span>
         </p>
     
@@ -177,6 +187,15 @@
     
     
 
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-api_actions_DecodeVin.DecodeVin.html">DecodeVin</a></dt>
+            <dd></dd>
+        </dl>
     
 
     
@@ -191,56 +210,44 @@
 
     
         <div class='vertical-section'>
-            <h3 class="title"><span>Methods</span></h3>
+            <h3 class="title"><span>Type Definitions</span></h3>
             <div class="members">
             
                 <div class="member">
 
-
-    
-    <h4 class="name" id="GetAllManufacturers">
-        <a class="href-link" href="#GetAllManufacturers">#</a>
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
         
-            
-                <span class='tag'>async</span>
-            
-        
-        <span class="code-name">
-            
-                GetAllManufacturers<span class="signature">(params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(module:api.ApiResponse|Error)>}</span>
-            
-        </span>
-    </h4>
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id="DecodeVinResponse">
+    <a class="href-link" href="#DecodeVinResponse">#</a>
+    
+    <span class="code-name">
+        DecodeVinResponse
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Full API response returned by DecodeVin API Action.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
     
 
-    
-    
-    <div class="description">
-        <p>This provides a list of all the Manufacturers available in vPIC Dataset.</p>
-<ul>
-<li><code>params.manufacturerType</code> allows the user to filter the list based on manufacturer type,
-('Incomplete Vehicles', 'Completed Vehicle Manufacturer', 'Incomplete Vehicle Manufacturer',
-'Intermediate Manufacturer', 'Final-Stage Manufacturer', 'Alterer', or any partial match of those strings).</li>
-<li>You can get a list of all manufacturer types with the following API Action:
-<code>GetVehicleVariableValuesList('manufacturer type')</code></li>
-<li>Results are provided in pages of 100 items.</li>
-<li>Provide a number value for params.page to specify 1st (default), 2nd, 3rd, Nth, etc page.</li>
-</ul>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -250,11 +257,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -263,130 +266,123 @@
 
     <tbody>
     
-
         
 <tr class="deep-level-0">
-  
-      <td class="name"><code>params</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">object</span>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
-
-      
-
-      
-      </td>
-  
-
-  
-      <td class="default">
-      
-          {}
-      
-      </td>
-  
-
-  <td class="description last"><p>Query Search Parameters to append to the URL.</p></td>
-</tr>
-
-  
-  
     
-<tr class="deep-level-1">
-  
-      <td class="name"><code>manufacturerType</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
-
-      
-
-      
-      </td>
-  
-
-  
-      <td class="default">
-      
-      </td>
-  
-
-  <td class="description last"><p>See method description.</p></td>
-</tr>
-
-  
+        <td class="name"><code>Count</code></td>
     
-<tr class="deep-level-1">
-  
-      <td class="name"><code>page</code></td>
-  
 
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-|
-
+    <td class="type">
+    
+        
 <span class="param-type">number</span>
 
 
-  
-  </td>
+    
+    </td>
 
-  
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
+    
 
-      
+    
 
-      
-      </td>
-  
-
-  
-      <td class="default">
-      
-      </td>
-  
-
-  <td class="description last"><p>Specify the page number (results returned 100 at a time).</p></td>
+    <td class="description last"><p>A count of the items returned in the Results array.</p></td>
 </tr>
 
-  
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Message</code></td>
+    
 
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>A message describing the Results array.</p></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>SearchCriteria</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Search terms (VIN, WMI, manufacturer, etc.) used in the request URL.</p></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Results</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">Array.&lt;<a href="module-api_actions_DecodeVin.html#DecodeVinResults">DecodeVinResults</a>></span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The search results returned by the NHSTA API request.</p></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>FetchResponse</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type"><a href="module-api_Fetch.html#FetchResponse">FetchResponse</a></span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p><a href="https://github.github.io/fetch/#Response">Fetch API Response</a> properties.</p></td>
+</tr>
 
     
     </tbody>
 </table>
-
 
 
 
@@ -424,9 +420,9 @@
 
     
         <p class="tag-source">
-            <a href="api_actions_GetAllManufacturers.ts.html" class="button">View Source</a>
+            <a href="api_actions_DecodeVin.ts.html" class="button">View Source</a>
             <span>
-                <a href="api_actions_GetAllManufacturers.ts.html">api/actions/GetAllManufacturers.ts</a>, <a href="api_actions_GetAllManufacturers.ts.html#line29">line 29</a>
+                <a href="api_actions_DecodeVin.ts.html">api/actions/DecodeVin.ts</a>, <a href="api_actions_DecodeVin.ts.html#line72">line 72</a>
             </span>
         </p>
     
@@ -436,43 +432,206 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
+</div>
             
-                    
+                <div class="member">
 
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Api Response object.</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
         
-<span class="param-type">Promise.&lt;(module:api.ApiResponse|Error)></span>
+<span class="param-type">object</span>
 
 
-    </div>
+    </span>
+
+<h4 class="name" id="DecodeVinResults">
+    <a class="href-link" href="#DecodeVinResults">#</a>
     
+    <span class="code-name">
+        DecodeVinResults
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Type representing the structure of objects returned within '<a href="module-api_actions_DecodeVin.html#DecodeVinResponse"><code>DecodeVinResponse</code></a>.Results' array.</p>
 </div>
 
-                
-        </div>
-    </div>
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Value</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>ValueId</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Variable</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>VariableId</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_actions_DecodeVin.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_actions_DecodeVin.ts.html">api/actions/DecodeVin.ts</a>, <a href="api_actions_DecodeVin.ts.html#line61">line 61</a>
+            </span>
+        </p>
+    
+</dl>
+
 
 
 
@@ -481,8 +640,6 @@
             
             </div>
         </div>
-    
-
     
 
     

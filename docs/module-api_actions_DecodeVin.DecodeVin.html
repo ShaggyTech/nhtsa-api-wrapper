@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: api/actions/GetVehicleTypesForMakeId.ts</title>
+    <title>JSDoc: DecodeVin</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -71,73 +69,435 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Source</p>
-                        <h1>api/actions/GetVehicleTypesForMakeId.ts</h1>
+                        <p>Class</p>
+                        <h1>DecodeVin</h1>
                     </header>
                     
                     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/* Parent Class */
-import { Fetch } from '../Fetch';
-/* Utiltiy Functions */
-import { getTypeof } from '../../utils';
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-api_actions_DecodeVin.html">api/actions/DecodeVin</a>.</span>DecodeVin</h2>
+        
+            <div class="class-description"><p>Implemented by <a href="NHTSA.html#NHTSA">NHTSA</a>.</p>
+<p>Extends <a href="module-api_Fetch.Fetch.html">api/Fetch</a>.</p></div>
+        
+    
+</header>
 
-/**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
- *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
- *
- * @category Actions
- * @hideconstructor
- */
-export class GetVehicleTypesForMakeId extends Fetch {
-  /**
-   * This returns all the Vehicle Types in the vPIC dataset for a specified Make whose ID equals the make ID in vPIC Dataset.
-   *
-   * @async
-   * @param {number} makeID - Vehicle make ID.
-   * @returns {(Promise&lt;module:api.ApiResponse | Error>)} Api Response object.
-   */
-  async GetVehicleTypesForMakeId(
-    makeID: number
-  ): Promise&lt;import('../types').ApiResponse | Error> {
-    const action = 'GetVehicleTypesForMakeId';
+<article>
+    <div class="container-overview">
+    
+        
+            
 
-    /* Runtime typechecking */
-    if (getTypeof(makeID) !== 'number') {
-      return Promise.reject(
-        new Error(
-          `${action}, makeID is required and must be a number, got: ${makeID}`
-        )
-      );
-    }
 
-    /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString({}).catch((err: Error) =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
-    );
 
-    /* Build the final request URL*/
-    const url = `${this.baseUrl}/${action}/${makeID}${queryString}`;
 
-    /* Return the result */
-    return await this.get(url)
-      .then(response => response)
-      .catch((err: Error) =>
-        Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
-      );
-  }
-}
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_actions_DecodeVin.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_actions_DecodeVin.ts.html">api/actions/DecodeVin.ts</a>, <a href="api_actions_DecodeVin.ts.html#line24">line 24</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="DecodeVin">
+        <a class="href-link" href="#DecodeVin">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                DecodeVin<span class="signature">(vin, params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="module-api_actions_DecodeVin.html#DecodeVinResponse">DecodeVinResponse</a>|Error)>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>The DecodeVin API Action will decode the VIN and the decoded output will be made available in the format of Key-value pairs.</p>
+<ul>
+<li>Providing <code>params.modelYear</code> allows for the decoding to specifically be done in the current,
+or older (pre-1980), model year ranges.
+<ul>
+<li>It is recommended to always provide <code>params.modelYear</code> if the model year is known at the time of decoding.</li>
+</ul>
+</li>
+<li>This API also supports partial VIN decoding (VINs that are less than 17 characters).
+<ul>
+<li>In this case, the VIN will be decoded partially with the available characters.</li>
+<li>In case of partial VINs, a &quot;*&quot; could be used to indicate the unavailable characters.</li>
+<li>The 9th digit is not necessary.</li>
+</ul>
+</li>
+</ul>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>vin</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>Vehicle Identification Number (full or partial).</p></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          {}
+      
+      </td>
+  
+
+  <td class="description last"><p>Query Search Parameters to append to the URL.</p></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>modelYear</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>Optional Model Year search parameter.</p></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_actions_DecodeVin.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_actions_DecodeVin.ts.html">api/actions/DecodeVin.ts</a>, <a href="api_actions_DecodeVin.ts.html#line41">line 41</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><ul>
+<li>Api Response object.</li>
+</ul></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;(<a href="module-api_actions_DecodeVin.html#DecodeVinResponse">DecodeVinResponse</a>|Error)></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
