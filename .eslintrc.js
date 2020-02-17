@@ -51,7 +51,7 @@ module.exports = {
     /*****************
      * JSDOC Rules
      ****************/
-    "jsdoc/check-alignment": 1, // Recommended
+    // "jsdoc/check-alignment": 1, // Recommended
     // "jsdoc/check-examples": 1,
     // "jsdoc/check-indentation": 1,
     "jsdoc/check-param-names": 1, // Recommended
@@ -64,7 +64,7 @@ module.exports = {
     // "jsdoc/no-types": 1,
     "jsdoc/no-undefined-types": 1, // Recommended
     "jsdoc/require-description": 1,
-    "jsdoc/require-description-complete-sentence": 1,
+    // "jsdoc/require-description-complete-sentence": 1,
     // "jsdoc/require-example": 1,
     "jsdoc/require-hyphen-before-param-description": 1,
     "jsdoc/require-jsdoc": 1, // Recommended
