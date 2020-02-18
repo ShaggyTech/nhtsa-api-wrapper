@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const PKG = require('./package.json');
+
+const TEMPLATE = 'node_modules/better-docs';
+
 const isDev = process.env.JSDOC_ENV === 'development';
 const outDir = isDev ? 'dev/docs/' : 'docs/';
-
-const pkg = require('./package.json');
 
 module.exports = {
   source: {
@@ -30,13 +32,13 @@ module.exports = {
       }
     },
     'better-docs': {
-      name: `${pkg.name}`,
+      name: `${PKG.name}`,
       logo: '',
       hideGenerator: true,
       navigation: [
         {
-          label: 'Github',
-          href: `${pkg.homepage}`
+          label: 'Github Source Code',
+          href: `${PKG.repository.homepage}`
         },
         {
           label: '@shaggytech',
@@ -49,7 +51,7 @@ module.exports = {
     recurse: true,
     verbose: false,
     destination: outDir,
-    template: 'node_modules/better-docs',
+    template: TEMPLATE,
     tutorials: './docsSrc/tutorials',
     readme: './README.md'
   },

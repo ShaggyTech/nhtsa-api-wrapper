@@ -55,7 +55,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShaggyTech/nhtsa-api-wrapper.git"
+    "url": "git+https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
+    "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper"
   },
   "author": "Brandon Eichler <shaggytech.com>",
   "license": "MIT",
