@@ -1,3 +1,12 @@
+/**
+ * @module api/NHTSA
+ * @category Wrapper
+ * @description API Fetch Logic.
+ *
+ * > **Module Exports**:
+ * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHSTA API Actions
+ */
+
 import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
 
 /* Import implemented API Action classes */
@@ -33,7 +42,7 @@ import {
  * @augments {Fetch}
  *
  * @implements {module:api/actions/DecodeVin.DecodeVin}
- * @implements {DecodeVinExtended}
+ * @implements {module:api/actions/DecodeVinExtended.DecodeVinExtended}
  * @implements {DecodeVinValues}
  * @implements {DecodeVinValuesExtended}
  * @implements {DecodeWMI}

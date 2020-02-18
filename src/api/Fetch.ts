@@ -1,5 +1,6 @@
 /**
  * @module api/Fetch
+ * @category API
  * @description API Fetch Logic.
  *
  * > **Module Exports**:
