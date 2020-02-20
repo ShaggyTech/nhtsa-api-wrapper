@@ -45,24 +45,24 @@ import {
  * @implements {module:api/actions/DecodeVinValues.DecodeVinValues}
  * @implements {module:api/actions/DecodeVinValuesExtended.DecodeVinValuesExtended}
  * @implements {module:api/actions/DecodeWMI.DecodeWMI}
- * @implements {GetAllMakes}
- * @implements {GetAllManufacturers}
- * @implements {GetCanadianVehicleSpecifications}
- * @implements {GetEquipmentPlantCodes}
- * @implements {GetMakeForManufacturer}
- * @implements {GetMakesForManufacturerAndYear}
- * @implements {GetMakesForVehicleType}
- * @implements {GetManufacturerDetails}
- * @implements {GetModelsForMake}
- * @implements {GetModelsForMakeId}
- * @implements {GetModelsForMakeIdYear}
- * @implements {GetModelsForMakeYear}
- * @implements {GetParts}
- * @implements {GetVehicleTypesForMake}
- * @implements {GetVehicleTypesForMakeId}
- * @implements {GetVehicleVariableList}
- * @implements {GetVehicleVariableValuesList}
- * @implements {GetWMIsForManufacturer}
+ * @implements {module:api/actions/GetAllMakes.GetAllMakes}
+ * @implements {module:api/actions/GetAllManufacturers.GetAllManufacturers}
+ * @implements {module:api/actions/GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications}
+ * @implements {module:api/actions/GetEquipmentPlantCodes.GetEquipmentPlantCodes}
+ * @implements {module:api/actions/GetMakeForManufacturer.GetMakeForManufacturer}
+ * @implements {module:api/actions/GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear}
+ * @implements {module:api/actions/GetMakesForVehicleType.GetMakesForVehicleType}
+ * @implements {module:api/actions/GetManufacturerDetails.GetManufacturerDetails}
+ * @implements {module:api/actions/GetModelsForMake.GetModelsForMake}
+ * @implements {module:api/actions/GetModelsForMakeId.GetModelsForMakeId}
+ * @implements {module:api/actions/GetModelsForMakeIdYear.GetModelsForMakeIdYear}
+ * @implements {module:api/actions/GetModelsForMakeYear.GetModelsForMakeYear}
+ * @implements {module:api/actions/GetParts.GetParts}
+ * @implements {module:api/actions/GetVehicleTypesForMake.GetVehicleTypesForMake}
+ * @implements {module:api/actions/GetVehicleTypesForMakeId.GetVehicleTypesForMakeId}
+ * @implements {module:api/actions/GetVehicleVariableList.GetVehicleVariableList}
+ * @implements {module:api/actions/GetVehicleVariableValuesList.GetVehicleVariableValuesList}
+ * @implements {module:api/actions/GetWMIsForManufacturer.GetWMIsForManufacturer}
  */
 class NHTSA extends Fetch
   implements
