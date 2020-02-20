@@ -1,102 +1,102 @@
-export { DecodeVinResults, DecodeVinResponse } from './actions/DecodeVin';
+export { DecodeVinResults, DecodeVinResponse } from './DecodeVin';
 
 export {
   DecodeVinExtendedResults,
   DecodeVinExtendedResponse
-} from './actions/DecodeVinExtended';
+} from './DecodeVinExtended';
 
 export {
   DecodeVinValuesResults,
   DecodeVinValuesResponse
-} from './actions/DecodeVinValues';
+} from './DecodeVinValues';
 
 export {
   DecodeVinValuesExtendedResults,
   DecodeVinValuesExtendedResponse
-} from './actions/DecodeVinValuesExtended';
+} from './DecodeVinValuesExtended';
 
-export { DecodeWMIResults, DecodeWMIResponse } from './actions/DecodeWMI';
+export { DecodeWMIResults, DecodeWMIResponse } from './DecodeWMI';
 
-export { GetAllMakesResults, GetAllMakesResponse } from './actions/GetAllMakes';
+export { GetAllMakesResults, GetAllMakesResponse } from './GetAllMakes';
 
 export {
   GetAllManufacturersResults,
   GetAllManufacturersResponse
-} from './actions/GetAllManufacturers';
+} from './GetAllManufacturers';
 
 export {
   GetCanadianVehicleSpecificationsResults,
   GetCanadianVehicleSpecificationsResponse
-} from './actions/GetCanadianVehicleSpecifications';
+} from './GetCanadianVehicleSpecifications';
 
 export {
   GetEquipmentPlantCodesResults,
   GetEquipmentPlantCodesResponse
-} from './actions/GetEquipmentPlantCodes';
+} from './GetEquipmentPlantCodes';
 
 export {
   GetMakeForManufacturerResults,
   GetMakeForManufacturerResponse
-} from './actions/GetMakeForManufacturer';
+} from './GetMakeForManufacturer';
 
 export {
   GetMakesForManufacturerAndYearResults,
   GetMakesForManufacturerAndYearResponse
-} from './actions/GetMakesForManufacturerAndYear';
+} from './GetMakesForManufacturerAndYear';
 
 export {
   GetMakesForVehicleTypeResults,
   GetMakesForVehicleTypeResponse
-} from './actions/GetMakesForVehicleType';
+} from './GetMakesForVehicleType';
 
 export {
   GetManufacturerDetailsResults,
   GetManufacturerDetailsResponse
-} from './actions/GetManufacturerDetails';
+} from './GetManufacturerDetails';
 
 export {
   GetModelsForMakeResults,
   GetModelsForMakeResponse
-} from './actions/GetModelsForMake';
+} from './GetModelsForMake';
 
 export {
   GetModelsForMakeIdResults,
   GetModelsForMakeIdResponse
-} from './actions/GetModelsForMakeId';
+} from './GetModelsForMakeId';
 
 export {
   GetModelsForMakeIdYearResults,
   GetModelsForMakeIdYearResponse
-} from './actions/GetModelsForMakeIdYear';
+} from './GetModelsForMakeIdYear';
 
 export {
   GetModelsForMakeYearResults,
   GetModelsForMakeYearResponse
-} from './actions/GetModelsForMakeYear';
+} from './GetModelsForMakeYear';
 
-export { GetPartsResults, GetPartsResponse } from './actions/GetParts';
+export { GetPartsResults, GetPartsResponse } from './GetParts';
 
 export {
   GetVehicleTypesForMakeResults,
   GetVehicleTypesForMakeResponse
-} from './actions/GetVehicleTypesForMake';
+} from './GetVehicleTypesForMake';
 
 export {
   GetVehicleTypesForMakeIdResults,
   GetVehicleTypesForMakeIdResponse
-} from './actions/GetVehicleTypesForMakeId';
+} from './GetVehicleTypesForMakeId';
 
 export {
   GetVehicleVariableListResults,
   GetVehicleVariableListResponse
-} from './actions/GetVehicleVariableList';
+} from './GetVehicleVariableList';
 
 export {
   GetVehicleVariableValuesListResults,
   GetVehicleVariableValuesListResponse
-} from './actions/GetVehicleVariableValuesList';
+} from './GetVehicleVariableValuesList';
 
 export {
   GetWMIsForManufacturerResults,
   GetWMIsForManufacturerResponse
-} from './actions/GetWMIsForManufacturer';
+} from './GetWMIsForManufacturer';
