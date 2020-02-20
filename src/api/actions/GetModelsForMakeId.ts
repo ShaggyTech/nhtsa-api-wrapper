@@ -1,34 +1,51 @@
-/* Parent Class */
-import { Fetch } from '../Fetch';
+/**
+ * @module api/actions/GetModelsForMakeId
+ * @category Actions
+ * @description GetModelsForMakeId NHSTA Api Action.
+ *
+ * > **Module Exports**:
+ * > - Class: [GetModelsForMakeId](module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html)
+ * >
+ * > **Types**
+ * > - Type: [GetModelsForMakeIdResponse](#GetModelsForMakeIdResponse)
+ * > - Type: [GetModelsForMakeIdResults](#GetModelsForMakeIdResults)
+ *
+ */
+
+/* Parent Class and Fetch Type */
+import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
  */
 export class GetModelsForMakeId extends Fetch {
   /**
-   * This returns the Models in the vPIC dataset for a specified Make whose Id is EQUAL the MakeId in vPIC Dataset.
+   * This returns the Models in the vPIC dataset for a specified Make
+   * whose Id is equal to the `makeId` in the vPIC Dataset.
    *
    * @async
    * @param {number} makeID - Vehicle make ID (number).
-   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetModelsForMakeIdResponse | Error>)} Api Response object.
    */
   async GetModelsForMakeId(
     makeID: number
-  ): Promise<import('../types').ApiResponse | Error> {
+  ): Promise<GetModelsForMakeIdResponse | Error> {
     const action = 'GetModelsForMakeId';
 
     /* Runtime typechecking */
-    if (getTypeof(makeID) !== 'number') {
+    const typeofMakeId = getTypeof(makeID);
+    if (typeofMakeId !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, makeID is required and must be a number, got: ${makeID}`
+          `${action}, "makeName" argument is required and must be of type number, got: ` +
+            `<${typeofMakeId}> ${makeID}`
         )
       );
     }
@@ -51,3 +68,35 @@ export class GetModelsForMakeId extends Fetch {
       );
   }
 }
+
+/**
+ * Type representing the structure of objects found in the '{@link GetModelsForMakeIdResponse}.Results' array.
+ *
+ * @memberof module:api/actions/GetModelsForMakeId
+ * @alias GetModelsForMakeIdResults
+ */
+export type GetModelsForMakeIdResults = {
+  Make_ID: number;
+  Make_Name: string;
+  Model_ID: number;
+  Model_Name: string;
+};
+
+/**
+ * Type representing the complete response returned by the GetModelsForMakeId API Action.
+ *
+ * @memberof module:api/actions/GetModelsForMakeId
+ * @alias GetModelsForMakeIdResponse
+ */
+export type GetModelsForMakeIdResponse = {
+  /** A count of the items returned in the Results array. */
+  Count: number;
+  /** A message describing the Results array. */
+  Message: string;
+  /** Search terms (VIN, WMI, manufacturer, etc.) used in the request URL. */
+  SearchCriteria: string;
+  /** The search results returned by the NHSTA API request. */
+  Results: Array<GetModelsForMakeIdResults>;
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  FetchResponse: FetchResponse;
+};

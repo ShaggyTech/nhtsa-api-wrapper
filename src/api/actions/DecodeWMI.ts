@@ -1,12 +1,26 @@
-/* Parent Class */
-import { Fetch } from '../Fetch';
+/**
+ * @module api/actions/DecodeWMI
+ * @category Actions
+ * @description DecodeWMI NHSTA Api Action.
+ *
+ * > **Module Exports**:
+ * > - Class: [DecodeWMI](module-api_actions_DecodeWMI.DecodeWMI.html)
+ * >
+ * > **Types**
+ * > - Type: [DecodeWMIResponse](#DecodeWMIResponse)
+ * > - Type: [DecodeWMIResults](#DecodeWMIResults)
+ *
+ */
+
+/* Parent Class and Fetch Type */
+import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
@@ -19,11 +33,9 @@ export class DecodeWMI extends Fetch {
    *
    * @async
    * @param {string} WMI - World Manufacturer Identifier.
-   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+   * @returns {(Promise<DecodeWMIResults | Error>)} Api Response object.
    */
-  async DecodeWMI(
-    WMI: string
-  ): Promise<import('../types').ApiResponse | Error> {
+  async DecodeWMI(WMI: string): Promise<DecodeWMIResponse | Error> {
     const action = 'DecodeWMI';
 
     /* Runtime typechecking */
@@ -36,7 +48,7 @@ export class DecodeWMI extends Fetch {
     }
 
     /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString({}).catch(err =>
+    const queryString = await this.buildQueryString().catch(err =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
       )
@@ -53,3 +65,40 @@ export class DecodeWMI extends Fetch {
       );
   }
 }
+
+/**
+ * Type representing the structure of objects found in the '{@link DecodeWMIResponse}.Results' array.
+ *
+ * @memberof module:api/actions/DecodeWMI
+ * @alias DecodeWMIResults
+ */
+export type DecodeWMIResults = {
+  CommonName: string;
+  CreatedOn: string;
+  DateAvailableToPublic: string;
+  Make: string;
+  ManufacturerName: string;
+  ParentCompanyName: string;
+  URL: string;
+  UpdatedOn: string;
+  VehicleType: string;
+};
+
+/**
+ * Type representing the complete response returned by the DecodeWMI API Action.
+ *
+ * @memberof module:api/actions/DecodeWMI
+ * @alias DecodeWMIResponse
+ */
+export type DecodeWMIResponse = {
+  /** A count of the items returned in the Results array. */
+  Count: number;
+  /** A message describing the Results array. */
+  Message: string;
+  /** Search terms (VIN, WMI, manufacturer, etc.) used in the request URL. */
+  SearchCriteria: string;
+  /** The search results returned by the NHSTA API request. */
+  Results: Array<DecodeWMIResults>;
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  FetchResponse: FetchResponse;
+};

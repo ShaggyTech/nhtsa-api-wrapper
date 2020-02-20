@@ -62,7 +62,7 @@ module.exports = {
     "jsdoc/match-description": 1,
     "jsdoc/newline-after-description": 1, // Recommended
     // "jsdoc/no-types": 1,
-    "jsdoc/no-undefined-types": 1, // Recommended
+    // "jsdoc/no-undefined-types": 1, // Recommended
     "jsdoc/require-description": 1,
     // "jsdoc/require-description-complete-sentence": 1,
     // "jsdoc/require-example": 1,

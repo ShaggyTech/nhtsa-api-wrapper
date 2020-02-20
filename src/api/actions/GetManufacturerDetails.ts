@@ -1,10 +1,26 @@
-/* Parent Class */
-import { Fetch } from '../Fetch';
+/**
+ * @module api/actions/GetManufacturerDetails
+ * @category Actions
+ * @description GetManufacturerDetails NHSTA Api Action.
+ *
+ * > **Module Exports**:
+ * > - Class: [GetManufacturerDetails](module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html)
+ * >
+ * > **Types**
+ * > - Type: [GetManufacturerDetailsResponse](#GetManufacturerDetailsResponse)
+ * > - Type: [GetManufacturerDetailsResults](#GetManufacturerDetailsResults)
+ *
+ */
+
+/* Parent Class and Fetch Type */
+import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
+/* Utiltiy Functions */
+import { getTypeof } from '../../utils';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
@@ -19,24 +35,26 @@ export class GetManufacturerDetails extends Fetch {
    *
    * @async
    * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
-   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetManufacturerDetailsResponse | Error>)} Api Response object.
    */
   public async GetManufacturerDetails(
     manufacturer: string | number
-  ): Promise<import('../types').ApiResponse | Error> {
+  ): Promise<GetManufacturerDetailsResponse | Error> {
     const action = 'GetManufacturerDetails';
 
     /* Runtime typechecking */
-    if (!manufacturer) {
+    const typeofManufacturer = getTypeof(manufacturer);
+    if (typeofManufacturer !== 'string' && typeofManufacturer !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, manufacturer argument is required and must be a string or number, got: ${manufacturer}`
+          `${action}, "manufacturer" argument is required and must be of type string or number, got: ` +
+            `<${typeofManufacturer}> ${manufacturer}`
         )
       );
     }
 
     /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString({}).catch(err =>
+    const queryString = await this.buildQueryString().catch(err =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
       )
@@ -53,3 +71,63 @@ export class GetManufacturerDetails extends Fetch {
       );
   }
 }
+
+/**
+ * Type representing the structure of objects found in the '{@link GetManufacturerDetailsResponse}.Results' array.
+ *
+ * @memberof module:api/actions/GetManufacturerDetails
+ * @alias GetManufacturerDetailsResults
+ */
+export type GetManufacturerDetailsResults = {
+  Address: string;
+  Address2: string;
+  City: string;
+  ContactEmail: string;
+  ContactFax: string;
+  ContactPhone: string;
+  Country: string;
+  DBAs: string;
+  EquipmentItems: Array<object>;
+  LastUpdated: string;
+  ManufacturerTypes: Array<{
+    Name: string;
+  }>;
+  Mfr_CommonName: string;
+  Mfr_ID: number;
+  Mfr_Name: string;
+  OtherManufacturerDetails: string;
+  PostalCode: string;
+  PrimaryProduct: string;
+  PrincipalFirstName: string;
+  PrincipalLastName: string;
+  PrincipalPosition: string;
+  StateProvince: string;
+  SubmittedName: string;
+  SubmittedOn: string;
+  SubmittedPosition: string;
+  VehicleTypes: Array<{
+    GVWRFrom: string;
+    GVWRTo: string;
+    IsPrimary: boolean;
+    Name: string;
+  }>;
+};
+
+/**
+ * Type representing the complete response returned by the GetManufacturerDetails API Action.
+ *
+ * @memberof module:api/actions/GetManufacturerDetails
+ * @alias GetManufacturerDetailsResponse
+ */
+export type GetManufacturerDetailsResponse = {
+  /** A count of the items returned in the Results array. */
+  Count: number;
+  /** A message describing the Results array. */
+  Message: string;
+  /** Search terms (VIN, WMI, manufacturer, etc.) used in the request URL. */
+  SearchCriteria: string;
+  /** The search results returned by the NHSTA API request. */
+  Results: Array<GetManufacturerDetailsResults>;
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  FetchResponse: FetchResponse;
+};

@@ -1,10 +1,24 @@
-/* Parent Class */
-import { Fetch } from '../Fetch';
+/**
+ * @module api/actions/GetAllManufacturers
+ * @category Actions
+ * @description GetAllManufacturers NHSTA Api Action.
+ *
+ * > **Module Exports**:
+ * > - Class: [GetAllManufacturers](module-api_actions_GetAllManufacturers.GetAllManufacturers.html)
+ * >
+ * > **Types**
+ * > - Type: [GetAllManufacturersResponse](#GetAllManufacturersResponse)
+ * > - Type: [GetAllManufacturersResults](#GetAllManufacturersResults)
+ *
+ */
+
+/* Parent Class and Fetch Type */
+import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
@@ -31,7 +45,7 @@ export class GetAllManufacturers extends Fetch {
       manufacturerType?: string;
       page?: string | number;
     } = {}
-  ): Promise<import('../types').ApiResponse | Error> {
+  ): Promise<GetAllManufacturersResponse | Error> {
     const action = 'GetAllManufacturers';
 
     /* Build the query string to be appended to the URL*/
@@ -52,3 +66,36 @@ export class GetAllManufacturers extends Fetch {
       );
   }
 }
+
+/**
+ * Type representing the structure of objects found in the '{@link GetAllManufacturersResponse}.Results' array.
+ *
+ * @memberof module:api/actions/GetAllManufacturers
+ * @alias GetAllManufacturersResults
+ */
+export type GetAllManufacturersResults = {
+  Country: string;
+  Mfr_CommonName: string;
+  Mfr_ID: number;
+  Mfr_Name: string;
+  VehicleTypes: Array<{ isPrimary?: boolean; name?: string }>;
+};
+
+/**
+ * Type representing the complete response returned by the GetAllManufacturers API Action.
+ *
+ * @memberof module:api/actions/GetAllManufacturers
+ * @alias GetAllManufacturersResponse
+ */
+export type GetAllManufacturersResponse = {
+  /** A count of the items returned in the Results array. */
+  Count: number;
+  /** A message describing the Results array. */
+  Message: string;
+  /** Search terms (VIN, WMI, manufacturer, etc.) used in the request URL. */
+  SearchCriteria: string;
+  /** The search results returned by the NHSTA API request. */
+  Results: Array<GetAllManufacturersResults>;
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  FetchResponse: FetchResponse;
+};

@@ -1,12 +1,26 @@
-/* Parent Class */
-import { Fetch } from '../Fetch';
+/**
+ * @module api/actions/DecodeVinExtended
+ * @category Actions
+ * @description DecodeVinExtended NHSTA Api Action.
+ *
+ * > **Module Exports**:
+ * > - Class: [DecodeVinExtended](module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
+ * >
+ * > **Types**
+ * > - Type: [DecodeVinExtendedResponse](#DecodeVinExtendedResponse)
+ * > - Type: [DecodeVinExtendedResults](#DecodeVinExtendedResults)
+ *
+ */
+
+/* Parent Class and Fetch Type */
+import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
@@ -14,7 +28,8 @@ import { getTypeof } from '../../utils';
 export class DecodeVinExtended extends Fetch {
   /**
    * This is exactly like the DecodeVin method but provides additional information on variables
-   *   related to other NHTSA programs like NCSA etc.
+   * related to other NHTSA programs like
+   * [NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
    * - This will decode the VIN and the decoded output will be made available
    *   in the format of Key-value pairs.
    * - In the returned 'Results` object:
@@ -32,14 +47,14 @@ export class DecodeVinExtended extends Fetch {
    * @param {string} vin - Vehicle Identification Number (full or partial).
    * @param {object} [params={}] - Query Search Parameters to append to the URL.
    * @param {string|number} [params.modelYear] - Optional Model Year search parameter.
-   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+   * @returns {(Promise<DecodeVinExtendedResponse | Error>)} - Api Response object.
    */
   async DecodeVinExtended(
     vin: string,
     params: {
       modelYear?: string | number;
     } = {}
-  ): Promise<import('../types').ApiResponse | Error> {
+  ): Promise<DecodeVinExtendedResponse | Error> {
     const action = 'DecodeVinExtended';
 
     /* Runtime typechecking */
@@ -69,3 +84,35 @@ export class DecodeVinExtended extends Fetch {
       );
   }
 }
+
+/**
+ * Type representing the structure of objects found in the '{@link DecodeVinExtendedResponse}.Results' array.
+ *
+ * @memberof module:api/actions/DecodeVinExtended
+ * @alias DecodeVinExtendedResults
+ */
+export type DecodeVinExtendedResults = {
+  Value: string | null;
+  ValueId: string | null;
+  Variable: string;
+  VariableId: number;
+};
+
+/**
+ * Type representing the complete response returned by the DecodeVinExtended API Action.
+ *
+ * @memberof module:api/actions/DecodeVinExtended
+ * @alias DecodeVinExtendedResponse
+ */
+export type DecodeVinExtendedResponse = {
+  /** A count of the items returned in the Results array. */
+  Count: number;
+  /** A message describing the Results array. */
+  Message: string;
+  /** Search terms (VIN, WMI, manufacturer, etc.) used in the request URL. */
+  SearchCriteria: string;
+  /** The search results returned by the NHSTA API request. */
+  Results: Array<DecodeVinExtendedResults>;
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  FetchResponse: FetchResponse;
+};

@@ -1,7 +1,6 @@
 /**
  * @module api/NHTSA
- * @category Wrapper
- * @description API Fetch Logic.
+ * @description Module for API Fetch Logic.
  *
  * > **Module Exports**:
  * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHSTA API Actions
@@ -43,9 +42,9 @@ import {
  *
  * @implements {module:api/actions/DecodeVin.DecodeVin}
  * @implements {module:api/actions/DecodeVinExtended.DecodeVinExtended}
- * @implements {DecodeVinValues}
- * @implements {DecodeVinValuesExtended}
- * @implements {DecodeWMI}
+ * @implements {module:api/actions/DecodeVinValues.DecodeVinValues}
+ * @implements {module:api/actions/DecodeVinValuesExtended.DecodeVinValuesExtended}
+ * @implements {module:api/actions/DecodeWMI.DecodeWMI}
  * @implements {GetAllMakes}
  * @implements {GetAllManufacturers}
  * @implements {GetCanadianVehicleSpecifications}

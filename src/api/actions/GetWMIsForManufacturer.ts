@@ -1,41 +1,59 @@
-/* Parent Class */
-import { Fetch } from '../Fetch';
+/**
+ * @module api/actions/GetWMIsForManufacturer
+ * @category Actions
+ * @description GetWMIsForManufacturer NHSTA Api Action.
+ *
+ * > **Module Exports**:
+ * > - Class: [GetWMIsForManufacturer](module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html)
+ * >
+ * > **Types**
+ * > - Type: [GetWMIsForManufacturerResponse](#GetWMIsForManufacturerResponse)
+ * > - Type: [GetWMIsForManufacturerResults](#GetWMIsForManufacturerResults)
+ *
+ */
+
+/* Parent Class and Fetch Type */
+import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
- * Extends [api/Fetch](module-api_Fetch.Fetch.html).
+ * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
  * @hideconstructor
  */
 export class GetWMIsForManufacturer extends Fetch {
   /**
-   * Provides information on the all World Manufacturer Identifier (WMI) for a specified `manufacturer`.
+   * Provides information on the World Manufacturer Identifier (WMI) for a specified `manufacturer`.
    * - Only WMIs registered in vPICList are displayed.
+   * - `manufacturer` can be a partial name, or a full name for more specificity
+   *   (e.g., "Merc", "Mercedes Benz", etc.).
    *
    * @async
-   * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
-   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+   * @param {string|number} manufacturer - Manufacturer Name.
+   * @returns {(Promise<GetWMIsForManufacturerResponse | Error>)} Api Response object.
    */
   async GetWMIsForManufacturer(
     manufacturer: string
-  ): Promise<import('../types').ApiResponse | Error> {
+  ): Promise<GetWMIsForManufacturerResponse | Error> {
     const action = 'GetWMIsForManufacturer';
 
     /* Runtime typechecking */
-    if (getTypeof(manufacturer) !== 'string') {
+    const typeofManufacturer = getTypeof(manufacturer);
+    if (typeofManufacturer !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, manufacturer argument is required and must be a string, got: ${manufacturer}`
+          `${action}, "manufacturer" argument is required and must be a string, got: ` +
+            `<${typeofManufacturer}> ${manufacturer}`
         )
       );
     }
 
     /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString({}).catch(err =>
+    const queryString = await this.buildQueryString().catch(err =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
       )
@@ -52,3 +70,39 @@ export class GetWMIsForManufacturer extends Fetch {
       );
   }
 }
+
+/**
+ * Type representing the structure of objects found in the '{@link GetWMIsForManufacturerResponse}.Results' array.
+ *
+ * @memberof module:api/actions/GetWMIsForManufacturer
+ * @alias GetWMIsForManufacturerResults
+ */
+export type GetWMIsForManufacturerResults = {
+  Country: string;
+  CreatedOn: string;
+  DateAvailableToPublic: string;
+  Id: number;
+  Name: string;
+  UpdatedOn: string;
+  VehicleType: string;
+  WMI: string;
+};
+
+/**
+ * Type representing the complete response returned by the GetWMIsForManufacturer API Action.
+ *
+ * @memberof module:api/actions/GetWMIsForManufacturer
+ * @alias GetWMIsForManufacturerResponse
+ */
+export type GetWMIsForManufacturerResponse = {
+  /** A count of the items returned in the Results array. */
+  Count: number;
+  /** A message describing the Results array. */
+  Message: string;
+  /** Search terms (VIN, WMI, manufacturer, etc.) used in the request URL. */
+  SearchCriteria: string;
+  /** The search results returned by the NHSTA API request. */
+  Results: Array<GetWMIsForManufacturerResults>;
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  FetchResponse: FetchResponse;
+};

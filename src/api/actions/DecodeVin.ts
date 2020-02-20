@@ -1,9 +1,12 @@
 /**
  * @module api/actions/DecodeVin
+ * @category Actions
  * @description DecodeVin NHSTA Api Action.
  *
- * > **Exports**:
+ * > **Module Exports**:
  * > - Class: [DecodeVin](module-api_actions_DecodeVin.DecodeVin.html)
+ * >
+ * > **Types**
  * > - Type: [DecodeVinResponse](#DecodeVinResponse)
  * > - Type: [DecodeVinResults](#DecodeVinResults)
  *
@@ -15,7 +18,7 @@ import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
 import { getTypeof } from '../../utils';
 
 /**
- * Implemented by [NHTSA](NHTSA.html#NHTSA).
+ * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
@@ -75,10 +78,10 @@ export class DecodeVin extends Fetch {
 }
 
 /**
- * Type representing the structure of objects returned within '{@link DecodeVinResponse}.Results' array.
+ * Type representing the structure of objects found in the '{@link DecodeVinResponse}.Results' array.
  *
  * @memberof module:api/actions/DecodeVin
- * @alias ResultsDecodeVin
+ * @alias DecodeVinResults
  */
 export type DecodeVinResults = {
   Value: string | null;
@@ -88,7 +91,7 @@ export type DecodeVinResults = {
 };
 
 /**
- * Full API response returned by DecodeVin API Action.
+ * Type representing the complete response returned by the DecodeVin API Action.
  *
  * @memberof module:api/actions/DecodeVin
  * @alias DecodeVinResponse

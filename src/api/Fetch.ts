@@ -7,6 +7,8 @@
  * > - Class: [Fetch](module-api_Fetch.Fetch.html)
  * > - Constant: [BASE_URL](#~BASE_URL)
  * > - Constant: [DEFAULT_CONFIG](#~DEFAULT_CONFIG)
+ * >
+ * > **Types**
  * > - Type: [ApiResponse](#ApiResponse)
  * > - Type: [FetchConfig](#FetchConfig)
  * > - Type: [FetchRequestOptions](#FetchRequestOptions)
@@ -54,6 +56,7 @@ export const DEFAULT_CONFIG: FetchConfig = {
  * > - [get](#get)
  *
  * @param {module:api/Fetch.FetchConfig} [userConfig] - User configuration options to construct the class with.
+ * @category API
  */
 export class Fetch {
   apiResponseFormat: string;
@@ -92,7 +95,7 @@ export class Fetch {
    * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
    */
   async buildQueryString(
-    params: QueryStringParameters,
+    params?: QueryStringParameters,
     allowEmptyStringValues = false
   ): Promise<string | Error> {
     /*
@@ -217,8 +220,10 @@ export type NhstaResults = Array<
 /**
  * Various fetch request body types.
  *
+ * @typedef FetchRequestBodyTypes
+ * @type {URLSearchParams | FormData | Blob | ArrayBuffer | DataView}
+ *
  * @memberof module:api/Fetch
- * @alias FetchRequestBodyTypes
  */
 export type FetchRequestBodyTypes =
   | URLSearchParams
@@ -319,6 +324,6 @@ export type ApiResponse = {
   SearchCriteria: string;
   /** An array of Results returned by NHSTA, specific to each individual API Action. */
   Results: Array<any>;
-  /** {@link module:api/Fetch.FetchResponse}. */
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
   FetchResponse: FetchResponse;
 };

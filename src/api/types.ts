@@ -1,175 +1,102 @@
-// export type ResultDecodeVin = {
-//   Value: string | null;
-//   ValueId: string | null;
-//   Variable: string;
-//   VariableId: number;
-// };
+export { DecodeVinResults, DecodeVinResponse } from './actions/DecodeVin';
 
-export type ResultDecodeVinValues = {
-  [propName: string]: string;
-};
+export {
+  DecodeVinExtendedResults,
+  DecodeVinExtendedResponse
+} from './actions/DecodeVinExtended';
 
-export type ResultDecodeWMI = {
-  CommonName: string;
-  CreatedOn: string;
-  DateAvailableToPublic: string;
-  Make: string;
-  ManufacturerName: string;
-  ParentCompanyName: string;
-  URL: string;
-  UpdatedOn: string;
-  VehicleType: string;
-};
+export {
+  DecodeVinValuesResults,
+  DecodeVinValuesResponse
+} from './actions/DecodeVinValues';
 
-export type ResultGetWMIsForManufacturer = {
-  Country: string;
-  CreatedOn: string;
-  DateAvailableToPublic: string;
-  Id: number;
-  Name: string;
-  UpdatedOn: string;
-  VehicleType: string;
-  WMI: string;
-};
+export {
+  DecodeVinValuesExtendedResults,
+  DecodeVinValuesExtendedResponse
+} from './actions/DecodeVinValuesExtended';
 
-export type ResultGetAllMakes = {
-  Make_ID: number;
-  Make_Name: string;
-};
+export { DecodeWMIResults, DecodeWMIResponse } from './actions/DecodeWMI';
 
-export type ResultGetParts = {
-  CoverLetterURL: string;
-  LetterDate: string;
-  ManufacturerId: number;
-  ManufacturerName: string;
-  ModelYearFrom: string;
-  ModelYearTo: string;
-  Name: string;
-  Type: string;
-  URL: string;
-};
+export { GetAllMakesResults, GetAllMakesResponse } from './actions/GetAllMakes';
 
-export type ResultGetAllManufacturers = {
-  Country: string;
-  Mfr_CommonName: string;
-  Mfr_ID: number;
-  Mfr_Name: string;
-  VehicleTypes: Array<any>;
-};
+export {
+  GetAllManufacturersResults,
+  GetAllManufacturersResponse
+} from './actions/GetAllManufacturers';
 
-export type ResultGetManufacturerDetails = {
-  Address: string;
-  Address2: string;
-  City: string;
-  ContactEmail: string;
-  ContactFax: string;
-  ContactPhone: string;
-  Country: string;
-  DBAs: string;
-  EquipmentItems: Array<any>;
-  LastUpdated: string;
-  ManufacturerTypes: Array<any>;
-  Mfr_CommonName: string;
-  Mfr_ID: number;
-  Mfr_Name: string;
-  OtherManufacturerDetails: string;
-  PostalCode: string;
-  PrimaryProduct: string;
-  PrincipalFirstName: string;
-  PrincipalLastName: string;
-  PrincipalPosition: string;
-  StateProvince: string;
-  SubmittedName: string;
-  SubmittedOn: string;
-  SubmittedPosition: string;
-  VehicleTypes: Array<any>;
-};
+export {
+  GetCanadianVehicleSpecificationsResults,
+  GetCanadianVehicleSpecificationsResponse
+} from './actions/GetCanadianVehicleSpecifications';
 
-export type ResultGetMakeForManufacturer = {
-  Make_ID: number;
-  Make_Name: string;
-  Mfr_Name: string;
-};
+export {
+  GetEquipmentPlantCodesResults,
+  GetEquipmentPlantCodesResponse
+} from './actions/GetEquipmentPlantCodes';
 
-export type ResultGetMakesForManufacturerAndYear = {
-  MakeId: number;
-  MakeName: string;
-  MfrId: number;
-  MfrName: string;
-};
+export {
+  GetMakeForManufacturerResults,
+  GetMakeForManufacturerResponse
+} from './actions/GetMakeForManufacturer';
 
-export type ResultGetMakesForVehicleType = {
-  MakeId: number;
-  MakeName: string;
-  VehicleTypeId: number;
-  VehicleTypeName: string;
-};
+export {
+  GetMakesForManufacturerAndYearResults,
+  GetMakesForManufacturerAndYearResponse
+} from './actions/GetMakesForManufacturerAndYear';
 
-export type ResultGetVehicleTypesForMake = {
-  MakeId: number;
-  MakeName: string;
-  VehicleTypeId: number;
-  VehicleTypeName: string;
-};
+export {
+  GetMakesForVehicleTypeResults,
+  GetMakesForVehicleTypeResponse
+} from './actions/GetMakesForVehicleType';
 
-export type ResultGetVehicleTypesForMakeId = {
-  VehicleTypeId: number;
-  VehicleTypeName: string;
-};
+export {
+  GetManufacturerDetailsResults,
+  GetManufacturerDetailsResponse
+} from './actions/GetManufacturerDetails';
 
-export type ResultGetEquipmentPlantCodes = {
-  Address: string;
-  City: string;
-  Country: string;
-  DOTCode: string;
-  Name: string;
-  OldDotCode: string;
-  PostalCode: string;
-  StateProvince: string;
-  Status: string;
-};
+export {
+  GetModelsForMakeResults,
+  GetModelsForMakeResponse
+} from './actions/GetModelsForMake';
 
-export type ResultGetModelsForMake = {
-  Make_ID: number;
-  Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
-};
+export {
+  GetModelsForMakeIdResults,
+  GetModelsForMakeIdResponse
+} from './actions/GetModelsForMakeId';
 
-export type ResultGetModelsForMakeYear = {
-  Make_ID: number;
-  Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
-};
+export {
+  GetModelsForMakeIdYearResults,
+  GetModelsForMakeIdYearResponse
+} from './actions/GetModelsForMakeIdYear';
 
-export type ResultGetModelsForMakeIdYear = {
-  Make_ID: number;
-  Make_Name: string;
-  Model_ID: number;
-  Model_Name: string;
-};
+export {
+  GetModelsForMakeYearResults,
+  GetModelsForMakeYearResponse
+} from './actions/GetModelsForMakeYear';
 
-export type ResultGetVehicleVariableList = {
-  DataType: string;
-  Description: string;
-  ID: number;
-  Name: string;
-};
+export { GetPartsResults, GetPartsResponse } from './actions/GetParts';
 
-export type ResultGetVehicleVariableValuesList = {
-  ElementName: string;
-  Id: number;
-  Name: string;
-};
+export {
+  GetVehicleTypesForMakeResults,
+  GetVehicleTypesForMakeResponse
+} from './actions/GetVehicleTypesForMake';
 
-export type ResultGetCanadianVehicleSpecifications = {
-  Specs: Array<{
-    Name: string;
-    Value: string;
-  }>;
-};
+export {
+  GetVehicleTypesForMakeIdResults,
+  GetVehicleTypesForMakeIdResponse
+} from './actions/GetVehicleTypesForMakeId';
 
-/**
- * @module api/types
- */
+export {
+  GetVehicleVariableListResults,
+  GetVehicleVariableListResponse
+} from './actions/GetVehicleVariableList';
+
+export {
+  GetVehicleVariableValuesListResults,
+  GetVehicleVariableValuesListResponse
+} from './actions/GetVehicleVariableValuesList';
+
+export {
+  GetWMIsForManufacturerResults,
+  GetWMIsForManufacturerResponse
+} from './actions/GetWMIsForManufacturer';
