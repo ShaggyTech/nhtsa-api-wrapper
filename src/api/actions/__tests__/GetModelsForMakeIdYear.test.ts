@@ -5,180 +5,176 @@ import mockCrossFetch from 'cross-fetch';
 
 import mockData from '../../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const ACTION = 'GetModelsForMakeIdYear';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
+
+const getClassInstance = () => {
+  return new GetModelsForMakeIdYear();
+};
 
 describe('GetModelsForMakeIdYear()', () => {
-  test('it gets models with modelYear and vehicleType params', async () => {
-    const client = new GetModelsForMakeIdYear();
+  let client: GetModelsForMakeIdYear;
+
+  beforeEach(() => {
+    client = getClassInstance();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  /**************
+   * Successes
+   **************/
+
+  test('it get models with all available params', async () => {
     const response = await client
       .GetModelsForMakeIdYear({
-        makeId: 991,
+        makeId: 901,
+        modelYear: 2017,
+        vehicleType: 'moto'
+      })
+      .catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/makeId/901/modelYear/2017/vehicleType/moto?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  test('it gets models with modelYear and no vehicleType', async () => {
+    const response = await client
+      .GetModelsForMakeIdYear({
+        makeId: 305,
+        modelYear: 2016
+      })
+      .catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/makeId/305/modelYear/2016?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  test('it gets models with vehicleType and no modelYear', async () => {
+    const response = await client
+      .GetModelsForMakeIdYear({
+        makeId: 707,
+        vehicleType: 'truck'
+      })
+      .catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/makeId/707/vehicleType/truck?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  /**************
+   * Failures
+   **************/
+
+  test('it rejects with Error when no params are provided', async () => {
+    const response = await client
+      .GetModelsForMakeIdYear(undefined as any)
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params" argument must be of type object, got: <undefined> undefined`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when invalid typeof params are provided', async () => {
+    const response = await client
+      .GetModelsForMakeIdYear(['params as array'] as any)
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params" argument must be of type object, got: <array> params as array`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when no makeId param is provided', async () => {
+    const response = await client
+      .GetModelsForMakeIdYear({
+        makeId: undefined as any,
         modelYear: 2016,
         vehicleType: 'moto'
       })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params.makeId" argument is required and must be of type number, got: ` +
+          `<undefined> undefined`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it gets models with modelYear and no vehicleType', async () => {
-    const client = new GetModelsForMakeIdYear();
+  test('it rejects with Error when invalid typeof makeId param is provided', async () => {
     const response = await client
       .GetModelsForMakeIdYear({
-        makeId: 991,
-        modelYear: 2016
-      })
-      .catch(err => err);
-
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
-  });
-
-  test('it gets models with vehicleType and no modelYear', async () => {
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({
-        makeId: 1,
-        vehicleType: 'truck'
-      })
-      .catch(err => err);
-
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
-  });
-
-  test('it builds the correct URL with all params', async () => {
-    jest
-      .spyOn(Fetch.prototype, 'get')
-      .mockImplementationOnce(() => Promise.resolve(mockData as any));
-
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({
-        makeId: 343,
-        modelYear: 2017,
+        makeId: ['fails'] as any,
+        modelYear: 2016,
         vehicleType: 'moto'
       })
       .catch(err => err);
 
-    const expectedUrl =
-      'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/343/modelYear/2017/vehicleType/moto?format=json';
-
-    expect(client.get).toHaveBeenCalledWith(expectedUrl);
-    expect(response).toEqual(mockData);
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params.makeId" argument is required and must be of type number, got: ` +
+          `<array> fails`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it builds the correct URL with makeId and modelYear params', async () => {
-    jest
-      .spyOn(Fetch.prototype, 'get')
-      .mockImplementationOnce(() => Promise.resolve(mockData as any));
-
-    const client = new GetModelsForMakeIdYear();
+  test('it rejects with Error when neither modelYear or vehicleType params are provided', async () => {
     const response = await client
       .GetModelsForMakeIdYear({
-        makeId: 420,
-        modelYear: 2020
+        makeId: 908,
+        modelYear: undefined as any,
+        vehicleType: undefined as any
       })
       .catch(err => err);
 
-    const expectedUrl =
-      'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/420/modelYear/2020?format=json';
-
-    expect(client.get).toHaveBeenCalledWith(expectedUrl);
-    expect(response).toEqual(mockData);
-  });
-
-  test('it builds the correct URL with makeId and vehicleType params', async () => {
-    jest
-      .spyOn(Fetch.prototype, 'get')
-      .mockImplementationOnce(() => Promise.resolve(mockData as any));
-
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({
-        makeId: 666,
-        vehicleType: 'truck'
-      })
-      .catch(err => err);
-
-    const expectedUrl =
-      'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/666/vehicleType/truck?format=json';
-
-    expect(client.get).toHaveBeenCalledWith(expectedUrl);
-    expect(response).toEqual(mockData);
-  });
-
-  test('it rejects with Error when invalid typeof modelYear is provided ', async () => {
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({ makeId: 343, modelYear: 'fails' } as any)
-      .catch(err => err);
-
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetModelsForMakeIdYear, params.modelYear must be of type number, got type of: string'
+        `${ACTION}, either one of "params.modelYear" or "params.vehicleType" is required, got: ` +
+          `undefined | undefined`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it rejects with Error when invalid typeof vehicleType is provided ', async () => {
-    const client = new GetModelsForMakeIdYear();
+  test('it rejects with Error when invalid typeof modelYear is provided', async () => {
     const response = await client
-      .GetModelsForMakeIdYear({ makeId: 33, vehicleType: ['invalid'] } as any)
+      .GetModelsForMakeIdYear({ makeId: 458, modelYear: 'fails' as any })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetModelsForMakeIdYear, params.vehicleType must be of type string, got type of: array'
+        `${ACTION}, "params.modelYear" must be of type number, got: <string> fails`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it rejects with Error when no params are provided ', async () => {
-    const client = new GetModelsForMakeIdYear();
+  test('it rejects with Error when invalid typeof vehicleType is provided', async () => {
     const response = await client
-      .GetModelsForMakeIdYear(undefined as any)
+      .GetModelsForMakeIdYear({ makeId: 458, vehicleType: ['invalid'] as any })
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetModelsForMakeIdYear, params.makeId is required and must be a string, got: undefined of type undefined'
+        `${ACTION}, "params.vehicleType" must be of type string, got: <array> invalid`
       )
     );
-  });
-
-  test('it rejects with Error when no make param is provided  ', async () => {
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({ modelYear: 2016, vehicleType: 'moto' } as any)
-      .catch(err => err);
-
     expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
-      Error(
-        'GetModelsForMakeIdYear, params.makeId is required and must be a string, got: undefined of type undefined'
-      )
-    );
-  });
-
-  test('it rejects with Error when no modelYear and vehicleType params are provided', async () => {
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({ makeId: 100 } as any)
-      .catch(err => err);
-
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
-      Error(
-        'GetModelsForMakeIdYear, one of or both of, params.modelYear or params.vehicleType is required, got params: [object Object]'
-      )
-    );
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -186,27 +182,6 @@ describe('GetModelsForMakeIdYear()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetModelsForMakeIdYear();
-    const response = await client
-      .GetModelsForMakeIdYear({
-        makeId: 466,
-        modelYear: 2017,
-        vehicleType: 'moto'
-      })
-      .catch(err => err);
-
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetModelsForMakeIdYear, Error building query string: mock error')
-    );
-  });
-
-  test('it handles Fetch.get errors', async () => {
-    jest
-      .spyOn(Fetch.prototype, 'get')
-      .mockImplementationOnce(() => Promise.reject('mock error'));
-
-    const client = new GetModelsForMakeIdYear();
     const response = await client
       .GetModelsForMakeIdYear({
         makeId: 777,
@@ -215,9 +190,30 @@ describe('GetModelsForMakeIdYear()', () => {
       })
       .catch(err => err);
 
-    expect(client.get).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetModelsForMakeIdYear, Fetch.get() error: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+  });
+
+  test('it handles Fetch.get errors', async () => {
+    jest
+      .spyOn(Fetch.prototype, 'get')
+      .mockImplementationOnce(() => Promise.reject('mock error'));
+
+    const response = await client
+      .GetModelsForMakeIdYear({
+        makeId: 777,
+        modelYear: 2017,
+        vehicleType: 'moto'
+      })
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Fetch.get() error: mock error`)
+    );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });

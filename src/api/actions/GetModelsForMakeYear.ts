@@ -47,27 +47,33 @@ export class GetModelsForMakeYear extends Fetch {
    *
    * @returns {(Promise<GetModelsForMakeYearResponse | Error>)} Api Response object.
    */
-  async GetModelsForMakeYear(
-    params: {
-      make: string;
-      modelYear?: number;
-      vehicleType?: string;
-    } = {
-      make: undefined as any
-    }
-  ): Promise<GetModelsForMakeYearResponse | Error> {
+  async GetModelsForMakeYear(params: {
+    make: string;
+    modelYear?: number;
+    vehicleType?: string;
+  }): Promise<GetModelsForMakeYearResponse | Error> {
     const action = 'GetModelsForMakeYear';
 
-    const make: string = params.make;
+    const make: string = params?.make;
     const modelYear: number | undefined = params?.modelYear;
     const vehicleType: string | undefined = params?.vehicleType;
 
-    /* Required make param of type string */
-    const typeofMake = getTypeof(make);
-    if (typeofMake !== 'number') {
+    /* Valid params object */
+    const typeofParams = getTypeof(params);
+    if (typeofParams !== 'object') {
       return Promise.reject(
         new Error(
-          `${action}, "params.make" is required and must be a number, got: ` +
+          `${action}, "params" argument must be of type object, got: ` +
+            `<${typeofParams}> ${params}`
+        )
+      );
+    }
+    /* Required make param of type string */
+    const typeofMake = getTypeof(make);
+    if (typeofMake !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.make" argument is required and must be of type string, got: ` +
             `<${typeofMake}> ${make}`
         )
       );
@@ -86,7 +92,8 @@ export class GetModelsForMakeYear extends Fetch {
     if (modelYear && typeofModelYear !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "params.modelYear" must be of type number, got: <${typeofModelYear}>`
+          `${action}, "params.modelYear" must be of type number, got: ` +
+            `<${typeofModelYear}> ${modelYear}`
         )
       );
     }
@@ -95,7 +102,8 @@ export class GetModelsForMakeYear extends Fetch {
     if (vehicleType && typeofVehicleType !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, "params.vehicleType" must be of type string, got: <${typeofVehicleType}>`
+          `${action}, "params.vehicleType" must be of type string, got: ` +
+            `<${typeofVehicleType}> ${vehicleType}`
         )
       );
     }

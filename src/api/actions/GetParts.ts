@@ -34,34 +34,42 @@ export class GetParts extends Fetch {
    * - All query `params` are optional.
    *
    * @async
-   * @param {object} [params={}] - Query Search Parameters to append to the URL.
-   * @param {string|number} [params.type] - Specified type of ORG to search.
+   * @param {object} [params] - Query Search Parameters to append to the URL.
+   * @param {number} [params.type] - Specified type of ORG to search.
    * @param {string} [params.fromDate] - Start date of search query.
    * @param {string} [params.toDate] - End date of search query.
-   * @param {string|number} [params.page] - Which page number of results to request (100 results per page).
+   * @param {number} [params.page] - Which page number of results to request (100 results per page).
    * @returns {(Promise<GetPartsResponse | Error>)} Api Response object.
    */
-  async GetParts(
-    params: {
-      type?: string | number;
-      fromDate?: string;
-      toDate?: string;
-      page?: number;
-    } = {}
-  ): Promise<GetPartsResponse | Error> {
+  async GetParts(params?: {
+    type?: number;
+    fromDate?: string;
+    toDate?: string;
+    page?: number;
+  }): Promise<GetPartsResponse | Error> {
     const action = 'GetParts';
 
-    const type: string | number | undefined = params.type;
-    const fromDate: string | undefined = params.fromDate;
-    const toDate: string | undefined = params.toDate;
-    const page: number | undefined = params.page;
+    const type: number | undefined = params?.type;
+    const fromDate: string | undefined = params?.fromDate;
+    const toDate: string | undefined = params?.toDate;
+    const page: number | undefined = params?.page;
 
-    /* valid params.type of type string or number */
-    const typeofType = getTypeof(type);
-    if (type && typeofType !== 'string' && typeofType !== 'number') {
+    /* Valid params object */
+    const typeofParams = getTypeof(params);
+    if (params && typeofParams !== 'object') {
       return Promise.reject(
         new Error(
-          `${action}, "params.type" must be of type string or number, got: <${typeofType}> ${type}`
+          `${action}, "params" argument must be of type object, got: <${typeofParams}> ${params}`
+        )
+      );
+    }
+
+    /* valid params.type of type number */
+    const typeofType = getTypeof(type);
+    if (type && typeofType !== 'number') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.type" argument must be of type number, got: <${typeofType}> ${type}`
         )
       );
     }
@@ -71,7 +79,7 @@ export class GetParts extends Fetch {
     if (fromDate && typeofFromDate !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, "params.fromDate" must be of type string, got: <${typeofFromDate}> ${fromDate}`
+          `${action}, "params.fromDate" argument must be of type string, got: <${typeofFromDate}> ${fromDate}`
         )
       );
     }
@@ -81,7 +89,7 @@ export class GetParts extends Fetch {
     if (toDate && typeofToDate !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, "params.toDate" must be of type number, got: <${typeofToDate}> ${toDate}`
+          `${action}, "params.toDate" argument must be of type string, got: <${typeofToDate}> ${toDate}`
         )
       );
     }
@@ -91,7 +99,7 @@ export class GetParts extends Fetch {
     if (page && typeofPage !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "params.page" must be of type number, got: <${typeofPage}> ${page}`
+          `${action}, "params.page" argument must be of type number, got: <${typeofPage}> ${page}`
         )
       );
     }

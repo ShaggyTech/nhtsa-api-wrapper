@@ -191,7 +191,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
     const client = new NHTSA();
     const response = await client
       .GetMakesForManufacturerAndYear(121, {
-        year: '2009'
+        year: 2009
       })
       .catch(err => err);
 

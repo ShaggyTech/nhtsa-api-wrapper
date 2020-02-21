@@ -46,7 +46,7 @@ export class GetVehicleTypesForMake extends Fetch {
     if (typeofMakeName !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, "makeName" argument is required and must be a string, got: ` +
+          `${action}, "makeName" argument is required and must be of type string, got: ` +
             `<${typeofMakeName}> ${makeName}`
         )
       );

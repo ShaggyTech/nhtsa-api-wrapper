@@ -48,10 +48,14 @@ export class GetVehicleVariableValuesList extends Fetch {
     if (typeofVariableValue !== 'string' && typeofVariableValue !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "variableValue" is required and must be of type string or number, got: ` +
+          `${action}, "variableValue" argument is required and must be of type string or number, got: ` +
             `<${typeofVariableValue}> ${variableValue}`
         )
       );
+    }
+    /* Encode to a valid URI string (space chars, etc.) if variableValue is a string*/
+    if (typeofVariableValue === 'string') {
+      variableValue = encodeURI(variableValue as string);
     }
 
     /* Build the 'default' query string to be appended to the URL*/

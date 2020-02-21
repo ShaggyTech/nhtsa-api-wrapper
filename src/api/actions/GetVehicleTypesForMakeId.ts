@@ -44,7 +44,7 @@ export class GetVehicleTypesForMakeId extends Fetch {
     if (typeofMakeId !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "makeId" argument is required and must be a number, got: ` +
+          `${action}, "makeId" argument is required and must be of type number, got: ` +
             `<${typeofMakeId}> ${makeID}`
         )
       );

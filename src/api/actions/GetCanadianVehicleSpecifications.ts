@@ -46,25 +46,61 @@ export class GetCanadianVehicleSpecifications extends Fetch {
    * @param {string} [params.units] - "Metric" (default), or "US" for United States customary units.
    * @returns {(Promise<GetCanadianVehicleSpecificationsResponse | Error>)} Api Response object.
    */
-  async GetCanadianVehicleSpecifications(
-    params: {
-      year: number;
-      make?: string;
-      model?: string;
-      units?: string;
-    } = {
-      year: undefined as any
-    }
-  ): Promise<GetCanadianVehicleSpecificationsResponse | Error> {
+  async GetCanadianVehicleSpecifications(params: {
+    year: number;
+    make?: string;
+    model?: string;
+    units?: string;
+  }): Promise<GetCanadianVehicleSpecificationsResponse | Error> {
     const action = 'GetCanadianVehicleSpecifications';
 
     /* Runtime typechecking */
+    const typeofParams = getTypeof(params);
+    if (typeofParams !== 'object') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params" argument must be of type object, got: ` +
+            `<${typeofParams}> ${params}`
+        )
+      );
+    }
+
     const typeofYear = getTypeof(params.year);
     if (typeofYear !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "year" parameter of type number is required, got: ` +
+          `${action}, "params.year" argument is required and must be of type number, got: ` +
             `<${typeofYear}> ${params.year}`
+        )
+      );
+    }
+
+    const typeofMake = getTypeof(params.make);
+    if (params.make && typeofMake !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.make" argument must be of type string, got: ` +
+            `<${typeofMake}> ${params.make}`
+        )
+      );
+    }
+
+    const typeofModel = getTypeof(params.model);
+    if (params.model && typeofModel !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.model" argument must be of type string, got: ` +
+            `<${typeofModel}> ${params.model}`
+        )
+      );
+    }
+
+    const typeofUnits = getTypeof(params.units);
+    if (params.units && typeofUnits !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.units" argument must be of type string, got: ` +
+            `<${typeofUnits}> ${params.units}`
         )
       );
     }

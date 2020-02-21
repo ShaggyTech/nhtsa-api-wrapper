@@ -2,8 +2,10 @@ import { DecodeVin } from '../DecodeVin';
 import { Fetch } from '../../Fetch';
 
 import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
+
+const ACTION = 'DecodeVin';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
 
 const getClassInstance = () => {
   return new DecodeVin();
@@ -20,13 +22,18 @@ describe('NHTSA.DecodeVin()', () => {
     jest.clearAllMocks();
   });
 
+  /**************
+   * Successes
+   **************/
+
   test('it decodes a VIN', async () => {
     const response = await client
       .DecodeVin('3VWD07AJ5EM388202')
       .catch(err => err);
-
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/3VWD07AJ5EM388202?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it decodes a VIN and handles params', async () => {
@@ -35,33 +42,64 @@ describe('NHTSA.DecodeVin()', () => {
         modelYear: 2001
       })
       .catch(err => err);
-
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/3VWD07AJ5EM388202?modelYear=2001&format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
   });
 
-  test('it returns an Error when no VIN argument is provided', async () => {
+  /**************
+   * Failures
+   **************/
+
+  test('it rejects with Error when no VIN argument is provided', async () => {
     const response = await client.DecodeVin(undefined as any).catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
     expect(response).toStrictEqual(
       Error(
-        'DecodeVin, vin argument is required and must be a string, got: undefined'
+        `${ACTION}, "vin" argument is required and must be of type string, got: <undefined> undefined`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it returns an Error when invalid typeof VIN argument is provided', async () => {
+  test('it rejects with Error when invalid typeof VIN argument is provided', async () => {
     const response = await client
       .DecodeVin([{ fails: 'should fail' }] as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
     expect(response).toStrictEqual(
       Error(
-        'DecodeVin, vin argument is required and must be a string, got: [object Object]'
+        `${ACTION}, "vin" argument is required and must be of type string, got: <array> [object Object]`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when invalid typeof params argument is provided', async () => {
+    const response = await client
+      .DecodeVin('3VWD07AJ5EM388202', ['should fail'] as any)
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params" argument must be of type object, got: <array> should fail`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when invalid typeof params.modelYear argument is provided', async () => {
+    const response = await client
+      .DecodeVin('3VWD07AJ5EM388202', { modelYear: ['should fail'] as any })
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params.modelYear" argument is required and must be of type string or number, got: <array> should fail`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -73,11 +111,11 @@ describe('NHTSA.DecodeVin()', () => {
       .DecodeVin('3VWD07AJ5EM388202')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(
-      Error('DecodeVin, Error building query string: mock error')
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -89,9 +127,10 @@ describe('NHTSA.DecodeVin()', () => {
       .DecodeVin('3VWD07AJ5EM388202')
       .catch(err => err);
 
-    expect(client.get).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(
-      Error('DecodeVin, Fetch.get() error: mock error')
+      Error(`${ACTION}, Fetch.get() error: mock error`)
     );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });

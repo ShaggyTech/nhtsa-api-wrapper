@@ -53,11 +53,11 @@ describe('makeQueryString() - API Utils Method', () => {
 
     test('a param value containing spaces', async () => {
       const qs = await makeQueryString({
-        format: 'csv',
+        variable: 'vehicle type',
         empty: '',
-        make: 'VW Audi'
+        format: 'csv'
       }).catch(err => err);
-      expect(qs).toStrictEqual('?format=csv&make=VW%20Audi');
+      expect(qs).toStrictEqual('?variable=vehicle%20type&format=csv');
     });
   });
 

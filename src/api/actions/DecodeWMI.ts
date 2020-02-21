@@ -39,10 +39,12 @@ export class DecodeWMI extends Fetch {
     const action = 'DecodeWMI';
 
     /* Runtime typechecking */
-    if (getTypeof(WMI) !== 'string') {
+    const typeofWMI = getTypeof(WMI);
+    if (typeofWMI !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, WMI argument is required and must be a string, got: ${WMI}`
+          `${action}, "WMI" argument is required and must be of type string, got: ` +
+            `<${typeofWMI}> ${WMI}`
         )
       );
     }

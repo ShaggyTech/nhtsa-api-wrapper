@@ -5,47 +5,68 @@ import mockCrossFetch from 'cross-fetch';
 
 import mockData from '../../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const ACTION = 'GetVehicleTypesForMakeId';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
 
-describe('GetVehicleTypesForMakeId()', () => {
-  test('it gets vehicle types with a valid makeId', async () => {
-    const client = new GetVehicleTypesForMakeId();
-    const response = await client
-      .GetVehicleTypesForMakeId(381)
-      .catch(err => err);
+const getClassInstance = () => {
+  return new GetVehicleTypesForMakeId();
+};
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+describe('GetMakesForVehicleType()', () => {
+  let client: GetVehicleTypesForMakeId;
+
+  beforeEach(() => {
+    client = getClassInstance();
   });
 
-  test('it returns an Error when no makeID argument is provided', async () => {
-    const client = new GetVehicleTypesForMakeId();
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  /**************
+   * Successes
+   **************/
+
+  test('it gets vehicle types with a valid makeId', async () => {
+    const response = await client
+      .GetVehicleTypesForMakeId(890)
+      .catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/890?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  /**************
+   * Failures
+   **************/
+
+  test('it rejects with an Error when no makeId argument is provided', async () => {
     const response = await client
       .GetVehicleTypesForMakeId(undefined as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetVehicleTypesForMakeId, makeID is required and must be a number, got: undefined'
+        `${ACTION}, "makeId" argument is required and must be of type number, got: ` +
+          `<undefined> undefined`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it returns an Error when makeID argument is not of type number', async () => {
-    const client = new GetVehicleTypesForMakeId();
+  test('it rejects with an Error when invalid makeId argument is provided', async () => {
     const response = await client
-      .GetVehicleTypesForMakeId('audi' as any)
+      .GetVehicleTypesForMakeId('testing' as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetVehicleTypesForMakeId, makeID is required and must be a number, got: audi'
+        `${ACTION}, "makeId" argument is required and must be of type number, got: ` +
+          `<string> testing`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -53,16 +74,15 @@ describe('GetVehicleTypesForMakeId()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetVehicleTypesForMakeId();
     const response = await client
-      .GetVehicleTypesForMakeId(381)
+      .GetVehicleTypesForMakeId(666)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetVehicleTypesForMakeId, Error building query string: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -70,15 +90,14 @@ describe('GetVehicleTypesForMakeId()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetVehicleTypesForMakeId();
     const response = await client
-      .GetVehicleTypesForMakeId(999)
+      .GetVehicleTypesForMakeId(767)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.get).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetVehicleTypesForMakeId, Fetch.get() error: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Fetch.get() error: mock error`)
     );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });

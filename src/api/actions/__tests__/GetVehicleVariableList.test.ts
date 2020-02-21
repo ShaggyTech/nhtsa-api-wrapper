@@ -5,31 +5,52 @@ import mockCrossFetch from 'cross-fetch';
 
 import mockData from '../../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const ACTION = 'GetVehicleVariableList';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
+
+const getClassInstance = () => {
+  return new GetVehicleVariableList();
+};
 
 describe('GetVehicleVariableList()', () => {
-  test('it gets all vehicle related variables from the database', async () => {
-    const client = new GetVehicleVariableList();
-    const response = await client.GetVehicleVariableList().catch(err => err);
+  let client: GetVehicleVariableList;
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+  beforeEach(() => {
+    client = getClassInstance();
   });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  /**************
+   * Successes
+   **************/
+
+  test('it gets all vehicle related variables from the database', async () => {
+    const response = await client.GetVehicleVariableList().catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  /**************
+   * Failures
+   **************/
 
   test('it handles Fetch.buildQueryString errors', async () => {
     jest
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetVehicleVariableList();
     const response = await client.GetVehicleVariableList().catch(err => err);
 
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetVehicleVariableList, Error building query string: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -37,12 +58,12 @@ describe('GetVehicleVariableList()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetVehicleVariableList();
     const response = await client.GetVehicleVariableList().catch(err => err);
 
-    expect(client.get).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetVehicleVariableList, Fetch.get() error: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Fetch.get() error: mock error`)
     );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });

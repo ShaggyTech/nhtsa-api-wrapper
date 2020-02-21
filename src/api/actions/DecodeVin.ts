@@ -51,13 +51,40 @@ export class DecodeVin extends Fetch {
     const action = 'DecodeVin';
 
     /* Runtime typechecking */
-    if (getTypeof(vin) !== 'string') {
+    const typeofParams = getTypeof(params);
+    if (typeofParams !== 'object') {
       return Promise.reject(
         new Error(
-          `${action}, vin argument is required and must be a string, got: ${vin}`
+          `${action}, "params" argument must be of type object, got: ` +
+            `<${typeofParams}> ${params}`
         )
       );
     }
+
+    const typeofVin = getTypeof(vin);
+    if (typeofVin !== 'string') {
+      return Promise.reject(
+        new Error(
+          `${action}, "vin" argument is required and must be of type string, got: ` +
+            `<${typeofVin}> ${vin}`
+        )
+      );
+    }
+
+    const typeofModelYear = getTypeof(params.modelYear);
+    if (
+      params.modelYear &&
+      typeofModelYear !== 'string' &&
+      typeofModelYear !== 'number'
+    ) {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
+            `<${typeofModelYear}> ${params.modelYear}`
+        )
+      );
+    }
+
     /* Build the query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch(err =>
       Promise.reject(

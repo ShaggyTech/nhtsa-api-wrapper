@@ -39,15 +39,15 @@ export class GetMakesForManufacturerAndYear extends Fetch {
    * @async
    * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
    * @param {object} params - Query Search Parameters to append to the URL.
-   * @param {string|number} params.year - Model year of the vehicle - Number, >= 2016.
+   * @param {number} params.year - Model year of the vehicle - Number, >= 2016.
    *
    * @returns {(Promise<GetMakesForManufacturerAndYearResponse | Error>)} Api Response object.
    */
   public async GetMakesForManufacturerAndYear(
     manufacturer: string | number,
     params: {
-      year: string | number;
-    } = { year: undefined as any }
+      year: number;
+    }
   ): Promise<GetMakesForManufacturerAndYearResponse | Error> {
     const action = 'GetMakesForManufacturerAndYear';
 
@@ -62,11 +62,21 @@ export class GetMakesForManufacturerAndYear extends Fetch {
       );
     }
 
-    const typeofYear = getTypeof(params.year);
-    if (typeofYear !== 'string' && typeofYear !== 'number') {
+    const typeofParams = getTypeof(params);
+    if (typeofParams !== 'object') {
       return Promise.reject(
         new Error(
-          `${action}, "params.year" argument is required and must be of type string or number, got: ` +
+          `${action}, "params" argument is required and must be of type object, got: ` +
+            `<${typeofParams}> ${params}`
+        )
+      );
+    }
+
+    const typeofYear = getTypeof(params.year);
+    if (typeofYear !== 'number') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params.year" argument is required and must be of type number, got: ` +
             `<${typeofYear}> ${params.year}`
         )
       );

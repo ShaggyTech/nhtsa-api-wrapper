@@ -46,7 +46,7 @@ export class GetWMIsForManufacturer extends Fetch {
     if (typeofManufacturer !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, "manufacturer" argument is required and must be a string, got: ` +
+          `${action}, "manufacturer" argument is required and must be of type string, got: ` +
             `<${typeofManufacturer}> ${manufacturer}`
         )
       );

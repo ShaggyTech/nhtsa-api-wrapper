@@ -51,25 +51,29 @@ export class GetEquipmentPlantCodes extends Fetch {
    * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'.
    * @returns {(Promise<GetEquipmentPlantCodesResponse | Error>)} Api Response object.
    */
-  public async GetEquipmentPlantCodes(
-    params: {
-      year: number;
-      equipmentType: 1 | 3 | 13 | 16;
-      reportType: 'New' | 'Updated' | 'Closed' | 'All';
-    } = {
-      year: undefined as any,
-      equipmentType: undefined as any,
-      reportType: undefined as any
-    }
-  ): Promise<GetEquipmentPlantCodesResponse | Error> {
+  public async GetEquipmentPlantCodes(params: {
+    year: number;
+    equipmentType: 1 | 3 | 13 | 16;
+    reportType: 'New' | 'Updated' | 'Closed' | 'All';
+  }): Promise<GetEquipmentPlantCodesResponse | Error> {
     const action = 'GetEquipmentPlantCodes';
 
     /* Runtime typechecking */
+    const typeofParams = getTypeof(params);
+    if (typeofParams !== 'object') {
+      return Promise.reject(
+        new Error(
+          `${action}, "params" argument must be of type object, got: ` +
+            `<${typeofParams}> ${params}`
+        )
+      );
+    }
+
     const typeofYear = getTypeof(params.year);
     if (typeofYear !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "params.year" parameter of type number is required, got: ` +
+          `${action}, "params.year" argument is required and must be of type number, got: ` +
             `<${typeofYear}> ${params.year}`
         )
       );
@@ -79,17 +83,17 @@ export class GetEquipmentPlantCodes extends Fetch {
     if (typeofEquipmentType !== 'number') {
       return Promise.reject(
         new Error(
-          `${action}, "equipmentType" parameter of type number is required, got: ` +
+          `${action}, "params.equipmentType" argument is required and must be of type number, got: ` +
             `<${typeofEquipmentType}> ${params.equipmentType}`
         )
       );
     }
 
-    const typeofReportType = getTypeof(params.equipmentType);
+    const typeofReportType = getTypeof(params.reportType);
     if (typeofReportType !== 'string') {
       return Promise.reject(
         new Error(
-          `${action}, "reportType" parameter of type string is required, got: ` +
+          `${action}, "params.reportType" argument is required and must be of type string, got: ` +
             `<${typeofReportType}> ${params.reportType}`
         )
       );

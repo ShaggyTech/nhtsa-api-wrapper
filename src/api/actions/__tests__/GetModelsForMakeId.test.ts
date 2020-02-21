@@ -5,45 +5,66 @@ import mockCrossFetch from 'cross-fetch';
 
 import mockData from '../../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const ACTION = 'GetModelsForMakeId';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
+
+const getClassInstance = () => {
+  return new GetModelsForMakeId();
+};
 
 describe('GetModelsForMakeId()', () => {
-  test('it gets vehicle models with a valid makeId', async () => {
-    const client = new GetModelsForMakeId();
-    const response = await client.GetModelsForMakeId(381).catch(err => err);
+  let client: GetModelsForMakeId;
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+  beforeEach(() => {
+    client = getClassInstance();
   });
 
-  test('it returns an Error when no makeID argument is provided', async () => {
-    const client = new GetModelsForMakeId();
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  /**************
+   * Successes
+   **************/
+
+  test('it gets vehicle models with a valid makeId', async () => {
+    const response = await client.GetModelsForMakeId(381).catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/381?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  /**************
+   * Failures
+   **************/
+
+  test('it rejects with Error when no makeID argument is provided', async () => {
     const response = await client
       .GetModelsForMakeId(undefined as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetModelsForMakeId, makeID is required and must be a number, got: undefined'
+        `${ACTION}, "makeId" argument is required and must be of type number, got: ` +
+          `<undefined> undefined`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it returns an Error when makeID argument is not of type number', async () => {
-    const client = new GetModelsForMakeId();
+  test('it rejects with Error when invalid makeId is provided', async () => {
     const response = await client
       .GetModelsForMakeId('audi' as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetModelsForMakeId, makeID is required and must be a number, got: audi'
+        `${ACTION}, "makeId" argument is required and must be of type number, got: ` +
+          `<string> audi`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -51,14 +72,13 @@ describe('GetModelsForMakeId()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetModelsForMakeId();
     const response = await client.GetModelsForMakeId(381).catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetModelsForMakeId, Error building query string: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -66,13 +86,12 @@ describe('GetModelsForMakeId()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetModelsForMakeId();
     const response = await client.GetModelsForMakeId(999).catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.get).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetModelsForMakeId, Fetch.get() error: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Fetch.get() error: mock error`)
     );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });

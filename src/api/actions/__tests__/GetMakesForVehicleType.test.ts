@@ -5,33 +5,68 @@ import mockCrossFetch from 'cross-fetch';
 
 import mockData from '../../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const ACTION = 'GetMakesForVehicleType';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
+
+const getClassInstance = () => {
+  return new GetMakesForVehicleType();
+};
 
 describe('GetMakesForVehicleType()', () => {
-  test('it gets all manufacturers', async () => {
-    const client = new GetMakesForVehicleType();
+  let client: GetMakesForVehicleType;
+
+  beforeEach(() => {
+    client = getClassInstance();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  /**************
+   * Successes
+   **************/
+
+  test('it gets makes for a vehicle type', async () => {
     const response = await client
       .GetMakesForVehicleType('audi')
       .catch(err => err);
+    expect(response).toStrictEqual(mockData);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+    const expectedUrl = `${BASE_URL}/audi?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
   });
 
-  test('it returns an Error when no typeName argument is provided', async () => {
-    const client = new GetMakesForVehicleType();
+  /**************
+   * Failures
+   **************/
+
+  test('it rejects with Error when no typeName argument is provided', async () => {
     const response = await client
       .GetMakesForVehicleType(undefined as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetMakesForVehicleType, typeName is required and must be a string, got: undefined'
+        `${ACTION}, "typeName" argument is required and must be of type string, got: ` +
+          `<undefined> undefined`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when invalid typeName argument is provided', async () => {
+    const response = await client
+      .GetMakesForVehicleType(1234 as any)
+      .catch(err => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "typeName" argument is required and must be of type string, got: ` +
+          `<number> 1234`
+      )
+    );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -39,16 +74,15 @@ describe('GetMakesForVehicleType()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetMakesForVehicleType();
     const response = await client
       .GetMakesForVehicleType('audi')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetMakesForVehicleType, Error building query string: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -56,15 +90,14 @@ describe('GetMakesForVehicleType()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetMakesForVehicleType();
     const response = await client
       .GetMakesForVehicleType('fails')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.get).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetMakesForVehicleType, Fetch.get() error: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Fetch.get() error: mock error`)
     );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });

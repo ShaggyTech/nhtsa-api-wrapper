@@ -5,47 +5,68 @@ import mockCrossFetch from 'cross-fetch';
 
 import mockData from '../../../__mocks__/mockData';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+const ACTION = 'GetWMIsForManufacturer';
+const BASE_URL = `https://vpic.nhtsa.dot.gov/api/vehicles/${ACTION}`;
+
+const getClassInstance = () => {
+  return new GetWMIsForManufacturer();
+};
 
 describe('NHTSA.DecodeWMI()', () => {
-  test('it decodes a WMI', async () => {
-    const client = new GetWMIsForManufacturer();
-    const response = await client
-      .GetWMIsForManufacturer('audi')
-      .catch(err => err);
+  let client: GetWMIsForManufacturer;
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(mockData);
+  beforeEach(() => {
+    client = getClassInstance();
   });
 
-  test('it returns an Error when no WMI argument is provided', async () => {
-    const client = new GetWMIsForManufacturer();
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  /**************
+   * Successes
+   **************/
+
+  test('it gets WMIs for a valid manufacturer', async () => {
+    const response = await client
+      .GetWMIsForManufacturer('Audi')
+      .catch(err => err);
+    expect(response).toStrictEqual(mockData);
+
+    const expectedUrl = `${BASE_URL}/Audi?format=json`;
+    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  /**************
+   * Failures
+   **************/
+
+  test('it returns an Error when no manufacturer argument is provided', async () => {
     const response = await client
       .GetWMIsForManufacturer(undefined as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetWMIsForManufacturer, manufacturer argument is required and must be a string, got: undefined'
+        `${ACTION}, "manufacturer" argument is required and must be of type string, got: ` +
+          `<undefined> undefined`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
-  test('it returns an Error when invalid typeof WMI argument is provided', async () => {
-    const client = new GetWMIsForManufacturer();
+  test('it rejects with an Error when invalid manufacturer argument is provided', async () => {
     const response = await client
-      .GetWMIsForManufacturer(3929343 as any)
+      .GetWMIsForManufacturer({ testing: 'test' } as any)
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(response).toEqual(
+    expect(response).toStrictEqual(
       Error(
-        'GetWMIsForManufacturer, manufacturer argument is required and must be a string, got: 3929343'
+        `${ACTION}, "manufacturer" argument is required and must be of type string, got: ` +
+          `<object> [object Object]`
       )
     );
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -53,16 +74,15 @@ describe('NHTSA.DecodeWMI()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetWMIsForManufacturer();
     const response = await client
-      .GetWMIsForManufacturer('3VW')
+      .GetWMIsForManufacturer('Volkswagen')
       .catch(err => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
-    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetWMIsForManufacturer, Error building query string: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Error building query string: mock error`)
     );
+    expect(client.buildQueryString).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -70,14 +90,14 @@ describe('NHTSA.DecodeWMI()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const client = new GetWMIsForManufacturer();
     const response = await client
-      .GetWMIsForManufacturer('3VW')
+      .GetWMIsForManufacturer('Audi')
       .catch(err => err);
 
-    expect(client.get).toHaveBeenCalledTimes(1);
-    expect(response).toEqual(
-      Error('GetWMIsForManufacturer, Fetch.get() error: mock error')
+    expect(response).toStrictEqual(
+      Error(`${ACTION}, Fetch.get() error: mock error`)
     );
+    expect(client.get).toHaveBeenCalledTimes(1);
+    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
   });
 });
