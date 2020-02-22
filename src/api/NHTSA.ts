@@ -1,9 +1,9 @@
 /**
  * @module api/NHTSA
- * @description Module for API Fetch Logic.
+ * @description Module that exports the package level class for all NHTSA API Actions (endpoints).
  *
  * > **Module Exports**:
- * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHSTA API Actions
+ * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHTSA API Actions
  */
 
 import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
@@ -11,28 +11,28 @@ import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
 /* Import implemented API Action classes */
 import {
   DecodeVin,
-  DecodeVinValues,
   DecodeVinExtended,
+  DecodeVinValues,
   DecodeVinValuesExtended,
   DecodeWMI,
-  GetWMIsForManufacturer,
   GetAllMakes,
-  GetParts,
   GetAllManufacturers,
-  GetManufacturerDetails,
+  GetCanadianVehicleSpecifications,
+  GetEquipmentPlantCodes,
   GetMakeForManufacturer,
   GetMakesForManufacturerAndYear,
   GetMakesForVehicleType,
-  GetVehicleTypesForMake,
-  GetVehicleTypesForMakeId,
-  GetEquipmentPlantCodes,
+  GetManufacturerDetails,
   GetModelsForMake,
   GetModelsForMakeId,
-  GetModelsForMakeYear,
   GetModelsForMakeIdYear,
+  GetModelsForMakeYear,
+  GetParts,
+  GetVehicleTypesForMake,
+  GetVehicleTypesForMakeId,
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
-  GetCanadianVehicleSpecifications
+  GetWMIsForManufacturer
 } from './actions';
 
 /**
@@ -154,5 +154,3 @@ class NHTSA extends Fetch
 }
 
 export { NHTSA };
-
-export const Client = new NHTSA();

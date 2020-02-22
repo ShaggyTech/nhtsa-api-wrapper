@@ -1,1 +1,2 @@
-export { NHTSA, Client } from './NHTSA';
+export { NHTSA } from './NHTSA';
+export { Client } from './Client';
