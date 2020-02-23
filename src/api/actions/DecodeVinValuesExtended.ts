@@ -47,15 +47,15 @@ export class DecodeVinValuesExtended extends Fetch {
    */
   async DecodeVinValuesExtended(
     vin: string,
-    params: {
+    params?: {
       modelYear?: string | number;
-    } = {}
+    }
   ): Promise<DecodeVinValuesExtendedResponse | Error> {
     const action = 'DecodeVinValuesExtended';
 
     /* Runtime typechecking */
     const typeofParams = getTypeof(params);
-    if (typeofParams !== 'object') {
+    if (params && typeofParams !== 'object') {
       return Promise.reject(
         new Error(
           `${action}, "params" argument must be of type object, got: ` +
@@ -74,12 +74,8 @@ export class DecodeVinValuesExtended extends Fetch {
       );
     }
 
-    const typeofModelYear = getTypeof(params.modelYear);
-    if (
-      params.modelYear &&
-      typeofModelYear !== 'string' &&
-      typeofModelYear !== 'number'
-    ) {
+    const typeofModelYear = getTypeof(params?.modelYear);
+    if (params?.modelYear && typeofModelYear !== 'number') {
       return Promise.reject(
         new Error(
           `${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +

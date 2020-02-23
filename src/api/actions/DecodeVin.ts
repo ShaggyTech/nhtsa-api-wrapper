@@ -39,20 +39,20 @@ export class DecodeVin extends Fetch {
    * @async
    * @param {string} vin - Vehicle Identification Number (full or partial).
    * @param {object} [params={}] - Query Search Parameters to append to the URL.
-   * @param {string|number} [params.modelYear] - Optional Model Year search parameter.
+   * @param {number} [params.modelYear] - Optional Model Year search parameter.
    * @returns {(Promise<DecodeVinResponse | Error>)} - Api Response object.
    */
   async DecodeVin(
     vin: string,
-    params: {
-      modelYear?: string | number;
-    } = {}
+    params?: {
+      modelYear?: number;
+    }
   ): Promise<DecodeVinResponse | Error> {
     const action = 'DecodeVin';
 
     /* Runtime typechecking */
     const typeofParams = getTypeof(params);
-    if (typeofParams !== 'object') {
+    if (params && typeofParams !== 'object') {
       return Promise.reject(
         new Error(
           `${action}, "params" argument must be of type object, got: ` +
@@ -71,12 +71,8 @@ export class DecodeVin extends Fetch {
       );
     }
 
-    const typeofModelYear = getTypeof(params.modelYear);
-    if (
-      params.modelYear &&
-      typeofModelYear !== 'string' &&
-      typeofModelYear !== 'number'
-    ) {
+    const typeofModelYear = getTypeof(params?.modelYear);
+    if (params?.modelYear && typeofModelYear !== 'number') {
       return Promise.reject(
         new Error(
           `${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
