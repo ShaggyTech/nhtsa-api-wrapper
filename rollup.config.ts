@@ -7,6 +7,7 @@ import gzipPlugin from 'rollup-plugin-gzip';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import visualizer from 'rollup-plugin-visualizer';
 
 import pkg from './package.json';
 
@@ -19,8 +20,6 @@ const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 
 const treeShakeBundles = {
   index: 'src/index.ts'
-  // NHTSA: 'src/api/NHTSA.ts',
-  // isValidVin: 'src/utils/isValidVin.ts'
 };
 
 // Rollup plugins used with every build
@@ -34,7 +33,7 @@ const plugins = [
     exclude: ['node_modules']
   }),
   sourceMaps(),
-  babel({ include: 'node_modules/**', extensions: ['.js', '.ts'] })
+  babel({ include: 'node_modules/cross-fetch', extensions: ['.js', '.ts'] })
 ];
 
 export default [
@@ -106,21 +105,19 @@ export default [
         globals: {
           'cross-fetch': 'fetch'
         },
-        chunkFileNames: 'chunk-[format]-[hash].js',
+        // chunkFileNames: 'chunk-[format]-[hash].js',
         sourcemap: true,
-        plugins: [
-          terser({
-            output: {
-              comments: false
-            }
-          })
-        ]
+        plugins: [terser()]
       }
     ],
     /* Resolve() - Allow node_modules resolution, so you can use 'external' to control
      * which external modules to include in the bundle
      * https://github.com/rollup/rollup-plugin-node-resolve#usage
      */
-    plugins: [resolve({ preferBuiltins: true, browser: true }), ...plugins]
+    plugins: [
+      visualizer({ sourcemap: true }),
+      resolve({ preferBuiltins: true, browser: true }),
+      ...plugins
+    ]
   }
 ];
