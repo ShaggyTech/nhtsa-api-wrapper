@@ -29,7 +29,7 @@
     });
   
     document.getElementById('isValidVin').addEventListener('click', async function() {
-      const result = await NHTSA.isValidVin('WVWHV71K69W144983').catch(err => err);
+      const result = await client.isValidVin('WVWHV71K69W144983').catch(err => err);
       console.log(result);
       document.getElementById('isValidVinResults').innerText = result;
     });

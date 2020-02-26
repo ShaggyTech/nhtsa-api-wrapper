@@ -1,12 +1,16 @@
 /**
  * @module api/NHTSA
- * @description Module that exports the package level class for all NHTSA API Actions (endpoints).
+ * @category API
+ * @description Module exporting the main (NHSTA) class for API Actions.
  *
  * > **Module Exports**:
  * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHTSA API Actions
  */
 
 import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
+
+/* Util Helpers */
+import { isValidVin } from '../utils/isValidVin';
 
 /* Import implemented API Action classes */
 import {
@@ -37,8 +41,8 @@ import {
 
 /**
  * @class NHTSA
- *
- * @augments {Fetch}
+ * @augments module:api/Fetch.Fetch
+ * @category API
  *
  * @implements {module:api/actions/DecodeVin.DecodeVin}
  * @implements {module:api/actions/DecodeVinExtended.DecodeVinExtended}
@@ -92,6 +96,7 @@ class NHTSA extends Fetch
   constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
+  isValidVin = isValidVin;
 
   DecodeVin = DecodeVin.prototype.DecodeVin;
 

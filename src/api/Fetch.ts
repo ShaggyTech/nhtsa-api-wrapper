@@ -37,11 +37,13 @@ export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 /**
  * @constant {module:api/Fetch.FetchConfig} DEFAULT_CONFIG Default Fetch configuration options
  * @property {string} apiResponseFormat=json
- * @property {string} baseUrl=BASE_URL
+ * @property {string} baseUrl=BASE_URL Default: [BASE_URL](module-api_Fetch.html#~BASE_URL)
+ * @property {FetchRequestOptions} options={method:"GET"}
  */
 export const DEFAULT_CONFIG: FetchConfig = {
   apiResponseFormat: 'json',
-  baseUrl: BASE_URL
+  baseUrl: BASE_URL,
+  options: { method: 'GET' }
 };
 
 /*****************
@@ -55,7 +57,7 @@ export const DEFAULT_CONFIG: FetchConfig = {
  * > - [buildQueryString](#buildQueryString)
  * > - [get](#get)
  *
- * @param {module:api/Fetch.FetchConfig} [userConfig] - User configuration options to construct the class with.
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  * @category API
  */
 export class Fetch {
@@ -88,7 +90,7 @@ export class Fetch {
   /**
    * Builds a query string from QueryStringParameters.
    *
-   * @param {object} params - Object of Type [QueryStringParameters](module-utils_makeQueryString.html#.QueryStringParameters).
+   * @param {QueryStringParameters} params - Object containing Key:Value pairs to build the URL query string with.
    * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
    * - Given params of `{paramName: ""}` , setting this to true will use 'paramName=' in the final query string.
    * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
@@ -121,7 +123,7 @@ export class Fetch {
    * - In node environments, [node-fetch](https://github.com/bitinn/node-fetch/) NPM package is used.
    *
    * @param {string} url - URL to fetch data from.
-   * @param {module:api/Fetch.FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
+   * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
    * @returns {(Promise<module:api/Fetch.ApiResponse | Error>)} Response from the API.
    */
   async get(
@@ -188,34 +190,6 @@ export class Fetch {
 /*****************
  * Types
  ****************/
-
-/**
- * Results from NHSTA API Actions.
- *
- * @memberof module:api/Fetch
- */
-export type NhstaResults = Array<
-  import('./actions/DecodeVin').DecodeVinResults
-  // | ResultDecodeVinValues
-  // | ResultDecodeWMI
-  // | ResultGetWMIsForManufacturer
-  // | ResultGetAllMakes
-  // | ResultGetParts
-  // | ResultGetAllManufacturers
-  // | ResultGetManufacturerDetails
-  // | ResultGetMakeForManufacturer
-  // | ResultGetMakesForManufacturerAndYear
-  // | ResultGetMakesForVehicleType
-  // | ResultGetVehicleTypesForMake
-  // | ResultGetVehicleTypesForMakeId
-  // | ResultGetEquipmentPlantCodes
-  // | ResultGetModelsForMake
-  // | ResultGetModelsForMakeYear
-  // | ResultGetModelsForMakeIdYear
-  // | ResultGetVehicleVariableList
-  // | ResultGetVehicleVariableValuesList
-  // | ResultGetCanadianVehicleSpecifications
->;
 
 /**
  * Various fetch request body types.
@@ -324,6 +298,6 @@ export type ApiResponse = {
   SearchCriteria: string;
   /** An array of Results returned by NHSTA, specific to each individual API Action. */
   Results: Array<any>;
-  /** [Fetch API Response](https://github.github.io/fetch/#Response) properties. */
+  /** [Fetch API Response](https://github.github.io/fetch/#Response) Properties. */
   FetchResponse: FetchResponse;
 };

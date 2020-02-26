@@ -6,23 +6,24 @@
     <title>Testing module imports</title>
 
     <script type="module">
-      import {
-        isValidVin,
-        Client
-      } from '../../dev/dist/module/index.js';
-
       console.log(`Successfully imported via ESModule import`);
 
-      document.getElementById('client').addEventListener('click', async function() {
-        const result = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
-        console.log(result);
-        document.getElementById('clientResults').innerText = result;
+      document.getElementById('DecodeVin').addEventListener('click', async () => {
+        /* Lazy Loading */
+        const { Client } = await import('../../dev/dist/module/index.js')
+          .catch(err => err);
+
+        const result = await Client.DecodeVin('3VWD07AJ5EM388202')
+          .catch(err => err)
+
+        console.log(result)
+        document.querySelector('#DecodeVinResults').innerHTML = `${JSON.stringify(result)}` 
       });
 
       document
         .getElementById('isValidVin')
         .addEventListener('click', async function() {
-          const result = await isValidVin('WVWHV71K69W144983').catch(err => err);
+          const result = await Client.isValidVin('WVWHV71K69W144983').catch(err => err);
           console.log(`isValidVin result: ${result}`);
           document.getElementById('isValidVinResults').innerText = result;
         });
@@ -30,8 +31,8 @@
   </head>
   <body>
     <h2>
-      <btn id="client">Click to console.log NHTSA.DecodeVin() results</btn>
-      <div id="clientResults"></div>
+      <btn id="DecodeVin">Click to console.log NHTSA.DecodeVin() results</btn>
+      <div id="DecodeVinResults"></div>
     </h2>
     <h2>
       <btn id="isValidVin">Click to console.log isValidVin() results</btn>
