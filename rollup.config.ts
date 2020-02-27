@@ -115,7 +115,11 @@ export default [
      * https://github.com/rollup/rollup-plugin-node-resolve#usage
      */
     plugins: [
-      visualizer({ sourcemap: true }),
+      visualizer({
+        filename: 'package-size-stats.html',
+        title: '@shaggytools/nhtsa-api-wrapper - Package Visualizer',
+        sourcemap: true
+      }),
       resolve({ preferBuiltins: true, browser: true }),
       ...plugins
     ]

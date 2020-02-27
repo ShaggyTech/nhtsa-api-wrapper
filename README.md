@@ -62,7 +62,7 @@ I wanted an easy way to consume the [NHSTA.dot.gov Vehicles API](https://vpic.nh
 
 I also wanted to further my knowledge by learning TypeScript, JSDoc, Jest, and Rollup. Thus was born this package.
 
-I hope you find this package useful.
+I hope you find this package useful and mostly free of bugs 🐛.
 
 -- [@ShaggyTech](https://www.github.com/ShaggyTech)
 
@@ -73,11 +73,11 @@ I hope you find this package useful.
 
 There are a total of 24 different endpoints, or `Actions`, available for the NHTSA Vehicles API.
 
-To see how this package implements these Actions, visit the documentation for the [NHTSA class](module-api_NHTSA-NHTSA.html)
+To see how these Actions are implemented you can visit the documentation for the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of individual endpoint wrappers.
 
-See also: [https://vpic.nhtsa.dot.gov/api/Home](https://vpic.nhtsa.dot.gov/api/Home) for the original API documentation.
+Each action
 
-**Available API Actions**
+### Available API Actions
 
 - [DecodeVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.DecodeVin.html#DecodeVin)
 - [DecodeVinExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
@@ -108,10 +108,9 @@ See also: [https://vpic.nhtsa.dot.gov/api/Home](https://vpic.nhtsa.dot.gov/api/H
 
 ## Dependencies
 
-[cross-fetch](https://www.npmjs.com/package/cross-fetch)
+**[cross-fetch](https://www.npmjs.com/package/cross-fetch)** NPM Package
 
-- Universal WHATWG Fetch API for Node, Browsers and React
-Native.
+- Universal WHATWG Fetch API for Node, Browsers and React Native.
 - Uses [whatwg-fetch](https://github.com/github/fetch/) in the browser and [node-fetch](https://github.com/bitinn/node-fetch/) in node environments.
 
 ---
@@ -134,22 +133,60 @@ npm install @shaggytools/nhtsa-api-wrapper
 yarn @shaggytools/nhtsa-api-wrapper
 ```
 
-#### Basic Usage in Node
+#### Usage in Node
 
-```node
+TODO: What does it return???????????????
+
+There are several ways to use this package within a Node environment listed below.
+
+- The first two will give you access to all 24 NHTSA endpoints.
+- The last one allows you to import the individual actions if you are only interested in using one of them.
+
+##### Via Client
+
+If you prefer _not_ to use the `new` keyword, as with the NHTSA class, you can use the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) export, which returns a new instance of the `NHTSA` class:
+
+Example code:
+
+```javascript
 const { Client } = require('@shaggytools/nhtsa-api-wrapper');
 
-const response = Client.DecodeVin('WVWHV71K69W144983')
-  .then(response => {
-    console.log(response);
-    return response;
-  })
-  .catch(err => console.log(err))
+// Decode a VIN and return the complete response
+const response = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+console.log(response);
 
-  // Do something with the response
+// or Decode a VIN and return only the Results array
+const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+console.log(Results);
 ```
 
-#### Instantiated as a Class
+##### Via NHTSA class
+
+You can import the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of the API `Actions`. You will need to instantiate the class with `new NHTSA()`.
+
+```javascript
+const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper');
+
+const apiClient = new NHTSA();
+
+// Decode a VIN and return the complete response
+const response = await apiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+console.log(response);
+
+// Decode a VIN and return only the Results array
+const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+console.log(Results);
+```
+
+##### Via individual API Actions
+
+You can import individual API `Actions` if you only need to use one of them at a time.  This will
+slightly reduce the imported size. It's helpful to know that the [cross-fetch](https://www.npmjs.com/package/cross-fetch) dependency is required in all Acions and weighs in at 
+
+```javascript
+```
+
+##### Instantiated as a Class
 
 See the [FetchConfig](module-api_Fetch.html#FetchConfig) type for more information on how the Class can be configured.
 
