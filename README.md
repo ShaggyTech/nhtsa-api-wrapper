@@ -85,8 +85,8 @@ I hope you find this package useful and mostly free of bugs 🐛.
 
 ## How to Install and Use This Package
 
-- [Node Environments](#node-environments)
-- [Browser Environments](#browser-environments)
+- [In Node Environments](#in-node-environments)
+- [In Browser Environments](#in-browser-environments)
 
 ---
 
@@ -97,7 +97,7 @@ I hope you find this package useful and mostly free of bugs 🐛.
 ```node
 npm install @shaggytools/nhtsa-api-wrapper
 // or
-yarn @shaggytools/nhtsa-api-wrapper
+yarn add @shaggytools/nhtsa-api-wrapper
 ```
 
 #### Using in Node
