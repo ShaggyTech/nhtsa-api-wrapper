@@ -1,6 +1,6 @@
 # @shaggytools / nhtsa-api-wrapper
 
-> An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) wrapper written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).
+> An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).
 
 The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
 
@@ -29,7 +29,7 @@ If you find an issue or would like to make or suggest improvements, I would glad
     - [Basic Usage in Browser](#basic-usage-in-browser)
     - [Lazy Loaded ESModule in Browser Environments](#lazy-loaded-esmodule-in-browser-environments)
 
-- [NHTSA API Responses](#api-responses)
+- [NHTSA API Responses](#nhtsa-api-responses)
 - [NHTSA API Actions](#nhtsa-api-actions)
 
   <details>
@@ -64,7 +64,7 @@ If you find an issue or would like to make or suggest improvements, I would glad
 
 ## Purpose
 
-I wanted an easy way to consume the [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) in JavaScript, which is primarily used for decoding Vehicle Identification Numbers (VINs). The API contains a total of 24 different endpoints, or "Actions" as the developers of the API choose to call them.
+I wanted an easy way to consume the [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) in JavaScript.  This API  is primarily used for decoding Vehicle Identification Numbers (VINs). The API contains a total of 24 different endpoints, or "Actions" as the developers of the API choose to call them, all of which return different vehicle information based on the request.
 
 I also wanted to further my knowledge by learning TypeScript, JSDoc, Jest, and Rollup. Thus was born this package.
 
@@ -145,7 +145,7 @@ const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => 
 console.log(Results);
 ```
 
-See the [FetchConfig](module-api_Fetch.html#FetchConfig) type for more information on how the Class can be configured.
+See the [FetchConfig](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig) type for more information on how the Class can be configured.
 
 Changing the `baseUrl` could be useful if you want to proxy/mirror the NHTSA endpoints through your own server, or if the NHTSA URL were to change in the future and you needed an immediate way to correct it.  
 
@@ -187,14 +187,18 @@ Sample code; change `DecodeWMI` to any desired NHTSA Action, or import multiples
 const { DecodeWMI, GetModelsForMake } = require('@shaggytools/nhtsa-api-wrapper');
 
 const Decoder = new DecodeWMI();
-const modelGetter = n
+const GetModels = new GetModelsForMake();
+
+// Decode a VIN and return only the Results array
+const { Results } = await Decoder.DecodeWMI('3VW').catch(err => err)
+console.log(Results);
 
 // Decode a VIN and return the complete response
 const response = await Decoder.DecodeWMI('3VW').catch(err => err)
 console.log(response);
 
-// Decode a VIN and return only the Results array
-const { Results } = await Decoder.DecodeWMI('3VW').catch(err => err)
+// Get models per make and return only the Results array
+const { Results } = await GetModels.GetModelsForMake('Toyota').catch(err => err)
 console.log(Results);
 ```
 
@@ -208,15 +212,15 @@ Further below, there will be full examples for how to use the `NHTSA` global in 
 
 #### `NHTSA.Client`
 
-`NHTSA.Client` is an instance of the NHTSA class which implements all of the wrappers for the NHTSA Actions.  You can avoid using the `new` keyword in your code if you use it this way. See the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) module for more information.
+`NHTSA.Client` is an instance of the NHTSA class which implements all of the wrappers for the NHTSA Actions.  You can avoid using the `new` keyword in your code if you use it this way. See the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) class for more information.
 
 #### `NHTSA.NHTSA`
 
-`NHTSA.NHTSA` is the main class which implements all of the Action class methods.  You will need to use the `new` keyword within your code <`new NHTSA()`>. See the [NHTSA](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA.html) module for more information.
+`NHTSA.NHTSA` is the main class which implements all of the Action class methods.  You will need to use the `new` keyword within your code <`new NHTSA()`>. See the [NHTSA](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html) class for more information.
 
 #### `NHTSA.isValidVin`
 
-`NHTSA.isValidVin` is a method that takes a single string argument, a Vehicle Identification Number, and performs an **offline** VIN validation.  It will return true if the VIN passes the algorithm, otherwise false.  This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the [isValidVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html) module for more information.
+`NHTSA.isValidVin` is a method that takes a single string argument, a Vehicle Identification Number, and performs an **offline** VIN validation.  It will return true if the VIN passes the algorithm, otherwise false.  This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the [isValidVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html#.isValidVin) module for more information.
 
 > In all of the following URLs either:
 >
@@ -375,11 +379,11 @@ Full HTML Example:
 
 Each action returns a response in the form of an [ApiResponse](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#ApiResponse) object.
 
-You'll likely only be interested in the `ApiResponse.Results` portion of the response.  `Results` is an array that will hold one or more objects, with the number of objects depending on the specific Action that was used.  There is also additional information returned about the request, response, etc., from within the `ApiResponse` object.
+You'll likely only be interested in the `ApiResponse.Results` portion of the response.  `Results` is an array that will hold one or more objects, with the number of objects depending on the specific Action that was used.  There is also additional information returned about the request, response, headers etc. within the `ApiResponse` object.
 
-For example, you can see what the `GetEquipmentPlantCodes` response will be by going to it's response type, located on the documentation page for the same named module, with the word "Response" added to the end.
+As an example, you can see what the `GetEquipmentPlantCodes` response will be by going to it's response type, located on the documentation page for the same named module, with the word "Response" added to the end.
 
-For example: [GetEquipmentPlantCodesResponse](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResponse).Results will contain an array of [GetEquipmentPlantCodesResults](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResults) type objects.
+Example: [GetEquipmentPlantCodesResponse](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResponse).Results will contain an array of [GetEquipmentPlantCodesResults](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResults) type objects.
 
 ---
 

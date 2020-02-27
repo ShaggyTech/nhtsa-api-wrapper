@@ -44,6 +44,8 @@ import {
  * @augments module:api/Fetch.Fetch
  * @category API
  *
+ * @param {FetchConfig} [userConfig] - Configuration options to construct the class with.
+ *
  * @implements {module:api/actions/DecodeVin.DecodeVin}
  * @implements {module:api/actions/DecodeVinExtended.DecodeVinExtended}
  * @implements {module:api/actions/DecodeVinValues.DecodeVinValues}
