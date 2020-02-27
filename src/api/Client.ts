@@ -1,12 +1,18 @@
 /**
  * @module api/Client
  * @category API
- * @description Module exporting an instance of NHSTA class (package level export).
+ * @description Module exporting an instance of the NHSTA class.
  *
- * > **Module Exports**:
- * > - Class Instance: [new NHTSA()](module-api_NHTSA-NHTSA.html) - A class instance containing all API Actions.
+ * > - For more information, see the documentation for the [NHTSA](module-api_NHTSA-NHTSA.html) class.
  */
 
 import { NHTSA } from './NHTSA';
 
-export const Client = new NHTSA();
+/**
+ * A new instance of the [NHTSA](module-api_NHTSA-NHTSA.html) class.
+ *
+ * @type {NHTSA}
+ */
+const Client: NHTSA = new NHTSA();
+
+export { Client };

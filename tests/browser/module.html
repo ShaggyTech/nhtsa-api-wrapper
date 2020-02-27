@@ -13,11 +13,11 @@
         const { Client } = await import('../../dev/dist/module/index.js')
           .catch(err => err);
 
-        const result = await Client.DecodeVin('3VWD07AJ5EM388202')
+        const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202')
           .catch(err => err)
 
-        console.log(result)
-        document.querySelector('#DecodeVinResults').innerHTML = `${JSON.stringify(result)}` 
+        console.log(Results)
+        document.querySelector('#DecodeVinResults').innerHTML = `${JSON.stringify(Results)}` 
       });
 
       document
