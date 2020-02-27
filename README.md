@@ -4,6 +4,8 @@
 
 The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
 
+**Documentation: [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)**
+
  **[Package Size Visualization](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html)**
 
 If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.
