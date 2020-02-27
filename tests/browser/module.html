@@ -10,10 +10,12 @@
 
       document.getElementById('DecodeVin').addEventListener('click', async () => {
         /* Lazy Loading */
-        const { Client } = await import('../../dev/dist/module/index.js')
+        const { DecodeVin } = await import('../../dev/dist/module/DecodeVin.js')
           .catch(err => err);
 
-        const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202')
+        const decoder = new DecodeVin();
+
+        const { Results } = await decoder.DecodeVin('3VWD07AJ5EM388202')
           .catch(err => err)
 
         console.log(Results)

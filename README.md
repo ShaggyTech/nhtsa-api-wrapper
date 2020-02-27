@@ -4,6 +4,8 @@
 
 The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
 
+ **[Package Size Visualization](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html)**
+
 If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.
 
 > This package was developed and tested on `Node v12.14.0`, `NPM v6.11.3`, and `Yarn v1.21.1`
@@ -13,6 +15,19 @@ If you find an issue or would like to make or suggest improvements, I would glad
 ## Table of Contents
 
 - [Purpose](#purpose)
+- [Dependencies](#dependencies)
+- [How to Install and Use This Package](#how-to-install-and-use-this-package)
+  - [In Node Environments](#in-node-environments)
+    - [Install](#install)
+    - [Using in Node](#using-in-node)
+      - [Via Client](#via-client)
+      - [Via NHTSA Class](#via-nhtsa-class)
+      - [Via Individual API Actions](#via-individual-api-actions)
+  - [In Browser Environments](#in-browser-environments)
+    - [Basic Usage in Browser](#basic-usage-in-browser)
+    - [Lazy Loaded ESModule in Browser Environments](#lazy-loaded-esmodule-in-browser-environments)
+
+- [NHTSA API Responses](#api-responses)
 - [NHTSA API Actions](#nhtsa-api-actions)
 
   <details>
@@ -41,17 +56,6 @@ If you find an issue or would like to make or suggest improvements, I would glad
   - [GetVehicleVariableList](module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html#GetVehicleVariableList)
   - [GetVehicleVariableValuesList](module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html#GetVehicleVariableValuesList)
   - [GetWMIsForManufacturer](module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html#GetWMIsForManufacturer)
-- [Dependencies](#dependencies)
-- [Installation and Usage](#installation-and-usage)
-  - [Node Environments](#node-environments)
-    - [Install](#install)
-    - [Basic Usage in Node](#basic-usage-in-node)
-    - [Instantiated as a Class](#instantiated-as-a-class-with-options)
-  - [Browser Environments](#browser-environments)
-    - [Basic Usage in Browser](#basic-usage-in-browser)
-    - [Lazy Loaded ESModule in Browser Environments](#lazy-loaded-esmodule-in-browser-environments)
-
-</details>
 
 ---
 ---
@@ -69,43 +73,6 @@ I hope you find this package useful and mostly free of bugs 🐛.
 ---
 ---
 
-## NHTSA API Actions
-
-There are a total of 24 different endpoints, or `Actions`, available for the NHTSA Vehicles API.
-
-To see how these Actions are implemented you can visit the documentation for the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of individual endpoint wrappers.
-
-Each action
-
-### Available API Actions
-
-- [DecodeVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.DecodeVin.html#DecodeVin)
-- [DecodeVinExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
-- [DecodeVinValues](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValues.DecodeVinValues.html#DecodeVinValues)
-- [DecodeVinValuesExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html#DecodeVinValuesExtended)
-- [DecodeWMI](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeWMI.DecodeWMI.html#DecodeWMI)
-- [GetAllMakes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllMakes.GetAllMakes.html#GetAllMakes)
-- [GetAllManufacturers](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllManufacturers.GetAllManufacturers.html#GetAllManufacturers)
-- [GetCanadianVehicleSpecifications](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.html#GetCanadianVehicleSpecifications)
-- [GetEquipmentPlantCodes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.GetEquipmentPlantCodes.html#GetEquipmentPlantCodes)
-- [GetMakeForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakeForManufacturer.GetMakeForManufacturer.html#GetMakeForManufacturer)
-- [GetMakesForManufacturerAndYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.html#GetMakesForManufacturerAndYear)
-- [GetMakesForVehicleType](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakesForVehicleType.GetMakesForVehicleType.html#GetMakesForVehicleType)
-- [GetManufacturerDetails](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html#GetManufacturerDetails)
-- [GetModelsForMake](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMake.GetModelsForMake.html#GetModelsForMake)
-- [GetModelsForMakeId](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html#GetModelsForMakeId)
-- [GetModelsForMakeIdYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeIdYear.GetModelsForMakeIdYear.html#GetModelsForMakeIdYear)
-- [GetModelsForMakeYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html#GetModelsForMakeYear)
-- [GetParts](module-api_actions_GetParts.GetParts.html#GetParts)
-- [GetVehicleTypesForMake](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleTypesForMake.GetVehicleTypesForMake.html#GetVehicleTypesForMake)
-- [GetVehicleTypesForMakeId](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.html#GetVehicleTypesForMakeId)
-- [GetVehicleVariableList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html#GetVehicleVariableList)
-- [GetVehicleVariableValuesList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html#GetVehicleVariableValuesList)
-- [GetWMIsForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html#GetWMIsForManufacturer)
-
----
----
-
 ## Dependencies
 
 **[cross-fetch](https://www.npmjs.com/package/cross-fetch)** NPM Package
@@ -116,14 +83,14 @@ Each action
 ---
 ---
 
-## Installation and Usage
+## How to Install and Use This Package
 
 - [Node Environments](#node-environments)
 - [Browser Environments](#browser-environments)
 
 ---
 
-### Node Environments
+### In Node Environments
 
 #### Install
 
@@ -133,14 +100,12 @@ npm install @shaggytools/nhtsa-api-wrapper
 yarn @shaggytools/nhtsa-api-wrapper
 ```
 
-#### Usage in Node
+#### Using in Node
 
-TODO: What does it return???????????????
+Listed below, there are several ways to use this package within a Node environment.
 
-There are several ways to use this package within a Node environment listed below.
-
-- The first two will give you access to all 24 NHTSA endpoints.
-- The last one allows you to import the individual actions if you are only interested in using one of them.
+- The first two will give you access to all 24 NHTSA endpoints within the same import.
+- The last one allows you to import the individual actions if you are only interested in using one or some of them.
 
 ##### Via Client
 
@@ -167,46 +132,29 @@ You can import the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/mo
 ```javascript
 const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper');
 
-const apiClient = new NHTSA();
+const ApiClient = new NHTSA();
 
 // Decode a VIN and return the complete response
-const response = await apiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+const response = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(response);
 
 // Decode a VIN and return only the Results array
-const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(Results);
 ```
 
-##### Via individual API Actions
-
-You can import individual API `Actions` if you only need to use one of them at a time.  This will
-slightly reduce the imported size. It's helpful to know that the [cross-fetch](https://www.npmjs.com/package/cross-fetch) dependency is required in all Acions and weighs in at 
-
-```javascript
-```
-
-##### Instantiated as a Class
-
 See the [FetchConfig](module-api_Fetch.html#FetchConfig) type for more information on how the Class can be configured.
 
-Changing the `baseUrl` could be useful if you want to proxy/mirror the API endpoints through your own
-server, or if the NHTSA API URL were to change in the future and you needed an immediate way to correct
-it.  
+Changing the `baseUrl` could be useful if you want to proxy/mirror the NHTSA endpoints through your own server, or if the NHTSA URL were to change in the future and you needed an immediate way to correct it.  
 
-Adding `options` is useful to pass in your own Headers, add credentials to the request, and more, if
-needed.
+Adding `options` is useful to pass in your own Headers, add credentials to the request, and more, if needed.
 
-With or without config options passed to the class constructor:
+Sample code, with config options passed to the class constructor:
 
-```node
+```javascript
 const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper')
 
-const Client = new NHSTA();
-
-// --OR--
-
-const Client = new NHTSA({
+const ApiClient = new NHTSA({
   baseUrl: 'http://myproxyserver.com/api/vehicles'
   options: {
     method: 'GET',
@@ -214,7 +162,7 @@ const Client = new NHTSA({
   }
 });
 
-const response = Client.DecodeVin('WVWHV71K69W144983')
+const response = ApiClient.DecodeVin('WVWHV71K69W144983')
   .then(res => {
     console.log(res)
     return response
@@ -225,26 +173,68 @@ const response = Client.DecodeVin('WVWHV71K69W144983')
 
 ```
 
+##### Via individual API Actions
+
+You can import individual NHTSA `Action` classes if you only need to use one of them at a time, or just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named `DecodeVin` and is used like `DecodeVin.DecodeVin(<vin>)` after instantiating the class with the `new` keyword.
+
+Using the wrapper in this way can slightly reduce the imported size. It's useful to know that every Action requires the [cross-fetch](https://www.npmjs.com/package/cross-fetch) which weighs in at around 8.3kB out of the total [package size](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html).
+
+Sample code; change `DecodeWMI` to any desired NHTSA Action, or import multiples.
+
+```javascript
+const { DecodeWMI, GetModelsForMake } = require('@shaggytools/nhtsa-api-wrapper');
+
+const Decoder = new DecodeWMI();
+const modelGetter = n
+
+// Decode a VIN and return the complete response
+const response = await Decoder.DecodeWMI('3VW').catch(err => err)
+console.log(response);
+
+// Decode a VIN and return only the Results array
+const { Results } = await Decoder.DecodeWMI('3VW').catch(err => err)
+console.log(Results);
+```
+
 ---
 
-### Browser Environments
+### In Browser Environments
 
-- This package exports a global browser window object accessed with `NHTSA.Client`, which is a class instance implementing all of the wrappers for the API Actions.
+This package exports a global browser window object named `NHTSA`.
 
-In all of the following URLs:
+Further below, there will be full examples for how to use the `NHTSA` global in different scenarios.
 
-> - remove `<version>` for the latest build.
-> -or-
+#### `NHTSA.Client`
+
+`NHTSA.Client` is an instance of the NHTSA class which implements all of the wrappers for the NHTSA Actions.  You can avoid using the `new` keyword in your code if you use it this way. See the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) module for more information.
+
+#### `NHTSA.NHTSA`
+
+`NHTSA.NHTSA` is the main class which implements all of the Action class methods.  You will need to use the `new` keyword within your code <`new NHTSA()`>. See the [NHTSA](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA.html) module for more information.
+
+#### `NHTSA.isValidVin`
+
+`NHTSA.isValidVin` is a method that takes a single string argument, a Vehicle Identification Number, and performs an **offline** VIN validation.  It will return true if the VIN passes the algorithm, otherwise false.  This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the [isValidVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html) module for more information.
+
+> In all of the following URLs either:
+>
+> - remove `<version>` for the most recent release
+>
+> or...
+>
 > - change `<version>` to specific version number "x.x.xx"
 
-Via [jsdelivr.net CDN](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/)
-`https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper@<version>/`
+**Via [jsdelivr.net CDN](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/)**
 
-Via [bundle.run](https://bundle.run/@shaggytools/nhtsa-api-wrapper)
-`https://bundle.run/@shaggytools/nhtsa-api-wrapper@<version>`
+- `https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper@<version>/`
 
-Via [unpkg.com](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/)
-`https://unpkg.com/@shaggytools/nhtsa-api-wrapper@<version>`
+**Via [bundle.run](https://bundle.run/@shaggytools/nhtsa-api-wrapper)**
+
+- `https://bundle.run/@shaggytools/nhtsa-api-wrapper@<version>`
+
+**Via [unpkg.com](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/)**
+
+- `https://unpkg.com/@shaggytools/nhtsa-api-wrapper@<version>`
 
 #### Basic Usage in Browser
 
@@ -375,6 +365,53 @@ Full HTML Example:
   </body>
 </html>
 ```
+
+---
+---
+
+## NHTSA API Responses
+
+Each action returns a response in the form of an [ApiResponse](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#ApiResponse) object.
+
+You'll likely only be interested in the `ApiResponse.Results` portion of the response.  `Results` is an array that will hold one or more objects, with the number of objects depending on the specific Action that was used.  There is also additional information returned about the request, response, etc., from within the `ApiResponse` object.
+
+For example, you can see what the `GetEquipmentPlantCodes` response will be by going to it's response type, located on the documentation page for the same named module, with the word "Response" added to the end.
+
+For example: [GetEquipmentPlantCodesResponse](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResponse).Results will contain an array of [GetEquipmentPlantCodesResults](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResults) type objects.
+
+---
+
+## NHTSA API Actions
+
+There are a total of 24 different endpoints, or `Actions`, available for the NHTSA Vehicles API.
+
+To see how these Actions are implemented you can visit the documentation for the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of individual Action wrappers.
+
+### List of Actions
+
+- [DecodeVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.DecodeVin.html#DecodeVin)
+- [DecodeVinExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
+- [DecodeVinValues](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValues.DecodeVinValues.html#DecodeVinValues)
+- [DecodeVinValuesExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html#DecodeVinValuesExtended)
+- [DecodeWMI](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeWMI.DecodeWMI.html#DecodeWMI)
+- [GetAllMakes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllMakes.GetAllMakes.html#GetAllMakes)
+- [GetAllManufacturers](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllManufacturers.GetAllManufacturers.html#GetAllManufacturers)
+- [GetCanadianVehicleSpecifications](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.html#GetCanadianVehicleSpecifications)
+- [GetEquipmentPlantCodes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.GetEquipmentPlantCodes.html#GetEquipmentPlantCodes)
+- [GetMakeForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakeForManufacturer.GetMakeForManufacturer.html#GetMakeForManufacturer)
+- [GetMakesForManufacturerAndYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.html#GetMakesForManufacturerAndYear)
+- [GetMakesForVehicleType](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakesForVehicleType.GetMakesForVehicleType.html#GetMakesForVehicleType)
+- [GetManufacturerDetails](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html#GetManufacturerDetails)
+- [GetModelsForMake](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMake.GetModelsForMake.html#GetModelsForMake)
+- [GetModelsForMakeId](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html#GetModelsForMakeId)
+- [GetModelsForMakeIdYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeIdYear.GetModelsForMakeIdYear.html#GetModelsForMakeIdYear)
+- [GetModelsForMakeYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html#GetModelsForMakeYear)
+- [GetParts](module-api_actions_GetParts.GetParts.html#GetParts)
+- [GetVehicleTypesForMake](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleTypesForMake.GetVehicleTypesForMake.html#GetVehicleTypesForMake)
+- [GetVehicleTypesForMakeId](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.html#GetVehicleTypesForMakeId)
+- [GetVehicleVariableList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html#GetVehicleVariableList)
+- [GetVehicleVariableValuesList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html#GetVehicleVariableValuesList)
+- [GetWMIsForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html#GetWMIsForManufacturer)
 
 ---
 ---

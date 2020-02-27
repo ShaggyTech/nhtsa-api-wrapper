@@ -20,7 +20,7 @@
   <script type="text/javascript">
     console.log(`Successfully imported via UMD bundle`);
 
-    const client = NHTSA.Client;
+    const client = new NHTSA.DecodeVin();
 
     document.getElementById('client').addEventListener('click', async function() {
     const result = await client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);

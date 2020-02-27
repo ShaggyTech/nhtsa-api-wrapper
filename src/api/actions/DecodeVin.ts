@@ -13,7 +13,12 @@
  */
 
 /* Parent Class and Fetch Type */
-import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
+import {
+  Fetch /* Class */,
+  FetchResponse /* Type */,
+  FetchConfig /* Type */
+} from '../Fetch';
+
 /* Utiltiy Functions */
 import { getTypeof } from '../../utils';
 
@@ -23,9 +28,11 @@ import { getTypeof } from '../../utils';
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
  */
 export class DecodeVin extends Fetch {
+  constructor(userConfig?: FetchConfig) {
+    super(userConfig);
+  }
   /**
    * The DecodeVin API Action will decode the VIN and the decoded output will be made available in the format of Key-value pairs.
    * - Providing `params.modelYear` allows for the decoding to specifically be done in the current,

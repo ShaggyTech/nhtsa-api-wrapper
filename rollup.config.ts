@@ -19,7 +19,12 @@ const baseDir = isDev ? 'dev/dist/' : 'dist/';
 const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 
 const treeShakeBundles = {
-  index: 'src/index.ts'
+  index: 'src/index.ts',
+  DecodeVin: 'src/api/actions/DecodeVin.ts'
+  // Fetch: 'src/api/Fetch.ts',
+  // NHTSA: 'src/api/NHTSA.ts',
+  // Client: 'src/api/Client.ts',
+  // isValidVin: 'src/utils//isValidVin.ts'
 };
 
 // Rollup plugins used with every build
