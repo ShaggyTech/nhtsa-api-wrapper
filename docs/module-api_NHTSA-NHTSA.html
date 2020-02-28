@@ -83,7 +83,7 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-api_NHTSA.html">api/NHTSA</a>~</span>NHTSA<span class="signature">()</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-api_NHTSA.html">api/NHTSA</a>~</span>NHTSA<span class="signature">(userConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -104,7 +104,7 @@
         
         <span class="code-name">
             
-                new NHTSA<span class="signature">()</span><span class="type-signature"></span>
+                new NHTSA<span class="signature">(userConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -120,6 +120,68 @@
 
 
 
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>userConfig</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="module-api_Fetch.html#FetchConfig">FetchConfig</a></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Configuration options to construct the class with.</p></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
 
 
 
@@ -235,6 +297,33 @@
 
 
 
+
+
+    <h5>Examples</h5>
+    
+        <p class="code-caption">Node bundle</p>
+    
+    
+        <pre class="prettyprint"><code>const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper');const Wrapper = new NHTSA();// await Wrapper.&lt;Action Name>(args).then(response => console.log(response));// Decode a VIN and return a response of type ApiResponseconst response = Wrapper.DecodeVinValues('3VWD07AJ5EM388202').catch(error => error)</code></pre>
+    
+
+        <p class="code-caption">Browser bundle</p>
+    
+    
+        <pre class="prettyprint"><code>  // Change &lt;version> to specific version number "x.x.xx",  // or remove &lt;version> completely for the most recently published version  &lt;script    type="text/javascript"    src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/&lt;version>/dist/bundle.min.js"  >&lt;/script>&lt;script type="text/javascript">// NHSTA is the global browser window exported by this packageconst Decoder = new NHSTA.NHSTA();const result = await Decoder.DecodeVin('3VWD07AJ5EM388202')  .catch(err => err);console.log(result);&lt;/script></code></pre>
+    
+
+        <p class="code-caption">Module - Browser lazy loading</p>
+    
+    
+        <pre class="prettyprint"><code>&lt;script type="module">  const { NHSTA } = await import('https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/module/index.js')   .catch(err => err);  const ApiClient = new NHSTA();  const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202')   .catch(err => err)  console.log(Results)&lt;/script></code></pre>
+    
+
+        <p class="code-caption">Module - Node lazy loading</p>
+    
+    
+        <pre class="prettyprint"><code>const { NHTSA } = await import('@shaggytools/nhtsa-api-wrapper/dist/module/index.js')  .catch(err => err);const ApiClient = new NHTSA();const results = await ApiClient.DecodeVin('3VWD07AJ5EM388202')  .catch(err => err)console.log(results)</code></pre>
+    
 
 
 </div>
@@ -4667,6 +4756,310 @@ and Make whose name is LIKE the Make in the vPIC Dataset.</p>
 
 
     
+    <h4 class="name" id="GetModelsForMakeYear">
+        <a class="href-link" href="#GetModelsForMakeYear">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                GetModelsForMakeYear<span class="signature">(params)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="module-api_actions_GetModelsForMakeYear.html#GetModelsForMakeYearResponse">GetModelsForMakeYearResponse</a>|Error)>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>This returns the Models in the vPIC dataset for a specified Model Year
+and Make whose name is LIKE the Make in the vPIC Dataset.</p>
+<ul>
+<li><code>params.make</code> is required. It can be a partial, or a full name for more specificity
+(e.g., &quot;Harley&quot;, &quot;Harley Davidson&quot;, etc.).</li>
+</ul>
+<p>A minimum of one of the following are required (or a combination of both):</p>
+<ul>
+<li><code>params.modelYear</code> is a number (greater than 1995)</li>
+<li><code>params.vehicleType</code> can be a partial name, or a full name for more specificity
+(e.g., &quot;Vehicle&quot;, &quot;Moto&quot;, &quot;Low Speed Vehicle&quot;, etc.).</li>
+</ul>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Query Search Parameters to append to the URL.</p></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>make</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>Make name to search.</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>modelYear</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>A number representing the model year to search (greater than 1995).</p></td>
+</tr>
+
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>vehicleType</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>String representing the vehicle type to search.</p></td>
+</tr>
+
+  
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="implements">Implements:</dt>
+    <dd class="implements"><ul>
+        
+            <li><a href="module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html#GetModelsForMakeYear">module:api/actions/GetModelsForMakeYear.GetModelsForMakeYear#GetModelsForMakeYear</a></li>
+        
+    </ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_actions_GetModelsForMakeYear.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_actions_GetModelsForMakeYear.ts.html">api/actions/GetModelsForMakeYear.ts</a>, <a href="api_actions_GetModelsForMakeYear.ts.html#line48">line 48</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Api Response object.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;(<a href="module-api_actions_GetModelsForMakeYear.html#GetModelsForMakeYearResponse">GetModelsForMakeYearResponse</a>|Error)></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
     <h4 class="name" id="GetParts">
         <a class="href-link" href="#GetParts">#</a>
         
@@ -5915,7 +6308,7 @@ whose ID equals the make ID in the vPIC Dataset.</p>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Feb 27 2020 01:48:57 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Feb 28 2020 00:43:56 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

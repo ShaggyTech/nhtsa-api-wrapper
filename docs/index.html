@@ -99,7 +99,7 @@
     <section>
         <article><h1 id="%40shaggytools-%2F-nhtsa-api-wrapper">@shaggytools / nhtsa-api-wrapper</h1>
 <blockquote>
-<p>An async <a href="https://vpic.nhtsa.dot.gov/api/Home">NHSTA.dot.gov Vehicles API</a> wrapper written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).</p>
+<p>An async <a href="https://vpic.nhtsa.dot.gov/api/Home">NHSTA.dot.gov Vehicles API</a> wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).</p>
 </blockquote>
 <p>The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or &quot;Actions&quot; as the developers of the API chose to call them. Within the [documentation you'll see references to these &quot;Actions&quot; and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.</p>
 <p><strong>Documentation: <a href="https://www.shaggytech.com/nhtsa-api-wrapper/">https://www.shaggytech.com/nhtsa-api-wrapper/</a></strong></p>
@@ -141,7 +141,7 @@
 </ul>
 </li>
 <li>
-<p><a href="#api-responses">NHTSA API Responses</a></p>
+<p><a href="#nhtsa-api-responses">NHTSA API Responses</a></p>
 </li>
 <li>
 <p><a href="#nhtsa-api-actions">NHTSA API Actions</a></p>
@@ -177,7 +177,7 @@
 <hr>
 <hr>
 <h2 id="purpose">Purpose</h2>
-<p>I wanted an easy way to consume the <a href="https://vpic.nhtsa.dot.gov/api/Home">NHSTA.dot.gov Vehicles API</a> in JavaScript, which is primarily used for decoding Vehicle Identification Numbers (VINs). The API contains a total of 24 different endpoints, or &quot;Actions&quot; as the developers of the API choose to call them.</p>
+<p>I wanted an easy way to consume the <a href="https://vpic.nhtsa.dot.gov/api/Home">NHSTA.dot.gov Vehicles API</a> in JavaScript.  This API  is primarily used for decoding Vehicle Identification Numbers (VINs). The API contains a total of 24 different endpoints, or &quot;Actions&quot; as the developers of the API choose to call them, all of which return different vehicle information based on the request.</p>
 <p>I also wanted to further my knowledge by learning TypeScript, JSDoc, Jest, and Rollup. Thus was born this package.</p>
 <p>I hope you find this package useful and mostly free of bugs 🐛.</p>
 <p>-- <a href="https://www.github.com/ShaggyTech">@ShaggyTech</a></p>
@@ -199,8 +199,10 @@
 <hr>
 <h3 id="in-node-environments">In Node Environments</h3>
 <h4 id="install">Install</h4>
-<pre class="prettyprint source lang-node"><code>npm install @shaggytools/nhtsa-api-wrapper
-// or
+<pre class="prettyprint source lang-node"><code># NPM
+npm install @shaggytools/nhtsa-api-wrapper
+
+# Yarn
 yarn add @shaggytools/nhtsa-api-wrapper
 </code></pre>
 <h4 id="using-in-node">Using in Node</h4>
@@ -210,16 +212,16 @@ yarn add @shaggytools/nhtsa-api-wrapper
 <li>The last one allows you to import the individual actions if you are only interested in using one or some of them.</li>
 </ul>
 <h5 id="via-client">Via Client</h5>
-<p>If you prefer <em>not</em> to use the <code>new</code> keyword, as with the NHTSA class, you can use the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html">Client</a> export, which returns a new instance of the <code>NHTSA</code> class:</p>
+<p>If you prefer <em>not</em> to use the <code>new</code> keyword you can use the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html">Client</a> export, which returns a new instance of the <code>NHTSA</code> class:</p>
 <p>Example code:</p>
 <pre class="prettyprint source lang-javascript"><code>const { Client } = require('@shaggytools/nhtsa-api-wrapper');
 
-// Decode a VIN and return the complete response
+// Decode a VIN and get the complete response
 const response = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(response);
 
-// or Decode a VIN and return only the Results array
-const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+// Get all available Makes and get only the Results array
+const { Results } = await Client.GetAllMakes().catch(err => err)
 console.log(Results);
 </code></pre>
 <h5 id="via-nhtsa-class">Via NHTSA class</h5>
@@ -228,15 +230,19 @@ console.log(Results);
 
 const ApiClient = new NHTSA();
 
-// Decode a VIN and return the complete response
-const response = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+// Get models for a specified Make + Year and get the complete response
+const response = await ApiClient.GetModelsForMakeYear({
+  make: 'Audi',
+  modelYear: 2015
+}).catch(err => err)
+
 console.log(response);
 
-// Decode a VIN and return only the Results array
+// Decode a VIN and get only the Results array
 const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(Results);
 </code></pre>
-<p>See the <a href="module-api_Fetch.html#FetchConfig">FetchConfig</a> type for more information on how the Class can be configured.</p>
+<p>See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig">FetchConfig</a> type for more information on how the Class can be configured.</p>
 <p>Changing the <code>baseUrl</code> could be useful if you want to proxy/mirror the NHTSA endpoints through your own server, or if the NHTSA URL were to change in the future and you needed an immediate way to correct it.</p>
 <p>Adding <code>options</code> is useful to pass in your own Headers, add credentials to the request, and more, if needed.</p>
 <p>Sample code, with config options passed to the class constructor:</p>
@@ -253,28 +259,33 @@ const ApiClient = new NHTSA({
 const response = ApiClient.DecodeVin('WVWHV71K69W144983')
   .then(res => {
     console.log(res)
+    // do something here with the response
     return response
   })
   .catch(err => console.log(err))
 
-  // Do something with the response
+  // do something with the response here as well
 
 </code></pre>
 <h5 id="via-individual-api-actions">Via individual API Actions</h5>
 <p>You can import individual NHTSA <code>Action</code> classes if you only need to use one of them at a time, or just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named <code>DecodeVin</code> and is used like <code>DecodeVin.DecodeVin(&lt;vin&gt;)</code> after instantiating the class with the <code>new</code> keyword.</p>
-<p>Using the wrapper in this way can slightly reduce the imported size. It's useful to know that every Action requires the <a href="https://www.npmjs.com/package/cross-fetch">cross-fetch</a> which weighs in at around 8.3kB out of the total <a href="https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html">package size</a>.</p>
+<p>Using the wrapper in this way can slightly reduce the imported size. It's useful to keep in mind that every Action requires the <a href="https://www.npmjs.com/package/cross-fetch">cross-fetch</a> package as a dependency.  The cross-fetch package adds approximately 8.3kB of the total <a href="https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html">size of this package</a>.</p>
 <p>Sample code; change <code>DecodeWMI</code> to any desired NHTSA Action, or import multiples.</p>
 <pre class="prettyprint source lang-javascript"><code>const { DecodeWMI, GetModelsForMake } = require('@shaggytools/nhtsa-api-wrapper');
 
 const Decoder = new DecodeWMI();
-const modelGetter = n
+const GetModels = new GetModelsForMake();
+
+// Decode a VIN and return only the Results array
+const { Results } = await Decoder.DecodeWMI('3VW').catch(err => err)
+console.log(Results);
 
 // Decode a VIN and return the complete response
 const response = await Decoder.DecodeWMI('3VW').catch(err => err)
 console.log(response);
 
-// Decode a VIN and return only the Results array
-const { Results } = await Decoder.DecodeWMI('3VW').catch(err => err)
+// Get models per make and return only the Results array
+const { Results } = await GetModels.GetModelsForMake('Toyota').catch(err => err)
 console.log(Results);
 </code></pre>
 <hr>
@@ -282,11 +293,11 @@ console.log(Results);
 <p>This package exports a global browser window object named <code>NHTSA</code>.</p>
 <p>Further below, there will be full examples for how to use the <code>NHTSA</code> global in different scenarios.</p>
 <h4 id="nhtsa.client"><code>NHTSA.Client</code></h4>
-<p><code>NHTSA.Client</code> is an instance of the NHTSA class which implements all of the wrappers for the NHTSA Actions.  You can avoid using the <code>new</code> keyword in your code if you use it this way. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html">Client</a> module for more information.</p>
+<p><code>NHTSA.Client</code> is an instance of the NHTSA class which implements all of the wrappers for the NHTSA Actions.  You can avoid using the <code>new</code> keyword in your code if you use it this way. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html">Client</a> class for more information.</p>
 <h4 id="nhtsa.nhtsa"><code>NHTSA.NHTSA</code></h4>
-<p><code>NHTSA.NHTSA</code> is the main class which implements all of the Action class methods.  You will need to use the <code>new</code> keyword within your code &lt;<code>new NHTSA()</code>&gt;. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA.html">NHTSA</a> module for more information.</p>
+<p><code>NHTSA.NHTSA</code> is the main class which implements all of the Action class methods.  You will need to use the <code>new</code> keyword within your code &lt;<code>new NHTSA()</code>&gt;. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html">NHTSA</a> class for more information.</p>
 <h4 id="nhtsa.isvalidvin"><code>NHTSA.isValidVin</code></h4>
-<p><code>NHTSA.isValidVin</code> is a method that takes a single string argument, a Vehicle Identification Number, and performs an <strong>offline</strong> VIN validation.  It will return true if the VIN passes the algorithm, otherwise false.  This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html">isValidVin</a> module for more information.</p>
+<p><code>NHTSA.isValidVin</code> is a method that takes a single string argument, a Vehicle Identification Number, and performs an <strong>offline</strong> VIN validation.  It will return true if the VIN passes the algorithm, otherwise false.  This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html#.isValidVin">isValidVin</a> module for more information.</p>
 <blockquote>
 <p>In all of the following URLs either:</p>
 <ul>
@@ -317,7 +328,7 @@ or remove &lt;version> for the most recent published version -->
 &lt;head>
   &lt;script
     type=&quot;text/javascript&quot;
-    src=&quot;https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/&lt;version>/dev/dist/bundle.min.js&quot;
+    src=&quot;https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/&lt;version>/dist/bundle.min.js&quot;
   >&lt;/script>
 &lt;/head>
 &lt;body>
@@ -335,7 +346,7 @@ or remove &lt;version> for the most recent published version -->
 &lt;/script>
 
 </code></pre>
-<p>Full HTML example:</p>
+<p>Full HTML example; copy and paste to try it out:</p>
 <pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
 &lt;html lang=&quot;en&quot;>
   &lt;head>
@@ -348,7 +359,7 @@ or remove &lt;version> for the most recent published version -->
     or remove &lt;version> for the most recent published version -->
     &lt;script
       type=&quot;text/javascript&quot;
-      src=&quot;https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/&lt;version>/dev/dist/bundle.min.js&quot;
+      src=&quot;https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/&lt;version>/dist/bundle.min.js&quot;
     >&lt;/script>
 
   &lt;/head>
@@ -427,13 +438,13 @@ const result = await Client.DecodeVin('3VWD07AJ5EM388202')
 <hr>
 <h2 id="nhtsa-api-responses">NHTSA API Responses</h2>
 <p>Each action returns a response in the form of an <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#ApiResponse">ApiResponse</a> object.</p>
-<p>You'll likely only be interested in the <code>ApiResponse.Results</code> portion of the response.  <code>Results</code> is an array that will hold one or more objects, with the number of objects depending on the specific Action that was used.  There is also additional information returned about the request, response, etc., from within the <code>ApiResponse</code> object.</p>
-<p>For example, you can see what the <code>GetEquipmentPlantCodes</code> response will be by going to it's response type, located on the documentation page for the same named module, with the word &quot;Response&quot; added to the end.</p>
-<p>For example: <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResponse">GetEquipmentPlantCodesResponse</a>.Results will contain an array of <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResults">GetEquipmentPlantCodesResults</a> type objects.</p>
+<p>You'll likely only be interested in the <code>ApiResponse.Results</code> portion of the response.  <code>Results</code> is an array that will hold one or more objects, with the number of objects depending on the specific Action that was used.  There is also additional information returned about the request, response, headers etc. within the <code>ApiResponse</code> object.</p>
+<p>As an example, you can see what the <code>GetEquipmentPlantCodes</code> response will be by going to it's response type, located on the documentation page for the same named module, with the word &quot;Response&quot; added to the end.</p>
+<p>Example: <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResponse">GetEquipmentPlantCodesResponse</a>.Results will contain an array of <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResults">GetEquipmentPlantCodesResults</a> type objects.</p>
 <hr>
 <h2 id="nhtsa-api-actions">NHTSA API Actions</h2>
 <p>There are a total of 24 different endpoints, or <code>Actions</code>, available for the NHTSA Vehicles API.</p>
-<p>To see how these Actions are implemented you can visit the documentation for the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html">NHTSA class</a>, which is a class exported by this package that implements all of individual Action wrappers.</p>
+<p>To see how these Actions are implemented you can visit the documentation for the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html">NHTSA class</a>, which is a class exported by this package that implements all of the individual Action wrapper class methods.</p>
 <h3 id="list-of-actions">List of Actions</h3>
 <ul>
 <li><a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.DecodeVin.html#DecodeVin">DecodeVin</a></li>
@@ -477,7 +488,7 @@ const result = await Client.DecodeVin('3VWD07AJ5EM388202')
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Feb 27 2020 01:48:57 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Feb 28 2020 00:43:55 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
