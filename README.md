@@ -97,8 +97,10 @@ I hope you find this package useful and mostly free of bugs 🐛.
 #### Install
 
 ```node
+# NPM
 npm install @shaggytools/nhtsa-api-wrapper
-// or
+
+# Yarn
 yarn add @shaggytools/nhtsa-api-wrapper
 ```
 
@@ -111,19 +113,19 @@ Listed below, there are several ways to use this package within a Node environme
 
 ##### Via Client
 
-If you prefer _not_ to use the `new` keyword, as with the NHTSA class, you can use the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) export, which returns a new instance of the `NHTSA` class:
+If you prefer _not_ to use the `new` keyword you can use the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) export, which returns a new instance of the `NHTSA` class:
 
 Example code:
 
 ```javascript
 const { Client } = require('@shaggytools/nhtsa-api-wrapper');
 
-// Decode a VIN and return the complete response
+// Decode a VIN and get the complete response
 const response = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(response);
 
-// or Decode a VIN and return only the Results array
-const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+// Get all available Makes and get only the Results array
+const { Results } = await Client.GetAllMakes().catch(err => err)
 console.log(Results);
 ```
 
@@ -136,11 +138,15 @@ const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper');
 
 const ApiClient = new NHTSA();
 
-// Decode a VIN and return the complete response
-const response = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
+// Get models for a specified Make + Year and get the complete response
+const response = await ApiClient.GetModelsForMakeYear({
+  make: 'Audi',
+  modelYear: 2015
+}).catch(err => err)
+
 console.log(response);
 
-// Decode a VIN and return only the Results array
+// Decode a VIN and get only the Results array
 const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(Results);
 ```
@@ -167,11 +173,12 @@ const ApiClient = new NHTSA({
 const response = ApiClient.DecodeVin('WVWHV71K69W144983')
   .then(res => {
     console.log(res)
+    // do something here with the response
     return response
   })
   .catch(err => console.log(err))
 
-  // Do something with the response
+  // do something with the response here as well
 
 ```
 
@@ -179,7 +186,7 @@ const response = ApiClient.DecodeVin('WVWHV71K69W144983')
 
 You can import individual NHTSA `Action` classes if you only need to use one of them at a time, or just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named `DecodeVin` and is used like `DecodeVin.DecodeVin(<vin>)` after instantiating the class with the `new` keyword.
 
-Using the wrapper in this way can slightly reduce the imported size. It's useful to know that every Action requires the [cross-fetch](https://www.npmjs.com/package/cross-fetch) which weighs in at around 8.3kB out of the total [package size](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html).
+Using the wrapper in this way can slightly reduce the imported size. It's useful to keep in mind that every Action requires the [cross-fetch](https://www.npmjs.com/package/cross-fetch) package as a dependency.  The cross-fetch package adds approximately 8.3kB of the total [size of this package](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html).
 
 Sample code; change `DecodeWMI` to any desired NHTSA Action, or import multiples.
 
@@ -254,7 +261,7 @@ or remove <version> for the most recent published version -->
 <head>
   <script
     type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/<version>/dev/dist/bundle.min.js"
+    src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/<version>/dist/bundle.min.js"
   ></script>
 </head>
 <body>
@@ -273,7 +280,7 @@ or remove <version> for the most recent published version -->
 
 ```
 
-Full HTML example:
+Full HTML example; copy and paste to try it out:
 
 ```html
 <!DOCTYPE html>
@@ -288,7 +295,7 @@ Full HTML example:
     or remove <version> for the most recent published version -->
     <script
       type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/<version>/dev/dist/bundle.min.js"
+      src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/<version>/dist/bundle.min.js"
     ></script>
 
   </head>
@@ -391,7 +398,7 @@ Example: [GetEquipmentPlantCodesResponse](https://www.shaggytech.com/nhtsa-api-w
 
 There are a total of 24 different endpoints, or `Actions`, available for the NHTSA Vehicles API.
 
-To see how these Actions are implemented you can visit the documentation for the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of individual Action wrappers.
+To see how these Actions are implemented you can visit the documentation for the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of the individual Action wrapper class methods.
 
 ### List of Actions
 
