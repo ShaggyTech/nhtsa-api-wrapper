@@ -10,6 +10,54 @@ import { NHTSA } from './NHTSA';
  * A new instance of the [NHTSA](module-api_NHTSA-NHTSA.html) class.
  *
  * @type {NHTSA}
+ *
+ * @example <caption>Node bundle</caption>
+ * const { Client } = require('@shaggytools/nhtsa-api-wrapper');
+ *
+ * // await Wrapper.<Action Name>(args).then(response => console.log(response));
+ *
+ * // Decode a VIN and return a response of type ApiResponse
+ * const response = Client.DecodeVinValues('3VWD07AJ5EM388202').catch(error => error)
+ *
+ * @example <caption>Browser bundle</caption>
+ *   // Change <version> to specific version number "x.x.xx",
+ *   // or remove <version> completely for the most recently published version
+ *   <script
+ *     type="text/javascript"
+ *     src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/<version>/dist/bundle.min.js"
+ *   ></script>
+ *
+ * <script type="text/javascript">
+ * // NHSTA is the global browser window exported by this package
+ * const Decoder = NHSTA.Client
+ *
+ * const result = await Client.DecodeVin('3VWD07AJ5EM388202')
+ *   .catch(err => err);
+ *
+ * console.log(result);
+ *
+ * </script>
+ *
+ * @example <caption>Module - Browser lazy loading</caption>
+ *
+ * <script type="module">
+ * const { Client } = await import('https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/module/index.js')
+ *  .catch(err => err);
+ *
+ * const { Results } = await Client.DecodeVin('3VWD07AJ5EM388202')
+ *    .catch(err => err)
+ *
+ *   console.log(Results)
+ * </script>
+ *
+ * @example <caption>Module - Node lazy loading</caption>
+ * const { Client } = await import('@shaggytools/nhtsa-api-wrapper/dist/module/index.js')
+ *   .catch(err => err);
+ *
+ * const results = await Client.DecodeVin('3VWD07AJ5EM388202')
+ *   .catch(err => err)
+ *
+ * console.log(results)
  */
 declare const Client: NHTSA;
 export { Client };

@@ -24,7 +24,7 @@ export declare class GetModelsForMakeYear extends Fetch {
     /**
      * This returns the Models in the vPIC dataset for a specified Model Year
      * and Make whose name is LIKE the Make in the vPIC Dataset.
-     *   - `params.make` can be a partial, or a full for more specificity
+     *   - `params.make` is required. It can be a partial, or a full name for more specificity
      *     (e.g., "Harley", "Harley Davidson", etc.).
      *
      * A minimum of one of the following are required (or a combination of both):
@@ -33,7 +33,6 @@ export declare class GetModelsForMakeYear extends Fetch {
      *     (e.g., "Vehicle", "Moto", "Low Speed Vehicle", etc.).
      *
      * @async
-     * @memberof GetModelsForMakeYear
      *
      * @param {object} params - Query Search Parameters to append to the URL.
      * @param {string} params.make - Make name to search.
