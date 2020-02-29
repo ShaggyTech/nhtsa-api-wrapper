@@ -2,9 +2,9 @@
 
 > An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).
 
-The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
+The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation](https://www.shaggytech.com/nhtsa-api-wrapper/) you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
 
-**Documentation: [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)**
+**Complete Documentation: [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)**
 
  **[Package Size Visualization](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html)**
 
@@ -24,11 +24,11 @@ If you find an issue or would like to make or suggest improvements, I would glad
     - [Using in Node](#using-in-node)
       - [Via Client](#via-client)
       - [Via NHTSA Class](#via-nhtsa-class)
+      - [Via NHTSA class with configuration options](#via-nhtsa-class-with-configuration-options)
       - [Via Individual API Actions](#via-individual-api-actions)
   - [In Browser Environments](#in-browser-environments)
     - [Basic Usage in Browser](#basic-usage-in-browser)
     - [Lazy Loaded ESModule in Browser Environments](#lazy-loaded-esmodule-in-browser-environments)
-
 - [NHTSA API Responses](#nhtsa-api-responses)
 - [NHTSA API Actions](#nhtsa-api-actions)
 
@@ -151,7 +151,9 @@ const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => 
 console.log(Results);
 ```
 
-See the [FetchConfig](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig) type for more information on how the Class can be configured.
+##### Via NHTSA class with configuration options
+
+See the [FetchConfig](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig) type for more information on what can be passed to the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html).  This includes configuration `options` for the Fetch API, such as Headers and credentials, which allow you fine control over the http request sent to the NHTSA API.
 
 Changing the `baseUrl` could be useful if you want to proxy/mirror the NHTSA endpoints through your own server, or if the NHTSA URL were to change in the future and you needed an immediate way to correct it.  
 
@@ -178,13 +180,13 @@ const response = ApiClient.DecodeVin('WVWHV71K69W144983')
   })
   .catch(err => console.log(err))
 
-  // do something with the response here as well
+  // or do something with the response here as well
 
 ```
 
 ##### Via individual API Actions
 
-You can import individual NHTSA `Action` classes if you only need to use one of them at a time, or just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named `DecodeVin` and is used like `DecodeVin.DecodeVin(<vin>)` after instantiating the class with the `new` keyword.
+You can import individual NHTSA `Action` classes if you only need to use one of them at a time, or even just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named `DecodeVin` and is used like `DecodeVin.DecodeVin(<vin>)`, which is after instantiating the class with `new DecodeVin()`.
 
 Using the wrapper in this way can slightly reduce the imported size. It's useful to keep in mind that every Action requires the [cross-fetch](https://www.npmjs.com/package/cross-fetch) package as a dependency.  The cross-fetch package adds approximately 8.3kB of the total [size of this package](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html).
 

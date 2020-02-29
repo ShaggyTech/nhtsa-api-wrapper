@@ -101,8 +101,8 @@
 <blockquote>
 <p>An async <a href="https://vpic.nhtsa.dot.gov/api/Home">NHSTA.dot.gov Vehicles API</a> wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).</p>
 </blockquote>
-<p>The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or &quot;Actions&quot; as the developers of the API chose to call them. Within the [documentation you'll see references to these &quot;Actions&quot; and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.</p>
-<p><strong>Documentation: <a href="https://www.shaggytech.com/nhtsa-api-wrapper/">https://www.shaggytech.com/nhtsa-api-wrapper/</a></strong></p>
+<p>The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or &quot;Actions&quot; as the developers of the API chose to call them. Within the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/">documentation</a> you'll see references to these &quot;Actions&quot; and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.</p>
+<p><strong>Complete Documentation: <a href="https://www.shaggytech.com/nhtsa-api-wrapper/">https://www.shaggytech.com/nhtsa-api-wrapper/</a></strong></p>
 <p><strong><a href="https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html">Package Size Visualization</a></strong></p>
 <p>If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.</p>
 <blockquote>
@@ -127,6 +127,7 @@
 <ul>
 <li><a href="#via-client">Via Client</a></li>
 <li><a href="#via-nhtsa-class">Via NHTSA Class</a></li>
+<li><a href="#via-nhtsa-class-with-configuration-options">Via NHTSA class with configuration options</a></li>
 <li><a href="#via-individual-api-actions">Via Individual API Actions</a></li>
 </ul>
 </li>
@@ -242,7 +243,8 @@ console.log(response);
 const { Results } = await ApiClient.DecodeVin('3VWD07AJ5EM388202').catch(err => err)
 console.log(Results);
 </code></pre>
-<p>See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig">FetchConfig</a> type for more information on how the Class can be configured.</p>
+<h5 id="via-nhtsa-class-with-configuration-options">Via NHTSA class with configuration options</h5>
+<p>See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig">FetchConfig</a> type for more information on what can be passed to the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html">NHTSA class</a>.  This includes configuration <code>options</code> for the Fetch API, such as Headers and credentials, which allow you fine control over the http request sent to the NHTSA API.</p>
 <p>Changing the <code>baseUrl</code> could be useful if you want to proxy/mirror the NHTSA endpoints through your own server, or if the NHTSA URL were to change in the future and you needed an immediate way to correct it.</p>
 <p>Adding <code>options</code> is useful to pass in your own Headers, add credentials to the request, and more, if needed.</p>
 <p>Sample code, with config options passed to the class constructor:</p>
@@ -264,11 +266,11 @@ const response = ApiClient.DecodeVin('WVWHV71K69W144983')
   })
   .catch(err => console.log(err))
 
-  // do something with the response here as well
+  // or do something with the response here as well
 
 </code></pre>
 <h5 id="via-individual-api-actions">Via individual API Actions</h5>
-<p>You can import individual NHTSA <code>Action</code> classes if you only need to use one of them at a time, or just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named <code>DecodeVin</code> and is used like <code>DecodeVin.DecodeVin(&lt;vin&gt;)</code> after instantiating the class with the <code>new</code> keyword.</p>
+<p>You can import individual NHTSA <code>Action</code> classes if you only need to use one of them at a time, or even just a few of them.  Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named <code>DecodeVin</code> and is used like <code>DecodeVin.DecodeVin(&lt;vin&gt;)</code>, which is after instantiating the class with <code>new DecodeVin()</code>.</p>
 <p>Using the wrapper in this way can slightly reduce the imported size. It's useful to keep in mind that every Action requires the <a href="https://www.npmjs.com/package/cross-fetch">cross-fetch</a> package as a dependency.  The cross-fetch package adds approximately 8.3kB of the total <a href="https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html">size of this package</a>.</p>
 <p>Sample code; change <code>DecodeWMI</code> to any desired NHTSA Action, or import multiples.</p>
 <pre class="prettyprint source lang-javascript"><code>const { DecodeWMI, GetModelsForMake } = require('@shaggytools/nhtsa-api-wrapper');
@@ -488,7 +490,7 @@ const result = await Client.DecodeVin('3VWD07AJ5EM388202')
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Feb 28 2020 00:43:55 GMT-0600 (Central Standard Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Feb 28 2020 20:33:17 GMT-0600 (Central Standard Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
