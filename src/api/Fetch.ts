@@ -43,7 +43,7 @@ export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 export const DEFAULT_CONFIG: FetchConfig = {
   apiResponseFormat: 'json',
   baseUrl: BASE_URL,
-  options: { method: 'GET' }
+  options: {}
 };
 
 /*****************
