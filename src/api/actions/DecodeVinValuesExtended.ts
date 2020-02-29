@@ -12,9 +12,14 @@
  *
  */
 
-/* Parent Class and Fetch Type */
-import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
-/* Utiltiy Functions */
+/* Parent Class and Fetch Types */
+import {
+  Fetch /* Class */,
+  FetchConfig /* Type */,
+  FetchResponse /* Type */
+} from '../Fetch';
+
+/* Utility Functions */
 import { getTypeof } from '../../utils';
 
 /**
@@ -23,9 +28,13 @@ import { getTypeof } from '../../utils';
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export class DecodeVinValuesExtended extends Fetch {
+  constructor(userConfig?: FetchConfig) {
+    super(userConfig);
+  }
+
   /**
    * This is exactly like the DecodeVinValues (flat format Results) method but provides additional information
    * on variables related to other NHTSA programs like

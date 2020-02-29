@@ -12,9 +12,14 @@
  *
  */
 
-/* Parent Class and Fetch Type */
-import { Fetch /* Class */, FetchResponse /* Type */ } from '../Fetch';
-/* Utiltiy Functions */
+/* Parent Class and Fetch Types */
+import {
+  Fetch /* Class */,
+  FetchConfig /* Type */,
+  FetchResponse /* Type */
+} from '../Fetch';
+
+/* Utility Functions */
 import { getTypeof } from '../../utils';
 
 /**
@@ -23,9 +28,13 @@ import { getTypeof } from '../../utils';
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export class GetMakesForVehicleType extends Fetch {
+  constructor(userConfig?: FetchConfig) {
+    super(userConfig);
+  }
+
   /**
    * This returns all the Makes in the vPIC dataset for a specified vehicle type (`typeName`),
    * whose name is LIKE the vehicle type name in vPIC Dataset.
