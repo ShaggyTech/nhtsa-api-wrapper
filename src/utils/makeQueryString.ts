@@ -58,7 +58,7 @@ import { getTypeof } from './getTypeof';
  *
  */
 export function makeQueryString(
-  params: import('./types').QueryStringParameters = {},
+  params: QueryStringParameters = {},
   allowEmptyStringValues = false
 ): Promise<string | Error> {
   /* Beginning of error message string */
@@ -116,3 +116,20 @@ export function makeQueryString(
   /* Join and return the completed query string after URI encoding */
   return Promise.resolve(encodeURI(queryStringArray.join('')));
 }
+
+/**
+ * Object containing Key:Value pairs to build the URL query string with.
+ * - Parameter values may be either strings or numbers.
+ *
+ * @memberof module:utils/makeQueryString
+ * @alias QueryStringParameters
+ * @example
+ * {
+ * modelYear: 2009,
+ * whatever: 'something'
+ * }
+ *
+ */
+export type QueryStringParameters = {
+  [propName: string]: string | number | undefined;
+};
