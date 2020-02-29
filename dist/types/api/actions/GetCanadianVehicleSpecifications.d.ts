@@ -11,16 +11,17 @@
  * > - Type: [GetCanadianVehicleSpecificationsResults](#GetCanadianVehicleSpecificationsResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class GetCanadianVehicleSpecifications extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * The Canadian Vehicle Specifications (CVS) consists of a database of original vehicle dimensions,
      * used primarily in collision investigation and reconstruction, combined with a search engine.

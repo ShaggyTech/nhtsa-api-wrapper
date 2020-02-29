@@ -44,10 +44,12 @@ import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended,
  * const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper');
  *
  * const Wrapper = new NHTSA();
- * // await Wrapper.<Action Name>(args).then(response => console.log(response));
  *
  * // Decode a VIN and return a response of type ApiResponse
  * const response = Wrapper.DecodeVinValues('3VWD07AJ5EM388202').catch(error => error)
+ *
+ * // or get details about a specific manufacturer, plus 23 other available Actions.
+ * const hondaDetails = Wrapper.GetManufacturerDetails('Honda').catch(error => error)
  *
  * @example <caption>Browser bundle</caption>
  *   // Change <version> to specific version number "x.x.xx",
@@ -63,10 +65,16 @@ import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended,
  *
  * const result = await Decoder.DecodeVin('3VWD07AJ5EM388202')
  *   .catch(err => err);
- *
- * console.log(result);
- *
  * </script>
+ *
+ * @example <caption>Module - Node lazy loading</caption>
+ * const { NHTSA } = await import('@shaggytools/nhtsa-api-wrapper/dist/module/index.js')
+ *   .catch(err => err);
+ *
+ * const ApiClient = new NHTSA();
+ *
+ * const results = await ApiClient.DecodeVin('3VWD07AJ5EM388202')
+ *   .catch(err => err)
  *
  * @example <caption>Module - Browser lazy loading</caption>
  * <script type="module">
@@ -80,17 +88,6 @@ import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended,
  *
  *   console.log(Results)
  * </script>
- *
- * @example <caption>Module - Node lazy loading</caption>
- * const { NHTSA } = await import('@shaggytools/nhtsa-api-wrapper/dist/module/index.js')
- *   .catch(err => err);
- *
- * const ApiClient = new NHTSA();
- *
- * const results = await ApiClient.DecodeVin('3VWD07AJ5EM388202')
- *   .catch(err => err)
- *
- * console.log(results)
  */
 declare class NHTSA extends Fetch implements DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended, DecodeWMI, GetAllMakes, GetAllManufacturers, GetCanadianVehicleSpecifications, GetEquipmentPlantCodes, GetMakeForManufacturer, GetMakesForManufacturerAndYear, GetMakesForVehicleType, GetManufacturerDetails, GetModelsForMake, GetModelsForMakeId, GetModelsForMakeIdYear, GetModelsForMakeYear, GetParts, GetVehicleTypesForMake, GetVehicleTypesForMakeId, GetVehicleVariableList, GetVehicleVariableValuesList, GetWMIsForManufacturer {
     constructor(userConfig?: FetchConfig);

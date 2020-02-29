@@ -11,16 +11,17 @@
  * > - Type: [DecodeVinValuesResults](#DecodeVinValuesResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class DecodeVinValues extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * The DecodeVinValues API Action will decode the VIN with the Results returned in a _flat file_ format.
      * - The Results will be made available in a flat file format of a single object containing

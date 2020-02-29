@@ -11,16 +11,17 @@
  * > - Type: [GetAllMakesResults](#GetAllMakesResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class GetAllMakes extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * This provides a list of all the Makes available in the vPIC Dataset.
      *

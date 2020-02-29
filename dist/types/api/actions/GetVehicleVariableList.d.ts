@@ -11,16 +11,17 @@
  * > - Type: [GetVehicleVariableListResults](#GetVehicleVariableListResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class GetVehicleVariableList extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * This provides a list of all the Vehicle related variables that are in the vPIC dataset.
      * - Information on the name, description and the type of the variable is provided.

@@ -11,16 +11,17 @@
  * > - Type: [GetWMIsForManufacturerResults](#GetWMIsForManufacturerResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class GetWMIsForManufacturer extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * Provides information on the World Manufacturer Identifier (WMI) for a specified `manufacturer`.
      * - Only WMIs registered in vPICList are displayed.

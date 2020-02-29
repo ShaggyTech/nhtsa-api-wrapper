@@ -11,16 +11,17 @@
  * > - Type: [GetModelsForMakeIdYearResults](#GetModelsForMakeIdYearResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class GetModelsForMakeIdYear extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * This returns the Models in the vPIC dataset for a specified Model Year
      * and Make whose name is LIKE the Make in the vPIC Dataset.

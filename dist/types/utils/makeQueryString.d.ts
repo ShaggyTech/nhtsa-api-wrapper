@@ -54,5 +54,21 @@
  * console.log(qs) // "?year=2016&vehicleType=&make=Audi"
  *
  */
-export declare function makeQueryString(params?: import('./types').QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string | Error>;
+export declare function makeQueryString(params?: QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string | Error>;
+/**
+ * Object containing Key:Value pairs to build the URL query string with.
+ * - Parameter values may be either strings or numbers.
+ *
+ * @memberof module:utils/makeQueryString
+ * @alias QueryStringParameters
+ * @example
+ * {
+ * modelYear: 2009,
+ * whatever: 'something'
+ * }
+ *
+ */
+export declare type QueryStringParameters = {
+    [propName: string]: string | number | undefined;
+};
 //# sourceMappingURL=makeQueryString.d.ts.map

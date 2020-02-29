@@ -11,16 +11,17 @@
  * > - Type: [GetVehicleTypesForMakeResults](#GetVehicleTypesForMakeResults)
  *
  */
-import { Fetch, FetchResponse } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
- * @hideconstructor
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class GetVehicleTypesForMake extends Fetch {
+    constructor(userConfig?: FetchConfig);
     /**
      * This returns all the Vehicle Types in the vPIC dataset for a specified Make,
      * whose name is LIKE the make name in the vPIC Dataset.

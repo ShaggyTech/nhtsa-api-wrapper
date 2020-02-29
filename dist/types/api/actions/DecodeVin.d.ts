@@ -11,13 +11,14 @@
  * > - Type: [DecodeVinResults](#DecodeVinResults)
  *
  */
-import { Fetch, FetchResponse, FetchConfig } from '../Fetch';
+import { Fetch, FetchConfig, FetchResponse } from '../Fetch';
 /**
  * Implemented by [NHTSA](module-api_NHTSA-NHTSA.html).
  *
  * Extends [api/Fetch.Fetch](module-api_Fetch.Fetch.html).
  *
  * @category Actions
+ * @param {FetchConfig} [userConfig] - User configuration options to construct the class with.
  */
 export declare class DecodeVin extends Fetch {
     constructor(userConfig?: FetchConfig);
