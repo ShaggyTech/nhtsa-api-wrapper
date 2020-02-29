@@ -19,12 +19,35 @@ const baseDir = isDev ? 'dev/dist/' : 'dist/';
 const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 
 const treeShakeBundles = {
-  index: 'src/index.ts',
-  DecodeVin: 'src/api/actions/DecodeVin.ts'
-  // Fetch: 'src/api/Fetch.ts',
-  // NHTSA: 'src/api/NHTSA.ts',
-  // Client: 'src/api/Client.ts',
-  // isValidVin: 'src/utils//isValidVin.ts'
+  NHTSA: 'src/api/NHTSA.ts',
+  Client: 'src/api/Client.ts',
+  isValidVin: 'src/utils//isValidVin.ts',
+  DecodeVin: 'src/api/actions/DecodeVin.ts',
+  DecodeVinExtended: 'src/api/actions/DecodeVinExtended.ts',
+  DecodeVinValues: 'src/api/actions/DecodeVinValues.ts',
+  DecodeVinValuesExtended: 'src/api/actions/DecodeVinValuesExtended.ts',
+  DecodeWMI: 'src/api/actions/DecodeWMI.ts',
+  GetAllMakes: 'src/api/actions/GetAllMakes.ts',
+  GetAllManufacturers: 'src/api/actions/GetAllManufacturers.ts',
+  GetCanadianVehicleSpecifications:
+    'src/api/actions/GetCanadianVehicleSpecifications.ts',
+  GetEquipmentPlantCodes: 'src/api/actions/GetEquipmentPlantCodes.ts',
+  GetMakeForManufacturer: 'src/api/actions/GetMakeForManufacturer.ts',
+  GetMakesForManufacturerAndYear:
+    'src/api/actions/GetMakesForManufacturerAndYear.ts',
+  GetMakesForVehicleType: 'src/api/actions/GetMakesForVehicleType.ts',
+  GetManufacturerDetails: 'src/api/actions/GetManufacturerDetails.ts',
+  GetModelsForMake: 'src/api/actions/GetModelsForMake.ts',
+  GetModelsForMakeId: 'src/api/actions/GetModelsForMakeId.ts',
+  GetModelsForMakeIdYear: 'src/api/actions/GetModelsForMakeIdYear.ts',
+  GetModelsForMakeYear: 'src/api/actions/GetModelsForMakeYear.ts',
+  GetParts: 'src/api/actions/GetParts.ts',
+  GetVehicleTypesForMake: 'src/api/actions/GetVehicleTypesForMake.ts',
+  GetVehicleTypesForMakeId: 'src/api/actions/GetVehicleTypesForMakeId.ts',
+  GetVehicleVariableList: 'src/api/actions/GetVehicleVariableList.ts',
+  GetVehicleVariableValuesList:
+    'src/api/actions/GetVehicleVariableValuesList.ts',
+  GetWMIsForManufacturer: 'src/api/actions/GetWMIsForManufacturer.ts'
 };
 
 // Rollup plugins used with every build
@@ -77,10 +100,10 @@ export default [
         file: `${baseDir}browser/iife.js`,
         name: libraryName,
         format: 'iife',
+        esModule: false,
         globals: {
           'cross-fetch': 'fetch'
         },
-        esModule: false,
         sourcemap: true,
         plugins: [
           gzipPlugin(),
@@ -95,34 +118,43 @@ export default [
     plugins
   },
   /**
-   * Treeshaken Bundles.
+   * CJS Module.
+   */
+  {
+    /** Process individual inputs. */
+    input: { ...treeShakeBundles },
+    external: ['cross-fetch'],
+    output: [
+      {
+        dir: `${baseDir}cjs`,
+        format: 'cjs',
+        sourcemap: true
+        // plugins: [terser()]
+      }
+    ],
+    plugins: [resolve({ preferBuiltins: true, browser: false }), ...plugins]
+  },
+  /**
+   * ESM Module (tree-shaken)
    */
   {
     /** Process individual inputs. */
     input: { ...treeShakeBundles },
     output: [
-      /**
-       * ES Module.
-       */
       {
         dir: `${baseDir}module`,
         format: 'esm',
         globals: {
           'cross-fetch': 'fetch'
         },
-        // chunkFileNames: 'chunk-[format]-[hash].js',
         sourcemap: true,
         plugins: [terser()]
       }
     ],
-    /* Resolve() - Allow node_modules resolution, so you can use 'external' to control
-     * which external modules to include in the bundle
-     * https://github.com/rollup/rollup-plugin-node-resolve#usage
-     */
     plugins: [
       visualizer({
         filename: 'package-size-stats.html',
-        title: '@shaggytools/nhtsa-api-wrapper - Package Visualizer',
+        title: '@shaggytools/nhtsa-api-wrapper - Module Package Visualizer',
         sourcemap: true
       }),
       resolve({ preferBuiltins: true, browser: true }),
