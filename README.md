@@ -10,7 +10,7 @@ The API that this wrapper was written for is primarily used for decoding useful 
 
 If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.
 
-> This package was developed and tested on `Node v12.14.0`, `NPM v6.11.3`, and `Yarn v1.21.1`
+> This package was developed and tested on `Node v13.9.0`, `NPM v6.11.3`, and `Yarn v1.21.1`
 
 ---
 

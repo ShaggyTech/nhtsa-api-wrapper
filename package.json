@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "A wrapper around the NHTSA.dot.gov 'vehicles' API, written completely in Typescript.",
   "engines": {
-    "node": ">=12.14.0 <13.0.0",
+    "node": "13.9.0",
     "npm": "6.11.3"
   },
   "main": "dist/bundle.min.js",
