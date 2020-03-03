@@ -23,7 +23,7 @@ jobs:
     - stage: NPM/Yarn Release
       script: yarn build
       deploy:
-        provider: yarn
+        provider: npm
         email: '$NPM_EMAIL'
         api_key: '$NPM_TOKEN'
         skip_cleanup: true
