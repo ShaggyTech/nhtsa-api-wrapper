@@ -13,7 +13,7 @@ import pkg from './package.json';
 
 const libraryName = pkg.libraryName;
 
-// Set if rollup is used in development/watch mode and switch variables based on that value
+// Check if rollup is being used in development (watch) mode and switch variables based on that value
 const isDev = process.env.ROLLUP_WATCH === 'true';
 const baseDir = isDev ? 'dev/dist/' : 'dist/';
 const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
@@ -118,7 +118,7 @@ export default [
     plugins
   },
   /**
-   * CJS Module.
+   * CommonJs (CJS) Module.
    */
   {
     /** Process individual inputs. */

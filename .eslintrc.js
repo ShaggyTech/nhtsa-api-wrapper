@@ -15,7 +15,8 @@ module.exports = {
     'docs/',
     'node_modules/',
     'bin/',
-    'tests/'
+    'tests/',
+    'e2e'
   ],
   extends: [
     'eslint:recommended',
@@ -30,23 +31,36 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2016,
+    ecmaVersion: 2020,
     sourceType: 'module'
-    // "project": "./tsconfig.json"
   },
   plugins: ['@typescript-eslint', 'prettier', 'jsdoc', 'jest'],
   /* 0('off'), 1('warn'), 2('error) */
   rules: {
-    'dot-notation': 'off',
-    'no-console': 'off',
-    'no-debugger': 'off',
-    'no-unused-vars': 'off',
-    'prettier/prettier': 'warn',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    /*****************
+     * ESLint Rules
+     ****************/
+    'dot-notation': 0,
+    'no-console': 0,
+    'no-debugger': 0,
+    'no-unused-vars': 0,
 
-    'node/no-unsupported-features/es-syntax': 'off',
-    'node/no-missing-import': 'off',
+    /*****************
+     * Prettier Rules
+     ****************/
+    'prettier/prettier': 1,
+
+    /********************
+     * Typescript Rules
+     ********************/
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
+
+    /*****************
+     * Node Rules
+     ****************/
+    'node/no-unsupported-features/es-syntax': 0,
+    'node/no-missing-import': 0,
 
     /*****************
      * JSDOC Rules
@@ -79,7 +93,7 @@ module.exports = {
     "jsdoc/valid-types": 1, // Recommended
 
     /*****************
-     * JEST Rules
+     * Jest Rules
      ****************/
     "jest/no-disabled-tests": 0,
     // "jest/no-focused-tests": 1,
