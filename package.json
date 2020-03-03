@@ -1,7 +1,7 @@
 {
   "name": "@shaggytools/nhtsa-api-wrapper",
   "libraryName": "NHTSA",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A wrapper around the NHTSA.dot.gov 'vehicles' API, written completely in Typescript.",
   "engines": {
     "node": "13.9.0",
@@ -49,7 +49,8 @@
     "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
     "cover": "jest -c jest.config.prod.coverage.js",
     "lint": "eslint src",
-    "release": "yarn build && yarn publish && git push --tags && git push",
+    "release": "yarn build && yarn version --patch",
+    "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\"",
     "test": "jest -c jest.config.prod.js",
     "test-clearCache": "./node_modules/.bin/jest --clearCache",
     "watch": "yarn clean-dev && yarn copy-packageJsonToDev && node ./bin/watchAll.js",
