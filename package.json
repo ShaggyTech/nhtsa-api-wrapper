@@ -49,7 +49,7 @@
     "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
     "cover": "jest -c jest.config.prod.coverage.js",
     "lint": "eslint src",
-    "postversion": "git push --tags && echo \"Successfully released new version!\"",
+    "postversion": "git push --tags && git push && echo \"Successfully released new version!\"",
     "test": "jest -c jest.config.prod.js",
     "test-clearCache": "./node_modules/.bin/jest --clearCache",
     "watch": "yarn clean-dev && yarn copy-packageJsonToDev && node ./bin/watchAll.js",
