@@ -1,5 +1,6 @@
 language: node_js
-
+node_js:
+  - '13.9.0'
 cache: yarn
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -32,5 +33,6 @@ jobs:
           tags: true
           branch: master
       after_success:
+        - yarn 
         - yarn cover --maxWorkers=$(nproc)
         - bash <(curl -s https://codecov.io/bash)
