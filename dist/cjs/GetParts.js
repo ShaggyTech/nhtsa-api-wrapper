@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib_es6 = require('./tslib.es6-4e63b739.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-4ce8326c.js');
+var Fetch = require('./Fetch-23ce7e7d.js');
 
 /**
  * @module api/actions/GetParts
@@ -47,13 +47,12 @@ class GetParts extends Fetch.Fetch {
      * @returns {(Promise<GetPartsResponse | Error>)} Api Response object.
      */
     GetParts(params) {
-        var _a, _b, _c, _d;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetParts';
-            const type = (_a = params) === null || _a === void 0 ? void 0 : _a.type;
-            const fromDate = (_b = params) === null || _b === void 0 ? void 0 : _b.fromDate;
-            const toDate = (_c = params) === null || _c === void 0 ? void 0 : _c.toDate;
-            const page = (_d = params) === null || _d === void 0 ? void 0 : _d.page;
+            const type = params === null || params === void 0 ? void 0 : params.type;
+            const fromDate = params === null || params === void 0 ? void 0 : params.fromDate;
+            const toDate = params === null || params === void 0 ? void 0 : params.toDate;
+            const page = params === null || params === void 0 ? void 0 : params.page;
             /* Valid params object */
             const typeofParams = Fetch.getTypeof(params);
             if (params && typeofParams !== 'object') {

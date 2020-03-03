@@ -16,7 +16,7 @@ jobs:
         - yarn test
         - yarn build
     - stage: NPM/Yarn Release
-      script: yarn build
+      script: yarn release
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
@@ -24,7 +24,12 @@ jobs:
         skip_cleanup: true
         on:
           tags: true
-
+          branch: master
+branches:
+  only:
+    - master
+    - staging
+    - /^v[0-9]+.*$/
 after_success:
 - yarn cover --maxWorkers=$(nproc)
 - bash <(curl -s https://codecov.io/bash)

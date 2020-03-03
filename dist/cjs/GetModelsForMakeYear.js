@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib_es6 = require('./tslib.es6-4e63b739.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-4ce8326c.js');
+var Fetch = require('./Fetch-23ce7e7d.js');
 
 /**
  * @module api/actions/GetModelsForMakeYear
@@ -52,12 +52,11 @@ class GetModelsForMakeYear extends Fetch.Fetch {
      * @returns {(Promise<GetModelsForMakeYearResponse | Error>)} Api Response object.
      */
     GetModelsForMakeYear(params) {
-        var _a, _b, _c;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetModelsForMakeYear';
-            const make = (_a = params) === null || _a === void 0 ? void 0 : _a.make;
-            const modelYear = (_b = params) === null || _b === void 0 ? void 0 : _b.modelYear;
-            const vehicleType = (_c = params) === null || _c === void 0 ? void 0 : _c.vehicleType;
+            const make = params === null || params === void 0 ? void 0 : params.make;
+            const modelYear = params === null || params === void 0 ? void 0 : params.modelYear;
+            const vehicleType = params === null || params === void 0 ? void 0 : params.vehicleType;
             /* Valid params object */
             const typeofParams = Fetch.getTypeof(params);
             if (typeofParams !== 'object') {

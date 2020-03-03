@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 require('./tslib.es6-4e63b739.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-4ce8326c.js');
-var index = require('./index-871c5ecb.js');
+var Fetch = require('./Fetch-23ce7e7d.js');
+var index = require('./index-9b253478.js');
 
 /**
  * @module api/NHTSA
@@ -98,7 +98,6 @@ var index = require('./index-871c5ecb.js');
 class NHTSA extends Fetch.Fetch {
     constructor(userConfig) {
         super(userConfig);
-        this.isValidVin = Fetch.isValidVin;
         this.DecodeVin = index.DecodeVin.prototype.DecodeVin;
         this.DecodeVinValues = index.DecodeVinValues.prototype.DecodeVinValues;
         this.DecodeVinExtended = index.DecodeVinExtended.prototype.DecodeVinExtended;

@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib_es6 = require('./tslib.es6-4e63b739.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-4ce8326c.js');
+var Fetch = require('./Fetch-23ce7e7d.js');
 
 /**
  * @module api/actions/DecodeVinExtended
@@ -55,7 +55,6 @@ class DecodeVinExtended extends Fetch.Fetch {
      * @returns {(Promise<DecodeVinExtendedResponse | Error>)} - Api Response object.
      */
     DecodeVinExtended(vin, params) {
-        var _a, _b;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'DecodeVinExtended';
             /* Runtime typechecking */
@@ -69,8 +68,8 @@ class DecodeVinExtended extends Fetch.Fetch {
                 return Promise.reject(new Error(`${action}, "vin" argument is required and must be of type string, got: ` +
                     `<${typeofVin}> ${vin}`));
             }
-            const typeofModelYear = Fetch.getTypeof((_a = params) === null || _a === void 0 ? void 0 : _a.modelYear);
-            if (((_b = params) === null || _b === void 0 ? void 0 : _b.modelYear) && typeofModelYear !== 'number') {
+            const typeofModelYear = Fetch.getTypeof(params === null || params === void 0 ? void 0 : params.modelYear);
+            if ((params === null || params === void 0 ? void 0 : params.modelYear) && typeofModelYear !== 'number') {
                 return Promise.reject(new Error(`${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
                     `<${typeofModelYear}> ${params.modelYear}`));
             }
