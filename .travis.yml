@@ -1,6 +1,5 @@
 language: node_js
-node_js:
-  - '13.9.0'
+
 cache: yarn
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -8,6 +7,12 @@ before_install:
 install:
   - npm install -g codecov
   - yarn
+branches:
+  only:
+    - master
+    - production
+    - staging
+    - /^v[0-9]+.*$/
 jobs:
   include:
     - stage: Lint, Build, and Test
@@ -16,7 +21,8 @@ jobs:
         - yarn test
         - yarn build
     - stage: NPM/Yarn Release
-      script: yarn release
+      if: tag IS present
+      script: yarn build
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
@@ -25,11 +31,6 @@ jobs:
         on:
           tags: true
           branch: master
-branches:
-  only:
-    - master
-    - staging
-    - /^v[0-9]+.*$/
-after_success:
-- yarn cover --maxWorkers=$(nproc)
-- bash <(curl -s https://codecov.io/bash)
+      after_success:
+        - yarn cover --maxWorkers=$(nproc)
+        - bash <(curl -s https://codecov.io/bash)

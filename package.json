@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "yarn clean-dist && yarn test",
+    "prebuild": "yarn clean-dist",
     "build": "rollup -c rollup.config.ts",
     "prebuild-docs": "yarn clean-docs",
     "postbuild-docs": "yarn copy-package-size-stats",
@@ -49,8 +49,7 @@
     "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
     "cover": "jest -c jest.config.prod.coverage.js",
     "lint": "eslint src",
-    "release": "yarn build && yarn version --patch",
-    "postversion": "git push --tags && yarn publish && git push && echo \"Successfully released version $npm_package_version!\"",
+    "postversion": "git push --tags && git push && echo \"Successfully released new version!\"",
     "test": "jest -c jest.config.prod.js",
     "test-clearCache": "./node_modules/.bin/jest --clearCache",
     "watch": "yarn clean-dev && yarn copy-packageJsonToDev && node ./bin/watchAll.js",
