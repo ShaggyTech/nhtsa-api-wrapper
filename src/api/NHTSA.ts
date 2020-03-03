@@ -9,9 +9,6 @@
 
 import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
 
-/* Util Helpers */
-import { isValidVin } from '../utils/isValidVin';
-
 /* Import implemented API Action classes */
 import {
   DecodeVin,
@@ -147,8 +144,6 @@ class NHTSA extends Fetch
   constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
-  isValidVin = isValidVin;
-
   DecodeVin = DecodeVin.prototype.DecodeVin;
 
   DecodeVinValues = DecodeVinValues.prototype.DecodeVinValues;
