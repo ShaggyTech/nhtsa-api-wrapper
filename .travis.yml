@@ -26,5 +26,4 @@ jobs:
           tags: true
 
   after_success:
-  - yarn cover --maxWorkers=$(nproc)
   - bash <(curl -s https://codecov.io/bash)
