@@ -1,7 +1,7 @@
 'use strict';
 
 var tslib_es6 = require('./tslib.es6-4e63b739.js');
-var Fetch = require('./Fetch-4ce8326c.js');
+var Fetch = require('./Fetch-23ce7e7d.js');
 
 /**
  * @module api/actions/DecodeVin
@@ -45,7 +45,6 @@ class DecodeVin extends Fetch.Fetch {
      * @returns {(Promise<DecodeVinResponse | Error>)} - Api Response object.
      */
     DecodeVin(vin, params) {
-        var _a, _b;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'DecodeVin';
             /* Runtime typechecking */
@@ -59,8 +58,8 @@ class DecodeVin extends Fetch.Fetch {
                 return Promise.reject(new Error(`${action}, "vin" argument is required and must be of type string, got: ` +
                     `<${typeofVin}> ${vin}`));
             }
-            const typeofModelYear = Fetch.getTypeof((_a = params) === null || _a === void 0 ? void 0 : _a.modelYear);
-            if (((_b = params) === null || _b === void 0 ? void 0 : _b.modelYear) && typeofModelYear !== 'number') {
+            const typeofModelYear = Fetch.getTypeof(params === null || params === void 0 ? void 0 : params.modelYear);
+            if ((params === null || params === void 0 ? void 0 : params.modelYear) && typeofModelYear !== 'number') {
                 return Promise.reject(new Error(`${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
                     `<${typeofModelYear}> ${params.modelYear}`));
             }
@@ -125,7 +124,6 @@ class DecodeVinExtended extends Fetch.Fetch {
      * @returns {(Promise<DecodeVinExtendedResponse | Error>)} - Api Response object.
      */
     DecodeVinExtended(vin, params) {
-        var _a, _b;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'DecodeVinExtended';
             /* Runtime typechecking */
@@ -139,8 +137,8 @@ class DecodeVinExtended extends Fetch.Fetch {
                 return Promise.reject(new Error(`${action}, "vin" argument is required and must be of type string, got: ` +
                     `<${typeofVin}> ${vin}`));
             }
-            const typeofModelYear = Fetch.getTypeof((_a = params) === null || _a === void 0 ? void 0 : _a.modelYear);
-            if (((_b = params) === null || _b === void 0 ? void 0 : _b.modelYear) && typeofModelYear !== 'number') {
+            const typeofModelYear = Fetch.getTypeof(params === null || params === void 0 ? void 0 : params.modelYear);
+            if ((params === null || params === void 0 ? void 0 : params.modelYear) && typeofModelYear !== 'number') {
                 return Promise.reject(new Error(`${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
                     `<${typeofModelYear}> ${params.modelYear}`));
             }
@@ -199,7 +197,6 @@ class DecodeVinValues extends Fetch.Fetch {
      * @returns {(Promise<DecodeVinValuesResponse | Error>)} Api Response object.
      */
     DecodeVinValues(vin, params) {
-        var _a, _b;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'DecodeVinValues';
             /* Runtime typechecking */
@@ -213,8 +210,8 @@ class DecodeVinValues extends Fetch.Fetch {
                 return Promise.reject(new Error(`${action}, "vin" argument is required and must be of type string, got: ` +
                     `<${typeofVin}> ${vin}`));
             }
-            const typeofModelYear = Fetch.getTypeof((_a = params) === null || _a === void 0 ? void 0 : _a.modelYear);
-            if (((_b = params) === null || _b === void 0 ? void 0 : _b.modelYear) &&
+            const typeofModelYear = Fetch.getTypeof(params === null || params === void 0 ? void 0 : params.modelYear);
+            if ((params === null || params === void 0 ? void 0 : params.modelYear) &&
                 typeofModelYear !== 'string' &&
                 typeofModelYear !== 'number') {
                 return Promise.reject(new Error(`${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
@@ -277,7 +274,6 @@ class DecodeVinValuesExtended extends Fetch.Fetch {
      * @returns {(Promise<DecodeVinValuesExtendedResponse | Error>)} Api Response object.
      */
     DecodeVinValuesExtended(vin, params) {
-        var _a, _b;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'DecodeVinValuesExtended';
             /* Runtime typechecking */
@@ -291,8 +287,8 @@ class DecodeVinValuesExtended extends Fetch.Fetch {
                 return Promise.reject(new Error(`${action}, "vin" argument is required and must be of type string, got: ` +
                     `<${typeofVin}> ${vin}`));
             }
-            const typeofModelYear = Fetch.getTypeof((_a = params) === null || _a === void 0 ? void 0 : _a.modelYear);
-            if (((_b = params) === null || _b === void 0 ? void 0 : _b.modelYear) && typeofModelYear !== 'number') {
+            const typeofModelYear = Fetch.getTypeof(params === null || params === void 0 ? void 0 : params.modelYear);
+            if ((params === null || params === void 0 ? void 0 : params.modelYear) && typeofModelYear !== 'number') {
                 return Promise.reject(new Error(`${action}, "params.modelYear" argument is required and must be of type string or number, got: ` +
                     `<${typeofModelYear}> ${params.modelYear}`));
             }
@@ -1067,12 +1063,11 @@ class GetModelsForMakeIdYear extends Fetch.Fetch {
      * @returns {(Promise<GetModelsForMakeIdYearResponse | Error>)} Api Response object.
      */
     GetModelsForMakeIdYear(params) {
-        var _a, _b, _c;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetModelsForMakeIdYear';
-            const makeId = (_a = params) === null || _a === void 0 ? void 0 : _a.makeId;
-            const modelYear = (_b = params) === null || _b === void 0 ? void 0 : _b.modelYear;
-            const vehicleType = (_c = params) === null || _c === void 0 ? void 0 : _c.vehicleType;
+            const makeId = params === null || params === void 0 ? void 0 : params.makeId;
+            const modelYear = params === null || params === void 0 ? void 0 : params.modelYear;
+            const vehicleType = params === null || params === void 0 ? void 0 : params.vehicleType;
             /* Valid params object */
             const typeofParams = Fetch.getTypeof(params);
             if (typeofParams !== 'object') {
@@ -1172,12 +1167,11 @@ class GetModelsForMakeYear extends Fetch.Fetch {
      * @returns {(Promise<GetModelsForMakeYearResponse | Error>)} Api Response object.
      */
     GetModelsForMakeYear(params) {
-        var _a, _b, _c;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetModelsForMakeYear';
-            const make = (_a = params) === null || _a === void 0 ? void 0 : _a.make;
-            const modelYear = (_b = params) === null || _b === void 0 ? void 0 : _b.modelYear;
-            const vehicleType = (_c = params) === null || _c === void 0 ? void 0 : _c.vehicleType;
+            const make = params === null || params === void 0 ? void 0 : params.make;
+            const modelYear = params === null || params === void 0 ? void 0 : params.modelYear;
+            const vehicleType = params === null || params === void 0 ? void 0 : params.vehicleType;
             /* Valid params object */
             const typeofParams = Fetch.getTypeof(params);
             if (typeofParams !== 'object') {
@@ -1272,13 +1266,12 @@ class GetParts extends Fetch.Fetch {
      * @returns {(Promise<GetPartsResponse | Error>)} Api Response object.
      */
     GetParts(params) {
-        var _a, _b, _c, _d;
         return tslib_es6.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetParts';
-            const type = (_a = params) === null || _a === void 0 ? void 0 : _a.type;
-            const fromDate = (_b = params) === null || _b === void 0 ? void 0 : _b.fromDate;
-            const toDate = (_c = params) === null || _c === void 0 ? void 0 : _c.toDate;
-            const page = (_d = params) === null || _d === void 0 ? void 0 : _d.page;
+            const type = params === null || params === void 0 ? void 0 : params.type;
+            const fromDate = params === null || params === void 0 ? void 0 : params.fromDate;
+            const toDate = params === null || params === void 0 ? void 0 : params.toDate;
+            const page = params === null || params === void 0 ? void 0 : params.page;
             /* Valid params object */
             const typeofParams = Fetch.getTypeof(params);
             if (params && typeofParams !== 'object') {
@@ -1614,4 +1607,4 @@ exports.GetVehicleTypesForMakeId = GetVehicleTypesForMakeId;
 exports.GetVehicleVariableList = GetVehicleVariableList;
 exports.GetVehicleVariableValuesList = GetVehicleVariableValuesList;
 exports.GetWMIsForManufacturer = GetWMIsForManufacturer;
-//# sourceMappingURL=index-871c5ecb.js.map
+//# sourceMappingURL=index-9b253478.js.map

@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib_es6 = require('./tslib.es6-4e63b739.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-4ce8326c.js');
+var Fetch = require('./Fetch-23ce7e7d.js');
 
 /**
  * @module api/actions/GetMakesForVehicleType
