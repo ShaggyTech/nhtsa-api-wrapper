@@ -9,20 +9,21 @@
   },
   "main": "dist/bundle.min.js",
   "module": "dist/module/index.js",
-  "browser": "dist/browser/iife.js",
+  "browser": "dist/bundle.min.js",
   "unpkg": "dist/bundle.min.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist/*",
     "dist/module/*",
     "dist/browser/*",
+    "dist/cjs/*",
     "dist/types/*"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "prebuild": "yarn clean-dist",
+    "prebuild": "yarn clean-dist && yarn test",
     "build": "rollup -c rollup.config.ts",
     "prebuild-docs": "yarn clean-docs",
     "postbuild-docs": "yarn copy-package-size-stats",
@@ -46,6 +47,7 @@
     "precopy-packageJsonToDev": "yarn clean-dev-packageJson",
     "copy-packageJsonToDev": "copyfiles ./package.json ./dev",
     "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
+    "lint": "eslint src",
     "release": "yarn build && yarn publish && git push --tags && git push",
     "test": "jest",
     "test-clearCache": "./node_modules/.bin/jest --clearCache",
