@@ -22,7 +22,6 @@ jobs:
         - yarn test
         - yarn build
     - stage: NPM/Yarn Release
-      if: tag IS present
       script: yarn build
       deploy:
         provider: npm
