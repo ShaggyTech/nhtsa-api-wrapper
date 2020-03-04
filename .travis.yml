@@ -18,7 +18,7 @@ jobs:
     - stage: Lint, Build, and Test
       script:
         - yarn lint
-        - yarn test
+        - yarn test-production
         - yarn build
     - stage: NPM/Yarn Release
       if: tag IS present
@@ -34,4 +34,4 @@ jobs:
         after_success:
           - npm install -g codecov
           - yarn cover --maxWorkers=$(nproc)
-          - bash <(curl -s https://codecov.io/bash)
+          - bash <(curl -s https://codecov.io/bash) -y ./config/codecov.yml

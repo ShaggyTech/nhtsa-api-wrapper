@@ -9,7 +9,7 @@ import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import visualizer from 'rollup-plugin-visualizer';
 
-import pkg from './package.json';
+import pkg from '../package.json';
 
 const libraryName = pkg.libraryName;
 
