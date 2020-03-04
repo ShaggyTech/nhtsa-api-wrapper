@@ -1,7 +1,7 @@
 {
   "name": "@shaggytools/nhtsa-api-wrapper",
   "libraryName": "NHTSA",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "A wrapper around the NHTSA.dot.gov 'vehicles' API, written completely in Typescript.",
   "engines": {
     "node": "13.9.0",
