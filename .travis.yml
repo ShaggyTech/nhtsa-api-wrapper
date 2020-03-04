@@ -7,6 +7,12 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 install:
   - yarn
+branches:
+  only:
+    - master
+    - production
+    - staging
+    - /^v[0-9]+.*$/
 jobs:
   include:
     - stage: Lint, Build, and Test
