@@ -20,8 +20,8 @@ jobs:
         - yarn lint
         - yarn test
         - yarn build
-    - if: tag IS present
     - stage: NPM/Yarn Release
+      if: tag IS present
       script: yarn build
       deploy:
         provider: npm
