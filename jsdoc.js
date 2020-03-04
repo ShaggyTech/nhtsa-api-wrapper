@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const PKG = require('../package.json');
+const PKG = require('./package.json');
 
 const TEMPLATE = 'node_modules/better-docs';
 
