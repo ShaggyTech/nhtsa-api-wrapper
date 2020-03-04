@@ -38,7 +38,7 @@ jobs:
         - provider: releases
           api_key: '$GITHUB_TOKEN'
           file_glob: true
-          file: dist/**/*
+          file: dist/*
           skip_cleanup: true
           on:
             tags: true
