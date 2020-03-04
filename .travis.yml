@@ -7,12 +7,6 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 install:
   - yarn
-branches:
-  only:
-    - master
-    - production
-    - staging
-    - /^v[0-9]+.*$/
 jobs:
   include:
     - stage: Lint, Build, and Test
@@ -24,14 +18,21 @@ jobs:
       if: tag IS present
       script: yarn build
       deploy:
-        provider: npm
-        email: '$NPM_EMAIL'
-        api_key: '$NPM_TOKEN'
-        skip_cleanup: true
-        on:
-          tags: true
-          branch: master
-        after_success:
-          - npm install -g codecov
-          - yarn cover --maxWorkers=$(nproc)
-          - bash <(curl -s https://codecov.io/bash)
+        - provider: npm
+          email: '$NPM_EMAIL'
+          api_key: '$NPM_TOKEN'
+          skip_cleanup: true
+          on:
+            tags: true
+            branch: master
+          after_success:
+            - npm install -g codecov
+            - yarn cover --maxWorkers=$(nproc)
+            - bash <(curl -s https://codecov.io/bash)
+        - provider: releases
+            api_key: '$GITHUB_TOKEN'
+            file_glob: true
+            file: dist/**/*
+            skip_cleanup: true
+            on:
+              tags: true
