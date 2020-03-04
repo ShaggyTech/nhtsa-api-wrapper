@@ -18,7 +18,7 @@ jobs:
     - stage: Lint, Build, and Test
       script:
         - yarn lint
-        - yarn test-production
+        - yarn test-ci
         - yarn build
     - stage: NPM/Yarn Release
       if: tag IS present

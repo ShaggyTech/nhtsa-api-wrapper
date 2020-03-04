@@ -51,7 +51,7 @@
     "lint": "eslint src",
     "postversion": "git push --tags && git push && echo \"Successfully released new version!\"",
     "test": "jest -c ./config/jest.config.js",
-    "test-production": "jest -c ./config/jest.config.prod.js",
+    "test-ci": "jest -c ./config/jest.config.prod.js",
     "test-clearCache": "./node_modules/.bin/jest --clearCache",
     "watch": "yarn clean-dev && yarn copy-packageJsonToDev && node ./bin/watchAll.js",
     "watch-docs": "npx nodemon --exec yarn build-dev-docs --config ./config/nodemon.jsdoc.json",
