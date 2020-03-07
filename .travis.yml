@@ -20,18 +20,12 @@ jobs:
         - yarn lint
         - yarn test-ci
         - yarn build
-    - stage: NPM/Yarn Release
-      if: tag IS present
-      script: yarn build
-      deploy:
-        provider: npm
-        email: '$NPM_EMAIL'
-        api_key: '$NPM_TOKEN'
-        skip_cleanup: true
-        on:
-          tags: true
-          branch: master
-        after_success:
-          - npm install -g codecov
-          - yarn cover --maxWorkers=$(nproc)
-          - bash <(curl -s https://codecov.io/bash)
+    - stage: Build & publish
+      if: branch = master
+      script:
+      - npm run build
+      - npx semantic-release
+      after_success:
+        - npm install -g codecov
+        - yarn cover --maxWorkers=$(nproc)
+        - bash <(curl -s https://codecov.io/bash)

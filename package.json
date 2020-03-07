@@ -24,7 +24,6 @@
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -66,7 +65,6 @@
     "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
     "cover": "jest -c jest.config.prod.coverage.js",
     "lint": "eslint src",
-    "postversion": "git push --tags && git push && echo \"Successfully released new version!\"",
     "test": "jest -c ./jest.config.js",
     "test-ci": "jest -c ./jest.config.prod.js",
     "test-clearCache": "./node_modules/.bin/jest --clearCache",
@@ -74,11 +72,12 @@
     "watch-docs": "npx nodemon --exec yarn build-dev-docs --config ./nodemon.jsdoc.json",
     "watch-tsc": "tsc -p tsconfig.dev.json -w --module commonjs",
     "watch-test": "jest --watch --onlyChanged",
-    "watch-rollup": "yarn clean-dev-dist && yarn copy-packageJsonToDev && rollup -c rollup.config.ts -w"
+    "watch-rollup": "yarn clean-dev-dist && yarn copy-packageJsonToDev && rollup -c rollup.config.ts -w",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
     "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper"
   },
   "author": "Brandon Eichler <shaggytech.com>",
@@ -117,6 +116,8 @@
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^6.0.0",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.1",
     "@types/node-fetch": "^2.5.4",
@@ -152,6 +153,7 @@
     "rollup-plugin-terser": "^5.1.3",
     "rollup-plugin-typescript2": "^0.25.3",
     "rollup-plugin-visualizer": "^3.3.1",
+    "semantic-release": "^17.0.4",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
