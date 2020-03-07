@@ -22,6 +22,21 @@
   "publishConfig": {
     "access": "public"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "scripts": {
     "prebuild": "yarn clean-dist",
     "build": "rollup -c rollup.config.ts",
@@ -44,6 +59,7 @@
     "clean-dev-tests": "yarn test-clearCache && rimraf dev/coverage/*",
     "cleanup": "yarn clean-dev-packageJson && rimraf dist && rimraf dev",
     "cleanup-everything": "yarn cleanup && yarn test-clearCache && rimraf node_modules",
+    "commit-cz": "git-cz",
     "precopy-packageJsonToDev": "yarn clean-dev-packageJson",
     "copy-packageJsonToDev": "copyfiles ./package.json ./dev",
     "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
@@ -95,6 +111,8 @@
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-typescript": "^7.7.7",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^6.0.0",
@@ -104,15 +122,18 @@
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "better-docs": "^1.4.7",
+    "commitizen": "^4.0.3",
     "concurrently": "^5.0.2",
     "copyfiles": "^2.1.1",
     "cross-env": "^6.0.3",
+    "cz-conventional-changelog": "3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-jsdoc": "^21.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "jsdoc-babel": "^0.5.0",
