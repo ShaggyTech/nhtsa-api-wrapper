@@ -23,7 +23,7 @@ jobs:
     - stage: Build & publish
       if: branch = master
       script:
-      - npm run build
+      - yarn build
       - npx semantic-release
       after_success:
         - npm install -g codecov
