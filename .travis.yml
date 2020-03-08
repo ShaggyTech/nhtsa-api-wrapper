@@ -15,16 +15,26 @@ branches:
     - /^v[0-9]+.*$/
 jobs:
   include:
-    - stage: Lint, Build, and Test
+    - stage: Lint, Test, & Build
       script:
         - yarn lint
         - yarn test-ci
         - yarn build
-    - stage: Build & publish
+    - stage: Build, Publish Docs, & Release
       if: branch = master
       script:
-      - yarn build
-      - npx semantic-release
+        - yarn build
+        - yarn build-docs
+        - npx semantic-release
+      # Deploy built Production Documentation to gh-pages branch
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        local_dir: docs/
+        github_token: $GH_TOKEN
+        on:
+          branch: master
+      # Test Coverage Reports
       after_success:
         - npm install -g codecov
         - yarn cover --maxWorkers=$(nproc)
