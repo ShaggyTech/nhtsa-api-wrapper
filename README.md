@@ -1,6 +1,11 @@
 # @shaggytools / nhtsa-api-wrapper
 
-![npm](https://img.shields.io/npm/v/@shaggytools/nhtsa-api-wrapper) ![Travis (.org)](https://img.shields.io/travis/ShaggyTech/nhtsa-api-wrapper) ![Codecov](https://img.shields.io/codecov/c/gh/ShaggyTech/nhtsa-api-wrapper?label=Test%20Coverage) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/60e45bcb1cf54285a67f423c3f6f32a1)](https://www.codacy.com/manual/ShaggyTech/nhtsa-api-wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ShaggyTech/nhtsa-api-wrapper&amp;utm_campaign=Badge_Grade) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@shaggytools/nhtsa-api-wrapper) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@shaggytools/nhtsa-api-wrapper)
+[![npm](https://img.shields.io/npm/v/@shaggytools/nhtsa-api-wrapper)](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
+[![Travis (.org)](https://travis-ci.org/ShaggyTech/nhtsa-api-wrapper.svg?branch=master)](https://travis-ci.org/ShaggyTech/nhtsa-api-wrapper)
+[![codecov](https://codecov.io/gh/ShaggyTech/nhtsa-api-wrapper/branch/master/graph/badge.svg)](https://codecov.io/gh/ShaggyTech/nhtsa-api-wrapper)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/60e45bcb1cf54285a67f423c3f6f32a1)](https://www.codacy.com/manual/ShaggyTech/nhtsa-api-wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ShaggyTech/nhtsa-api-wrapper&amp;utm_campaign=Badge_Grade)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@shaggytools/nhtsa-api-wrapper)](https://bundlephobia.com/result?p=@shaggytools/nhtsa-api-wrapper)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@shaggytools/nhtsa-api-wrapper)](https://bundlephobia.com/result?p=@shaggytools/nhtsa-api-wrapper)
 
 > An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).
 
@@ -9,8 +14,6 @@
 - Yarn - [https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper](https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper)
 
 The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation](https://www.shaggytech.com/nhtsa-api-wrapper/) you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
-
-
 
 **Complete Documentation: [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)**
 
