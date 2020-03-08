@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib_es6 = require('./tslib.es6-4e63b739.js');
+var isValidVin = require('./isValidVin-547fbc43.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-23ce7e7d.js');
+var Fetch = require('./Fetch-55f9a4b7.js');
 
 /**
  * @module api/actions/GetVehicleTypesForMakeId
@@ -40,7 +40,7 @@ class GetVehicleTypesForMakeId extends Fetch.Fetch {
      * @returns {(Promise<GetVehicleTypesForMakeIdResponse | Error>)} Api Response object.
      */
     GetVehicleTypesForMakeId(makeID) {
-        return tslib_es6.__awaiter(this, void 0, void 0, function* () {
+        return isValidVin.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetVehicleTypesForMakeId';
             /* Runtime typechecking */
             const typeofMakeId = Fetch.getTypeof(makeID);

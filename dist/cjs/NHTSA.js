@@ -2,10 +2,32 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./tslib.es6-4e63b739.js');
+require('./isValidVin-547fbc43.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-23ce7e7d.js');
-var index = require('./index-9b253478.js');
+var Fetch = require('./Fetch-55f9a4b7.js');
+var DecodeVin = require('./DecodeVin.js');
+var DecodeVinExtended = require('./DecodeVinExtended.js');
+var DecodeVinValues = require('./DecodeVinValues.js');
+var DecodeVinValuesExtended = require('./DecodeVinValuesExtended.js');
+var DecodeWMI = require('./DecodeWMI.js');
+var GetAllMakes = require('./GetAllMakes.js');
+var GetAllManufacturers = require('./GetAllManufacturers.js');
+var GetCanadianVehicleSpecifications = require('./GetCanadianVehicleSpecifications.js');
+var GetEquipmentPlantCodes = require('./GetEquipmentPlantCodes.js');
+var GetMakeForManufacturer = require('./GetMakeForManufacturer.js');
+var GetMakesForManufacturerAndYear = require('./GetMakesForManufacturerAndYear.js');
+var GetMakesForVehicleType = require('./GetMakesForVehicleType.js');
+var GetManufacturerDetails = require('./GetManufacturerDetails.js');
+var GetModelsForMake = require('./GetModelsForMake.js');
+var GetModelsForMakeId = require('./GetModelsForMakeId.js');
+var GetModelsForMakeIdYear = require('./GetModelsForMakeIdYear.js');
+var GetModelsForMakeYear = require('./GetModelsForMakeYear.js');
+var GetParts = require('./GetParts.js');
+var GetVehicleTypesForMake = require('./GetVehicleTypesForMake.js');
+var GetVehicleTypesForMakeId = require('./GetVehicleTypesForMakeId.js');
+var GetVehicleVariableList = require('./GetVehicleVariableList.js');
+var GetVehicleVariableValuesList = require('./GetVehicleVariableValuesList.js');
+var GetWMIsForManufacturer = require('./GetWMIsForManufacturer.js');
 
 /**
  * @module api/NHTSA
@@ -98,29 +120,29 @@ var index = require('./index-9b253478.js');
 class NHTSA extends Fetch.Fetch {
     constructor(userConfig) {
         super(userConfig);
-        this.DecodeVin = index.DecodeVin.prototype.DecodeVin;
-        this.DecodeVinValues = index.DecodeVinValues.prototype.DecodeVinValues;
-        this.DecodeVinExtended = index.DecodeVinExtended.prototype.DecodeVinExtended;
-        this.DecodeVinValuesExtended = index.DecodeVinValuesExtended.prototype.DecodeVinValuesExtended;
-        this.DecodeWMI = index.DecodeWMI.prototype.DecodeWMI;
-        this.GetAllMakes = index.GetAllMakes.prototype.GetAllMakes;
-        this.GetAllManufacturers = index.GetAllManufacturers.prototype.GetAllManufacturers;
-        this.GetCanadianVehicleSpecifications = index.GetCanadianVehicleSpecifications.prototype.GetCanadianVehicleSpecifications;
-        this.GetEquipmentPlantCodes = index.GetEquipmentPlantCodes.prototype.GetEquipmentPlantCodes;
-        this.GetMakeForManufacturer = index.GetMakeForManufacturer.prototype.GetMakeForManufacturer;
-        this.GetMakesForManufacturerAndYear = index.GetMakesForManufacturerAndYear.prototype.GetMakesForManufacturerAndYear;
-        this.GetMakesForVehicleType = index.GetMakesForVehicleType.prototype.GetMakesForVehicleType;
-        this.GetManufacturerDetails = index.GetManufacturerDetails.prototype.GetManufacturerDetails;
-        this.GetModelsForMake = index.GetModelsForMake.prototype.GetModelsForMake;
-        this.GetModelsForMakeId = index.GetModelsForMakeId.prototype.GetModelsForMakeId;
-        this.GetModelsForMakeIdYear = index.GetModelsForMakeIdYear.prototype.GetModelsForMakeIdYear;
-        this.GetModelsForMakeYear = index.GetModelsForMakeYear.prototype.GetModelsForMakeYear;
-        this.GetParts = index.GetParts.prototype.GetParts;
-        this.GetVehicleTypesForMake = index.GetVehicleTypesForMake.prototype.GetVehicleTypesForMake;
-        this.GetVehicleTypesForMakeId = index.GetVehicleTypesForMakeId.prototype.GetVehicleTypesForMakeId;
-        this.GetVehicleVariableList = index.GetVehicleVariableList.prototype.GetVehicleVariableList;
-        this.GetVehicleVariableValuesList = index.GetVehicleVariableValuesList.prototype.GetVehicleVariableValuesList;
-        this.GetWMIsForManufacturer = index.GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
+        this.DecodeVin = DecodeVin.DecodeVin.prototype.DecodeVin;
+        this.DecodeVinValues = DecodeVinValues.DecodeVinValues.prototype.DecodeVinValues;
+        this.DecodeVinExtended = DecodeVinExtended.DecodeVinExtended.prototype.DecodeVinExtended;
+        this.DecodeVinValuesExtended = DecodeVinValuesExtended.DecodeVinValuesExtended.prototype.DecodeVinValuesExtended;
+        this.DecodeWMI = DecodeWMI.DecodeWMI.prototype.DecodeWMI;
+        this.GetAllMakes = GetAllMakes.GetAllMakes.prototype.GetAllMakes;
+        this.GetAllManufacturers = GetAllManufacturers.GetAllManufacturers.prototype.GetAllManufacturers;
+        this.GetCanadianVehicleSpecifications = GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.prototype.GetCanadianVehicleSpecifications;
+        this.GetEquipmentPlantCodes = GetEquipmentPlantCodes.GetEquipmentPlantCodes.prototype.GetEquipmentPlantCodes;
+        this.GetMakeForManufacturer = GetMakeForManufacturer.GetMakeForManufacturer.prototype.GetMakeForManufacturer;
+        this.GetMakesForManufacturerAndYear = GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.prototype.GetMakesForManufacturerAndYear;
+        this.GetMakesForVehicleType = GetMakesForVehicleType.GetMakesForVehicleType.prototype.GetMakesForVehicleType;
+        this.GetManufacturerDetails = GetManufacturerDetails.GetManufacturerDetails.prototype.GetManufacturerDetails;
+        this.GetModelsForMake = GetModelsForMake.GetModelsForMake.prototype.GetModelsForMake;
+        this.GetModelsForMakeId = GetModelsForMakeId.GetModelsForMakeId.prototype.GetModelsForMakeId;
+        this.GetModelsForMakeIdYear = GetModelsForMakeIdYear.GetModelsForMakeIdYear.prototype.GetModelsForMakeIdYear;
+        this.GetModelsForMakeYear = GetModelsForMakeYear.GetModelsForMakeYear.prototype.GetModelsForMakeYear;
+        this.GetParts = GetParts.GetParts.prototype.GetParts;
+        this.GetVehicleTypesForMake = GetVehicleTypesForMake.GetVehicleTypesForMake.prototype.GetVehicleTypesForMake;
+        this.GetVehicleTypesForMakeId = GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.prototype.GetVehicleTypesForMakeId;
+        this.GetVehicleVariableList = GetVehicleVariableList.GetVehicleVariableList.prototype.GetVehicleVariableList;
+        this.GetVehicleVariableValuesList = GetVehicleVariableValuesList.GetVehicleVariableValuesList.prototype.GetVehicleVariableValuesList;
+        this.GetWMIsForManufacturer = GetWMIsForManufacturer.GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
     }
 }
 
