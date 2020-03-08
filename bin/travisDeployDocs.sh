@@ -3,7 +3,7 @@
 
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
-  git config --global user.name "Travis CI Docs Bot"
+  git config --global user.name "TravisCI-Docs-Bot"
 }
 
 commit_docs_folder() {
@@ -12,8 +12,7 @@ commit_docs_folder() {
   git add -f docs/*
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
-  # and Travis build number for reference
-  git commit -m "chore(docs): Deploy latest 'docs/' build to sync with gh-pages branch (Build $TRAVIS_BUILD_NUMBER)" -m "[skip ci]"
+  git commit -m "chore(docs): Deploy most recent 'docs/' build" -m "[skip ci]"
 }
 
 upload_files() {
@@ -33,5 +32,5 @@ if [ $? -eq 0 ]; then
   echo "Success. Syncing docs folder master repo, files uploaded."
   upload_files
 else
-  echo "No changes in country JSON files. Nothing to do"
+  echo "No changes found in the docs folder. Nothing to do"
 fi
