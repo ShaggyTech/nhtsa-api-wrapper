@@ -12,7 +12,7 @@ commit_docs_folder() {
   git add -f docs/*
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
-  git commit -m "chore(docs): Deploy most recent 'docs/' build" -m "[skip ci]"
+  git commit -m "chore(docs): Deploy most recent 'docs/' build -(Build #$TRAVIS_BUILD_NUMBER)" -m "[skip ci]"
 }
 
 upload_files() {
