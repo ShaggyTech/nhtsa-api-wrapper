@@ -29,7 +29,8 @@ module.exports = {
     default: {
       staticFiles: {
         include: ['./docsSrc/static']
-      }
+      },
+      includeDate: false
     },
     'better-docs': {
       name: `${PKG.name}`,
