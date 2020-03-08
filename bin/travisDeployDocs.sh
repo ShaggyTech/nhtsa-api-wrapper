@@ -9,7 +9,7 @@ setup_git() {
 commit_docs_folder() {
   git checkout master
   # Stage the modified files in dist/output
-  git add docs/\\*
+  git add -f docs/*
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
   # and Travis build number for reference
