@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib_es6 = require('./tslib.es6-4e63b739.js');
+var isValidVin = require('./isValidVin-547fbc43.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-23ce7e7d.js');
+var Fetch = require('./Fetch-55f9a4b7.js');
 
 /**
  * @module api/actions/GetParts
@@ -47,7 +47,7 @@ class GetParts extends Fetch.Fetch {
      * @returns {(Promise<GetPartsResponse | Error>)} Api Response object.
      */
     GetParts(params) {
-        return tslib_es6.__awaiter(this, void 0, void 0, function* () {
+        return isValidVin.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetParts';
             const type = params === null || params === void 0 ? void 0 : params.type;
             const fromDate = params === null || params === void 0 ? void 0 : params.fromDate;
