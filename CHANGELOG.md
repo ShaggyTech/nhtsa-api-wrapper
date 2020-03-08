@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.0.0...v1.0.1) (2020-03-08)
+
+
+### Bug Fixes
+
+* **travis:** fix for docs folder contents not working with git add ([2a0a89b](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/2a0a89bfbcef9d5662d9c9c4f6cb34b12912a4a3))
+* **travis:** fix for docs folder contents not working with git add ([#13](https://github.com/ShaggyTech/nhtsa-api-wrapper/issues/13)) ([72ac86a](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/72ac86a338473b1df2bbd891364358562b3b5986))
+
 # [1.0.0](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v0.1.17...v1.0.0) (2020-03-07)
 
 
