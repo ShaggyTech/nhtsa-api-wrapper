@@ -35,9 +35,9 @@ jobs:
           on:
             branch: master
       after_success:
-        # Deploy latest docs build to master branch
-        - sh bin/travisDeployDocs.sh
         # Upload test coverage reports
         - npm install -g codecov
         - yarn cover --maxWorkers=$(nproc)
         - bash <(curl -s https://codecov.io/bash)
+        # Deploy latest docs build to master branch
+        - sh bin/travisDeployDocs.sh
