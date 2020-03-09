@@ -1,6 +1,7 @@
 export { DecodeVinResults, DecodeVinResponse } from './DecodeVin';
 export { DecodeVinExtendedResults, DecodeVinExtendedResponse } from './DecodeVinExtended';
 export { DecodeVinValuesResults, DecodeVinValuesResponse } from './DecodeVinValues';
+export { DecodeVINValuesBatchResults, DecodeVINValuesBatchResponse } from './DecodeVINValuesBatch';
 export { DecodeVinValuesExtendedResults, DecodeVinValuesExtendedResponse } from './DecodeVinValuesExtended';
 export { DecodeWMIResults, DecodeWMIResponse } from './DecodeWMI';
 export { GetAllMakesResults, GetAllMakesResponse } from './GetAllMakes';

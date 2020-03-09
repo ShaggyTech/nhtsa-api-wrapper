@@ -8,6 +8,7 @@ var Fetch = require('./Fetch-55f9a4b7.js');
 var DecodeVin = require('./DecodeVin.js');
 var DecodeVinExtended = require('./DecodeVinExtended.js');
 var DecodeVinValues = require('./DecodeVinValues.js');
+var DecodeVINValuesBatch = require('./DecodeVINValuesBatch.js');
 var DecodeVinValuesExtended = require('./DecodeVinValuesExtended.js');
 var DecodeWMI = require('./DecodeWMI.js');
 var GetAllMakes = require('./GetAllMakes.js');
@@ -121,8 +122,9 @@ class NHTSA extends Fetch.Fetch {
     constructor(userConfig) {
         super(userConfig);
         this.DecodeVin = DecodeVin.DecodeVin.prototype.DecodeVin;
-        this.DecodeVinValues = DecodeVinValues.DecodeVinValues.prototype.DecodeVinValues;
         this.DecodeVinExtended = DecodeVinExtended.DecodeVinExtended.prototype.DecodeVinExtended;
+        this.DecodeVinValues = DecodeVinValues.DecodeVinValues.prototype.DecodeVinValues;
+        this.DecodeVINValuesBatch = DecodeVINValuesBatch.DecodeVINValuesBatch.prototype.DecodeVINValuesBatch;
         this.DecodeVinValuesExtended = DecodeVinValuesExtended.DecodeVinValuesExtended.prototype.DecodeVinValuesExtended;
         this.DecodeWMI = DecodeWMI.DecodeWMI.prototype.DecodeWMI;
         this.GetAllMakes = GetAllMakes.GetAllMakes.prototype.GetAllMakes;

@@ -8,6 +8,7 @@ require('./Fetch-55f9a4b7.js');
 require('./DecodeVin.js');
 require('./DecodeVinExtended.js');
 require('./DecodeVinValues.js');
+require('./DecodeVINValuesBatch.js');
 require('./DecodeVinValuesExtended.js');
 require('./DecodeWMI.js');
 require('./GetAllMakes.js');

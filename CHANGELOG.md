@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.0.1...v1.1.0) (2020-03-09)
+
+
+### Features
+
+* **api actions:** decodeVINValuesBatch NHTSA API Action ([27de80c](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/27de80c03bee68ea9d6cb20972cf85b34b39fb45))
+
 ## [1.0.1](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.0.0...v1.0.1) (2020-03-08)
 
 

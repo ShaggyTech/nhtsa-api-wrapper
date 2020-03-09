@@ -7,7 +7,7 @@
  * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHTSA API Actions
  */
 import { Fetch, FetchConfig } from './Fetch';
-import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended, DecodeWMI, GetAllMakes, GetAllManufacturers, GetCanadianVehicleSpecifications, GetEquipmentPlantCodes, GetMakeForManufacturer, GetMakesForManufacturerAndYear, GetMakesForVehicleType, GetManufacturerDetails, GetModelsForMake, GetModelsForMakeId, GetModelsForMakeIdYear, GetModelsForMakeYear, GetParts, GetVehicleTypesForMake, GetVehicleTypesForMakeId, GetVehicleVariableList, GetVehicleVariableValuesList, GetWMIsForManufacturer } from './actions';
+import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVINValuesBatch, DecodeVinValuesExtended, DecodeWMI, GetAllMakes, GetAllManufacturers, GetCanadianVehicleSpecifications, GetEquipmentPlantCodes, GetMakeForManufacturer, GetMakesForManufacturerAndYear, GetMakesForVehicleType, GetManufacturerDetails, GetModelsForMake, GetModelsForMakeId, GetModelsForMakeIdYear, GetModelsForMakeYear, GetParts, GetVehicleTypesForMake, GetVehicleTypesForMakeId, GetVehicleVariableList, GetVehicleVariableValuesList, GetWMIsForManufacturer } from './actions';
 /**
  * @class NHTSA
  * @augments module:api/Fetch.Fetch
@@ -88,17 +88,18 @@ import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended,
  *   console.log(Results)
  * </script>
  */
-declare class NHTSA extends Fetch implements DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVinValuesExtended, DecodeWMI, GetAllMakes, GetAllManufacturers, GetCanadianVehicleSpecifications, GetEquipmentPlantCodes, GetMakeForManufacturer, GetMakesForManufacturerAndYear, GetMakesForVehicleType, GetManufacturerDetails, GetModelsForMake, GetModelsForMakeId, GetModelsForMakeIdYear, GetModelsForMakeYear, GetParts, GetVehicleTypesForMake, GetVehicleTypesForMakeId, GetVehicleVariableList, GetVehicleVariableValuesList, GetWMIsForManufacturer {
+declare class NHTSA extends Fetch implements DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVINValuesBatch, DecodeVinValuesExtended, DecodeWMI, GetAllMakes, GetAllManufacturers, GetCanadianVehicleSpecifications, GetEquipmentPlantCodes, GetMakeForManufacturer, GetMakesForManufacturerAndYear, GetMakesForVehicleType, GetManufacturerDetails, GetModelsForMake, GetModelsForMakeId, GetModelsForMakeIdYear, GetModelsForMakeYear, GetParts, GetVehicleTypesForMake, GetVehicleTypesForMakeId, GetVehicleVariableList, GetVehicleVariableValuesList, GetWMIsForManufacturer {
     constructor(userConfig?: FetchConfig);
     DecodeVin: (vin: string, params?: {
         modelYear?: number | undefined;
     } | undefined) => Promise<import("./actions/DecodeVin").DecodeVinResponse | Error>;
-    DecodeVinValues: (vin: string, params?: {
-        modelYear?: number | undefined;
-    } | undefined) => Promise<Error | import("./actions/DecodeVinValues").DecodeVinValuesResponse>;
     DecodeVinExtended: (vin: string, params?: {
         modelYear?: string | number | undefined;
     } | undefined) => Promise<Error | import("./actions/DecodeVinExtended").DecodeVinExtendedResponse>;
+    DecodeVinValues: (vin: string, params?: {
+        modelYear?: number | undefined;
+    } | undefined) => Promise<Error | import("./actions/DecodeVinValues").DecodeVinValuesResponse>;
+    DecodeVINValuesBatch: (inputString: string) => Promise<Error | import("./actions/DecodeVINValuesBatch").DecodeVINValuesBatchResponse>;
     DecodeVinValuesExtended: (vin: string, params?: {
         modelYear?: string | number | undefined;
     } | undefined) => Promise<Error | import("./actions/DecodeVinValuesExtended").DecodeVinValuesExtendedResponse>;
