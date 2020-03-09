@@ -1,6 +1,7 @@
 export { DecodeVin } from './DecodeVin';
 export { DecodeVinExtended } from './DecodeVinExtended';
 export { DecodeVinValues } from './DecodeVinValues';
+export { DecodeVINValuesBatch } from './DecodeVINValuesBatch';
 export { DecodeVinValuesExtended } from './DecodeVinValuesExtended';
 export { DecodeWMI } from './DecodeWMI';
 export { GetAllMakes } from './GetAllMakes';

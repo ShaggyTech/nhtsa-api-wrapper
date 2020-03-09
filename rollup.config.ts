@@ -25,6 +25,7 @@ const treeShakeBundles = {
   DecodeVin: 'src/api/actions/DecodeVin.ts',
   DecodeVinExtended: 'src/api/actions/DecodeVinExtended.ts',
   DecodeVinValues: 'src/api/actions/DecodeVinValues.ts',
+  DecodeVINValuesBatch: 'src/api/actions/DecodeVINValuesBatch.ts',
   DecodeVinValuesExtended: 'src/api/actions/DecodeVinValuesExtended.ts',
   DecodeWMI: 'src/api/actions/DecodeWMI.ts',
   GetAllMakes: 'src/api/actions/GetAllMakes.ts',
