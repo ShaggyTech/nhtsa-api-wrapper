@@ -33,12 +33,12 @@ jobs:
         - bash <(curl -s https://codecov.io/bash)
       # Deploy built Production Documentation to gh-pages branch
       deploy:
-        - provider: pages
-          skip_cleanup: true
-          local_dir: docs/
-          github_token: $GH_TOKEN
-          on:
-            branch: master
-          after_success:
-            # Deploy latest docs build to master branch
-            - sh bin/travisDeployDocs.sh
+        provider: pages
+        skip_cleanup: true
+        local_dir: docs/
+        github_token: $GH_TOKEN
+        on:
+          branch: master
+        after_success:
+          # Deploy latest docs build to master branch
+          - sh bin/travisDeployDocs.sh
