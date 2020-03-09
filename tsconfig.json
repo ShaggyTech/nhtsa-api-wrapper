@@ -59,7 +59,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "pretty": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true  /* Allows json files to be imported with "import * from 'something.json'" */
+    "resolveJsonModule": true /* Allows json files to be imported with "import * from 'something.json'" */
   },
   "include": ["src/**/*"],
   "exclude": ["**/__tests__/*", "**/__mocks__/*", "docSrc"]
