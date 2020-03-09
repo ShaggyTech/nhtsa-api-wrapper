@@ -14,6 +14,7 @@ import {
   DecodeVin,
   DecodeVinExtended,
   DecodeVinValues,
+  DecodeVINValuesBatch,
   DecodeVinValuesExtended,
   DecodeWMI,
   GetAllMakes,
@@ -121,6 +122,7 @@ class NHTSA extends Fetch
     DecodeVin,
     DecodeVinExtended,
     DecodeVinValues,
+    DecodeVINValuesBatch,
     DecodeVinValuesExtended,
     DecodeWMI,
     GetAllMakes,
@@ -146,9 +148,11 @@ class NHTSA extends Fetch
   }
   DecodeVin = DecodeVin.prototype.DecodeVin;
 
+  DecodeVinExtended = DecodeVinExtended.prototype.DecodeVinExtended;
+
   DecodeVinValues = DecodeVinValues.prototype.DecodeVinValues;
 
-  DecodeVinExtended = DecodeVinExtended.prototype.DecodeVinExtended;
+  DecodeVINValuesBatch = DecodeVINValuesBatch.prototype.DecodeVINValuesBatch;
 
   DecodeVinValuesExtended =
     DecodeVinValuesExtended.prototype.DecodeVinValuesExtended;

@@ -11,6 +11,11 @@ export {
 } from './DecodeVinValues';
 
 export {
+  DecodeVINValuesBatchResults,
+  DecodeVINValuesBatchResponse
+} from './DecodeVINValuesBatch';
+
+export {
   DecodeVinValuesExtendedResults,
   DecodeVinValuesExtendedResponse
 } from './DecodeVinValuesExtended';
