@@ -26,6 +26,11 @@ jobs:
         - yarn build
         - yarn build-docs
         - npx semantic-release
+      after_success:
+        # Upload test coverage reports
+        - npm install -g codecov
+        - yarn cover --maxWorkers=$(nproc)
+        - bash <(curl -s https://codecov.io/bash)
       # Deploy built Production Documentation to gh-pages branch
       deploy:
         - provider: pages
@@ -34,10 +39,6 @@ jobs:
           github_token: $GH_TOKEN
           on:
             branch: master
-      after_success:
-        # Upload test coverage reports
-        - npm install -g codecov
-        - yarn cover --maxWorkers=$(nproc)
-        - bash <(curl -s https://codecov.io/bash)
-        # Deploy latest docs build to master branch
-        - sh bin/travisDeployDocs.sh
+          after_success:
+            # Deploy latest docs build to master branch
+            - sh bin/travisDeployDocs.sh
