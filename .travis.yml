@@ -26,12 +26,18 @@ jobs:
         - yarn build
         - yarn build-docs
         - npx semantic-release
-      # Deploy built Production Documentation to gh-pages branch
       deploy:
+        # Deploy built Production Documentation to gh-pages branch
         - provider: pages
           skip_cleanup: true
           local_dir: docs/
           github_token: $GH_TOKEN
+          on:
+            branch: master
+        # Deploy latest docs build to master branch
+        - provider: script
+          skip_cleanup: true
+          script: sh bin/travisDeployDocs.sh
           on:
             branch: master
       after_success:
@@ -39,5 +45,3 @@ jobs:
         - npm install -g codecov
         - yarn cover --maxWorkers=$(nproc)
         - bash <(curl -s https://codecov.io/bash)
-        # Deploy latest docs build to master branch
-        - sh bin/travisDeployDocs.sh
