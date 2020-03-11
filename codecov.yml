@@ -1,5 +1,5 @@
 codecov:
-  bot: Codecov Bot
+  bot: ShaggyTech
   ci:
     - "travis.com"
   require_ci_to_pass: yes
