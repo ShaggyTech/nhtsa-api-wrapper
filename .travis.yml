@@ -7,6 +7,10 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 install:
   - yarn
+# block list
+branches:
+  except:
+  - master
 jobs:
   include:
     # all branches
