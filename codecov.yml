@@ -1,8 +1,7 @@
 codecov:
-  token: secret:cwRQpVfLrryRJrcW4mVt6E+wnKZw06fNb3Kv+N+EzYiEG+ERwXJ6Dq3Hl0N1qhDPKjhPW+oOPHEwLGwT7kmWt4TqGVWXIaWkVKgjQxqq4LzgvYojJRWlqPfyztszqH55
   bot: ShaggyTech
   ci:
-    - "travis.org"
+    - "travis.com"
   require_ci_to_pass: yes
   notify:
     after_n_builds: 2
