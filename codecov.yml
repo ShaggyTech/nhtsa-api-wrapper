@@ -1,7 +1,7 @@
 codecov:
   bot: ShaggyTech
   ci:
-    - "travis.com"
+    - "travis-ci.com"
   require_ci_to_pass: yes
   notify:
     after_n_builds: 2
