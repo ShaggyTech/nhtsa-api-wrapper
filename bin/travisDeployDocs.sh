@@ -8,6 +8,8 @@ setup_git() {
 
 commit_docs_folder() {
   git checkout master
+  # make sure master is up to date
+  git pull
   # Stage the modified files in dist/output
   git add -f docs/*
   # Create a new commit with a custom build message
