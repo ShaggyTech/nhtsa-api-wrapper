@@ -49,6 +49,7 @@ If you find an issue or would like to make or suggest improvements, I would glad
   - [DecodeVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.DecodeVin.html#DecodeVin)
   - [DecodeVinExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
   - [DecodeVinValues](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValues.DecodeVinValues.html#DecodeVinValues)
+  - [DecodeVINValuesBatch](https://www.shaggytech.com/nhtsa-api-wrapper/module-DecodeVINValuesBatch.DecodeVINValuesBatch.html#DecodeVINValuesBatch)
   - [DecodeVinValuesExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html#DecodeVinValuesExtended)
   - [DecodeWMI](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeWMI.DecodeWMI.html#DecodeWMI)
   - [GetAllMakes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllMakes.GetAllMakes.html#GetAllMakes)
@@ -434,6 +435,8 @@ To see how these Actions are implemented you can visit the documentation for the
 #### [DecodeVinExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
 
 #### [DecodeVinValues](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValues.DecodeVinValues.html#DecodeVinValues)
+
+#### [DecodeVINValuesBatch](https://www.shaggytech.com/nhtsa-api-wrapper/module-DecodeVINValuesBatch.DecodeVINValuesBatch.html#DecodeVINValuesBatch)
 
 #### [DecodeVinValuesExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html#DecodeVinValuesExtended)
 
