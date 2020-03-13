@@ -1,7 +1,7 @@
 # @shaggytools / nhtsa-api-wrapper
 
 [![npm](https://img.shields.io/npm/v/@shaggytools/nhtsa-api-wrapper)](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
-[![Travis (.org)](https://travis-ci.org/ShaggyTech/nhtsa-api-wrapper.svg?branch=master)](https://travis-ci.org/ShaggyTech/nhtsa-api-wrapper)
+[![Travis (.com)](https://travis-ci.com/ShaggyTech/nhtsa-api-wrapper.svg?branch=master)](https://travis-ci.com/ShaggyTech/nhtsa-api-wrapper?branch=master)
 [![codecov](https://codecov.io/gh/ShaggyTech/nhtsa-api-wrapper/branch/master/graph/badge.svg)](https://codecov.io/gh/ShaggyTech/nhtsa-api-wrapper)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/60e45bcb1cf54285a67f423c3f6f32a1)](https://www.codacy.com/manual/ShaggyTech/nhtsa-api-wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ShaggyTech/nhtsa-api-wrapper&amp;utm_campaign=Badge_Grade)
 [![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@shaggytools/nhtsa-api-wrapper)](https://bundlephobia.com/result?p=@shaggytools/nhtsa-api-wrapper)
