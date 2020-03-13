@@ -2,8 +2,32 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var isValidVin = require('./isValidVin-547fbc43.js');
 var fetch = _interopDefault(require('cross-fetch'));
+require('./isValidVin.js');
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
 
 /**
  * @module utils/getTypeof
@@ -201,7 +225,7 @@ class Fetch {
      * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
      */
     buildQueryString(params, allowEmptyStringValues = false) {
-        return isValidVin.__awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
             /*
              * Make sure we're always using 'format=json' in the url Query parameters
              * If the user provides a 'format' key in the params, during class instantiation we want to override it to 'json'
@@ -229,7 +253,7 @@ class Fetch {
      * @returns {(Promise<module:api/Fetch.ApiResponse | Error>)} Response from the API.
      */
     get(url, options = {}) {
-        return isValidVin.__awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
             /* Runtime typechecking */
             const typeofUrl = getTypeof(url);
             if (typeofUrl !== 'string') {
@@ -271,5 +295,6 @@ class Fetch {
 }
 
 exports.Fetch = Fetch;
+exports.__awaiter = __awaiter;
 exports.getTypeof = getTypeof;
-//# sourceMappingURL=Fetch-55f9a4b7.js.map
+//# sourceMappingURL=Fetch-99dfa5de.js.map

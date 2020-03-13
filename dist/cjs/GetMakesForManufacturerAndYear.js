@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isValidVin = require('./isValidVin-547fbc43.js');
+var Fetch = require('./Fetch-99dfa5de.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-55f9a4b7.js');
+require('./isValidVin.js');
 
 /**
  * @module api/actions/GetMakesForManufacturerAndYear
@@ -49,7 +49,7 @@ class GetMakesForManufacturerAndYear extends Fetch.Fetch {
      * @returns {(Promise<GetMakesForManufacturerAndYearResponse | Error>)} Api Response object.
      */
     GetMakesForManufacturerAndYear(manufacturer, params) {
-        return isValidVin.__awaiter(this, void 0, void 0, function* () {
+        return Fetch.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetMakesForManufacturerAndYear';
             /* Runtime typechecking */
             const typeofManufacturer = Fetch.getTypeof(manufacturer);

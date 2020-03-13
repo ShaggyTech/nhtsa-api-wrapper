@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isValidVin = require('./isValidVin-547fbc43.js');
+var Fetch = require('./Fetch-99dfa5de.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-55f9a4b7.js');
+require('./isValidVin.js');
 
 /**
  * @module api/actions/DecodeVINValuesBatch
@@ -45,7 +45,7 @@ class DecodeVINValuesBatch extends Fetch.Fetch {
      * @returns {(Promise<DecodeVINValuesBatchResponse | Error>)} - Api Response object.
      */
     DecodeVINValuesBatch(inputString) {
-        return isValidVin.__awaiter(this, void 0, void 0, function* () {
+        return Fetch.__awaiter(this, void 0, void 0, function* () {
             const action = 'DecodeVINValuesBatch';
             /* Runtime typechecking */
             const typeofInputString = Fetch.getTypeof(inputString);

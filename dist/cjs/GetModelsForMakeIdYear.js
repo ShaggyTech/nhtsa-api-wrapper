@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isValidVin = require('./isValidVin-547fbc43.js');
+var Fetch = require('./Fetch-99dfa5de.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-55f9a4b7.js');
+require('./isValidVin.js');
 
 /**
  * @module api/actions/GetModelsForMakeIdYear
@@ -49,7 +49,7 @@ class GetModelsForMakeIdYear extends Fetch.Fetch {
      * @returns {(Promise<GetModelsForMakeIdYearResponse | Error>)} Api Response object.
      */
     GetModelsForMakeIdYear(params) {
-        return isValidVin.__awaiter(this, void 0, void 0, function* () {
+        return Fetch.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetModelsForMakeIdYear';
             const makeId = params === null || params === void 0 ? void 0 : params.makeId;
             const modelYear = params === null || params === void 0 ? void 0 : params.modelYear;

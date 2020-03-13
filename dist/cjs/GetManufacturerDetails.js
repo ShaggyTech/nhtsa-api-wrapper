@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isValidVin = require('./isValidVin-547fbc43.js');
+var Fetch = require('./Fetch-99dfa5de.js');
 require('cross-fetch');
-var Fetch = require('./Fetch-55f9a4b7.js');
+require('./isValidVin.js');
 
 /**
  * @module api/actions/GetManufacturerDetails
@@ -43,7 +43,7 @@ class GetManufacturerDetails extends Fetch.Fetch {
      * @returns {(Promise<GetManufacturerDetailsResponse | Error>)} Api Response object.
      */
     GetManufacturerDetails(manufacturer) {
-        return isValidVin.__awaiter(this, void 0, void 0, function* () {
+        return Fetch.__awaiter(this, void 0, void 0, function* () {
             const action = 'GetManufacturerDetails';
             /* Runtime typechecking */
             const typeofManufacturer = Fetch.getTypeof(manufacturer);
