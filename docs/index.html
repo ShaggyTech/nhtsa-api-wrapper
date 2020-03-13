@@ -99,7 +99,7 @@
     <section>
         <article><h1 id="%40shaggytools-%2F-nhtsa-api-wrapper">@shaggytools / nhtsa-api-wrapper</h1>
 <p><a href="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"><img src="https://img.shields.io/npm/v/@shaggytools/nhtsa-api-wrapper" alt="npm"></a>
-<a href="https://travis-ci.org/ShaggyTech/nhtsa-api-wrapper"><img src="https://travis-ci.org/ShaggyTech/nhtsa-api-wrapper.svg?branch=master" alt="Travis (.org)"></a>
+<a href="https://travis-ci.com/ShaggyTech/nhtsa-api-wrapper?branch=master"><img src="https://travis-ci.com/ShaggyTech/nhtsa-api-wrapper.svg?branch=master" alt="Travis (.com)"></a>
 <a href="https://codecov.io/gh/ShaggyTech/nhtsa-api-wrapper"><img src="https://codecov.io/gh/ShaggyTech/nhtsa-api-wrapper/branch/master/graph/badge.svg" alt="codecov"></a>
 <a href="https://www.codacy.com/manual/ShaggyTech/nhtsa-api-wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ShaggyTech/nhtsa-api-wrapper&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/60e45bcb1cf54285a67f423c3f6f32a1" alt="Codacy Badge"></a>
 <a href="https://bundlephobia.com/result?p=@shaggytools/nhtsa-api-wrapper"><img src="https://img.shields.io/bundlephobia/min/@shaggytools/nhtsa-api-wrapper" alt="npm bundle size (scoped)"></a>
@@ -160,6 +160,9 @@
 </li>
 <li>
 <p><a href="#nhtsa-api-actions">NHTSA API Actions</a></p>
+</li>
+<li>
+<p><a href="#offline-vin-validation">Offline VIN Validation</a></p>
 <details>
   <summary>Expand to see all available API Actions</summary>
 <ul>
@@ -497,6 +500,10 @@ or remove &lt;version> for the most recent published version -->
 <h4 id="getvehiclevariablelist"><a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html#GetVehicleVariableList">GetVehicleVariableList</a></h4>
 <h4 id="getvehiclevariablevalueslist"><a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html#GetVehicleVariableValuesList">GetVehicleVariableValuesList</a></h4>
 <h4 id="getwmisformanufacturer"><a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html#GetWMIsForManufacturer">GetWMIsForManufacturer</a></h4>
+<hr>
+<h4 id="offline-vin-validation">Offline VIN Validation</h4>
+<p><code>isValidVin</code> is a method exported by this package that takes a single string argument, a Vehicle Identification Number, and performs an <strong>offline</strong> VIN validation. It will return true if the VIN passes the algorithm, otherwise false.</p>
+<p>This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the <a href="https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html#.isValidVin">isValidVin</a> module for more information.</p>
 <hr>
 <hr></article>
     </section>

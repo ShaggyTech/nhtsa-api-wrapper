@@ -127,7 +127,7 @@
         
         <span class="code-name">
             
-                isValidVin<span class="signature">(vin)</span><span class="type-signature"> &rarr; {Promise.&lt;boolean>}</span>
+                isValidVin<span class="signature">(vin)</span><span class="type-signature"> &rarr; {boolean}</span>
             
         </span>
     </h4>
@@ -238,7 +238,7 @@
         <p class="tag-source">
             <a href="utils_isValidVin.ts.html" class="button">View Source</a>
             <span>
-                <a href="utils_isValidVin.ts.html">utils/isValidVin.ts</a>, <a href="utils_isValidVin.ts.html#line25">line 25</a>
+                <a href="utils_isValidVin.ts.html">utils/isValidVin.ts</a>, <a href="utils_isValidVin.ts.html#line81">line 81</a>
             </span>
         </p>
     
@@ -275,7 +275,7 @@
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Promise.&lt;boolean></span>
+<span class="param-type">boolean</span>
 
 
     </div>
@@ -295,7 +295,7 @@
     
     
         <pre class="prettyprint"><code>// &lt;script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper">&lt;/script>
-const isValid = await NHTSA.isValidVin('3VWD07AJ5EM388202').catch(error => error)
+const isValid = NHTSA.isValidVin('3VWD07AJ5EM388202')
 console.log(isValid) // true</code></pre>
     
 
@@ -303,7 +303,7 @@ console.log(isValid) // true</code></pre>
     
     
         <pre class="prettyprint"><code>import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
-const isValid = await isValidVin('3VWD07AJ5EM388202').catch(error => error)
+const isValid = isValidVin('3VWD07AJ5EM388202')
 console.log(isValid) // true</code></pre>
     
 
