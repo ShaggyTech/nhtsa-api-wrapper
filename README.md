@@ -42,6 +42,7 @@ If you find an issue or would like to make or suggest improvements, I would glad
     - [Lazy Loaded ESModule in Browser Environments](#lazy-loaded-esmodule-in-browser-environments)
 - [NHTSA API Responses](#nhtsa-api-responses)
 - [NHTSA API Actions](#nhtsa-api-actions)
+- [Offline VIN Validation](#offline-vin-validation)
 
   <details>
     <summary>Expand to see all available API Actions</summary>
@@ -477,6 +478,14 @@ To see how these Actions are implemented you can visit the documentation for the
 #### [GetVehicleVariableValuesList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html#GetVehicleVariableValuesList)
 
 #### [GetWMIsForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html#GetWMIsForManufacturer)
+
+---
+
+#### Offline VIN Validation
+
+`isValidVin` is a method exported by this package that takes a single string argument, a Vehicle Identification Number, and performs an **offline** VIN validation. It will return true if the VIN passes the algorithm, otherwise false.
+
+This can be useful if you want to ensure a valid VIN is entered by the user, which will prevent unnecessary HTTP/API requests. See the [isValidVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-utils_isValidVin.html#.isValidVin) module for more information.
 
 ---
 
