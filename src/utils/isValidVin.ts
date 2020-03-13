@@ -3,29 +3,87 @@
  * @category Utils
  */
 
+/*
+ * There will need to be some way to translate vin digits that are alphabetic
+ * into their number value in the VIN algorithm transliteration table.
+ * Later, during the creation of the checksum variable, those digits will be
+ * multiplied against their corresponding weight (by index) in the WEIGHTS_ARRAY.
+ * This transliteration table is a key part of the VIN validation algorithm.
+ */
+const TRANSLITERATION_TABLE: object = {
+  A: 1,
+  B: 2,
+  C: 3,
+  D: 4,
+  E: 5,
+  F: 6,
+  G: 7,
+  H: 8,
+  J: 1,
+  K: 2,
+  L: 3,
+  M: 4,
+  N: 5,
+  P: 7,
+  R: 9,
+  S: 2,
+  T: 3,
+  U: 4,
+  V: 5,
+  W: 6,
+  X: 7,
+  Y: 8,
+  Z: 9
+};
+
+/*
+ * Later, during the creation of the 'checksum' variable, these weights will be
+ * multiplied by the value of their mirrored index vin digits.
+ * The array index of each weight corresponds to the same index of each
+ * digit in the 'vin'.
+ */
+const WEIGHTS_ARRAY: number[] = [
+  8,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2,
+  10,
+  0,
+  9,
+  8,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2
+];
+
 /**
  * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
  * [VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
  *
  * @param {string} vin - Vehicle Identification Number.
- *
- * @returns {Promise<boolean>} True for a valid VIN, false for an invalid VIN.
+ * @returns {boolean} True for a valid VIN, false for an invalid VIN.
  *
  * @example <caption>When loaded from the browser via html script tags</caption>
  * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
- * const isValid = await NHTSA.isValidVin('3VWD07AJ5EM388202').catch(error => error)
+ * const isValid = NHTSA.isValidVin('3VWD07AJ5EM388202')
  * console.log(isValid) // true
  *
  * @example <caption>When loaded as a module</caption>
  * import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
- * const isValid = await isValidVin('3VWD07AJ5EM388202').catch(error => error)
+ * const isValid = isValidVin('3VWD07AJ5EM388202')
  * console.log(isValid) // true
  *
  */
-export async function isValidVin(vin: string): Promise<boolean> {
+export function isValidVin(vin: string): boolean {
   /* A valid VIN must be a string and is always exactly 17 digits */
   if (typeof vin !== 'string' || vin.length != 17) {
-    return Promise.resolve(false);
+    return false;
   }
 
   /* Normalize the vin to all uppercase letters */
@@ -42,7 +100,7 @@ export async function isValidVin(vin: string): Promise<boolean> {
    * a number, 0-9 inclusive OR the character 'X'
    */
   if (isNaN(parseInt(checkDigit)) && checkDigit !== 'X') {
-    return Promise.resolve(false);
+    return false;
   }
 
   /*
@@ -53,69 +111,10 @@ export async function isValidVin(vin: string): Promise<boolean> {
   const checkValue: number = checkDigit === 'X' ? 10 : parseInt(checkDigit);
 
   /*
-   * There will need to be some way to translate vin digits that are alphabetic
-   * into their number value in the VIN algorithm transliteration table.
-   * Later, during the creation of the checkusm variable, those digits will be
-   * multiplied against their corresponding weight (by index) in the weightsArray.
-   * This transliteration table is a key part of the VIN validation algorithm.
-   */
-  const transliterationTable: object = {
-    A: 1,
-    B: 2,
-    C: 3,
-    D: 4,
-    E: 5,
-    F: 6,
-    G: 7,
-    H: 8,
-    J: 1,
-    K: 2,
-    L: 3,
-    M: 4,
-    N: 5,
-    P: 7,
-    R: 9,
-    S: 2,
-    T: 3,
-    U: 4,
-    V: 5,
-    W: 6,
-    X: 7,
-    Y: 8,
-    Z: 9
-  };
-
-  /*
-   * Later, during the creation of the 'checksum' variable, these weights will be
-   * multilplied by the value of their mirrored index vin digits.
-   * The array index of each weight corresponds to the same index of each
-   * digit in the 'vin'.
-   */
-  const weightsArray: number[] = [
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    10,
-    0,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2
-  ];
-
-  /*
    * Maps the vinArray and converts any values (digits) that are alphabetic,
-   * into numbers, using the above transliteration table.
+   * into numbers, using the TRANSLITERATION_TABLE.
    * Then these numbers are multiplied against their corresponding weight
-   * in the weights array, matched by index position.
+   * in the WEIGHTS_ARRAY, matched by index position.
    * All 17 of those digitValues are then added together and divided by 11.
    * The remainder, or % modulo, of that division will be the final 'checksum'.
    */
@@ -125,16 +124,16 @@ export async function isValidVin(vin: string): Promise<boolean> {
         let digitValue: number;
         /* Use the transliteration table to convert any Not a Number(NaN) values to numbers */
         isNaN(parseInt(digit))
-          ? (digitValue = transliterationTable[digit])
+          ? (digitValue = TRANSLITERATION_TABLE[digit])
           : (digitValue = parseInt(digit));
 
         /* Convert the digitValue to a weighted number corresponding to it's position, by index, in the weightsArray. */
-        const weight: number = weightsArray[index];
+        const weight: number = WEIGHTS_ARRAY[index];
 
-        /* The final step for each digit is to multiply it by it's corresponding weight */
+        /* The final step for each digit is to multiply the digit by it's corresponding weight */
         return digitValue * weight;
       })
-      /* Then get the sum of all digits and divide by 11, the remainder of that operation is the checksum */
+      /* Finally, get the sum of all digits and divide by 11, the remainder of that operation is the checksum */
       .reduce((acc, currValue) => acc + currValue, 0) % 11;
 
   /*
@@ -142,5 +141,5 @@ export async function isValidVin(vin: string): Promise<boolean> {
    * As per the algorithm, if they are equal to each other, then the VIN must be valid and
    * we return true, otherwise the VIN is invalid and we return false.
    */
-  return Promise.resolve(checksum === checkValue);
+  return checksum === checkValue;
 }
