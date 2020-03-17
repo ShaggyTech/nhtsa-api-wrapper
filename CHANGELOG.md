@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.2...v1.1.3) (2020-03-17)
+
+
+### Bug Fixes
+
+* **package.json:** fix engines field in package.json ([#41](https://github.com/ShaggyTech/nhtsa-api-wrapper/issues/41)) ([92670b9](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/92670b90ae3b29057a23ca9c0e7156412d0fc36d))
+
 ## [1.1.2](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.1...v1.1.2) (2020-03-13)
 
 ## [1.1.1](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.0...v1.1.1) (2020-03-11)
