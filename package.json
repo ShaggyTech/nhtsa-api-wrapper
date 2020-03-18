@@ -146,7 +146,7 @@
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "rimraf": "3.0.2",
-    "rollup": "2.0.6",
+    "rollup": "2.1.0",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-cleanup": "3.1.1",
     "rollup-plugin-gzip": "2.3.0",
