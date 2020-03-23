@@ -3,7 +3,6 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var fetch = _interopDefault(require('cross-fetch'));
-require('./isValidVin.js');
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -297,4 +296,4 @@ class Fetch {
 exports.Fetch = Fetch;
 exports.__awaiter = __awaiter;
 exports.getTypeof = getTypeof;
-//# sourceMappingURL=Fetch-99dfa5de.js.map
+//# sourceMappingURL=Fetch-1cfe3e63.js.map

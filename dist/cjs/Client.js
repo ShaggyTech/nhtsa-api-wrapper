@@ -2,9 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('./Fetch-99dfa5de.js');
+require('./Fetch-1cfe3e63.js');
 require('cross-fetch');
-require('./isValidVin.js');
 require('./DecodeVin.js');
 require('./DecodeVinExtended.js');
 require('./DecodeVinValues.js');
