@@ -94,12 +94,12 @@ export class Fetch {
    * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
    * - Given params of `{paramName: ""}` , setting this to true will use 'paramName=' in the final query string.
    * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
-   * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
+   * @returns {(Promise<string>)} A formatted NHSTA.dot.gov Vehicles API query string.
    */
   async buildQueryString(
     params?: QueryStringParameters,
     allowEmptyStringValues = false
-  ): Promise<string | Error> {
+  ): Promise<string> {
     /*
      * Make sure we're always using 'format=json' in the url Query parameters
      * If the user provides a 'format' key in the params, during class instantiation we want to override it to 'json'
@@ -124,12 +124,12 @@ export class Fetch {
    *
    * @param {string} url - URL to fetch data from.
    * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
-   * @returns {(Promise<module:api/Fetch.ApiResponse | Error>)} Response from the API.
+   * @returns {(Promise<module:api/Fetch.ApiResponse>)} Response from the API.
    */
   async get(
     url: string,
     options: FetchRequestOptions = {}
-  ): Promise<ApiResponse | Error> {
+  ): Promise<ApiResponse> {
     /* Runtime typechecking */
     const typeofUrl = getTypeof(url);
     if (typeofUrl !== 'string') {

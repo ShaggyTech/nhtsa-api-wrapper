@@ -43,11 +43,11 @@ export class GetMakesForVehicleType extends Fetch {
    *
    * @async
    * @param {string} typeName - A partial or full vehicle type name.
-   * @returns {(Promise<GetMakesForVehicleTypeResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetMakesForVehicleTypeResponse>)} Api Response object.
    */
   async GetMakesForVehicleType(
     typeName: string
-  ): Promise<GetMakesForVehicleTypeResponse | Error> {
+  ): Promise<GetMakesForVehicleTypeResponse> {
     const action = 'GetMakesForVehicleType';
 
     /* Runtime typechecking */

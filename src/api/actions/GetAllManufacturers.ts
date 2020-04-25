@@ -49,14 +49,14 @@ export class GetAllManufacturers extends Fetch {
    * @param {object} [params={}] - Query Search Parameters to append to the URL.
    * @param {string} [params.manufacturerType] - See method description.
    * @param {number} [params.page] - Specify the page number (results returned 100 at a time).
-   * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+   * @returns {(Promise<module:api.ApiResponse>)} Api Response object.
    */
   async GetAllManufacturers(
     params: {
       manufacturerType?: string;
       page?: number;
     } = {}
-  ): Promise<GetAllManufacturersResponse | Error> {
+  ): Promise<GetAllManufacturersResponse> {
     const action = 'GetAllManufacturers';
 
     /* Runtime typechecking */

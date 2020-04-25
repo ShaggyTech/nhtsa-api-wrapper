@@ -41,11 +41,11 @@ export class GetVehicleTypesForMakeId extends Fetch {
    *
    * @async
    * @param {number} makeID - Vehicle make ID.
-   * @returns {(Promise<GetVehicleTypesForMakeIdResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetVehicleTypesForMakeIdResponse>)} Api Response object.
    */
   async GetVehicleTypesForMakeId(
     makeID: number
-  ): Promise<GetVehicleTypesForMakeIdResponse | Error> {
+  ): Promise<GetVehicleTypesForMakeIdResponse> {
     const action = 'GetVehicleTypesForMakeId';
 
     /* Runtime typechecking */

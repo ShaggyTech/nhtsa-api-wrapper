@@ -37,10 +37,10 @@ export class GetVehicleVariableList extends Fetch {
    * - Information on the name, description and the type of the variable is provided.
    *
    * @async
-   * @returns {(Promise<GetVehicleVariableListResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetVehicleVariableListResponse>)} Api Response object.
    */
   public async GetVehicleVariableList(): Promise<
-    GetVehicleVariableListResponse | Error
+    GetVehicleVariableListResponse
   > {
     const action = 'GetVehicleVariableList';
 
