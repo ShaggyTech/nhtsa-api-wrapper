@@ -17,7 +17,7 @@
     "dist/module/*",
     "dist/browser/*",
     "dist/cjs/*",
-    "dist/types/*"
+    "dist/types/index.d.ts"
   ],
   "publishConfig": {
     "access": "public"
