@@ -137,7 +137,7 @@
     "eslint-plugin-prettier": "3.1.2",
     "form-data": "3.0.0",
     "husky": "4.2.3",
-    "jest": "25.2.6",
+    "jest": "25.4.0",
     "jsdoc": "3.6.3",
     "jsdoc-babel": "0.5.0",
     "jsdoc-plugin-typescript": "2.0.5",
