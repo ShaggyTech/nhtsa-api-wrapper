@@ -31,9 +31,9 @@ export declare class GetManufacturerDetails extends Fetch {
      *
      * @async
      * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
-     * @returns {(Promise<GetManufacturerDetailsResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetManufacturerDetailsResponse>)} Api Response object.
      */
-    GetManufacturerDetails(manufacturer: string | number): Promise<GetManufacturerDetailsResponse | Error>;
+    GetManufacturerDetails(manufacturer: string | number): Promise<GetManufacturerDetailsResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetManufacturerDetailsResponse}.Results' array.

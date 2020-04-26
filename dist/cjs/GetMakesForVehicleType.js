@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -38,7 +38,7 @@ class GetMakesForVehicleType extends Fetch.Fetch {
      *
      * @async
      * @param {string} typeName - A partial or full vehicle type name.
-     * @returns {(Promise<GetMakesForVehicleTypeResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetMakesForVehicleTypeResponse>)} Api Response object.
      */
     GetMakesForVehicleType(typeName) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

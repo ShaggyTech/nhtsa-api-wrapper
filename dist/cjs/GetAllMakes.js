@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -34,7 +34,7 @@ class GetAllMakes extends Fetch.Fetch {
      * This provides a list of all the Makes available in the vPIC Dataset.
      *
      * @async
-     * @returns {(Promise<GetAllMakesResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetAllMakesResponse>)} Api Response object.
      */
     GetAllMakes() {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

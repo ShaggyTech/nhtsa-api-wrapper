@@ -12,7 +12,7 @@
  * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
  * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
  *
- * @returns {Promise<string>|Error} A query string of search parameters for use in a final Fetch.get URL.
+ * @returns {Promise<string>} A query string of search parameters for use in a final Fetch.get URL.
  *
  * @example <caption>When loaded from the browser via html script tags</caption>
  * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
@@ -54,7 +54,7 @@
  * console.log(qs) // "?year=2016&vehicleType=&make=Audi"
  *
  */
-export declare function makeQueryString(params?: QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string | Error>;
+export declare function makeQueryString(params?: QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string>;
 /**
  * Object containing Key:Value pairs to build the URL query string with.
  * - Parameter values may be either strings or numbers.

@@ -30,9 +30,9 @@ export declare class GetWMIsForManufacturer extends Fetch {
      *
      * @async
      * @param {string|number} manufacturer - Manufacturer Name.
-     * @returns {(Promise<GetWMIsForManufacturerResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetWMIsForManufacturerResponse>)} Api Response object.
      */
-    GetWMIsForManufacturer(manufacturer: string): Promise<GetWMIsForManufacturerResponse | Error>;
+    GetWMIsForManufacturer(manufacturer: string): Promise<GetWMIsForManufacturerResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetWMIsForManufacturerResponse}.Results' array.

@@ -92,63 +92,63 @@ declare class NHTSA extends Fetch implements DecodeVin, DecodeVinExtended, Decod
     constructor(userConfig?: FetchConfig);
     DecodeVin: (vin: string, params?: {
         modelYear?: number | undefined;
-    } | undefined) => Promise<import("./actions/DecodeVin").DecodeVinResponse | Error>;
+    } | undefined) => Promise<import("./actions/DecodeVin").DecodeVinResponse>;
     DecodeVinExtended: (vin: string, params?: {
         modelYear?: string | number | undefined;
-    } | undefined) => Promise<Error | import("./actions/DecodeVinExtended").DecodeVinExtendedResponse>;
+    } | undefined) => Promise<import("./actions/DecodeVinExtended").DecodeVinExtendedResponse>;
     DecodeVinValues: (vin: string, params?: {
         modelYear?: number | undefined;
-    } | undefined) => Promise<Error | import("./actions/DecodeVinValues").DecodeVinValuesResponse>;
-    DecodeVINValuesBatch: (inputString: string) => Promise<Error | import("./actions/DecodeVINValuesBatch").DecodeVINValuesBatchResponse>;
+    } | undefined) => Promise<import("./actions/DecodeVinValues").DecodeVinValuesResponse>;
+    DecodeVINValuesBatch: (inputString: string) => Promise<import("./actions/DecodeVINValuesBatch").DecodeVINValuesBatchResponse>;
     DecodeVinValuesExtended: (vin: string, params?: {
         modelYear?: string | number | undefined;
-    } | undefined) => Promise<Error | import("./actions/DecodeVinValuesExtended").DecodeVinValuesExtendedResponse>;
-    DecodeWMI: (WMI: string) => Promise<Error | import("./actions/DecodeWMI").DecodeWMIResponse>;
-    GetAllMakes: () => Promise<Error | import("./actions/GetAllMakes").GetAllMakesResponse>;
+    } | undefined) => Promise<import("./actions/DecodeVinValuesExtended").DecodeVinValuesExtendedResponse>;
+    DecodeWMI: (WMI: string) => Promise<import("./actions/DecodeWMI").DecodeWMIResponse>;
+    GetAllMakes: () => Promise<import("./actions/GetAllMakes").GetAllMakesResponse>;
     GetAllManufacturers: (params?: {
         manufacturerType?: string | undefined;
         page?: number | undefined;
-    }) => Promise<Error | import("./actions/GetAllManufacturers").GetAllManufacturersResponse>;
+    }) => Promise<import("./actions/GetAllManufacturers").GetAllManufacturersResponse>;
     GetCanadianVehicleSpecifications: (params: {
         year: number;
         make?: string | undefined;
         model?: string | undefined;
         units?: string | undefined;
-    }) => Promise<Error | import("./actions/GetCanadianVehicleSpecifications").GetCanadianVehicleSpecificationsResponse>;
+    }) => Promise<import("./actions/GetCanadianVehicleSpecifications").GetCanadianVehicleSpecificationsResponse>;
     GetEquipmentPlantCodes: (params: {
         year: number;
         equipmentType: 1 | 3 | 13 | 16;
         reportType: "New" | "Updated" | "Closed" | "All";
-    }) => Promise<Error | import("./actions/GetEquipmentPlantCodes").GetEquipmentPlantCodesResponse>;
-    GetMakeForManufacturer: (manufacturer: string | number) => Promise<Error | import("./actions/GetMakeForManufacturer").GetMakeForManufacturerResponse>;
+    }) => Promise<import("./actions/GetEquipmentPlantCodes").GetEquipmentPlantCodesResponse>;
+    GetMakeForManufacturer: (manufacturer: string | number) => Promise<import("./actions/GetMakeForManufacturer").GetMakeForManufacturerResponse>;
     GetMakesForManufacturerAndYear: (manufacturer: string | number, params: {
         year: number;
-    }) => Promise<Error | import("./actions/GetMakesForManufacturerAndYear").GetMakesForManufacturerAndYearResponse>;
-    GetMakesForVehicleType: (typeName: string) => Promise<Error | import("./actions/GetMakesForVehicleType").GetMakesForVehicleTypeResponse>;
-    GetManufacturerDetails: (manufacturer: string | number) => Promise<Error | import("./actions/GetManufacturerDetails").GetManufacturerDetailsResponse>;
-    GetModelsForMake: (makeName: string) => Promise<Error | import("./actions/GetModelsForMake").GetModelsForMakeResponse>;
-    GetModelsForMakeId: (makeID: number) => Promise<Error | import("./actions/GetModelsForMakeId").GetModelsForMakeIdResponse>;
+    }) => Promise<import("./actions/GetMakesForManufacturerAndYear").GetMakesForManufacturerAndYearResponse>;
+    GetMakesForVehicleType: (typeName: string) => Promise<import("./actions/GetMakesForVehicleType").GetMakesForVehicleTypeResponse>;
+    GetManufacturerDetails: (manufacturer: string | number) => Promise<import("./actions/GetManufacturerDetails").GetManufacturerDetailsResponse>;
+    GetModelsForMake: (makeName: string) => Promise<import("./actions/GetModelsForMake").GetModelsForMakeResponse>;
+    GetModelsForMakeId: (makeID: number) => Promise<import("./actions/GetModelsForMakeId").GetModelsForMakeIdResponse>;
     GetModelsForMakeIdYear: (params: {
         makeId: number;
         modelYear?: number | undefined;
         vehicleType?: string | undefined;
-    }) => Promise<Error | import("./actions/GetModelsForMakeIdYear").GetModelsForMakeIdYearResponse>;
+    }) => Promise<import("./actions/GetModelsForMakeIdYear").GetModelsForMakeIdYearResponse>;
     GetModelsForMakeYear: (params: {
         make: string;
         modelYear?: number | undefined;
         vehicleType?: string | undefined;
-    }) => Promise<Error | import("./actions/GetModelsForMakeYear").GetModelsForMakeYearResponse>;
+    }) => Promise<import("./actions/GetModelsForMakeYear").GetModelsForMakeYearResponse>;
     GetParts: (params?: {
         type?: number | undefined;
         fromDate?: string | undefined;
         toDate?: string | undefined;
         page?: number | undefined;
-    } | undefined) => Promise<Error | import("./actions/GetParts").GetPartsResponse>;
-    GetVehicleTypesForMake: (makeName: string) => Promise<Error | import("./actions/GetVehicleTypesForMake").GetVehicleTypesForMakeResponse>;
-    GetVehicleTypesForMakeId: (makeID: number) => Promise<Error | import("./actions/GetVehicleTypesForMakeId").GetVehicleTypesForMakeIdResponse>;
-    GetVehicleVariableList: () => Promise<Error | import("./actions/GetVehicleVariableList").GetVehicleVariableListResponse>;
-    GetVehicleVariableValuesList: (variableValue: string | number) => Promise<Error | import("./actions/GetVehicleVariableValuesList").GetVehicleVariableValuesListResponse>;
-    GetWMIsForManufacturer: (manufacturer: string) => Promise<Error | import("./actions/GetWMIsForManufacturer").GetWMIsForManufacturerResponse>;
+    } | undefined) => Promise<import("./actions/GetParts").GetPartsResponse>;
+    GetVehicleTypesForMake: (makeName: string) => Promise<import("./actions/GetVehicleTypesForMake").GetVehicleTypesForMakeResponse>;
+    GetVehicleTypesForMakeId: (makeID: number) => Promise<import("./actions/GetVehicleTypesForMakeId").GetVehicleTypesForMakeIdResponse>;
+    GetVehicleVariableList: () => Promise<import("./actions/GetVehicleVariableList").GetVehicleVariableListResponse>;
+    GetVehicleVariableValuesList: (variableValue: string | number) => Promise<import("./actions/GetVehicleVariableValuesList").GetVehicleVariableValuesListResponse>;
+    GetWMIsForManufacturer: (manufacturer: string) => Promise<import("./actions/GetWMIsForManufacturer").GetWMIsForManufacturerResponse>;
 }
 export { NHTSA };
 //# sourceMappingURL=NHTSA.d.ts.map

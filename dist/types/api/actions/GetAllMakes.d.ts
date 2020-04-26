@@ -26,9 +26,9 @@ export declare class GetAllMakes extends Fetch {
      * This provides a list of all the Makes available in the vPIC Dataset.
      *
      * @async
-     * @returns {(Promise<GetAllMakesResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetAllMakesResponse>)} Api Response object.
      */
-    GetAllMakes(): Promise<GetAllMakesResponse | Error>;
+    GetAllMakes(): Promise<GetAllMakesResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetAllMakesResponse}.Results' array.

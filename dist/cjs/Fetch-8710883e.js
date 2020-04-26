@@ -60,7 +60,7 @@ function getTypeof(value) {
  * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
  * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
  *
- * @returns {Promise<string>|Error} A query string of search parameters for use in a final Fetch.get URL.
+ * @returns {Promise<string>} A query string of search parameters for use in a final Fetch.get URL.
  *
  * @example <caption>When loaded from the browser via html script tags</caption>
  * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
@@ -221,7 +221,7 @@ class Fetch {
      * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
      * - Given params of `{paramName: ""}` , setting this to true will use 'paramName=' in the final query string.
      * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
-     * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
+     * @returns {(Promise<string>)} A formatted NHSTA.dot.gov Vehicles API query string.
      */
     buildQueryString(params, allowEmptyStringValues = false) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -249,7 +249,7 @@ class Fetch {
      *
      * @param {string} url - URL to fetch data from.
      * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
-     * @returns {(Promise<module:api/Fetch.ApiResponse | Error>)} Response from the API.
+     * @returns {(Promise<module:api/Fetch.ApiResponse>)} Response from the API.
      */
     get(url, options = {}) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -296,4 +296,4 @@ class Fetch {
 exports.Fetch = Fetch;
 exports.__awaiter = __awaiter;
 exports.getTypeof = getTypeof;
-//# sourceMappingURL=Fetch-1cfe3e63.js.map
+//# sourceMappingURL=Fetch-8710883e.js.map

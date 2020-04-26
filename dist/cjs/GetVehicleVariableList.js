@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -35,7 +35,7 @@ class GetVehicleVariableList extends Fetch.Fetch {
      * - Information on the name, description and the type of the variable is provided.
      *
      * @async
-     * @returns {(Promise<GetVehicleVariableListResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetVehicleVariableListResponse>)} Api Response object.
      */
     GetVehicleVariableList() {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

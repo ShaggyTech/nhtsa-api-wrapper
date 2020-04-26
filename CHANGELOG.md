@@ -1,3 +1,17 @@
+## [1.1.4](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.3...v1.1.4) (2020-04-26)
+
+
+### Bug Fixes
+
+* **package.json:** fix engines field in package.json ([3b9522b](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/3b9522bc7019975bcba5914e4d83543a9279449e))
+* **typescript:** export API Action types via ActionTypes in index.d.ts ([6b7a781](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/6b7a781ecef612bff1d89f47357c52477d186f78))
+* **typescript:** remove Error type from all Promise like method returns ([9d44334](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/9d443348113cad66d281a9d12cfa317c85762728))
+
+
+### Reverts
+
+* **travis:** revert previous changes to docs deployment script ([015f8b6](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/015f8b6ad3d401e3716e18605a2047e5587a045c))
+
 ## [1.1.3](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.2...v1.1.3) (2020-03-17)
 
 

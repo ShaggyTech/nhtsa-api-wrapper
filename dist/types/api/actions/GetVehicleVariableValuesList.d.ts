@@ -32,9 +32,9 @@ export declare class GetVehicleVariableValuesList extends Fetch {
      *
      * @async
      * @param {string|number} variableValue - The variable you want to get a values list of.
-     * @returns {(Promise<GetVehicleVariableValuesListResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetVehicleVariableValuesListResponse>)} Api Response object.
      */
-    GetVehicleVariableValuesList(variableValue: string | number): Promise<GetVehicleVariableValuesListResponse | Error>;
+    GetVehicleVariableValuesList(variableValue: string | number): Promise<GetVehicleVariableValuesListResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetVehicleVariableValuesListResponse}.Results' array.

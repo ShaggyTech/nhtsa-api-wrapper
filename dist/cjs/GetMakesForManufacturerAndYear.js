@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -45,7 +45,7 @@ class GetMakesForManufacturerAndYear extends Fetch.Fetch {
      * @param {object} params - Query Search Parameters to append to the URL.
      * @param {number} params.year - Model year of the vehicle - Number, >= 2016.
      *
-     * @returns {(Promise<GetMakesForManufacturerAndYearResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetMakesForManufacturerAndYearResponse>)} Api Response object.
      */
     GetMakesForManufacturerAndYear(manufacturer, params) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

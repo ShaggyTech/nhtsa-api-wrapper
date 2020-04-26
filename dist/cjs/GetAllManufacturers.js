@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -44,7 +44,7 @@ class GetAllManufacturers extends Fetch.Fetch {
      * @param {object} [params={}] - Query Search Parameters to append to the URL.
      * @param {string} [params.manufacturerType] - See method description.
      * @param {number} [params.page] - Specify the page number (results returned 100 at a time).
-     * @returns {(Promise<module:api.ApiResponse | Error>)} Api Response object.
+     * @returns {(Promise<module:api.ApiResponse>)} Api Response object.
      */
     GetAllManufacturers(params = {}) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

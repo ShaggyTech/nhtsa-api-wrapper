@@ -57,9 +57,9 @@ export declare class Fetch {
      * @param {boolean} [allowEmptyStringValues=false] - Set to `true` to add empty parameter values to the returned query string.
      * - Given params of `{paramName: ""}` , setting this to true will use 'paramName=' in the final query string.
      * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
-     * @returns {(Promise<string | Error>)} A formatted NHSTA.dot.gov Vehicles API query string.
+     * @returns {(Promise<string>)} A formatted NHSTA.dot.gov Vehicles API query string.
      */
-    buildQueryString(params?: QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string | Error>;
+    buildQueryString(params?: QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string>;
     /**
      * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
      * - In browser environments, [whatwg-fetch](https://github.com/github/fetch/) window.fetch is used.
@@ -67,9 +67,9 @@ export declare class Fetch {
      *
      * @param {string} url - URL to fetch data from.
      * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
-     * @returns {(Promise<module:api/Fetch.ApiResponse | Error>)} Response from the API.
+     * @returns {(Promise<module:api/Fetch.ApiResponse>)} Response from the API.
      */
-    get(url: string, options?: FetchRequestOptions): Promise<ApiResponse | Error>;
+    get(url: string, options?: FetchRequestOptions): Promise<ApiResponse>;
 }
 /*****************
  * Types

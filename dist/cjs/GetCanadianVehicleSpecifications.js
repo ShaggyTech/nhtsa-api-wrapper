@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -48,7 +48,7 @@ class GetCanadianVehicleSpecifications extends Fetch.Fetch {
      * @param {string} [params.make] - Vehicle's make, like "Honda", "Toyota", etc...
      * @param {string} [params.model] - Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc...
      * @param {string} [params.units] - "Metric" (default), or "US" for United States customary units.
-     * @returns {(Promise<GetCanadianVehicleSpecificationsResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetCanadianVehicleSpecificationsResponse>)} Api Response object.
      */
     GetCanadianVehicleSpecifications(params) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

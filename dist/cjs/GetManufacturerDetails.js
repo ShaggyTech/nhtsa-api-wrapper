@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -39,7 +39,7 @@ class GetManufacturerDetails extends Fetch.Fetch {
      *
      * @async
      * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
-     * @returns {(Promise<GetManufacturerDetailsResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetManufacturerDetailsResponse>)} Api Response object.
      */
     GetManufacturerDetails(manufacturer) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

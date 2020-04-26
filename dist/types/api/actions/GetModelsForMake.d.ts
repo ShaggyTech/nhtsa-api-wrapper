@@ -30,9 +30,9 @@ export declare class GetModelsForMake extends Fetch {
      *
      * @async
      * @param {string} makeName - Vehicle make name.
-     * @returns {(Promise<GetModelsForMakeResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetModelsForMakeResponse>)} Api Response object.
      */
-    GetModelsForMake(makeName: string): Promise<GetModelsForMakeResponse | Error>;
+    GetModelsForMake(makeName: string): Promise<GetModelsForMakeResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetModelsForMakeResponse}.Results' array.

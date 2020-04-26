@@ -29,9 +29,9 @@ export declare class DecodeWMI extends Fetch {
      *
      * @async
      * @param {string} WMI - World Manufacturer Identifier.
-     * @returns {(Promise<DecodeWMIResults | Error>)} Api Response object.
+     * @returns {(Promise<DecodeWMIResults>)} Api Response object.
      */
-    DecodeWMI(WMI: string): Promise<DecodeWMIResponse | Error>;
+    DecodeWMI(WMI: string): Promise<DecodeWMIResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link DecodeWMIResponse}.Results' array.

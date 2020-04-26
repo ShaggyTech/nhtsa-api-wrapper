@@ -36,11 +36,11 @@ export declare class DecodeVin extends Fetch {
      * @param {string} vin - Vehicle Identification Number (full or partial).
      * @param {object} [params={}] - Query Search Parameters to append to the URL.
      * @param {number} [params.modelYear] - Optional Model Year search parameter.
-     * @returns {(Promise<DecodeVinResponse | Error>)} - Api Response object.
+     * @returns {(Promise<DecodeVinResponse>)} - Api Response object.
      */
     DecodeVin(vin: string, params?: {
         modelYear?: number;
-    }): Promise<DecodeVinResponse | Error>;
+    }): Promise<DecodeVinResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link DecodeVinResponse}.Results' array.

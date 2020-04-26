@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -41,7 +41,7 @@ class DecodeVINValuesBatch extends Fetch.Fetch {
      *
      * @async
      * @param {string} inputString - A string of Vehicle Identification Numbers (full or partial) following the format listed in the description.
-     * @returns {(Promise<DecodeVINValuesBatchResponse | Error>)} - Api Response object.
+     * @returns {(Promise<DecodeVINValuesBatchResponse>)} - Api Response object.
      */
     DecodeVINValuesBatch(inputString) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

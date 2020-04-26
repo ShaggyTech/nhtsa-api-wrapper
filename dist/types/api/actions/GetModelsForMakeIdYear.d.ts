@@ -37,13 +37,13 @@ export declare class GetModelsForMakeIdYear extends Fetch {
      * @param {number} params.makeId - Make ID to search.
      * @param {number} [params.modelYear] - A number representing the model year to search (greater than 1995).
      * @param {string} [params.vehicleType] - String representing the vehicle type to search.
-     * @returns {(Promise<GetModelsForMakeIdYearResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetModelsForMakeIdYearResponse>)} Api Response object.
      */
     GetModelsForMakeIdYear(params: {
         makeId: number;
         modelYear?: number;
         vehicleType?: string;
-    }): Promise<GetModelsForMakeIdYearResponse | Error>;
+    }): Promise<GetModelsForMakeIdYearResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetModelsForMakeIdYearResponse}.Results' array.

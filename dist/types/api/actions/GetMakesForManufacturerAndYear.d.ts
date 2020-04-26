@@ -37,11 +37,11 @@ export declare class GetMakesForManufacturerAndYear extends Fetch {
      * @param {object} params - Query Search Parameters to append to the URL.
      * @param {number} params.year - Model year of the vehicle - Number, >= 2016.
      *
-     * @returns {(Promise<GetMakesForManufacturerAndYearResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetMakesForManufacturerAndYearResponse>)} Api Response object.
      */
     GetMakesForManufacturerAndYear(manufacturer: string | number, params: {
         year: number;
-    }): Promise<GetMakesForManufacturerAndYearResponse | Error>;
+    }): Promise<GetMakesForManufacturerAndYearResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetMakesForManufacturerAndYearResponse}.Results' array.

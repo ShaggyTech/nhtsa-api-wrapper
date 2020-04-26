@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -43,7 +43,7 @@ class GetParts extends Fetch.Fetch {
      * @param {string} [params.fromDate] - Start date of search query.
      * @param {string} [params.toDate] - End date of search query.
      * @param {number} [params.page] - Which page number of results to request (100 results per page).
-     * @returns {(Promise<GetPartsResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetPartsResponse>)} Api Response object.
      */
     GetParts(params) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-1cfe3e63.js');
+var Fetch = require('./Fetch-8710883e.js');
 require('cross-fetch');
 
 /**
@@ -44,7 +44,7 @@ class DecodeVin extends Fetch.Fetch {
      * @param {string} vin - Vehicle Identification Number (full or partial).
      * @param {object} [params={}] - Query Search Parameters to append to the URL.
      * @param {number} [params.modelYear] - Optional Model Year search parameter.
-     * @returns {(Promise<DecodeVinResponse | Error>)} - Api Response object.
+     * @returns {(Promise<DecodeVinResponse>)} - Api Response object.
      */
     DecodeVin(vin, params) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {

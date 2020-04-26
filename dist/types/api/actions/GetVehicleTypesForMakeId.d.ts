@@ -28,9 +28,9 @@ export declare class GetVehicleTypesForMakeId extends Fetch {
      *
      * @async
      * @param {number} makeID - Vehicle make ID.
-     * @returns {(Promise<GetVehicleTypesForMakeIdResponse | Error>)} Api Response object.
+     * @returns {(Promise<GetVehicleTypesForMakeIdResponse>)} Api Response object.
      */
-    GetVehicleTypesForMakeId(makeID: number): Promise<GetVehicleTypesForMakeIdResponse | Error>;
+    GetVehicleTypesForMakeId(makeID: number): Promise<GetVehicleTypesForMakeIdResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetVehicleTypesForMakeIdResponse}.Results' array.
