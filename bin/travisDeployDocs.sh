@@ -10,7 +10,7 @@ commit_docs_folder() {
   git checkout master
   # make sure master is up to date
   git pull
-  # Stage the modified files in dist/output
+  # Stage the modified files in docs folder
   git add -f docs/*
   # Create a new commit with a custom build message
   # with "[skip ci]" to avoid a build loop
@@ -25,14 +25,18 @@ upload_files() {
   git push origin master
 }
 
-setup_git
+# if changes to docs folder
+if [! git diff --quiet HEAD master -- docs]; then
+  setup_git
+  commit_docs_folder
 
-commit_docs_folder
-
-# Attempt to commit to git only if "git commit" succeeded
-if [ $? -eq 0 ]; then
-  echo "Success. Syncing docs folder master repo, files uploaded."
-  upload_files
+  # Attempt to commit to git only if "git commit" succeeded
+  if [ $? -eq 0 ]; then
+    echo "Success. Syncing docs folder master repo, files uploaded."
+    upload_files
+  else
+    echo "No changes found in the docs folder. Nothing to do"
+  fi
 else
   echo "No changes found in the docs folder. Nothing to do"
 fi
