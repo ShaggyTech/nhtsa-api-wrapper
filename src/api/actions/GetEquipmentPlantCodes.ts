@@ -58,13 +58,13 @@ export class GetEquipmentPlantCodes extends Fetch {
    * @param {number} params.year - Model year of the vehicle - Number, >= 2016.
    * @param {number} params.equipmentType - Number equal to 1, 3, 13, or 16.
    * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'.
-   * @returns {(Promise<GetEquipmentPlantCodesResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetEquipmentPlantCodesResponse>)} Api Response object.
    */
   public async GetEquipmentPlantCodes(params: {
     year: number;
     equipmentType: 1 | 3 | 13 | 16;
     reportType: 'New' | 'Updated' | 'Closed' | 'All';
-  }): Promise<GetEquipmentPlantCodesResponse | Error> {
+  }): Promise<GetEquipmentPlantCodesResponse> {
     const action = 'GetEquipmentPlantCodes';
 
     /* Runtime typechecking */

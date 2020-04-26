@@ -44,11 +44,11 @@ export class GetManufacturerDetails extends Fetch {
    *
    * @async
    * @param {string|number} manufacturer - Manufacturer Name (string) or Manufacturer ID (number).
-   * @returns {(Promise<GetManufacturerDetailsResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetManufacturerDetailsResponse>)} Api Response object.
    */
   public async GetManufacturerDetails(
     manufacturer: string | number
-  ): Promise<GetManufacturerDetailsResponse | Error> {
+  ): Promise<GetManufacturerDetailsResponse> {
     const action = 'GetManufacturerDetails';
 
     /* Runtime typechecking */

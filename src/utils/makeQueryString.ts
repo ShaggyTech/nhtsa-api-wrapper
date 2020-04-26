@@ -15,7 +15,7 @@ import { getTypeof } from './getTypeof';
  * - Given params of `{ paramName: "" }` , setting this to true will use 'paramName=' in the final query string.
  * - GetCanadianVehicleSpecifications is the only API Action that requires this functionality.
  *
- * @returns {Promise<string>|Error} A query string of search parameters for use in a final Fetch.get URL.
+ * @returns {Promise<string>} A query string of search parameters for use in a final Fetch.get URL.
  *
  * @example <caption>When loaded from the browser via html script tags</caption>
  * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
@@ -60,7 +60,7 @@ import { getTypeof } from './getTypeof';
 export function makeQueryString(
   params: QueryStringParameters = {},
   allowEmptyStringValues = false
-): Promise<string | Error> {
+): Promise<string> {
   /* Beginning of error message string */
   const errorBase =
     'queryString(params) - expected params in the form of an object, got:';

@@ -43,11 +43,11 @@ export class GetVehicleTypesForMake extends Fetch {
    *
    * @async
    * @param {string} makeName - Name of the vehicle make to search.
-   * @returns {(Promise<GetVehicleTypesForMakeResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetVehicleTypesForMakeResponse>)} Api Response object.
    */
   async GetVehicleTypesForMake(
     makeName: string
-  ): Promise<GetVehicleTypesForMakeResponse | Error> {
+  ): Promise<GetVehicleTypesForMakeResponse> {
     const action = 'GetVehicleTypesForMake';
 
     /* Runtime typechecking */

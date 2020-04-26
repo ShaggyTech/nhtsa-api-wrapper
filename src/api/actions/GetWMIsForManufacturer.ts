@@ -43,11 +43,11 @@ export class GetWMIsForManufacturer extends Fetch {
    *
    * @async
    * @param {string|number} manufacturer - Manufacturer Name.
-   * @returns {(Promise<GetWMIsForManufacturerResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetWMIsForManufacturerResponse>)} Api Response object.
    */
   async GetWMIsForManufacturer(
     manufacturer: string
-  ): Promise<GetWMIsForManufacturerResponse | Error> {
+  ): Promise<GetWMIsForManufacturerResponse> {
     const action = 'GetWMIsForManufacturer';
 
     /* Runtime typechecking */

@@ -36,9 +36,9 @@ export class GetAllMakes extends Fetch {
    * This provides a list of all the Makes available in the vPIC Dataset.
    *
    * @async
-   * @returns {(Promise<GetAllMakesResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetAllMakesResponse>)} Api Response object.
    */
-  public async GetAllMakes(): Promise<GetAllMakesResponse | Error> {
+  public async GetAllMakes(): Promise<GetAllMakesResponse> {
     const action = 'GetAllMakes';
 
     /* Build the 'default' query string to be appended to the URL*/

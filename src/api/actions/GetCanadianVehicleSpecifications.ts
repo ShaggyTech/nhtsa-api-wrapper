@@ -53,14 +53,14 @@ export class GetCanadianVehicleSpecifications extends Fetch {
    * @param {string} [params.make] - Vehicle's make, like "Honda", "Toyota", etc...
    * @param {string} [params.model] - Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc...
    * @param {string} [params.units] - "Metric" (default), or "US" for United States customary units.
-   * @returns {(Promise<GetCanadianVehicleSpecificationsResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetCanadianVehicleSpecificationsResponse>)} Api Response object.
    */
   async GetCanadianVehicleSpecifications(params: {
     year: number;
     make?: string;
     model?: string;
     units?: string;
-  }): Promise<GetCanadianVehicleSpecificationsResponse | Error> {
+  }): Promise<GetCanadianVehicleSpecificationsResponse> {
     const action = 'GetCanadianVehicleSpecifications';
 
     /* Runtime typechecking */

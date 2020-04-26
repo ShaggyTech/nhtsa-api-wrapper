@@ -48,14 +48,14 @@ export class GetParts extends Fetch {
    * @param {string} [params.fromDate] - Start date of search query.
    * @param {string} [params.toDate] - End date of search query.
    * @param {number} [params.page] - Which page number of results to request (100 results per page).
-   * @returns {(Promise<GetPartsResponse | Error>)} Api Response object.
+   * @returns {(Promise<GetPartsResponse>)} Api Response object.
    */
   async GetParts(params?: {
     type?: number;
     fromDate?: string;
     toDate?: string;
     page?: number;
-  }): Promise<GetPartsResponse | Error> {
+  }): Promise<GetPartsResponse> {
     const action = 'GetParts';
 
     const type: number | undefined = params?.type;

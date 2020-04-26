@@ -42,9 +42,9 @@ export class DecodeWMI extends Fetch {
    *
    * @async
    * @param {string} WMI - World Manufacturer Identifier.
-   * @returns {(Promise<DecodeWMIResults | Error>)} Api Response object.
+   * @returns {(Promise<DecodeWMIResults>)} Api Response object.
    */
-  async DecodeWMI(WMI: string): Promise<DecodeWMIResponse | Error> {
+  async DecodeWMI(WMI: string): Promise<DecodeWMIResponse> {
     const action = 'DecodeWMI';
 
     /* Runtime typechecking */
