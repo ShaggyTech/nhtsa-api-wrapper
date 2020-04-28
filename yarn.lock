@@ -2107,14 +2107,15 @@ before-after-hook@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.1.0.tgz#b6c03487f44e24200dd30ca5e6a1979c5d2fb635"
 
-better-docs@1.4.7:
-  version "1.4.7"
-  resolved "https://registry.yarnpkg.com/better-docs/-/better-docs-1.4.7.tgz#a9033730672925073db74ce201410fd23f2b7888"
+better-docs@1.4.13:
+  version "1.4.13"
+  resolved "https://registry.yarnpkg.com/better-docs/-/better-docs-1.4.13.tgz#6c9b44a27b31e536e5da5920cfac11e8720e4c5a"
   dependencies:
     brace "^0.11.1"
     react-ace "^6.5.0"
     react-docgen "^4.1.1"
     react-frame-component "^4.1.1"
+    typescript "^3.7.5"
     underscore "^1.9.1"
     vue-docgen-api "^3.22.0"
     vue2-ace-editor "^0.0.13"
@@ -9109,7 +9110,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@3.8.3:
+typescript@3.8.3, typescript@^3.7.5:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
 
