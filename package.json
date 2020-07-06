@@ -160,6 +160,6 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "cross-fetch": "^3.0.4"
+    "cross-fetch": "^3.0.5"
   }
 }
