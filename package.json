@@ -124,7 +124,7 @@
     "@typescript-eslint/eslint-plugin": "2.29.0",
     "@typescript-eslint/parser": "2.29.0",
     "better-docs": "1.4.13",
-    "commitizen": "4.0.4",
+    "commitizen": "4.1.2",
     "concurrently": "5.2.0",
     "copyfiles": "2.2.0",
     "cross-env": "7.0.2",
