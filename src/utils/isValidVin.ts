@@ -33,7 +33,7 @@ const TRANSLITERATION_TABLE: object = {
   W: 6,
   X: 7,
   Y: 8,
-  Z: 9
+  Z: 9,
 };
 
 /*
@@ -59,7 +59,7 @@ const WEIGHTS_ARRAY: number[] = [
   5,
   4,
   3,
-  2
+  2,
 ];
 
 /**

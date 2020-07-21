@@ -28,7 +28,7 @@ describe('NHTSA.DecodeWMI()', () => {
    **************/
 
   test('it decodes a WMI', async () => {
-    const response = await client.DecodeWMI('3VW').catch(err => err);
+    const response = await client.DecodeWMI('3VW').catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/3VW?format=json`;
@@ -40,7 +40,9 @@ describe('NHTSA.DecodeWMI()', () => {
    **************/
 
   test('it rejects with Error when no WMI argument is provided', async () => {
-    const response = await client.DecodeWMI(undefined as any).catch(err => err);
+    const response = await client
+      .DecodeWMI(undefined as any)
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -51,7 +53,7 @@ describe('NHTSA.DecodeWMI()', () => {
   });
 
   test('it rejects with Error when invalid typeof WMI argument is provided', async () => {
-    const response = await client.DecodeWMI(3929343 as any).catch(err => err);
+    const response = await client.DecodeWMI(3929343 as any).catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -66,7 +68,7 @@ describe('NHTSA.DecodeWMI()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.DecodeWMI('3VW').catch(err => err);
+    const response = await client.DecodeWMI('3VW').catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -80,7 +82,7 @@ describe('NHTSA.DecodeWMI()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.DecodeWMI('3VW').catch(err => err);
+    const response = await client.DecodeWMI('3VW').catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

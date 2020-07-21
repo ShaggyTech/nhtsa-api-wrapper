@@ -28,7 +28,7 @@ describe('GetModelsForMakeId()', () => {
    **************/
 
   test('it gets vehicle models with a valid makeId', async () => {
-    const response = await client.GetModelsForMakeId(381).catch(err => err);
+    const response = await client.GetModelsForMakeId(381).catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/381?format=json`;
@@ -42,7 +42,7 @@ describe('GetModelsForMakeId()', () => {
   test('it rejects with Error when no makeID argument is provided', async () => {
     const response = await client
       .GetModelsForMakeId(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -56,7 +56,7 @@ describe('GetModelsForMakeId()', () => {
   test('it rejects with Error when invalid makeId is provided', async () => {
     const response = await client
       .GetModelsForMakeId('audi' as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -72,7 +72,7 @@ describe('GetModelsForMakeId()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetModelsForMakeId(381).catch(err => err);
+    const response = await client.GetModelsForMakeId(381).catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -86,7 +86,7 @@ describe('GetModelsForMakeId()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetModelsForMakeId(999).catch(err => err);
+    const response = await client.GetModelsForMakeId(999).catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

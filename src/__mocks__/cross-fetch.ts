@@ -13,9 +13,9 @@ const mockedResponse = {
   url: 'mocked-url',
   json: jest.fn(async () => {
     return Promise.resolve({
-      ...mockData
+      ...mockData,
     });
-  })
+  }),
 };
 
 const mockCrossFetch: any = jest.fn(() => Promise.resolve(mockedResponse));

@@ -30,9 +30,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
   test('it gets Canadian specs with only year param', async () => {
     const response = await client
       .GetCanadianVehicleSpecifications({
-        year: 2011
+        year: 2011,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=&model=&units=&format=json`;
@@ -43,9 +43,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2011,
-        make: 'audi'
+        make: 'audi',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=audi&model=&units=&format=json`;
@@ -57,9 +57,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
       .GetCanadianVehicleSpecifications({
         year: 2011,
         make: 'audi',
-        model: 'A4'
+        model: 'A4',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=audi&model=A4&units=&format=json`;
@@ -72,9 +72,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
         year: 2011,
         make: 'audi',
         model: 'A4',
-        units: 'US'
+        units: 'US',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=audi&model=A4&units=US&format=json`;
@@ -88,7 +88,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
   test('it rejects with Error when no params are provided', async () => {
     const response = await client
       .GetCanadianVehicleSpecifications(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -102,7 +102,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
   test('it rejects with Error when invalid params are provided', async () => {
     const response = await client
       .GetCanadianVehicleSpecifications(['testing'] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -119,9 +119,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
         year: undefined as any,
         make: 'audi',
         model: 'A4',
-        units: 'US'
+        units: 'US',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -136,9 +136,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2001,
-        make: 1234 as any
+        make: 1234 as any,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -153,9 +153,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2001,
-        model: [1, 2, 3] as any
+        model: [1, 2, 3] as any,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -170,9 +170,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2001,
-        units: true as any
+        units: true as any,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -190,7 +190,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
 
     const response = await client
       .GetCanadianVehicleSpecifications({ year: 2011 })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -206,7 +206,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
 
     const response = await client
       .GetCanadianVehicleSpecifications({ year: 2011 })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

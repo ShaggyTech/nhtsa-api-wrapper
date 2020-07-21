@@ -30,7 +30,7 @@ describe('GetVehicleVariableValuesList()', () => {
   test('it gets vehicle variable values with a variableValue as string name', async () => {
     const response = await client
       .GetVehicleVariableValuesList('battery type')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/battery%20type?format=json`;
@@ -40,7 +40,7 @@ describe('GetVehicleVariableValuesList()', () => {
   test('it gets vehicle variable values with a variableValue as number ID', async () => {
     const response = await client
       .GetVehicleVariableValuesList(2)
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/2?format=json`;
@@ -54,7 +54,7 @@ describe('GetVehicleVariableValuesList()', () => {
   test('it rejects with an Error when no variableValue is provided', async () => {
     const response = await client
       .GetVehicleVariableValuesList(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -68,7 +68,7 @@ describe('GetVehicleVariableValuesList()', () => {
   test('it rejects with an Error when invalid variableValue is provided', async () => {
     const response = await client
       .GetVehicleVariableValuesList({ testing: 'test' } as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -86,7 +86,7 @@ describe('GetVehicleVariableValuesList()', () => {
 
     const response = await client
       .GetVehicleVariableValuesList(33)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -102,7 +102,7 @@ describe('GetVehicleVariableValuesList()', () => {
 
     const response = await client
       .GetVehicleVariableValuesList('13')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

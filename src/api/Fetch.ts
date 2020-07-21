@@ -43,7 +43,7 @@ export const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 export const DEFAULT_CONFIG: FetchConfig = {
   apiResponseFormat: 'json',
   baseUrl: BASE_URL,
-  options: {}
+  options: {},
 };
 
 /*****************
@@ -73,7 +73,7 @@ export class Fetch {
       finalConfig = {
         ...DEFAULT_CONFIG,
         ...userConfig,
-        options: { ...DEFAULT_CONFIG.options, ...userConfig.options }
+        options: { ...DEFAULT_CONFIG.options, ...userConfig.options },
       };
     } else {
       finalConfig = { ...DEFAULT_CONFIG };
@@ -107,7 +107,7 @@ export class Fetch {
      */
     if (!params || getTypeof(params) !== 'object') {
       params = {
-        format: this.apiResponseFormat
+        format: this.apiResponseFormat,
       };
     } else {
       params = { ...params, format: this.apiResponseFormat };
@@ -153,14 +153,14 @@ export class Fetch {
 
     /* Use the cross-fetch package to perform an HTTP request */
     const response: Response = await fetch(url, combinedOptions)
-      .then(result => {
+      .then((result) => {
         if (!result?.status || result.status >= 400) {
           throw new Error(
             `Bad response from server, code: ${result?.status}, text: ${result?.statusText}, headers: ${result?.headers}`
           );
         } else return result;
       })
-      .catch(err =>
+      .catch((err) =>
         Promise.reject(new Error(`Fetch.get() http error: ${err}`))
       );
 
@@ -178,8 +178,8 @@ export class Fetch {
         redirected: response.redirected,
         status: response.status,
         statusText: response.statusText,
-        url: response.url
-      }
+        url: response.url,
+      },
     };
 
     /* Return the completed ApiResponse */

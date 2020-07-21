@@ -16,7 +16,7 @@
 import {
   Fetch /* Class */,
   FetchConfig /* Type */,
-  FetchResponse /* Type */
+  FetchResponse /* Type */,
 } from '../Fetch';
 
 /* Utility Functions */
@@ -91,7 +91,7 @@ export class GetAllManufacturers extends Fetch {
     }
 
     /* Build the query string to be appended to the URL*/
-    const queryString = await this.buildQueryString(params).catch(err =>
+    const queryString = await this.buildQueryString(params).catch((err) =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
       )
@@ -102,8 +102,8 @@ export class GetAllManufacturers extends Fetch {
 
     /* Return the result */
     return await this.get(url)
-      .then(response => response)
-      .catch(err =>
+      .then((response) => response)
+      .catch((err) =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );
   }

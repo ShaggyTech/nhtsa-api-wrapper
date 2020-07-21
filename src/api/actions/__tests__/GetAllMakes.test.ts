@@ -28,7 +28,7 @@ describe('GetAllMakes()', () => {
    **************/
 
   test('it gets all makes from the database', async () => {
-    const response = await client.GetAllMakes().catch(err => err);
+    const response = await client.GetAllMakes().catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?format=json`;
@@ -44,7 +44,7 @@ describe('GetAllMakes()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetAllMakes().catch(err => err);
+    const response = await client.GetAllMakes().catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -58,7 +58,7 @@ describe('GetAllMakes()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetAllMakes().catch(err => err);
+    const response = await client.GetAllMakes().catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)
