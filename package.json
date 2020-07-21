@@ -143,7 +143,7 @@
     "jsdoc-plugin-typescript": "2.0.5",
     "jsdoc-to-markdown": "5.0.3",
     "lodash.camelcase": "4.3.0",
-    "nodemon": "2.0.3",
+    "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "rimraf": "3.0.2",
     "rollup": "2.22.1",
