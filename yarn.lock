@@ -4417,9 +4417,10 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-find-cache-dir@^3.2.0:
+find-cache-dir@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-3.3.1.tgz#89b33fad4a4670daa94f855f7fbe31d6d84fe880"
+  integrity sha512-t2GDMt3oGC/v+BMwzmllWDuJF/xcDtE5j/fCGbqDD7OLuJkj0cfh1YSA5VKPvwMeLFLNDBkwOKZ2X85jGLVftQ==
   dependencies:
     commondir "^1.0.1"
     make-dir "^3.0.2"
@@ -8660,9 +8661,9 @@ resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
 
-resolve@1.15.1, resolve@^1.10.0, resolve@^1.3.2:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.15.1.tgz#27bdcdeffeaf2d6244b95bb0f9f4b4653451f3e8"
+resolve@1.17.0, resolve@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.17.0.tgz#b25941b54968231cc2d1bb76a79cb7f2c0bf8444"
   dependencies:
     path-parse "^1.0.6"
 
@@ -8672,9 +8673,9 @@ resolve@^1.1.6, resolve@^1.10.1:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.17.0.tgz#b25941b54968231cc2d1bb76a79cb7f2c0bf8444"
+resolve@^1.10.0, resolve@^1.3.2:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.15.1.tgz#27bdcdeffeaf2d6244b95bb0f9f4b4653451f3e8"
   dependencies:
     path-parse "^1.0.6"
 
@@ -8771,15 +8772,16 @@ rollup-plugin-terser@7.0.0:
     serialize-javascript "^4.0.0"
     terser "^5.0.0"
 
-rollup-plugin-typescript2@0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.26.0.tgz#cee2b44d51d9623686656d76dc30a73c4de91672"
+rollup-plugin-typescript2@0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.27.2.tgz#871a7f5d2a774f9cef50d25da868eec72acc2ed8"
+  integrity sha512-zarMH2F8oT/NO6p20gl/jkts+WxyzOlhOIUwUU/EDx5e6ewdDPS/flwLj5XFuijUCr64bZwqKuRVwCPdXXYefQ==
   dependencies:
-    find-cache-dir "^3.2.0"
+    "@rollup/pluginutils" "^3.1.0"
+    find-cache-dir "^3.3.1"
     fs-extra "8.1.0"
-    resolve "1.15.1"
-    rollup-pluginutils "2.8.2"
-    tslib "1.10.0"
+    resolve "1.17.0"
+    tslib "2.0.1"
 
 rollup-plugin-visualizer@4.1.0:
   version "4.1.0"
@@ -8792,7 +8794,7 @@ rollup-plugin-visualizer@4.1.0:
     source-map "^0.7.3"
     yargs "^15.0.0"
 
-rollup-pluginutils@2.8.2, rollup-pluginutils@^2.3.3, rollup-pluginutils@^2.8.1:
+rollup-pluginutils@^2.3.3, rollup-pluginutils@^2.8.1:
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
   dependencies:
@@ -9762,13 +9764,18 @@ ts-node@8.10.2:
     source-map-support "^0.5.17"
     yn "3.1.1"
 
-tslib@1.10.0, tslib@^1.9.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
+tslib@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 tslib@^1.8.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"
+
+tslib@^1.9.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
 
 tsutils@^3.17.1:
   version "3.17.1"
