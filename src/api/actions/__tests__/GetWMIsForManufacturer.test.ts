@@ -30,7 +30,7 @@ describe('NHTSA.DecodeWMI()', () => {
   test('it gets WMIs for a valid manufacturer', async () => {
     const response = await client
       .GetWMIsForManufacturer('Audi')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/Audi?format=json`;
@@ -44,7 +44,7 @@ describe('NHTSA.DecodeWMI()', () => {
   test('it returns an Error when no manufacturer argument is provided', async () => {
     const response = await client
       .GetWMIsForManufacturer(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -58,7 +58,7 @@ describe('NHTSA.DecodeWMI()', () => {
   test('it rejects with an Error when invalid manufacturer argument is provided', async () => {
     const response = await client
       .GetWMIsForManufacturer({ testing: 'test' } as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -76,7 +76,7 @@ describe('NHTSA.DecodeWMI()', () => {
 
     const response = await client
       .GetWMIsForManufacturer('Volkswagen')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -92,7 +92,7 @@ describe('NHTSA.DecodeWMI()', () => {
 
     const response = await client
       .GetWMIsForManufacturer('Audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

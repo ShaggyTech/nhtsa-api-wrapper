@@ -30,7 +30,7 @@ describe('GetMakeForManufacturer()', () => {
   test('it gets manufacturer makes w/ manufacturer as a string', async () => {
     const response = await client
       .GetMakeForManufacturer('audi')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/audi?format=json`;
@@ -38,7 +38,9 @@ describe('GetMakeForManufacturer()', () => {
   });
 
   test('it gets manufacturer makes w/ manufacturer as a number', async () => {
-    const response = await client.GetMakeForManufacturer(981).catch(err => err);
+    const response = await client
+      .GetMakeForManufacturer(981)
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/981?format=json`;
@@ -52,7 +54,7 @@ describe('GetMakeForManufacturer()', () => {
   test('it rejects with Error when no manufacturer argument is provided', async () => {
     const response = await client
       .GetMakeForManufacturer(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -66,7 +68,7 @@ describe('GetMakeForManufacturer()', () => {
   test('it rejects with Error when invalid (not a string or number) manufacturer is provided', async () => {
     const response = await client
       .GetMakeForManufacturer(['test'] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -84,7 +86,7 @@ describe('GetMakeForManufacturer()', () => {
 
     const response = await client
       .GetMakeForManufacturer('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -100,7 +102,7 @@ describe('GetMakeForManufacturer()', () => {
 
     const response = await client
       .GetMakeForManufacturer('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

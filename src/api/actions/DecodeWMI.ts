@@ -16,7 +16,7 @@
 import {
   Fetch /* Class */,
   FetchConfig /* Type */,
-  FetchResponse /* Type */
+  FetchResponse /* Type */,
 } from '../Fetch';
 
 /* Utility Functions */
@@ -59,7 +59,7 @@ export class DecodeWMI extends Fetch {
     }
 
     /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString().catch(err =>
+    const queryString = await this.buildQueryString().catch((err) =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
       )
@@ -70,8 +70,8 @@ export class DecodeWMI extends Fetch {
 
     /* Return the result */
     return await this.get(url)
-      .then(response => response)
-      .catch(err =>
+      .then((response) => response)
+      .catch((err) =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );
   }

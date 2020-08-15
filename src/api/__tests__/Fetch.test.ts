@@ -34,8 +34,8 @@ describe('api/Fetch Class', () => {
       apiResponseFormat: 'xml',
       baseUrl: 'https://www.shaggytech.com',
       options: {
-        body: 'test body'
-      }
+        body: 'test body',
+      },
     };
 
     const client = new Fetch(userConfig);
@@ -93,7 +93,7 @@ describe('buildQueryString() class method', () => {
     const client = new Fetch();
     const qs = await client.buildQueryString({
       format: 'xml',
-      test: 'testing'
+      test: 'testing',
     });
     const expected = '?format=json&test=testing';
 
@@ -105,7 +105,7 @@ describe('buildQueryString() class method', () => {
       const client = new Fetch();
       const qs = await client
         .buildQueryString({ nothingHere: '' }, true)
-        .catch(err => err);
+        .catch((err) => err);
       expect(qs).toStrictEqual('?nothingHere=&format=json');
     });
 
@@ -113,7 +113,7 @@ describe('buildQueryString() class method', () => {
       const client = new Fetch();
       const qs = await client
         .buildQueryString({ nothingHere: '', second: '' }, true)
-        .catch(err => err);
+        .catch((err) => err);
       expect(qs).toStrictEqual('?nothingHere=&second=&format=json');
     });
 
@@ -124,7 +124,7 @@ describe('buildQueryString() class method', () => {
           { nothingHere: '', test: 'testing', second: '' },
           true
         )
-        .catch(err => err);
+        .catch((err) => err);
       expect(qs).toStrictEqual(
         '?nothingHere=&test=testing&second=&format=json'
       );
@@ -143,7 +143,7 @@ describe('get() class method', () => {
    */
   test.skip('it returns a real response', async () => {
     (mockCrossFetch as any).mockImplementationOnce(
-      require.requireActual('cross-fetch')
+      jest.requireActual('cross-fetch')
     );
 
     const client = new Fetch();
@@ -167,18 +167,18 @@ describe('get() class method', () => {
     const client = new Fetch();
     const response = await client
       .get('www.shaggytech.com', { method: 'POST', body: 'test body' })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
     expect(mockCrossFetch).toHaveBeenCalledWith('www.shaggytech.com', {
       method: 'POST',
-      body: 'test body'
+      body: 'test body',
     });
   });
 
   test('it handles invalid url argument', async () => {
     const client = new Fetch();
-    const response = await client.get([{}] as any).catch(err => err);
+    const response = await client.get([{}] as any).catch((err) => err);
 
     expect(response).toStrictEqual(
       Error('Fetch.get(url) - url argument must be of type string, got: array')
@@ -187,7 +187,7 @@ describe('get() class method', () => {
 
   test('it handles undefined url argument', async () => {
     const client = new Fetch();
-    const response = await client.get(undefined as any).catch(err => err);
+    const response = await client.get(undefined as any).catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -200,7 +200,7 @@ describe('get() class method', () => {
     const client = new Fetch();
     const response = await client
       .get('testurl.test', 'testing' as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -218,12 +218,12 @@ describe('get() class method', () => {
         headers: 'mocked headers',
         json: jest.fn(async () => {
           return Promise.resolve(mockedErrorResponse);
-        })
+        }),
       });
     });
 
     const client = new Fetch();
-    const response = await client.get('www.shaggytech.com').catch(err => err);
+    const response = await client.get('www.shaggytech.com').catch((err) => err);
     const expectedError =
       'Fetch.get() http error: Error: Bad response from server, code: 500, text: mocked error, headers: mocked headers';
 
@@ -237,7 +237,7 @@ describe('get() class method', () => {
     });
 
     const client = new Fetch();
-    const response = await client.get('www.shaggytech.com').catch(err => err);
+    const response = await client.get('www.shaggytech.com').catch((err) => err);
     const expectedError =
       'Fetch.get() http error: Error: Bad response from server, code: undefined, text: undefined, headers: undefined';
 
@@ -251,7 +251,7 @@ describe('get() class method', () => {
     });
 
     const client = new Fetch();
-    const response = await client.get('www.testing.com').catch(err => err);
+    const response = await client.get('www.testing.com').catch((err) => err);
 
     expect(mockCrossFetch).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(Error('Fetch.get() http error: mock error'));

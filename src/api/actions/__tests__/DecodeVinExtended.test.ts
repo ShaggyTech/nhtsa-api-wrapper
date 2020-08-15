@@ -29,7 +29,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
   test('it decodes a VIN', async () => {
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/3VWD07AJ5EM388202?format=json`;
@@ -39,9 +39,9 @@ describe('NHTSA.DecodeVinExtended()', () => {
   test('it decodes a VIN and handles params', async () => {
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202', {
-        modelYear: 2001
+        modelYear: 2001,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/3VWD07AJ5EM388202?modelYear=2001&format=json`;
@@ -55,7 +55,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
   test('it rejects with Error when no VIN argument is provided', async () => {
     const response = await client
       .DecodeVinExtended(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -68,7 +68,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
   test('it rejects with Error when invalid typeof VIN argument is provided', async () => {
     const response = await client
       .DecodeVinExtended([{ fails: 'should fail' }] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -81,7 +81,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
   test('it rejects with Error when invalid typeof params argument is provided', async () => {
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202', ['should fail'] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -94,9 +94,9 @@ describe('NHTSA.DecodeVinExtended()', () => {
   test('it rejects with Error when invalid typeof params.modelYear argument is provided', async () => {
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202', {
-        modelYear: ['should fail'] as any
+        modelYear: ['should fail'] as any,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -114,7 +114,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
 
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -130,7 +130,7 @@ describe('NHTSA.DecodeVinExtended()', () => {
 
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

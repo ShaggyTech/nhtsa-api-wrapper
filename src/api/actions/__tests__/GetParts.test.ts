@@ -41,9 +41,9 @@ describe('GetParts()', () => {
         type: 156,
         fromDate: '11/10/2010',
         toDate: '11/20/2019',
-        page: 2
+        page: 2,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?type=156&fromDate=11/10/2010&toDate=11/20/2019&page=2&format=json`;
@@ -54,9 +54,9 @@ describe('GetParts()', () => {
     const response = await client
       .GetParts({
         type: 300,
-        page: 25
+        page: 25,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?type=300&page=25&format=json`;
@@ -66,9 +66,9 @@ describe('GetParts()', () => {
   test('it gets parts list with one param (page)', async () => {
     const response = await client
       .GetParts({
-        page: 5
+        page: 5,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?page=5&format=json`;
@@ -80,7 +80,9 @@ describe('GetParts()', () => {
    **************/
 
   test('it rejects with Error when invalid params are provided', async () => {
-    const response = await client.GetParts('testing' as any).catch(err => err);
+    const response = await client
+      .GetParts('testing' as any)
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -93,7 +95,7 @@ describe('GetParts()', () => {
   test('it rejects with Error when invalid params.type is provided', async () => {
     const response = await client
       .GetParts({ type: 'should fail' as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -106,7 +108,7 @@ describe('GetParts()', () => {
   test('it rejects with Error when invalid params.fromDate is provided', async () => {
     const response = await client
       .GetParts({ fromDate: 122320 as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -119,7 +121,7 @@ describe('GetParts()', () => {
   test('it rejects with Error when invalid params.toDate is provided', async () => {
     const response = await client
       .GetParts({ toDate: 123456 as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -132,7 +134,7 @@ describe('GetParts()', () => {
   test('it rejects with Error when invalid params.page is provided', async () => {
     const response = await client
       .GetParts({ page: true as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -147,7 +149,7 @@ describe('GetParts()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetParts().catch(err => err);
+    const response = await client.GetParts().catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -161,7 +163,7 @@ describe('GetParts()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetParts().catch(err => err);
+    const response = await client.GetParts().catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)
