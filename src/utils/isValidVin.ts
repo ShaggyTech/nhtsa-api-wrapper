@@ -10,7 +10,7 @@
  * multiplied against their corresponding weight (by index) in the WEIGHTS_ARRAY.
  * This transliteration table is a key part of the VIN validation algorithm.
  */
-const TRANSLITERATION_TABLE: object = {
+const TRANSLITERATION_TABLE: Record<string, number> = {
   A: 1,
   B: 2,
   C: 3,
