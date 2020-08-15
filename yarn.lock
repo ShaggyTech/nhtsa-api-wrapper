@@ -3894,15 +3894,15 @@ eslint-plugin-jest@23.20.0:
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
-eslint-plugin-jsdoc@30.0.3:
-  version "30.0.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-30.0.3.tgz#358896c8114ccbee765774b16f64fd7c952309b1"
-  integrity sha512-EviSu0Hgc9Bhz00WhA6829KYC9BaP6JWoycOTA1xFxjQ/2XguRlB3r6nGNA/jkmMDQp5dTQ22s1kAJIaC+dE8Q==
+eslint-plugin-jsdoc@30.2.2:
+  version "30.2.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-30.2.2.tgz#f554a172c54b0e5514af03f1300af495670bea16"
+  integrity sha512-588zVyRy+g7s8VU3D0AL75r7xBYN0UX6tZEwP5EQ4JvpVavwu2iPJRaBxwuG3QAj99WZkUBlrLU16p4qST6vSw==
   dependencies:
     comment-parser "^0.7.5"
     debug "^4.1.1"
-    jsdoctypeparser "^8.0.0"
-    lodash "^4.17.15"
+    jsdoctypeparser "^9.0.0"
+    lodash "^4.17.19"
     regextras "^0.7.1"
     semver "^7.3.2"
     spdx-expression-parse "^3.0.1"
@@ -5939,10 +5939,10 @@ jsdoc@^3.6.4:
     taffydb "2.6.2"
     underscore "~1.10.2"
 
-jsdoctypeparser@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/jsdoctypeparser/-/jsdoctypeparser-8.0.0.tgz#a04a944539d3f86e30040c1ece6f6730f865f81a"
-  integrity sha512-eLCs6s4JqN8TjFJfgdiLHRvogLhOAJz+5RIA2FtoMe6ZDyuvghvppnlIToqAEnVbxRqLMrfnNXpW8FpmR6IMBw==
+jsdoctypeparser@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/jsdoctypeparser/-/jsdoctypeparser-9.0.0.tgz#8c97e2fb69315eb274b0f01377eaa5c940bd7b26"
+  integrity sha512-jrTA2jJIL6/DAEILBEh2/w9QxCuwmvNXIry39Ay/HVfhE3o2yVV0U44blYkqdHA/OKloJEqvJy0xU+GSdE2SIw==
 
 jsdom@^16.2.2:
   version "16.3.0"
