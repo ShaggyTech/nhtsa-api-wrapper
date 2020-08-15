@@ -132,7 +132,7 @@
     "eslint": "7.7.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-jest": "23.20.0",
-    "eslint-plugin-jsdoc": "30.0.3",
+    "eslint-plugin-jsdoc": "30.2.2",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.1.4",
     "form-data": "3.0.0",
