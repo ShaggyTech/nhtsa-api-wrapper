@@ -96,7 +96,7 @@ export type GetManufacturerDetailsResults = {
   ContactPhone: string;
   Country: string;
   DBAs: string;
-  EquipmentItems: Array<object>;
+  EquipmentItems: Array<Record<string, unknown>>;
   LastUpdated: string;
   ManufacturerTypes: Array<{
     Name: string;
