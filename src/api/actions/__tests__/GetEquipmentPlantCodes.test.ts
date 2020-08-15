@@ -32,9 +32,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: 2020,
         equipmentType: 13,
-        reportType: 'All'
+        reportType: 'All',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?year=2020&equipmentType=13&reportType=All&format=json`;
@@ -48,7 +48,7 @@ describe('GetEquipmentPlantCodes()', () => {
   test('it rejects with Error when no params are provided', async () => {
     const response = await client
       .GetEquipmentPlantCodes(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -63,9 +63,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: undefined as any,
         equipmentType: 13,
-        reportType: 'All'
+        reportType: 'All',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -80,9 +80,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: 2020,
         equipmentType: undefined as any,
-        reportType: 'All'
+        reportType: 'All',
       } as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -98,9 +98,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: 2020,
         equipmentType: 13,
-        reportType: undefined as any
+        reportType: undefined as any,
       } as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -120,9 +120,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: 2020,
         equipmentType: 13,
-        reportType: 'All'
+        reportType: 'All',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -140,9 +140,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: 2020,
         equipmentType: 13,
-        reportType: 'All'
+        reportType: 'All',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

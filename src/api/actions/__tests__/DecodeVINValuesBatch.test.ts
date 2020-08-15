@@ -29,7 +29,7 @@ describe('NHTSA.DecodeVINValuesBatch()', () => {
   test('it decodes a single VIN', async () => {
     const response = await client
       .DecodeVINValuesBatch('3VWD07AJ5EM388202')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/`;
@@ -42,7 +42,7 @@ describe('NHTSA.DecodeVINValuesBatch()', () => {
   test('it decodes a batch of VINs', async () => {
     const response = await client
       .DecodeVINValuesBatch('3VWD07AJ5EM388202, WUAPV64B03N905380')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/`;
@@ -59,7 +59,7 @@ describe('NHTSA.DecodeVINValuesBatch()', () => {
   test('it rejects with Error when no inputString argument is provided', async () => {
     const response = await client
       .DecodeVINValuesBatch(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -72,7 +72,7 @@ describe('NHTSA.DecodeVINValuesBatch()', () => {
   test('it rejects with Error when invalid typeof inputString argument is provided', async () => {
     const response = await client
       .DecodeVINValuesBatch([{ fails: 'should fail' }] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -89,7 +89,7 @@ describe('NHTSA.DecodeVINValuesBatch()', () => {
 
     const response = await client
       .DecodeVINValuesBatch('3VWD07AJ5EM388202')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

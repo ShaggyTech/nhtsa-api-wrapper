@@ -30,7 +30,7 @@ describe('GetManufacturerDetails()', () => {
   test('it gets manufacturer details w/ manufacturer as a string', async () => {
     const response = await client
       .GetManufacturerDetails('audi')
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/audi?format=json`;
@@ -38,7 +38,9 @@ describe('GetManufacturerDetails()', () => {
   });
 
   test('it gets manufacturer details w/ manufacturer as a number', async () => {
-    const response = await client.GetManufacturerDetails(981).catch(err => err);
+    const response = await client
+      .GetManufacturerDetails(981)
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/981?format=json`;
@@ -52,7 +54,7 @@ describe('GetManufacturerDetails()', () => {
   test('it rejects with Error when no manufacturer argument is provided', async () => {
     const response = await client
       .GetManufacturerDetails(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -66,7 +68,7 @@ describe('GetManufacturerDetails()', () => {
   test('it rejects with Error when invalid manufacturer argument is provided', async () => {
     const response = await client
       .GetManufacturerDetails(true as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -84,7 +86,7 @@ describe('GetManufacturerDetails()', () => {
 
     const response = await client
       .GetManufacturerDetails('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -100,7 +102,7 @@ describe('GetManufacturerDetails()', () => {
 
     const response = await client
       .GetManufacturerDetails('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

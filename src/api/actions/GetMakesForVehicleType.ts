@@ -16,7 +16,7 @@
 import {
   Fetch /* Class */,
   FetchConfig /* Type */,
-  FetchResponse /* Type */
+  FetchResponse /* Type */,
 } from '../Fetch';
 
 /* Utility Functions */
@@ -73,7 +73,7 @@ export class GetMakesForVehicleType extends Fetch {
 
     /* Return the result */
     return await this.get(url)
-      .then(response => response)
+      .then((response) => response)
       .catch((err: Error) =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );

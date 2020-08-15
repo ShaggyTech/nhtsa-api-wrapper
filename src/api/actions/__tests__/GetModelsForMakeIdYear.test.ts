@@ -32,9 +32,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: 901,
         modelYear: 2017,
-        vehicleType: 'moto'
+        vehicleType: 'moto',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/makeId/901/modelYear/2017/vehicleType/moto?format=json`;
@@ -45,9 +45,9 @@ describe('GetModelsForMakeIdYear()', () => {
     const response = await client
       .GetModelsForMakeIdYear({
         makeId: 305,
-        modelYear: 2016
+        modelYear: 2016,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/makeId/305/modelYear/2016?format=json`;
@@ -58,9 +58,9 @@ describe('GetModelsForMakeIdYear()', () => {
     const response = await client
       .GetModelsForMakeIdYear({
         makeId: 707,
-        vehicleType: 'truck'
+        vehicleType: 'truck',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/makeId/707/vehicleType/truck?format=json`;
@@ -74,7 +74,7 @@ describe('GetModelsForMakeIdYear()', () => {
   test('it rejects with Error when no params are provided', async () => {
     const response = await client
       .GetModelsForMakeIdYear(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -87,7 +87,7 @@ describe('GetModelsForMakeIdYear()', () => {
   test('it rejects with Error when invalid typeof params are provided', async () => {
     const response = await client
       .GetModelsForMakeIdYear(['params as array'] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -102,9 +102,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: undefined as any,
         modelYear: 2016,
-        vehicleType: 'moto'
+        vehicleType: 'moto',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -120,9 +120,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: ['fails'] as any,
         modelYear: 2016,
-        vehicleType: 'moto'
+        vehicleType: 'moto',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -138,9 +138,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: 908,
         modelYear: undefined as any,
-        vehicleType: undefined as any
+        vehicleType: undefined as any,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -154,7 +154,7 @@ describe('GetModelsForMakeIdYear()', () => {
   test('it rejects with Error when invalid typeof modelYear is provided', async () => {
     const response = await client
       .GetModelsForMakeIdYear({ makeId: 458, modelYear: 'fails' as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -167,7 +167,7 @@ describe('GetModelsForMakeIdYear()', () => {
   test('it rejects with Error when invalid typeof vehicleType is provided', async () => {
     const response = await client
       .GetModelsForMakeIdYear({ makeId: 458, vehicleType: ['invalid'] as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -186,9 +186,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: 777,
         modelYear: 2017,
-        vehicleType: 'moto'
+        vehicleType: 'moto',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -206,9 +206,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: 777,
         modelYear: 2017,
-        vehicleType: 'moto'
+        vehicleType: 'moto',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

@@ -29,8 +29,8 @@ describe('the NHTSA Class', () => {
       apiResponseFormat: 'xml',
       baseUrl: 'https://www.shaggytech.com',
       options: {
-        body: 'test body'
-      }
+        body: 'test body',
+      },
     };
 
     const client = new NHTSA(userConfig);
@@ -40,7 +40,7 @@ describe('the NHTSA Class', () => {
     expect(client.apiResponseFormat).toStrictEqual('json');
     expect(client.baseUrl).toStrictEqual('https://www.shaggytech.com');
     expect(client.options).toStrictEqual({
-      ...userConfig.options
+      ...userConfig.options,
     });
 
     // Parent Class Methods
@@ -58,9 +58,9 @@ describe('NHTSA.DecodeVin()', () => {
     const client = new NHTSA();
     const response = await client
       .DecodeVin('3VWD07AJ5EM388202', {
-        modelYear: 2001
+        modelYear: 2001,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -71,9 +71,9 @@ describe('NHTSA.DecodeVinValues()', () => {
     const client = new NHTSA();
     const response = await client
       .DecodeVinValues('3VWD07AJ5EM388202', {
-        modelYear: 2001
+        modelYear: 2001,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -84,9 +84,9 @@ describe('NHTSA.DecodeVinExtended()', () => {
     const client = new NHTSA();
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202', {
-        modelYear: 2001
+        modelYear: 2001,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -97,9 +97,9 @@ describe('NHTSA.DecodeVinValuesExtended()', () => {
     const client = new NHTSA();
     const response = await client
       .DecodeVinValuesExtended('3VWD07AJ5EM388202', {
-        modelYear: 2001
+        modelYear: 2001,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -108,7 +108,7 @@ describe('NHTSA.DecodeVinValuesExtended()', () => {
 describe('DecodeWMI()', () => {
   test('it decodes a WMI', async () => {
     const client = new NHTSA();
-    const response = await client.DecodeWMI('3VW').catch(err => err);
+    const response = await client.DecodeWMI('3VW').catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -119,7 +119,7 @@ describe('GetWMIsForManufacturer()', () => {
     const client = new NHTSA();
     const response = await client
       .GetWMIsForManufacturer('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -128,7 +128,7 @@ describe('GetWMIsForManufacturer()', () => {
 describe('GetAllMakes()', () => {
   test('it gets all makes from the database', async () => {
     const client = new NHTSA();
-    const response = await client.GetAllMakes().catch(err => err);
+    const response = await client.GetAllMakes().catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -142,9 +142,9 @@ describe('GetParts()', () => {
         type: 156,
         fromDate: '11/10/2010',
         toDate: '11/20/2019',
-        page: 2
+        page: 2,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -156,9 +156,9 @@ describe('GetAllManufacturers()', () => {
     const response = await client
       .GetAllManufacturers({
         manufacturerType: 'Intermediate',
-        page: 2
+        page: 2,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -169,7 +169,7 @@ describe('GetManufacturerDetails()', () => {
     const client = new NHTSA();
     const response = await client
       .GetManufacturerDetails('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -180,7 +180,7 @@ describe('GetMakeForManufacturer()', () => {
     const client = new NHTSA();
     const response = await client
       .GetMakeForManufacturer('audi')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -191,9 +191,9 @@ describe('GetMakesForManufacturerAndYear()', () => {
     const client = new NHTSA();
     const response = await client
       .GetMakesForManufacturerAndYear(121, {
-        year: 2009
+        year: 2009,
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -204,7 +204,7 @@ describe('GetVehicleTypesForMakeId()', () => {
     const client = new NHTSA();
     const response = await client
       .GetVehicleTypesForMakeId(381)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -217,9 +217,9 @@ describe('GetEquipmentPlantCodes()', () => {
       .GetEquipmentPlantCodes({
         year: 2019,
         equipmentType: 1,
-        reportType: 'All'
+        reportType: 'All',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -228,7 +228,7 @@ describe('GetEquipmentPlantCodes()', () => {
 describe('GetModelsForMake()', () => {
   test('it gets models for a valid makeName', async () => {
     const client = new NHTSA();
-    const response = await client.GetModelsForMake('audi').catch(err => err);
+    const response = await client.GetModelsForMake('audi').catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -237,7 +237,7 @@ describe('GetModelsForMake()', () => {
 describe('GetModelsForMakeId()', () => {
   test('it gets vehicle models with a valid makeId', async () => {
     const client = new NHTSA();
-    const response = await client.GetModelsForMakeId(381).catch(err => err);
+    const response = await client.GetModelsForMakeId(381).catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -250,9 +250,9 @@ describe('GetModelsForMakeYear()', () => {
       .GetModelsForMakeYear({
         make: 'Audi',
         modelYear: 2016,
-        vehicleType: 'auto'
+        vehicleType: 'auto',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -265,9 +265,9 @@ describe('GetModelsForMakeIdYear()', () => {
       .GetModelsForMakeIdYear({
         makeId: 991,
         modelYear: 2016,
-        vehicleType: 'moto'
+        vehicleType: 'moto',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -276,7 +276,7 @@ describe('GetModelsForMakeIdYear()', () => {
 describe('GetVehicleVariableList()', () => {
   test('it gets all vehicle related variables from the database', async () => {
     const client = new NHTSA();
-    const response = await client.GetVehicleVariableList().catch(err => err);
+    const response = await client.GetVehicleVariableList().catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -287,7 +287,7 @@ describe('GetVehicleVariableValuesList()', () => {
     const client = new NHTSA();
     const response = await client
       .GetVehicleVariableValuesList('battery type')
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });
@@ -301,9 +301,9 @@ describe('GetCanadianVehicleSpecifications()', () => {
         year: 2011,
         make: 'audi',
         model: 'A4',
-        units: 'US'
+        units: 'US',
       })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(mockData);
   });

@@ -34,7 +34,7 @@ import {
   GetVehicleTypesForMakeId,
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
-  GetWMIsForManufacturer
+  GetWMIsForManufacturer,
 } from './actions';
 
 /**

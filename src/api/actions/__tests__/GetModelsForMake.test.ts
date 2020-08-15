@@ -28,7 +28,7 @@ describe('GetModelsForMake()', () => {
    **************/
 
   test('it gets models for a valid makeName', async () => {
-    const response = await client.GetModelsForMake('audi').catch(err => err);
+    const response = await client.GetModelsForMake('audi').catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/audi?format=json`;
@@ -42,7 +42,7 @@ describe('GetModelsForMake()', () => {
   test('it rejects with Error when no makeName argument is provided', async () => {
     const response = await client
       .GetModelsForMake(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -56,7 +56,7 @@ describe('GetModelsForMake()', () => {
   test('it rejects with Error when invalid makeName argument is provided', async () => {
     const response = await client
       .GetModelsForMake(1234 as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -72,7 +72,7 @@ describe('GetModelsForMake()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetModelsForMake('audi').catch(err => err);
+    const response = await client.GetModelsForMake('audi').catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -86,7 +86,7 @@ describe('GetModelsForMake()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetModelsForMake('fails').catch(err => err);
+    const response = await client.GetModelsForMake('fails').catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

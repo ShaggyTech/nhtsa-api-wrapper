@@ -28,7 +28,7 @@ describe('GetAllMakes()', () => {
    **************/
 
   test('it gets all manufacturers', async () => {
-    const response = await client.GetAllManufacturers().catch(err => err);
+    const response = await client.GetAllManufacturers().catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?format=json`;
@@ -38,9 +38,9 @@ describe('GetAllMakes()', () => {
   test('it gets all manufacturers with single param (manufacturerType)', async () => {
     const response = await client
       .GetAllManufacturers({
-        manufacturerType: 'Alterer'
+        manufacturerType: 'Alterer',
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?manufacturerType=Alterer&format=json`;
@@ -50,9 +50,9 @@ describe('GetAllMakes()', () => {
   test('it gets all manufacturers with single param (page)', async () => {
     const response = await client
       .GetAllManufacturers({
-        page: 99
+        page: 99,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?page=99&format=json`;
@@ -63,9 +63,9 @@ describe('GetAllMakes()', () => {
     const response = await client
       .GetAllManufacturers({
         manufacturerType: 'Alterer',
-        page: 2
+        page: 2,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}?manufacturerType=Alterer&page=2&format=json`;
@@ -79,7 +79,7 @@ describe('GetAllMakes()', () => {
   test('it rejects with Error when invalid typeof params argument is provided', async () => {
     const response = await client
       .GetAllManufacturers(['should fail'] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -92,9 +92,9 @@ describe('GetAllMakes()', () => {
   test('it rejects with Error when invalid typeof params.manufacturerType argument is provided', async () => {
     const response = await client
       .GetAllManufacturers({
-        manufacturerType: ['should fail']
+        manufacturerType: ['should fail'],
       } as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -108,9 +108,9 @@ describe('GetAllMakes()', () => {
   test('it rejects with Error when invalid typeof params.page argument is provided', async () => {
     const response = await client
       .GetAllManufacturers({
-        page: '120'
+        page: '120',
       } as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -126,7 +126,7 @@ describe('GetAllMakes()', () => {
       .spyOn(Fetch.prototype, 'buildQueryString')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetAllManufacturers().catch(err => err);
+    const response = await client.GetAllManufacturers().catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -140,7 +140,7 @@ describe('GetAllMakes()', () => {
       .spyOn(Fetch.prototype, 'get')
       .mockImplementationOnce(() => Promise.reject('mock error'));
 
-    const response = await client.GetAllManufacturers().catch(err => err);
+    const response = await client.GetAllManufacturers().catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

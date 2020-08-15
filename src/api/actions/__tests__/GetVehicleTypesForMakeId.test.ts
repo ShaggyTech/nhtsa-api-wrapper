@@ -30,7 +30,7 @@ describe('GetMakesForVehicleType()', () => {
   test('it gets vehicle types with a valid makeId', async () => {
     const response = await client
       .GetVehicleTypesForMakeId(890)
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/890?format=json`;
@@ -44,7 +44,7 @@ describe('GetMakesForVehicleType()', () => {
   test('it rejects with an Error when no makeId argument is provided', async () => {
     const response = await client
       .GetVehicleTypesForMakeId(undefined as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -58,7 +58,7 @@ describe('GetMakesForVehicleType()', () => {
   test('it rejects with an Error when invalid makeId argument is provided', async () => {
     const response = await client
       .GetVehicleTypesForMakeId('testing' as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -76,7 +76,7 @@ describe('GetMakesForVehicleType()', () => {
 
     const response = await client
       .GetVehicleTypesForMakeId(666)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -92,7 +92,7 @@ describe('GetMakesForVehicleType()', () => {
 
     const response = await client
       .GetVehicleTypesForMakeId(767)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

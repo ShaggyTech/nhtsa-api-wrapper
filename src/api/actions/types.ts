@@ -2,22 +2,22 @@ export { DecodeVinResults, DecodeVinResponse } from './DecodeVin';
 
 export {
   DecodeVinExtendedResults,
-  DecodeVinExtendedResponse
+  DecodeVinExtendedResponse,
 } from './DecodeVinExtended';
 
 export {
   DecodeVinValuesResults,
-  DecodeVinValuesResponse
+  DecodeVinValuesResponse,
 } from './DecodeVinValues';
 
 export {
   DecodeVINValuesBatchResults,
-  DecodeVINValuesBatchResponse
+  DecodeVINValuesBatchResponse,
 } from './DecodeVINValuesBatch';
 
 export {
   DecodeVinValuesExtendedResults,
-  DecodeVinValuesExtendedResponse
+  DecodeVinValuesExtendedResponse,
 } from './DecodeVinValuesExtended';
 
 export { DecodeWMIResults, DecodeWMIResponse } from './DecodeWMI';
@@ -26,82 +26,82 @@ export { GetAllMakesResults, GetAllMakesResponse } from './GetAllMakes';
 
 export {
   GetAllManufacturersResults,
-  GetAllManufacturersResponse
+  GetAllManufacturersResponse,
 } from './GetAllManufacturers';
 
 export {
   GetCanadianVehicleSpecificationsResults,
-  GetCanadianVehicleSpecificationsResponse
+  GetCanadianVehicleSpecificationsResponse,
 } from './GetCanadianVehicleSpecifications';
 
 export {
   GetEquipmentPlantCodesResults,
-  GetEquipmentPlantCodesResponse
+  GetEquipmentPlantCodesResponse,
 } from './GetEquipmentPlantCodes';
 
 export {
   GetMakeForManufacturerResults,
-  GetMakeForManufacturerResponse
+  GetMakeForManufacturerResponse,
 } from './GetMakeForManufacturer';
 
 export {
   GetMakesForManufacturerAndYearResults,
-  GetMakesForManufacturerAndYearResponse
+  GetMakesForManufacturerAndYearResponse,
 } from './GetMakesForManufacturerAndYear';
 
 export {
   GetMakesForVehicleTypeResults,
-  GetMakesForVehicleTypeResponse
+  GetMakesForVehicleTypeResponse,
 } from './GetMakesForVehicleType';
 
 export {
   GetManufacturerDetailsResults,
-  GetManufacturerDetailsResponse
+  GetManufacturerDetailsResponse,
 } from './GetManufacturerDetails';
 
 export {
   GetModelsForMakeResults,
-  GetModelsForMakeResponse
+  GetModelsForMakeResponse,
 } from './GetModelsForMake';
 
 export {
   GetModelsForMakeIdResults,
-  GetModelsForMakeIdResponse
+  GetModelsForMakeIdResponse,
 } from './GetModelsForMakeId';
 
 export {
   GetModelsForMakeIdYearResults,
-  GetModelsForMakeIdYearResponse
+  GetModelsForMakeIdYearResponse,
 } from './GetModelsForMakeIdYear';
 
 export {
   GetModelsForMakeYearResults,
-  GetModelsForMakeYearResponse
+  GetModelsForMakeYearResponse,
 } from './GetModelsForMakeYear';
 
 export { GetPartsResults, GetPartsResponse } from './GetParts';
 
 export {
   GetVehicleTypesForMakeResults,
-  GetVehicleTypesForMakeResponse
+  GetVehicleTypesForMakeResponse,
 } from './GetVehicleTypesForMake';
 
 export {
   GetVehicleTypesForMakeIdResults,
-  GetVehicleTypesForMakeIdResponse
+  GetVehicleTypesForMakeIdResponse,
 } from './GetVehicleTypesForMakeId';
 
 export {
   GetVehicleVariableListResults,
-  GetVehicleVariableListResponse
+  GetVehicleVariableListResponse,
 } from './GetVehicleVariableList';
 
 export {
   GetVehicleVariableValuesListResults,
-  GetVehicleVariableValuesListResponse
+  GetVehicleVariableValuesListResponse,
 } from './GetVehicleVariableValuesList';
 
 export {
   GetWMIsForManufacturerResults,
-  GetWMIsForManufacturerResponse
+  GetWMIsForManufacturerResponse,
 } from './GetWMIsForManufacturer';

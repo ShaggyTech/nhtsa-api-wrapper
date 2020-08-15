@@ -30,9 +30,9 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it gets manufacturer makes w/ manufacturer as a number', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear(121, {
-        year: 2009
+        year: 2009,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/121?year=2009&format=json`;
@@ -42,9 +42,9 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it gets manufacturer makes w/ manufacturer as a string', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear('volks', {
-        year: 2020
+        year: 2020,
       })
-      .catch(err => err);
+      .catch((err) => err);
     expect(response).toStrictEqual(mockData);
 
     const expectedUrl = `${BASE_URL}/volks?year=2020&format=json`;
@@ -58,7 +58,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it rejects with Error when no manufacturer argument is provided', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear(undefined as any, { year: 2009 })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -72,7 +72,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it rejects with Error when invalid manufacturer argument is provided', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear(['testing'] as any, { year: 2009 })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -86,7 +86,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it rejects with Error when invalid typeof params are provided', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear('audi', ['testing'] as any)
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -100,7 +100,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it rejects with Error when no params.year is provided', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear('audi', { year: undefined as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -114,7 +114,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
   test('it rejects with Error when invalid typeof params.year value is provided', async () => {
     const response = await client
       .GetMakesForManufacturerAndYear('audi', { year: 'not valid' as any })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(
@@ -132,7 +132,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
 
     const response = await client
       .GetMakesForManufacturerAndYear('audi', { year: 2009 })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Error building query string: mock error`)
@@ -148,7 +148,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
 
     const response = await client
       .GetMakesForManufacturerAndYear('audi', { year: 2009 })
-      .catch(err => err);
+      .catch((err) => err);
 
     expect(response).toStrictEqual(
       Error(`${ACTION}, Fetch.get() error: mock error`)

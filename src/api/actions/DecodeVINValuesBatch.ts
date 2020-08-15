@@ -16,7 +16,7 @@
 import {
   Fetch /* Class */,
   FetchConfig /* Type */,
-  FetchResponse /* Type */
+  FetchResponse /* Type */,
 } from '../Fetch';
 
 /* Utility Functions */
@@ -73,10 +73,10 @@ export class DecodeVINValuesBatch extends Fetch {
     return await this.get(url, {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body
+      body,
     })
-      .then(response => response)
-      .catch(err =>
+      .then((response) => response)
+      .catch((err) =>
         Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`))
       );
   }
