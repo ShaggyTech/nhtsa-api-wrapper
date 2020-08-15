@@ -123,7 +123,7 @@
     "@types/node-fetch": "2.5.7",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
-    "better-docs": "1.4.13",
+    "better-docs": "2.3.0",
     "commitizen": "4.1.2",
     "concurrently": "5.3.0",
     "copyfiles": "2.3.0",
