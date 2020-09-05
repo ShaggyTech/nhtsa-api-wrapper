@@ -2595,10 +2595,10 @@ before-after-hook@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.1.0.tgz#b6c03487f44e24200dd30ca5e6a1979c5d2fb635"
 
-better-docs@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/better-docs/-/better-docs-2.3.0.tgz#69bc2daafdef92e76bfb4c3092eb71243abf9724"
-  integrity sha512-s+lvppWKGs9CU3r9bxnKAGbsW/rzSEeaEtVZE9qc+14098MiWy4pAAsXtTifkzgUnvDfWhnmPXZEc+fCAA0cBA==
+better-docs@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/better-docs/-/better-docs-2.3.2.tgz#0de059301c49669a4350409d8c235868cf8bcbf7"
+  integrity sha512-VlbXQgEftaynJSaPa853XB5WqTlPoQQr2TnxIkKi6OsyJJxF42Ke+9SIES/hqTe58aaBnuoDGrIzOso8RdNx6Q==
   dependencies:
     brace "^0.11.1"
     react-ace "^6.5.0"
