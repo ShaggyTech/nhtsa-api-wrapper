@@ -117,7 +117,8 @@ import {
  *   console.log(Results)
  * </script>
  */
-class NHTSA extends Fetch
+class NHTSA
+  extends Fetch
   implements
     DecodeVin,
     DecodeVinExtended,
