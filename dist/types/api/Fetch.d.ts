@@ -95,7 +95,7 @@ export declare type FetchRequestOptions = {
     /** HTTP request body - [FetchRequestBodyTypes](https://github.github.io/fetch/#request-body). */
     body?: string | FetchRequestBodyTypes;
     /** [Object, Headers](https://github.github.io/fetch/#Headers) - Default: {}. */
-    headers?: {} | Headers;
+    headers?: Record<string, string> | Headers;
     /**
      * Default: "omit" - Authentication credentials mode.
      * - "omit" - don't include authentication credentials (e.g. Cookies) in the request.

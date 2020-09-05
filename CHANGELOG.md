@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.4...v1.1.5) (2020-09-05)
+
+
+### Bug Fixes
+
+* **prettier:** fix prettier/eslint errors that appeared after updates ([f64a28a](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/f64a28aa173fcaa4d7d7b6d07d5f3845d0fb667c))
+
 ## [1.1.4](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.3...v1.1.4) (2020-04-26)
 
 

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-8710883e.js');
+var Fetch = require('./Fetch-2f6f3d33.js');
 require('cross-fetch');
 
 /**
@@ -53,7 +53,7 @@ class GetModelsForMakeId extends Fetch.Fetch {
             const url = `${this.baseUrl}/${action}/${makeID}${queryString}`;
             /* Return the result */
             return yield this.get(url)
-                .then(response => response)
+                .then((response) => response)
                 .catch((err) => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
         });
     }

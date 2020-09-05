@@ -36,7 +36,7 @@ const TRANSLITERATION_TABLE = {
     W: 6,
     X: 7,
     Y: 8,
-    Z: 9
+    Z: 9,
 };
 /*
  * Later, during the creation of the 'checksum' variable, these weights will be
@@ -61,7 +61,7 @@ const WEIGHTS_ARRAY = [
     5,
     4,
     3,
-    2
+    2,
 ];
 /**
  * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the

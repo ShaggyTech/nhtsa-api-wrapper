@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-8710883e.js');
+var Fetch = require('./Fetch-2f6f3d33.js');
 require('cross-fetch');
 var DecodeVin = require('./DecodeVin.js');
 var DecodeVinExtended = require('./DecodeVinExtended.js');

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-8710883e.js');
+var Fetch = require('./Fetch-2f6f3d33.js');
 require('cross-fetch');
 
 /**
@@ -67,13 +67,13 @@ class GetMakesForManufacturerAndYear extends Fetch.Fetch {
                     `<${typeofYear}> ${params.year}`));
             }
             /* Build the query string to be appended to the URL*/
-            const queryString = yield this.buildQueryString(params).catch(err => Promise.reject(new Error(`${action}, Error building query string: ${err}`)));
+            const queryString = yield this.buildQueryString(params).catch((err) => Promise.reject(new Error(`${action}, Error building query string: ${err}`)));
             /* Build the final request URL*/
             const url = `${this.baseUrl}/${action}/${manufacturer}${queryString}`;
             /* Return the result */
             return yield this.get(url)
-                .then(response => response)
-                .catch(err => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
+                .then((response) => response)
+                .catch((err) => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
         });
     }
 }

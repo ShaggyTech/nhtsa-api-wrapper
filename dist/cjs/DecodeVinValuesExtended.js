@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-8710883e.js');
+var Fetch = require('./Fetch-2f6f3d33.js');
 require('cross-fetch');
 
 /**
@@ -48,7 +48,7 @@ class DecodeVinValuesExtended extends Fetch.Fetch {
      * @param {object} [params={}] - Query Search Parameters to append to the URL.
      * @param {string|number} [params.modelYear] - Optional Model Year search parameter.
      * @reje
-     * @return {(Promise<DecodeVinValuesExtendedResponse>)} Api Response object.
+     * @returns {(Promise<DecodeVinValuesExtendedResponse>)} Api Response object.
      */
     DecodeVinValuesExtended(vin, params) {
         return Fetch.__awaiter(this, void 0, void 0, function* () {
@@ -70,13 +70,13 @@ class DecodeVinValuesExtended extends Fetch.Fetch {
                     `<${typeofModelYear}> ${params.modelYear}`));
             }
             /* Build the query string to be appended to the URL*/
-            const queryString = yield this.buildQueryString(params).catch(err => Promise.reject(new Error(`${action}, Error building query string: ${err}`)));
+            const queryString = yield this.buildQueryString(params).catch((err) => Promise.reject(new Error(`${action}, Error building query string: ${err}`)));
             /* Build the final request URL*/
             const url = `${this.baseUrl}/${action}/${vin}${queryString}`;
             /* Return the result */
             return yield this.get(url)
-                .then(response => response)
-                .catch(err => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
+                .then((response) => response)
+                .catch((err) => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
         });
     }
 }

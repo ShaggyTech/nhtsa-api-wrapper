@@ -40,7 +40,7 @@ export declare class DecodeVinValuesExtended extends Fetch {
      * @param {object} [params={}] - Query Search Parameters to append to the URL.
      * @param {string|number} [params.modelYear] - Optional Model Year search parameter.
      * @reje
-     * @return {(Promise<DecodeVinValuesExtendedResponse>)} Api Response object.
+     * @returns {(Promise<DecodeVinValuesExtendedResponse>)} Api Response object.
      */
     DecodeVinValuesExtended(vin: string, params?: {
         modelYear?: string | number;

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-8710883e.js');
+var Fetch = require('./Fetch-2f6f3d33.js');
 require('cross-fetch');
 
 /**
@@ -59,10 +59,10 @@ class DecodeVINValuesBatch extends Fetch.Fetch {
             return yield this.get(url, {
                 method: 'POST',
                 headers: { 'content-type': 'application/x-www-form-urlencoded' },
-                body
+                body,
             })
-                .then(response => response)
-                .catch(err => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
+                .then((response) => response)
+                .catch((err) => Promise.reject(new Error(`${action}, Fetch.get() error: ${err}`)));
         });
     }
 }

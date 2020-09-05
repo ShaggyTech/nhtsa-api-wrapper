@@ -1,8 +1,10 @@
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+var fetch = require('cross-fetch');
 
-var fetch = _interopDefault(require('cross-fetch'));
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var fetch__default = /*#__PURE__*/_interopDefaultLegacy(fetch);
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -182,7 +184,7 @@ const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 const DEFAULT_CONFIG = {
     apiResponseFormat: 'json',
     baseUrl: BASE_URL,
-    options: {}
+    options: {},
 };
 /*****************
  * Fetch Class
@@ -232,7 +234,7 @@ class Fetch {
              */
             if (!params || getTypeof(params) !== 'object') {
                 params = {
-                    format: this.apiResponseFormat
+                    format: this.apiResponseFormat,
                 };
             }
             else {
@@ -265,15 +267,15 @@ class Fetch {
             /* Combine user provided 'options' and class property 'this.options', user options overwrite class options */
             const combinedOptions = Object.assign(Object.assign({}, this.options), options);
             /* Use the cross-fetch package to perform an HTTP request */
-            const response = yield fetch(url, combinedOptions)
-                .then(result => {
+            const response = yield fetch__default['default'](url, combinedOptions)
+                .then((result) => {
                 if (!(result === null || result === void 0 ? void 0 : result.status) || result.status >= 400) {
                     throw new Error(`Bad response from server, code: ${result === null || result === void 0 ? void 0 : result.status}, text: ${result === null || result === void 0 ? void 0 : result.statusText}, headers: ${result === null || result === void 0 ? void 0 : result.headers}`);
                 }
                 else
                     return result;
             })
-                .catch(err => Promise.reject(new Error(`Fetch.get() http error: ${err}`)));
+                .catch((err) => Promise.reject(new Error(`Fetch.get() http error: ${err}`)));
             /* Convert the NHTSA API data to JSON */
             const NhtsaResponse = yield response
                 .json()
@@ -285,7 +287,7 @@ class Fetch {
                     redirected: response.redirected,
                     status: response.status,
                     statusText: response.statusText,
-                    url: response.url
+                    url: response.url,
                 } });
             /* Return the completed ApiResponse */
             return Promise.resolve(finalResult);
@@ -296,4 +298,4 @@ class Fetch {
 exports.Fetch = Fetch;
 exports.__awaiter = __awaiter;
 exports.getTypeof = getTypeof;
-//# sourceMappingURL=Fetch-8710883e.js.map
+//# sourceMappingURL=Fetch-2f6f3d33.js.map
