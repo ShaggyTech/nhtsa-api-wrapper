@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.5...v1.1.6) (2020-09-21)
+
+
+### Bug Fixes
+
+* package.json & yarn.lock to reduce vulnerabilities ([83b252e](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/83b252e4b5c3f2c3b31621e14a8629585c6ec0b1))
+
 ## [1.1.5](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.4...v1.1.5) (2020-09-05)
 
 
