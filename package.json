@@ -144,7 +144,7 @@
     "jsdoc-to-markdown": "6.0.1",
     "lodash.camelcase": "4.3.0",
     "nodemon": "2.0.6",
-    "prettier": "2.1.2",
+    "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "rollup": "2.34.1",
     "rollup-plugin-babel": "4.4.0",
