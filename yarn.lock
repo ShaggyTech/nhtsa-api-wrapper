@@ -1726,10 +1726,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@rollup/plugin-commonjs@15.1.0":
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-15.1.0.tgz#1e7d076c4f1b2abf7e65248570e555defc37c238"
-  integrity sha512-xCQqz4z/o0h2syQ7d9LskIMvBSH4PX5PjYdpSSvgS+pQik3WahkQVNWg3D8XJeYjZoVWnIUQYDghuEMRGrmQYQ==
+"@rollup/plugin-commonjs@17.0.0":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-17.0.0.tgz#2ae2228354cf0fbba6cf9f06f30b2c66a974324c"
+  integrity sha512-/omBIJG1nHQc+bgkYDuLpb/V08QyutP9amOrJRUSlYJZP+b/68gM//D8sxJe3Yry2QnYIr3QjR3x4AlxJEN3GA==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     commondir "^1.0.1"
@@ -9106,10 +9106,10 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-semantic-release@17.2.3:
-  version "17.2.3"
-  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.2.3.tgz#11f10b851d4e75b1015b17515c433049b3df994c"
-  integrity sha512-MY1MlowGQrkOR7+leOD8ICkVOC6i1szbwDODdbJ0UdshtMx8Ms0bhpRQmEEliqYKEb5PLv/dqs6zKKuHT7UxTg==
+semantic-release@17.1.2:
+  version "17.1.2"
+  resolved "https://registry.yarnpkg.com/semantic-release/-/semantic-release-17.1.2.tgz#7d77555185722012b34e3ca74e4d13f813daf3cd"
+  integrity sha512-szYBXm10QjQO5Tb1S2PSkvOBW3MajWJat5EWtx+MzaVT/jquuxf9o+Zn8FC1j157xvJ5p9r1d/MZGslgs7oQQg==
   dependencies:
     "@semantic-release/commit-analyzer" "^8.0.0"
     "@semantic-release/error" "^2.2.0"
