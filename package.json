@@ -136,7 +136,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.2.0",
     "form-data": "3.0.0",
-    "husky": "4.3.0",
+    "husky": "4.3.4",
     "jest": "26.6.3",
     "jsdoc": "3.6.6",
     "jsdoc-babel": "0.5.0",
