@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> GetVehicleVariableList</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">@shaggytools/nhtsa-api-wrapper</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>API</h2><h3>Modules</h3><ul><li><a href="module-api_Client.html">api/Client</a></li><li><a href="module-api_Fetch.html">api/Fetch</a></li><li><a href="module-api_NHTSA.html">api/NHTSA</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_Fetch.Fetch.html">Fetch</a></li><li><a href="module-api_NHTSA-NHTSA.html">NHTSA</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-api_actions_DecodeVin.html">api/actions/DecodeVin</a></li><li><a href="module-api_actions_DecodeVinExtended.html">api/actions/DecodeVinExtended</a></li><li><a href="module-api_actions_DecodeVinValues.html">api/actions/DecodeVinValues</a></li><li><a href="module-api_actions_DecodeVINValuesBatch.html">api/actions/DecodeVINValuesBatch</a></li><li><a href="module-api_actions_DecodeVinValuesExtended.html">api/actions/DecodeVinValuesExtended</a></li><li><a href="module-api_actions_DecodeWMI.html">api/actions/DecodeWMI</a></li><li><a href="module-api_actions_GetAllMakes.html">api/actions/GetAllMakes</a></li><li><a href="module-api_actions_GetAllManufacturers.html">api/actions/GetAllManufacturers</a></li><li><a href="module-api_actions_GetCanadianVehicleSpecifications.html">api/actions/GetCanadianVehicleSpecifications</a></li><li><a href="module-api_actions_GetEquipmentPlantCodes.html">api/actions/GetEquipmentPlantCodes</a></li><li><a href="module-api_actions_GetMakeForManufacturer.html">api/actions/GetMakeForManufacturer</a></li><li><a href="module-api_actions_GetMakesForManufacturerAndYear.html">api/actions/GetMakesForManufacturerAndYear</a></li><li><a href="module-api_actions_GetMakesForVehicleType.html">api/actions/GetMakesForVehicleType</a></li><li><a href="module-api_actions_GetManufacturerDetails.html">api/actions/GetManufacturerDetails</a></li><li><a href="module-api_actions_GetModelsForMake.html">api/actions/GetModelsForMake</a></li><li><a href="module-api_actions_GetModelsForMakeId.html">api/actions/GetModelsForMakeId</a></li><li><a href="module-api_actions_GetModelsForMakeIdYear.html">api/actions/GetModelsForMakeIdYear</a></li><li><a href="module-api_actions_GetModelsForMakeYear.html">api/actions/GetModelsForMakeYear</a></li><li><a href="module-api_actions_GetParts.html">api/actions/GetParts</a></li><li><a href="module-api_actions_GetVehicleTypesForMake.html">api/actions/GetVehicleTypesForMake</a></li><li><a href="module-api_actions_GetVehicleTypesForMakeId.html">api/actions/GetVehicleTypesForMakeId</a></li><li><a href="module-api_actions_GetVehicleVariableList.html">api/actions/GetVehicleVariableList</a></li><li><a href="module-api_actions_GetVehicleVariableValuesList.html">api/actions/GetVehicleVariableValuesList</a></li><li><a href="module-api_actions_GetWMIsForManufacturer.html">api/actions/GetWMIsForManufacturer</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_actions_DecodeVin.DecodeVin.html">DecodeVin</a></li><li><a href="module-api_actions_DecodeVinExtended.DecodeVinExtended.html">DecodeVinExtended</a></li><li><a href="module-api_actions_DecodeVinValues.DecodeVinValues.html">DecodeVinValues</a></li><li><a href="module-api_actions_DecodeVINValuesBatch.DecodeVINValuesBatch.html">DecodeVINValuesBatch</a></li><li><a href="module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html">DecodeVinValuesExtended</a></li><li><a href="module-api_actions_DecodeWMI.DecodeWMI.html">DecodeWMI</a></li><li><a href="module-api_actions_GetAllMakes.GetAllMakes.html">GetAllMakes</a></li><li><a href="module-api_actions_GetAllManufacturers.GetAllManufacturers.html">GetAllManufacturers</a></li><li><a href="module-api_actions_GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.html">GetCanadianVehicleSpecifications</a></li><li><a href="module-api_actions_GetEquipmentPlantCodes.GetEquipmentPlantCodes.html">GetEquipmentPlantCodes</a></li><li><a href="module-api_actions_GetMakeForManufacturer.GetMakeForManufacturer.html">GetMakeForManufacturer</a></li><li><a href="module-api_actions_GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.html">GetMakesForManufacturerAndYear</a></li><li><a href="module-api_actions_GetMakesForVehicleType.GetMakesForVehicleType.html">GetMakesForVehicleType</a></li><li><a href="module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html">GetManufacturerDetails</a></li><li><a href="module-api_actions_GetModelsForMake.GetModelsForMake.html">GetModelsForMake</a></li><li><a href="module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html">GetModelsForMakeId</a></li><li><a href="module-api_actions_GetModelsForMakeIdYear.GetModelsForMakeIdYear.html">GetModelsForMakeIdYear</a></li><li><a href="module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html">GetModelsForMakeYear</a></li><li><a href="module-api_actions_GetParts.GetParts.html">GetParts</a></li><li><a href="module-api_actions_GetVehicleTypesForMake.GetVehicleTypesForMake.html">GetVehicleTypesForMake</a></li><li><a href="module-api_actions_GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.html">GetVehicleTypesForMakeId</a></li><li><a href="module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html">GetVehicleVariableList</a></li><li><a href="module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html">GetVehicleVariableValuesList</a></li><li><a href="module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html">GetWMIsForManufacturer</a></li></ul></div><div class="category"><h2>Utils</h2><h3>Modules</h3><ul><li><a href="module-utils_getTypeof.html">utils/getTypeof</a></li><li><a href="module-utils_isValidVin.html">utils/isValidVin</a></li><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Class</p>
+                    <h1>GetVehicleVariableList</h1>
+                </header>
+                
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-api_actions_GetVehicleVariableList.html">api/actions/GetVehicleVariableList</a>.</span>GetVehicleVariableList<span class="signature">(userConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Implemented by <a href="module-api_NHTSA-NHTSA.html">NHTSA</a>.</p>
+<p>Extends <a href="module-api_Fetch.Fetch.html">api/Fetch.Fetch</a>.</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <div class="members">
+                    <div class="member">
+                        <div class=name>
+                            <span class="tag">Constructor</span>
+                        </div>
+                        
+
+
+    
+    <h4 class="name" id="GetVehicleVariableList">
+        <a class="href-link" href="#GetVehicleVariableList">#</a>
+        
+        <span class="code-name">
+            
+                new GetVehicleVariableList<span class="signature">(userConfig<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>userConfig</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="module-api_Fetch.html#FetchConfig">FetchConfig</a></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last"><p>User configuration options to construct the class with.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_actions_GetVehicleVariableList.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_actions_GetVehicleVariableList.ts.html">api/actions/GetVehicleVariableList.ts</a>, <a href="api_actions_GetVehicleVariableList.ts.html#line25">line 25</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="GetVehicleVariableList">
+        <a class="href-link" href="#GetVehicleVariableList">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                GetVehicleVariableList<span class="signature">()</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="module-api_actions_GetVehicleVariableList.html#GetVehicleVariableListResponse">GetVehicleVariableListResponse</a>>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>This provides a list of all the Vehicle related variables that are in the vPIC dataset.</p>
+<ul>
+<li>Information on the name, description and the type of the variable is provided.</li>
+</ul>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_actions_GetVehicleVariableList.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_actions_GetVehicleVariableList.ts.html">api/actions/GetVehicleVariableList.ts</a>, <a href="api_actions_GetVehicleVariableList.ts.html#line36">line 36</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Api Response object.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;<a href="module-api_actions_GetVehicleVariableList.html#GetVehicleVariableListResponse">GetVehicleVariableListResponse</a>></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

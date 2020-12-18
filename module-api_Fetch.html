@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> api/Fetch</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">@shaggytools/nhtsa-api-wrapper</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>API</h2><h3>Modules</h3><ul><li><a href="module-api_Client.html">api/Client</a></li><li><a href="module-api_Fetch.html">api/Fetch</a></li><li><a href="module-api_NHTSA.html">api/NHTSA</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_Fetch.Fetch.html">Fetch</a></li><li><a href="module-api_NHTSA-NHTSA.html">NHTSA</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-api_actions_DecodeVin.html">api/actions/DecodeVin</a></li><li><a href="module-api_actions_DecodeVinExtended.html">api/actions/DecodeVinExtended</a></li><li><a href="module-api_actions_DecodeVinValues.html">api/actions/DecodeVinValues</a></li><li><a href="module-api_actions_DecodeVINValuesBatch.html">api/actions/DecodeVINValuesBatch</a></li><li><a href="module-api_actions_DecodeVinValuesExtended.html">api/actions/DecodeVinValuesExtended</a></li><li><a href="module-api_actions_DecodeWMI.html">api/actions/DecodeWMI</a></li><li><a href="module-api_actions_GetAllMakes.html">api/actions/GetAllMakes</a></li><li><a href="module-api_actions_GetAllManufacturers.html">api/actions/GetAllManufacturers</a></li><li><a href="module-api_actions_GetCanadianVehicleSpecifications.html">api/actions/GetCanadianVehicleSpecifications</a></li><li><a href="module-api_actions_GetEquipmentPlantCodes.html">api/actions/GetEquipmentPlantCodes</a></li><li><a href="module-api_actions_GetMakeForManufacturer.html">api/actions/GetMakeForManufacturer</a></li><li><a href="module-api_actions_GetMakesForManufacturerAndYear.html">api/actions/GetMakesForManufacturerAndYear</a></li><li><a href="module-api_actions_GetMakesForVehicleType.html">api/actions/GetMakesForVehicleType</a></li><li><a href="module-api_actions_GetManufacturerDetails.html">api/actions/GetManufacturerDetails</a></li><li><a href="module-api_actions_GetModelsForMake.html">api/actions/GetModelsForMake</a></li><li><a href="module-api_actions_GetModelsForMakeId.html">api/actions/GetModelsForMakeId</a></li><li><a href="module-api_actions_GetModelsForMakeIdYear.html">api/actions/GetModelsForMakeIdYear</a></li><li><a href="module-api_actions_GetModelsForMakeYear.html">api/actions/GetModelsForMakeYear</a></li><li><a href="module-api_actions_GetParts.html">api/actions/GetParts</a></li><li><a href="module-api_actions_GetVehicleTypesForMake.html">api/actions/GetVehicleTypesForMake</a></li><li><a href="module-api_actions_GetVehicleTypesForMakeId.html">api/actions/GetVehicleTypesForMakeId</a></li><li><a href="module-api_actions_GetVehicleVariableList.html">api/actions/GetVehicleVariableList</a></li><li><a href="module-api_actions_GetVehicleVariableValuesList.html">api/actions/GetVehicleVariableValuesList</a></li><li><a href="module-api_actions_GetWMIsForManufacturer.html">api/actions/GetWMIsForManufacturer</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_actions_DecodeVin.DecodeVin.html">DecodeVin</a></li><li><a href="module-api_actions_DecodeVinExtended.DecodeVinExtended.html">DecodeVinExtended</a></li><li><a href="module-api_actions_DecodeVinValues.DecodeVinValues.html">DecodeVinValues</a></li><li><a href="module-api_actions_DecodeVINValuesBatch.DecodeVINValuesBatch.html">DecodeVINValuesBatch</a></li><li><a href="module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html">DecodeVinValuesExtended</a></li><li><a href="module-api_actions_DecodeWMI.DecodeWMI.html">DecodeWMI</a></li><li><a href="module-api_actions_GetAllMakes.GetAllMakes.html">GetAllMakes</a></li><li><a href="module-api_actions_GetAllManufacturers.GetAllManufacturers.html">GetAllManufacturers</a></li><li><a href="module-api_actions_GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.html">GetCanadianVehicleSpecifications</a></li><li><a href="module-api_actions_GetEquipmentPlantCodes.GetEquipmentPlantCodes.html">GetEquipmentPlantCodes</a></li><li><a href="module-api_actions_GetMakeForManufacturer.GetMakeForManufacturer.html">GetMakeForManufacturer</a></li><li><a href="module-api_actions_GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.html">GetMakesForManufacturerAndYear</a></li><li><a href="module-api_actions_GetMakesForVehicleType.GetMakesForVehicleType.html">GetMakesForVehicleType</a></li><li><a href="module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html">GetManufacturerDetails</a></li><li><a href="module-api_actions_GetModelsForMake.GetModelsForMake.html">GetModelsForMake</a></li><li><a href="module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html">GetModelsForMakeId</a></li><li><a href="module-api_actions_GetModelsForMakeIdYear.GetModelsForMakeIdYear.html">GetModelsForMakeIdYear</a></li><li><a href="module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html">GetModelsForMakeYear</a></li><li><a href="module-api_actions_GetParts.GetParts.html">GetParts</a></li><li><a href="module-api_actions_GetVehicleTypesForMake.GetVehicleTypesForMake.html">GetVehicleTypesForMake</a></li><li><a href="module-api_actions_GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.html">GetVehicleTypesForMakeId</a></li><li><a href="module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html">GetVehicleVariableList</a></li><li><a href="module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html">GetVehicleVariableValuesList</a></li><li><a href="module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html">GetWMIsForManufacturer</a></li></ul></div><div class="category"><h2>Utils</h2><h3>Modules</h3><ul><li><a href="module-utils_getTypeof.html">utils/getTypeof</a></li><li><a href="module-utils_isValidVin.html">utils/isValidVin</a></li><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Module</p>
+                    <h1>api/Fetch</h1>
+                </header>
+                
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>API Fetch Logic.</p>
+<blockquote>
+<p><strong>Module Exports</strong>:</p>
+<ul>
+<li>Class: <a href="module-api_Fetch.Fetch.html">Fetch</a></li>
+<li>Constant: <a href="#~BASE_URL">BASE_URL</a></li>
+<li>Constant: <a href="#~DEFAULT_CONFIG">DEFAULT_CONFIG</a></li>
+</ul>
+<p><strong>Types</strong></p>
+<ul>
+<li>Type: <a href="#ApiResponse">ApiResponse</a></li>
+<li>Type: <a href="#FetchConfig">FetchConfig</a></li>
+<li>Type: <a href="#FetchRequestOptions">FetchRequestOptions</a></li>
+<li>Type: <a href="https://github.github.io/fetch/#request-body">FetchRequestBodyTypes</a></li>
+<li>Type: <a href="#FetchResponse">FetchResponse</a></li>
+<li>Type: <a href="#NhtsaResponse">NhtsaResponse</a></li>
+</ul>
+</blockquote></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line2">line 2</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-api_Fetch.Fetch.html">Fetch</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Members</h1>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id="~BASE_URL">
+    <a class="href-link" href="#~BASE_URL">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        BASE_URL
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Default Fetch base URL string</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>'https://vpic.nhtsa.dot.gov/api/vehicles'</li>
+        </ul></dd>
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line27">line 27</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">module:api/Fetch.FetchConfig</span>
+
+
+    </span>
+
+<h4 class="name" id="~DEFAULT_CONFIG">
+    <a class="href-link" href="#~DEFAULT_CONFIG">#</a>
+    
+        
+            <span class='tag'>inner</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        DEFAULT_CONFIG
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Default Fetch configuration options</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>apiResponseFormat</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            json
+        
+        </td>
+    
+
+    <td class="description last"></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>baseUrl</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            BASE_URL
+        
+        </td>
+    
+
+    <td class="description last"><p>Default: <a href="module-api_Fetch.html#~BASE_URL">BASE_URL</a></p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>options</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type"><a href="module-api_Fetch.html#FetchRequestOptions">FetchRequestOptions</a></span>
+
+
+    
+    </td>
+
+    
+
+    
+        <td class="default">
+        
+            {method:"GET"}
+        
+        </td>
+    
+
+    <td class="description last"></td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line32">line 32</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Type Definitions</h1>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id="ApiResponse">
+    <a class="href-link" href="#ApiResponse">#</a>
+    
+    <span class="code-name">
+        ApiResponse
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Complete response returned by <a href="module-api_Fetch.Fetch.html#get"><code>module:api/Fetch.Fetch#get</code></a>.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Count</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The number of items returned in the Results object.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Message</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>A message describing the Results.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>SearchCriteria</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Search terms (VIN, WMI, etc) used in the request URL.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Results</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">Array.&lt;any></span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>An array of Results returned by NHSTA, specific to each individual API Action.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>FetchResponse</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type"><a href="module-api_Fetch.html#FetchResponse">FetchResponse</a></span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p><a href="https://github.github.io/fetch/#Response">Fetch API Response</a> Properties.</p></td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><code>module:api/Fetch.NhtsaResponse</code></li>
+        
+            <li><code>module:api/Fetch.FetchResponse</code></li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line210">line 210</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id="FetchConfig">
+    <a class="href-link" href="#FetchConfig">#</a>
+    
+    <span class="code-name">
+        FetchConfig
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Used when instantiating a Fetch class or related subclass.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>apiResponseFormat</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p>Requested response format from the NHSTA API (hardcoded to 'json' for now).</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>baseUrl</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p>Base of the URL to build fetch URLs from.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>options</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type"><a href="module-api_Fetch.html#FetchRequestOptions">FetchRequestOptions</a></span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p>Options object provided as the 2nd argument to <a href="module-api_Fetch.Fetch.html#get"><code>module:api/Fetch.Fetch#get</code></a>.</p></td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line176">line 176</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id="FetchRequestOptions">
+    <a class="href-link" href="#FetchRequestOptions">#</a>
+    
+    <span class="code-name">
+        FetchRequestOptions
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Options object provided as the 2nd argument to <a href="module-api_Fetch.Fetch.html#get"><code>module:api/Fetch.Fetch#get</code></a>.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>method</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p>HTTP request method - Default: &quot;GET&quot;.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>body</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+|
+
+<span class="param-type">FetchRequestBodyTypes</span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p>HTTP request body - <a href="https://github.github.io/fetch/#request-body">FetchRequestBodyTypes</a>.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>headers</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">Record.&lt;string, string></span>
+|
+
+<span class="param-type">Headers</span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p><a href="https://github.github.io/fetch/#Headers">Object, Headers</a> - Default: {}.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>credentials</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">'omit'</span>
+|
+
+<span class="param-type">'same-origin'</span>
+|
+
+<span class="param-type">'include'</span>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last"><p>Default: &quot;omit&quot; - Authentication credentials mode.,</p>
+<ul>
+<li>&quot;omit&quot; - don't include authentication credentials (e.g. Cookies) in the request.,</li>
+<li>&quot;same-origin&quot; - include credentials in requests to the same site,</li>
+<li>&quot;include&quot; - include credentials in requests to all sites.</li>
+</ul></td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line162">line 162</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id="FetchResponse">
+    <a class="href-link" href="#FetchResponse">#</a>
+    
+    <span class="code-name">
+        FetchResponse
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p><a href="https://github.github.io/fetch/#Response">Fetch API Response</a> properties.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>headers</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">Headers</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers">Headers</a> object associated with the response.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>ok</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">boolean</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>A boolean indicating whether the response was successful (status in the range 200–299) or not.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>redirected</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">boolean</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Indicates whether or not the response is the result of a redirect (that is, its URL list has more than one entry).</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>status</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The status code of the response. (This will be 200 for a success).</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>statusText</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The status message corresponding to the status code. (e.g., OK for 200).</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>url</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The URL of the response.</p></td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line186">line 186</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">object</span>
+
+
+    </span>
+
+<h4 class="name" id="NhtsaResponse">
+    <a class="href-link" href="#NhtsaResponse">#</a>
+    
+    <span class="code-name">
+        NhtsaResponse
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Response data returned from the NHSTA API.</p>
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Count</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>The number of items returned in the Results object.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Message</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>A message describing the Results.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>SearchCriteria</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">string</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>Search terms (VIN, WMI, etc) used in the request URL.</p></td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Results</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">Array.&lt;any></span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"><p>An array of Results returned by NHSTA, specific to each individual API Action.</p></td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="api_Fetch.ts.html" class="button">View Source</a>
+            <span>
+                <a href="api_Fetch.ts.html">api/Fetch.ts</a>, <a href="api_Fetch.ts.html#line199">line 199</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

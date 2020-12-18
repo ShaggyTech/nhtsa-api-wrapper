@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> utils/isValidVin.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">@shaggytools/nhtsa-api-wrapper</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>API</h2><h3>Modules</h3><ul><li><a href="module-api_Client.html">api/Client</a></li><li><a href="module-api_Fetch.html">api/Fetch</a></li><li><a href="module-api_NHTSA.html">api/NHTSA</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_Fetch.Fetch.html">Fetch</a></li><li><a href="module-api_NHTSA-NHTSA.html">NHTSA</a></li></ul></div><div class="category"><h2>Actions</h2><h3>Modules</h3><ul><li><a href="module-api_actions_DecodeVin.html">api/actions/DecodeVin</a></li><li><a href="module-api_actions_DecodeVinExtended.html">api/actions/DecodeVinExtended</a></li><li><a href="module-api_actions_DecodeVinValues.html">api/actions/DecodeVinValues</a></li><li><a href="module-api_actions_DecodeVINValuesBatch.html">api/actions/DecodeVINValuesBatch</a></li><li><a href="module-api_actions_DecodeVinValuesExtended.html">api/actions/DecodeVinValuesExtended</a></li><li><a href="module-api_actions_DecodeWMI.html">api/actions/DecodeWMI</a></li><li><a href="module-api_actions_GetAllMakes.html">api/actions/GetAllMakes</a></li><li><a href="module-api_actions_GetAllManufacturers.html">api/actions/GetAllManufacturers</a></li><li><a href="module-api_actions_GetCanadianVehicleSpecifications.html">api/actions/GetCanadianVehicleSpecifications</a></li><li><a href="module-api_actions_GetEquipmentPlantCodes.html">api/actions/GetEquipmentPlantCodes</a></li><li><a href="module-api_actions_GetMakeForManufacturer.html">api/actions/GetMakeForManufacturer</a></li><li><a href="module-api_actions_GetMakesForManufacturerAndYear.html">api/actions/GetMakesForManufacturerAndYear</a></li><li><a href="module-api_actions_GetMakesForVehicleType.html">api/actions/GetMakesForVehicleType</a></li><li><a href="module-api_actions_GetManufacturerDetails.html">api/actions/GetManufacturerDetails</a></li><li><a href="module-api_actions_GetModelsForMake.html">api/actions/GetModelsForMake</a></li><li><a href="module-api_actions_GetModelsForMakeId.html">api/actions/GetModelsForMakeId</a></li><li><a href="module-api_actions_GetModelsForMakeIdYear.html">api/actions/GetModelsForMakeIdYear</a></li><li><a href="module-api_actions_GetModelsForMakeYear.html">api/actions/GetModelsForMakeYear</a></li><li><a href="module-api_actions_GetParts.html">api/actions/GetParts</a></li><li><a href="module-api_actions_GetVehicleTypesForMake.html">api/actions/GetVehicleTypesForMake</a></li><li><a href="module-api_actions_GetVehicleTypesForMakeId.html">api/actions/GetVehicleTypesForMakeId</a></li><li><a href="module-api_actions_GetVehicleVariableList.html">api/actions/GetVehicleVariableList</a></li><li><a href="module-api_actions_GetVehicleVariableValuesList.html">api/actions/GetVehicleVariableValuesList</a></li><li><a href="module-api_actions_GetWMIsForManufacturer.html">api/actions/GetWMIsForManufacturer</a></li></ul><h3>Classes</h3><ul><li><a href="module-api_actions_DecodeVin.DecodeVin.html">DecodeVin</a></li><li><a href="module-api_actions_DecodeVinExtended.DecodeVinExtended.html">DecodeVinExtended</a></li><li><a href="module-api_actions_DecodeVinValues.DecodeVinValues.html">DecodeVinValues</a></li><li><a href="module-api_actions_DecodeVINValuesBatch.DecodeVINValuesBatch.html">DecodeVINValuesBatch</a></li><li><a href="module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html">DecodeVinValuesExtended</a></li><li><a href="module-api_actions_DecodeWMI.DecodeWMI.html">DecodeWMI</a></li><li><a href="module-api_actions_GetAllMakes.GetAllMakes.html">GetAllMakes</a></li><li><a href="module-api_actions_GetAllManufacturers.GetAllManufacturers.html">GetAllManufacturers</a></li><li><a href="module-api_actions_GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.html">GetCanadianVehicleSpecifications</a></li><li><a href="module-api_actions_GetEquipmentPlantCodes.GetEquipmentPlantCodes.html">GetEquipmentPlantCodes</a></li><li><a href="module-api_actions_GetMakeForManufacturer.GetMakeForManufacturer.html">GetMakeForManufacturer</a></li><li><a href="module-api_actions_GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.html">GetMakesForManufacturerAndYear</a></li><li><a href="module-api_actions_GetMakesForVehicleType.GetMakesForVehicleType.html">GetMakesForVehicleType</a></li><li><a href="module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html">GetManufacturerDetails</a></li><li><a href="module-api_actions_GetModelsForMake.GetModelsForMake.html">GetModelsForMake</a></li><li><a href="module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html">GetModelsForMakeId</a></li><li><a href="module-api_actions_GetModelsForMakeIdYear.GetModelsForMakeIdYear.html">GetModelsForMakeIdYear</a></li><li><a href="module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html">GetModelsForMakeYear</a></li><li><a href="module-api_actions_GetParts.GetParts.html">GetParts</a></li><li><a href="module-api_actions_GetVehicleTypesForMake.GetVehicleTypesForMake.html">GetVehicleTypesForMake</a></li><li><a href="module-api_actions_GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.html">GetVehicleTypesForMakeId</a></li><li><a href="module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html">GetVehicleVariableList</a></li><li><a href="module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html">GetVehicleVariableValuesList</a></li><li><a href="module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html">GetWMIsForManufacturer</a></li></ul></div><div class="category"><h2>Utils</h2><h3>Modules</h3><ul><li><a href="module-utils_getTypeof.html">utils/getTypeof</a></li><li><a href="module-utils_isValidVin.html">utils/isValidVin</a></li><li><a href="module-utils_makeQueryString.html">utils/makeQueryString</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>utils/isValidVin.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module utils/isValidVin
+ * @category Utils
+ */
+
+/*
+ * There will need to be some way to translate vin digits that are alphabetic
+ * into their number value in the VIN algorithm transliteration table.
+ * Later, during the creation of the checksum variable, those digits will be
+ * multiplied against their corresponding weight (by index) in the WEIGHTS_ARRAY.
+ * This transliteration table is a key part of the VIN validation algorithm.
+ */
+const TRANSLITERATION_TABLE: Record&lt;string, number> = {
+  A: 1,
+  B: 2,
+  C: 3,
+  D: 4,
+  E: 5,
+  F: 6,
+  G: 7,
+  H: 8,
+  J: 1,
+  K: 2,
+  L: 3,
+  M: 4,
+  N: 5,
+  P: 7,
+  R: 9,
+  S: 2,
+  T: 3,
+  U: 4,
+  V: 5,
+  W: 6,
+  X: 7,
+  Y: 8,
+  Z: 9,
+};
+
+/*
+ * Later, during the creation of the 'checksum' variable, these weights will be
+ * multiplied by the value of their mirrored index vin digits.
+ * The array index of each weight corresponds to the same index of each
+ * digit in the 'vin'.
+ */
+const WEIGHTS_ARRAY: number[] = [
+  8,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2,
+  10,
+  0,
+  9,
+  8,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2,
+];
+
+/**
+ * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
+ * [VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
+ *
+ * @param {string} vin - Vehicle Identification Number.
+ * @returns {boolean} True for a valid VIN, false for an invalid VIN.
+ *
+ * @example &lt;caption>When loaded from the browser via html script tags&lt;/caption>
+ * // &lt;script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper">&lt;/script>
+ * const isValid = NHTSA.isValidVin('3VWD07AJ5EM388202')
+ * console.log(isValid) // true
+ *
+ * @example &lt;caption>When loaded as a module&lt;/caption>
+ * import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
+ * const isValid = isValidVin('3VWD07AJ5EM388202')
+ * console.log(isValid) // true
+ *
+ */
+export function isValidVin(vin: string): boolean {
+  /* A valid VIN must be a string and is always exactly 17 digits */
+  if (typeof vin !== 'string' || vin.length != 17) {
+    return false;
+  }
+
+  /* Normalize the vin to all uppercase letters */
+  vin = vin.toUpperCase();
+
+  /* split the vin digits into an array */
+  const vinArray: string[] = vin.split('');
+
+  /* checkDigit will be tested against the checkSum later */
+  const checkDigit: string = vinArray[8];
+
+  /*
+   * In a valid VIN, the checkDigit can either be:
+   * a number, 0-9 inclusive OR the character 'X'
+   */
+  if (isNaN(parseInt(checkDigit)) &amp;&amp; checkDigit !== 'X') {
+    return false;
+  }
+
+  /*
+   * The checkValue must be a digit and 'X' is the only valid alphabetic check value.
+   * As per the algorithm, a checkDigit of 'X' is equal to a checkValue of `10` and needs
+   * to be converted as such.
+   */
+  const checkValue: number = checkDigit === 'X' ? 10 : parseInt(checkDigit);
+
+  /*
+   * Maps the vinArray and converts any values (digits) that are alphabetic,
+   * into numbers, using the TRANSLITERATION_TABLE.
+   * Then these numbers are multiplied against their corresponding weight
+   * in the WEIGHTS_ARRAY, matched by index position.
+   * All 17 of those digitValues are then added together and divided by 11.
+   * The remainder, or % modulo, of that division will be the final 'checksum'.
+   */
+  const checksum: number =
+    vinArray
+      .map((digit: string, index: number) => {
+        let digitValue: number;
+        /* Use the transliteration table to convert any Not a Number(NaN) values to numbers */
+        isNaN(parseInt(digit))
+          ? (digitValue = TRANSLITERATION_TABLE[digit])
+          : (digitValue = parseInt(digit));
+
+        /* Convert the digitValue to a weighted number corresponding to it's position, by index, in the weightsArray. */
+        const weight: number = WEIGHTS_ARRAY[index];
+
+        /* The final step for each digit is to multiply the digit by it's corresponding weight */
+        return digitValue * weight;
+      })
+      /* Finally, get the sum of all digits and divide by 11, the remainder of that operation is the checksum */
+      .reduce((acc, currValue) => acc + currValue, 0) % 11;
+
+  /*
+   * The checksum is compared against the checkValue we set earlier (the 9th digit of the VIN)
+   * As per the algorithm, if they are equal to each other, then the VIN must be valid and
+   * we return true, otherwise the VIN is invalid and we return false.
+   */
+  return checksum === checkValue;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>
