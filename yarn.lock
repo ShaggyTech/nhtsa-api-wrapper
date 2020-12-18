@@ -6261,9 +6261,10 @@ jsdoc-parse@^5.0.0:
     sort-array "^4.1.1"
     test-value "^3.0.0"
 
-jsdoc-plugin-typescript@2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/jsdoc-plugin-typescript/-/jsdoc-plugin-typescript-2.0.5.tgz#b1981ffa08c7914841889cfbb1ebd25e23f08fad"
+jsdoc-plugin-typescript@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/jsdoc-plugin-typescript/-/jsdoc-plugin-typescript-2.0.6.tgz#75d279afeba171a61b997a250d5cfa9cd6a7560d"
+  integrity sha512-5L9XBEocaM5/33+heqOy9WF/zLHNfPvkxsqVom1lF1FSVlx0PdV/rr5XRz7WrHJgI2PLvycE7P18nVNFelf3nw==
   dependencies:
     string.prototype.matchall "^4.0.0"
 
