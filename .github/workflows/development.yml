@@ -1,0 +1,43 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Push/Pull Development - Lint, Test, and Build
+
+on:
+  push:
+    branches:
+      - '**'        # matches every branch
+      - '!master'   # excludes master
+  pull_request:
+    branches:
+      - '**'        # matches every branch
+      - '!master'   # excludes master
+
+jobs:
+  lint-test-build:
+
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+
+    - name: Lint Test Build
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+        yarn --frozen-lockfile
+        yarn lint
+        yarn test
+        yarn build
+        yarn build-docs
+
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v1
+      with:
+        flags: unittests, dev # optional
