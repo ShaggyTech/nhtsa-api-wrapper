@@ -35,6 +35,7 @@ jobs:
         yarn lint
         yarn test
         yarn build
+        yarn build-docs
 
     - name: Upload Coverage
       uses: codecov/codecov-action@v1
