@@ -3,6 +3,7 @@
 
 docs
 dist
+package-size-stats.html
 
 pack.tar.gz
 dev/
