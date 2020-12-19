@@ -48,7 +48,7 @@ const treeShakeBundles = {
   GetVehicleVariableList: 'src/api/actions/GetVehicleVariableList.ts',
   GetVehicleVariableValuesList:
     'src/api/actions/GetVehicleVariableValuesList.ts',
-  GetWMIsForManufacturer: 'src/api/actions/GetWMIsForManufacturer.ts'
+  GetWMIsForManufacturer: 'src/api/actions/GetWMIsForManufacturer.ts',
 };
 
 // Rollup plugins used with every build
@@ -59,10 +59,10 @@ const plugins = [
     tsconfig,
     typescript: require('typescript'),
     useTsconfigDeclarationDir: true,
-    exclude: ['node_modules']
+    exclude: ['node_modules'],
   }),
   sourceMaps(),
-  babel({ include: 'node_modules/cross-fetch', extensions: ['.js', '.ts'] })
+  babel({ include: 'node_modules/cross-fetch', extensions: ['.js', '.ts'] }),
 ];
 
 export default [
@@ -82,17 +82,17 @@ export default [
         format: 'umd',
         esModule: false,
         globals: {
-          'cross-fetch': 'fetch'
+          'cross-fetch': 'fetch',
         },
         sourcemap: true,
         plugins: [
           gzipPlugin(),
           terser({
-            output: {
-              comments: false
-            }
-          })
-        ]
+            format: {
+              comments: 'all',
+            },
+          }),
+        ],
       },
       /**
        * Immediately Invoked Function Expression (IIFE).
@@ -103,20 +103,20 @@ export default [
         format: 'iife',
         esModule: false,
         globals: {
-          'cross-fetch': 'fetch'
+          'cross-fetch': 'fetch',
         },
         sourcemap: true,
         plugins: [
           gzipPlugin(),
           terser({
-            output: {
-              comments: false
-            }
-          })
-        ]
-      }
+            format: {
+              comments: 'all',
+            },
+          }),
+        ],
+      },
     ],
-    plugins
+    plugins,
   },
   /**
    * CommonJs (CJS) Module.
@@ -129,11 +129,11 @@ export default [
       {
         dir: `${baseDir}cjs`,
         format: 'cjs',
-        sourcemap: true
+        sourcemap: true,
         // plugins: [terser()]
-      }
+      },
     ],
-    plugins: [resolve({ preferBuiltins: true, browser: false }), ...plugins]
+    plugins: [resolve({ preferBuiltins: true, browser: false }), ...plugins],
   },
   /**
    * ESM Module (tree-shaken)
@@ -146,20 +146,20 @@ export default [
         dir: `${baseDir}module`,
         format: 'esm',
         globals: {
-          'cross-fetch': 'fetch'
+          'cross-fetch': 'fetch',
         },
         sourcemap: true,
-        plugins: [terser()]
-      }
+        plugins: [terser()],
+      },
     ],
     plugins: [
       visualizer({
         filename: 'package-size-stats.html',
         title: '@shaggytools/nhtsa-api-wrapper - Module Package Visualizer',
-        sourcemap: true
+        sourcemap: true,
       }),
       resolve({ preferBuiltins: true, browser: true }),
-      ...plugins
-    ]
-  }
+      ...plugins,
+    ],
+  },
 ];
