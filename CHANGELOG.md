@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.9...v1.1.10) (2020-12-19)
+
+
+### Bug Fixes
+
+* **release:** removed dist folder from .gitignore, may be need for release ([c85a11c](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/c85a11cedd008d1eedcb3316ccd740a85b83c83d))
+
 ## [1.1.9](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.8...v1.1.9) (2020-12-19)
 
 
