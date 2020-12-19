@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.6...v1.1.7) (2020-12-18)
+
+
+### Bug Fixes
+
+* **ci/cd:** fix semantic-release job, add NPM_TOKEN to secrets ([737f059](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/737f059a33a5b1fa2de71b10cb0cc73c2edb89ae))
+
 ## [1.1.6](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.5...v1.1.6) (2020-09-21)
 
 
