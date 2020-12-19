@@ -89,7 +89,7 @@ export default [
           gzipPlugin(),
           terser({
             format: {
-              comments: 'all',
+              comments: false,
             },
           }),
         ],
@@ -110,7 +110,7 @@ export default [
           gzipPlugin(),
           terser({
             format: {
-              comments: 'all',
+              comments: false,
             },
           }),
         ],
