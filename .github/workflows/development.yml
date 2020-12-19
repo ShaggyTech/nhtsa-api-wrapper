@@ -30,7 +30,7 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-      run: yarn --frozen-lockfile
+    - run: yarn --frozen-lockfile
 
     - name: Lint and Test
     - run: |
