@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.7...v1.1.8) (2020-12-19)
+
+
+### Bug Fixes
+
+* **eslint/prettier:** code style refactor after recent dep updates ([6358d87](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/6358d87bd13b25f794f6d7c66b093ba9efd9ea84))
+
 ## [1.1.7](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.6...v1.1.7) (2020-12-18)
 
 
