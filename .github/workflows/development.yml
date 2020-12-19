@@ -33,7 +33,7 @@ jobs:
     - run: yarn --frozen-lockfile
 
     - name: Lint and Test
-    - run: |
+      run: |
         yarn lint
         yarn test
 
