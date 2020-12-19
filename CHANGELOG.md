@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.8...v1.1.9) (2020-12-19)
+
+
+### Bug Fixes
+
+* **rollup:** fix Browser/Universal bundle terser options, remove all comments ([29899a3](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/29899a32f20ada23ac69aa246117d08edf432609))
+
 ## [1.1.8](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.7...v1.1.8) (2020-12-19)
 
 
