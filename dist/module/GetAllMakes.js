@@ -1,2 +1,0 @@
-import{F as e,_ as r}from"./Fetch-d5a8e004.js";class t extends e{constructor(e){super(e)}GetAllMakes(){return r(this,void 0,void 0,(function*(){const e=yield this.buildQueryString().catch(e=>Promise.reject(new Error("GetAllMakes, Error building query string: "+e))),r=`${this.baseUrl}/GetAllMakes${e}`;return yield this.get(r).then(e=>e).catch(e=>Promise.reject(new Error("GetAllMakes, Fetch.get() error: "+e)))}))}}export{t as GetAllMakes};
-//# sourceMappingURL=GetAllMakes.js.map

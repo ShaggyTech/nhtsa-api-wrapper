@@ -39,9 +39,7 @@ export class GetVehicleVariableList extends Fetch {
    * @async
    * @returns {(Promise<GetVehicleVariableListResponse>)} Api Response object.
    */
-  public async GetVehicleVariableList(): Promise<
-    GetVehicleVariableListResponse
-  > {
+  public async GetVehicleVariableList(): Promise<GetVehicleVariableListResponse> {
     const action = 'GetVehicleVariableList';
 
     /* Build the 'default' query string to be appended to the URL*/

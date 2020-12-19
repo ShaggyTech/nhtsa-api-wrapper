@@ -10,6 +10,7 @@
  *
  * @returns {string} - Type of value, normalized to a lowercase string.
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function getTypeof(value: any): string {
   const toString: string = Object.prototype.toString
     .call(value)
