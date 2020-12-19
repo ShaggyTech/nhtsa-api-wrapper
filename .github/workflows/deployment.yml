@@ -21,16 +21,27 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
 
-    - name: Lint, Test, Build
+    - name: Setup Node and Install Depedencies
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
-        yarn --frozen-lockfile
+    - run: yarn --frozen-lockfile
+
+    - name: Lint and Test
+      run: |
         yarn lint
         yarn test
-        yarn build
-        yarn build-docs
+
+    - name: Build Package
+      run: yarn build
+
+    - name: Build Docs
+      run: yarn build-docs
+
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v1
+      with:
+        flags: unittests, master, push # optional
 
     - name: Deploy Docs to gh-pages branch
       uses: JamesIves/github-pages-deploy-action@3.7.1
