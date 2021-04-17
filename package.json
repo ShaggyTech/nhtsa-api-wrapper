@@ -120,7 +120,7 @@
     "@semantic-release/git": "9.0.0",
     "@types/jest": "26.0.22",
     "@types/node": "13.13.50",
-    "@types/node-fetch": "2.5.8",
+    "@types/node-fetch": "2.5.10",
     "@typescript-eslint/eslint-plugin": "4.17.0",
     "@typescript-eslint/parser": "4.17.0",
     "better-docs": "2.3.2",
