@@ -1,3 +1,12 @@
+## [1.1.12](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.11...v1.1.12) (2021-06-07)
+
+
+### Bug Fixes
+
+* upgrade cross-fetch from 3.0.6 to 3.1.0 ([3d9329b](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/3d9329b287de6350625f9a2d72901b4c50dc54c4))
+* upgrade cross-fetch from 3.0.6 to 3.1.2 ([f6596ba](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/f6596bafacc9e6f669aa81463cf3cda2299a7616))
+* upgrade cross-fetch from 3.0.6 to 3.1.2 ([021162a](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/021162acc3a63cd1bf79f4552846553ccaeafd15))
+
 ## [1.1.11](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.10...v1.1.11) (2020-12-19)
 
 
