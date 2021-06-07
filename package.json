@@ -113,7 +113,7 @@
     "@babel/preset-typescript": "7.13.0",
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
-    "@rollup/plugin-commonjs": "17.1.0",
+    "@rollup/plugin-commonjs": "19.0.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "11.2.1",
     "@semantic-release/changelog": "5.0.1",
