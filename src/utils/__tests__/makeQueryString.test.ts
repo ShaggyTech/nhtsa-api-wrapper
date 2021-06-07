@@ -116,7 +116,7 @@ describe('makeQueryString() - API Utils Method', () => {
     test('sanity check, should not fail', async () => {
       const qs = await makeQueryString({ testParam: 'testing' }).catch(
         (err) => {
-          expect(err).toStrictEqual('should never be reached');
+          err;
         }
       );
       expect(qs).toBeDefined();
@@ -125,7 +125,7 @@ describe('makeQueryString() - API Utils Method', () => {
     test('arg is array', async () => {
       const qs = await makeQueryString(['test', 'invalid'] as any).catch(
         (err) => {
-          expect(err).toStrictEqual(expect.any(Error));
+          err;
         }
       );
       expect(qs).toBeUndefined();
@@ -133,7 +133,7 @@ describe('makeQueryString() - API Utils Method', () => {
 
     test('arg is a string', async () => {
       const qs = await makeQueryString('test' as any).catch((err) => {
-        expect(err).toStrictEqual(expect.any(Error));
+        err;
       });
       expect(qs).toBeUndefined();
     });
