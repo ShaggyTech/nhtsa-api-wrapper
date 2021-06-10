@@ -8,7 +8,7 @@
     <script type="module">
       console.log(`Successfully imported via ESModule import`);
 
-      document.getElementById('DecodeVin').addEventListener('click', async () => {
+      document.getElementById('DecodeWMI').addEventListener('click', async () => {
         /* Lazy Loading */
         const { DecodeWMI } = await import('../../dev/dist/module/DecodeWMI.js')
           .catch(err => err);
@@ -19,13 +19,14 @@
           .catch(err => err)
 
         console.log(Results)
-        document.querySelector('#DecodeVinResults').innerHTML = `${JSON.stringify(Results)}` 
+        document.querySelector('#DecodeWMIResults').innerHTML = `${JSON.stringify(Results)}` 
       });
 
       document
         .getElementById('isValidVin')
         .addEventListener('click', async function() {
-          const result = await Client.isValidVin('WVWHV71K69W144983').catch(err => err);
+          const { isValidVin } = await import('../../dev/dist/module/isValidVin.js')
+          const result = isValidVin('WVWHV71K69W144983');
           console.log(`isValidVin result: ${result}`);
           document.getElementById('isValidVinResults').innerText = result;
         });
@@ -33,8 +34,8 @@
   </head>
   <body>
     <h2>
-      <btn id="DecodeVin">Click to console.log NHTSA.DecodeVin() results</btn>
-      <div id="DecodeVinResults"></div>
+      <btn id="DecodeWMI">Click to console.log NHTSA.DecodeWMI() results</btn>
+      <div id="DecodeWMIResults"></div>
     </h2>
     <h2>
       <btn id="isValidVin">Click to console.log isValidVin() results</btn>
