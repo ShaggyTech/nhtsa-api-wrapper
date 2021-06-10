@@ -19,16 +19,6 @@
       <div id="isValidVin">Click to console.log isValidVin() results</div>
       <div id="isValidVinResults"></div>
     </h2>
-    <h2>
-      <btn id="isValidType">Click to console.log isValidType() results</btn>
-      <div id="isValidTypeResults"></div>
-    </h2>
-    <h2>
-      <btn id="makeQueryString"
-        >Click to console.log makeQueryString() results</btn
-      >
-      <div id="makeQueryStringResults"></div>
-    </h2>
   </body>
   <script type="text/javascript">
     const client = NHTSA.Client;
@@ -39,35 +29,12 @@
     document.getElementById('clientResults').innerText = result;
     });
   
-    document.getElementById('isValidVin').addEventListener('click', async function() {
+    document.getElementById('isValidVin').addEventListener('click', function() {
       // package.libraryName
-      const result = await NHTSA.isValidVin('WVWHV71K69W144983').catch(err => err);
+      const result = client.isValidVin('WVWHV71K69W144983');
       console.log(result);
       document.getElementById('isValidVinResults').innerText = result;
     });
-
-    document
-      .getElementById('isValidType')
-      .addEventListener('click', async function() {
-        // package.libraryName
-        const result = await NHTSA.isValidType({
-          type: 'string',
-          value: 'testing'
-        });
-        console.log(`isValidType result: ${result}`);
-        document.getElementById('isValidTypeResults').innerText = result;
-      });
-
-    document
-      .getElementById('makeQueryString')
-      .addEventListener('click', async function() {
-        const result = await NHTSA.makeQueryString({
-          format: 'json',
-          modelYear: 2009
-        });
-        console.log(`makeQueryString result: ${result}`);
-        document.getElementById('makeQueryStringResults').innerText = result;
-      });
 
     console.log(`Successfully imported via IIFE bundle`);
   </script>

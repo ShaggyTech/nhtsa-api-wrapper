@@ -21,7 +21,7 @@ const tsconfig = isDev ? './tsconfig.dev.json' : './tsconfig.json';
 const treeShakeBundles = {
   NHTSA: 'src/api/NHTSA.ts',
   Client: 'src/api/Client.ts',
-  isValidVin: 'src/utils//isValidVin.ts',
+  isValidVin: 'src/utils/isValidVin.ts',
   DecodeVin: 'src/api/actions/DecodeVin.ts',
   DecodeVinExtended: 'src/api/actions/DecodeVinExtended.ts',
   DecodeVinValues: 'src/api/actions/DecodeVinValues.ts',
@@ -105,7 +105,7 @@ export default [
         globals: {
           'cross-fetch': 'fetch',
         },
-        sourcemap: true,
+        sourcemap: false,
         plugins: [
           gzipPlugin(),
           terser({

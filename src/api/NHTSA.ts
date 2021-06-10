@@ -9,6 +9,8 @@
 
 import { Fetch /* Class */, FetchConfig /* Type */ } from './Fetch';
 
+import { isValidVin as isValidVinUtil } from '../utils';
+
 /* Import implemented API Action classes */
 import {
   DecodeVin,
@@ -143,7 +145,8 @@ class NHTSA
     GetVehicleTypesForMakeId,
     GetVehicleVariableList,
     GetVehicleVariableValuesList,
-    GetWMIsForManufacturer {
+    GetWMIsForManufacturer
+{
   constructor(userConfig?: FetchConfig) {
     super(userConfig);
   }
@@ -207,6 +210,8 @@ class NHTSA
 
   GetWMIsForManufacturer =
     GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
+
+  isValidVin = isValidVinUtil;
 }
 
 export { NHTSA };
