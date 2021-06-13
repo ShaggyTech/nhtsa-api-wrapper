@@ -3,6 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var Fetch = require('./Fetch-d7540537.js');
+var isValidVin = require('./isValidVin.js');
 var DecodeVin = require('./DecodeVin.js');
 var DecodeVinExtended = require('./DecodeVinExtended.js');
 var DecodeVinValues = require('./DecodeVinValues.js');
@@ -144,6 +145,7 @@ class NHTSA extends Fetch.Fetch {
         this.GetVehicleVariableList = GetVehicleVariableList.GetVehicleVariableList.prototype.GetVehicleVariableList;
         this.GetVehicleVariableValuesList = GetVehicleVariableValuesList.GetVehicleVariableValuesList.prototype.GetVehicleVariableValuesList;
         this.GetWMIsForManufacturer = GetWMIsForManufacturer.GetWMIsForManufacturer.prototype.GetWMIsForManufacturer;
+        this.isValidVin = isValidVin.isValidVin;
     }
 }
 

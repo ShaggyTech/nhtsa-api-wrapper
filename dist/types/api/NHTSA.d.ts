@@ -7,6 +7,7 @@
  * > - Class: [NHTSA](NHTSA.html#NHTSA) - Class that implements all NHTSA API Actions
  */
 import { Fetch, FetchConfig } from './Fetch';
+import { isValidVin as isValidVinUtil } from '../utils';
 import { DecodeVin, DecodeVinExtended, DecodeVinValues, DecodeVINValuesBatch, DecodeVinValuesExtended, DecodeWMI, GetAllMakes, GetAllManufacturers, GetCanadianVehicleSpecifications, GetEquipmentPlantCodes, GetMakeForManufacturer, GetMakesForManufacturerAndYear, GetMakesForVehicleType, GetManufacturerDetails, GetModelsForMake, GetModelsForMakeId, GetModelsForMakeIdYear, GetModelsForMakeYear, GetParts, GetVehicleTypesForMake, GetVehicleTypesForMakeId, GetVehicleVariableList, GetVehicleVariableValuesList, GetWMIsForManufacturer } from './actions';
 /**
  * @class NHTSA
@@ -149,6 +150,7 @@ declare class NHTSA extends Fetch implements DecodeVin, DecodeVinExtended, Decod
     GetVehicleVariableList: () => Promise<import("./actions/GetVehicleVariableList").GetVehicleVariableListResponse>;
     GetVehicleVariableValuesList: (variableValue: string | number) => Promise<import("./actions/GetVehicleVariableValuesList").GetVehicleVariableValuesListResponse>;
     GetWMIsForManufacturer: (manufacturer: string) => Promise<import("./actions/GetWMIsForManufacturer").GetWMIsForManufacturerResponse>;
+    isValidVin: typeof isValidVinUtil;
 }
 export { NHTSA };
 //# sourceMappingURL=NHTSA.d.ts.map

@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var NHTSA = require('./NHTSA.js');
 require('./Fetch-d7540537.js');
 require('cross-fetch');
+require('./isValidVin.js');
 require('./DecodeVin.js');
 require('./DecodeVinExtended.js');
 require('./DecodeVinValues.js');
