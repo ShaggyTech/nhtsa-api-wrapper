@@ -43,23 +43,7 @@ const TRANSLITERATION_TABLE: Record<string, number> = {
  * digit in the 'vin'.
  */
 const WEIGHTS_ARRAY: number[] = [
-  8,
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
-  10,
-  0,
-  9,
-  8,
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
+  8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2,
 ];
 
 /**

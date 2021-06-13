@@ -1,14 +1,28 @@
 module.exports = {
   collectCoverage: true,
-  coverageDirectory: './dev/coverage',
   collectCoverageFrom: [
-    'src/**/*.{js,ts,jsx}',
+    '<rootDir>/src/**/*.{js,ts,jsx}',
     // ignore
-    '!**/node_modules/**',
-    '!**/vendor/**',
-    '!**/__*__/**'
+    //'!**/node_modules/**',
+    //'!**/vendor/**',
+    //'!**/__*__/**'
   ],
+  coverageDirectory: '<rootDir>/coverage',
+  // coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
   // setupFiles: ['./jest.setup.js'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.dev.json'
+    }
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+    '^~/(.*)$': '<rootDir>/$1',
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js'],
+  preset: 'ts-jest',
+  rootDir: '../../',
+  testEnvironment: 'node',
   testMatch: ['src/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
@@ -17,12 +31,9 @@ module.exports = {
     '<rootDir>/docs/',
     '<rootDir>/bin/'
   ],
-  testEnvironment: 'node',
-  preset: 'ts-jest',
   transform: {
     '.(ts|tsx)': 'ts-jest'
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js'],
   watchPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
@@ -30,9 +41,4 @@ module.exports = {
     '<rootDir>/docs/',
     '<rootDir>/bin/'
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: './tsconfig.dev.json'
-    }
-  }
 };

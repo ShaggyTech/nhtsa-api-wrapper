@@ -1,8 +1,8 @@
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
+import { babel } from '@rollup/plugin-babel';
 
-import babel from 'rollup-plugin-babel';
 import gzipPlugin from 'rollup-plugin-gzip';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
@@ -62,7 +62,12 @@ const plugins = [
     exclude: ['node_modules'],
   }),
   sourceMaps(),
-  babel({ include: 'node_modules/cross-fetch', extensions: ['.js', '.ts'] }),
+  babel({
+    include: 'node_modules/cross-fetch',
+    exclude: '**/node_modules/**',
+    babelHelpers: 'runtime',
+    extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.ts', '.tsx'],
+  }),
 ];
 
 export default [
@@ -70,7 +75,7 @@ export default [
    * Browser/Universal Bundles.
    */
   {
-    external: ['cross-fetch'],
+    // external: [/@babel\/runtime/],
     input: `src/index.ts`,
     output: [
       /**
@@ -124,7 +129,7 @@ export default [
   {
     /** Process individual inputs. */
     input: { ...treeShakeBundles },
-    external: ['cross-fetch'],
+    external: [/@babel\/runtime/],
     output: [
       {
         dir: `${baseDir}cjs`,
@@ -141,6 +146,7 @@ export default [
   {
     /** Process individual inputs. */
     input: { ...treeShakeBundles },
+    external: [/@babel\/runtime/],
     output: [
       {
         dir: `${baseDir}module`,

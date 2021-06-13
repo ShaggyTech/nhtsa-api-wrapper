@@ -10,7 +10,7 @@
 
       document.getElementById('DecodeWMI').addEventListener('click', async () => {
         /* Lazy Loading */
-        const { DecodeWMI } = await import('../../dev/dist/module/DecodeWMI.js')
+        const { DecodeWMI } = await import('../../../dev/dist/module/DecodeWMI.js')
           .catch(err => err);
 
         const decoder = new DecodeWMI();
@@ -25,7 +25,7 @@
       document
         .getElementById('isValidVin')
         .addEventListener('click', async function() {
-          const { isValidVin } = await import('../../dev/dist/module/isValidVin.js')
+          const { isValidVin } = await import('../../../dev/dist/module/isValidVin.js')
           const result = isValidVin('WVWHV71K69W144983');
           console.log(`isValidVin result: ${result}`);
           document.getElementById('isValidVinResults').innerText = result;

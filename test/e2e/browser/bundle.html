@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing UMD bundle imports</title>
 
-    <script type="text/javascript" src="../../dev/dist/bundle.min.js"></script>
+    <script type="text/javascript" src="../../../dev/dist/bundle.min.js"></script>
   </head>
   <body>
     <h2>
@@ -22,10 +22,12 @@
 
     const client = NHTSA.Client;
 
+    console.log(client.DecodeVin)
+
     document.getElementById('client').addEventListener('click', async function() {
-    const result = await client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
-    console.log(result);
-    document.getElementById('clientResults').innerText = result;
+    const { Results } = await client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
+    console.log(Results);
+    document.getElementById('clientResults').innerText = JSON.stringify(Results);
     });
   
     document.getElementById('isValidVin').addEventListener('click', function() {
