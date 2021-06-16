@@ -7,7 +7,7 @@
 
     <script
       type="text/javascript"
-      src="../../dev/dist/browser/iife.js"
+      src="../../../dev/dist/browser/iife.js"
     ></script>
   </head>
   <body>
@@ -24,9 +24,9 @@
     const client = NHTSA.Client;
 
     document.getElementById('client').addEventListener('click', async function() {
-    const result = await client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
-    console.log(result);
-    document.getElementById('clientResults').innerText = result;
+    const { Results } = await client.DecodeVin('3VWD07AJ5EM388202').catch(err => err);
+    console.log(Results);
+    document.getElementById('clientResults').innerText = JSON.stringify(Results);
     });
   
     document.getElementById('isValidVin').addEventListener('click', function() {

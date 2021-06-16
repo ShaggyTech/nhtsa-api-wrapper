@@ -18,7 +18,7 @@
  */
 
 /* Module Dependencies */
-import fetch from 'cross-fetch';
+import 'cross-fetch/polyfill';
 /* Utilities */
 import { getTypeof, makeQueryString } from '../utils';
 /* Types */

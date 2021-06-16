@@ -1,8 +1,6 @@
 import { GetEquipmentPlantCodes } from '../GetEquipmentPlantCodes';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetEquipmentPlantCodes';
@@ -16,10 +14,12 @@ describe('GetEquipmentPlantCodes()', () => {
   let client: GetEquipmentPlantCodes;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
   afterEach(() => {
+    fetchMock.resetMocks();
     jest.clearAllMocks();
   });
 
@@ -28,6 +28,7 @@ describe('GetEquipmentPlantCodes()', () => {
    **************/
 
   test('it gets equipment plant codes', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetEquipmentPlantCodes({
         year: 2020,
@@ -35,10 +36,11 @@ describe('GetEquipmentPlantCodes()', () => {
         reportType: 'All',
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?year=2020&equipmentType=13&reportType=All&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -55,7 +57,7 @@ describe('GetEquipmentPlantCodes()', () => {
         `${ACTION}, "params" argument must be of type object, got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when no year param', async () => {
@@ -72,7 +74,7 @@ describe('GetEquipmentPlantCodes()', () => {
         `${ACTION}, "params.year" argument is required and must be of type number, got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when no equipmentType param', async () => {
@@ -90,7 +92,7 @@ describe('GetEquipmentPlantCodes()', () => {
           `got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when no reportType param', async () => {
@@ -108,7 +110,7 @@ describe('GetEquipmentPlantCodes()', () => {
           `<undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -128,7 +130,7 @@ describe('GetEquipmentPlantCodes()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -148,6 +150,6 @@ describe('GetEquipmentPlantCodes()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

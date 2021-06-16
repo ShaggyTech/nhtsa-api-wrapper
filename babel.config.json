@@ -5,16 +5,15 @@
       {
         "targets": {
           "node": "current",
-          "browsers": "> 0.5%, last 2 versions, Firefox ESR, not dead"
-        }
+          "esmodules": true
+        },
+        "bugfixes": true
       }
     ],
     "@babel/preset-typescript"
   ],
   "plugins": [
-    "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread",
-    "@babel/plugin-proposal-optional-chaining"
+    "@babel/plugin-transform-runtime"
   ],
   "exclude": ["node_modules/**"]
 }

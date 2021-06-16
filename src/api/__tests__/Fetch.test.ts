@@ -1,8 +1,6 @@
 import { Fetch, DEFAULT_CONFIG } from '../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
-import { mockData } from '../../__mocks__/cross-fetch';
+import mockData from '../../__mocks__/mockData';
 
 describe('api/Fetch Class', () => {
   afterEach(() => {
@@ -133,6 +131,11 @@ describe('buildQueryString() class method', () => {
 });
 
 describe('get() class method', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -142,7 +145,7 @@ describe('get() class method', () => {
    * The test will then fail so that you can see the results.
    */
   test.skip('it returns a real response', async () => {
-    (mockCrossFetch as any).mockImplementationOnce(
+    (fetchMock as any).mockImplementationOnce(
       jest.requireActual('cross-fetch')
     );
 
@@ -152,15 +155,15 @@ describe('get() class method', () => {
     );
 
     expect(response).toStrictEqual('fails');
-    expect(mockCrossFetch).toBeDefined();
+    expect(fetchMock).toBeDefined();
   });
 
   test('it returns a response', async () => {
     const client = new Fetch();
     const response = await client.get('testing.com');
 
-    expect(response).toStrictEqual(mockData);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   test('it returns a response with user provided options', async () => {
@@ -169,8 +172,8 @@ describe('get() class method', () => {
       .get('www.shaggytech.com', { method: 'POST', body: 'test body' })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
-    expect(mockCrossFetch).toHaveBeenCalledWith('www.shaggytech.com', {
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(fetchMock).toHaveBeenCalledWith('www.shaggytech.com', {
       method: 'POST',
       body: 'test body',
     });
@@ -211,7 +214,7 @@ describe('get() class method', () => {
 
   test('it handles Fetch.get response status >= 400 as an Error', async () => {
     const mockedErrorResponse = { ...mockData, status: 500 };
-    (mockCrossFetch as any).mockImplementationOnce(() => {
+    (fetchMock as any).mockImplementationOnce(() => {
       return Promise.resolve({
         status: 500,
         statusText: 'mocked error',
@@ -227,12 +230,12 @@ describe('get() class method', () => {
     const expectedError =
       'Fetch.get() http error: Error: Bad response from server, code: 500, text: mocked error, headers: mocked headers';
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(Error(expectedError));
   });
 
   test('it handles Fetch.get empty response', async () => {
-    (mockCrossFetch as any).mockImplementationOnce(() => {
+    (fetchMock as any).mockImplementationOnce(() => {
       return Promise.resolve(undefined) as any;
     });
 
@@ -241,19 +244,19 @@ describe('get() class method', () => {
     const expectedError =
       'Fetch.get() http error: Error: Bad response from server, code: undefined, text: undefined, headers: undefined';
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(Error(expectedError));
   });
 
   test('it handles cross-fetch errors', async () => {
-    (mockCrossFetch as any).mockImplementationOnce(() => {
+    (fetchMock as any).mockImplementationOnce(() => {
       return Promise.reject('mock error');
     });
 
     const client = new Fetch();
     const response = await client.get('www.testing.com').catch((err) => err);
 
-    expect(mockCrossFetch).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(response).toStrictEqual(Error('Fetch.get() http error: mock error'));
   });
 });

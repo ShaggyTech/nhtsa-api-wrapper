@@ -1,8 +1,6 @@
 import { GetMakesForManufacturerAndYear } from '../GetMakesForManufacturerAndYear';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetMakesForManufacturerAndYear';
@@ -16,6 +14,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
   let client: GetMakesForManufacturerAndYear;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -28,27 +27,31 @@ describe('GetMakesForManufacturerAndYear()', () => {
    **************/
 
   test('it gets manufacturer makes w/ manufacturer as a number', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetMakesForManufacturerAndYear(121, {
         year: 2009,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/121?year=2009&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets manufacturer makes w/ manufacturer as a string', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetMakesForManufacturerAndYear('volks', {
         year: 2020,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/volks?year=2020&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -66,7 +69,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
           `<undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid manufacturer argument is provided', async () => {
@@ -80,7 +83,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
           `<array> testing`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof params are provided', async () => {
@@ -94,7 +97,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
           `<array> testing`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when no params.year is provided', async () => {
@@ -108,7 +111,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
           `<undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof params.year value is provided', async () => {
@@ -122,7 +125,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
           `<string> not valid`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -138,7 +141,7 @@ describe('GetMakesForManufacturerAndYear()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -154,6 +157,6 @@ describe('GetMakesForManufacturerAndYear()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

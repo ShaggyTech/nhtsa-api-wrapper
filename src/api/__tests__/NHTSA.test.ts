@@ -55,6 +55,7 @@ describe('the NHTSA Class', () => {
 
 describe('NHTSA.DecodeVin()', () => {
   test('it decodes a VIN', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .DecodeVin('3VWD07AJ5EM388202', {
@@ -62,11 +63,14 @@ describe('NHTSA.DecodeVin()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.DecodeVin).toBeDefined();
+    expect(client.DecodeVin).toBeInstanceOf(Function);
   });
 });
 
 describe('NHTSA.DecodeVinValues()', () => {
+  fetchMock.mockResponse(JSON.stringify({ ...mockData }));
   test('it decodes a VIN', async () => {
     const client = new NHTSA();
     const response = await client
@@ -75,12 +79,15 @@ describe('NHTSA.DecodeVinValues()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.DecodeVinValues).toBeDefined();
+    expect(client.DecodeVinValues).toBeInstanceOf(Function);
   });
 });
 
 describe('NHTSA.DecodeVinExtended()', () => {
   test('it decodes a VIN', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .DecodeVinExtended('3VWD07AJ5EM388202', {
@@ -88,12 +95,15 @@ describe('NHTSA.DecodeVinExtended()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.DecodeVinExtended).toBeDefined();
+    expect(client.DecodeVinExtended).toBeInstanceOf(Function);
   });
 });
 
 describe('NHTSA.DecodeVinValuesExtended()', () => {
   test('it decodes a VIN', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .DecodeVinValuesExtended('3VWD07AJ5EM388202', {
@@ -101,41 +111,53 @@ describe('NHTSA.DecodeVinValuesExtended()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.DecodeVinValuesExtended).toBeDefined();
+    expect(client.DecodeVinValuesExtended).toBeInstanceOf(Function);
   });
 });
 
 describe('DecodeWMI()', () => {
   test('it decodes a WMI', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client.DecodeWMI('3VW').catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.DecodeWMI).toBeDefined();
+    expect(client.DecodeWMI).toBeInstanceOf(Function);
   });
 });
 
 describe('GetWMIsForManufacturer()', () => {
   test('it gets a manufacturers WMIs', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetWMIsForManufacturer('audi')
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetWMIsForManufacturer).toBeDefined();
+    expect(client.GetWMIsForManufacturer).toBeInstanceOf(Function);
   });
 });
 
 describe('GetAllMakes()', () => {
   test('it gets all makes from the database', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client.GetAllMakes().catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetAllMakes).toBeDefined();
+    expect(client.GetAllMakes).toBeInstanceOf(Function);
   });
 });
 
 describe('GetParts()', () => {
   test('it gets parts with given params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetParts({
@@ -146,12 +168,15 @@ describe('GetParts()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetParts).toBeDefined();
+    expect(client.GetParts).toBeInstanceOf(Function);
   });
 });
 
 describe('GetAllManufacturers()', () => {
   test('it gets all manufacturers', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetAllManufacturers({
@@ -160,34 +185,43 @@ describe('GetAllManufacturers()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetAllManufacturers).toBeDefined();
+    expect(client.GetAllManufacturers).toBeInstanceOf(Function);
   });
 });
 
 describe('GetManufacturerDetails()', () => {
   test('it gets manufacturer details w/ manufacturer as a string', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetManufacturerDetails('audi')
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetManufacturerDetails).toBeDefined();
+    expect(client.GetManufacturerDetails).toBeInstanceOf(Function);
   });
 });
 
 describe('GetMakeForManufacturer()', () => {
   test('it gets manufacturer makes w/ manufacturer as a string', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetMakeForManufacturer('audi')
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetMakeForManufacturer).toBeDefined();
+    expect(client.GetMakeForManufacturer).toBeInstanceOf(Function);
   });
 });
 
 describe('GetMakesForManufacturerAndYear()', () => {
   test('it gets manufacturer makes w/ manufacturer as a number', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetMakesForManufacturerAndYear(121, {
@@ -195,23 +229,29 @@ describe('GetMakesForManufacturerAndYear()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetMakesForManufacturerAndYear).toBeDefined();
+    expect(client.GetMakesForManufacturerAndYear).toBeInstanceOf(Function);
   });
 });
 
 describe('GetVehicleTypesForMakeId()', () => {
   test('it gets vehicle types with a valid makeId', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetVehicleTypesForMakeId(381)
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetVehicleTypesForMakeId).toBeDefined();
+    expect(client.GetVehicleTypesForMakeId).toBeInstanceOf(Function);
   });
 });
 
 describe('GetEquipmentPlantCodes()', () => {
   test('it gets equipment plant codes', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetEquipmentPlantCodes({
@@ -221,30 +261,39 @@ describe('GetEquipmentPlantCodes()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetEquipmentPlantCodes).toBeDefined();
+    expect(client.GetEquipmentPlantCodes).toBeInstanceOf(Function);
   });
 });
 
 describe('GetModelsForMake()', () => {
   test('it gets models for a valid makeName', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client.GetModelsForMake('audi').catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetModelsForMake).toBeDefined();
+    expect(client.GetModelsForMake).toBeInstanceOf(Function);
   });
 });
 
 describe('GetModelsForMakeId()', () => {
   test('it gets vehicle models with a valid makeId', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client.GetModelsForMakeId(381).catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetModelsForMakeId).toBeDefined();
+    expect(client.GetModelsForMakeId).toBeInstanceOf(Function);
   });
 });
 
 describe('GetModelsForMakeYear()', () => {
   test('it gets models with modelYear and vehicleType params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetModelsForMakeYear({
@@ -254,12 +303,15 @@ describe('GetModelsForMakeYear()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetModelsForMakeYear).toBeDefined();
+    expect(client.GetModelsForMakeYear).toBeInstanceOf(Function);
   });
 });
 
 describe('GetModelsForMakeIdYear()', () => {
   test('it gets models with modelYear and vehicleType params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetModelsForMakeIdYear({
@@ -269,32 +321,41 @@ describe('GetModelsForMakeIdYear()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetModelsForMakeIdYear).toBeDefined();
+    expect(client.GetModelsForMakeIdYear).toBeInstanceOf(Function);
   });
 });
 
 describe('GetVehicleVariableList()', () => {
+  fetchMock.mockResponse(JSON.stringify({ ...mockData }));
   test('it gets all vehicle related variables from the database', async () => {
     const client = new NHTSA();
     const response = await client.GetVehicleVariableList().catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetVehicleVariableList).toBeDefined();
+    expect(client.GetVehicleVariableList).toBeInstanceOf(Function);
   });
 });
 
 describe('GetVehicleVariableValuesList()', () => {
+  fetchMock.mockResponse(JSON.stringify({ ...mockData }));
   test('it gets vehicle variable values with a variable Name', async () => {
     const client = new NHTSA();
     const response = await client
       .GetVehicleVariableValuesList('battery type')
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetVehicleVariableValuesList).toBeDefined();
+    expect(client.GetVehicleVariableValuesList).toBeInstanceOf(Function);
   });
 });
 
 describe('GetCanadianVehicleSpecifications()', () => {
   test('it gets canadian specs with year, make, model, and units params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetCanadianVehicleSpecifications({
@@ -305,6 +366,8 @@ describe('GetCanadianVehicleSpecifications()', () => {
       })
       .catch((err) => err);
 
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
+    expect(client.GetCanadianVehicleSpecifications).toBeDefined();
+    expect(client.GetCanadianVehicleSpecifications).toBeInstanceOf(Function);
   });
 });
