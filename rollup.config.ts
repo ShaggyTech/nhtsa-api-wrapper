@@ -1,10 +1,9 @@
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import resolve from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { babel } from '@rollup/plugin-babel';
 
 import gzipPlugin from 'rollup-plugin-gzip';
-import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import visualizer from 'rollup-plugin-visualizer';
@@ -61,7 +60,6 @@ const plugins = [
     useTsconfigDeclarationDir: true,
     exclude: ['node_modules'],
   }),
-  sourceMaps(),
   babel({
     include: 'node_modules/cross-fetch',
     exclude: '**/node_modules/**',
@@ -75,7 +73,7 @@ export default [
    * Browser/Universal Bundles.
    */
   {
-    // external: [/@babel\/runtime/],
+    external: [/cross\-fetch/],
     input: `src/index.ts`,
     output: [
       /**
@@ -89,7 +87,6 @@ export default [
         globals: {
           'cross-fetch': 'fetch',
         },
-        sourcemap: true,
         plugins: [
           gzipPlugin(),
           terser({
@@ -110,7 +107,6 @@ export default [
         globals: {
           'cross-fetch': 'fetch',
         },
-        sourcemap: false,
         plugins: [
           gzipPlugin(),
           terser({
@@ -121,7 +117,7 @@ export default [
         ],
       },
     ],
-    plugins,
+    plugins: [nodeResolve({ preferBuiltins: true, browser: true }), ...plugins],
   },
   /**
    * CommonJs (CJS) Module.
@@ -134,11 +130,10 @@ export default [
       {
         dir: `${baseDir}cjs`,
         format: 'cjs',
-        sourcemap: true,
         // plugins: [terser()]
       },
     ],
-    plugins: [resolve({ preferBuiltins: true, browser: false }), ...plugins],
+    plugins: [nodeResolve({ preferBuiltins: true, browser: false }), ...plugins],
   },
   /**
    * ESM Module (tree-shaken)
@@ -154,7 +149,6 @@ export default [
         globals: {
           'cross-fetch': 'fetch',
         },
-        sourcemap: true,
         plugins: [terser()],
       },
     ],
@@ -162,9 +156,8 @@ export default [
       visualizer({
         filename: 'package-size-stats.html',
         title: '@shaggytools/nhtsa-api-wrapper - Module Package Visualizer',
-        sourcemap: true,
       }),
-      resolve({ preferBuiltins: true, browser: true }),
+      nodeResolve({ preferBuiltins: true, browser: true }),
       ...plugins,
     ],
   },
