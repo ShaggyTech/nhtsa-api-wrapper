@@ -18,7 +18,20 @@
   "release": {
     "branches": ["master"],
     "plugins": [
-      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "releaseRules": [
+            { "type": "refactor", "release": "patch" },
+            { "type": "style", "release": "patch" },
+            { "type": "patch", "release": "patch"},
+            { "type": "bugfix", "release": "patch"}
+          ],
+          "parserOpts": {
+            "noteKeywords": []
+          }
+        }
+      ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/npm",
