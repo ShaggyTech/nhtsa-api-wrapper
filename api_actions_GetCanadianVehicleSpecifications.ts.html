@@ -224,13 +224,11 @@ export class GetCanadianVehicleSpecifications extends Fetch {
      * this API action will return a 404 error if any of the query parameters are missing from the query string.
      * This is the only API action with this behaviour ("year" is the only param the user must provide).
      */
-    const queryString = await this.buildQueryString(
-      params_,
-      true
-    ).catch((err: Error) =>
-      Promise.reject(
-        new Error(`${action}, Error building query string: ${err}`)
-      )
+    const queryString = await this.buildQueryString(params_, true).catch(
+      (err: Error) =>
+        Promise.reject(
+          new Error(`${action}, Error building query string: ${err}`)
+        )
     );
 
     /* Build the final request URL*/
