@@ -1,12 +1,16 @@
 export default {
   mocked: true,
   FetchResponse: {
-    headers: 'mocked-headers',
+    headers: {
+      Symbol: {
+        'Content-Type': ['text/plain;charset=UTF-8'],
+      },
+    },
     ok: true,
     redirected: false,
     status: 200,
     statusText: 'OK',
-    url: 'mocked-url',
+    url: '',
   },
   Count: 140,
   Message: 'Results returned successfully.',

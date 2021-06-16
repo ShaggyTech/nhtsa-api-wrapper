@@ -1,8 +1,6 @@
 import { GetManufacturerDetails } from '../GetManufacturerDetails';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetManufacturerDetails';
@@ -16,6 +14,7 @@ describe('GetManufacturerDetails()', () => {
   let client: GetManufacturerDetails;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -28,23 +27,27 @@ describe('GetManufacturerDetails()', () => {
    **************/
 
   test('it gets manufacturer details w/ manufacturer as a string', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetManufacturerDetails('audi')
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/audi?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets manufacturer details w/ manufacturer as a number', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetManufacturerDetails(981)
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/981?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -62,7 +65,7 @@ describe('GetManufacturerDetails()', () => {
           `<undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid manufacturer argument is provided', async () => {
@@ -76,7 +79,7 @@ describe('GetManufacturerDetails()', () => {
           `<boolean> true`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -92,7 +95,7 @@ describe('GetManufacturerDetails()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -108,6 +111,6 @@ describe('GetManufacturerDetails()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

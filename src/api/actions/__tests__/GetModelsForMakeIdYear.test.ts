@@ -1,8 +1,6 @@
 import { GetModelsForMakeIdYear } from '../GetModelsForMakeIdYear';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetModelsForMakeIdYear';
@@ -16,6 +14,7 @@ describe('GetModelsForMakeIdYear()', () => {
   let client: GetModelsForMakeIdYear;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -28,6 +27,7 @@ describe('GetModelsForMakeIdYear()', () => {
    **************/
 
   test('it get models with all available params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetModelsForMakeIdYear({
         makeId: 901,
@@ -35,36 +35,41 @@ describe('GetModelsForMakeIdYear()', () => {
         vehicleType: 'moto',
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/makeId/901/modelYear/2017/vehicleType/moto?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets models with modelYear and no vehicleType', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetModelsForMakeIdYear({
         makeId: 305,
         modelYear: 2016,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/makeId/305/modelYear/2016?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets models with vehicleType and no modelYear', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetModelsForMakeIdYear({
         makeId: 707,
         vehicleType: 'truck',
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/makeId/707/vehicleType/truck?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -81,7 +86,7 @@ describe('GetModelsForMakeIdYear()', () => {
         `${ACTION}, "params" argument must be of type object, got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof params are provided', async () => {
@@ -94,7 +99,7 @@ describe('GetModelsForMakeIdYear()', () => {
         `${ACTION}, "params" argument must be of type object, got: <array> params as array`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when no makeId param is provided', async () => {
@@ -112,7 +117,7 @@ describe('GetModelsForMakeIdYear()', () => {
           `<undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof makeId param is provided', async () => {
@@ -130,7 +135,7 @@ describe('GetModelsForMakeIdYear()', () => {
           `<array> fails`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when neither modelYear or vehicleType params are provided', async () => {
@@ -148,7 +153,7 @@ describe('GetModelsForMakeIdYear()', () => {
           `undefined | undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof modelYear is provided', async () => {
@@ -161,7 +166,7 @@ describe('GetModelsForMakeIdYear()', () => {
         `${ACTION}, "params.modelYear" must be of type number, got: <string> fails`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof vehicleType is provided', async () => {
@@ -174,7 +179,7 @@ describe('GetModelsForMakeIdYear()', () => {
         `${ACTION}, "params.vehicleType" must be of type string, got: <array> invalid`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -194,7 +199,7 @@ describe('GetModelsForMakeIdYear()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -214,6 +219,6 @@ describe('GetModelsForMakeIdYear()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

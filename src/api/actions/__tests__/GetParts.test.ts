@@ -1,8 +1,6 @@
 import { GetParts } from '../GetParts';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetParts';
@@ -16,6 +14,7 @@ describe('GetParts()', () => {
   let client: GetParts;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -28,14 +27,16 @@ describe('GetParts()', () => {
    **************/
 
   test('it gets parts list with no optional params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client.GetParts();
-    expect(response).toStrictEqual(mockData);
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets parts list with all optional params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetParts({
         type: 156,
@@ -44,35 +45,40 @@ describe('GetParts()', () => {
         page: 2,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?type=156&fromDate=11/10/2010&toDate=11/20/2019&page=2&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets parts list with two optional params (type and page)', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetParts({
         type: 300,
         page: 25,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?type=300&page=25&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets parts list with one param (page)', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetParts({
         page: 5,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?page=5&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -89,7 +95,7 @@ describe('GetParts()', () => {
         `${ACTION}, "params" argument must be of type object, got: <string> testing`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.type is provided', async () => {
@@ -102,7 +108,7 @@ describe('GetParts()', () => {
         `${ACTION}, "params.type" argument must be of type number, got: <string> should fail`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.fromDate is provided', async () => {
@@ -115,7 +121,7 @@ describe('GetParts()', () => {
         `${ACTION}, "params.fromDate" argument must be of type string, got: <number> 122320`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.toDate is provided', async () => {
@@ -128,7 +134,7 @@ describe('GetParts()', () => {
         `${ACTION}, "params.toDate" argument must be of type string, got: <number> 123456`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.page is provided', async () => {
@@ -141,7 +147,7 @@ describe('GetParts()', () => {
         `${ACTION}, "params.page" argument must be of type number, got: <boolean> true`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -155,7 +161,7 @@ describe('GetParts()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -169,6 +175,6 @@ describe('GetParts()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

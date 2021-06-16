@@ -1,7 +1,6 @@
 import { DecodeVinValues } from '../DecodeVinValues';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'DecodeVinValues';
@@ -15,6 +14,7 @@ describe('NHTSA.DecodeVinValues()', () => {
   let client: DecodeVinValues = getClassInstance();
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -27,25 +27,29 @@ describe('NHTSA.DecodeVinValues()', () => {
    **************/
 
   test('it decodes a VIN', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .DecodeVinValues('3VWD07AJ5EM388202')
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/3VWD07AJ5EM388202?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it decodes a VIN and handles params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .DecodeVinValues('3VWD07AJ5EM388202', {
         modelYear: 2001,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/3VWD07AJ5EM388202?modelYear=2001&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -62,7 +66,7 @@ describe('NHTSA.DecodeVinValues()', () => {
         `${ACTION}, "vin" argument is required and must be of type string, got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof VIN argument is provided', async () => {
@@ -75,7 +79,7 @@ describe('NHTSA.DecodeVinValues()', () => {
         `${ACTION}, "vin" argument is required and must be of type string, got: <array> [object Object]`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof params argument is provided', async () => {
@@ -88,7 +92,7 @@ describe('NHTSA.DecodeVinValues()', () => {
         `${ACTION}, "params" argument must be of type object, got: <array> should fail`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid typeof params.modelYear argument is provided', async () => {
@@ -104,7 +108,7 @@ describe('NHTSA.DecodeVinValues()', () => {
           `got: <array> should fail`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -120,7 +124,7 @@ describe('NHTSA.DecodeVinValues()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -136,6 +140,6 @@ describe('NHTSA.DecodeVinValues()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

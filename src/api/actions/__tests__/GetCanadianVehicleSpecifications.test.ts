@@ -1,8 +1,6 @@
 import { GetCanadianVehicleSpecifications } from '../GetCanadianVehicleSpecifications';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetCanadianVehicleSpecifications';
@@ -16,6 +14,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
   let client: GetCanadianVehicleSpecifications;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -28,31 +27,36 @@ describe('GetCanadianVehicleSpecifications()', () => {
    **************/
 
   test('it gets Canadian specs with only year param', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2011,
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=&model=&units=&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets Canadian specs with year and make params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2011,
         make: 'audi',
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=audi&model=&units=&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets Canadian specs with year, make, and model params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2011,
@@ -60,13 +64,15 @@ describe('GetCanadianVehicleSpecifications()', () => {
         model: 'A4',
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=audi&model=A4&units=&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   test('it gets Canadian specs with year, make, model, and units params', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetCanadianVehicleSpecifications({
         year: 2011,
@@ -75,10 +81,11 @@ describe('GetCanadianVehicleSpecifications()', () => {
         units: 'US',
       })
       .catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}?year=2011&make=audi&model=A4&units=US&format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -96,7 +103,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
           `got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params are provided', async () => {
@@ -110,7 +117,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
           `got: <array> testing`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when params.year is not provided', async () => {
@@ -129,7 +136,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
           `got: <undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.make is provided', async () => {
@@ -146,7 +153,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
           `got: <number> 1234`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.model is provided', async () => {
@@ -163,7 +170,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
           `got: <array> 1,2,3`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid params.units is provided', async () => {
@@ -180,7 +187,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
           `got: <boolean> true`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -196,7 +203,7 @@ describe('GetCanadianVehicleSpecifications()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -212,6 +219,6 @@ describe('GetCanadianVehicleSpecifications()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });

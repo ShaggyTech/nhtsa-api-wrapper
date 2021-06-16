@@ -1,4 +1,5 @@
 module.exports = {
+  automock: false,
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{js,ts,jsx}',
@@ -9,7 +10,7 @@ module.exports = {
   ],
   coverageDirectory: '<rootDir>/coverage',
   // coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
-  // setupFiles: ['./jest.setup.js'],
+  setupFiles: ['<rootDir>/test/config/jest.setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.dev.json'

@@ -1,8 +1,6 @@
 import { GetModelsForMakeId } from '../GetModelsForMakeId';
 import { Fetch } from '../../Fetch';
 
-import mockCrossFetch from 'cross-fetch';
-
 import mockData from '../../../__mocks__/mockData';
 
 const ACTION = 'GetModelsForMakeId';
@@ -16,6 +14,7 @@ describe('GetModelsForMakeId()', () => {
   let client: GetModelsForMakeId;
 
   beforeEach(() => {
+    fetchMock.resetMocks();
     client = getClassInstance();
   });
 
@@ -28,11 +27,13 @@ describe('GetModelsForMakeId()', () => {
    **************/
 
   test('it gets vehicle models with a valid makeId', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client.GetModelsForMakeId(381).catch((err) => err);
-    expect(response).toStrictEqual(mockData);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/381?format=json`;
-    expect(mockCrossFetch).toHaveBeenCalledWith(expectedUrl, {});
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
   /**************
@@ -50,7 +51,7 @@ describe('GetModelsForMakeId()', () => {
           `<undefined> undefined`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it rejects with Error when invalid makeId is provided', async () => {
@@ -64,7 +65,7 @@ describe('GetModelsForMakeId()', () => {
           `<string> audi`
       )
     );
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.buildQueryString errors', async () => {
@@ -78,7 +79,7 @@ describe('GetModelsForMakeId()', () => {
       Error(`${ACTION}, Error building query string: mock error`)
     );
     expect(client.buildQueryString).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 
   test('it handles Fetch.get errors', async () => {
@@ -92,6 +93,6 @@ describe('GetModelsForMakeId()', () => {
       Error(`${ACTION}, Fetch.get() error: mock error`)
     );
     expect(client.get).toHaveBeenCalledTimes(1);
-    expect(mockCrossFetch).toHaveBeenCalledTimes(0);
+    expect(fetchMock).toHaveBeenCalledTimes(0);
   });
 });
