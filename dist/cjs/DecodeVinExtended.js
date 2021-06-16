@@ -2,8 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-d7540537.js');
-require('cross-fetch');
+var Fetch = require('./Fetch-2e798510.js');
+require('stream');
+require('http');
+require('url');
+require('https');
+require('zlib');
 
 /**
  * @module api/actions/DecodeVinExtended
@@ -85,4 +89,3 @@ class DecodeVinExtended extends Fetch.Fetch {
 }
 
 exports.DecodeVinExtended = DecodeVinExtended;
-//# sourceMappingURL=DecodeVinExtended.js.map

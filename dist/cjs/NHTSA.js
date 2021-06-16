@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-d7540537.js');
+var Fetch = require('./Fetch-2e798510.js');
 var isValidVin = require('./isValidVin.js');
 var DecodeVin = require('./DecodeVin.js');
 var DecodeVinExtended = require('./DecodeVinExtended.js');
@@ -28,7 +28,11 @@ var GetVehicleTypesForMakeId = require('./GetVehicleTypesForMakeId.js');
 var GetVehicleVariableList = require('./GetVehicleVariableList.js');
 var GetVehicleVariableValuesList = require('./GetVehicleVariableValuesList.js');
 var GetWMIsForManufacturer = require('./GetWMIsForManufacturer.js');
-require('cross-fetch');
+require('stream');
+require('http');
+require('url');
+require('https');
+require('zlib');
 
 /**
  * @module api/NHTSA
@@ -150,4 +154,3 @@ class NHTSA extends Fetch.Fetch {
 }
 
 exports.NHTSA = NHTSA;
-//# sourceMappingURL=NHTSA.js.map

@@ -2,8 +2,12 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-d7540537.js');
-require('cross-fetch');
+var Fetch = require('./Fetch-2e798510.js');
+require('stream');
+require('http');
+require('url');
+require('https');
+require('zlib');
 
 /**
  * @module api/actions/GetWMIsForManufacturer
@@ -62,4 +66,3 @@ class GetWMIsForManufacturer extends Fetch.Fetch {
 }
 
 exports.GetWMIsForManufacturer = GetWMIsForManufacturer;
-//# sourceMappingURL=GetWMIsForManufacturer.js.map

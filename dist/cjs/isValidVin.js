@@ -45,23 +45,7 @@ const TRANSLITERATION_TABLE = {
  * digit in the 'vin'.
  */
 const WEIGHTS_ARRAY = [
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
-    10,
-    0,
-    9,
-    8,
-    7,
-    6,
-    5,
-    4,
-    3,
-    2,
+    8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2,
 ];
 /**
  * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
@@ -136,4 +120,3 @@ function isValidVin(vin) {
 }
 
 exports.isValidVin = isValidVin;
-//# sourceMappingURL=isValidVin.js.map

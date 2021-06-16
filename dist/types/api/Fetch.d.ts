@@ -16,6 +16,7 @@
  * > - Type: [FetchResponse](#FetchResponse)
  * > - Type: [NhtsaResponse](#NhtsaResponse)
  */
+import 'cross-fetch/polyfill';
 import { QueryStringParameters } from '../utils/types';
 /*****************
  * CONSTANTS

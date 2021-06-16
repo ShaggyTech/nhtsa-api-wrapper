@@ -3,8 +3,12 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var NHTSA = require('./NHTSA.js');
-require('./Fetch-d7540537.js');
-require('cross-fetch');
+require('./Fetch-2e798510.js');
+require('stream');
+require('http');
+require('url');
+require('https');
+require('zlib');
 require('./isValidVin.js');
 require('./DecodeVin.js');
 require('./DecodeVinExtended.js');
@@ -88,4 +92,3 @@ require('./GetWMIsForManufacturer.js');
 const Client = new NHTSA.NHTSA();
 
 exports.Client = Client;
-//# sourceMappingURL=Client.js.map
