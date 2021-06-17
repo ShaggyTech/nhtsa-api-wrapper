@@ -1,5 +1,9 @@
 ## [2.0.1](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v2.0.0...v2.0.1) (2021-06-16)
 
+### Bug Fixes
+
+Package browser/bundle.min.js and browser/iife.js now properly handle API http calls.  Using cross-fetch/polyfill instead of ponyfill.  Tests now use jest-fetch-mock [https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/08babd7](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/08babd777522faded252674dd4c446e52d169ab2)
+
 # [2.0.0](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.12...v2.0.0) (2021-06-10)
 
 
