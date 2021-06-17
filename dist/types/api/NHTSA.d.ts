@@ -149,7 +149,9 @@ declare class NHTSA extends Fetch implements DecodeVin, DecodeVinExtended, Decod
     GetVehicleTypesForMakeId: (makeID: number) => Promise<import("./actions/GetVehicleTypesForMakeId").GetVehicleTypesForMakeIdResponse>;
     GetVehicleVariableList: () => Promise<import("./actions/GetVehicleVariableList").GetVehicleVariableListResponse>;
     GetVehicleVariableValuesList: (variableValue: string | number) => Promise<import("./actions/GetVehicleVariableValuesList").GetVehicleVariableValuesListResponse>;
-    GetWMIsForManufacturer: (manufacturer: string) => Promise<import("./actions/GetWMIsForManufacturer").GetWMIsForManufacturerResponse>;
+    GetWMIsForManufacturer: (manufacturer: string | number, params?: {
+        vehicleType?: string | number | undefined;
+    } | undefined) => Promise<import("./actions/GetWMIsForManufacturer").GetWMIsForManufacturerResponse>;
     isValidVin: typeof isValidVinUtil;
 }
 export { NHTSA };

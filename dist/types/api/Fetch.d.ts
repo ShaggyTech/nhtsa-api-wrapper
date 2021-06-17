@@ -16,7 +16,7 @@
  * > - Type: [FetchResponse](#FetchResponse)
  * > - Type: [NhtsaResponse](#NhtsaResponse)
  */
-import 'cross-fetch/polyfill';
+import 'isomorphic-unfetch';
 import { QueryStringParameters } from '../utils/types';
 /*****************
  * CONSTANTS
@@ -62,9 +62,10 @@ export declare class Fetch {
      */
     buildQueryString(params?: QueryStringParameters, allowEmptyStringValues?: boolean): Promise<string>;
     /**
-     * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
-     * - In browser environments, [whatwg-fetch](https://github.com/github/fetch/) window.fetch is used.
-     * - In node environments, [node-fetch](https://github.com/bitinn/node-fetch/) NPM package is used.
+     * Uses the `isomorphic-unfetch` npm package to send HTTP requests and retrieve data from an API.
+     * - Switches between [unfetch](https://github.com/developit/unfetch)
+     *   & [node-fetch](https://github.com/bitinn/node-fetch) for client & server.
+     * - 2.5 kB unpacked size
      *
      * @param {string} url - URL to fetch data from.
      * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).

@@ -25,14 +25,19 @@ export declare class GetWMIsForManufacturer extends Fetch {
     /**
      * Provides information on the World Manufacturer Identifier (WMI) for a specified `manufacturer`.
      * - Only WMIs registered in vPICList are displayed.
-     * - `manufacturer` can be a partial name, or a full name for more specificity
-     *   (e.g., "Merc", "Mercedes Benz", etc.).
+     * - `manufacturer` can be a partial name, or a full name for more specificity, or WMI ID number
+     *   (e.g., "Merc", "Mercedes Benz", 987, etc.).
+     * - `vehicleType` can be a string or number (e.g., "car", 1)
      *
      * @async
      * @param {string|number} manufacturer - Manufacturer Name.
+     * @param {object} [params={}] - Query Search Parameters to append to the URL.
+     * @param {string|number} [params.vehicleType] - Optional Vehicle Type search parameter.
      * @returns {(Promise<GetWMIsForManufacturerResponse>)} Api Response object.
      */
-    GetWMIsForManufacturer(manufacturer: string): Promise<GetWMIsForManufacturerResponse>;
+    GetWMIsForManufacturer(manufacturer: string | number, params?: {
+        vehicleType?: string | number;
+    }): Promise<GetWMIsForManufacturerResponse>;
 }
 /**
  * Type representing the structure of objects found in the '{@link GetWMIsForManufacturerResponse}.Results' array.

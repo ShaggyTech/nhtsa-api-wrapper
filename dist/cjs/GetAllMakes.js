@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-2e798510.js');
+var Fetch = require('./Fetch-57bc7fc7.js');
 require('stream');
 require('http');
 require('url');

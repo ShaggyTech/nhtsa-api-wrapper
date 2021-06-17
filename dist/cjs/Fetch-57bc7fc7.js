@@ -55,7 +55,14 @@ function getAugmentedNamespace(n) {
 	return a;
 }
 
-var nodePonyfill = {exports: {}};
+function unfetch_module(e,n){return n=n||{},new Promise(function(t,r){var s=new XMLHttpRequest,o=[],u=[],i={},a=function(){return {ok:2==(s.status/100|0),statusText:s.statusText,status:s.status,url:s.responseURL,text:function(){return Promise.resolve(s.responseText)},json:function(){return Promise.resolve(s.responseText).then(JSON.parse)},blob:function(){return Promise.resolve(new Blob([s.response]))},clone:a,headers:{keys:function(){return o},entries:function(){return u},get:function(e){return i[e.toLowerCase()]},has:function(e){return e.toLowerCase()in i}}}};for(var l in s.open(n.method||"get",e,!0),s.onload=function(){s.getAllResponseHeaders().replace(/^(.*?):[^\S\n]*([\s\S]*?)$/gm,function(e,n,t){o.push(n=n.toLowerCase()),u.push([n,t]),i[n]=i[n]?i[n]+","+t:t;}),t(a());},s.onerror=r,s.withCredentials="include"==n.credentials,n.headers)s.setRequestHeader(l,n.headers[l]);s.send(n.body||null);})}
+
+var unfetch_module$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': unfetch_module
+});
+
+var require$$0 = /*@__PURE__*/getAugmentedNamespace(unfetch_module$1);
 
 // Based on https://github.com/tmpvar/jsdom/blob/aa85b2abf07766ff7bf5c1f6daafb3726f2f2db5/lib/jsdom/living/blob.js
 
@@ -65,7 +72,7 @@ const Readable = Stream__default['default'].Readable;
 const BUFFER = Symbol('buffer');
 const TYPE = Symbol('type');
 
-class Blob {
+class Blob$1 {
 	constructor() {
 		this[TYPE] = '';
 
@@ -87,7 +94,7 @@ class Blob {
 					buffer = Buffer.from(element.buffer, element.byteOffset, element.byteLength);
 				} else if (element instanceof ArrayBuffer) {
 					buffer = Buffer.from(element);
-				} else if (element instanceof Blob) {
+				} else if (element instanceof Blob$1) {
 					buffer = element[BUFFER];
 				} else {
 					buffer = Buffer.from(typeof element === 'string' ? element : String(element));
@@ -152,19 +159,19 @@ class Blob {
 
 		const buffer = this[BUFFER];
 		const slicedBuffer = buffer.slice(relativeStart, relativeStart + span);
-		const blob = new Blob([], { type: arguments[2] });
+		const blob = new Blob$1([], { type: arguments[2] });
 		blob[BUFFER] = slicedBuffer;
 		return blob;
 	}
 }
 
-Object.defineProperties(Blob.prototype, {
+Object.defineProperties(Blob$1.prototype, {
 	size: { enumerable: true },
 	type: { enumerable: true },
 	slice: { enumerable: true }
 });
 
-Object.defineProperty(Blob.prototype, Symbol.toStringTag, {
+Object.defineProperty(Blob$1.prototype, Symbol.toStringTag, {
 	value: 'Blob',
 	writable: false,
 	enumerable: false,
@@ -296,7 +303,7 @@ Body.prototype = {
 		return consumeBody.call(this).then(function (buf) {
 			return Object.assign(
 			// Prevent copying
-			new Blob([], {
+			new Blob$1([], {
 				type: ct.toLowerCase()
 			}), {
 				[BUFFER]: buf
@@ -1441,17 +1448,17 @@ const resolve_url = Url__default['default'].resolve;
  * @param   Object   opts  Fetch options
  * @return  Promise
  */
-function fetch$2(url, opts) {
+function fetch$1(url, opts) {
 
 	// allow custom promise
-	if (!fetch$2.Promise) {
+	if (!fetch$1.Promise) {
 		throw new Error('native promise missing, set fetch.Promise to your favorite alternative');
 	}
 
-	Body.Promise = fetch$2.Promise;
+	Body.Promise = fetch$1.Promise;
 
 	// wrap http.request into fetch
-	return new fetch$2.Promise(function (resolve, reject) {
+	return new fetch$1.Promise(function (resolve, reject) {
 		// build request object
 		const request = new Request(url, opts);
 		const options = getNodeRequestOptions(request);
@@ -1515,7 +1522,7 @@ function fetch$2(url, opts) {
 			const headers = createHeadersLenient(res.headers);
 
 			// HTTP fetch step 5
-			if (fetch$2.isRedirect(res.statusCode)) {
+			if (fetch$1.isRedirect(res.statusCode)) {
 				// HTTP fetch step 5.2
 				const location = headers.get('Location');
 
@@ -1583,7 +1590,7 @@ function fetch$2(url, opts) {
 						}
 
 						// HTTP-redirect fetch step 15
-						resolve(fetch$2(new Request(locationURL, requestOpts)));
+						resolve(fetch$1(new Request(locationURL, requestOpts)));
 						finalize();
 						return;
 				}
@@ -1680,60 +1687,30 @@ function fetch$2(url, opts) {
  * @param   Number   code  Status code
  * @return  Boolean
  */
-fetch$2.isRedirect = function (code) {
+fetch$1.isRedirect = function (code) {
 	return code === 301 || code === 302 || code === 303 || code === 307 || code === 308;
 };
 
 // expose Promise
-fetch$2.Promise = global.Promise;
+fetch$1.Promise = global.Promise;
 
 var lib = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': fetch$2,
+    'default': fetch$1,
     Headers: Headers,
     Request: Request,
     Response: Response,
     FetchError: FetchError
 });
 
-var require$$0 = /*@__PURE__*/getAugmentedNamespace(lib);
+var require$$1 = /*@__PURE__*/getAugmentedNamespace(lib);
 
-(function (module, exports) {
-const nodeFetch = require$$0;
-const realFetch = nodeFetch.default || nodeFetch;
-
-const fetch = function (url, options) {
-  // Support schemaless URIs on the server for parity with the browser.
-  // Ex: //github.com/ -> https://github.com/
-  if (/^\/\//.test(url)) {
-    url = 'https:' + url;
-  }
-  return realFetch.call(this, url, options)
-};
-
-fetch.ponyfill = true;
-
-module.exports = exports = fetch;
-exports.fetch = fetch;
-exports.Headers = nodeFetch.Headers;
-exports.Request = nodeFetch.Request;
-exports.Response = nodeFetch.Response;
-
-// Needed for TypeScript consumers without esModuleInterop.
-exports.default = fetch;
-}(nodePonyfill, nodePonyfill.exports));
-
-const fetchNode = nodePonyfill.exports;
-const fetch$1 = fetchNode.fetch.bind({});
-
-fetch$1.polyfill = true;
-
-if (!commonjsGlobal.fetch) {
-  commonjsGlobal.fetch = fetch$1;
-  commonjsGlobal.Response = fetchNode.Response;
-  commonjsGlobal.Headers = fetchNode.Headers;
-  commonjsGlobal.Request = fetchNode.Request;
-}
+function r(m){return m && m.default || m;}
+commonjsGlobal.fetch = commonjsGlobal.fetch || (
+	typeof process=='undefined' ? r(require$$0) : (function(url, opts) {
+		return r(require$$1)(String(url).replace(/^\/\//g,'https://'), opts);
+	})
+);
 
 /**
  * @module utils/getTypeof
@@ -1951,9 +1928,10 @@ class Fetch {
         });
     }
     /**
-     * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
-     * - In browser environments, [whatwg-fetch](https://github.com/github/fetch/) window.fetch is used.
-     * - In node environments, [node-fetch](https://github.com/bitinn/node-fetch/) NPM package is used.
+     * Uses the `isomorphic-unfetch` npm package to send HTTP requests and retrieve data from an API.
+     * - Switches between [unfetch](https://github.com/developit/unfetch)
+     *   & [node-fetch](https://github.com/bitinn/node-fetch) for client & server.
+     * - 2.5 kB unpacked size
      *
      * @param {string} url - URL to fetch data from.
      * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
@@ -1972,7 +1950,7 @@ class Fetch {
             }
             /* Combine user provided 'options' and class property 'this.options', user options overwrite class options */
             const combinedOptions = Object.assign(Object.assign({}, this.options), options);
-            /* Use the cross-fetch package to perform an HTTP request */
+            /* Use the isomorphic-unfetch package to perform an HTTP request */
             const response = yield fetch(url, combinedOptions)
                 .then((result) => {
                 if (!(result === null || result === void 0 ? void 0 : result.status) || result.status >= 400) {

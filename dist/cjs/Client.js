@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var NHTSA = require('./NHTSA.js');
-require('./Fetch-2e798510.js');
+require('./Fetch-57bc7fc7.js');
 require('stream');
 require('http');
 require('url');
