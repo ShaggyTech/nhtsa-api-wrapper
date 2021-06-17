@@ -40,9 +40,7 @@ describe('NHTSA.DecodeWMI()', () => {
 
   test('it gets WMIs for a valid manufacturer via id number', async () => {
     fetchMock.mockResponse(JSON.stringify({ ...mockData }));
-    const response = await client
-      .GetWMIsForManufacturer(1)
-      .catch((err) => err);
+    const response = await client.GetWMIsForManufacturer(1).catch((err) => err);
 
     expect(response.Results).toStrictEqual(mockData.Results);
 
@@ -121,7 +119,9 @@ describe('NHTSA.DecodeWMI()', () => {
 
   test('it rejects with Error when invalid typeof params.vehicleType argument is provided', async () => {
     const response = await client
-      .GetWMIsForManufacturer('Volkswagen', {vehicleType: ['should fail']} as any)
+      .GetWMIsForManufacturer('Volkswagen', {
+        vehicleType: ['should fail'],
+      } as any)
       .catch((err) => err);
 
     expect(response).toStrictEqual(

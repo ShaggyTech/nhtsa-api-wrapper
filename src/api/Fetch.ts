@@ -119,7 +119,8 @@ export class Fetch {
 
   /**
    * Uses the `isomorphic-unfetch` npm package to send HTTP requests and retrieve data from an API.
-   * - Switches between [unfetch](https://github.com/developit/unfetch) & [node-fetch](https://github.com/bitinn/node-fetch) for client & server.
+   * - Switches between [unfetch](https://github.com/developit/unfetch)
+   *   & [node-fetch](https://github.com/bitinn/node-fetch) for client & server.
    * - 2.5 kB unpacked size
    *
    * @param {string} url - URL to fetch data from.

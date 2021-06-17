@@ -51,7 +51,7 @@ export class GetWMIsForManufacturer extends Fetch {
   async GetWMIsForManufacturer(
     manufacturer: string | number,
     params?: {
-      vehicleType?: string | number
+      vehicleType?: string | number;
     }
   ): Promise<GetWMIsForManufacturerResponse> {
     const action = 'GetWMIsForManufacturer';
@@ -78,7 +78,11 @@ export class GetWMIsForManufacturer extends Fetch {
     }
 
     const typeofVehicleType = getTypeof(params?.vehicleType);
-    if (params?.vehicleType && typeofVehicleType !== 'string' && typeofVehicleType !== 'number') {
+    if (
+      params?.vehicleType &&
+      typeofVehicleType !== 'string' &&
+      typeofVehicleType !== 'number'
+    ) {
       return Promise.reject(
         new Error(
           `${action}, "vehicleType" argument must be of type string or number, got: ` +
@@ -86,7 +90,6 @@ export class GetWMIsForManufacturer extends Fetch {
         )
       );
     }
-    
 
     /* Build the 'default' query string to be appended to the URL*/
     const queryString = await this.buildQueryString(params).catch((err) =>
