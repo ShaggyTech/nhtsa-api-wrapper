@@ -129,31 +129,61 @@ export class GetWMIsForManufacturer extends Fetch {
   /**
    * Provides information on the World Manufacturer Identifier (WMI) for a specified `manufacturer`.
    * - Only WMIs registered in vPICList are displayed.
-   * - `manufacturer` can be a partial name, or a full name for more specificity
-   *   (e.g., "Merc", "Mercedes Benz", etc.).
+   * - `manufacturer` can be a partial name, or a full name for more specificity, or WMI ID number
+   *   (e.g., "Merc", "Mercedes Benz", 987, etc.).
+   * - `vehicleType` can be a string or number (e.g., "car", 1)
    *
    * @async
    * @param {string|number} manufacturer - Manufacturer Name.
+   * @param {object} [params={}] - Query Search Parameters to append to the URL.
+   * @param {string|number} [params.vehicleType] - Optional Vehicle Type search parameter.
    * @returns {(Promise&lt;GetWMIsForManufacturerResponse>)} Api Response object.
    */
   async GetWMIsForManufacturer(
-    manufacturer: string
+    manufacturer: string | number,
+    params?: {
+      vehicleType?: string | number;
+    }
   ): Promise&lt;GetWMIsForManufacturerResponse> {
     const action = 'GetWMIsForManufacturer';
 
     /* Runtime typechecking */
-    const typeofManufacturer = getTypeof(manufacturer);
-    if (typeofManufacturer !== 'string') {
+    const typeofParams = getTypeof(params);
+    if (params &amp;&amp; typeofParams !== 'object') {
       return Promise.reject(
         new Error(
-          `${action}, "manufacturer" argument is required and must be of type string, got: ` +
+          `${action}, "params" argument must be of type object, got: ` +
+            `&lt;${typeofParams}> ${params}`
+        )
+      );
+    }
+
+    const typeofManufacturer = getTypeof(manufacturer);
+    if (typeofManufacturer !== 'string' &amp;&amp; typeofManufacturer !== 'number') {
+      return Promise.reject(
+        new Error(
+          `${action}, "manufacturer" argument is required and must be of type string or number, got: ` +
             `&lt;${typeofManufacturer}> ${manufacturer}`
         )
       );
     }
 
+    const typeofVehicleType = getTypeof(params?.vehicleType);
+    if (
+      params?.vehicleType &amp;&amp;
+      typeofVehicleType !== 'string' &amp;&amp;
+      typeofVehicleType !== 'number'
+    ) {
+      return Promise.reject(
+        new Error(
+          `${action}, "vehicleType" argument must be of type string or number, got: ` +
+            `&lt;${typeofVehicleType}> ${params.vehicleType}`
+        )
+      );
+    }
+
     /* Build the 'default' query string to be appended to the URL*/
-    const queryString = await this.buildQueryString().catch((err) =>
+    const queryString = await this.buildQueryString(params).catch((err) =>
       Promise.reject(
         new Error(`${action}, Error building query string: ${err}`)
       )

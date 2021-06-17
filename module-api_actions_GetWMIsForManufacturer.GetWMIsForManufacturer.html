@@ -302,7 +302,7 @@
         
         <span class="code-name">
             
-                GetWMIsForManufacturer<span class="signature">(manufacturer)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="module-api_actions_GetWMIsForManufacturer.html#GetWMIsForManufacturerResponse">GetWMIsForManufacturerResponse</a>>}</span>
+                GetWMIsForManufacturer<span class="signature">(manufacturer, params<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="module-api_actions_GetWMIsForManufacturer.html#GetWMIsForManufacturerResponse">GetWMIsForManufacturerResponse</a>>}</span>
             
         </span>
     </h4>
@@ -314,8 +314,9 @@
         <p>Provides information on the World Manufacturer Identifier (WMI) for a specified <code>manufacturer</code>.</p>
 <ul>
 <li>Only WMIs registered in vPICList are displayed.</li>
-<li><code>manufacturer</code> can be a partial name, or a full name for more specificity
-(e.g., &quot;Merc&quot;, &quot;Mercedes Benz&quot;, etc.).</li>
+<li><code>manufacturer</code> can be a partial name, or a full name for more specificity, or WMI ID number
+(e.g., &quot;Merc&quot;, &quot;Mercedes Benz&quot;, 987, etc.).</li>
+<li><code>vehicleType</code> can be a string or number (e.g., &quot;car&quot;, 1)</li>
 </ul>
     </div>
     
@@ -341,7 +342,11 @@
             <th>Type</th>
 
             
+            <th>Attributes</th>
+            
 
+            
+            <th>Default</th>
             
 
             <th class="last">Description</th>
@@ -370,11 +375,107 @@
   </td>
 
   
+      <td class="attributes">
+      
 
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
   
 
   <td class="description last"><p>Manufacturer Name.</p></td>
 </tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>params</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          {}
+      
+      </td>
+  
+
+  <td class="description last"><p>Query Search Parameters to append to the URL.</p></td>
+</tr>
+
+  
+  
+    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>vehicleType</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>Optional Vehicle Type search parameter.</p></td>
+</tr>
+
+  
 
 
         
@@ -421,7 +522,7 @@
         <p class="tag-source">
             <a href="api_actions_GetWMIsForManufacturer.ts.html" class="button">View Source</a>
             <span>
-                <a href="api_actions_GetWMIsForManufacturer.ts.html">api/actions/GetWMIsForManufacturer.ts</a>, <a href="api_actions_GetWMIsForManufacturer.ts.html#line41">line 41</a>
+                <a href="api_actions_GetWMIsForManufacturer.ts.html">api/actions/GetWMIsForManufacturer.ts</a>, <a href="api_actions_GetWMIsForManufacturer.ts.html#line44">line 44</a>
             </span>
         </p>
     
