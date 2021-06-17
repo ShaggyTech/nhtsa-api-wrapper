@@ -26,7 +26,7 @@ describe('NHTSA.DecodeWMI()', () => {
    * Successes
    **************/
 
-  test('it gets WMIs for a valid manufacturer', async () => {
+  test('it gets WMIs for a valid manufacturer via name', async () => {
     fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const response = await client
       .GetWMIsForManufacturer('Audi')
@@ -35,6 +35,40 @@ describe('NHTSA.DecodeWMI()', () => {
     expect(response.Results).toStrictEqual(mockData.Results);
 
     const expectedUrl = `${BASE_URL}/Audi?format=json`;
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  test('it gets WMIs for a valid manufacturer via id number', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
+    const response = await client.GetWMIsForManufacturer(1).catch((err) => err);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
+
+    const expectedUrl = `${BASE_URL}/1?format=json`;
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  test('it gets WMIs for a valid manufacturer via name and vehicleType by name', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
+    const response = await client
+      .GetWMIsForManufacturer('audi', { vehicleType: 'car' })
+      .catch((err) => err);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
+
+    const expectedUrl = `${BASE_URL}/audi?vehicleType=car&format=json`;
+    expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
+  });
+
+  test('it gets WMIs for a valid manufacturer via name and vehicleType by id number', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
+    const response = await client
+      .GetWMIsForManufacturer('audi', { vehicleType: 1 })
+      .catch((err) => err);
+
+    expect(response.Results).toStrictEqual(mockData.Results);
+
+    const expectedUrl = `${BASE_URL}/audi?vehicleType=1&format=json`;
     expect(fetchMock).toHaveBeenCalledWith(expectedUrl, {});
   });
 
@@ -49,7 +83,7 @@ describe('NHTSA.DecodeWMI()', () => {
 
     expect(response).toStrictEqual(
       Error(
-        `${ACTION}, "manufacturer" argument is required and must be of type string, got: ` +
+        `${ACTION}, "manufacturer" argument is required and must be of type string or number, got: ` +
           `<undefined> undefined`
       )
     );
@@ -63,8 +97,36 @@ describe('NHTSA.DecodeWMI()', () => {
 
     expect(response).toStrictEqual(
       Error(
-        `${ACTION}, "manufacturer" argument is required and must be of type string, got: ` +
+        `${ACTION}, "manufacturer" argument is required and must be of type string or number, got: ` +
           `<object> [object Object]`
+      )
+    );
+    expect(fetchMock).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when invalid typeof params argument is provided', async () => {
+    const response = await client
+      .GetWMIsForManufacturer('Volkswagen', ['should fail'] as any)
+      .catch((err) => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "params" argument must be of type object, got: <array> should fail`
+      )
+    );
+    expect(fetchMock).toHaveBeenCalledTimes(0);
+  });
+
+  test('it rejects with Error when invalid typeof params.vehicleType argument is provided', async () => {
+    const response = await client
+      .GetWMIsForManufacturer('Volkswagen', {
+        vehicleType: ['should fail'],
+      } as any)
+      .catch((err) => err);
+
+    expect(response).toStrictEqual(
+      Error(
+        `${ACTION}, "vehicleType" argument must be of type string or number, got: <array> should fail`
       )
     );
     expect(fetchMock).toHaveBeenCalledTimes(0);

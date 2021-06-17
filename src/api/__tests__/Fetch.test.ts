@@ -146,7 +146,7 @@ describe('get() class method', () => {
    */
   test.skip('it returns a real response', async () => {
     (fetchMock as any).mockImplementationOnce(
-      jest.requireActual('cross-fetch')
+      jest.requireActual('isomorphic-unfetch')
     );
 
     const client = new Fetch();
@@ -248,7 +248,7 @@ describe('get() class method', () => {
     expect(response).toStrictEqual(Error(expectedError));
   });
 
-  test('it handles cross-fetch errors', async () => {
+  test('it handles fetch errors', async () => {
     (fetchMock as any).mockImplementationOnce(() => {
       return Promise.reject('mock error');
     });

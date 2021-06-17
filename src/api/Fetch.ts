@@ -18,7 +18,7 @@
  */
 
 /* Module Dependencies */
-import 'cross-fetch/polyfill';
+import 'isomorphic-unfetch';
 /* Utilities */
 import { getTypeof, makeQueryString } from '../utils';
 /* Types */
@@ -118,9 +118,10 @@ export class Fetch {
   }
 
   /**
-   * Uses the `cross-fetch` npm package to send HTTP requests and retrieve data from an API.
-   * - In browser environments, [whatwg-fetch](https://github.com/github/fetch/) window.fetch is used.
-   * - In node environments, [node-fetch](https://github.com/bitinn/node-fetch/) NPM package is used.
+   * Uses the `isomorphic-unfetch` npm package to send HTTP requests and retrieve data from an API.
+   * - Switches between [unfetch](https://github.com/developit/unfetch)
+   *   & [node-fetch](https://github.com/bitinn/node-fetch) for client & server.
+   * - 2.5 kB unpacked size
    *
    * @param {string} url - URL to fetch data from.
    * @param {FetchRequestOptions} [options] - [Fetch options](https://github.github.io/fetch/#options).
@@ -151,7 +152,7 @@ export class Fetch {
     /* Combine user provided 'options' and class property 'this.options', user options overwrite class options */
     const combinedOptions = { ...this.options, ...options };
 
-    /* Use the cross-fetch package to perform an HTTP request */
+    /* Use the isomorphic-unfetch package to perform an HTTP request */
     const response: Response = await fetch(url, combinedOptions)
       .then((result) => {
         if (!result?.status || result.status >= 400) {

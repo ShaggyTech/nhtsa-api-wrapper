@@ -56,6 +56,6 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true /* Allows json files to be imported with "import * from 'something.json'" */
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "global.d.ts"],
   "exclude": ["**/__tests__/*", "**/__mocks__/*", "docSrc"]
 }
