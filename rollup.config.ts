@@ -61,7 +61,7 @@ const plugins = [
     exclude: ['node_modules'],
   }),
   babel({
-    include: 'node_modules/cross-fetch',
+    include: 'node_modules/isomorphic-unfetch',
     exclude: '**/node_modules/**',
     babelHelpers: 'runtime',
     extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', '.ts', '.tsx'],
@@ -73,7 +73,7 @@ export default [
    * Browser/Universal Bundles.
    */
   {
-    external: [/cross\-fetch/],
+    external: [/isomorphic\-unfetch/],
     input: `src/index.ts`,
     output: [
       /**
@@ -85,7 +85,7 @@ export default [
         format: 'umd',
         esModule: false,
         globals: {
-          'cross-fetch': 'fetch',
+          'isomorphic-unfetch': 'fetch',
         },
         plugins: [
           gzipPlugin(),
@@ -105,7 +105,7 @@ export default [
         format: 'iife',
         esModule: false,
         globals: {
-          'cross-fetch': 'fetch',
+          'isomorphic-unfetch': 'fetch',
         },
         plugins: [
           gzipPlugin(),
@@ -147,7 +147,7 @@ export default [
         dir: `${baseDir}module`,
         format: 'esm',
         globals: {
-          'cross-fetch': 'fetch',
+          'isomorphic-unfetch': 'fetch',
         },
         plugins: [terser()],
       },
