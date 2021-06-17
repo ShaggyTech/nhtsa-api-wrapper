@@ -6,22 +6,42 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/60e45bcb1cf54285a67f423c3f6f32a1)](https://www.codacy.com/manual/ShaggyTech/nhtsa-api-wrapper?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ShaggyTech/nhtsa-api-wrapper&amp;utm_campaign=Badge_Grade)
 [![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/@shaggytools/nhtsa-api-wrapper)](https://bundlephobia.com/result?p=@shaggytools/nhtsa-api-wrapper)
 [![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@shaggytools/nhtsa-api-wrapper)](https://bundlephobia.com/result?p=@shaggytools/nhtsa-api-wrapper)
+[![](https://data.jsdelivr.com/v1/package/npm/@shaggytools/nhtsa-api-wrapper/badge)](https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper)
 
-> An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).
+> An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) client wrapper, written in Typescript and bundled with Rollup. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.).  Often used as a VIN Decoder among other things.
 
-- NPM - [https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
+---
 
-- Yarn - [https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper](https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper)
+NPM - [https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
 
-The API that this wrapper was written for is primarily used for decoding useful information from Vehicle Identification Numbers (VINs) in the United States and Canada. However, the NHTSA Vehicles API contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them. Within the [documentation](https://www.shaggytech.com/nhtsa-api-wrapper/) you'll see references to these "Actions" and each one will return different information based on a variety of parameters, some required and some optional. This includes decoding WMIs, Canadian VINs, models per make and year, etc.
+```bash
+$ npm install @shaggytools/nhtsa-api-wrapper
+```
 
-**Complete Documentation: [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)**
+Yarn - [https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper](https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper)
 
-**[Package Size Visualization](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html)**
+```bash
+yarn add @shaggytools/nhtsa-api-wrapper
+```
+
+CDN - [https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper](https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper)
+
+
+---
+
+Primarily used for decoding useful information from a Vehicle Identification Number (VIN), aka a VIN Decoder, in the United States and Canada. 
+
+The NHTSA Vehicles API actually contains a total of 24 different endpoints, or "Actions" as the developers of the API chose to call them.  The API homepage can be found at [https://vpic.nhtsa.dot.gov/api/](https://vpic.nhtsa.dot.gov/api/) for further reading.
+
+> Package Docs: 
+> [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)
+
+> Module Size Visualization:
+> [https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html)
 
 If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.
 
-> This package was developed and tested on `Node v13.9.0`, `NPM v6.11.3`, and `Yarn v1.21.1`
+> This package was developed and tested on `Node v14.17.0`, `NPM v6.14.13`, and `Yarn v1.22.10`
 
 ---
 
@@ -92,10 +112,10 @@ I hope you find this package useful and mostly free of bugs 🐛.
 
 ## Dependencies
 
-**[cross-fetch](https://www.npmjs.com/package/cross-fetch)** NPM Package
+**[isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch)**
 
-- Universal WHATWG Fetch API for Node, Browsers and React Native.
-- Uses [whatwg-fetch](https://github.com/github/fetch/) in the browser and [node-fetch](https://github.com/bitinn/node-fetch/) in node environments.
+- Switches between [unfetch](https://github.com/developit/unfetch) & [node-fetch](https://github.com/bitinn/node-fetch) for client & server.
+- 2.5 kB unpacked size
 
 ---
 
@@ -112,7 +132,7 @@ I hope you find this package useful and mostly free of bugs 🐛.
 
 #### Install
 
-```node
+```bash
 # NPM
 npm install @shaggytools/nhtsa-api-wrapper
 
@@ -129,7 +149,7 @@ Listed below, there are several ways to use this package within a Node environme
 
 ##### Via Client
 
-If you prefer _not_ to use the `new` keyword you can use the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) export, which returns a new instance of the `NHTSA` class:
+You can use the [Client](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Client.html) export, which returns a new instance of the `NHTSA` class:
 
 Example code:
 
@@ -147,7 +167,7 @@ console.log(Results);
 
 ##### Via NHTSA class
 
-You can import the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of the API `Actions`. You will need to instantiate the class with `new NHTSA()`.
+You can import the [NHTSA class](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_NHTSA-NHTSA.html), which is a class exported by this package that implements all of the API `Actions`. You will need to instantiate the class with `new NHTSA()`.  You can also pass constructor options when instantiating, see [here](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_Fetch.html#FetchConfig) for available config options.
 
 ```javascript
 const { NHTSA } = require('@shaggytools/nhtsa-api-wrapper');
@@ -205,8 +225,6 @@ const response = ApiClient.DecodeVin('WVWHV71K69W144983')
 ##### Via individual API Actions
 
 You can import individual NHTSA `Action` classes if you only need to use one of them at a time, or even just a few of them. Each class has a single member method with the same name as the class. For example, the DecodeVin class has a method named `DecodeVin` and is used like `DecodeVin.DecodeVin(<vin>)`, which is after instantiating the class with `new DecodeVin()`.
-
-Using the wrapper in this way can slightly reduce the imported size. It's useful to keep in mind that every Action requires the [cross-fetch](https://www.npmjs.com/package/cross-fetch) package as a dependency. The cross-fetch package adds approximately 8.3kB of the total [size of this package](https://www.shaggytech.com/nhtsa-api-wrapper/package-size-stats.html).
 
 Sample code; change `DecodeWMI` to any desired NHTSA Action, or import multiples.
 
@@ -314,11 +332,9 @@ Full HTML example; copy and paste to try it out:
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testing UMD bundle imports</title>
 
-    <!-- Change <version> to specific version number "x.x.xx",
-    or remove <version> for the most recent published version -->
     <script
       type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/<version>/dist/bundle.min.js"
+      src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/dist/bundle.min.js"
     ></script>
   </head>
 
@@ -381,9 +397,8 @@ Full HTML Example:
       document
         .getElementById('DecodeVin')
         .addEventListener('click', async function() {
-          // Change <version> to specific version number "x.x.xx" or remove <version> for the latest build
           const { Client } = await import(
-            'https://unpkg.com/browse/@shaggytools/nhtsa-api-wrapper@<version>/module/index.js'
+            'https://unpkg.com/browse/@shaggytools/nhtsa-api-wrapper/module/index.js'
           )
             .then(module => module)
             .catch(err => err);
@@ -419,7 +434,7 @@ You'll likely only be interested in the `ApiResponse.Results` portion of the res
 
 As an example, you can see what the `GetEquipmentPlantCodes` response will be by going to it's response type, located on the documentation page for the same named module, with the word "Response" added to the end.
 
-Example: [GetEquipmentPlantCodesResponse](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResponse).Results will contain an array of [GetEquipmentPlantCodesResults](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.html#GetEquipmentPlantCodesResults) type objects.
+Example: [DecodeVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.html#DecodeVinResponse).Results will contain an array of [DecodeVinResults](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.html#DecodeVinResults) type objects.
 
 ---
 
