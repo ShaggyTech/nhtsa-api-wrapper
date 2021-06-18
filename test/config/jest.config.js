@@ -4,12 +4,12 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{js,ts,jsx}',
     // ignore
-    //'!**/node_modules/**',
-    //'!**/vendor/**',
-    //'!**/__*__/**'
+    '!**/node_modules/**',
+    '!**/vendor/**',
+    '!**/__*__/**'
   ],
   coverageDirectory: '<rootDir>/coverage',
-  // coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/index.ts'],
   setupFiles: ['<rootDir>/test/config/jest.setup.ts'],
   globals: {
     'ts-jest': {
