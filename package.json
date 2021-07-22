@@ -173,7 +173,7 @@
     "eslint": "7.31.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "24.3.6",
-    "eslint-plugin-jsdoc": "35.3.0",
+    "eslint-plugin-jsdoc": "35.5.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.4.0",
     "form-data": "4.0.0",
