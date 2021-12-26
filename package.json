@@ -172,7 +172,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-jest": "24.4.0",
+    "eslint-plugin-jest": "25.3.0",
     "eslint-plugin-jsdoc": "37.4.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
