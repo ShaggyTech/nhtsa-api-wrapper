@@ -166,7 +166,7 @@
     "@typescript-eslint/parser": "4.28.4",
     "better-docs": "2.3.2",
     "commitizen": "4.2.4",
-    "concurrently": "6.2.0",
+    "concurrently": "6.5.1",
     "copyfiles": "2.4.1",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
