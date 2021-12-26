@@ -65,22 +65,13 @@
       "@semantic-release/github"
     ]
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "scripts": {
+    "prepare": "husky install",
     "prebuild": "yarn clean-dist",
     "build": "rollup -c rollup.config.ts",
     "prebuild-docs": "yarn clean-docs",
@@ -151,8 +142,8 @@
     "@babel/plugin-transform-runtime": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@babel/preset-typescript": "7.16.5",
-    "@commitlint/cli": "15.0.0",
-    "@commitlint/config-conventional": "15.0.0",
+    "@commitlint/cli": "16.0.0",
+    "@commitlint/config-conventional": "16.0.0",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-json": "4.1.0",
@@ -161,18 +152,15 @@
     "@semantic-release/git": "10.0.1",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.17",
-    "@types/node-fetch": "3.0.2",
     "@typescript-eslint/eslint-plugin": "5.8.0",
     "@typescript-eslint/parser": "5.8.0",
     "better-docs": "2.3.2",
-    "commitizen": "4.2.4",
     "concurrently": "6.5.1",
     "copyfiles": "2.4.1",
     "cross-env": "7.0.3",
-    "cz-conventional-changelog": "3.3.0",
-    "eslint": "7.32.0",
+    "eslint": "8.5.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-jest": "24.4.0",
+    "eslint-plugin-jest": "25.3.0",
     "eslint-plugin-jsdoc": "37.4.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",

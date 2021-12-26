@@ -6,15 +6,18 @@ module.exports = {
     // ignore
     '!**/node_modules/**',
     '!**/vendor/**',
-    '!**/__*__/**'
+    '!**/__*__/**',
   ],
   coverageDirectory: '<rootDir>/coverage',
-  coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/src/index.ts'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/src/index.ts',
+  ],
   setupFiles: ['<rootDir>/test/config/jest.setup.ts'],
   globals: {
     'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.dev.json'
-    }
+      tsconfig: '<rootDir>/tsconfig.dev.json',
+    },
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
@@ -30,16 +33,16 @@ module.exports = {
     '<rootDir>/dist/',
     '<rootDir>/dev/',
     '<rootDir>/docs/',
-    '<rootDir>/bin/'
+    '<rootDir>/bin/',
   ],
   transform: {
-    '.(ts|tsx)': 'ts-jest'
+    '.(ts|tsx)': 'ts-jest',
   },
   watchPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
     '<rootDir>/dev/',
     '<rootDir>/docs/',
-    '<rootDir>/bin/'
+    '<rootDir>/bin/',
   ],
 };

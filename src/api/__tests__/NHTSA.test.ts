@@ -13,10 +13,8 @@ describe('the NHTSA Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toStrictEqual('json');
-    expect(client.baseUrl).toStrictEqual(
-      'https://vpic.nhtsa.dot.gov/api/vehicles'
-    );
+    expect(client.apiResponseFormat).toBe('json');
+    expect(client.baseUrl).toBe('https://vpic.nhtsa.dot.gov/api/vehicles');
     expect(client.options).toStrictEqual(DEFAULT_CONFIG.options);
 
     // Parent Class Methods
@@ -37,8 +35,8 @@ describe('the NHTSA Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toStrictEqual('json');
-    expect(client.baseUrl).toStrictEqual('https://www.shaggytech.com');
+    expect(client.apiResponseFormat).toBe('json');
+    expect(client.baseUrl).toBe('https://www.shaggytech.com');
     expect(client.options).toStrictEqual({
       ...userConfig.options,
     });
@@ -70,8 +68,8 @@ describe('NHTSA.DecodeVin()', () => {
 });
 
 describe('NHTSA.DecodeVinValues()', () => {
-  fetchMock.mockResponse(JSON.stringify({ ...mockData }));
   test('it decodes a VIN', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .DecodeVinValues('3VWD07AJ5EM388202', {
@@ -328,8 +326,8 @@ describe('GetModelsForMakeIdYear()', () => {
 });
 
 describe('GetVehicleVariableList()', () => {
-  fetchMock.mockResponse(JSON.stringify({ ...mockData }));
   test('it gets all vehicle related variables from the database', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client.GetVehicleVariableList().catch((err) => err);
 
@@ -340,8 +338,8 @@ describe('GetVehicleVariableList()', () => {
 });
 
 describe('GetVehicleVariableValuesList()', () => {
-  fetchMock.mockResponse(JSON.stringify({ ...mockData }));
   test('it gets vehicle variable values with a variable Name', async () => {
+    fetchMock.mockResponse(JSON.stringify({ ...mockData }));
     const client = new NHTSA();
     const response = await client
       .GetVehicleVariableValuesList('battery type')

@@ -20,10 +20,8 @@ module.exports = {
   ],
   extends: [
     'eslint:recommended',
-    'prettier',
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
     'plugin:node/recommended',
     'plugin:jest/all',
     'plugin:jest/style',
@@ -34,8 +32,9 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'prettier', 'jsdoc', 'jest'],
-  /* 0('off'), 1('warn'), 2('error) */
   rules: {
+    /* 0('off'), 1('warn'), 2('error) */
+
     /*****************
      * ESLint Rules
      ****************/
@@ -64,21 +63,12 @@ module.exports = {
     /*****************
      * JSDOC Rules
      ****************/
-    // "jsdoc/check-alignment": 1, // Recommended
-    // "jsdoc/check-examples": 1,
-    // "jsdoc/check-indentation": 1,
     'jsdoc/check-param-names': 1, // Recommended
     'jsdoc/check-syntax': 1,
-    // "jsdoc/check-tag-names": 1, // Recommended
     'jsdoc/check-types': 1, // Recommended
     'jsdoc/implements-on-classes': 1, // Recommended
-    'jsdoc/match-description': 1,
     'jsdoc/newline-after-description': 1, // Recommended
-    // "jsdoc/no-types": 1,
-    // "jsdoc/no-undefined-types": 1, // Recommended
     'jsdoc/require-description': 1,
-    // "jsdoc/require-description-complete-sentence": 1,
-    // "jsdoc/require-example": 1,
     'jsdoc/require-hyphen-before-param-description': 1,
     'jsdoc/require-jsdoc': 1, // Recommended
     'jsdoc/require-param': 1, // Recommended
@@ -95,11 +85,8 @@ module.exports = {
      * Jest Rules
      ****************/
     'jest/no-disabled-tests': 0,
-    // "jest/no-focused-tests": 1,
-    // "jest/no-identical-title": 1,
-    // "jest/prefer-to-have-length": 1,
-    // "jest/valid-expect": 1,
     'jest/prefer-expect-assertions': 0,
+    'jest/prefer-lowercase-title': 0,
     'jest/consistent-test-it': 0,
     'jest/no-hooks': 0,
     'jest/lowercase-name': 0,

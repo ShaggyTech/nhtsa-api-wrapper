@@ -11,7 +11,7 @@ const getClassInstance = () => {
 };
 
 describe('NHTSA.DecodeVinExtended()', () => {
-  let client: DecodeVinExtended = getClassInstance();
+  let client: DecodeVinExtended;
 
   beforeEach(() => {
     fetchMock.resetMocks();
