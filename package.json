@@ -183,7 +183,7 @@
     "jsdoc": "3.6.7",
     "jsdoc-babel": "0.5.0",
     "jsdoc-plugin-typescript": "2.0.6",
-    "jsdoc-to-markdown": "7.0.1",
+    "jsdoc-to-markdown": "7.1.0",
     "lodash.camelcase": "4.3.0",
     "nodemon": "2.0.12",
     "prettier": "2.5.1",
