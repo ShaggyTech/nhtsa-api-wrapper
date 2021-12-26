@@ -10,27 +10,27 @@ module.exports = {
   source: {
     include: ['src', 'docsSrc'],
     includePattern: '.(js|ts|doc|tsdoc|md)',
-    excludePattern: '(node_modules/|docs/|dev/|dist/|coverage/)'
+    excludePattern: '(node_modules/|docs/|dev/|dist/|coverage/)',
   },
   plugins: [
     // 'node_modules/jsdoc-babel',
     // 'node_modules/jsdoc-plugin-typescript',
     'plugins/markdown',
     'node_modules/better-docs/typescript',
-    'node_modules/better-docs/category'
+    'node_modules/better-docs/category',
   ],
   tags: {
     allowUnknownTags: true,
-    dictionaries: ['jsdoc']
+    dictionaries: ['jsdoc'],
   },
   templates: {
     cleverLinks: true,
     monospaceLinks: false,
     default: {
       staticFiles: {
-        include: ['./docsSrc/static']
+        include: ['./docsSrc/static'],
       },
-      includeDate: false
+      includeDate: false,
     },
     'better-docs': {
       name: `${PKG.name}`,
@@ -39,14 +39,14 @@ module.exports = {
       navigation: [
         {
           label: 'Github Source Code',
-          href: `${PKG.repository.homepage}`
+          href: `${PKG.repository.homepage}`,
         },
         {
           label: '@shaggytech',
-          href: 'https://www.github.com/shaggytech'
-        }
-      ]
-    }
+          href: 'https://www.github.com/shaggytech',
+        },
+      ],
+    },
   },
   opts: {
     recurse: true,
@@ -54,16 +54,16 @@ module.exports = {
     destination: outDir,
     template: TEMPLATE,
     tutorials: './docsSrc/tutorials',
-    readme: './README.md'
+    readme: './README.md',
   },
   typescript: {
-    moduleRoot: 'src'
+    moduleRoot: 'src',
   },
   markdown: {
-    idInHeadings: true
+    idInHeadings: true,
   },
   babel: {
     extensions: ['ts', 'tsx'],
-    ignore: ['**/*.(test|spec).ts']
-  }
+    ignore: ['**/*.(test|spec).ts'],
+  },
 };

@@ -7,12 +7,12 @@ describe('getTypeof utility helper function', () => {
   });
 
   test('it returns correct type', () => {
-    expect(getTypeof(undefined)).toStrictEqual('undefined');
-    expect(getTypeof(null)).toStrictEqual('null');
-    expect(getTypeof(true)).toStrictEqual('boolean');
-    expect(getTypeof('this is a string')).toStrictEqual('string');
-    expect(getTypeof(() => 'this is a function')).toStrictEqual('function');
-    expect(getTypeof({ an: 'object' })).toStrictEqual('object');
-    expect(getTypeof(['an', 'array'])).toStrictEqual('array');
+    expect(getTypeof(undefined)).toBe('undefined');
+    expect(getTypeof(null)).toBe('null');
+    expect(getTypeof(true)).toBe('boolean');
+    expect(getTypeof('this is a string')).toBe('string');
+    expect(getTypeof(() => 'this is a function')).toBe('function');
+    expect(getTypeof({ an: 'object' })).toBe('object');
+    expect(getTypeof(['an', 'array'])).toBe('array');
   });
 });

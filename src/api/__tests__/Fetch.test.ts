@@ -16,10 +16,8 @@ describe('api/Fetch Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toStrictEqual('json');
-    expect(client.baseUrl).toStrictEqual(
-      'https://vpic.nhtsa.dot.gov/api/vehicles'
-    );
+    expect(client.apiResponseFormat).toBe('json');
+    expect(client.baseUrl).toBe('https://vpic.nhtsa.dot.gov/api/vehicles');
     expect(client.options).toStrictEqual(DEFAULT_CONFIG.options);
 
     // Class Methods
@@ -40,8 +38,8 @@ describe('api/Fetch Class', () => {
     expect(client).toBeDefined();
 
     // Class Properties
-    expect(client.apiResponseFormat).toStrictEqual('json');
-    expect(client.baseUrl).toStrictEqual('https://www.shaggytech.com');
+    expect(client.apiResponseFormat).toBe('json');
+    expect(client.baseUrl).toBe('https://www.shaggytech.com');
     expect(client.options).toStrictEqual(userConfig.options);
 
     // Class Methods
@@ -104,7 +102,7 @@ describe('buildQueryString() class method', () => {
       const qs = await client
         .buildQueryString({ nothingHere: '' }, true)
         .catch((err) => err);
-      expect(qs).toStrictEqual('?nothingHere=&format=json');
+      expect(qs).toBe('?nothingHere=&format=json');
     });
 
     test('multiple params are provided containing empty string values', async () => {
@@ -112,7 +110,7 @@ describe('buildQueryString() class method', () => {
       const qs = await client
         .buildQueryString({ nothingHere: '', second: '' }, true)
         .catch((err) => err);
-      expect(qs).toStrictEqual('?nothingHere=&second=&format=json');
+      expect(qs).toBe('?nothingHere=&second=&format=json');
     });
 
     test('a mix of non-empty values and emptry string values are provided', async () => {
@@ -123,9 +121,7 @@ describe('buildQueryString() class method', () => {
           true
         )
         .catch((err) => err);
-      expect(qs).toStrictEqual(
-        '?nothingHere=&test=testing&second=&format=json'
-      );
+      expect(qs).toBe('?nothingHere=&test=testing&second=&format=json');
     });
   });
 });
@@ -154,7 +150,7 @@ describe('get() class method', () => {
       'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/3VWD07AJ5EM388202?format=json'
     );
 
-    expect(response).toStrictEqual('fails');
+    expect(response).toBe('fails');
     expect(fetchMock).toBeDefined();
   });
 

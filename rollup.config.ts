@@ -68,97 +68,102 @@ const plugins = [
   }),
 ];
 
+/** Browser/Universal Bundles */
+const umd = {
+  file: `${baseDir}bundle.min.js`,
+  name: libraryName,
+  format: 'umd',
+  esModule: false,
+  globals: {
+    'isomorphic-unfetch': 'fetch',
+  },
+  sourcemap: true,
+  plugins: [
+    gzipPlugin(),
+    terser({
+      format: {
+        comments: false,
+      },
+    }),
+  ],
+};
+/** Browser/Universal Bundles */
+const iife = {
+  file: `${baseDir}browser/iife.js`,
+  name: libraryName,
+  format: 'iife',
+  esModule: false,
+  globals: {
+    'isomorphic-unfetch': 'fetch',
+  },
+  sourcemap: false,
+  plugins: [
+    gzipPlugin(),
+    terser({
+      format: {
+        comments: false,
+      },
+    }),
+  ],
+};
+
+const universalBundles = {
+  input: `src/index.ts`,
+  output: [
+    /** UMD Bundle */
+    umd,
+    /**Immediately Invoked Function Expression (IIFE) */
+    iife,
+  ],
+  external: [/isomorphic-unfetch/],
+  plugins: [nodeResolve({ preferBuiltins: true, browser: true }), ...plugins],
+};
+
+/** CommonJs (CJS) Module */
+const commonjsModule = {
+  input: { ...treeShakeBundles },
+  output: [
+    {
+      dir: `${baseDir}cjs`,
+      format: 'cjs',
+      sourcemap: true,
+    },
+  ],
+  external: [/@babel\/runtime/],
+  plugins: [nodeResolve({ preferBuiltins: true, browser: false }), ...plugins],
+};
+
+/** ESM Module (tree-shaken) */
+const esmModule = {
+  input: { ...treeShakeBundles },
+  output: [
+    {
+      dir: `${baseDir}module`,
+      format: 'esm',
+      globals: {
+        'isomorphic-unfetch': 'fetch',
+      },
+      sourcemap: true,
+      plugins: [terser()],
+    },
+  ],
+  external: [/@babel\/runtime/],
+  plugins: [
+    visualizer({
+      filename: 'package-size-stats.html',
+      title: '@shaggytools/nhtsa-api-wrapper - Module Package Visualizer',
+      sourcemap: true,
+    }),
+    nodeResolve({ preferBuiltins: true, browser: true }),
+    ...plugins,
+  ],
+};
+
 export default [
-  /**
-   * Browser/Universal Bundles.
-   */
-  {
-    external: [/isomorphic\-unfetch/],
-    input: `src/index.ts`,
-    output: [
-      /**
-       * UMD Bundle.
-       */
-      {
-        file: `${baseDir}bundle.min.js`,
-        name: libraryName,
-        format: 'umd',
-        esModule: false,
-        globals: {
-          'isomorphic-unfetch': 'fetch',
-        },
-        plugins: [
-          gzipPlugin(),
-          terser({
-            format: {
-              comments: false,
-            },
-          }),
-        ],
-      },
-      /**
-       * Immediately Invoked Function Expression (IIFE).
-       */
-      {
-        file: `${baseDir}browser/iife.js`,
-        name: libraryName,
-        format: 'iife',
-        esModule: false,
-        globals: {
-          'isomorphic-unfetch': 'fetch',
-        },
-        plugins: [
-          gzipPlugin(),
-          terser({
-            format: {
-              comments: false,
-            },
-          }),
-        ],
-      },
-    ],
-    plugins: [nodeResolve({ preferBuiltins: true, browser: true }), ...plugins],
-  },
-  /**
-   * CommonJs (CJS) Module.
-   */
-  {
-    /** Process individual inputs. */
-    input: { ...treeShakeBundles },
-    external: [/@babel\/runtime/],
-    output: [
-      {
-        dir: `${baseDir}cjs`,
-        format: 'cjs',
-        // plugins: [terser()]
-      },
-    ],
-    plugins: [nodeResolve({ preferBuiltins: true, browser: false }), ...plugins],
-  },
-  /**
-   * ESM Module (tree-shaken)
-   */
-  {
-    /** Process individual inputs. */
-    input: { ...treeShakeBundles },
-    external: [/@babel\/runtime/],
-    output: [
-      {
-        dir: `${baseDir}module`,
-        format: 'esm',
-        globals: {
-          'isomorphic-unfetch': 'fetch',
-        },
-        plugins: [terser()],
-      },
-    ],
-    plugins: [
-      visualizer({
-        filename: 'package-size-stats.html',
-        title: '@shaggytools/nhtsa-api-wrapper - Module Package Visualizer',
-      }),
-      nodeResolve({ preferBuiltins: true, browser: true }),
-      ...plugins,
-    ],
-  },
+  /** Browser/Universal Bundles */
+  universalBundles,
+  /** CommonJs (CJS) Module */
+  commonjsModule,
+  /** ESM Module (tree-shaken) */
+  esmModule,
 ];

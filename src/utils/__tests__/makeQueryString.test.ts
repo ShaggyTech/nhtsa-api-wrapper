@@ -13,7 +13,7 @@ describe('makeQueryString() - API Utils Method', () => {
       const qs = await makeQueryString({
         format: 'xml',
       }).catch((err) => err);
-      expect(qs).toStrictEqual('?format=xml');
+      expect(qs).toBe('?format=xml');
     });
 
     test('two params', async () => {
@@ -22,7 +22,7 @@ describe('makeQueryString() - API Utils Method', () => {
         format: 'xml',
         modelYear: '2019',
       }).catch((err) => err);
-      expect(qs).toStrictEqual('?format=xml&modelYear=2019');
+      expect(qs).toBe('?format=xml&modelYear=2019');
     });
 
     test('more than two params', async () => {
@@ -32,7 +32,7 @@ describe('makeQueryString() - API Utils Method', () => {
         empty: '',
         page: 1,
       }).catch((err) => err);
-      expect(qs).toStrictEqual('?format=xml&modelYear=2019&page=1');
+      expect(qs).toBe('?format=xml&modelYear=2019&page=1');
     });
 
     test('param values equal to empty strings #1', async () => {
@@ -40,7 +40,7 @@ describe('makeQueryString() - API Utils Method', () => {
         empty: '',
         format: 'csv',
       }).catch((err) => err);
-      expect(qs).toStrictEqual('?format=csv');
+      expect(qs).toBe('?format=csv');
     });
 
     test('param values equal to empty strings #2', async () => {
@@ -48,7 +48,7 @@ describe('makeQueryString() - API Utils Method', () => {
         format: 'csv',
         empty: '',
       }).catch((err) => err);
-      expect(qs).toStrictEqual('?format=csv&');
+      expect(qs).toBe('?format=csv&');
     });
 
     test('a param value containing spaces', async () => {
@@ -57,30 +57,30 @@ describe('makeQueryString() - API Utils Method', () => {
         empty: '',
         format: 'csv',
       }).catch((err) => err);
-      expect(qs).toStrictEqual('?variable=vehicle%20type&format=csv');
+      expect(qs).toBe('?variable=vehicle%20type&format=csv');
     });
   });
 
   describe('returns empty string when:', () => {
     test('params arg is an empty object', async () => {
       const qs = await makeQueryString({}).catch((err) => err);
-      expect(qs).toStrictEqual('');
+      expect(qs).toBe('');
     });
 
     test('params arg is undefined', async () => {
       const qs = await makeQueryString(undefined as any).catch((err) => err);
-      expect(qs).toStrictEqual('');
+      expect(qs).toBe('');
     });
 
     test('only one param is provided containing an empty string value', async () => {
       const qs = await makeQueryString({ nothingHere: '' }).catch((err) => err);
-      expect(qs).toStrictEqual('');
+      expect(qs).toBe('');
     });
 
     test('param value is in an invalid nested object format', async () => {
       const params = { outer: { inner: true } };
       const qs = await makeQueryString(params as any).catch((err) => err);
-      expect(qs).toStrictEqual('');
+      expect(qs).toBe('');
     });
   });
 
@@ -89,7 +89,7 @@ describe('makeQueryString() - API Utils Method', () => {
       const qs = await makeQueryString({ nothingHere: '' }, true).catch(
         (err) => err
       );
-      expect(qs).toStrictEqual('?nothingHere=');
+      expect(qs).toBe('?nothingHere=');
     });
 
     test('multiple params are provided containing empty string values', async () => {
@@ -97,7 +97,7 @@ describe('makeQueryString() - API Utils Method', () => {
         { nothingHere: '', second: '' },
         true
       ).catch((err) => err);
-      expect(qs).toStrictEqual('?nothingHere=&second=');
+      expect(qs).toBe('?nothingHere=&second=');
     });
 
     test('a mix of non-empty values and emptry string values are provided', async () => {
@@ -105,7 +105,7 @@ describe('makeQueryString() - API Utils Method', () => {
         { nothingHere: '', format: 'json', second: '' },
         true
       ).catch((err) => err);
-      expect(qs).toStrictEqual('?nothingHere=&format=json&second=');
+      expect(qs).toBe('?nothingHere=&format=json&second=');
     });
   });
 
