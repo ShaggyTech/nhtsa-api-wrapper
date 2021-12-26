@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-57bc7fc7.js');
+var Fetch = require('./Fetch-672e2a53.js');
 var isValidVin = require('./isValidVin.js');
 var DecodeVin = require('./DecodeVin.js');
 var DecodeVinExtended = require('./DecodeVinExtended.js');
@@ -31,6 +31,7 @@ var GetWMIsForManufacturer = require('./GetWMIsForManufacturer.js');
 require('stream');
 require('http');
 require('url');
+require('punycode');
 require('https');
 require('zlib');
 
@@ -154,3 +155,4 @@ class NHTSA extends Fetch.Fetch {
 }
 
 exports.NHTSA = NHTSA;
+//# sourceMappingURL=NHTSA.js.map

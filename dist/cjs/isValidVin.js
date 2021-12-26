@@ -120,3 +120,4 @@ function isValidVin(vin) {
 }
 
 exports.isValidVin = isValidVin;
+//# sourceMappingURL=isValidVin.js.map

@@ -3,10 +3,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var NHTSA = require('./NHTSA.js');
-require('./Fetch-57bc7fc7.js');
+require('./Fetch-672e2a53.js');
 require('stream');
 require('http');
 require('url');
+require('punycode');
 require('https');
 require('zlib');
 require('./isValidVin.js');
@@ -92,3 +93,4 @@ require('./GetWMIsForManufacturer.js');
 const Client = new NHTSA.NHTSA();
 
 exports.Client = Client;
+//# sourceMappingURL=Client.js.map

@@ -2,10 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var Fetch = require('./Fetch-57bc7fc7.js');
+var Fetch = require('./Fetch-672e2a53.js');
 require('stream');
 require('http');
 require('url');
+require('punycode');
 require('https');
 require('zlib');
 
@@ -114,3 +115,4 @@ class GetModelsForMakeYear extends Fetch.Fetch {
 }
 
 exports.GetModelsForMakeYear = GetModelsForMakeYear;
+//# sourceMappingURL=GetModelsForMakeYear.js.map
