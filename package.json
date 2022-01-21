@@ -133,7 +133,7 @@
     "better-docs"
   ],
   "dependencies": {
-    "@babel/runtime": "7.16.5",
+    "@babel/runtime": "7.16.7",
     "isomorphic-unfetch": "3.1.0"
   },
   "devDependencies": {
