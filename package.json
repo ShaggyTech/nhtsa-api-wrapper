@@ -158,7 +158,7 @@
     "concurrently": "6.5.1",
     "copyfiles": "2.4.1",
     "cross-env": "7.0.3",
-    "eslint": "8.5.0",
+    "eslint": "8.9.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "25.3.0",
     "eslint-plugin-jsdoc": "37.4.0",
