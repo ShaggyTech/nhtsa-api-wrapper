@@ -34,7 +34,7 @@ const TRANSLITERATION_TABLE: Record<string, number> = {
   X: 7,
   Y: 8,
   Z: 9,
-};
+}
 
 /*
  * Later, during the creation of the 'checksum' variable, these weights will be
@@ -44,7 +44,7 @@ const TRANSLITERATION_TABLE: Record<string, number> = {
  */
 const WEIGHTS_ARRAY: number[] = [
   8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2,
-];
+]
 
 /**
  * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
@@ -67,24 +67,24 @@ const WEIGHTS_ARRAY: number[] = [
 export function isValidVin(vin: string): boolean {
   /* A valid VIN must be a string and is always exactly 17 digits */
   if (typeof vin !== 'string' || vin.length != 17) {
-    return false;
+    return false
   }
 
   /* Normalize the vin to all uppercase letters */
-  vin = vin.toUpperCase();
+  vin = vin.toUpperCase()
 
   /* split the vin digits into an array */
-  const vinArray: string[] = vin.split('');
+  const vinArray: string[] = vin.split('')
 
   /* checkDigit will be tested against the checkSum later */
-  const checkDigit: string = vinArray[8];
+  const checkDigit: string = vinArray[8]
 
   /*
    * In a valid VIN, the checkDigit can either be:
    * a number, 0-9 inclusive OR the character 'X'
    */
   if (isNaN(parseInt(checkDigit)) && checkDigit !== 'X') {
-    return false;
+    return false
   }
 
   /*
@@ -92,7 +92,7 @@ export function isValidVin(vin: string): boolean {
    * As per the algorithm, a checkDigit of 'X' is equal to a checkValue of `10` and needs
    * to be converted as such.
    */
-  const checkValue: number = checkDigit === 'X' ? 10 : parseInt(checkDigit);
+  const checkValue: number = checkDigit === 'X' ? 10 : parseInt(checkDigit)
 
   /*
    * Maps the vinArray and converts any values (digits) that are alphabetic,
@@ -105,25 +105,25 @@ export function isValidVin(vin: string): boolean {
   const checksum: number =
     vinArray
       .map((digit: string, index: number) => {
-        let digitValue: number;
+        let digitValue: number
         /* Use the transliteration table to convert any Not a Number(NaN) values to numbers */
         isNaN(parseInt(digit))
           ? (digitValue = TRANSLITERATION_TABLE[digit])
-          : (digitValue = parseInt(digit));
+          : (digitValue = parseInt(digit))
 
         /* Convert the digitValue to a weighted number corresponding to it's position, by index, in the weightsArray. */
-        const weight: number = WEIGHTS_ARRAY[index];
+        const weight: number = WEIGHTS_ARRAY[index]
 
         /* The final step for each digit is to multiply the digit by it's corresponding weight */
-        return digitValue * weight;
+        return digitValue * weight
       })
       /* Finally, get the sum of all digits and divide by 11, the remainder of that operation is the checksum */
-      .reduce((acc, currValue) => acc + currValue, 0) % 11;
+      .reduce((acc, currValue) => acc + currValue, 0) % 11
 
   /*
    * The checksum is compared against the checkValue we set earlier (the 9th digit of the VIN)
    * As per the algorithm, if they are equal to each other, then the VIN must be valid and
    * we return true, otherwise the VIN is invalid and we return false.
    */
-  return checksum === checkValue;
+  return checksum === checkValue
 }

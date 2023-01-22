@@ -1,4 +1,5 @@
-import { getTypeof } from './getTypeof';
+import { NHTSA_RESPONSE_FORMAT } from '../constants'
+import { getTypeof } from './getTypeof'
 
 /**
  * @module utils/makeQueryString
@@ -17,11 +18,6 @@ import { getTypeof } from './getTypeof';
  *
  * @returns {Promise<string>} A query string of search parameters for use in a final Fetch.get URL.
  *
- * @example <caption>When loaded from the browser via html script tags</caption>
- * // <script type="text/javascript" src="https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper"></script>
- * const qs = await NHTSA.makeQueryString({ modelYear: 2010 }).catch(error => error)
- * console.log(qs) // "?modelYear=2010"
- *
  * @example <caption>When loaded as a module</caption>
  * import { makeQueryString } from '@shaggytools/nhtsa-api-wrapper'
  * const qs = await makeQueryString({ modelYear: 2010 }).catch(error => error)
@@ -31,7 +27,7 @@ import { getTypeof } from './getTypeof';
  * const qs = await makeQueryString({
  *   modelYear: 2019
  * }).catch(error => error)
- * console.log(qs) // "?modelYear=2019"
+ * console.log(qs) // "?modelYear=2019&format=json"
  *
  * @example <caption>Multiple Params:</caption>
  * const qs = await makeQueryString({
@@ -40,12 +36,12 @@ import { getTypeof } from './getTypeof';
  *   page: "2"
  * }).catch(error => error)
  *
- * console.log(qs) // "?whatever=some%20value&modelYear=2006&page=2"
+ * console.log(qs) // "?whatever=some%20value&modelYear=2006&page=2&format=json"
  *
  * @example <caption>Empty Params Object:</caption>
  * const qs = await makeQueryString({}).catch(error => error)
  *
- * console.log(qs) // ""
+ * console.log(qs) // "?format=json"
  *
  * @example <caption>Using allowEmptyStringValues option:</caption>
  * const qs = await makeQueryString({
@@ -54,67 +50,71 @@ import { getTypeof } from './getTypeof';
  *   make: 'Audi'
  * }, true).catch(error => error)
  *
- * console.log(qs) // "?year=2016&vehicleType=&make=Audi"
+ * console.log(qs) // "?year=2016&vehicleType=&make=Audi&format=json"
  *
  */
 export function makeQueryString(
-  params: QueryStringParameters = {},
+  params?: QueryStringParameters,
   allowEmptyStringValues = false
 ): Promise<string> {
-  /* Beginning of error message string */
-  const errorBase =
-    'queryString(params) - expected params in the form of an object, got:';
-
-  /* Runtime type guard params argument, must be of type object */
-  if (getTypeof(params) !== 'object') {
-    return Promise.reject(new Error(`${errorBase} ${params}`));
+  /*
+   * Make sure we're always using 'format=json' in the url Query parameters
+   * If the user provides a 'format' key in the params, during class instantiation we want to override it to 'json'
+   * This package may provide support for the other formats (CSV and XML) if requested.
+   */
+  const defaultParams = { format: NHTSA_RESPONSE_FORMAT }
+  let _params = {}
+  if (!params || getTypeof(params) !== 'object') {
+    _params = { ...defaultParams }
+  } else {
+    _params = { ...params, ...defaultParams }
   }
 
   /* Setup QueryString for Array mapping */
-  const entries = Object.entries(params);
-  const paramsLength = entries.length;
+  const entries = Object.entries(_params)
+  const paramsLength = entries.length
 
   /* Return an empty string if params are an empty object */
-  if (paramsLength < 1) return Promise.resolve('');
+  if (paramsLength < 1) return Promise.resolve('')
 
   /* Used to check if we've already prepended a valid query param */
-  let isPrepended = false;
+  let isPrepended = false
 
   /* Map [key]:value entries to "key=value" strings in an array */
   const queryStringArray = entries.map(([key, value], index) => {
-    let prepend = '';
-    let append = '';
+    let prepend = ''
+    let append = ''
 
-    const typeofValue = getTypeof(value);
+    const typeofValue = getTypeof(value)
 
     /* Convert any number values to a string */
     if (value && typeofValue === 'number') {
-      value = value.toString();
+      value = value.toString()
     }
 
-    /* Skip any invalid values, only string and number value types are valid */
+    /* Skips any invalid values, only string and number value types are valid */
     if (
       (value || allowEmptyStringValues) &&
       (typeofValue === 'string' || typeofValue === 'number')
     ) {
       /* if this is the first param we need to prepend the '?' char */
       if (!isPrepended) {
-        prepend = '?';
-        isPrepended = true;
+        prepend = '?'
+        isPrepended = true
       }
       /* if there is another param coming after this one we need to append the '&' char */
       if (index < paramsLength - 1) {
-        append = '&';
+        append = '&'
       }
 
       /* Add the completed partial query string to queryStringArray */
-      return `${prepend}${key}=${value}${append}`;
+      return `${prepend}${key}=${value}${append}`
     }
-    return;
-  });
+    return
+  })
 
   /* Join and return the completed query string after URI encoding */
-  return Promise.resolve(encodeURI(queryStringArray.join('')));
+  return Promise.resolve(encodeURI(queryStringArray.join('')))
 }
 
 /**
@@ -131,5 +131,5 @@ export function makeQueryString(
  *
  */
 export type QueryStringParameters = {
-  [propName: string]: string | number | undefined;
-};
+  [propName: string]: string | number | undefined
+}

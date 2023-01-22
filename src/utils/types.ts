@@ -1,1 +1,3 @@
-export { QueryStringParameters } from './makeQueryString';
+export type { QueryStringParameters } from './makeQueryString'
+
+export {}

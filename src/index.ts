@@ -1,9 +1,29 @@
-import * as ActionTypes from './api/actions/types';
+export * from './types'
 
-export { ActionTypes };
-
-export { Fetch } from './api/Fetch';
-export { Client } from './api/Client';
-export { NHTSA } from './api/NHTSA';
-export { isValidVin } from './utils/isValidVin';
-export * from './api/actions';
+export { isValidVin } from './utils'
+export {
+  DecodeVin,
+  DecodeVinExtended,
+  DecodeVinValues,
+  DecodeVinValuesBatch,
+  DecodeVinValuesExtended,
+  DecodeWMI,
+  GetAllMakes,
+  GetAllManufacturers,
+  GetCanadianVehicleSpecifications,
+  GetEquipmentPlantCodes,
+  GetMakeForManufacturer,
+  GetMakesForManufacturerAndYear,
+  GetMakesForVehicleType,
+  GetManufacturerDetails,
+  GetModelsForMake,
+  GetModelsForMakeId,
+  GetModelsForMakeIdYear,
+  GetModelsForMakeYear,
+  GetParts,
+  GetVehicleTypesForMake,
+  GetVehicleTypesForMakeId,
+  GetVehicleVariableList,
+  GetVehicleVariableValuesList,
+  GetWMIsForManufacturer,
+} from './api'
