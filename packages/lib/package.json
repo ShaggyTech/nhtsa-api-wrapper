@@ -1,14 +1,26 @@
 {
-  "name": "nhtsa-api-wrapper",
+  "name": "@shaggytools/nhtsa-api-wrapper",
   "version": "3.0.0",
-  "description": "Monorepo for the @shaggytools/nhtsa-api-wrapper package",
+  "description": "Javascript wrapper for the NHTSA.dot.gov 'vehicles' VPIC API, useful for VIN decoding, etc.",
   "author": "Brandon Eichler <github.com/shaggytech>",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "config/*",
-    "packages/*"
+  "libraryName": "nhtsa-api-wrapper",
+  "private": false,
+  "side-effects": false,
+  "main": "./dist/nhtsa-api-wrapper.umd.js",
+  "module": "./dist/nhtsa-api-wrapper.mjs",
+  "unpkg": "./dist/nhtsa-api-wrapper.iife.js",
+  "jsdelivr": "./dist/nhtsa-api-wrapper.iife.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/nhsta-api-wrapper.mjs",
+      "require": "./dist/nhsta-api-wrapper.umd.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
   ],
   "packageManager": "pnpm@7.25.1",
   "engines": {
@@ -39,36 +51,27 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "lint": "echo 'none yet'"
+    "clean:dist": "rimraf dist/*",
+    "build": "pnpm run clean:dist && pnpm run build:lib",
+    "build:lib": "tsc --noEmit && vite build",
+    "dev": "vite",
+    "dev:watch": "tsc --noEmit && vite build --watch",
+    "preview": "vite preview",
+    "lint": "eslint --cache ."
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.2",
-    "@commitlint/config-conventional": "17.4.2",
     "@rollup/plugin-typescript": "11.0.0",
     "@types/node": "18.11.18",
     "@types/node-fetch": "2.6.2",
-    "backfill": "6.1.26",
+    "eslint": "8.32.0",
     "eslint-config-custom": "workspace:*",
-    "husky": "8.0.3",
     "prettier": "2.8.3",
     "prettier-config": "workspace:*",
     "rimraf": "4.1.1",
-    "tslib": "2.4.1",
     "tsconfig": "workspace:*",
     "typescript": "4.9.4",
     "vite": "4.0.4",
     "vite-plugin-dts": "1.7.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pnpm prettier",
-      "pre-push": "pnpm verify"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,vue,md}": [
-      "eslint --cache --fix"
-    ]
   },
   "publishConfig": {
     "access": "public"
