@@ -27,7 +27,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'NHTSA',
-      formats: ['es', 'iife', 'umd'],
+      formats: ['es', 'iife', 'umd', 'cjs'],
     },
     sourcemap: true,
     reportCompressedSize: true,

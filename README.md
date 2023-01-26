@@ -10,13 +10,17 @@
 
 > An async [NHSTA.dot.gov Vehicles API](https://vpic.nhtsa.dot.gov/api/Home) client wrapper, written in Typescript and bundled with vite. It can be used universally in most environments (Node, browsers, scripts, modules, Webpack, Rollup, etc.). Often used as a VIN Decoder among other things.
 
+> This package was last developed and tested on `node v18.13.0`, `npm v8.19.3`, and `pnpm v7.26.0`
+
 ---
 
 ## Table of Contents
 
 - [Install](#install)
 - [About](#about)
+  - [Documentation](#documentation)
   - [Why do you need this package?](#why-do-you-need-this-package)
+    - [Can be used in](#can-be-used-in)
   - [Typescript](#typescript)
 - ⚠️ [This Package Uses Native Fetch](#this-package-uses-native-fetch)
 - [Dependencies](#dependencies)
@@ -72,7 +76,7 @@
 
 ## Install
 
-See also - [How to Install and Use This Package](#how-to-install-and-use-this-package)
+> See also - [How to Install and Use This Package](#how-to-install-and-use-this-package)
 
 npm - [https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
 
@@ -98,31 +102,55 @@ CDN - [https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper](http
 
 ## About
 
-Primarily used for decoding useful information from a Vehicle Identification Number (VIN) in the United States and Canada. It can also be used for a VIN Decoder app, to get all models for a make of vehicle, to decode WMIs, etc..
+This package is a universal (browser/node) javascript wrapper for the [NHTSA Vehicles API](https://vpic.nhtsa.dot.gov/api/) with fully typed API responses.
 
-The NHTSA Vehicles API actually contains a total of 24 different endpoints. The API homepage can be found at [https://vpic.nhtsa.dot.gov/api/](https://vpic.nhtsa.dot.gov/api/) for further reading.
+The VPIC API is primarily used for decoding useful information from a Vehicle Identification Number (VIN) in the United States and Canada. It can also be used for a VIN Decoder app, to get all models for a make of vehicle, to decode WMIs, etc..
 
-> Package Docs:
-> [https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)
-
-### Why do you need this package?
-
-Put simply, all this package really does is obfuscate having to build the endpoint url strings yourself and fetch the data.
-
-All of the VPIC endpoints require close attention when using them directly. Each endpoint requires a different url structure and query parameters, a few of them will return a 404 if some parameters are missing or not included as empty strings, a mix of 'POST' and 'GET' methods, plus other quirks that make it take longer and cause frustration to use.
-
-- It handles the api response format, url endpoint, url query search parameters, and URI encoding
-- It will build the url strings and then fetch the data for you using native fetch in both browser and node, see [This Package Uses Native Fetch](#this-package-uses-native-fetch)
-- There is built-in typechecking at runtime that will cause the endpoint functions to reject with an error if incorrect type of args are provided
-- If the fetch response does not return `response.ok`, then the endpoint functions will reject with an error including the `Message` field from the api response if available
-
-### Typescript
-
-This package is designed for full typescript support. Types are exported to `dist/types`. Your code editor should let you know if you're missing any required args or parameters for each endpoint function, and the responses will be typed to match actual response JSON structure from the VPIC Vehicles API, useful for editor code completion and type checking.
+The NHTSA Vehicles API actually contains a total of 24 different endpoints. The API homepage can be found at [https://vpic.nhtsa.dot.gov/api/](https://vpic.nhtsa.dot.gov/api/) for further information.
 
 If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.
 
-> This package was developed and tested on `Node v18.13.0`, `npm v8.19.3`, and `pnpm v7.24.2`
+### Documentation
+
+[https://www.shaggytech.com/nhtsa-api-wrapper/](https://www.shaggytech.com/nhtsa-api-wrapper/)
+
+### Why do you need this package?
+
+Put simply, all this package really does is obfuscate having to build the endpoint url strings yourself and fetch the data from the VPIC API.
+
+All of the VPIC endpoints require close attention when using them directly. Each endpoint requires a different url structure and query parameters, a few of them will return a 404 if some parameters are missing or not included as empty strings, a mix of 'POST' and 'GET' methods, plus other quirks that make it take longer and cause frustration to use.
+
+Features:
+
+- Handles the API response format, url endpoint, url query search parameters, and URI encoding
+- Builds the url strings and then fetches the data for you using native fetch in both browser and node, see **[#This Package Uses Native Fetch](#this-package-uses-native-fetch)**
+- API response format is hardcoded to `json`, other response formats (xml, csv) are not supported by this package.
+- There is built-in typechecking at runtime that will cause the endpoint functions to reject with an error if incorrect type of args are provided
+- If the fetch response does not return `response.ok`, then the endpoint functions will reject with an error including the `Message` field from the api response if available
+
+### Can be used in:
+
+**Node:**
+
+- Use server side with Express, Nitro, Nuxt, Next, etc. Really any node environment > v18 should work out of the box
+- Node version < 18 will require a polyfill for node native fetch, see [#This Package Uses Native Fetch](#this-package-uses-native-fetch)
+- Provides `es/mjs`, `umd`, and `cjs` formats built with Vite library mode
+  - es/mjs: `dist/nhtsa-api-wrapper.mjs`
+  - umd: `dist/nhtsa-api-wrapper.umd.js`
+  - cjs: `dist/nhtsa-api-wrapper.js`
+
+**Browser:**
+
+- Use in Vue/Nuxt, React, Web Apps, Vanilla Browser JS, etc.
+- Works on all modern browsers that can use the browser Fetch API, see [#This Package Uses Native Fetch](#this-package-uses-native-fetch) and [https://caniuse.com/mdn-api_fetch](https://caniuse.com/mdn-api_fetch)
+- Provides `es/mjs`, `umd`, and `iffe` formats built with Vite library mode
+  - `es/mjs`: `dist/nhtsa-api-wrapper.mjs`
+  - `umd`: `dist/nhtsa-api-wrapper.umd.js`
+  - `iife`: `dist/nhtsa-api-wrapper.iife.js`
+
+### Typescript
+
+This package is designed for full typescript support and bundles it's own types. Types are exported to `dist/types`. Your code editor should let you know if you're missing any required args or parameters for each endpoint function, and the responses will be typed to match actual response JSON structure from the VPIC Vehicles API, useful for editor code completion and type checking. We've tried to be as accurate as possible typing the API responses, please report any discrepancies you may find.
 
 ---
 

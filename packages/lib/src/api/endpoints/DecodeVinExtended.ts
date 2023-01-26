@@ -29,7 +29,6 @@ import type { NhtsaResponse } from '../../types'
  *
  * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param {Object} [params] - Query Search Parameters to append to the URL
  * @param {(number|string)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinExtendedResults>>)} - Api Response object
  */

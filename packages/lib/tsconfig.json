@@ -1,11 +1,8 @@
 {
   "extends": "tsconfig/vite-library.json",
-  "compilerOptions": {
-    "baseUrl": "./src"
-  },
   "references": [
     {
-      "path": "./tsconfig.node.json" // tsconfig/vite-node.json
+      "path": "./tsconfig.node.json"
     }
   ],
 }

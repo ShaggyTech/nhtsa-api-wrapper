@@ -1,13 +1,16 @@
-export default {
+// eslint-disable-next-line no-undef
+module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:markdown/recommended',
     'prettier',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'prettier'],
   ignorePatterns: [
+    '.github',
     '.vscode',
     'coverage/',
     'dist/',
@@ -17,10 +20,12 @@ export default {
     'bin/',
     'tests/',
     'e2e',
-    // '.eslintrc.js',
+    '.eslintrc.js',
+    'pretter.config.js',
   ],
+  // 0 = off, 1 = warn, 2 = error
   rules: {
-    'no-console': 1, // Means warning
-    'prettier/prettier': 2, // Means error
+    'no-console': 1,
+    'prettier/prettier': 2,
   },
 }

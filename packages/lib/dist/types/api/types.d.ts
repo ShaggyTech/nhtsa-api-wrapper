@@ -2,7 +2,7 @@ export * from './endpoints/types';
 /**
  * Response data returned from the NHSTA API.
  *
- * - `Results` key will be an array of objects of type <T>
+ * - `Results` key will be an array of objects of type "T"
  */
 export declare type NhtsaResponse<T> = {
     /** The number of items returned in the Results object. */

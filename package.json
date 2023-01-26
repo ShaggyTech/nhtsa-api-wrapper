@@ -10,7 +10,7 @@
     "config/*",
     "packages/*"
   ],
-  "packageManager": "pnpm@7.25.1",
+  "packageManager": "pnpm@7.26.0",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=7.0.0",
@@ -39,22 +39,23 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "lint": "echo 'none yet'"
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
-    "@rollup/plugin-typescript": "11.0.0",
-    "@types/node": "18.11.18",
-    "@types/node-fetch": "2.6.2",
     "backfill": "6.1.26",
     "eslint-config-custom": "workspace:*",
     "husky": "8.0.3",
     "prettier": "2.8.3",
     "prettier-config": "workspace:*",
     "rimraf": "4.1.1",
-    "tslib": "2.4.1",
     "tsconfig": "workspace:*",
+    "tslib": "2.4.1",
+    "turbo": "1.7.0",
     "typescript": "4.9.4",
     "vite": "4.0.4",
     "vite-plugin-dts": "1.7.1"

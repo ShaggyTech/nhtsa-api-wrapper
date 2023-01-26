@@ -3,8 +3,8 @@
   "version": "3.0.0",
   "description": "Internal shared prettier config for the @shaggytools/nhtsa-api-wrapper monorepo",
   "private": true,
-  "main": "prettier-config.js",
-  "dependencies": {
+  "main": "prettier-config.json",
+  "peerDependencies": {
     "prettier": "2.8.2"
   }
 }

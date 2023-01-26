@@ -1,3 +1,3 @@
 # `tsconfig`
 
-These are base shared `tsconfig.json`s from which all other `tsconfig.json`'s inherit from.
+Internal shared typescript `.tsconfig`s for the `@shaggytools/nhtsa-api-wrapper` monorepo"

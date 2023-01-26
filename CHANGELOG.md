@@ -19,6 +19,7 @@ Package browser/bundle.min.js and browser/iife.js now properly handling API http
 # [2.0.0](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v1.1.12...v2.0.0) (2021-06-10)
 
 - Overall package size reduction of 50% from targeting esm and removing `browser:` option in babel config, now using @babel/runtime
+
 ### Bug Fixes
 
 - isValidVin ([615c993](https://github.com/ShaggyTech/nhtsa-api-wrapper/commit/615c9933b9f83bc108282d743d6cffbbd36fd210))

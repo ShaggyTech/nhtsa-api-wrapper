@@ -1,12 +1,13 @@
 {
   "name": "@shaggytools/nhtsa-api-wrapper",
   "version": "3.0.0",
-  "description": "Javascript wrapper for the NHTSA.dot.gov 'vehicles' VPIC API, useful for VIN decoding, etc.",
   "author": "Brandon Eichler <github.com/shaggytech>",
+  "description": "Universal javascript wrapper for the NHTSA.dot.gov VPIC 'vehicles' API, useful for VIN decoding, etc.",
+  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
   "license": "MIT",
   "libraryName": "nhtsa-api-wrapper",
   "private": false,
-  "side-effects": false,
+  "sideEffects": false,
   "main": "./dist/nhtsa-api-wrapper.umd.js",
   "module": "./dist/nhtsa-api-wrapper.mjs",
   "unpkg": "./dist/nhtsa-api-wrapper.iife.js",
@@ -28,27 +29,6 @@
     "pnpm": ">=7.0.0",
     "npm": ">=8.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
-    "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper"
-  },
-  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
-  "bugs": {
-    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
-  },
-  "keywords": [
-    "VIN",
-    "Vehicle Identification Number",
-    "NHTSA.gov",
-    "NHTSA.dot.gov",
-    "NHTSA",
-    "National Highway Traffic Safety Administration",
-    "api",
-    "VIN decode",
-    "VIN decoder",
-    "typescript"
-  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "clean:dist": "rimraf dist/*",
@@ -57,12 +37,10 @@
     "dev": "vite",
     "dev:watch": "tsc --noEmit && vite build --watch",
     "preview": "vite preview",
-    "lint": "eslint --cache ."
+    "lint": "eslint *.ts*",
+    "prepare": "pnpm run build"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "11.0.0",
-    "@types/node": "18.11.18",
-    "@types/node-fetch": "2.6.2",
     "eslint": "8.32.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.3",
@@ -73,6 +51,33 @@
     "vite": "4.0.4",
     "vite-plugin-dts": "1.7.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
+    "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper"
+  },
+  "bugs": {
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
+  },
+  "keywords": [
+    "NHTSA",
+    "NHTSA.gov",
+    "NHTSA.dot.gov",
+    "NHTSA API",
+    "NHTSA API Wrapper",
+    "NHTSA API Wrapper for Node",
+    "NHTSA API Wrapper for the browser",
+    "National Highway Traffic Safety Administration",
+    "Typescript",
+    "Vehicle",
+    "Vehicle API",
+    "Vehicle Identification Number",
+    "Vehicle Identification Number API",
+    "VIN",
+    "VIN decode",
+    "VIN decoder",
+    "VPIC"
+  ],
   "publishConfig": {
     "access": "public"
   }

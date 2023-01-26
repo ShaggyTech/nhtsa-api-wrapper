@@ -9,5 +9,8 @@
     "nextjs.json",
     "react-library.json",
     "vite-library.json"
-  ]
+  ],
+  "dependencies": {
+    "@types/node": "18.11.18"
+  }
 }
