@@ -14,11 +14,11 @@
         .getElementById('GetCanadianVehicleSpecifications')
         .addEventListener('click', async () => {
           /* Lazy Loading */
-          const { GetWMIsForManufacturer } = await import(
-            '../../dist/nhtsa-api-wrapper.mjs'
+          const { GetModelsForMakeYear } = await import(
+            '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
           ).catch((err) => err)
 
-          const results = await GetWMIsForManufacturer('honda')
+          const results = await GetModelsForMakeYear('test')
             .then((results) => {
               logResults(results)
               return results

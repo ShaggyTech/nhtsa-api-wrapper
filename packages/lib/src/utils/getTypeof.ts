@@ -10,7 +10,7 @@
  *
  * @returns {string} - Type of value, normalized to a lowercase string.
  */
-export function getTypeof(value: unknown): string {
+export const getTypeof = (value: unknown): string => {
   const toString: string = Object.prototype.toString
     .call(value)
     .toLowerCase() /* ex: => '[object string]' or '[object array], etc. */

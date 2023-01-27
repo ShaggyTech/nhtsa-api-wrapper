@@ -1,6 +1,6 @@
 import type { NhtsaResponse, RequireAtLeastOne } from '../../types';
 /**
- * This returns the Models in the vPIC dataset for a specified Model Year
+ * GetModelsForMakeYear returns the Models in the vPIC dataset for a specified Model Year
  * and Make whose name is LIKE the Make in the vPIC Dataset.
  *   - `params.make` is required. It can be a partial, or a full name for more specificity
  *     (e.g., "Harley", "Harley Davidson", etc.)

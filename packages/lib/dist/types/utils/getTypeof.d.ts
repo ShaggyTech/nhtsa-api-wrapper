@@ -9,5 +9,5 @@
  *
  * @returns {string} - Type of value, normalized to a lowercase string.
  */
-export declare function getTypeof(value: unknown): string;
+export declare const getTypeof: (value: unknown) => string;
 //# sourceMappingURL=getTypeof.d.ts.map
