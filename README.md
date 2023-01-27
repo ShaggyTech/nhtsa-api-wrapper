@@ -20,57 +20,59 @@
 - [About](#about)
   - [Documentation](#documentation)
   - [Why do you need this package?](#why-do-you-need-this-package)
-    - [Can be used in](#can-be-used-in)
+  - [Where can you use this package?](#where-can-you-use-this-package)
+    - [Node](#node)
+    - [Browser](#browser)
   - [Typescript](#typescript)
-- ⚠️ [This Package Uses Native Fetch](#this-package-uses-native-fetch)
+- [This Package Uses Native Fetch](#this-package-uses-native-fetch)
+  - [Why this package does NOT provide internal polyfill solution](#why-this-package-does-not-provide-internal-polyfill-solution)
 - [Dependencies](#dependencies)
 - [How to Install and Use This Package](#how-to-install-and-use-this-package)
   - [In Node Environments](#in-node-environments)
-    - [Install](#install)
-    - [Using in Node](#using-in-node)
+    - [Install](#install-1)
       - [Via Client](#via-client)
-      - [Via NHTSA Class](#via-nhtsa-class)
+      - [Via NHTSA class](#via-nhtsa-class)
       - [Via NHTSA class with configuration options](#via-nhtsa-class-with-configuration-options)
-      - [Via Individual API Actions](#via-individual-api-actions)
+      - [Via individual API Actions](#via-individual-api-actions)
   - [In Browser Environments](#in-browser-environments)
+    - [`NHTSA.Client`](#nhtsaclient)
+    - [`NHTSA.NHTSA`](#nhtsanhtsa)
+    - [`NHTSA.isValidVin`](#nhtsaisvalidvin)
     - [Basic Usage in Browser](#basic-usage-in-browser)
     - [Lazy Loaded ESModule in Browser Environments](#lazy-loaded-esmodule-in-browser-environments)
 - [NHTSA API Responses](#nhtsa-api-responses)
 - [NHTSA API Actions](#nhtsa-api-actions)
-- [Offline VIN Validation](#offline-vin-validation)
-
-- API Endpoints
-  <details>
+  - [List of Actions](#list-of-actions)
+  - <details>
     <summary>Expand to see all available API endpoints</summary>
-
-  - [DecodeVin](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVin.DecodeVin.html#DecodeVin)
-  - [DecodeVinExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinExtended.DecodeVinExtended.html)
-  - [DecodeVinValues](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValues.DecodeVinValues.html#DecodeVinValues)
-  - [DecodeVINValuesBatch](https://www.shaggytech.com/nhtsa-api-wrapper/module-DecodeVINValuesBatch.DecodeVINValuesBatch.html#DecodeVINValuesBatch)
-  - [DecodeVinValuesExtended](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeVinValuesExtended.DecodeVinValuesExtended.html#DecodeVinValuesExtended)
-  - [DecodeWMI](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_DecodeWMI.DecodeWMI.html#DecodeWMI)
-  - [GetAllMakes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllMakes.GetAllMakes.html#GetAllMakes)
-  - [GetAllManufacturers](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetAllManufacturers.GetAllManufacturers.html#GetAllManufacturers)
-  - [GetCanadianVehicleSpecifications](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetCanadianVehicleSpecifications.GetCanadianVehicleSpecifications.html#GetCanadianVehicleSpecifications)
-  - [GetEquipmentPlantCodes](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetEquipmentPlantCodes.GetEquipmentPlantCodes.html#GetEquipmentPlantCodes)
-  - [GetMakeForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakeForManufacturer.GetMakeForManufacturer.html#GetMakeForManufacturer)
-  - [GetMakesForManufacturerAndYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakesForManufacturerAndYear.GetMakesForManufacturerAndYear.html#GetMakesForManufacturerAndYear)
-  - [GetMakesForVehicleType](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetMakesForVehicleType.GetMakesForVehicleType.html#GetMakesForVehicleType)
-  - [GetManufacturerDetails](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetManufacturerDetails.GetManufacturerDetails.html#GetManufacturerDetails)
-  - [GetModelsForMake](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMake.GetModelsForMake.html#GetModelsForMake)
-  - [GetModelsForMakeId](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeId.GetModelsForMakeId.html#GetModelsForMakeId)
-  - [GetModelsForMakeIdYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeIdYear.GetModelsForMakeIdYear.html#GetModelsForMakeIdYear)
-  - [GetModelsForMakeYear](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetModelsForMakeYear.GetModelsForMakeYear.html#GetModelsForMakeYear)
-  - [GetParts](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetParts.GetParts.html#GetParts)
-  - [GetVehicleTypesForMake](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleTypesForMake.GetVehicleTypesForMake.html#GetVehicleTypesForMake)
-  - [GetVehicleTypesForMakeId](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleTypesForMakeId.GetVehicleTypesForMakeId.html#GetVehicleTypesForMakeId)
-  - [GetVehicleVariableList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableList.GetVehicleVariableList.html#GetVehicleVariableList)
-  - [GetVehicleVariableValuesList](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetVehicleVariableValuesList.GetVehicleVariableValuesList.html#GetVehicleVariableValuesList)
-  - [GetWMIsForManufacturer](https://www.shaggytech.com/nhtsa-api-wrapper/module-api_actions_GetWMIsForManufacturer.GetWMIsForManufacturer.html#GetWMIsForManufacturer)
-
-- [Do I need a polyfill?](#do-i-need-a-polyfill?)
+    - [DecodeVin](#decodevin)
+    - [DecodeVinExtended](#decodevinextended)
+    - [DecodeVinValues](#decodevinvalues)
+    - [DecodeVINValuesBatch](#decodevinvaluesbatch)
+    - [DecodeVinValuesExtended](#decodevinvaluesextended)
+    - [DecodeWMI](#decodewmi)
+    - [GetAllMakes](#getallmakes)
+    - [GetAllManufacturers](#getallmanufacturers)
+    - [GetCanadianVehicleSpecifications](#getcanadianvehiclespecifications)
+    - [GetEquipmentPlantCodes](#getequipmentplantcodes)
+    - [GetMakeForManufacturer](#getmakeformanufacturer)
+    - [GetMakesForManufacturerAndYear](#getmakesformanufacturerandyear)
+    - [GetMakesForVehicleType](#getmakesforvehicletype)
+    - [GetManufacturerDetails](#getmanufacturerdetails)
+    - [GetModelsForMake](#getmodelsformake)
+    - [GetModelsForMakeId](#getmodelsformakeid)
+    - [GetModelsForMakeIdYear](#getmodelsformakeidyear)
+    - [GetModelsForMakeYear](#getmodelsformakeyear)
+    - [GetParts](#getparts)
+    - [GetVehicleTypesForMake](#getvehicletypesformake)
+    - [GetVehicleTypesForMakeId](#getvehicletypesformakeid)
+    - [GetVehicleVariableList](#getvehiclevariablelist)
+    - [GetVehicleVariableValuesList](#getvehiclevariablevalueslist)
+    - [GetWMIsForManufacturer](#getwmisformanufacturer)
+    - [Offline VIN Validation](#offline-vin-validation)
+- [Do I need a polyfill?](#do-i-need-a-polyfill)
   - [Polyfills](#polyfills)
-  - [Adding Polyfills](#adding-polyfills?)
+  - [Adding polyfills](#adding-polyfills)
 
 ---
 
@@ -108,6 +110,8 @@ The VPIC API is primarily used for decoding useful information from a Vehicle Id
 
 The NHTSA Vehicles API actually contains a total of 24 different endpoints. The API homepage can be found at [https://vpic.nhtsa.dot.gov/api/](https://vpic.nhtsa.dot.gov/api/) for further information.
 
+⚠️ Note: API response format is hardcoded to `json`, other response formats (xml, csv) are not supported by this package.
+
 If you find an issue or would like to make or suggest improvements, I would gladly welcome the feedback.
 
 ### Documentation
@@ -124,13 +128,12 @@ Features:
 
 - Handles the API response format, url endpoint, url query search parameters, and URI encoding
 - Builds the url strings and then fetches the data for you using native fetch in both browser and node, see **[#This Package Uses Native Fetch](#this-package-uses-native-fetch)**
-- API response format is hardcoded to `json`, other response formats (xml, csv) are not supported by this package.
 - There is built-in typechecking at runtime that will cause the endpoint functions to reject with an error if incorrect type of args are provided
 - If the fetch response does not return `response.ok`, then the endpoint functions will reject with an error including the `Message` field from the api response if available
 
-### Can be used in:
+### Where can you use this package?
 
-**Node:**
+#### Node
 
 - Use server side with Express, Nitro, Nuxt, Next, etc. Really any node environment > v18 should work out of the box
 - Node version < 18 will require a polyfill for node native fetch, see [#This Package Uses Native Fetch](#this-package-uses-native-fetch)
@@ -139,7 +142,7 @@ Features:
   - umd: `dist/nhtsa-api-wrapper.umd.js`
   - cjs: `dist/nhtsa-api-wrapper.js`
 
-**Browser:**
+#### Browser
 
 - Use in Vue/Nuxt, React, Web Apps, Vanilla Browser JS, etc.
 - Works on all modern browsers that can use the browser Fetch API, see [#This Package Uses Native Fetch](#this-package-uses-native-fetch) and [https://caniuse.com/mdn-api_fetch](https://caniuse.com/mdn-api_fetch)
@@ -150,7 +153,11 @@ Features:
 
 ### Typescript
 
-This package is designed for full typescript support and bundles it's own types. Types are exported to `dist/types`. Your code editor should let you know if you're missing any required args or parameters for each endpoint function, and the responses will be typed to match actual response JSON structure from the VPIC Vehicles API, useful for editor code completion and type checking. We've tried to be as accurate as possible typing the API responses, please report any discrepancies you may find.
+This package is designed for full typescript support and bundles it's own types. Types are exported to `dist/types` if you need to import them directly.
+
+Most modern code editors should let you know if you're missing any required args or parameters for each endpoint function. The responses will also be typed to match actual response JSON structure from the VPIC Vehicles API, useful for editor code completion, etc.
+
+We've tried to be as accurate as possible typing the API responses, please report any discrepancies you may find.
 
 ---
 
@@ -192,17 +199,15 @@ _Credit:_ [github.com/BuilderIO](https://github.com/BuilderIO/this-package-uses-
 #### Install
 
 ```bash
-# NPM
+# npm
 npm install @shaggytools/nhtsa-api-wrapper
 
-# Yarn
+# yarn
 yarn add @shaggytools/nhtsa-api-wrapper
 
-# PNPM
-pnpm i @shaggytools/nhtsa-api-wrapper
+# pnpm
+pnpm add @shaggytools/nhtsa-api-wrapper
 ```
-
-#### Using in Node
 
 Listed below, there are several ways to use this package within a Node environment.
 

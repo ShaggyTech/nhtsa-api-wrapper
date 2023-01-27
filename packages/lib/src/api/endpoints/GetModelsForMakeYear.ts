@@ -7,6 +7,7 @@ import {
   makeQueryString,
   rejectWithError,
   useFetch,
+  validateArgument,
 } from '../../utils'
 /* Types */
 import type { NhtsaResponse, RequireAtLeastOne } from '../../types'
@@ -42,19 +43,24 @@ export const GetModelsForMakeYear = async (
     'modelYear' | 'vehicleType'
   >
 ): Promise<NhtsaResponse<GetModelsForMakeYearResults>> => {
+  /* 
+    {
+
+    }
+  */
+
   const action = 'GetModelsForMakeYear'
 
   const make: string = params?.make
   const modelYear: number | string | undefined = params?.modelYear
   const vehicleType: string | undefined = params?.vehicleType
 
-  /* Check for required params existence */
   const typeofParams = getTypeof(params)
   if (!params || (params && typeofParams !== 'object')) {
     return rejectWithError(
       argHandler({
-        endpoint: action,
-        argName: 'params',
+        caller: action,
+        name: 'params',
         required: true,
         types: ['object'],
         value: params,

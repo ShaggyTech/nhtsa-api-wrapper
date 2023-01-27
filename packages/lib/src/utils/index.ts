@@ -1,4 +1,4 @@
-export { argHandler } from './argHandler'
+export { argHandler, validateArgument } from './argHandler'
 export { rejectWithError } from './errorHandler'
 export { getTypeof } from './getTypeof'
 export { isValidVin } from './isValidVin'
