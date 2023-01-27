@@ -55,26 +55,36 @@ export const GetModelsForMakeYear = async (
   const modelYear: number | string | undefined = params?.modelYear
   const vehicleType: string | undefined = params?.vehicleType
 
-  const typeofParams = getTypeof(params)
-  if (!params || (params && typeofParams !== 'object')) {
-    return rejectWithError(
-      argHandler({
-        caller: action,
-        name: 'params',
-        required: true,
-        types: ['object'],
-        value: params,
-      })
-    )
+  // // const typeofParams = getTypeof(params)
+  // if (!params || (params && getTypeof(params) !== 'object')) {
+  try {
+    validateArgument({
+      caller: action,
+      name: 'params',
+      required: true,
+      types: ['object'],
+      value: params,
+    })
+
+    validateArgument({
+      caller: action,
+      name: 'params.make',
+      required: true,
+      types: ['string'],
+      value: params.make,
+    })
+  } catch (error) {
+    return rejectWithError(error.message)
   }
+  // }
 
   /* Required params.makeId */
-  const typeofMake = getTypeof(make)
-  if (!make || typeofMake !== 'string') {
-    return rejectWithError(
-      `${action}, "params.make" is required and must be of type string, got: <${typeofMake}> ${make}`
-    )
-  }
+  // const typeofMake = getTypeof(make)
+  // if (!make || typeofMake !== 'string') {
+  //   return rejectWithError(
+  //     `${action}, "params.make" is required and must be of type string, got: <${typeofMake}> ${make}`
+  //   )
+  // }
 
   /* At least one of modelYear or vehicleType is required */
   if (!modelYear && !vehicleType) {

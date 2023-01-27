@@ -70,8 +70,8 @@ export const validateArgument = ({
   const joinedTypes = types ? `<${types.join(' | ')}>` : ''
 
   /* common error message parts */
-  const errorPrepend = `${caller}, error validating argument, ${name} argument`
-  const errorAppend = `received value: ${value} of type <${typeofValue}>`
+  const errorPrepend = `${caller}, error validating argument, "${name}" argument`
+  const errorAppend = `received value: ${value} - of type: <${typeofValue}>`
 
   /* argument validation logic */
   if (required && !types) {
@@ -83,7 +83,7 @@ export const validateArgument = ({
   if (types && !required) {
     if (!types.includes(typeofValue)) {
       throw new Error(
-        `${errorPrepend} must be of type(s) <${joinedTypes}>, ${errorAppend}`
+        `${errorPrepend} must be of type(s) ${joinedTypes}, ${errorAppend}`
       )
     }
   }
@@ -91,10 +91,12 @@ export const validateArgument = ({
   if (required && types) {
     if (!value || !types.includes(typeofValue)) {
       throw new Error(
-        `${errorPrepend} is required and must be of type(s) <${joinedTypes}>, ${errorAppend}`
+        `${errorPrepend} is required and must be of type(s) ${joinedTypes}, ${errorAppend}`
       )
     }
   }
+
+  return
 }
 
 export const argHandler = ({

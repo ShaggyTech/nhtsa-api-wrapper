@@ -1,10 +1,17 @@
-interface Args {
-    endpoint: string;
-    argName: string;
-    required?: boolean;
-    types: string[];
+import type { RequireAtLeastOne } from '../types';
+export declare const validateArgument: ({ name, value, caller, required, types, }: {
+    name: string;
     value: unknown;
-}
-export declare const argHandler: ({ endpoint, argName, required, types, value, }: Args) => string;
-export {};
+    caller: string;
+} & RequireAtLeastOne<{
+    required?: boolean | undefined;
+    types?: string[] | undefined;
+}, "required" | "types">) => void;
+export declare const argHandler: ({ name, value, required, types, caller, }: {
+    name: string;
+    value: unknown;
+    required?: boolean | undefined;
+    types?: string[] | undefined;
+    caller?: string | undefined;
+}) => string;
 //# sourceMappingURL=argHandler.d.ts.map
