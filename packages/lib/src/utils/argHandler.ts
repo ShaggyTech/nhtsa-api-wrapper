@@ -67,7 +67,7 @@ export const validateArgument = ({
   const typeofValue = getTypeof(value)
 
   /* ex: if types = ['string', 'number'] then you'll get '<string | number>' */
-  const joinedTypes = types ? types.map((type) => `<${type}>`).join(' | ') : ''
+  const joinedTypes = types ? `<${types.join(' | ')}>` : ''
 
   /* common error message parts */
   const errorPrepend = `${caller}, error validating argument, ${name} argument`
