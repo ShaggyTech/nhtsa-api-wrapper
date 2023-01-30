@@ -1,14 +1,11 @@
 import { getTypeof } from '../utils'
-/* Types */
-import type { AtLeastOne } from '../types'
 
 export type IArgToValidate = {
   name: string
   value: unknown
-} & AtLeastOne<{
   types?: string[]
   required?: boolean
-}>
+}
 
 export const catchInvalidArguments = ({
   args,
@@ -17,6 +14,12 @@ export const catchInvalidArguments = ({
   args: IArgToValidate[]
   mode?: 'default' | 'atLeast'
 }) => {
+  if (!args || getTypeof(args) !== 'array') {
+    throw Error(
+      `catchInvalidArguments requires "args", must be an array of objects`
+    )
+  }
+
   if (mode === 'default') {
     args.forEach((arg) => {
       validateArgument(arg)
@@ -38,23 +41,15 @@ export const validateArgument = ({
   value,
   required,
   types,
-}: IArgToValidate &
-  AtLeastOne<{
-    types?: string[]
-    required?: boolean
-  }>): void => {
+}: IArgToValidate): void => {
   /* fast-fail if required args are not provided*/
   if (!name) {
     throw Error(`error validating argument, 'name' arg is required`)
   }
-  if (!required && !types) {
+
+  if (types && getTypeof(types) !== 'array') {
     throw Error(
-      `error validating argument ${name}, either 'required' or 'types' args are required`
-    )
-  }
-  if (getTypeof(types) !== 'array') {
-    throw Error(
-      `error validating argument ${name}, 'types' must be an array of strings`
+      `error validating argument named "${name}", 'types' must be an array of strings`
     )
   }
 
@@ -64,7 +59,7 @@ export const validateArgument = ({
   const joinedTypes = types ? `<${types.join(' | ')}>` : ''
 
   /* common error message parts */
-  const errorPrepend = `error validating argument, "${name}"`
+  const errorPrepend = `error validating argument named "${name}",`
   const errorAppend = `received value: ${value} - of type: <${typeofValue}>`
 
   /* argument validation logic */

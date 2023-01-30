@@ -38,17 +38,24 @@
         .getElementById('GetCanadianVehicleSpecifications')
         .addEventListener('click', async () => {
           /* Lazy Loading */
-          const { GetModelsForMakeYear } = await import(
+          const { catchInvalidArguments } = await import(
             '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
           ).catch((err) => err)
 
-          const results = await GetModelsForMakeYear('Ford', {
-            modelYear: 2019
-          })
-            .then((results) => {
-              return results
+          try {
+            const results = catchInvalidArguments({
+              args: [
+                {
+                  name: 'test',
+                  value: 32,
+                  required: true,
+                  types: ['number']
+                }
+              ]
             })
-            .catch((err) => console.error(err))
+          } catch (err) {
+            console.error(err)
+          }
 
           console.log(results)
           document.querySelector(
