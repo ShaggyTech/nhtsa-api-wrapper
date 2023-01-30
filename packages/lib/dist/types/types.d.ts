@@ -4,8 +4,8 @@ export * from './utils/types';
  * Require at least one of a set of properties in an object
  * https://stackoverflow.com/a/49725198
  */
-export declare type RequireAtLeastOne<T, R extends keyof T = keyof T> = Omit<T, R> & {
-    [P in R]: Required<Pick<T, P>> & Partial<Omit<T, P>>;
+export declare type AtLeastOne<T, R extends keyof T = keyof T> = {
+    [P in R]-?: Required<Pick<T, P>> & Partial<Omit<T, P>>;
 }[R];
 /**
  * Require only one of a set of properties in an object

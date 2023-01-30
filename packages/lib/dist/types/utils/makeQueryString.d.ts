@@ -63,7 +63,8 @@ export declare function makeQueryString(params?: QueryStringParameters, allowEmp
  * }
  *
  */
-export declare type QueryStringParameters = {
+declare type QueryStringParameters = {
     [propName: string]: string | number | undefined;
 };
+export {};
 //# sourceMappingURL=makeQueryString.d.ts.map

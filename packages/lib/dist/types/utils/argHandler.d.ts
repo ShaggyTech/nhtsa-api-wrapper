@@ -1,17 +1,17 @@
-import type { RequireAtLeastOne } from '../types';
-export declare const validateArgument: ({ name, value, caller, required, types, }: {
+import type { AtLeastOne } from '../types';
+export declare type IArgToValidate = {
     name: string;
     value: unknown;
-    caller: string;
-} & RequireAtLeastOne<{
-    required?: boolean | undefined;
+} & AtLeastOne<{
+    types?: string[];
+    required?: boolean;
+}>;
+export declare const catchInvalidArguments: ({ args, mode, }: {
+    args: IArgToValidate[];
+    mode?: "default" | "atLeast" | undefined;
+}) => void;
+export declare const validateArgument: ({ name, value, required, types, }: IArgToValidate & AtLeastOne<{
     types?: string[] | undefined;
-}, "required" | "types">) => void;
-export declare const argHandler: ({ name, value, required, types, caller, }: {
-    name: string;
-    value: unknown;
     required?: boolean | undefined;
-    types?: string[] | undefined;
-    caller?: string | undefined;
-}) => string;
+}, "types" | "required">) => void;
 //# sourceMappingURL=argHandler.d.ts.map

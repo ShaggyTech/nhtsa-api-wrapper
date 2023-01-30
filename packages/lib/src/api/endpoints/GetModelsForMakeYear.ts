@@ -2,20 +2,20 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  argHandler,
+  catchInvalidArguments,
+  createQueryString,
   getTypeof,
-  makeQueryString,
   rejectWithError,
   useFetch,
-  validateArgument,
+  validateURI,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse, RequireAtLeastOne } from '../../types'
+import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '../../types'
 
 /**
  * GetModelsForMakeYear returns the Models in the vPIC dataset for a specified Model Year
  * and Make whose name is LIKE the Make in the vPIC Dataset.
- *   - `params.make` is required. It can be a partial, or a full name for more specificity
+ *   - `make` is required. It can be a partial, or a full name for more specificity
  *     (e.g., "Harley", "Harley Davidson", etc.)
  *
  * A minimum of one of the following are required (or a combination of both):
@@ -25,114 +25,68 @@ import type { NhtsaResponse, RequireAtLeastOne } from '../../types'
  *
  * @async
  *
+ * @param {string} make - Make name to search
  * @param {Object} params - Query Search Parameters to append to the URL
- * @param {string} params.make - Make name to search
- * @param {(number|string)} [params.modelYear] - A number representing the model year to search (greater than 1995)
- * @param {string} [params.vehicleType] - String representing the vehicle type to search
+ * @param {(number|string)} [params.modelYear] - A number representing the model year to search (greater than 1995), required if params.vehicleType is not provided
+ * @param {string} [params.vehicleType] - String representing the vehicle type to search, required if params.modelYear is not provided
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeYearResults>>)} Api Response object
  */
 
 export const GetModelsForMakeYear = async (
-  params: {
-    make: string
-  } & RequireAtLeastOne<
-    {
-      modelYear?: number | string
-      vehicleType?: string
-    },
-    'modelYear' | 'vehicleType'
-  >
+  make: string,
+  params: AtLeastOne<{
+    modelYear?: number | string
+    vehicleType?: string
+  }>
 ): Promise<NhtsaResponse<GetModelsForMakeYearResults>> => {
-  /* 
-    {
+  const endpointName = 'GetModelsForMakeYear'
+  const modelYear = params?.modelYear
+  const vehicleType = params?.vehicleType
 
-    }
-  */
-
-  const action = 'GetModelsForMakeYear'
-
-  const make: string = params?.make
-  const modelYear: number | string | undefined = params?.modelYear
-  const vehicleType: string | undefined = params?.vehicleType
-
-  // // const typeofParams = getTypeof(params)
-  // if (!params || (params && getTypeof(params) !== 'object')) {
+  /* Validate the arguments */
   try {
-    validateArgument({
-      caller: action,
-      name: 'params',
-      required: true,
-      types: ['object'],
-      value: params,
+    const atLeastOneArgs: IArgToValidate[] = [
+      {
+        name: 'params.modelYear',
+        types: ['number', 'string'],
+        value: modelYear,
+      },
+      { name: 'params.vehicleType', types: ['string'], value: vehicleType },
+    ]
+    const args: IArgToValidate[] = [
+      { name: 'make', required: true, types: ['string'], value: make },
+      { name: 'params', required: true, types: ['object'], value: params },
+      ...atLeastOneArgs,
+    ]
+
+    catchInvalidArguments({ args })
+    catchInvalidArguments({ args: atLeastOneArgs, mode: 'atLeast' })
+
+    /* Special case: no illegal URI characters in the arg values as they aren't ran through createQueryString for this endpoint */
+    args.forEach((arg) => {
+      if (getTypeof(arg.value) === 'string') {
+        arg.value = validateURI(arg.value as string)
+      }
     })
 
-    validateArgument({
-      caller: action,
-      name: 'params.make',
-      required: true,
-      types: ['string'],
-      value: params.make,
-    })
+    let path = `${endpointName}/make/${make}/`
+
+    if (modelYear) {
+      path += `modelYear/${modelYear}`
+    }
+    if (vehicleType) {
+      path += `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
+    }
+
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${path}${queryString}`
+
+    return await useFetch()
+      .get<GetModelsForMakeYearResults>(url)
+      .then((response) => response)
   } catch (error) {
-    return rejectWithError(error.message)
+    return rejectWithError(error)
   }
-  // }
-
-  /* Required params.makeId */
-  // const typeofMake = getTypeof(make)
-  // if (!make || typeofMake !== 'string') {
-  //   return rejectWithError(
-  //     `${action}, "params.make" is required and must be of type string, got: <${typeofMake}> ${make}`
-  //   )
-  // }
-
-  /* At least one of modelYear or vehicleType is required */
-  if (!modelYear && !vehicleType) {
-    return rejectWithError(
-      `${action}, must provide either "params.modelYear" or "params.vehicleType" or both, got: { modelYear: ${modelYear}, vehicleType: ${vehicleType} }`
-    )
-  }
-
-  /* Runtime type guards against user provided args*/
-  const typeofModelYear = getTypeof(modelYear)
-  if (params?.modelYear && typeofModelYear !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "params.modelYear" must be of type number or string, got: <${typeofModelYear}> ${modelYear}`
-    )
-  }
-
-  const typeofVehicleType = getTypeof(vehicleType)
-  if (vehicleType && typeofVehicleType !== 'string') {
-    return rejectWithError(
-      `${action}, "params.vehicleType" must be of type string, got: <${typeofVehicleType}> ${vehicleType}`
-    )
-  }
-
-  /* Beginning of the the actionUrl string */
-  let path = `${action}/make/${make}/`
-
-  /* Append params.modelYear and params.vehicleType to the actionUrl, at least one is required by the API */
-  if (modelYear && vehicleType) {
-    path += `modelYear/${modelYear}/vehicleType/${vehicleType}`
-  } else if (modelYear) {
-    path += `modelYear/${modelYear}`
-  } else {
-    path += `vehicleType/${vehicleType}`
-  }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${path}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetModelsForMakeYearResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**

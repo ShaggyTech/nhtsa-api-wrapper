@@ -2,13 +2,13 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { NhtsaResponse, IArgToValidate } from '../../types'
 
 /**
  * DecodeVin will decode the VIN and the decoded output will be made available in the format of Key-value pairs.
@@ -39,43 +39,31 @@ export const DecodeVin = async (
     modelYear?: number | string
   }
 ): Promise<NhtsaResponse<DecodeVinResults>> => {
-  const action = 'DecodeVin'
+  const endpointName = 'DecodeVin'
+  const modelYear = params?.modelYear
 
-  /* Runtime type guards against user provided args*/
-  const typeofVin = getTypeof(vin)
-  if (!vin || typeofVin !== 'string') {
-    return rejectWithError(
-      `${action}, "vin" argument is required and must be of type string, got: <${typeofVin}> ${vin}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      { name: 'vin', required: true, types: ['string'], value: vin },
+      { name: 'params', types: ['object'], value: params },
+      {
+        name: 'params.modelYear',
+        types: ['number', 'string'],
+        value: modelYear,
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString(params)
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${vin}${queryString}`
+
+    return await useFetch()
+      .get<DecodeVinResults>(url)
+      .then((response) => response)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  const typeofParams = getTypeof(params)
-  if (params && typeofParams !== 'object') {
-    return rejectWithError(
-      `${action}, "params" argument must be of type object, got: <${typeofParams}> ${params}`
-    )
-  }
-
-  const typeofModelYear = getTypeof(params?.modelYear)
-  if (params?.modelYear && typeofModelYear !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "params.modelYear" must be of type string or number, got: <${typeofModelYear}> ${params.modelYear}`
-    )
-  }
-
-  /* Build the query string to be appended to the URL*/
-  const queryString = await makeQueryString(params).catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${vin}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<DecodeVinResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**

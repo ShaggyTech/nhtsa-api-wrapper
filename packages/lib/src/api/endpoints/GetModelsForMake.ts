@@ -9,6 +9,9 @@ import {
 } from '../../utils'
 /* Types */
 import type { NhtsaResponse } from '../../types'
+// import { GetModelsForMakeYear } from '../endpoints'
+
+// const results = GetModelsForMakeYear('Harley', {})
 
 /**
  * GetModelsForMake returns the Models in the vPIC dataset for a specified `makeName`

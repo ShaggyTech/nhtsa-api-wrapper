@@ -8,7 +8,7 @@ import {
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse, RequireAtLeastOne } from '../../types'
+import type { NhtsaResponse, AtLeastOne } from '../../types'
 
 /**
  * This returns the Models in the vPIC dataset for a specified Model Year
@@ -36,13 +36,10 @@ import type { NhtsaResponse, RequireAtLeastOne } from '../../types'
 export const GetModelsForMakeIdYear = async (
   params: {
     makeId: number | string
-  } & RequireAtLeastOne<
-    {
-      modelYear?: number | string
-      vehicleType?: string
-    },
-    'modelYear' | 'vehicleType'
-  >
+  } & AtLeastOne<{
+    modelYear?: number | string
+    vehicleType?: string
+  }>
 ): Promise<NhtsaResponse<GetModelsForMakeIdYearResults>> => {
   const action = 'GetModelsForMakeIdYear'
 

@@ -130,6 +130,6 @@ export function makeQueryString(
  * }
  *
  */
-export type QueryStringParameters = {
+type QueryStringParameters = {
   [propName: string]: string | number | undefined
 }

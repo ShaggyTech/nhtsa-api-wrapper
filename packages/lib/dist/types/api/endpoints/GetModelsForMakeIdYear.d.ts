@@ -1,4 +1,4 @@
-import type { NhtsaResponse, RequireAtLeastOne } from '../../types';
+import type { NhtsaResponse, AtLeastOne } from '../../types';
 /**
  * This returns the Models in the vPIC dataset for a specified Model Year
  * and Make whose name is LIKE the Make in the vPIC Dataset.
@@ -23,10 +23,10 @@ import type { NhtsaResponse, RequireAtLeastOne } from '../../types';
  */
 export declare const GetModelsForMakeIdYear: (params: {
     makeId: number | string;
-} & RequireAtLeastOne<{
+} & AtLeastOne<{
     modelYear?: number | string;
     vehicleType?: string;
-}, 'modelYear' | 'vehicleType'>) => Promise<NhtsaResponse<GetModelsForMakeIdYearResults>>;
+}>) => Promise<NhtsaResponse<GetModelsForMakeIdYearResults>>;
 /**
  * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetModelsForMakeIdYear endpoint
  *
