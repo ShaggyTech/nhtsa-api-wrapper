@@ -16,7 +16,7 @@ export const catchInvalidArguments = ({
 }) => {
   if (!args || getTypeof(args) !== 'array') {
     throw Error(
-      `catchInvalidArguments requires "args", must be an array of objects`
+      `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`
     )
   }
 
@@ -25,7 +25,7 @@ export const catchInvalidArguments = ({
       validateArgument(arg)
     })
   } else if (mode === 'atLeast') {
-    const providedArg = args.find((arg) => arg.value !== undefined)
+    const providedArg = args.find((arg) => !!arg.value)
     if (!providedArg) {
       throw Error(
         `must provide at least one of the following arguments: ${args
@@ -41,10 +41,13 @@ export const validateArgument = ({
   value,
   required,
   types,
-}: IArgToValidate): void => {
+  mode = 'error',
+}: IArgToValidate & { mode?: 'error' | 'boolean' }): boolean => {
   /* fast-fail if required args are not provided*/
-  if (!name) {
-    throw Error(`error validating argument, 'name' arg is required`)
+  if (getTypeof(name) !== 'string') {
+    throw Error(
+      `error validating argument named 'name', is required and must be a string`
+    )
   }
 
   if (types && getTypeof(types) !== 'array') {
@@ -59,34 +62,30 @@ export const validateArgument = ({
   const joinedTypes = types ? `<${types.join(' | ')}>` : ''
 
   /* common error message parts */
+  let error = ''
   const errorPrepend = `error validating argument named "${name}",`
   const errorAppend = `received value: ${value} - of type: <${typeofValue}>`
 
   /* argument validation logic */
   if (required && !types) {
     if (!value) {
-      throw Error(`${errorPrepend} is required; ${errorAppend}`)
+      error = `${errorPrepend} is required, ${errorAppend}`
     }
-  }
-
-  if (types && !required) {
-    /* 
-      if value is not defined and is not required then there should be no need to validate the type and throw error
-    */
+  } else if (types && !required) {
+    /* if value is not defined and is not required then there should be no need to validate the type and throw error */
     if (value && !types.includes(typeofValue)) {
-      throw Error(
-        `${errorPrepend} must be of type(s) ${joinedTypes}, ${errorAppend}`
-      )
+      error = `${errorPrepend} must be of type(s) ${joinedTypes}, ${errorAppend}`
     }
-  }
-
-  if (required && types) {
+  } else if (required && types) {
     if (!value || !types.includes(typeofValue)) {
-      throw Error(
-        `${errorPrepend} is required and must be of type(s) ${joinedTypes}, ${errorAppend}`
-      )
+      error = `${errorPrepend} is required and must be of type(s) ${joinedTypes}, ${errorAppend}`
     }
   }
 
-  return
+  if (error.length) {
+    if (mode === 'boolean') return false
+    if (mode === 'error') throw Error(error)
+  }
+
+  return true
 }

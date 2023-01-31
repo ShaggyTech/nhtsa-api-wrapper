@@ -4,10 +4,9 @@ import { NHTSA_BASE_URL } from '../../constants'
 import {
   catchInvalidArguments,
   createQueryString,
-  getTypeof,
   rejectWithError,
   useFetch,
-  validateURI,
+  validateArgument,
 } from '../../utils'
 /* Types */
 import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '../../types'
@@ -15,7 +14,7 @@ import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '../../types'
 /**
  * GetModelsForMakeYear returns the Models in the vPIC dataset for a specified Model Year
  * and Make whose name is LIKE the Make in the vPIC Dataset.
- *   - `make` is required. It can be a partial, or a full name for more specificity
+ *   - `params.make` is required. It can be a partial, or a full name for more specificity
  *     (e.g., "Harley", "Harley Davidson", etc.)
  *
  * A minimum of one of the following are required (or a combination of both):
@@ -25,65 +24,78 @@ import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '../../types'
  *
  * @async
  *
- * @param {string} make - Make name to search
  * @param {Object} params - Query Search Parameters to append to the URL
+ * @param {string} params.make - Make name to search
  * @param {(number|string)} [params.modelYear] - A number representing the model year to search (greater than 1995), required if params.vehicleType is not provided
  * @param {string} [params.vehicleType] - String representing the vehicle type to search, required if params.modelYear is not provided
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeYearResults>>)} Api Response object
  */
-
 export const GetModelsForMakeYear = async (
-  make: string,
-  params: AtLeastOne<{
+  params: { make: string } & AtLeastOne<{
     modelYear?: number | string
     vehicleType?: string
   }>
 ): Promise<NhtsaResponse<GetModelsForMakeYearResults>> => {
   const endpointName = 'GetModelsForMakeYear'
-  const modelYear = params?.modelYear
-  const vehicleType = params?.vehicleType
 
-  /* Validate the arguments */
   try {
-    const atLeastOneArgs: IArgToValidate[] = [
+    /* Validate the arguments */
+    const atLeastArgs: IArgToValidate[] = [
       {
-        name: 'params.modelYear',
+        name: 'modelYear',
         types: ['number', 'string'],
-        value: modelYear,
+        value: params.modelYear,
       },
-      { name: 'params.vehicleType', types: ['string'], value: vehicleType },
+      {
+        name: 'vehicleType',
+        types: ['string'],
+        value: params.vehicleType,
+      },
     ]
     const args: IArgToValidate[] = [
-      { name: 'make', required: true, types: ['string'], value: make },
       { name: 'params', required: true, types: ['object'], value: params },
-      ...atLeastOneArgs,
+      { name: 'make', required: true, types: ['string'], value: params.make },
+      ...atLeastArgs,
     ]
 
     catchInvalidArguments({ args })
-    catchInvalidArguments({ args: atLeastOneArgs, mode: 'atLeast' })
+    catchInvalidArguments({ args: atLeastArgs, mode: 'atLeast' })
 
-    /* Special case: no illegal URI characters in the arg values as they aren't ran through createQueryString for this endpoint */
-    args.forEach((arg) => {
-      if (getTypeof(arg.value) === 'string') {
-        arg.value = validateURI(arg.value as string)
-      }
-    })
+    /*
+     * Logic to handle encoding param values.
+     * In this endpoint, params values are never called with createQueryString and therefore won't be encoded without this
+     */
+    type EncodedParams = { [key in keyof typeof params]: string } & {
+      [key: string]: string
+    }
+    const encodedParams = Object.entries(params)
+      .filter(([, value]) =>
+        validateArgument({
+          name: '',
+          types: ['string', 'number', 'boolean'],
+          value,
+          mode: 'boolean',
+        })
+      )
+      .reduce<EncodedParams>((acc, [key, value]) => {
+        acc[key] = encodeURIComponent(value)
+        return acc
+      }, {} as EncodedParams)
 
-    let path = `${endpointName}/make/${make}/`
+    /* final encoded parameters to use */
+    const { make, modelYear, vehicleType } = encodedParams
 
+    /* Build the URL */
+    let url = `${NHTSA_BASE_URL}/${endpointName}/make/${make}/`
     if (modelYear) {
-      path += `modelYear/${modelYear}`
+      url += `modelYear/${modelYear}`
     }
     if (vehicleType) {
-      path += `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
+      url += `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
     }
+    url += createQueryString()
 
-    const queryString = createQueryString()
-    const url = `${NHTSA_BASE_URL}/${path}${queryString}`
-
-    return await useFetch()
-      .get<GetModelsForMakeYearResults>(url)
-      .then((response) => response)
+    return await useFetch().get<GetModelsForMakeYearResults>(url)
   } catch (error) {
     return rejectWithError(error)
   }

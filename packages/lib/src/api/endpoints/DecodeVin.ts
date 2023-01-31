@@ -47,7 +47,7 @@ export const DecodeVin = async (
       { name: 'vin', required: true, types: ['string'], value: vin },
       { name: 'params', types: ['object'], value: params },
       {
-        name: 'params.modelYear',
+        name: 'modelYear',
         types: ['number', 'string'],
         value: modelYear,
       },
@@ -58,9 +58,7 @@ export const DecodeVin = async (
     const queryString = createQueryString(params)
     const url = `${NHTSA_BASE_URL}/${endpointName}/${vin}${queryString}`
 
-    return await useFetch()
-      .get<DecodeVinResults>(url)
-      .then((response) => response)
+    return await useFetch().get<DecodeVinResults>(url)
   } catch (error) {
     return rejectWithError(error)
   }

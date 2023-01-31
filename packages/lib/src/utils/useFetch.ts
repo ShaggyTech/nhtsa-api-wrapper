@@ -9,7 +9,7 @@ export const useFetch = () => {
     const nhtsaResponse: NhtsaResponse<T> = await fetch(url, options)
       .then(async (response) => {
         if (!response.ok) {
-          throw Error(response.statusText)
+          throw Error(`${response.status} ${response.url}`)
         }
 
         const jsonTypes = ['application/json', 'text/json']
@@ -18,7 +18,8 @@ export const useFetch = () => {
 
         if (!isJson) {
           throw Error(
-            `response is not in JSON format; got content-type: ${contentType}`
+            `API response is not in JSON format; got ` +
+              `content-type: ${contentType}, responseStatus: ${response.status}}, responseUrl: ${response.url}`
           )
         }
 
@@ -26,14 +27,15 @@ export const useFetch = () => {
 
         if (!data) {
           throw Error(
-            `response is empty; got content-type: ${contentType}, responseStatusText: ${response.statusText}}`
+            `API responded but returned no data; got ` +
+              `content-type: ${contentType}, responseStatus: ${response.status}}, responseUrl: ${response.url}`
           )
         }
 
         return data
       })
       .catch((error: Error) => {
-        error.message = `error fetching data; ${error.message}`
+        error.message = `API error fetching data: ${error.message}`
         return rejectWithError(error)
       })
 

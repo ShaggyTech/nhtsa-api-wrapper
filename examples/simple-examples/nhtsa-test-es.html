@@ -38,24 +38,22 @@
         .getElementById('GetCanadianVehicleSpecifications')
         .addEventListener('click', async () => {
           /* Lazy Loading */
-          const { catchInvalidArguments } = await import(
+          const { GetModelsForMakeYear } = await import(
             '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
           ).catch((err) => err)
 
-          try {
-            const results = catchInvalidArguments({
-              args: [
-                {
-                  name: 'test',
-                  value: 32,
-                  required: true,
-                  types: ['number']
-                }
-              ]
+          const results = await GetModelsForMakeYear(
+            {
+              make: 'Ford',
+              modelYear: '',
+              vehicleType: ''
+            },
+            true
+          )
+            .then((results) => {
+              return results
             })
-          } catch (err) {
-            console.error(err)
-          }
+            .catch((err) => console.error(err))
 
           console.log(results)
           document.querySelector(
@@ -67,12 +65,12 @@
         .getElementById('DecodeVin')
         .addEventListener('click', async () => {
           /* Lazy Loading */
-          const { DecodeVin } = await import(
+          const { DecodeVinValues } = await import(
             '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
           ).catch((err) => err)
 
-          const results = await DecodeVin('WVWHV71K69W144983', {
-            modelYear: '($*%**$('
+          const results = await DecodeVinValues('WVWHV71K69W144983', {
+            modelYear: [false]
           })
             .then((results) => results)
             .catch((err) => console.error(err))

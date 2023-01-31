@@ -1,5 +1,5 @@
 export { catchInvalidArguments, validateArgument } from './argHandler'
-export { createQueryString, validateURI } from './createQueryString'
+export { createQueryString } from './createQueryString'
 export { handleError, isError, rejectWithError } from './errorHandler'
 export { getTypeof } from './getTypeof'
 export { isValidVin } from './isValidVin'

@@ -2,62 +2,62 @@ const w = ({
   args: e,
   mode: t = "default"
 }) => {
-  if (!e || u(e) !== "array")
+  if (!e || s(e) !== "array")
     throw Error(
-      'catchInvalidArguments requires "args", must be an array of objects'
+      'catchInvalidArguments requires "args" that must be an array of IArgToValidate objects'
     );
   if (t === "default")
-    e.forEach((n) => {
-      k(n);
+    e.forEach((r) => {
+      T(r);
     });
-  else if (t === "atLeast" && !e.find((o) => o.value !== void 0))
+  else if (t === "atLeast" && !e.find((o) => !!o.value))
     throw Error(
       `must provide at least one of the following arguments: ${e.map((o) => o.name).join(", ")}`
     );
-}, k = ({
+}, T = ({
   name: e,
   value: t,
-  required: n,
-  types: o
+  required: r,
+  types: o,
+  mode: c = "error"
 }) => {
-  if (!e)
-    throw Error("error validating argument, 'name' arg is required");
-  if (o && u(o) !== "array")
+  if (s(e) !== "string")
+    throw Error(
+      "error validating argument named 'name', is required and must be a string"
+    );
+  if (o && s(o) !== "array")
     throw Error(
       `error validating argument named "${e}", 'types' must be an array of strings`
     );
-  const c = u(t), r = o ? `<${o.join(" | ")}>` : "", s = `error validating argument named "${e}",`, g = `received value: ${t} - of type: <${c}>`;
-  if (n && !o && !t)
-    throw Error(`${s} is required; ${g}`);
-  if (o && !n && (console.log("checking only types"), t && !o.includes(c)))
-    throw Error(
-      `${s} must be of type(s) ${r}, ${g}`
-    );
-  if (n && o && (!t || !o.includes(c)))
-    throw Error(
-      `${s} is required and must be of type(s) ${r}, ${g}`
-    );
-}, y = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", u = (e) => {
+  const n = s(t), $ = o ? `<${o.join(" | ")}>` : "";
+  let g = "";
+  const u = `error validating argument named "${e}",`, a = `received value: ${t} - of type: <${n}>`;
+  if (r && !o ? t || (g = `${u} is required, ${a}`) : o && !r ? t && !o.includes(n) && (g = `${u} must be of type(s) ${$}, ${a}`) : r && o && (!t || !o.includes(n)) && (g = `${u} is required and must be of type(s) ${$}, ${a}`), g.length) {
+    if (c === "boolean")
+      return !1;
+    if (c === "error")
+      throw Error(g);
+  }
+  return !0;
+}, y = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", s = (e) => {
   const t = Object.prototype.toString.call(e).toLowerCase();
   return t.slice(8, t.length - 1);
-}, T = (e, t = !1) => {
-  const n = { format: M }, o = u(e) === "object" ? { ...e, ...n } : n, c = "?" + Object.entries(o).map(([r, s], g, $) => {
-    const a = u(s);
-    return a !== "string" && a !== "number" ? "" : (a === "number" && (s = s.toString()), s.length || t && s === "" ? `${r}=${s}${g < $.length - 1 ? "&" : ""}` : "");
+}, p = (e, t = !1) => {
+  const r = { format: M }, o = s(e) === "object" ? { ...e, ...r } : r, c = "?" + Object.entries(o).map(([n, $], g, u) => {
+    const a = s($);
+    return a !== "string" && a !== "number" ? "" : (a === "number" && ($ = $.toString()), $.length || t && $ === "" ? `${n}=${$}${g < u.length - 1 ? "&" : ""}` : "");
   }).join("");
-  return p(c);
-}, p = (e) => {
+  return S(c);
+}, S = (e) => {
   if (e = encodeURI(e), /[^0-9A-Z?&=%]/gi.test(e))
     throw Error(
       "Invalid characters found in query string. Only characters a-z, 0-9, and ?,&,=,% are allowed."
     );
   return e;
-}, V = (e) => u(e) === "error", S = (e) => {
-  let t, n;
-  V(e) ? (t = e.message, n = e.stack) : u(e) === "string" ? t = e : t = "an unknown error occurred.";
-  const o = new Error(t);
-  return o.stack = n || "unknown stack", o;
-}, i = async (e) => ((!V(e) || !e.message || !e.stack) && (e = S(e)), Promise.reject(e)), Y = {
+}, V = (e) => s(e) === "error", Y = (e) => {
+  let t = "an unknown error occurred.";
+  return V(e) ? e : (s(e) === "string" && (t = e), Error(t));
+}, i = async (e) => (V(e) || (e = Y(e)), Promise.reject(e)), j = {
   A: 1,
   B: 2,
   C: 3,
@@ -81,7 +81,7 @@ const w = ({
   X: 7,
   Y: 8,
   Z: 9
-}, j = [
+}, k = [
   8,
   7,
   6,
@@ -104,467 +104,475 @@ function G(e) {
   if (typeof e != "string" || e.length != 17)
     return !1;
   e = e.toUpperCase();
-  const t = e.split(""), n = t[8];
-  if (isNaN(parseInt(n)) && n !== "X")
+  const t = e.split(""), r = t[8];
+  if (isNaN(parseInt(r)) && r !== "X")
     return !1;
-  const o = n === "X" ? 10 : parseInt(n);
-  return t.map((r, s) => {
+  const o = r === "X" ? 10 : parseInt(r);
+  return t.map((n, $) => {
     let g;
-    isNaN(parseInt(r)) ? g = Y[r] : g = parseInt(r);
-    const $ = j[s];
-    return g * $;
-  }).reduce((r, s) => r + s, 0) % 11 === o;
+    isNaN(parseInt(n)) ? g = j[n] : g = parseInt(n);
+    const u = k[$];
+    return g * u;
+  }).reduce((n, $) => n + $, 0) % 11 === o;
 }
 function d(e, t = !1) {
-  const n = { format: M };
+  const r = { format: M };
   let o = {};
-  !e || u(e) !== "object" ? o = { ...n } : o = { ...e, ...n };
-  const c = Object.entries(o), r = c.length;
-  if (r < 1)
+  !e || s(e) !== "object" ? o = { ...r } : o = { ...e, ...r };
+  const c = Object.entries(o), n = c.length;
+  if (n < 1)
     return Promise.resolve("");
-  let s = !1;
-  const g = c.map(([$, a], l) => {
-    let q = "", h = "";
-    const b = u(a);
-    if (a && b === "number" && (a = a.toString()), (a || t) && (b === "string" || b === "number"))
-      return s || (q = "?", s = !0), l < r - 1 && (h = "&"), `${q}${$}=${a}${h}`;
+  let $ = !1;
+  const g = c.map(([u, a], h) => {
+    let b = "", l = "";
+    const m = s(a);
+    if (a && m === "number" && (a = a.toString()), (a || t) && (m === "string" || m === "number"))
+      return $ || (b = "?", $ = !0), h < n - 1 && (l = "&"), `${b}${u}=${a}${l}`;
   });
   return Promise.resolve(encodeURI(g.join("")));
 }
 const f = () => ({
-  get: async (t, n = {}) => await fetch(t, n).then(async (c) => {
+  get: async (t, r = {}) => await fetch(t, r).then(async (c) => {
     if (!c.ok)
-      throw Error(c.statusText);
-    const r = ["application/json", "text/json"], s = c.headers.get("content-type");
-    if (!r.some((a) => s == null ? void 0 : s.includes(a)))
+      throw Error(`${c.status} ${c.url}`);
+    const n = ["application/json", "text/json"], $ = c.headers.get("content-type");
+    if (!n.some((a) => $ == null ? void 0 : $.includes(a)))
       throw Error(
-        `response is not in JSON format; got content-type: ${s}`
+        `API response is not in JSON format; got content-type: ${$}, responseStatus: ${c.status}}, responseUrl: ${c.url}`
       );
-    const $ = await c.json();
-    if (!$)
+    const u = await c.json();
+    if (!u)
       throw Error(
-        `response is empty; got content-type: ${s}, responseStatusText: ${c.statusText}}`
+        `API responded but returned no data; got content-type: ${$}, responseStatus: ${c.status}}, responseUrl: ${c.url}`
       );
-    return $;
-  }).catch((c) => (c.message = `error fetching data; ${c.message}`, i(c)))
-}), E = async (e, t) => {
-  const n = "DecodeVin", o = t == null ? void 0 : t.modelYear;
+    return u;
+  }).catch((c) => (c.message = `API error fetching data: ${c.message}`, i(c)))
+}), I = async (e, t) => {
+  const r = "DecodeVin", o = t == null ? void 0 : t.modelYear;
   try {
     w({ args: [
       { name: "vin", required: !0, types: ["string"], value: e },
       { name: "params", types: ["object"], value: t },
       {
-        name: "params.modelYear",
+        name: "modelYear",
         types: ["number", "string"],
         value: o
       }
     ] });
-    const r = T(t), s = `${y}/${n}/${e}${r}`;
-    return await f().get(s).then((g) => g);
+    const n = p(t), $ = `${y}/${r}/${e}${n}`;
+    return await f().get($);
   } catch (c) {
     return i(c);
   }
-}, I = async (e, t) => {
-  const n = "DecodeVinExtended", o = u(e);
-  if (!e || o !== "string")
-    return i(
-      `${n}, "vin" argument is required and must be of type string, got: <${o}> ${e}`
-    );
-  const c = u(t);
-  if (t && c !== "object")
-    return i(
-      `${n}, "params" argument must be of type object, got: <${c}> ${t}`
-    );
-  const r = u(t == null ? void 0 : t.modelYear);
-  if (t != null && t.modelYear && r !== "number")
-    return i(
-      `${n}, "params.modelYear" must be of type number or string, got: <${r}> ${t.modelYear}`
-    );
-  const s = await d(t).catch(
-    ($) => i(`${n}, error building query string: ${$}`)
-  ), g = `${y}/${n}/${e}${s}`;
-  return await f().get(g).then(($) => $).catch(($) => i(`${n}, error fetching data: ${$}`));
 }, A = async (e, t) => {
-  const n = "DecodeVinValues", o = u(e);
+  const r = "DecodeVinExtended", o = s(e);
   if (!e || o !== "string")
     return i(
-      `${n}, "vin" argument is required and must be of type string, got: <${o}> ${e}`
+      `${r}, "vin" argument is required and must be of type string, got: <${o}> ${e}`
     );
-  const c = u(t);
+  const c = s(t);
   if (t && c !== "object")
     return i(
-      `${n}, "params" argument must be of type object, got: <${c}> ${t}`
+      `${r}, "params" argument must be of type object, got: <${c}> ${t}`
     );
-  const r = u(t == null ? void 0 : t.modelYear);
-  if (t != null && t.modelYear && r !== "number")
+  const n = s(t == null ? void 0 : t.modelYear);
+  if (t != null && t.modelYear && n !== "number")
     return i(
-      `${n}, "params.modelYear" must be of type number or string, got: <${r}> ${t.modelYear}`
+      `${r}, "params.modelYear" must be of type number or string, got: <${n}> ${t.modelYear}`
     );
-  const s = await d(t).catch(
-    ($) => i(`${n}, error building query string: ${$}`)
-  ), g = `${y}/${n}/${e}${s}`;
-  return await f().get(g).then(($) => $).catch(($) => i(`${n}, error fetching data: ${$}`));
-}, P = async (e) => {
-  const t = "DecodeVinValuesBatch", n = u(e);
-  if (!e || n !== "string")
+  const $ = await d(t).catch(
+    (u) => i(`${r}, error building query string: ${u}`)
+  ), g = `${y}/${r}/${e}${$}`;
+  return await f().get(g).then((u) => u).catch((u) => i(`${r}, error fetching data: ${u}`));
+}, P = async (e, t) => {
+  const r = "DecodeVinValues", o = s(e);
+  if (!e || o !== "string")
     return i(
-      `${t}, "inputString" argument is required and must be of type string, got: <${n}> ${e}`
+      `${r}, "vin" argument is required and must be of type string, got: <${o}> ${e}`
+    );
+  const c = s(t);
+  if (t && c !== "object")
+    return i(
+      `${r}, "params" argument must be of type object, got: <${c}> ${t}`
+    );
+  const n = s(t == null ? void 0 : t.modelYear);
+  if (t != null && t.modelYear && n !== "number")
+    return i(
+      `${r}, "params.modelYear" must be of type number or string, got: <${n}> ${t.modelYear}`
+    );
+  const $ = await d(t).catch(
+    (u) => i(`${r}, error building query string: ${u}`)
+  ), g = `${y}/${r}/${e}${$}`;
+  return await f().get(g).then((u) => u).catch((u) => i(`${r}, error fetching data: ${u}`));
+}, E = async (e) => {
+  const t = "DecodeVinValuesBatch", r = s(e);
+  if (!e || r !== "string")
+    return i(
+      `${t}, "inputString" argument is required and must be of type string, got: <${r}> ${e}`
     );
   const o = `${y}/${t}/`, c = encodeURI(`DATA=${e}&format=${M}`);
   return await f().get(o, {
     method: "POST",
     headers: { "content-type": "application/x-www-form-urlencoded" },
     body: c
-  }).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
+  }).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
 }, D = async (e, t) => {
-  const n = "DecodeVinValuesExtended", o = u(e);
+  const r = "DecodeVinValuesExtended", o = s(e);
   if (!e || o !== "string")
     return i(
-      `${n}, "vin" argument is required and must be of type string, got: <${o}> ${e}`
+      `${r}, "vin" argument is required and must be of type string, got: <${o}> ${e}`
     );
-  const c = u(t);
+  const c = s(t);
   if (t && c !== "object")
     return i(
-      `${n}, "params" argument must be of type object, got: <${c}> ${t}`
+      `${r}, "params" argument must be of type object, got: <${c}> ${t}`
     );
-  const r = u(t == null ? void 0 : t.modelYear);
-  if (t != null && t.modelYear && r !== "number")
+  const n = s(t == null ? void 0 : t.modelYear);
+  if (t != null && t.modelYear && n !== "number")
     return i(
-      `${n}, "params.modelYear" must be of type number or string, got: <${r}> ${t.modelYear}`
+      `${r}, "params.modelYear" must be of type number or string, got: <${n}> ${t.modelYear}`
     );
-  const s = await d(t).catch(
-    ($) => i(`${n}, error building query string: ${$}`)
-  ), g = `${y}/${n}/${e}${s}`;
-  return await f().get(g).then(($) => $).catch(($) => i(`${n}, error fetching data: ${$}`));
+  const $ = await d(t).catch(
+    (u) => i(`${r}, error building query string: ${u}`)
+  ), g = `${y}/${r}/${e}${$}`;
+  return await f().get(g).then((u) => u).catch((u) => i(`${r}, error fetching data: ${u}`));
 }, F = async (e) => {
-  const t = "DecodeWMI", n = u(e);
-  if (n !== "string")
+  const t = "DecodeWMI", r = s(e);
+  if (r !== "string")
     return i(
-      `${t}, "WMI" argument is required and must be of type string, got <${n}> ${e}`
+      `${t}, "WMI" argument is required and must be of type string, got <${r}> ${e}`
     );
   const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
+    (n) => i(`${t}, error building query string: ${n}`)
   ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
 }, v = async () => {
   const e = "GetAllMakes", t = await d().catch(
     (o) => i(`${e}, error building query string: ${o}`)
-  ), n = `${y}/${e}${t}`;
-  return await f().get(n).then((o) => o).catch((o) => i(`${e}, error fetching data: ${o}`));
+  ), r = `${y}/${e}${t}`;
+  return await f().get(r).then((o) => o).catch((o) => i(`${e}, error fetching data: ${o}`));
 }, R = async (e) => {
-  const t = "GetAllManufacturers", n = u(e);
-  if (e && n !== "object")
+  const t = "GetAllManufacturers", r = s(e);
+  if (e && r !== "object")
     return i(
-      `${t}, "params" argument must be of type object, got: <${n}> ${e}`
+      `${t}, "params" argument must be of type object, got: <${r}> ${e}`
     );
-  const o = u(e == null ? void 0 : e.manufacturerType);
+  const o = s(e == null ? void 0 : e.manufacturerType);
   if (e != null && e.manufacturerType && o !== "string")
     return i(
       `${t}, params.manufacturerType" argument must be of type string, got: <${o}> ${e.manufacturerType}`
     );
-  const c = u(e == null ? void 0 : e.page);
+  const c = s(e == null ? void 0 : e.page);
   if (e != null && e.page && c !== "number | string")
     return i(
       `${t}, "params.page" argument must be of type number or string, got: <${c}> ${e.page}`
     );
-  const r = await d(e).catch(
+  const n = await d(e).catch(
     (g) => i(`${t}, error building query string: ${g}`)
-  ), s = `${y}/${t}${r}`;
-  return await f().get(s).then((g) => g).catch((g) => i(`${t}, error fetching data: ${g}`));
+  ), $ = `${y}/${t}${n}`;
+  return await f().get($).then((g) => g).catch((g) => i(`${t}, error fetching data: ${g}`));
 }, L = async (e) => {
-  const t = "GetCanadianVehicleSpecifications", n = u(e);
-  if (!e || e && n !== "object")
-    return i(
-      `${t}, "params" argument is required and must be of type object, got: <${n}> ${e}`
-    );
-  const o = u(e == null ? void 0 : e.year);
-  if (!(e != null && e.year) || o !== "number")
-    return i(
-      `${t}, "params.year" argument is required and must be of type number or string, got: <${o}> ${e.year}`
-    );
-  const c = u(e.make);
-  if (e != null && e.make && c !== "string")
-    return i(
-      `${t}, "params.make" argument must be of type string, got: <${c}> ${e.make}`
-    );
-  const r = u(e.model);
-  if (e.model && r !== "string")
-    return i(
-      `${t}, "params.model" argument must be of type string, got: <${r}> ${e.model}`
-    );
-  const s = u(e.units);
-  if (e.units && s !== "string")
-    return i(
-      `${t}, "params.units" argument must be of type string, got: <${s}> ${e.units}`
-    );
-  const g = e.make || "", $ = e.model || "", a = e.units || "", l = {
-    year: e.year,
-    make: g,
-    model: $,
-    units: a
-  }, q = await d(l, !0).catch(
-    (m) => i(`${t}, error building query string: ${m}`)
-  ), h = `${y}/${t}/${q}`;
-  return await f().get(h).then((m) => m).catch((m) => i(`${t}, error fetching data: ${m}`));
-}, N = async (e) => {
-  const t = "GetEquipmentPlantCodes", n = u(e);
-  if (!e || n !== "object")
-    return i(
-      `${t}, "params" argument must be of type object, got: <${n}> ${e}`
-    );
-  const o = u(e.year);
-  if (o !== "number")
-    return i(
-      `${t}, "params.year" argument is required and must be of type number or string, got: <${o}> ${e.year}`
-    );
-  const c = u(e.equipmentType);
-  if (c !== "number")
-    return i(
-      `${t}, "params.equipmentType" argument is required and must be of type number or string, got: <${c}> ${e.equipmentType}`
-    );
-  const r = u(e.reportType);
-  if (r !== "string")
-    return i(
-      `${t}, "params.reportType" argument is required and must be of type string, got: <${r}> ${e.reportType}`
-    );
-  const s = await d(e).catch(
-    ($) => i(`${t}, error building query string: ${$}`)
-  ), g = `${y}/${t}${s}`;
-  return await f().get(g).then(($) => $).catch(($) => i(`${t}, error fetching data: ${$}`));
-}, x = async (e) => {
-  const t = "GetMakeForManufacturer", n = u(e);
-  if (!e || n !== "number")
-    return i(
-      `${t}, "manufacturer" argument is required and must be of type number or string, got <${n}> ${e}`
-    );
-  const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
-  ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
-}, O = async (e, t) => {
-  const n = "GetMakesForManufacturerAndYear", o = u(e);
-  if (!e || o !== "number")
-    return i(
-      `${n}, "manufacturer" argument is required and must be of type number or string, got <${o}> ${e}`
-    );
-  const c = u(t);
-  if (!t || t && c !== "object")
-    return i(
-      `${n}, "params" argument is required and must be of type object, got: <${c}> ${t}`
-    );
-  const r = u(t.year);
-  if (!t.year || r !== "number")
-    return i(
-      `${n}, "params.year" is required and must be of type number or string, got: <${r}> ${t.year}`
-    );
-  const s = await d(t).catch(
-    ($) => i(`${n}, error building query string: ${$}`)
-  ), g = `${y}/${n}/${e}${s}`;
-  return await f().get(g).then(($) => $).catch(($) => i(`${n}, error fetching data: ${$}`));
-}, U = async (e) => {
-  const t = "GetMakesForVehicleType", n = u(e);
-  if (n !== "string")
-    return i(
-      `${t}, "typeName" argument is required and must be of type string, got <${n}> ${e}`
-    );
-  const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
-  ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
-}, C = async (e) => {
-  const t = "GetManufacturerDetails", n = u(e);
-  if (!e || n !== "number")
-    return i(
-      `${t}, "manufacturer" argument is required and must be of type number or string, got <${n}> ${e}`
-    );
-  const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
-  ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
-}, _ = async (e) => {
-  const t = "GetModelsForMake", n = u(e);
-  if (n !== "string")
-    return i(
-      `${t}, "makeName" argument is required and must be of type string, got <${n}> ${e}`
-    );
-  const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
-  ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
-}, W = async (e) => {
-  const t = "GetModelsForMakeId", n = u(e);
-  if (!e || n !== "number")
-    return i(
-      `${t}, "makeId" argument is required and must be of type number or string, got <${n}> ${e}`
-    );
-  const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
-  ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
-}, B = async (e) => {
-  const t = "GetModelsForMakeIdYear", n = e == null ? void 0 : e.makeId, o = e == null ? void 0 : e.modelYear, c = e == null ? void 0 : e.vehicleType, r = u(e);
+  const t = "GetCanadianVehicleSpecifications", r = s(e);
   if (!e || e && r !== "object")
     return i(
       `${t}, "params" argument is required and must be of type object, got: <${r}> ${e}`
     );
-  const s = u(n);
-  if (!n || s !== "number")
+  const o = s(e == null ? void 0 : e.year);
+  if (!(e != null && e.year) || o !== "number")
     return i(
-      `${t}, "params.makeId" is required and must be of type number or string, got: <${s}> ${n}`
+      `${t}, "params.year" argument is required and must be of type number or string, got: <${o}> ${e.year}`
+    );
+  const c = s(e.make);
+  if (e != null && e.make && c !== "string")
+    return i(
+      `${t}, "params.make" argument must be of type string, got: <${c}> ${e.make}`
+    );
+  const n = s(e.model);
+  if (e.model && n !== "string")
+    return i(
+      `${t}, "params.model" argument must be of type string, got: <${n}> ${e.model}`
+    );
+  const $ = s(e.units);
+  if (e.units && $ !== "string")
+    return i(
+      `${t}, "params.units" argument must be of type string, got: <${$}> ${e.units}`
+    );
+  const g = e.make || "", u = e.model || "", a = e.units || "", h = {
+    year: e.year,
+    make: g,
+    model: u,
+    units: a
+  }, b = await d(h, !0).catch(
+    (q) => i(`${t}, error building query string: ${q}`)
+  ), l = `${y}/${t}/${b}`;
+  return await f().get(l).then((q) => q).catch((q) => i(`${t}, error fetching data: ${q}`));
+}, U = async (e) => {
+  const t = "GetEquipmentPlantCodes", r = s(e);
+  if (!e || r !== "object")
+    return i(
+      `${t}, "params" argument must be of type object, got: <${r}> ${e}`
+    );
+  const o = s(e.year);
+  if (o !== "number")
+    return i(
+      `${t}, "params.year" argument is required and must be of type number or string, got: <${o}> ${e.year}`
+    );
+  const c = s(e.equipmentType);
+  if (c !== "number")
+    return i(
+      `${t}, "params.equipmentType" argument is required and must be of type number or string, got: <${c}> ${e.equipmentType}`
+    );
+  const n = s(e.reportType);
+  if (n !== "string")
+    return i(
+      `${t}, "params.reportType" argument is required and must be of type string, got: <${n}> ${e.reportType}`
+    );
+  const $ = await d(e).catch(
+    (u) => i(`${t}, error building query string: ${u}`)
+  ), g = `${y}/${t}${$}`;
+  return await f().get(g).then((u) => u).catch((u) => i(`${t}, error fetching data: ${u}`));
+}, N = async (e) => {
+  const t = "GetMakeForManufacturer", r = s(e);
+  if (!e || r !== "number")
+    return i(
+      `${t}, "manufacturer" argument is required and must be of type number or string, got <${r}> ${e}`
+    );
+  const o = await d().catch(
+    (n) => i(`${t}, error building query string: ${n}`)
+  ), c = `${y}/${t}/${e}${o}`;
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
+}, C = async (e, t) => {
+  const r = "GetMakesForManufacturerAndYear", o = s(e);
+  if (!e || o !== "number")
+    return i(
+      `${r}, "manufacturer" argument is required and must be of type number or string, got <${o}> ${e}`
+    );
+  const c = s(t);
+  if (!t || t && c !== "object")
+    return i(
+      `${r}, "params" argument is required and must be of type object, got: <${c}> ${t}`
+    );
+  const n = s(t.year);
+  if (!t.year || n !== "number")
+    return i(
+      `${r}, "params.year" is required and must be of type number or string, got: <${n}> ${t.year}`
+    );
+  const $ = await d(t).catch(
+    (u) => i(`${r}, error building query string: ${u}`)
+  ), g = `${y}/${r}/${e}${$}`;
+  return await f().get(g).then((u) => u).catch((u) => i(`${r}, error fetching data: ${u}`));
+}, O = async (e) => {
+  const t = "GetMakesForVehicleType", r = s(e);
+  if (r !== "string")
+    return i(
+      `${t}, "typeName" argument is required and must be of type string, got <${r}> ${e}`
+    );
+  const o = await d().catch(
+    (n) => i(`${t}, error building query string: ${n}`)
+  ), c = `${y}/${t}/${e}${o}`;
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
+}, _ = async (e) => {
+  const t = "GetManufacturerDetails", r = s(e);
+  if (!e || r !== "number")
+    return i(
+      `${t}, "manufacturer" argument is required and must be of type number or string, got <${r}> ${e}`
+    );
+  const o = await d().catch(
+    (n) => i(`${t}, error building query string: ${n}`)
+  ), c = `${y}/${t}/${e}${o}`;
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
+}, x = async (e) => {
+  const t = "GetModelsForMake", r = s(e);
+  if (r !== "string")
+    return i(
+      `${t}, "makeName" argument is required and must be of type string, got <${r}> ${e}`
+    );
+  const o = await d().catch(
+    (n) => i(`${t}, error building query string: ${n}`)
+  ), c = `${y}/${t}/${e}${o}`;
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
+}, W = async (e) => {
+  const t = "GetModelsForMakeId", r = s(e);
+  if (!e || r !== "number")
+    return i(
+      `${t}, "makeId" argument is required and must be of type number or string, got <${r}> ${e}`
+    );
+  const o = await d().catch(
+    (n) => i(`${t}, error building query string: ${n}`)
+  ), c = `${y}/${t}/${e}${o}`;
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
+}, B = async (e) => {
+  const t = "GetModelsForMakeIdYear", r = e == null ? void 0 : e.makeId, o = e == null ? void 0 : e.modelYear, c = e == null ? void 0 : e.vehicleType, n = s(e);
+  if (!e || e && n !== "object")
+    return i(
+      `${t}, "params" argument is required and must be of type object, got: <${n}> ${e}`
+    );
+  const $ = s(r);
+  if (!r || $ !== "number")
+    return i(
+      `${t}, "params.makeId" is required and must be of type number or string, got: <${$}> ${r}`
     );
   if (!o && !c)
     return i(
       `${t}, must provide either "params.modelYear" or "params.vehicleType", got: { modelYear: ${o}, vehicleType: ${c} }`
     );
-  const g = u(o);
+  const g = s(o);
   if (e != null && e.modelYear && g !== "number")
     return i(
       `${t}, "params.modelYear" must be of type number or string, got: <${g}> ${o}`
     );
-  const $ = u(c);
-  if (c && $ !== "string")
+  const u = s(c);
+  if (c && u !== "string")
     return i(
-      `${t}, "params.vehicleType" must be of type string, got: <${$}> ${c}`
+      `${t}, "params.vehicleType" must be of type string, got: <${u}> ${c}`
     );
-  let a = `${t}/makeId/${n}/`;
+  let a = `${t}/makeId/${r}/`;
   o && c ? a += `modelYear/${o}/vehicleType/${c}` : o ? a += `modelYear/${o}` : a += `vehicleType/${c}`;
-  const l = await d().catch(
-    (h) => i(`${t}, error building query string: ${h}`)
-  ), q = `${y}/${a}${l}`;
-  return await f().get(q).then((h) => h).catch((h) => i(`${t}, error fetching data: ${h}`));
-}, H = async (e, t) => {
-  const n = "GetModelsForMakeYear", o = t == null ? void 0 : t.modelYear, c = t == null ? void 0 : t.vehicleType;
+  const h = await d().catch(
+    (l) => i(`${t}, error building query string: ${l}`)
+  ), b = `${y}/${a}${h}`;
+  return await f().get(b).then((l) => l).catch((l) => i(`${t}, error fetching data: ${l}`));
+}, H = async (e) => {
+  const t = "GetModelsForMakeYear";
   try {
     const r = [
       {
-        name: "params.modelYear",
+        name: "modelYear",
         types: ["number", "string"],
-        value: o
+        value: e.modelYear
       },
-      { name: "params.vehicleType", types: ["string"], value: c }
-    ], s = [
-      { name: "make", required: !0, types: ["string"], value: e },
-      { name: "params", required: !0, types: ["object"], value: t },
+      {
+        name: "vehicleType",
+        types: ["string"],
+        value: e.vehicleType
+      }
+    ], o = [
+      { name: "params", required: !0, types: ["object"], value: e },
+      { name: "make", required: !0, types: ["string"], value: e.make },
       ...r
     ];
-    w({ args: s }), w({ args: r, mode: "atLeast" }), s.forEach((l) => {
-      u(l.value) === "string" && (l.value = p(l.value));
-    });
-    let g = `${n}/make/${e}/`;
-    o && (g += `modelYear/${o}`), c && (g += `${o ? "/" : ""}vehicleType/${c}`);
-    const $ = T(), a = `${y}/${g}${$}`;
-    return await f().get(a).then((l) => l);
+    w({ args: o }), w({ args: r, mode: "atLeast" });
+    const c = Object.entries(e).filter(
+      ([, a]) => T({
+        name: "",
+        types: ["string", "number", "boolean"],
+        value: a,
+        mode: "boolean"
+      })
+    ).reduce((a, [h, b]) => (a[h] = encodeURIComponent(b), a), {}), { make: n, modelYear: $, vehicleType: g } = c;
+    let u = `${y}/${t}/make/${n}/`;
+    return $ && (u += `modelYear/${$}`), g && (u += `${$ ? "/" : ""}vehicleType/${g}`), u += p(), await f().get(u);
   } catch (r) {
     return i(r);
   }
 }, J = async (e) => {
-  const t = "GetParts", n = e == null ? void 0 : e.type, o = e == null ? void 0 : e.fromDate, c = e == null ? void 0 : e.toDate, r = e == null ? void 0 : e.page, s = u(e);
-  if (e && s !== "object")
+  const t = "GetParts", r = e == null ? void 0 : e.type, o = e == null ? void 0 : e.fromDate, c = e == null ? void 0 : e.toDate, n = e == null ? void 0 : e.page, $ = s(e);
+  if (e && $ !== "object")
     return i(
-      `${t}, "params" argument must be of type object, got: <${s}> ${e}`
+      `${t}, "params" argument must be of type object, got: <${$}> ${e}`
     );
-  const g = u(n);
-  if (n && g !== "number")
+  const g = s(r);
+  if (r && g !== "number")
     return i(
-      `${t}, "params.type" argument must be of type number or string, got: <${g}> ${n}`
+      `${t}, "params.type" argument must be of type number or string, got: <${g}> ${r}`
     );
-  const $ = u(o);
-  if (o && $ !== "string")
+  const u = s(o);
+  if (o && u !== "string")
     return i(
-      `${t}, "params.fromDate" argument must be of type string, got: <${$}> ${o}`
+      `${t}, "params.fromDate" argument must be of type string, got: <${u}> ${o}`
     );
-  const a = u(c);
+  const a = s(c);
   if (c && a !== "string")
     return i(
       `${t}, "params.toDate" argument must be of type string, got: <${a}> ${c}`
     );
-  const l = u(r);
-  if (r && l !== "number")
+  const h = s(n);
+  if (n && h !== "number")
     return i(
-      `${t}, "params.page" argument must be of type number or string, got: <${l}> ${r}`
+      `${t}, "params.page" argument must be of type number or string, got: <${h}> ${n}`
     );
-  const q = await d(e).catch(
-    (b) => i(`${t}, error building query string: ${b}`)
-  ), h = `${y}/${t}${q}`;
-  return await f().get(h).then((b) => b).catch((b) => i(`${t}, error fetching data: ${b}`));
+  const b = await d(e).catch(
+    (m) => i(`${t}, error building query string: ${m}`)
+  ), l = `${y}/${t}${b}`;
+  return await f().get(l).then((m) => m).catch((m) => i(`${t}, error fetching data: ${m}`));
 }, X = async (e) => {
-  const t = "GetVehicleTypesForMake", n = u(e);
-  if (!e || n !== "string")
+  const t = "GetVehicleTypesForMake", r = s(e);
+  if (!e || r !== "string")
     return i(
-      `${t}, "makeName" argument is required and must be of type string, got <${n}> ${e}`
+      `${t}, "makeName" argument is required and must be of type string, got <${r}> ${e}`
     );
   const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
+    (n) => i(`${t}, error building query string: ${n}`)
   ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
 }, Q = async (e) => {
-  const t = "GetVehicleTypesForMakeId", n = u(e);
-  if (!e || n !== "number")
+  const t = "GetVehicleTypesForMakeId", r = s(e);
+  if (!e || r !== "number")
     return i(
-      `${t}, "makeId" argument is required and must be of type number or string, got <${n}> ${e}`
+      `${t}, "makeId" argument is required and must be of type number or string, got <${r}> ${e}`
     );
   const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
+    (n) => i(`${t}, error building query string: ${n}`)
   ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
 }, Z = async () => {
   const e = "GetVehicleVariableList", t = await d().catch(
     (o) => i(`${e}, error building query string: ${o}`)
-  ), n = `${y}/${e}${t}`;
-  return await f().get(n).then((o) => o).catch((o) => i(`${e}, error fetching data: ${o}`));
+  ), r = `${y}/${e}${t}`;
+  return await f().get(r).then((o) => o).catch((o) => i(`${e}, error fetching data: ${o}`));
 }, z = async (e) => {
-  const t = "GetVehicleVariableValuesList", n = u(e);
-  if (!e || !["number", "string"].includes(n))
+  const t = "GetVehicleVariableValuesList", r = s(e);
+  if (!e || !["number", "string"].includes(r))
     return i(
-      `${t}, "variableValue" argument is required and must be of type number or string, got <${n}> ${e}`
+      `${t}, "variableValue" argument is required and must be of type number or string, got <${r}> ${e}`
     );
   e = encodeURI(String(e));
   const o = await d().catch(
-    (r) => i(`${t}, error building query string: ${r}`)
+    (n) => i(`${t}, error building query string: ${n}`)
   ), c = `${y}/${t}/${e}${o}`;
-  return await f().get(c).then((r) => r).catch((r) => i(`${t}, error fetching data: ${r}`));
+  return await f().get(c).then((n) => n).catch((n) => i(`${t}, error fetching data: ${n}`));
 }, K = async (e, t) => {
-  const n = "GetWMIsForManufacturer", o = t == null ? void 0 : t.vehicleType;
+  const r = "GetWMIsForManufacturer", o = t == null ? void 0 : t.vehicleType;
   if (!e && !o)
     return i(
-      `${n}, "manufacturer" and "params.vehicleType" arguments are optional but at least 1 is required, got: manufacturer: ${e} and vehicleType: ${o}`
+      `${r}, "manufacturer" and "params.vehicleType" arguments are optional but at least 1 is required, got: manufacturer: ${e} and vehicleType: ${o}`
     );
-  const c = u(e);
+  const c = s(e);
   if (e && !["number", "string"].includes(c))
     return i(
-      `${n}, "manufacturer" must be of type number or string, got <${c}> ${e}`
+      `${r}, "manufacturer" must be of type number or string, got <${c}> ${e}`
     );
-  const r = u(t);
-  if (t && r !== "object")
+  const n = s(t);
+  if (t && n !== "object")
     return i(
-      `${n}, "params" must be of type object, got: <${r}> ${t}`
+      `${r}, "params" must be of type object, got: <${n}> ${t}`
     );
-  const s = u(t == null ? void 0 : t.vehicleType);
-  if (t != null && t.vehicleType && !["number", "string"].includes(s))
+  const $ = s(t == null ? void 0 : t.vehicleType);
+  if (t != null && t.vehicleType && !["number", "string"].includes($))
     return i(
-      `${n}, "params.vehicleType" must be of type number or string, got: <${s}> ${t.vehicleType}`
+      `${r}, "params.vehicleType" must be of type number or string, got: <${$}> ${t.vehicleType}`
     );
   const g = await d(t).catch(
-    (a) => i(`${n}, error building query string: ${a}`)
-  ), $ = `${y}/${n}/${e || ""}${g}`;
-  return await f().get($).then((a) => a).catch((a) => i(`${n}, error fetching data: ${a}`));
+    (a) => i(`${r}, error building query string: ${a}`)
+  ), u = `${y}/${r}/${e || ""}${g}`;
+  return await f().get(u).then((a) => a).catch((a) => i(`${r}, error fetching data: ${a}`));
 };
 export {
-  E as DecodeVin,
-  I as DecodeVinExtended,
-  A as DecodeVinValues,
-  P as DecodeVinValuesBatch,
+  I as DecodeVin,
+  A as DecodeVinExtended,
+  P as DecodeVinValues,
+  E as DecodeVinValuesBatch,
   D as DecodeVinValuesExtended,
   F as DecodeWMI,
   v as GetAllMakes,
   R as GetAllManufacturers,
   L as GetCanadianVehicleSpecifications,
-  N as GetEquipmentPlantCodes,
-  x as GetMakeForManufacturer,
-  O as GetMakesForManufacturerAndYear,
-  U as GetMakesForVehicleType,
-  C as GetManufacturerDetails,
-  _ as GetModelsForMake,
+  U as GetEquipmentPlantCodes,
+  N as GetMakeForManufacturer,
+  C as GetMakesForManufacturerAndYear,
+  O as GetMakesForVehicleType,
+  _ as GetManufacturerDetails,
+  x as GetModelsForMake,
   W as GetModelsForMakeId,
   B as GetModelsForMakeIdYear,
   H as GetModelsForMakeYear,
@@ -574,8 +582,6 @@ export {
   Z as GetVehicleVariableList,
   z as GetVehicleVariableValuesList,
   K as GetWMIsForManufacturer,
-  w as catchInvalidArguments,
-  G as isValidVin,
-  k as validateArgument
+  G as isValidVin
 };
 //# sourceMappingURL=nhtsa-api-wrapper.mjs.map
