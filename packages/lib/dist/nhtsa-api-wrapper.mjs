@@ -36,20 +36,10 @@ const a = ({
       throw Error(y);
   }
   return !0;
-}, i = "https://vpic.nhtsa.dot.gov/api/vehicles", v = "json", g = (e, r = !1) => {
-  const t = { format: v }, n = $(e) === "object" ? { ...e, ...t } : t;
-  return "?" + Object.entries(h(n)).map(([s, y], c, d) => y.length || r && y === "" ? `${s}=${y}${c < d.length - 1 ? "&" : ""}` : "").join("");
-}, h = (e) => Object.entries(e).filter(
-  ([r, t]) => f({
-    name: r,
-    types: ["string", "number", "boolean"],
-    value: t,
-    mode: "boolean"
-  })
-).reduce((r, [t, n]) => (r[t] = encodeURIComponent(n), r), {}), p = (e) => $(e) === "error", b = (e) => {
+}, v = (e) => $(e) === "error", b = (e) => {
   let r = "an unknown error occurred.";
-  return p(e) ? e : ($(e) === "string" && (r = e), Error(r));
-}, u = async (e) => (p(e) || (e = b(e)), Promise.reject(e)), $ = (e) => {
+  return v(e) ? e : ($(e) === "string" && (r = e), Error(r));
+}, u = async (e) => (v(e) || (e = b(e)), Promise.reject(e)), $ = (e) => {
   const r = Object.prototype.toString.call(e).toLowerCase();
   return r.slice(8, r.length - 1);
 }, M = {
@@ -110,7 +100,7 @@ function S(e) {
     return c * d;
   }).reduce((s, y) => s + y, 0) % 11 === n;
 }
-const l = () => {
+const i = () => {
   const e = async (t, n = {}) => await fetch(t, n).then(async (s) => {
     if (!s.ok)
       throw Error(`${s.status} ${s.url}`);
@@ -128,12 +118,23 @@ const l = () => {
   }).catch((s) => (s.message = `API error fetching data: ${s.message}`, u(s)));
   return {
     get: e,
-    post: async (t, n = {
+    post: async (t, n = {}) => await e(t, {
+      ...n,
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" }
-    }) => await e(t, n)
+    })
   };
-}, V = async (e, r) => {
+}, l = "https://vpic.nhtsa.dot.gov/api/vehicles", p = "json", g = (e, r = !1) => {
+  const t = { format: p }, n = $(e) === "object" ? { ...e, ...t } : t;
+  return "?" + Object.entries(h(n)).map(([s, y], c, d) => y.length || r && y === "" ? `${s}=${y}${c < d.length - 1 ? "&" : ""}` : "").join("");
+}, h = (e) => Object.entries(e).filter(
+  ([r, t]) => f({
+    name: r,
+    types: ["string", "number", "boolean"],
+    value: t,
+    mode: "boolean"
+  })
+).reduce((r, [t, n]) => (r[t] = encodeURIComponent(n), r), {}), V = async (e, r) => {
   const t = "DecodeVin";
   try {
     const n = [
@@ -146,8 +147,8 @@ const l = () => {
       }
     ];
     a({ args: n });
-    const o = g(r), s = `${i}/${t}/${e}${o}`;
-    return await l().get(s);
+    const o = g(r), s = `${l}/${t}/${e}${o}`;
+    return await i().get(s);
   } catch (n) {
     return u(n);
   }
@@ -164,8 +165,8 @@ const l = () => {
       }
     ];
     a({ args: n });
-    const o = g(r), s = `${i}/${t}/${e}${o}`;
-    return await l().get(s);
+    const o = g(r), s = `${l}/${t}/${e}${o}`;
+    return await i().get(s);
   } catch (n) {
     return u(n);
   }
@@ -182,8 +183,8 @@ const l = () => {
       }
     ];
     a({ args: n });
-    const o = g(r), s = `${i}/${t}/${e}${o}`;
-    return await l().get(s);
+    const o = g(r), s = `${l}/${t}/${e}${o}`;
+    return await i().get(s);
   } catch (n) {
     return u(n);
   }
@@ -198,12 +199,10 @@ const l = () => {
         types: ["string"]
       }
     ] });
-    const n = `${i}/${r}/`, o = encodeURI(
-      `DATA=${e}&format=${v}`
+    const n = `${l}/${r}/`, o = encodeURI(
+      `DATA=${e}&format=${p}`
     );
-    return await l().post(n, {
-      body: o
-    });
+    return await i().post(n, { body: o });
   } catch (t) {
     return u(t);
   }
@@ -220,8 +219,8 @@ const l = () => {
       }
     ];
     a({ args: n });
-    const o = g(r), s = `${i}/${t}/${e}${o}`;
-    return await l().get(s);
+    const o = g(r), s = `${l}/${t}/${e}${o}`;
+    return await i().get(s);
   } catch (n) {
     return u(n);
   }
@@ -236,16 +235,16 @@ const l = () => {
         types: ["string"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
 }, I = async () => {
   const e = "GetAllMakes";
   try {
-    const r = g(), t = `${i}/${e}${r}`;
-    return await l().get(t);
+    const r = g(), t = `${l}/${e}${r}`;
+    return await i().get(t);
   } catch (r) {
     return u(r);
   }
@@ -266,8 +265,8 @@ const l = () => {
       }
     ];
     a({ args: t });
-    const n = g(e), o = `${i}/${r}${n}`;
-    return await l().get(o);
+    const n = g(e), o = `${l}/${r}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -295,8 +294,8 @@ const l = () => {
         ...e
       },
       !0
-    ), o = `${i}/${r}/${n}`;
-    return await l().get(o);
+    ), o = `${l}/${r}/${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -325,8 +324,8 @@ const l = () => {
       }
     ];
     a({ args: t });
-    const n = g(e), o = `${i}/${r}${n}`;
-    return await l().get(o);
+    const n = g(e), o = `${l}/${r}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -341,8 +340,8 @@ const l = () => {
         types: ["string", "number"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -365,8 +364,8 @@ const l = () => {
       }
     ];
     a({ args: n });
-    const o = g(r), s = `${i}/${t}/${e}${o}`;
-    return await l().get(s);
+    const o = g(r), s = `${l}/${t}/${e}${o}`;
+    return await i().get(s);
   } catch (n) {
     return u(n);
   }
@@ -381,8 +380,8 @@ const l = () => {
         types: ["string"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -397,8 +396,8 @@ const l = () => {
         types: ["string", "number"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -413,8 +412,8 @@ const l = () => {
         types: ["string"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -429,8 +428,8 @@ const l = () => {
         types: ["string", "number"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -460,8 +459,8 @@ const l = () => {
     ];
     a({ args: n }), a({ args: t, mode: "atLeast" });
     const { makeId: o, modelYear: s, vehicleType: y } = h(e);
-    let c = `${i}/${r}/make/${o}/`;
-    return s && (c += `modelYear/${s}`), y && (c += `${s ? "/" : ""}vehicleType/${y}`), c += g(), await l().get(c);
+    let c = `${l}/${r}/make/${o}/`;
+    return s && (c += `modelYear/${s}`), y && (c += `${s ? "/" : ""}vehicleType/${y}`), c += g(), await i().get(c);
   } catch (t) {
     return u(t);
   }
@@ -486,8 +485,8 @@ const l = () => {
     ];
     a({ args: n }), a({ args: t, mode: "atLeast" });
     const { make: o, modelYear: s, vehicleType: y } = h(e);
-    let c = `${i}/${r}/make/${o}/`;
-    return s && (c += `modelYear/${s}`), y && (c += `${s ? "/" : ""}vehicleType/${y}`), c += g(), await l().get(c);
+    let c = `${l}/${r}/make/${o}/`;
+    return s && (c += `modelYear/${s}`), y && (c += `${s ? "/" : ""}vehicleType/${y}`), c += g(), await i().get(c);
   } catch (t) {
     return u(t);
   }
@@ -502,8 +501,8 @@ const l = () => {
       { name: "page", value: e == null ? void 0 : e.page, types: ["string", "number"] }
     ];
     a({ args: t });
-    const n = g(e), o = `${i}/${r}${n}`;
-    return await l().get(o);
+    const n = g(e), o = `${l}/${r}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -518,8 +517,8 @@ const l = () => {
         types: ["string"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -534,16 +533,16 @@ const l = () => {
         types: ["string", "number"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
 }, B = async () => {
   const e = "GetVehicleVariableList";
   try {
-    const r = g(), t = `${i}/${e}${r}`;
-    return await l().get(t);
+    const r = g(), t = `${l}/${e}${r}`;
+    return await i().get(t);
   } catch (r) {
     return u(r);
   }
@@ -558,8 +557,8 @@ const l = () => {
         types: ["string", "number"]
       }
     ] });
-    const n = g(), o = `${i}/${r}/${e}${n}`;
-    return await l().get(o);
+    const n = g(), o = `${l}/${r}/${e}${n}`;
+    return await i().get(o);
   } catch (t) {
     return u(t);
   }
@@ -582,8 +581,8 @@ const l = () => {
       ...t
     ];
     a({ args: n }), a({ args: t, mode: "atLeast" });
-    const o = e != null && e.manufacturer ? encodeURIComponent(e.manufacturer) : "", s = (e == null ? void 0 : e.vehicleType) || "", y = g({ vehicleType: s }), c = `${i}/${r}/${o}${y}`;
-    return await l().get(c);
+    const o = e != null && e.manufacturer ? encodeURIComponent(e.manufacturer) : "", s = (e == null ? void 0 : e.vehicleType) || "", y = g({ vehicleType: s }), c = `${l}/${r}/${o}${y}`;
+    return await i().get(c);
   } catch (t) {
     return u(t);
   }
