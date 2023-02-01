@@ -16,6 +16,26 @@
       const Client = NHTSA.Client
 
       const logResults = (results) => console.log('Results: ', results)
+      document
+        .getElementById('GetCanadianVehicleSpecifications')
+        .addEventListener('click', async () => {
+          /* Lazy Loading */
+          const { DecodeVinValuesBatch } = await import(
+            '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
+          ).catch((err) => err)
+
+          const results = await DecodeVinValuesBatch(
+            '5UXWX7C5*BA,2011, 2009; 5YJSA3DS*EF '
+          )
+            .then((results) => {
+              logResults(results)
+              return results
+            })
+            .catch((err) => console.error(err))
+
+          return results
+        })
+
       // document
       //   .getElementById('GetCanadianVehicleSpecifications')
       //   .addEventListener('click', async () => {
@@ -24,53 +44,35 @@
       //       '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
       //     ).catch((err) => err)
 
-      //     const results = await GetModelsForMakeYear('Ford')
+      //     const results = await GetModelsForMakeYear(
+      //       {
+      //         make: 'Ford',
+      //         modelYear: 1970,
+      //         vehicleType: ''
+      //       },
+      //       true
+      //     )
       //       .then((results) => {
-      //         logResults(results)
       //         return results
       //       })
       //       .catch((err) => console.error(err))
 
-      //     return results
+      //     console.log(results)
+      //     document.querySelector(
+      //       '#DecodeVinResults'
+      //     ).innerHTML = `${JSON.stringify(results)}`
       //   })
-
-      document
-        .getElementById('GetCanadianVehicleSpecifications')
-        .addEventListener('click', async () => {
-          /* Lazy Loading */
-          const { GetModelsForMakeYear } = await import(
-            '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
-          ).catch((err) => err)
-
-          const results = await GetModelsForMakeYear(
-            {
-              make: 'Ford',
-              modelYear: '',
-              vehicleType: ''
-            },
-            true
-          )
-            .then((results) => {
-              return results
-            })
-            .catch((err) => console.error(err))
-
-          console.log(results)
-          document.querySelector(
-            '#DecodeVinResults'
-          ).innerHTML = `${JSON.stringify(results)}`
-        })
 
       document
         .getElementById('DecodeVin')
         .addEventListener('click', async () => {
           /* Lazy Loading */
-          const { DecodeVinValues } = await import(
+          const { DecodeVin } = await import(
             '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
           ).catch((err) => err)
 
-          const results = await DecodeVinValues('WVWHV71K69W144983', {
-            modelYear: [false]
+          const results = await DecodeVin('WVWHV71K69W144983', {
+            modelYear: ''
           })
             .then((results) => results)
             .catch((err) => console.error(err))

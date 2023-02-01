@@ -1,15 +1,17 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * DecodeVinValuesBatch decodes a batch of VINs that are submitted in a standardized format (see below) and returns multiple decodes in a flat format.
+ * DecodeVinValuesBatch decodes a batch of VINs that are submitted in a standardized format and returns multiple decodes in a flat format.
+ * For this particular API you just have to provide a string of VINs, `inputString`, that are separated by a “;”.
+ * You can also indicate the model year after the vin, preceded by a “,”
  *
- * For this particular API you just have to provie a string of VINs `inputString` that are separated by a “;”.
- *
- * You can also indicate the model year prior to the “;” separated by a “,”
+ * - The `Results` will be made available in a flat file format of a single object containing
+ *   'key<string>: value<string>' results
  *
  * The `inputString` parameter should be in the following format
- * - no modelYear: `vin;vin;vin`
- * - with modelYear`vin,modelYear;vin,modelYear;vin,modelYear`
- * - mix of with/without modelYear`vin;vin,modelYear`
+ * - ex: '5UXWX7C5*BA,2011; 5YJSA3DS*EF '
+ * - no modelYear: `vin; vin; vin`
+ * - with modelYear`vin, modelYear; vin, modelYear; vin, modelYear`
+ * - mix of with/without modelYear`vin; vin, modelYear`
  * - vin and modelYear are placeholders for real values in these examples
  *
  *  Max 50 VINs per batch
@@ -53,6 +55,7 @@ export declare type DecodeVinValuesBatchResults = {
     BatteryV: string;
     BatteryV_to: string;
     BedLengthIN: string;
+    BedType: string;
     BlindSpotIntervention: string;
     BlindSpotMon: string;
     BodyCabType: string;

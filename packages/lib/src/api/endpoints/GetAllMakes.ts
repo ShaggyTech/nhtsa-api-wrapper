@@ -1,7 +1,7 @@
 /* Constants */
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import { makeQueryString, rejectWithError, useFetch } from '../../utils'
+import { createQueryString, rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { NhtsaResponse } from '../../types'
 
@@ -16,21 +16,16 @@ import type { NhtsaResponse } from '../../types'
 export const GetAllMakes = async (): Promise<
   NhtsaResponse<GetAllMakesResults>
 > => {
-  const action = 'GetAllMakes'
+  const endpointName = 'GetAllMakes'
 
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
+  try {
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}${queryString}`
 
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetAllMakesResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
+  }
 }
 
 /**

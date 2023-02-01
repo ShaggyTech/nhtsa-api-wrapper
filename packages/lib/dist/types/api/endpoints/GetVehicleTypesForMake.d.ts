@@ -2,6 +2,7 @@ import type { NhtsaResponse } from '../../types';
 /**
  * GetVehicleTypesForMake returns all the Vehicle Types in the vPIC dataset for a specified Make,
  * whose name is LIKE the make name in the vPIC Dataset.
+ *
  * - `makeName` can be a partial name, or a full name for more specificity
  *   (e.g., "Merc", "Mercedes Benz", etc.)
  *

@@ -1,21 +1,23 @@
 /* Constants */
 import { NHTSA_BASE_URL, NHTSA_RESPONSE_FORMAT } from '../../constants'
 /* Utility Functions */
-import { getTypeof, rejectWithError, useFetch } from '../../utils'
+import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
- * DecodeVinValuesBatch decodes a batch of VINs that are submitted in a standardized format (see below) and returns multiple decodes in a flat format.
+ * DecodeVinValuesBatch decodes a batch of VINs that are submitted in a standardized format and returns multiple decodes in a flat format.
+ * For this particular API you just have to provide a string of VINs, `inputString`, that are separated by a “;”.
+ * You can also indicate the model year after the vin, preceded by a “,”
  *
- * For this particular API you just have to provie a string of VINs `inputString` that are separated by a “;”.
- *
- * You can also indicate the model year prior to the “;” separated by a “,”
+ * - The `Results` will be made available in a flat file format of a single object containing
+ *   'key<string>: value<string>' results
  *
  * The `inputString` parameter should be in the following format
- * - no modelYear: `vin;vin;vin`
- * - with modelYear`vin,modelYear;vin,modelYear;vin,modelYear`
- * - mix of with/without modelYear`vin;vin,modelYear`
+ * - ex: '5UXWX7C5*BA,2011; 5YJSA3DS*EF '
+ * - no modelYear: `vin; vin; vin`
+ * - with modelYear`vin, modelYear; vin, modelYear; vin, modelYear`
+ * - mix of with/without modelYear`vin; vin, modelYear`
  * - vin and modelYear are placeholders for real values in these examples
  *
  *  Max 50 VINs per batch
@@ -28,29 +30,29 @@ import type { NhtsaResponse } from '../../types'
 export const DecodeVinValuesBatch = async (
   inputString: string
 ): Promise<NhtsaResponse<DecodeVinValuesBatchResults>> => {
-  const action = 'DecodeVinValuesBatch'
+  const endpointName = 'DecodeVinValuesBatch'
 
-  /* Runtime type guards against user provided args*/
-  const typeofInputString = getTypeof(inputString)
-  if (!inputString || typeofInputString !== 'string') {
-    return rejectWithError(
-      `${action}, "inputString" argument is required and must be of type string, got: <${typeofInputString}> ${inputString}`
+  try {
+    const args: IArgToValidate[] = [
+      {
+        name: 'inputString',
+        value: inputString,
+        required: true,
+        types: ['string'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const url = `${NHTSA_BASE_URL}/${endpointName}/`
+    const body = encodeURI(
+      `DATA=${inputString}&format=${NHTSA_RESPONSE_FORMAT}`
     )
+
+    return await useFetch().post(url, { body })
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  /* Build the final request URL and POST body */
-  const url = `${NHTSA_BASE_URL}/${action}/`
-  const body = encodeURI(`DATA=${inputString}&format=${NHTSA_RESPONSE_FORMAT}`)
-
-  /* Return the result */
-  return await useFetch()
-    .get<DecodeVinValuesBatchResults>(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body,
-    })
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**
@@ -87,6 +89,7 @@ export type DecodeVinValuesBatchResults = {
   BatteryV: string
   BatteryV_to: string
   BedLengthIN: string
+  BedType: string
   BlindSpotIntervention: string
   BlindSpotMon: string
   BodyCabType: string

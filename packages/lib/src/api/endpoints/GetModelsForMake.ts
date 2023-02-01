@@ -2,20 +2,18 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
-// import { GetModelsForMakeYear } from '../endpoints'
-
-// const results = GetModelsForMakeYear('Harley', {})
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * GetModelsForMake returns the Models in the vPIC dataset for a specified `makeName`
  * whose Name is LIKE the Make in vPIC Dataset.
+ *
  * - `makeName` can be a partial, or a full for more specificity
  *   (e.g., "Harley", "Harley Davidson", etc.)
  *
@@ -27,29 +25,27 @@ import type { NhtsaResponse } from '../../types'
 export const GetModelsForMake = async (
   makeName: string
 ): Promise<NhtsaResponse<GetModelsForMakeResults>> => {
-  const action = 'GetModelsForMake'
+  const endpointName = 'GetModelsForMake'
 
-  /* Runtime type guards against user provided args*/
-  const typeofMakeName = getTypeof(makeName)
-  if (typeofMakeName !== 'string') {
-    return rejectWithError(
-      `${action}, "makeName" argument is required and must be of type string, got <${typeofMakeName}> ${makeName}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      {
+        name: 'makeName',
+        value: makeName,
+        required: true,
+        types: ['string'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${makeName}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${makeName}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetModelsForMakeResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**

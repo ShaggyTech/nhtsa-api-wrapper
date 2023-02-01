@@ -2,55 +2,53 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * GetManufacturerDetails provides the details for a specific manufacturer that is requested.
  *
- * - If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id
- * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided name
- *   (it accepts a partial manufacturer name as an input)
  * - `manufacturer` name can be a partial name, or a full name for more specificity
- *   (e.g., "988", "honda", "HONDA OF CANADA MFG., INC.", etc.)
- * - Multiple results are returned in case of multiple matches
+ *   (e.g., "988", "honda", "HONDA OF CANADA MFG., INC.", etc.).
+ * - If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id.
+ * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided name.
+ *   (it accepts a partial manufacturer name as an input).
+ * - Multiple results are returned in case of multiple matches.
  *
  * @async
- * @param {(number|string)} manufacturer - Manufacturer Name (string) or Manufacturer ID (number)
+ * @param {(string|number)} manufacturer - Manufacturer Name or ID
  * @returns {(Promise<NhtsaResponse<GetManufacturerDetailsResults>>)} - Api Response object
  */
 
 export const GetManufacturerDetails = async (
-  manufacturer: number | string
+  manufacturer: string | number
 ): Promise<NhtsaResponse<GetManufacturerDetailsResults>> => {
-  const action = 'GetManufacturerDetails'
+  const endpointName = 'GetManufacturerDetails'
 
-  /* Runtime type guards against user provided args*/
-  const typeofManufacturer = getTypeof(manufacturer)
-  if (!manufacturer || typeofManufacturer !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "manufacturer" argument is required and must be of type number or string, got <${typeofManufacturer}> ${manufacturer}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      {
+        name: 'manufacturer',
+        value: manufacturer,
+        required: true,
+        types: ['string', 'number'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${manufacturer}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${manufacturer}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetManufacturerDetailsResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**

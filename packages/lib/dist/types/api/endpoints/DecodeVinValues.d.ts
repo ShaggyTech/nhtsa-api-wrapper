@@ -1,7 +1,8 @@
 import type { NhtsaResponse } from '../../types';
 /**
  * DecodeVinValues will decode the VIN with the Results returned in a _flat file_ format.
- * - The results will be made available in a flat file format of a single object containing
+ *
+ * - The `Results` will be made available in a flat file format of a single object containing
  *   'key<string>: value<string>' results
  * - Providing params.modelYear allows for the decoding to specifically be done in the current,
  *   or older (pre-1980), model year ranges
@@ -14,11 +15,11 @@ import type { NhtsaResponse } from '../../types';
  *
  * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param {(number|string)} [params.modelYear] - Optional Model Year search parameter
+ * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults>>)} Api Response object
  */
 export declare const DecodeVinValues: (vin: string, params?: {
-    modelYear?: number;
+    modelYear?: string | number;
 }) => Promise<NhtsaResponse<DecodeVinValuesResults>>;
 /**
  * Type representing the structure of objects found in the NhtsaResponse 'Results' array for DecodeVinValues endpoint
@@ -26,7 +27,6 @@ export declare const DecodeVinValues: (vin: string, params?: {
  * @alias DecodeVinValuesResults
  */
 export declare type DecodeVinValuesResults = {
-    /** Flat file format, single object containing keys and values of type string */
     ABS: string;
     ActiveSafetySysNote: string;
     AdaptiveCruiseControl: string;
@@ -55,6 +55,7 @@ export declare type DecodeVinValuesResults = {
     BatteryV: string;
     BatteryV_to: string;
     BedLengthIN: string;
+    BedType: string;
     BlindSpotIntervention: string;
     BlindSpotMon: string;
     BodyCabType: string;

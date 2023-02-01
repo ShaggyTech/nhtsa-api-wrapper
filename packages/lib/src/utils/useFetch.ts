@@ -43,7 +43,19 @@ export const useFetch = () => {
     return nhtsaResponse
   }
 
+  const post = async <T>(
+    url: string,
+    options: RequestInit = {}
+  ): Promise<NhtsaResponse<T>> => {
+    return await get(url, {
+      ...options,
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    })
+  }
+
   return {
     get,
+    post,
   }
 }

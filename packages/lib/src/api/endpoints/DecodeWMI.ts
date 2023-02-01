@@ -2,17 +2,17 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * DecodeWMI provides information on the World Manufacturer Identifier for a specific WMI code.
- *
+ * See: [WMI Codes](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI))
  * - `WMI` may be put in as either 3 characters representing VIN position 1-3 or 6 characters
  *   representing VIN positions 1-3 & 12-14. Examples: "JTD" "1T9131"
  *
@@ -24,29 +24,27 @@ import type { NhtsaResponse } from '../../types'
 export const DecodeWMI = async (
   WMI: string
 ): Promise<NhtsaResponse<DecodeWMIResults>> => {
-  const action = 'DecodeWMI'
+  const endpointName = 'DecodeWMI'
 
-  /* Runtime type guards against user provided args*/
-  const typeofWMI = getTypeof(WMI)
-  if (typeofWMI !== 'string') {
-    return rejectWithError(
-      `${action}, "WMI" argument is required and must be of type string, got <${typeofWMI}> ${WMI}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      {
+        name: 'WMI',
+        value: WMI,
+        required: true,
+        types: ['string'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${WMI}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${WMI}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<DecodeWMIResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**
@@ -62,6 +60,6 @@ export type DecodeWMIResults = {
   ManufacturerName: string
   ParentCompanyName: string
   URL: string
-  UpdatedOn: string
+  UpdatedOn: string | null
   VehicleType: string
 }

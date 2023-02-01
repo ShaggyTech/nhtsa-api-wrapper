@@ -2,13 +2,13 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * GetParts provides a list of ORGs with letter date in the given range of the dates
@@ -35,75 +35,41 @@ import type { NhtsaResponse } from '../../types'
  *
  * @async
  * @param {Object} [params] - Query Search Parameters to append to the URL
- * @param {(number|string)} [params.type] - Specified type of ORG to search
+ * @param {(string|number)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query
- * @param {(number|string)} [params.page] - Which page number of results to request (100 results per page)
+ * @param {(string|number)} [params.page] - Which page number of results to request (100 results per page)
  * @returns {(Promise<NhtsaResponse<GetPartsResults>>)} - Api Response object (required)
  */
 
 export const GetParts = async (params?: {
-  type?: number | string
+  type?: string | number
   fromDate?: string
   toDate?: string
-  page?: number | string
+  page?: string | number
 }): Promise<NhtsaResponse<GetPartsResults>> => {
-  const action = 'GetParts'
+  const endpointName = 'GetParts'
 
-  const type = params?.type
-  const fromDate = params?.fromDate
-  const toDate = params?.toDate
-  const page = params?.page
+  try {
+    /* Validate the arguments */
+    const args: IArgToValidate[] = [
+      { name: 'params', value: params, types: ['object'] },
+      { name: 'type', value: params?.type, types: ['string', 'number'] },
+      { name: 'fromDate', value: params?.fromDate, types: ['string'] },
+      { name: 'toDate', value: params?.toDate, types: ['string'] },
+      { name: 'page', value: params?.page, types: ['string', 'number'] },
+    ]
 
-  /* Runtime type guards against user provided args*/
-  const typeofParams = getTypeof(params)
-  if (params && typeofParams !== 'object') {
-    return rejectWithError(
-      `${action}, "params" argument must be of type object, got: <${typeofParams}> ${params}`
-    )
+    catchInvalidArguments({ args })
+
+    /* Set default query parameters to empty strings if not provided by the user or API will 404 */
+    const queryString = createQueryString(params)
+    const url = `${NHTSA_BASE_URL}/${endpointName}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  const typeofType = getTypeof(type)
-  if (type && typeofType !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "params.type" argument must be of type number or string, got: <${typeofType}> ${type}`
-    )
-  }
-
-  const typeoffromDate = getTypeof(fromDate)
-  if (fromDate && typeoffromDate !== 'string') {
-    return rejectWithError(
-      `${action}, "params.fromDate" argument must be of type string, got: <${typeoffromDate}> ${fromDate}`
-    )
-  }
-
-  const typeofToDate = getTypeof(toDate)
-  if (toDate && typeofToDate !== 'string') {
-    return rejectWithError(
-      `${action}, "params.toDate" argument must be of type string, got: <${typeofToDate}> ${toDate}`
-    )
-  }
-
-  const typeofPage = getTypeof(page)
-  if (page && typeofPage !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "params.page" argument must be of type number or string, got: <${typeofPage}> ${page}`
-    )
-  }
-
-  /* Build the query string to be appended to the URL*/
-  const queryString = await makeQueryString(params).catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetPartsResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**

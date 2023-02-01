@@ -6,7 +6,7 @@ import type { NhtsaResponse } from '../../types';
  *
  * `params.year`:
  *  - year >= 2016
- *  - NOTE: It seems API will still respond with years < 2016 but developers state only years >= 2016 are supported
+ *  - NOTE: It seems API will still respond with years < 2016 but api docs state only years >= 2016 are supported
  * `params.equipmentType`:
  *  - 1 (Tires)
  *  - 3 (Brake Hoses)
@@ -20,14 +20,14 @@ import type { NhtsaResponse } from '../../types';
  *
  * @async
  * @param {Object} params - Query Search Parameters to append to the URL
- * @param {(number|string)} params.year - Year >= 2016 (required)
- * @param {(number|string)} params.equipmentType - Number equal to 1, 3, 13, or 16 (required)
+ * @param {(string|number)} params.year - Year >= 2016 (required)
+ * @param {(string|number)} params.equipmentType - Number equal to 1, 3, 13, or 16 (required)
  * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All' (required)
  * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>)} - Api Response object (required)
  */
 export declare const GetEquipmentPlantCodes: (params: {
-    year: number | string;
-    equipmentType: 1 | 3 | 13 | 16 | '1' | '3' | '13' | '16';
+    year: string | number;
+    equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16;
     reportType: 'New' | 'Updated' | 'Closed' | 'All';
 }) => Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>;
 /**

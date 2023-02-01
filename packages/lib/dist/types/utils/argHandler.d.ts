@@ -1,9 +1,11 @@
+import type { AtLeastOne } from '../types';
 export declare type IArgToValidate = {
     name: string;
     value: unknown;
-    types?: string[];
+} & AtLeastOne<{
     required?: boolean;
-};
+    types?: string[];
+}>;
 export declare const catchInvalidArguments: ({ args, mode, }: {
     args: IArgToValidate[];
     mode?: "default" | "atLeast" | undefined;

@@ -8,7 +8,7 @@ import type { NhtsaResponse } from '../../types';
  *   - or Variable ID (number)
  *
  * @async
- * @param {(number|string)} variableValue - The variable you want to get a values list of
+ * @param {(string|number)} variableValue - The variable you want to get a values list of
  * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>)} - Api Response object
  */
 export declare const GetVehicleVariableValuesList: (variableValue: number | string) => Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>;

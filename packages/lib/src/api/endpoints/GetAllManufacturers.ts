@@ -2,13 +2,13 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * GetAllManufacturers provides a list of all the Manufacturers available in vPIC Dataset.
@@ -24,51 +24,40 @@ import type { NhtsaResponse } from '../../types'
  * @async
  * @param {Object} [params] - Query Search Parameters to append to the URL
  * @param {string} [params.manufacturerType] - See method description
- * @param {(number|string)} [params.page] - Specify the page number (results returned 100 at a time)
+ * @param {(string|number)} [params.page] - Specify the page number (results returned 100 at a time)
  * @returns {(Promise<NhtsaResponse<GetAllManufacturersResults>>)} - Api Response object
  */
 
 export const GetAllManufacturers = async (params?: {
   manufacturerType?: string
-  page?: number | string
+  page?: string | number
 }): Promise<NhtsaResponse<GetAllManufacturersResults>> => {
-  const action = 'GetAllManufacturers'
+  const endpointName = 'GetAllManufacturers'
 
-  /* Runtime type guards against user provided args*/
-  const typeofParams = getTypeof(params)
-  if (params && typeofParams !== 'object') {
-    return rejectWithError(
-      `${action}, "params" argument must be of type object, got: <${typeofParams}> ${params}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      { name: 'params', value: params, types: ['object'] },
+      {
+        name: 'manufacturerType',
+        value: params?.manufacturerType,
+        types: ['string'],
+      },
+      {
+        name: 'page',
+        value: params?.page,
+        types: ['string', 'number'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString(params)
+    const url = `${NHTSA_BASE_URL}/${endpointName}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  const typeofManufacturerType = getTypeof(params?.manufacturerType)
-  if (params?.manufacturerType && typeofManufacturerType !== 'string') {
-    return rejectWithError(
-      `${action}, params.manufacturerType" argument must be of type string, got: <${typeofManufacturerType}> ${params.manufacturerType}`
-    )
-  }
-
-  const typeofPage = getTypeof(params?.page)
-  if (params?.page && typeofPage !== 'number | string') {
-    return rejectWithError(
-      `${action}, "params.page" argument must be of type number or string, got: <${typeofPage}> ${params.page}`
-    )
-  }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString(params).catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetAllManufacturersResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**
@@ -78,7 +67,7 @@ export const GetAllManufacturers = async (params?: {
  */
 export type GetAllManufacturersResults = {
   Country: string
-  Mfr_CommonName: string
+  Mfr_CommonName: string | null
   Mfr_ID: number
   Mfr_Name: string
   VehicleTypes: Array<{ IsPrimary?: boolean; Name?: string }>

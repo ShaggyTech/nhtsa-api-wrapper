@@ -2,17 +2,18 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * DecodeVinValues will decode the VIN with the Results returned in a _flat file_ format.
- * - The results will be made available in a flat file format of a single object containing
+ *
+ * - The `Results` will be made available in a flat file format of a single object containing
  *   'key<string>: value<string>' results
  * - Providing params.modelYear allows for the decoding to specifically be done in the current,
  *   or older (pre-1980), model year ranges
@@ -25,53 +26,38 @@ import type { NhtsaResponse } from '../../types'
  *
  * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param {(number|string)} [params.modelYear] - Optional Model Year search parameter
+ * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults>>)} Api Response object
  */
 
 export const DecodeVinValues = async (
   vin: string,
   params?: {
-    modelYear?: number
+    modelYear?: string | number
   }
 ): Promise<NhtsaResponse<DecodeVinValuesResults>> => {
-  const action = 'DecodeVinValues'
+  const endpointName = 'DecodeVinValues'
 
-  /* Runtime type guards against user provided args*/
-  const typeofVin = getTypeof(vin)
-  if (!vin || typeofVin !== 'string') {
-    return rejectWithError(
-      `${action}, "vin" argument is required and must be of type string, got: <${typeofVin}> ${vin}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      { name: 'vin', value: vin, required: true, types: ['string'] },
+      { name: 'params', value: params, types: ['object'] },
+      {
+        name: 'modelYear',
+        value: params?.modelYear,
+        types: ['string', 'number'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString(params)
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${vin}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  const typeofParams = getTypeof(params)
-  if (params && typeofParams !== 'object') {
-    return rejectWithError(
-      `${action}, "params" argument must be of type object, got: <${typeofParams}> ${params}`
-    )
-  }
-
-  const typeofModelYear = getTypeof(params?.modelYear)
-  if (params?.modelYear && typeofModelYear !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "params.modelYear" must be of type number or string, got: <${typeofModelYear}> ${params.modelYear}`
-    )
-  }
-
-  /* Build the query string to be appended to the URL*/
-  const queryString = await makeQueryString(params).catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${vin}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<DecodeVinValuesResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**
@@ -80,7 +66,6 @@ export const DecodeVinValues = async (
  * @alias DecodeVinValuesResults
  */
 export type DecodeVinValuesResults = {
-  /** Flat file format, single object containing keys and values of type string */
   ABS: string
   ActiveSafetySysNote: string
   AdaptiveCruiseControl: string
@@ -109,6 +94,7 @@ export type DecodeVinValuesResults = {
   BatteryV: string
   BatteryV_to: string
   BedLengthIN: string
+  BedType: string
   BlindSpotIntervention: string
   BlindSpotMon: string
   BodyCabType: string

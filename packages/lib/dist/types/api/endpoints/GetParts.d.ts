@@ -24,17 +24,17 @@ import type { NhtsaResponse } from '../../types';
  *
  * @async
  * @param {Object} [params] - Query Search Parameters to append to the URL
- * @param {(number|string)} [params.type] - Specified type of ORG to search
+ * @param {(string|number)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query
- * @param {(number|string)} [params.page] - Which page number of results to request (100 results per page)
+ * @param {(string|number)} [params.page] - Which page number of results to request (100 results per page)
  * @returns {(Promise<NhtsaResponse<GetPartsResults>>)} - Api Response object (required)
  */
 export declare const GetParts: (params?: {
-    type?: number | string;
+    type?: string | number;
     fromDate?: string;
     toDate?: string;
-    page?: number | string;
+    page?: string | number;
 }) => Promise<NhtsaResponse<GetPartsResults>>;
 /**
  * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetParts endpoint

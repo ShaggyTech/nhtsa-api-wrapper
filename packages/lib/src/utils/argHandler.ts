@@ -1,11 +1,13 @@
 import { getTypeof } from '../utils'
+import type { AtLeastOne } from '../types'
 
 export type IArgToValidate = {
   name: string
   value: unknown
-  types?: string[]
+} & AtLeastOne<{
   required?: boolean
-}
+  types?: string[]
+}>
 
 export const catchInvalidArguments = ({
   args,
@@ -14,7 +16,7 @@ export const catchInvalidArguments = ({
   args: IArgToValidate[]
   mode?: 'default' | 'atLeast'
 }) => {
-  if (!args || getTypeof(args) !== 'array') {
+  if (getTypeof(args) !== 'array' && !args.length) {
     throw Error(
       `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`
     )
@@ -45,26 +47,20 @@ export const validateArgument = ({
 }: IArgToValidate & { mode?: 'error' | 'boolean' }): boolean => {
   /* fast-fail if required args are not provided*/
   if (getTypeof(name) !== 'string') {
-    throw Error(
-      `error validating argument named 'name', is required and must be a string`
-    )
-  }
-
-  if (types && getTypeof(types) !== 'array') {
-    throw Error(
-      `error validating argument named "${name}", 'types' must be an array of strings`
-    )
+    throw Error(`'name', is required and must be of type string`)
   }
 
   const typeofValue = getTypeof(value)
-
-  /* ex: if types = ['string', 'number'] then you'll get '<string | number>' */
-  const joinedTypes = types ? `<${types.join(' | ')}>` : ''
-
-  /* common error message parts */
   let error = ''
   const errorPrepend = `error validating argument named "${name}",`
   const errorAppend = `received value: ${value} - of type: <${typeofValue}>`
+
+  if (types && getTypeof(types) !== 'array' && !types.length) {
+    throw Error(`${errorPrepend} 'types' must be an array of strings`)
+  }
+
+  /* ex: if types = ['string', 'number'] then you'll get '<string | number>' */
+  const joinedTypes = types ? `<${types.join(' | ')}>` : ''
 
   /* argument validation logic */
   if (required && !types) {

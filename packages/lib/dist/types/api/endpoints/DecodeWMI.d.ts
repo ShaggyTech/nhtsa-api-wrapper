@@ -1,7 +1,7 @@
 import type { NhtsaResponse } from '../../types';
 /**
  * DecodeWMI provides information on the World Manufacturer Identifier for a specific WMI code.
- *
+ * See: [WMI Codes](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI))
  * - `WMI` may be put in as either 3 characters representing VIN position 1-3 or 6 characters
  *   representing VIN positions 1-3 & 12-14. Examples: "JTD" "1T9131"
  *
@@ -23,7 +23,7 @@ export declare type DecodeWMIResults = {
     ManufacturerName: string;
     ParentCompanyName: string;
     URL: string;
-    UpdatedOn: string;
+    UpdatedOn: string | null;
     VehicleType: string;
 };
 //# sourceMappingURL=DecodeWMI.d.ts.map

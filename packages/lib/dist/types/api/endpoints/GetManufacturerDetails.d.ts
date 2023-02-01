@@ -2,18 +2,18 @@ import type { NhtsaResponse } from '../../types';
 /**
  * GetManufacturerDetails provides the details for a specific manufacturer that is requested.
  *
- * - If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id
- * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided name
- *   (it accepts a partial manufacturer name as an input)
  * - `manufacturer` name can be a partial name, or a full name for more specificity
- *   (e.g., "988", "honda", "HONDA OF CANADA MFG., INC.", etc.)
- * - Multiple results are returned in case of multiple matches
+ *   (e.g., "988", "honda", "HONDA OF CANADA MFG., INC.", etc.).
+ * - If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id.
+ * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided name.
+ *   (it accepts a partial manufacturer name as an input).
+ * - Multiple results are returned in case of multiple matches.
  *
  * @async
- * @param {(number|string)} manufacturer - Manufacturer Name (string) or Manufacturer ID (number)
+ * @param {(string|number)} manufacturer - Manufacturer Name or ID
  * @returns {(Promise<NhtsaResponse<GetManufacturerDetailsResults>>)} - Api Response object
  */
-export declare const GetManufacturerDetails: (manufacturer: number | string) => Promise<NhtsaResponse<GetManufacturerDetailsResults>>;
+export declare const GetManufacturerDetails: (manufacturer: string | number) => Promise<NhtsaResponse<GetManufacturerDetailsResults>>;
 /**
  * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetManufacturerDetails endpoint
  *

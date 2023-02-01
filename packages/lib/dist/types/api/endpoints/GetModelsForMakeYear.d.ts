@@ -6,22 +6,21 @@ import type { NhtsaResponse, AtLeastOne } from '../../types';
  *     (e.g., "Harley", "Harley Davidson", etc.)
  *
  * A minimum of one of the following are required (or a combination of both):
- *   - `params.modelYear` is a number (greater than 1995)
+ *   - `params.modelYear` is a number (years >= 1995 are supported)
  *   - `params.vehicleType` can be a partial name, or a full name for more specificity
  *     (e.g., "Vehicle", "Moto", "Low Speed Vehicle", etc.)
  *
  * @async
- *
  * @param {Object} params - Query Search Parameters to append to the URL
  * @param {string} params.make - Make name to search
- * @param {(number|string)} [params.modelYear] - A number representing the model year to search (greater than 1995), required if params.vehicleType is not provided
+ * @param {(string|number)} [params.modelYear] - A number representing the model year to search (greater than 1995), required if params.vehicleType is not provided
  * @param {string} [params.vehicleType] - String representing the vehicle type to search, required if params.modelYear is not provided
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeYearResults>>)} Api Response object
  */
 export declare const GetModelsForMakeYear: (params: {
     make: string;
 } & AtLeastOne<{
-    modelYear?: number | string;
+    modelYear?: string | number;
     vehicleType?: string;
 }>) => Promise<NhtsaResponse<GetModelsForMakeYearResults>>;
 /**

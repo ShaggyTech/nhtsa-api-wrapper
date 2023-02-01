@@ -1,14 +1,14 @@
 /* Constants */
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import { makeQueryString, rejectWithError, useFetch } from '../../utils'
+import { createQueryString, rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { NhtsaResponse } from '../../types'
 
 /**
-  /**
-   * GetVehicleVariableList provides a list of all the Vehicle related variables that are in the vPIC dataset.
-   * - Information on the name, description and the type of the variable is provided.
+ * GetVehicleVariableList provides a list of all the Vehicle related variables that are in the vPIC dataset.
+ *
+ * - Information on the name, description and the type of the variable is provided.
  *
  * @async
  * @returns {(Promise<NhtsaResponse<GetVehicleVariableListResults>>)} - Api Response object
@@ -17,21 +17,16 @@ import type { NhtsaResponse } from '../../types'
 export const GetVehicleVariableList = async (): Promise<
   NhtsaResponse<GetVehicleVariableListResults>
 > => {
-  const action = 'GetVehicleVariableList'
+  const endpointName = 'GetVehicleVariableList'
 
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
+  try {
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}${queryString}`
 
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetVehicleVariableListResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
+  }
 }
 
 /**
@@ -40,7 +35,7 @@ export const GetVehicleVariableList = async (): Promise<
  * @alias GetVehicleVariableListResults
  */
 export type GetVehicleVariableListResults = {
-  DataType: 'decimal' | 'int' | 'lookup' | 'string'
+  DataType: 'string' | 'int' | 'decimal' | 'lookup'
   Description: string
   GroupName: string | null
   ID: number

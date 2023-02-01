@@ -2,49 +2,63 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * GetVehicleTypesForMakeId returns the Models in the vPIC dataset for a specified Make
  * whose ID is equal to the `makeID` in the vPIC Dataset.
  *
+ * You can get `makeID`s via `MAKE_ID` key in Results objects of the following endpoints:
+ * - `GetAllMakes` endpoint
+ * - `GetMakeForManufacturer` endpoint
+ * - `GetModelsForMake` endpoint
+ * - `GetModelsForMakeYear` endpoint
+ *
+ * You can get `makeID`s via `MakeID` key in Results objects of the following endpoints:
+ * - `DecodeVinValues`
+ * - `DecodeVinValuesBatch`
+ *
+ * You can get `makeID`s via `ValueId` key in Results objects of the following endpoints:
+ * - `DecodeVin`
+ * - `DecodeVinExtended`
+ * - NOTE: one of the objects in the Results array will have key/values of `Variable: "Make"` and `VariableId: 26`,
+ *   and the `ValueId` key in that object is the `makeID` for use in this endpoint.
+ *
  * @async
- * @param {(number|string)} makeId - Vehicle make ID (number)
+ * @param {(string|number)} makeId - Make ID to search
  * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>)} - Api Response object
  */
 
 export const GetVehicleTypesForMakeId = async (
-  makeId: number | string
+  makeId: string | number
 ): Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>> => {
-  const action = 'GetVehicleTypesForMakeId'
+  const endpointName = 'GetVehicleTypesForMakeId'
 
-  /* Runtime type guards against user provided args*/
-  const typeofMakeId = getTypeof(makeId)
-  if (!makeId || typeofMakeId !== ('number' || 'string')) {
-    return rejectWithError(
-      `${action}, "makeId" argument is required and must be of type number or string, got <${typeofMakeId}> ${makeId}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      {
+        name: 'makeId',
+        value: makeId,
+        required: true,
+        types: ['string', 'number'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${makeId}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${makeId}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetVehicleTypesForMakeIdResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**

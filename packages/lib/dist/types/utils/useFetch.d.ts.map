@@ -1,1 +1,1 @@
-{"version":3,"file":"useFetch.d.ts","sourceRoot":"","sources":["useFetch.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,cAAc,CAAA;AAGjD,eAAO,MAAM,QAAQ;kBAEZ,MAAM,YACF,WAAW;CA0CvB,CAAA"}
+{"version":3,"file":"useFetch.d.ts","sourceRoot":"","sources":["useFetch.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,aAAa,EAAE,MAAM,cAAc,CAAA;AAGjD,eAAO,MAAM,QAAQ;kBAEZ,MAAM,YACF,WAAW;qBAwCf,MAAM,YACF,WAAW;CAYvB,CAAA"}

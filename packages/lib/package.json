@@ -32,13 +32,12 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "clean:dist": "rimraf dist/*",
-    "build": "pnpm run clean:dist && pnpm run build:lib",
+    "build": "pnpm run lint && pnpm run clean:dist && pnpm run build:lib",
     "build:lib": "tsc --noEmit && vite build",
     "dev": "vite",
     "dev:watch": "tsc --noEmit && vite build --watch",
     "preview": "vite preview",
-    "lint": "eslint *.ts*",
-    "prepare": "pnpm run build"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "eslint": "8.32.0",

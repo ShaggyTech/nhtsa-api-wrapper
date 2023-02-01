@@ -2,17 +2,18 @@
 import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
 import {
-  getTypeof,
-  makeQueryString,
+  catchInvalidArguments,
+  createQueryString,
   rejectWithError,
   useFetch,
 } from '../../utils'
 /* Types */
-import type { NhtsaResponse } from '../../types'
+import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
  * GetVehicleTypesForMake returns all the Vehicle Types in the vPIC dataset for a specified Make,
  * whose name is LIKE the make name in the vPIC Dataset.
+ *
  * - `makeName` can be a partial name, or a full name for more specificity
  *   (e.g., "Merc", "Mercedes Benz", etc.)
  *
@@ -24,29 +25,27 @@ import type { NhtsaResponse } from '../../types'
 export const GetVehicleTypesForMake = async (
   makeName: string
 ): Promise<NhtsaResponse<GetVehicleTypesForMakeResults>> => {
-  const action = 'GetVehicleTypesForMake'
+  const endpointName = 'GetVehicleTypesForMake'
 
-  /* Runtime type guards against user provided args*/
-  const typeofMakeName = getTypeof(makeName)
-  if (!makeName || typeofMakeName !== 'string') {
-    return rejectWithError(
-      `${action}, "makeName" argument is required and must be of type string, got <${typeofMakeName}> ${makeName}`
-    )
+  try {
+    const args: IArgToValidate[] = [
+      {
+        name: 'makeName',
+        value: makeName,
+        required: true,
+        types: ['string'],
+      },
+    ]
+
+    catchInvalidArguments({ args })
+
+    const queryString = createQueryString()
+    const url = `${NHTSA_BASE_URL}/${endpointName}/${makeName}${queryString}`
+
+    return await useFetch().get(url)
+  } catch (error) {
+    return rejectWithError(error)
   }
-
-  /* Build the default query string to be appended to the URL ('?format=json') */
-  const queryString = await makeQueryString().catch((err) =>
-    rejectWithError(`${action}, error building query string: ${err}`)
-  )
-
-  /* Build the final request URL*/
-  const url = `${NHTSA_BASE_URL}/${action}/${makeName}${queryString}`
-
-  /* Return the result */
-  return await useFetch()
-    .get<GetVehicleTypesForMakeResults>(url)
-    .then((response) => response)
-    .catch((err) => rejectWithError(`${action}, error fetching data: ${err}`))
 }
 
 /**
