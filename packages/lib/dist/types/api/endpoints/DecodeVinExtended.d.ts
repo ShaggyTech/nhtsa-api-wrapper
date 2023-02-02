@@ -1,21 +1,34 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * DecodeVinExtended is exactly like the DecodeVin endpoint but provides additional information on variables
- * related to other NHTSA programs like
- * [NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
- * This will decode the VIN and the decoded output will be made available in the format of Key-value pairs
+ * `DecodeVinExtended` decodes a Vehicle Identification Number (VIN) and returns useful information
+ * about the vehicle.
  *
- * - In the returned `Results` object:
- *   - The IDs (VariableID and ValueID) represent the unique ID associated with the Variable/Value
- *   - In case of text variables, the ValueID is not applicable
- * - Providing `params.modelYear` allows for the decoding to specifically be done in the current,
- *   or older (pre-1980), model year ranges
- *   - It is recommended to always provide `params.modelYear` if the model year is known at the time of decoding
- * - This endpoint also supports partial VIN decoding (VINs that are less than 17 characters)
- *   - In this case, the VIN will be decoded partially with the available characters
- *   - In case of partial VINs, a "*" could be used to indicate the unavailable characters
- *   - The 9th digit is not necessary
+ * This endpoint is similar to `DecodeVin` but returns additional information on variables related
+ * to other NHTSA programs like the
+ * [NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa).
+ *
+ * In the return object, `Results` will be an array with multiple objects containing 'key:value'
+ * results. Each object will contain:
+ * - "Variable" (variable name) and "Value" (variable value)
+ * - "VariableID" and "ValueID" (unique ID associated with the variable/value)
+ * - In case of text variables, the "ValueID" is not applicable
+ *
+ * Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
+ * older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
+ * the model year is known at the time of decoding, but it is not required.
+ *
+ * This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
  *   - Ex: 5UXWX7C5*BA
+ *   - In this case, the VIN will be decoded partially with the available characters
+ *   - In case of partial VINs, a `*` could be used to indicate the unavailable characters
+ *   - The 9th digit is not necessary
+ *
+ * NOTE: Unless you have a specific need to obtain `ValueID` or `VariableID` for each variable
+ * in a decoded VIN, this package recommends using one of the `DecodeVinValues*` endpoints
+ * instead. This is because they will return a single flat format object of key/value pairs,
+ * where key is the name of the variable. `DecodeVinValuesBatch` will return multple flat format
+ * objects, one for each VIN you search. The flat format is more efficient and easier to work with
+ * as you won't have to iterate through a bunch of objects just to get all variable names/values.
  *
  * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
@@ -26,7 +39,7 @@ export declare const DecodeVinExtended: (vin: string, params?: {
     modelYear?: string | number;
 }) => Promise<NhtsaResponse<DecodeVinExtendedResults>>;
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for DecodeVinExtended endpoint
+ * Objects returned in the NhtsaResponse 'Results' array of DecodeVinExtended endpoint
  *
  * @alias DecodeVinExtendedResults
  */

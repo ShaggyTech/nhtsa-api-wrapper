@@ -1,9 +1,15 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * DecodeWMI provides information on the World Manufacturer Identifier for a specific WMI code.
- * See: [WMI Codes](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI))
- * - `WMI` may be put in as either 3 characters representing VIN position 1-3 or 6 characters
- *   representing VIN positions 1-3 & 12-14. Examples: "JTD" "1T9131"
+ * `DecodeWMI` provides information on the World Manufacturer Identifier for a specific `WMI` code.
+ *
+ * `WMI` may provided as either 3 characters representing VIN position 1-3 _or_ 6 characters
+ * representing VIN positions 1-3 & 12-14.
+ * - Examples: "JTD" "1T9131"
+ *
+ * A list of WMI codes can be found
+ * [here](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI))
+ * but keep in mind that not all of the listed WMIs are registered with NHTSA and therefore may not
+ * be available in vPIC data sets.
  *
  * @async
  * @param {string} WMI - World Manufacturer Identifier
@@ -11,7 +17,7 @@ import type { NhtsaResponse } from '../../types';
  */
 export declare const DecodeWMI: (WMI: string) => Promise<NhtsaResponse<DecodeWMIResults>>;
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for DecodeWMI endpoint
+ * Objects found in the NhtsaResponse 'Results' array of DecodeWMI endpoint
  *
  * @alias DecodeWMIResults
  */

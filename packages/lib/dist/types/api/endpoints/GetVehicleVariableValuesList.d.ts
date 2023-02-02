@@ -1,11 +1,12 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * GetVehicleVariableValuesList provides a list of all the accepted values for a given variable that are stored in the vPIC dataset.
+ * `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable
+ * that are stored in the vPIC dataset.
  *
- * This only applies to "Look up" type of variables
- * - Search parameter (`variableValue`) can either be a:
- *   - Variable Name (ex: "battery type"; must use full name, not just part of it),
- *   - or Variable ID (number)
+ * If `variableValue` is a string, it must use full name, not just part of it, e.g.,
+ * "Battery Type", not "Battery"
+ *
+ * `variableValue` can be also be a number, which is the ID of the variable, e.g., 1, 2, 3, etc.
  *
  * @async
  * @param {(string|number)} variableValue - The variable you want to get a values list of
@@ -13,7 +14,7 @@ import type { NhtsaResponse } from '../../types';
  */
 export declare const GetVehicleVariableValuesList: (variableValue: number | string) => Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>;
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetVehicleVariableValuesList endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableValuesList endpoint
  *
  * @alias GetVehicleVariableValuesListResults
  */

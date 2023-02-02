@@ -10,7 +10,7 @@ export declare const catchInvalidArguments: ({ args, mode, }: {
     args: IArgToValidate[];
     mode?: "default" | "atLeast" | undefined;
 }) => void;
-export declare const validateArgument: ({ name, value, required, types, mode, }: IArgToValidate & {
-    mode?: "boolean" | "error" | undefined;
+export declare const validateArgument: ({ name, value, required, types, errorMode, }: IArgToValidate & {
+    errorMode?: "boolean" | "error" | undefined;
 }) => boolean;
 //# sourceMappingURL=argHandler.d.ts.map

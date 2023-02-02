@@ -1,26 +1,27 @@
-/* Constants */
-import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import {
-  catchInvalidArguments,
-  createQueryString,
-  rejectWithError,
-  useFetch,
-} from '../../utils'
+import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
- * The Canadian Vehicle Specifications (CVS) consists of a database of original vehicle dimensions,
- * used primarily in collision investigation and reconstruction, combined with a search engine.
+ * `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).
+ * The CVS consists of a database of original vehicle dimensions, used primarily in
+ * collision investigation and reconstruction, combined with a search engine.
  *
- * The database is compiled annually by the Collision Investigation and Research Division of Transport Canada.
- * Visit official [Canadian Vehicle Specifications](http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/)
+ * The CVS database is compiled annually by the Collision Investigation and Research Division of
+ * Transport Canada. Visit official
+ * [Canadian Vehicle Specifications](http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/)
  * page for more details.
  *
- * Some NHTSA endpoints will return a 404 error if the query string includes empty values (ex: 'make='), and some endpoints aren't bothered.
- * This endpoint will return a 404 error if any of the query parameters in params are missing from the query string.
- * Therefore, parameters are inserted into the query string with empty string values even if that particular param value is not provided by the user.
+ * `params.year` is the only required query parameter, all others are optional but will still be included
+ * in the query string as blank values even if not provided by the user. See below Note for more
+ * details.
+ *
+ * _NOTE:_ This endpoint does not like missing query keys and will return a 404 error if any of
+ * them are omitted from the query string. Therefore, we must set default values to empty strings
+ * for any query keys that are not provided by the user. This means keys not provided by user will
+ * always show up as "something=" in the query string. `year` is the only key user must provide,
+ * no default value is set for it so that an error will be thrown if not provided by user.
  *
  * @async
  * @param {Object} params - Query Search Parameters to append to the URL (required)
@@ -53,29 +54,28 @@ export const GetCanadianVehicleSpecifications = async (params: {
       { name: 'model', value: params.model, types: ['string'] },
       { name: 'units', value: params.units, types: ['string'] },
     ]
-
     catchInvalidArguments({ args })
 
-    /* Set default query parameters to empty strings if not provided by the user or API will 404 */
-    const queryString = createQueryString(
-      {
+    const { createUrl, get } = useFetch()
+    createUrl({
+      endpointName,
+      params: {
         make: '',
         model: '',
         units: '',
         ...params,
       },
-      true
-    )
-    const url = `${NHTSA_BASE_URL}/${endpointName}/${queryString}`
+      allowEmptyParams: true,
+    })
 
-    return await useFetch().get(url)
+    return get()
   } catch (error) {
     return rejectWithError(error)
   }
 }
 
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetCanadianVehicleSpecifications endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetCanadianVehicleSpecifications endpoint
  *
  * @alias GetCanadianVehicleSpecificationsResults
  */

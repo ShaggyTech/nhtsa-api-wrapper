@@ -1,13 +1,14 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * GetMakeForManufacturer returns all the Makes in the vPIC dataset for a specified manufacturer that is requested.
+ * `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
+ * that is requested. Multiple results are returned in case of multiple matches.
  *
- * - `manufacturer` name can be a partial name, or a full name for more specificity
- *   (e.g., "988", "honda", "HONDA OF CANADA MFG., INC.", etc.).
+ * `manufacturer` name can be a partial name, or a full name for more specificity, e.g. "988",
+ * "honda", "HONDA OF CANADA MFG., INC.", etc.
+ *
  * - If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id.
- * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided name.
- *   (it accepts a partial manufacturer name as an input).
- * - Multiple results are returned in case of multiple matches.
+ * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the
+ *   provided name. It accepts a partial manufacturer name as an input.
  *
  * @async
  * @param {(string|number)} manufacturer - Manufacturer Name or ID
@@ -15,7 +16,7 @@ import type { NhtsaResponse } from '../../types';
  */
 export declare const GetMakeForManufacturer: (manufacturer: string | number) => Promise<NhtsaResponse<GetMakeForManufacturerResults>>;
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetMakeForManufacturer endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetMakeForManufacturer endpoint
  *
  * @alias GetMakeForManufacturerResults
  */

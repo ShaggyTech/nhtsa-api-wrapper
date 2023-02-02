@@ -1,35 +1,35 @@
-/* Constants */
-import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import { createQueryString, rejectWithError, useFetch } from '../../utils'
+import { rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { NhtsaResponse } from '../../types'
 
 /**
- * GetAllMakes endpoint provides a list of all the Makes available in the vPIC Dataset.
+ * `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.
+ * Each object in the `Results` array represents the `Make_ID` and the `Make_Name` of
+ * an individual vehicle Make.
+ *
  * - FYI there are over 10,000 registered makes in the database!
  *
  * @async
  * @returns {(Promise<NhtsaResponse<GetAllMakesResults>>)} - Api Response object
  */
-
 export const GetAllMakes = async (): Promise<
   NhtsaResponse<GetAllMakesResults>
 > => {
   const endpointName = 'GetAllMakes'
 
   try {
-    const queryString = createQueryString()
-    const url = `${NHTSA_BASE_URL}/${endpointName}${queryString}`
+    const { createUrl, get } = useFetch()
+    createUrl({ endpointName })
 
-    return await useFetch().get(url)
+    return get()
   } catch (error) {
     return rejectWithError(error)
   }
 }
 
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetAllMakes endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetAllMakes endpoint
  *
  * @alias GetAllMakesResults
  */

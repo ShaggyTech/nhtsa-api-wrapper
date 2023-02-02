@@ -1,6 +1,6 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * GetVehicleTypesForMakeId returns the Models in the vPIC dataset for a specified Make
+ * `GetVehicleTypesForMakeId` returns the Models in the vPIC dataset for a specified Make
  * whose ID is equal to the `makeID` in the vPIC Dataset.
  *
  * You can get `makeID`s via `MAKE_ID` key in Results objects of the following endpoints:
@@ -13,11 +13,12 @@ import type { NhtsaResponse } from '../../types';
  * - `DecodeVinValues`
  * - `DecodeVinValuesBatch`
  *
- * You can get `makeID`s via `ValueId` key in Results objects of the following endpoints:
+ * You can get `makeID`s via `ValueId` key in Results objects of the following endpoints.
+ * One of the objects in the `Results` array will contain both `Variable: "Make"` and
+ * `VariableId: 26`. The `ValueId` key in that same object is the `makeID` for use in this
+ * endpoint.
  * - `DecodeVin`
  * - `DecodeVinExtended`
- * - NOTE: one of the objects in the Results array will have key/values of `Variable: "Make"` and `VariableId: 26`,
- *   and the `ValueId` key in that object is the `makeID` for use in this endpoint.
  *
  * @async
  * @param {(string|number)} makeId - Make ID to search
@@ -25,7 +26,7 @@ import type { NhtsaResponse } from '../../types';
  */
 export declare const GetVehicleTypesForMakeId: (makeId: string | number) => Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>;
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetVehicleTypesForMakeId endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMakeId endpoint
  *
  * @alias GetVehicleTypesForMakeIdResults
  */

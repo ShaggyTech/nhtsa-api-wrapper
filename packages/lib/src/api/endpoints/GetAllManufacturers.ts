@@ -1,30 +1,23 @@
-/* Constants */
-import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import {
-  catchInvalidArguments,
-  createQueryString,
-  rejectWithError,
-  useFetch,
-} from '../../utils'
+import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
- * GetAllManufacturers provides a list of all the Manufacturers available in vPIC Dataset.
+ * `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.
  *
- * - `params.manufacturerType` allows the user to filter the list based on manufacturer type
- *   ('Incomplete Vehicles', 'Completed Vehicle Manufacturer', 'Incomplete Vehicle Manufacturer',
- *   'Intermediate Manufacturer', 'Final-Stage Manufacturer', 'Alterer', or any partial match of those strings)
- * - You can get a list of all manufacturer types via `GetVehicleVariableValuesList` endpoint
+ * `params.manufacturerType` is optional but allows the user to filter the list based on
+ * manufacturer type. Types include 'Incomplete Vehicles', 'Completed Vehicle Manufacturer',
+ * 'Incomplete Vehicle Manufacturer', 'Intermediate Manufacturer', 'Final-Stage Manufacturer',
+ * 'Alterer', or any partial match of those strings.
  *
- * Results are provided in pages of 100 items.
- * - Provide `params.page` to specify (n)th page of results
+ * `params.page` is optional and used to specify (n)th page of results. Results are provided in
+ * pages of 100 items.
  *
  * @async
  * @param {Object} [params] - Query Search Parameters to append to the URL
- * @param {string} [params.manufacturerType] - See method description
- * @param {(string|number)} [params.page] - Specify the page number (results returned 100 at a time)
+ * @param {string} [params.manufacturerType] - See endpoint description
+ * @param {(string|number)} [params.page] - Specify page number (results returned 100 at a time)
  * @returns {(Promise<NhtsaResponse<GetAllManufacturersResults>>)} - Api Response object
  */
 
@@ -48,20 +41,19 @@ export const GetAllManufacturers = async (params?: {
         types: ['string', 'number'],
       },
     ]
-
     catchInvalidArguments({ args })
 
-    const queryString = createQueryString(params)
-    const url = `${NHTSA_BASE_URL}/${endpointName}${queryString}`
+    const { createUrl, get } = useFetch()
+    createUrl({ endpointName, params })
 
-    return await useFetch().get(url)
+    return get()
   } catch (error) {
     return rejectWithError(error)
   }
 }
 
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetAllManufacturers endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetAllManufacturers endpoint
  *
  * @alias GetAllManufacturersResults
  */

@@ -1,35 +1,40 @@
-/* Constants */
-import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import {
-  catchInvalidArguments,
-  createQueryString,
-  rejectWithError,
-  useFetch,
-} from '../../utils'
+import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
- * DecodeVinValues will decode the VIN with the Results returned in a _flat file_ format.
+ * `DecodeVinValues` decodes a Vehicle Identification Number (VIN) and returns useful information
+ * about the vehicle in in a _flat format_. This means the endpoint will return an array with a
+ * single object of results. Each key in the object is the name of a variable.
  *
- * - The `Results` will be made available in a flat file format of a single object containing
- *   'key<string>: value<string>' results
- * - Providing params.modelYear allows for the decoding to specifically be done in the current,
- *   or older (pre-1980), model year ranges
- *   - It is recommended to always provide `params.modelYear` if the model year is known at the time of decoding
- * - This endpoint also supports partial VIN decoding (VINs that are less than 17 characters)
+ * Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
+ * older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
+ * the model year is known at the time of decoding, but it is not required.
+ *
+ * This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
+ *   - Ex: "5UXWX7C5*BA"
  *   - In this case, the VIN will be decoded partially with the available characters
- *   - In case of partial VINs, a "*" could be used to indicate the unavailable characters
+ *   - In case of partial VINs, a `*` could be used to indicate the unavailable characters
  *   - The 9th digit is not necessary
- *   - Ex: 5UXWX7C5*BA
+ *
+ * The variable names and values in the flat format object are equivalent to "Variable" and "Value"
+ * keys found in objects returned from _nested format_ endpoints such as `DecodeVin` and
+ * `DecodeVinExtended`.
+ *
+ * *NOTE:* For decoding VINs this package recommends using `DecodeVinValues*` endpoints such as
+ * this one. The flat format is more efficient and easier to work with as you won't have to iterate
+ * through a bunch of objects just to get all variable names/values as is the case with
+ * _nested format_. Unless you need to obtain "ValueID" and/or "VariableID" for each variable in a
+ * decoded VIN. In that case, you should use either `DecodeVin` or `DecodeVinExtended` endpoints to
+ * obtain the values in a _nested format_ where each variable is an object containing individual
+ * "Variable", "Value", "ValueID" and "VariableID" properties.
  *
  * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults>>)} Api Response object
  */
-
 export const DecodeVinValues = async (
   vin: string,
   params?: {
@@ -48,20 +53,19 @@ export const DecodeVinValues = async (
         types: ['string', 'number'],
       },
     ]
-
     catchInvalidArguments({ args })
 
-    const queryString = createQueryString(params)
-    const url = `${NHTSA_BASE_URL}/${endpointName}/${vin}${queryString}`
+    const { createUrl, get } = useFetch()
+    createUrl({ endpointName, path: vin, params })
 
-    return await useFetch().get(url)
+    return await get()
   } catch (error) {
     return rejectWithError(error)
   }
 }
 
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for DecodeVinValues endpoint
+ * Objects returned in the NhtsaResponse 'Results' array of DecodeVinValues endpoint
  *
  * @alias DecodeVinValuesResults
  */

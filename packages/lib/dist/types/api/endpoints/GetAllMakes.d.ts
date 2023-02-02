@@ -1,6 +1,9 @@
 import type { NhtsaResponse } from '../../types';
 /**
- * GetAllMakes endpoint provides a list of all the Makes available in the vPIC Dataset.
+ * `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.
+ * Each object in the `Results` array represents the `Make_ID` and the `Make_Name` of
+ * an individual vehicle Make.
+ *
  * - FYI there are over 10,000 registered makes in the database!
  *
  * @async
@@ -8,7 +11,7 @@ import type { NhtsaResponse } from '../../types';
  */
 export declare const GetAllMakes: () => Promise<NhtsaResponse<GetAllMakesResults>>;
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetAllMakes endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetAllMakes endpoint
  *
  * @alias GetAllMakesResults
  */

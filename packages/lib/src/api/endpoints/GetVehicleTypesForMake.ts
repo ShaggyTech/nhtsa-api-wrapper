@@ -1,27 +1,19 @@
-/* Constants */
-import { NHTSA_BASE_URL } from '../../constants'
 /* Utility Functions */
-import {
-  catchInvalidArguments,
-  createQueryString,
-  rejectWithError,
-  useFetch,
-} from '../../utils'
+import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
 /* Types */
 import type { IArgToValidate, NhtsaResponse } from '../../types'
 
 /**
- * GetVehicleTypesForMake returns all the Vehicle Types in the vPIC dataset for a specified Make,
+ * `GetVehicleTypesForMake` returns all the Vehicle Types in the vPIC dataset for a specified Make,
  * whose name is LIKE the make name in the vPIC Dataset.
  *
- * - `makeName` can be a partial name, or a full name for more specificity
- *   (e.g., "Merc", "Mercedes Benz", etc.)
+ * `makeName` can be a partial name, or a full name for more specificity, e.g., "Merc",
+ * "Mercedes Benz", etc.
  *
  * @async
  * @param {string} makeName - Name of the vehicle make to search
  * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeResults>>)} - Api Response object
  */
-
 export const GetVehicleTypesForMake = async (
   makeName: string
 ): Promise<NhtsaResponse<GetVehicleTypesForMakeResults>> => {
@@ -36,20 +28,22 @@ export const GetVehicleTypesForMake = async (
         types: ['string'],
       },
     ]
-
     catchInvalidArguments({ args })
 
-    const queryString = createQueryString()
-    const url = `${NHTSA_BASE_URL}/${endpointName}/${makeName}${queryString}`
+    const { createUrl, get } = useFetch()
+    createUrl({
+      endpointName,
+      path: makeName,
+    })
 
-    return await useFetch().get(url)
+    return get()
   } catch (error) {
     return rejectWithError(error)
   }
 }
 
 /**
- * Type representing the structure of objects found in the NhtsaResponse 'Results' array for GetVehicleTypesForMake endpoint
+ * Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMake endpoint
  *
  * @alias GetVehicleTypesForMakeResults
  */
