@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
@@ -22,9 +20,8 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '../../types'
  * - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
  *   name (it accepts a partial VehicleType name as an input).
  *
- * @async
- * @param {Object} params - Query Search Parameters to append to the URL.
- * @param {(string|number)} [params.manufacturer] - Manufacturer Name, or Manufacturer ID, or WMI ID
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
+ * @param {(string|number)} [params.manufacturer] - Manufacturer Name or ID, or WMI ID
  * (required if !vehicleType)
  * @param {(string|number)} [params.vehicleType] - Optional Vehicle Type search parameter
  * (required if !manufacturer)
@@ -63,7 +60,8 @@ export const GetWMIsForManufacturer = async (
      * manufacturer and vehicleType are optional but at least one must be provided.
      * `manufacturer` is actually part of the path for this endpoint and not a query param.
      * We include `manufacturer` in params as it's easier to type the function using 'AtLeastOne'
-     * type if they are placed in the same object.
+     * type if they are placed in the same object. Maybe a little confusing to end user as it's
+     * not consistent with other endpoints.
      */
     const manufacturer = params?.manufacturer
       ? encodeURIComponent(params.manufacturer)

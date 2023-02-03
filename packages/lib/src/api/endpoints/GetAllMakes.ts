@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { NhtsaResponse } from '../../types'
+import { rejectWithError, useFetch } from '@/utils'
+import type { NhtsaResponse } from '@/types'
 
 /**
  * `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.
@@ -10,7 +8,6 @@ import type { NhtsaResponse } from '../../types'
  *
  * - FYI there are over 10,000 registered makes in the database!
  *
- * @async
  * @returns {(Promise<NhtsaResponse<GetAllMakesResults>>)} - Api Response object
  */
 export const GetAllMakes = async (): Promise<

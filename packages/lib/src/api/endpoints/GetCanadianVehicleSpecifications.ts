@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).
@@ -23,12 +21,12 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * always show up as "something=" in the query string. `year` is the only key user must provide,
  * no default value is set for it so that an error will be thrown if not provided by user.
  *
- * @async
- * @param {Object} params - Query Search Parameters to append to the URL (required)
- * @param {(string|number)} params.year - Model year of the vehicle (required) - year >= 1971 (required)
+ * @param params - Object of Query Search names and values to append to the URL as a query string
+ * @param {(string|number)} params.year - Model year of the vehicle - year >= 1971
  * @param {string} [params.make=''] - Vehicle's make, like "Honda", "Toyota", etc...
- * @param {string} [params.model=''] - Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc...
- * @param {string} [params.units=''] - "Metric" (default), or "US" for United States customary units
+ * @param {string} [params.model=''] - Vehicle's model, like "Pilot", "Focus". Can also include
+ * some other elements like Body Type, Engine Model/size, etc...
+ * @param {string} [params.units=''] - "Metric" (default), or "US" for standard units
  * @returns {(Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>)} - Api Response object
  */
 

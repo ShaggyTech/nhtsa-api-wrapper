@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
@@ -14,7 +12,6 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the
  *   provided name. It accepts a partial manufacturer name as an input.
  *
- * @async
  * @param {(string|number)} manufacturer - Manufacturer Name or ID
  * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults>>)} - Api Response object
  */

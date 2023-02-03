@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `DecodeWMI` provides information on the World Manufacturer Identifier for a specific `WMI` code.
@@ -11,11 +9,10 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * - Examples: "JTD" "1T9131"
  *
  * A list of WMI codes can be found
- * [here](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI))
+ * [here](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)),
  * but keep in mind that not all of the listed WMIs are registered with NHTSA and therefore may not
  * be available in vPIC data sets.
  *
- * @async
  * @param {string} WMI - World Manufacturer Identifier
  * @returns {(Promise<NhtsaResponse<DecodeWMIResults>>)} - Api Response object
  */
@@ -34,7 +31,6 @@ export const DecodeWMI = async (
         types: ['string'],
       },
     ]
-
     catchInvalidArguments({ args })
 
     const { createUrl, get } = useFetch()

@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetVehicleTypesForMakeId` returns the Models in the vPIC dataset for a specified Make
@@ -24,7 +22,6 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * - `DecodeVin`
  * - `DecodeVinExtended`
  *
- * @async
  * @param {(string|number)} makeId - Make ID to search
  * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>)} - Api Response object
  */

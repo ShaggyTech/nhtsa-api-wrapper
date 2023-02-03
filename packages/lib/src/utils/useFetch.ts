@@ -1,6 +1,6 @@
 import { createQueryString, rejectWithError, catchInvalidArguments } from '.'
-import { NHTSA_BASE_URL, NHTSA_RESPONSE_FORMAT } from '../constants'
-import type { QueryStringParams, NhtsaResponse } from '../types'
+import { NHTSA_BASE_URL, NHTSA_RESPONSE_FORMAT } from '@/constants'
+import type { QueryStringParams, NhtsaResponse } from '@/types'
 
 /**
  * `useFetch` is a composable function that returns an object containing methods for making HTTP
@@ -56,8 +56,9 @@ import type { QueryStringParams, NhtsaResponse } from '../types'
  *
  * All composable methods will also set the internal URL variable if you pass them a URL
  * string. This will always overwrite the current URL stored in the composable instance and
- * immediately make the request with the new URL. The only exception to this is when providing
- * option of `saveUrl: false` to instance methods, see _Options_ section below for more info.
+ * immediately make the request if method is get or post. The only exception to this is when
+ * providing option of `saveUrl: false` to instance methods, see _Options_ section below for more
+ * info.
  *
  * For example you could do this if you don't need to build the URL first:
  *
@@ -134,15 +135,37 @@ export const useFetch = () => {
   let _url: string
 
   /**
-   * Builds the URL string and sets it as a private variable if saveUrl is true.
+   * This builds the URL string and sets it as a private variable if saveUrl
+   * option is true.
+   *
+   * Set `allowEmptyParams` to true to allow empty parameters in the query string. This is useful
+   * if you need to make a request with an empty parameter in some endpoints
+   *
+   * Set `includeQueryString` to false to exclude the query string from the built URL string. This
+   * is useful if you need to make a POST request with a URL that already has a query string in the
+   * POST body.
+   *
+   * `path` is a search parameter that is not part of the query string for most NHSTA API endpoints.
+   * For example if decoding a VIN, the path would be the VIN number. If you need to make a request
+   * with a path, set `path` to the path string.
+   *
+   * `params` is an object containing the query string parameters to build into the URL. Default
+   * query "format=json" is always included unless `includeQueryString` is false.
+   *
+   * `saveUrl` is a boolean that determines whether to save the URL in the composable instance.
+   * Default is true.
    *
    * @param options Object containing the following properties:
    * @param {string} options.endpointName - Name of the endpoint to use in the URL (required)
+   * @param {boolean} [options.allowEmptyParams=false] - Whether to allow empty parameters in the
+   * query string (default: false).
    * @param {boolean} [options.includeQueryString=true] - Whether to include the query string in
    * the built URL string (default: true). Set to false if making a POST request.
    * @param {string} [options.path=''] - Path to append to the URL (default: '')
-   * @param {object} [options.params] - Query string parameters to build into the URL. Default
+   * @param {Object} [options.params] - Query string parameters to build into the URL. Default
    * query "format=json" is always included unless options.includeQueryString is false.
+   * @param {boolean} [options.saveUrl=true] - Whether to save the URL in the composable instance
+   * (default: true)
    * @returns {string} URL string
    */
   const createUrl = ({
@@ -180,28 +203,45 @@ export const useFetch = () => {
   }
 
   /**
-   * Uses native fetch() to make a GET or POST request to the NHTSA API.
+   * This uses native fetch to make a request to the NHTSA API. Returns a promise
+   * that resolves to a NhtsaApiResponse object.
    *
-   * When called from post(), you should set includeQueryString to false in the options object as
+   * ---
+   * ### url
+   *
+   * `url` is optional. If not provided, the URL string saved in the composable instance will be
+   * used for the request. If no URL has been saved in the composable instance, an error will be
+   * thrown stating that a url arg is required.
+   * ---
+   * ### Options
+   *
+   * If you need to set custom fetch options for request, set them in the `options` object.
+   *
+   * `options` is optional. If provided, it should be an object containing following properties:
+   * - `options.saveUrl` - Whether to save the URL string in the composable instance after
+   *   the request is made (default: true).
+   * - `options.body` - string to send in the NHTSA API POST request. (example: "modelYear=2009")
+   * - Any other valid `RequestInit` options:
+   *   https://developer.mozilla.org/en-US/docs/Web/API/Request/Request
+   *
+   * If `saveUrl` is true, the URL string will be saved in the composable instance after the
+   * request is made. If false, the URL string will _not_ be saved in the composable instance and a
+   * new URL string will be need to be created for the next request.
+   *
+   * When called from post(), you should set `includeQueryString` to false in the options object as
    * the query string is not allowed in a POST request. In POST requests, the "format=json"
-   * parameter is added to the POST body string instead of in the query string. Any endpoints that
-   * require a POST request will have have to add this to end of the body string manually, before
-   * calling post() and subsequently this method.
+   * parameter is added to the POST body string instead of in the query string. Using the post
+   * method for POST requests allows this to be added automatically to the end of the body string.
    *
    * _NOTE:_ All POST requests should use the post() method of this composable, which sets specific
-   * POST fetch options before calling this method. You can pass the body for a POST request as a
-   * string in 'body' key of the options object. The NHTSA API requires the POST body to be in a
-   * specific format so it is not formatted by this function. See `DecodeVinValuesBatch` endpoint
-   * for an example of the required format of a POST body for the NHTSA API.
+   * POST fetch options before calling this method. Never call this method directly for POST
+   * requests.
    *
-   * @param options Object containing the following properties:
-   * @param {string} options.endpointName - Name of the endpoint to use in the URL (required)
-   * @param {boolean} [options.includeQueryString=true] - Whether to include the query string in
-   * the built URL string (default: true). Set to false if making a POST request.
-   * @param {string} [options.path=''] - Path to append to the URL (default: '')
-   * @param {object} [options.params] - Query string parameters to build into the URL. Default
-   * query "format=json" is always included unless options.includeQueryString is false.
-   * @returns {string} URL string
+   * @param {string} [url] - URL string to use for the request
+   * @param [options] - Object containing RequestInit options + custom options
+   * @param {boolean} [options.saveUrl=true] - Whether to save the URL string in the composable
+   * instance
+   * @returns {Promise<NhtsaApiResponse>} Promise that resolves to a NhtsaApiResponse object
    */
   const get = async <T>(
     url?: string,
@@ -231,18 +271,23 @@ export const useFetch = () => {
 
     const nhtsaResponse: NhtsaResponse<T> = await fetch(url, options)
       .then(async (response) => {
-        if (!response.ok) {
-          throw Error(`${response.status} ${response.url}`)
+        if (!response) {
+          throw Error(
+            `APi responded with an error, no response object returned`
+          )
         }
-
         const contentType = response.headers.get('content-type')
-        const jsonTypes = ['application/json', 'text/json']
-        const isJson = jsonTypes.some((type) => contentType?.includes(type))
         const responseDetails =
           `content-type: ${contentType},` +
           `responseStatus: ${response.status},` +
           `responseUrl: ${response.url}`
 
+        if (!response.ok) {
+          throw Error(`APi responded with an error, got ${responseDetails}`)
+        }
+
+        const jsonTypes = ['application/json', 'text/json']
+        const isJson = jsonTypes.some((type) => contentType?.includes(type))
         if (!isJson) {
           throw Error(
             `API response is not in JSON format, got ${responseDetails}`
@@ -250,14 +295,11 @@ export const useFetch = () => {
         }
 
         const data: NhtsaResponse<T> = await response.json()
-
         if (!data) {
           throw Error(
-            `API responded but returned no data, got ${responseDetails}`
+            `API response OK but returned no data, got ${responseDetails}`
           )
-        }
-
-        return data
+        } else return data
       })
       .catch((error: Error) => {
         error.message = `There was an error fetching API data: ${error.message}`
@@ -268,6 +310,51 @@ export const useFetch = () => {
     return nhtsaResponse
   }
 
+  /**
+   * This uses native `fetch()` to make a POST request to the NHTSA API. Returns a
+   * promise that resolves to a NhtsaApiResponse object.
+   *
+   * `DecodeVinValueBatch` is the only NHTSA API endpoint that accepts POST requests.
+   *
+   * This method sets specific POST fetch options before calling get(). All POST requests should use
+   * post() instead of calling get() directly as get() does not set the correct fetch options for
+   * POST.
+   * ---
+   * ### url
+   *
+   * `url` is optional. If not provided, the URL string saved in the composable instance will be
+   * used for the request. If no URL has been saved in the composable instance, an error will be
+   * thrown stating that a url arg is required.
+   * ---
+   * ### Options
+   *
+   * If you need to set custom fetch options for request, set them in the `options` object.
+   *
+   * `options` is optional. If provided, it should be an object containing following properties:
+   * - `options.saveUrl` - Whether to save the URL string in the composable instance after
+   *   the request is made (default: true).
+   * - `options.body` - string to send in the NHTSA API POST request. (example: "modelYear=2009")
+   * - Any other valid `RequestInit` options:
+   *   https://developer.mozilla.org/en-US/docs/Web/API/Request/Request
+   *
+   * If `saveUrl` is true, the URL string will be saved in the composable instance after the
+   * request is made. If false, the URL string will _not_ be saved in the composable instance and a
+   * new URL string will be need to be created for the next request.
+   *
+   * `options.body` should be a string consisting of the body request parameters in a format
+   * described further in the `DecodeVinValueBatch` endpoint documentation. Put simply, by default,
+   * "DATA" is prepended and "&format=json" appended to `options.body`, even if you
+   * don't provide `options.body`. This is required format for the NHTSA API POST request.
+   *
+   * @param {string} [url] - URL string to make the POST request to
+   * @param [options] - Object containing RequestInit options + custom options
+   * @param {boolean} [options.saveUrl=true] - Whether to save the URL string in the composable
+   * instance after the request is made (default: true).
+   * @param {string} [options.body] - Body string to send in the POST request. Default string
+   * "&format=json" is always appended to the body string.
+   * @returns {Promise<NhtsaApiResponse<T>>} Promise that resolves to a NhtsaApiResponse object
+   * containing the response data.
+   */
   const post = async <T>(
     url?: string,
     options: RequestInit & { saveUrl?: boolean } = { saveUrl: true }
@@ -299,7 +386,7 @@ export const useFetch = () => {
       ...options,
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: encodeURI(`${options?.body}&format=${NHTSA_RESPONSE_FORMAT}`),
+      body: encodeURI(`DATA=${options?.body}&format=${NHTSA_RESPONSE_FORMAT}`),
     })
   }
 

@@ -1,5 +1,5 @@
-import { getTypeof } from '../utils'
-import type { AtLeastOne } from '../types'
+import { getTypeof } from '@/utils'
+import type { AtLeastOne } from '@/types'
 
 export type IArgToValidate = {
   name: string
@@ -19,7 +19,7 @@ export type IArgToValidate = {
  * Under the hood it loops through the args and calls `validateArgument` to validate each arg.
  * `validateArgument` will throw an error if any of the arguments are invalid based on the provided
  * options in each arg. See the description for `validateArgument` for more details on how
- * validation logic works.
+ * validation logic works and how to override the default error throwing behavior.
  *
  * @param {Object} options - options object
  * @param {IArgToValidate[]} options.args - array of IArgToValidate objects
@@ -60,71 +60,107 @@ export const catchInvalidArguments = ({
  * `validateArgument` validates a single argument based on the provided options and throws an error
  * with a message detailing the invalid argument(s) and what was expected.
  *
- * At least one of `required` or `types` must be provided for each arg to validate against or it
- * will validate nothing and return true for that arg value as if it was valid.
+ * There are two modes for this function:
+ * - 'error' - (default) - Throws an error if the argument fails validation.
+ * - 'boolean' - Returns false if the argument fails validation.
  *
- * - It will throw an error if the argument is invalid based on the provided options.
- * - If the argument is valid, it will return true.
- * - If the argument is invalid, it will return false.
- * - If the argument is invalid and mode is set to 'error', it will throw an error.
- * - If the argument is invalid and mode is set to 'boolean', it will return false.
+ * The logic is the same for both modes, the only difference is the return value. In 'error' mode
+ * it will throw an error if the argument is invalid and in 'boolean' mode it will return false if
+ * the argument is invalid. It returns true in both modes if validation passes. It uses the name
+ * and types array (if provided) to build the error message in the case of validation failure.
+ * The goal is to provide a helpful error message to the user when they are using the endpoint
+ * functions in this package incorrectly.
  *
- * - If types array is not provided, it will only validate that value is defined.
- * - If required boolean is true, it will only validate value is one of the supplied strings in
- *   the provided types array for each arg.
- * - If both are provided, it will validate against both required value and matching type(s).
+ * Default (error) mode is useful for validating arguments supplied to a function and throwing an
+ * error if the arguments are invalid. Can also be used to validate existence and type of any
+ * value in a general sense. It will throw an error if the argument is invalid and return true if
+ * the argument is valid.
+ *
+ * Boolean mode is useful for validating arguments in a function that returns a boolean value, such
+ * as in Array.filter() or 'if' statements. It will return false if the argument is invalid and
+ * true if the argument is valid.
+ *
+ * `name` and `value` are required in each arg object. `required` and `types` are optional.
+ *
+ * At least one of `required` or `types` must be provided as part of each arg object. If neither
+ * are provided then there would be nothing to validate against. If you aren't providing either of
+ * those for a certain arg then you probably don't need to use this function for that arg as it
+ * will always return true.
+ *
+ * The logic for validation is as follows:
+ *
+ * If both `required` is true and `types` are provided, it will validate the value is defined and
+ * that the typeof value is one of the provided strings in the `types` array.
+ *
+ * If `required` is true and no `types` are provided, it will only validate value is defined.
+ *
+ * If `types` is provided but it is not `required`, it will only validate value is one of the
+ * supplied strings in the provided `types` array. If value is 'undefined' it will skip validation
+ * as there is no value to validate against and user would mark it required if they wanted to
+ * validate against a defined value. It will however catch any other falsey values that are not
+ * 'undefined' and fail type validation. If you value is not required and you give types of
+ * ['string', 'number'] for example, it will validate that the value is either a string or a
+ * number. If that value in the given example is type 'undefined' it will skip the validation.
+ * However it will still fail if the typeof value is anything other than 'undefined' and does not
+ * match the given types, which includes all other values considered falsey such as 'null', 'false',
+ * '0', etc. In the given example, if the value is 'null' it will fail validation as null is not
+ * a string or a number type.
+ *
+ * If neither `required` nor `types` are provided, it will not peerform validation and will
+ * simply return true.
  *
  * @param {Object} options - options object
  * @param {string} options.name - name of the argument
  * @param {unknown} options.value - value of the argument
  * @param {boolean} [options.required] - if true, will validate that value is defined
- * @param {string[]} [options.types] - array of strings to validate value against
+ * @param {(string[])} [options.types] - array of strings to validate value against
  * @param {('error' | 'boolean')} [options.errorMode='error'] - 'error' or 'boolean' - 'error' will throw an error if the argument is invalid, 'boolean' will return false if the argument is invalid
  * @returns boolean - true if validation passes, throws error in the case of validation failure
  *
  * @example
  * // throws error in default (error) mode, typeof value is not one of the provided types
  * validateArgument({
- *  name: 'myArg',
- *  value: ['not', 'a', 'string'],
- *  types: ['string', 'number'],
+ *   name: 'myArg',
+ *   value: ['not', 'a', 'string'],
+ *   types: ['string', 'number'],
  * })
  *
  * @example
  * // throws error in default (error) mode, value is not defined
  * validateArgument({
- *  name: 'myArg',
- *  value: undefined,
- *  required: true,
- *  types: ['string', 'number'],
+ *   name: 'myArg',
+ *   value: undefined,
+ *   required: true,
+ *   types: ['string', 'number'],
  * })
  *
  * @example
  * // returns false in boolean mode, value is not one of the provided types
  * validateArgument({
- *  name: 'myArg',
- *  value: null,
- *  types: ['string', 'number'],
- *  errorMode: 'boolean'
- * })
- *
- * @example
- * // returns true in boolean mode, all validations pass
- * validateArgument({
- *  name: 'myArg',
- *  value: 3000,
- *  types: ['string', 'number'],
- *  errorMode: 'boolean'
+ *   name: 'myArg',
+ *   value: null,
+ *   types: ['string', 'number'],
+ *   errorMode: 'boolean'
  * })
  *
  * @example
  * // returns true in default (error) mode, all validations pass
  * validateArgument({
- *  name: 'myArg',
- *  value: 3000,
- *  required: true,
- *  types: ['string', 'number'],
+ *   name: 'myArg',
+ *   value: [3000, 'hello', null],
+ *   required: true,
+ *   types: ['array'],
  * })
+ *
+ * @example
+ * // returns true in boolean mode, all validations pass
+ * validateArgument({
+ *   name: 'myArg',
+ *   value: 3000,
+ *   types: ['string', 'number'],
+ *   errorMode: 'boolean'
+ * })
+ *
  */
 export const validateArgument = ({
   name,

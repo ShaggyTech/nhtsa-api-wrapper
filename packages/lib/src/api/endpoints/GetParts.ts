@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetParts` provides a list of ORGs with letter date in the given range of the dates and with
@@ -28,8 +26,7 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * `params.page`:
  *  - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
  *
- * @async
- * @param {Object} [params] - Query Search Parameters to append to the URL
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query

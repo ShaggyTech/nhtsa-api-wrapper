@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.
@@ -14,8 +12,7 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * `params.page` is optional and used to specify (n)th page of results. Results are provided in
  * pages of 100 items.
  *
- * @async
- * @param {Object} [params] - Query Search Parameters to append to the URL
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {string} [params.manufacturerType] - See endpoint description
  * @param {(string|number)} [params.page] - Specify page number (results returned 100 at a time)
  * @returns {(Promise<NhtsaResponse<GetAllManufacturersResults>>)} - Api Response object

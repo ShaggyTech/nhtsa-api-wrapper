@@ -32,12 +32,13 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "clean:dist": "rimraf dist/*",
+    "clean:dev": "rimraf dev/*",
     "build": "pnpm run lint && pnpm run clean:dist && pnpm run build:lib",
     "build:lib": "tsc --noEmit && vite build",
-    "dev": "vite",
-    "dev:watch": "tsc --noEmit && vite build --watch",
+    "dev": "vite build --watch --outDir dev/dist",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "eslint": "8.32.0",
@@ -48,7 +49,8 @@
     "tsconfig": "workspace:*",
     "typescript": "4.9.4",
     "vite": "4.0.4",
-    "vite-plugin-dts": "1.7.1"
+    "vite-plugin-dts": "1.7.1",
+    "vite-tsconfig-paths": "4.0.5"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified
@@ -20,9 +18,8 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * `params.year` must be a number > 2016, years prior to 2016 are not supported according to the
  * NHTSA API.
  *
- * @async
  * @param {(string|number)} manufacturer - Manufacturer Name (string) or Manufacturer ID (number)
- * @param {Object} params - Query Search Parameters to append to the URL
+ * @param params - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} params.year - Model year of the vehicle - Number, >= 2016
  * @returns {(Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>>)} - Api Response object
  */

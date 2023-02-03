@@ -3,7 +3,7 @@
  * @category Internal Utility Functions
  */
 
-import { NHTSA_RESPONSE_FORMAT } from '../constants'
+import { NHTSA_RESPONSE_FORMAT } from '@/constants'
 import { getTypeof, validateArgument } from '.'
 
 /** Valid URI component types */

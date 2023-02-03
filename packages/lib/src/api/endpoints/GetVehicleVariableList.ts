@@ -1,13 +1,10 @@
-/* Utility Functions */
-import { rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { NhtsaResponse } from '../../types'
+import { rejectWithError, useFetch } from '@/utils'
+import type { NhtsaResponse } from '@/types'
 
 /**
  * `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the
  * vPIC dataset. Information on the name, description and the type of the variable is provided.
  *
- * @async
  * @returns {(Promise<NhtsaResponse<GetVehicleVariableListResults>>)} - Api Response object
  */
 export const GetVehicleVariableList = async (): Promise<

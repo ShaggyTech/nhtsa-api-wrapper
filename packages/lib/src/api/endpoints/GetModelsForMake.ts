@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetModelsForMake` returns the Models in the vPIC dataset for a specified `makeName`
@@ -10,7 +8,6 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * `makeName` can be a partial, or a full for more specificity, e.g., "Harley",
  * "Harley Davidson", etc.
  *
- * @async
  * @param {string} makeName - Vehicle make name
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeResults>>)} - Api Response object
  */

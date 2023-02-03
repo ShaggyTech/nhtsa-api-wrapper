@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `DecodeVinValues` decodes a Vehicle Identification Number (VIN) and returns useful information
@@ -27,11 +25,10 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * through a bunch of objects just to get all variable names/values as is the case with
  * _nested format_. Unless you need to obtain "ValueID" and/or "VariableID" for each variable in a
  * decoded VIN. In that case, you should use either `DecodeVin` or `DecodeVinExtended` endpoints to
- * obtain the values in a _nested format_ where each variable is an object containing individual
- * "Variable", "Value", "ValueID" and "VariableID" properties.
+ * obtain the values in a _nested format_.
  *
- * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults>>)} Api Response object
  */

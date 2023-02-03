@@ -1,7 +1,5 @@
-/* Utility Functions */
-import { catchInvalidArguments, rejectWithError, useFetch } from '../../utils'
-/* Types */
-import type { IArgToValidate, NhtsaResponse } from '../../types'
+import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,
@@ -27,11 +25,10 @@ import type { IArgToValidate, NhtsaResponse } from '../../types'
  * - 'Closed' (The Equipment Plant is no longer Active)
  * - 'All' (All Equipment Plant Codes regardless of year, including their status (active or closed))
  *
- * @async
- * @param {Object} params - Query Search Parameters to append to the URL
- * @param {(string|number)} params.year - Year >= 2016 (required)
- * @param {(string|number)} params.equipmentType - Number equal to 1, 3, 13, or 16 (required)
- * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All' (required)
+ * @param params - Object of Query Search names and values to append to the URL as a query string
+ * @param {(string|number)} params.year - Year >= 2016
+ * @param {(string|number)} params.equipmentType - Number equal to 1, 3, 13, or 16
+ * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'
  * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>)} - Api Response object
  */
 export const GetEquipmentPlantCodes = async (params: {
