@@ -1,5 +1,25 @@
 {
+  "shcema": "https://json.schemastore.org/tsconfig",
   "extends": "tsconfig/vite-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@package/*": [
+        "./*"
+      ]
+    },
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.spec.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

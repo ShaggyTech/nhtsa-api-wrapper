@@ -8,6 +8,10 @@
     "lint": {
       "outputs": []
     },
+    "format": {
+      "cache": false,
+      "dependsOn": ["^lint"]
+    },
     "dev": {
       "cache": false
     }
