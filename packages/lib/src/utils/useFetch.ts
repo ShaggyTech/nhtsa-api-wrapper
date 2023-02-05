@@ -1,115 +1,71 @@
-import { createQueryString, rejectWithError, catchInvalidArguments } from '.'
+import {
+  catchInvalidArguments,
+  createQueryString,
+  getTypeof,
+  rejectWithError,
+} from '@/utils'
 import { NHTSA_BASE_URL, NHTSA_RESPONSE_FORMAT } from '@/constants'
-import type { QueryStringParams, NhtsaResponse } from '@/types'
+import type { NhtsaResponse, QueryStringParams } from '@/types'
+
+export type CreateUrlOptions = {
+  endpointName: string
+  allowEmptyParams?: boolean
+  includeQueryString?: boolean
+  path?: string
+  params?: QueryStringParams
+  saveUrl?: boolean
+}
 
 /**
- * `useFetch` is a composable function that returns an object containing methods for making HTTP
+ * `useNHTSA` is a composable function that returns an object containing methods for making HTTP
  * requests to the NHTSA API. All request methods return a Promise that resolves to an object
  * containing the response data, see [NhtsaApiResponse](#TODO-LINK-TO-DOCS) type.
  *
  * The exported methods are:
- * - createUrl() - Builds the URL string and stores it in an internal instance variable
+ * - getURL() - Returns the internal URL string
+ * - cacheUrl() - Builds the URL string and stores it in internal state
+ * - createUrl() - Builds the URL string but does not store it in internal state
  * - get() - Makes a GET request, uses the internal url variable if no URL is provided
  * - post() - Makes a POST request, uses the internal url variable if no URL is provided
  *
- * ---
+ * `cacheUrl`, `get`, and `post` methods will cache url to internal state if you pass them a url
+ * string or options object. They will always overwrite the current cached url and immediately make
+ * the request. The only exception to this is when providing option of `saveUrl: false` when using
+ * an options object.
  *
- * **Important!** This composable uses the native fetch method to make requests with no polyfills
- * included. You may need to polyfill the fetch() method if you expect this package to be used in
- * older browsers or Node.js versions < 18. See root package README for more info on polyfilling
- * native fetch in your project.
- *
- * ---
- *
- * An explanation of how this composable works:
- *
- * When you call useFetch(), it returns an object containing the methods you can use to interact
- * with the NHTSA API. Each time you call useFetch(), a new instance of the composable is created
- * and returned. This means you can call useFetch() multiple times and each instance will have
- * its own internal state. This is why you must call createUrl() before making a request, so that
- * the URL is stored in the instance's internal state. For example:
- *
- * ```javascript
- * const { createUrl, get } = useFetch()
- * createUrl({...options})
- * get()
- * ```
- *
- * In the example, a url is stored as private variable inside the composable instance created by
- * calling createFetch(). This is done so that the URL can be accessed by all methods after setting
- * it when using the same instance. This is also why, in the example, the URL is not passed to the
- * get() method.
- *
- * After the first createUrl(), any of the other methods in the same instance can access the
- * stored URL. This means you can call createUrl() multiple times from the same instance and it
- * will overwrite the previous URL, then you can make a new get() call using the newest URL.
- *
- * Note that createUrl() is not called automatically by any of the other methods. You must call it
- * yourself before making a request or provide get and post methods with the pre-built URL as an
- * argument. If you call get() or post() without first calling createUrl() or providing the URL as
- * an argument, an error will be thrown. For example:
- *
- * ```javascript
- * const { get } = useFetch()
- * get() // throws an error, URL is undefined because createUrl() was never called first
- * ```
- *
- * All composable methods will also set the internal URL variable if you pass them a URL
- * string. This will always overwrite the current URL stored in the composable instance and
- * immediately make the request if method is get or post. The only exception to this is when
- * providing option of `saveUrl: false` to instance methods, see _Options_ section below for more
- * info.
- *
- * For example you could do this if you don't need to build the URL first:
- *
- * ```javascript
- * const { get, post } = useFetch()
- * get('https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleVariableValuesList/1?format=json')
- * post('https://some.other.api.com/api/endpoint', { body: 'some data' })
- * get() // fetches 'https://some.other.api.com/api/endpoint'
- * ```
- *
- * In the example above, get uses the provided URL, saves it in the composable instance, and makes
- * the request. Then, the post method is called with a url, it uses that new URL, saves it,
- * and makes the request. Finally, the get method is called again without a URL, it uses the URL
- * saved by the preceding post method, and makes the request with that same URL.
- *
- * If you make another request with get() or post() without first calling createUrl() or providing
- * the URL as an argument, it will use the most recently stored URL value. For example:
- *
- * ```javascript
- * const { get, post, createUrl } = useFetch()
- * createUrl({...options}) // initializes and saves the first url
- * get() // uses url initialized with createUrl()
- * get() // uses same url as preceding get()
- * get('https://some.other.api.com/api/endpoint') // uses and sets a new url
- * post(undefined, { body: 'some data' }) // uses same url as preceding get()
- * get() // uses same url as two preceding requests
- * createUrl({...options}) // saves a new url
- * get() // uses url saved with preceding createUrl()
- * ```
- *
- * The above example shows how `useFetch` can be used to make multiple requests
- * with different URLs using only one instance of the composable. This is useful if you need to
- * make multiple requests to the same API with different endpoints or query string parameters.
- *
- * ---
+ * The above is default behavior, but you can also pass `options.saveUrl = false` when using
+ * an options object with the `cacheUrl`, `createUrl`, `get`, and `post` methods. This will prevent
+ * the composable from saving the URL in the composable instance.
  *
  * ### Options
  *
- * All of the above is default behavior, but you can also pass option `{ saveUrl: false }` to all
- * composable methods to prevent them from saving the URL in the composable instance. This is
- * useful if you need to make a request with a URL and you don't want to save or overwrite the
- * current URL stored in the composable instance.
+ * `options` in the context of this composable is as an object of type CreateUrlOptions with the
+ * following properties:
  *
- * In this example all of the code is using the same composable instance:
+ * Options for `cacheUrl` and `createUrl`:
+ * - `endpointName` - The name of the endpoint to use, see [NHTSA API Endpoints](#TODO-LINK-TO-DOCS)
+ *   (required)
+ * - `allowEmptyParams` - If true, empty params will be included in the query string
+ *   (default: false)
+ * - `includeQueryString` - If true, the query string will be included in the url (default: true)
+ * - `path` - The final path to use in the full url path (default: '')
+ * - `params` - An object of query string params to include in the url (default: {})
+ * - `saveUrl` - If true, the url will be cached in the composable instance (default: true)
+ *
+ * Options for `get` and `post`:
+ * - `url` - either a full url string or an object of type CreateUrlOptions as described above
+ *   - if an object is provided, cacheUrl() will be called with the object to build the url
+ *   - if a string is provided, the string will be used as the url and cached in the composable
+ * - `options` - An object of type < { body: string, saveUrl: boolean } & RequestInit >
+ *
+ * In this example all of the code is using the same composable instance and _{...options}_ is an
+ * object of type CreateUrlOptions:
  *
  * ```javascript
- * const { get, post, createUrl } = useFetch()
+ * const { get, post, createUrl } = useNHTSA()
  *
- * // save url in a local variable only, not in the composable instance
- * const url = createUrl({ ...options, saveUrl: false })
- * get(url, { saveUrl: false })
+ * const urlString = createUrl({ ...options }) // does not cache url
+ * get(url, { saveUrl: false }) // does not cache url
  * get() // Error, url still undefined
  *
  * // These work as expected but the url is not saved in the composable instance
@@ -120,26 +76,108 @@ import type { QueryStringParams, NhtsaResponse } from '@/types'
  * })
  *
  * // this has no effect, the url is never saved nor used
- * createUrl({ ...options, saveUrl: false })
+ * createUrl({ ...options })
  *
  * get() // Error, url still undefined
- * get(url) // uses url saved in the local variable above and saves it in the composable instance
- * get() // uses url saved in the composable instance during the preceding get() call
+ * cacheUrl({ ...options}) // caches url in composable instance
+ * get() // uses url cached during the preceding cacheUrl() call
+ * get(urlString) // uses urlString const and caches it in composable instance, overwriting previous url
+ * get() // uses url cached during the preceding get() call
+ * ```
+ *
+ * ### **Important!**
+ *
+ * This composable uses the native fetch method to make requests with no polyfills included. You may
+ * need to polyfill the fetch() method if you expect this package to be used in older browsers or
+ * Node.js versions < 18. See root repo README for more info on how to polyfill fetch or use this
+ * package as a URL builder only.
+ *
+ * ### How this composable works:
+ *
+ * When you call useNHTSA(), it returns an object containing methods you can use to interact
+ * with the NHTSA API. Each time you call useNHTSA(), a new instance of the composable is created
+ * and returned. This means you can call useNHTSA() multiple times and each instance will have
+ * its own internal state. This is why you must call createUrl() before making a request, so that
+ * the URL is stored in the instance's internal state.
+ *
+ * Note that neither `cacheUrl` or `createUrl` are called automatically by get() or post() methods.
+ * You must call them yourself before making a request or provide get and post methods with the
+ * pre-built url as an argument. If you call get() or post() without first calling cacheUrl or
+ * createUrl, or providing an argument, an error will be thrown.
+ *
+ * Example usage:
+ *
+ * _{...options}_ is an object of type CreateUrlOptions in these examples
+ *
+ * ```javascript
+ * const { createUrl, get } = useNHTSA()
+ * cacheUrl({...options}) // store the url in the instance's internal state
+ * get() // make the request using the url from the instance's internal state
+ * ```
+ *
+ * ```javascript
+ * // Give options directly to get() or post()
+ * const getResponse = await useNHTSA().get({...options})
+ * const postResponse = await useNHTSA().post({...options})
+ * ```
+ * ```javascript
+ * // Use object destructuring in similar way as above
+ * const { get, post } = useNHTSA()
+ * const getResponse = await get({...options})
+ * const postResponse = await post({...options})
+ *```
+ * Accepts a full url string
+ * ```javascript
+ * const { createUrl, get } = useNHTSA()
+ * // create a url string with options
+ * const urlString = createUrl({...options})
+ * // or full url, ex: "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/SOME_VIN?format=json"
+ * const reponse = get(urlString)
+ * ```
+ * Accepts an object of type CreateUrlOptions
+ *  ```javascript
+ * const { get } = useNHTSA()
+ * const response = get({ ...options})
+ * ```
+ * Use cacheUrl() to save the url to the instance state and call get() or post() without
+ * arguments. Will use the cached url from the most recent cacheUrl() call.
+ * ```javascript
+ * const { createUrl, cacheUrl, get, post } = useNHTSA()
+ *
+ * const urlString = createUrl({...options}) // doesn't save to internal state
+ * get(urlString, { saveUrl: false }) // uses the url string but doesn't save it to internal state
+ * get() // errors because no url is cached
+ * cacheUrl({...otherOptions}) // saves url to internal state, also returns the url string
+ * get() // uses the url from the most recent createUrl() call
+ * get(urlString) // use the urlString variable, and save it to the internal state
+ * ```
+ *
+ * You could do this if you don't need to build the URL first:
+ *
+ * ```javascript
+ * const { get, post } = useNHTSA()
+ * get('https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleVariableValuesList/1?format=json')
+ * post('https://some.other.api.com/api/endpoint', { body: 'some data' })
+ * get() // fetches most recent cached url: 'https://some.other.api.com/api/endpoint'
  * ```
  */
 export const useFetch = () => {
-  /**
-   * Private variable to store the URL string in the composable instance
-   * @private
-   * */
+  /* Internal State */
   let _url: string
 
+  /** Gets url from internal state */
+  const getUrl = () => _url
+
+  /** Function to create final POST body string */
+  const createPostBody = (data: string) => {
+    return encodeURI(`DATA=${data}&format=${NHTSA_RESPONSE_FORMAT}`)
+  }
+
   /**
-   * This builds the URL string and sets it as a private variable if saveUrl
-   * option is true.
+   * This builds the URL string and sets it as a private variable if saveUrl option is true.
    *
-   * Set `allowEmptyParams` to true to allow empty parameters in the query string. This is useful
-   * if you need to make a request with an empty parameter in some endpoints
+   * Set `allowEmptyParams` to true to allow empty parameters in the query string. This is useful if
+   * you need to make a request with an empty parameter in some endpoints.
    *
    * Set `includeQueryString` to false to exclude the query string from the built URL string. This
    * is useful if you need to make a POST request with a URL that already has a query string in the
@@ -168,21 +206,14 @@ export const useFetch = () => {
    * (default: true)
    * @returns {string} URL string
    */
-  const createUrl = ({
+  const cacheUrl = ({
     endpointName,
     allowEmptyParams = false,
     includeQueryString = true,
     path = '',
     params,
     saveUrl = true,
-  }: {
-    endpointName: string
-    allowEmptyParams?: boolean
-    includeQueryString?: boolean
-    path?: string
-    params?: QueryStringParams
-    saveUrl?: boolean
-  }): string => {
+  }: CreateUrlOptions): string => {
     if (!endpointName) {
       throw Error('Endpoint name is required to create URL string')
     }
@@ -202,17 +233,26 @@ export const useFetch = () => {
     return url
   }
 
+  const createUrl = (options: CreateUrlOptions) => {
+    return cacheUrl({ ...options, saveUrl: false })
+  }
+
   /**
-   * This uses native fetch to make a request to the NHTSA API. Returns a promise
-   * that resolves to a NhtsaApiResponse object.
+   * This uses native `fetch()` to make a request to the NHTSA API. Returns a promise that resolves
+   * to a NhtsaApiResponse object.
+   *
+   * _NOTE:_ All POST requests should use the post() method of this composable, which sets specific
+   * POST fetch options before calling this method. Never call this method directly for POST
+   * requests.
    *
    * ---
+   *
    * ### url
    *
    * `url` is optional. If not provided, the URL string saved in the composable instance will be
    * used for the request. If no URL has been saved in the composable instance, an error will be
    * thrown stating that a url arg is required.
-   * ---
+   *
    * ### Options
    *
    * If you need to set custom fetch options for request, set them in the `options` object.
@@ -224,18 +264,15 @@ export const useFetch = () => {
    * - Any other valid `RequestInit` options:
    *   https://developer.mozilla.org/en-US/docs/Web/API/Request/Request
    *
-   * If `saveUrl` is true, the URL string will be saved in the composable instance after the
+   * If `options.saveUrl` is true, the URL string will be saved in the composable instance after the
    * request is made. If false, the URL string will _not_ be saved in the composable instance and a
-   * new URL string will be need to be created for the next request.
+   * new URL string will need to be created for the next request.
    *
-   * When called from post(), you should set `includeQueryString` to false in the options object as
-   * the query string is not allowed in a POST request. In POST requests, the "format=json"
-   * parameter is added to the POST body string instead of in the query string. Using the post
-   * method for POST requests allows this to be added automatically to the end of the body string.
-   *
-   * _NOTE:_ All POST requests should use the post() method of this composable, which sets specific
-   * POST fetch options before calling this method. Never call this method directly for POST
-   * requests.
+   * When called from post(), you should set `options.includeQueryString` to false as query strings
+   * are not allowed in a POST request. In POST requests, "&format=json" is appended to the POST
+   * body string instead of in the query string. Using the post method direclty for POST requests
+   * will automatically set `options.includeQueryString` to false and append "&format=json" to the
+   * POST body string.
    *
    * @param {string} [url] - URL string to use for the request
    * @param [options] - Object containing RequestInit options + custom options
@@ -244,10 +281,15 @@ export const useFetch = () => {
    * @returns {Promise<NhtsaApiResponse>} Promise that resolves to a NhtsaApiResponse object
    */
   const get = async <T>(
-    url?: string,
+    url?: string | CreateUrlOptions,
     options: RequestInit & { saveUrl?: boolean } = { saveUrl: true }
   ): Promise<NhtsaResponse<T>> => {
-    url = url ?? _url
+    /* If url is an object, create and store a url string from it */
+    if (url && getTypeof(url) === 'object') {
+      url = cacheUrl({ ...(url as CreateUrlOptions), saveUrl: options.saveUrl })
+    }
+
+    url = getTypeof(url) === 'string' ? url : getUrl()
 
     catchInvalidArguments({
       args: [
@@ -265,11 +307,12 @@ export const useFetch = () => {
       ],
     })
 
+    /* url guranateed to be a string at this point, so ok to cast it */
     if (options.saveUrl) {
-      _url = url
+      _url = url as string
     }
 
-    const nhtsaResponse: NhtsaResponse<T> = await fetch(url, options)
+    const nhtsaResponse: NhtsaResponse<T> = await fetch(url as string, options)
       .then(async (response) => {
         if (!response) {
           throw Error(
@@ -311,33 +354,35 @@ export const useFetch = () => {
   }
 
   /**
-   * This uses native `fetch()` to make a POST request to the NHTSA API. Returns a
-   * promise that resolves to a NhtsaApiResponse object.
+   * This uses native `fetch()` to make a POST request to the NHTSA API. Returns a promise that
+   * resolves to a NhtsaApiResponse object.
    *
-   * `DecodeVinValueBatch` is the only NHTSA API endpoint that accepts POST requests.
+   * `DecodeVinValueBatch` is the only NHTSA API endpoint that uses POST requests.
    *
    * This method sets specific POST fetch options before calling get(). All POST requests should use
    * post() instead of calling get() directly as get() does not set the correct fetch options for
    * POST.
+   *
    * ---
+   *
    * ### url
    *
    * `url` is optional. If not provided, the URL string saved in the composable instance will be
    * used for the request. If no URL has been saved in the composable instance, an error will be
    * thrown stating that a url arg is required.
-   * ---
+   *
    * ### Options
    *
    * If you need to set custom fetch options for request, set them in the `options` object.
    *
-   * `options` is optional. If provided, it should be an object containing following properties:
+   * `options`: Object containing RequestInit options + custom options
    * - `options.saveUrl` - Whether to save the URL string in the composable instance after
    *   the request is made (default: true).
    * - `options.body` - string to send in the NHTSA API POST request. (example: "modelYear=2009")
    * - Any other valid `RequestInit` options:
    *   https://developer.mozilla.org/en-US/docs/Web/API/Request/Request
    *
-   * If `saveUrl` is true, the URL string will be saved in the composable instance after the
+   * If `options.saveUrl` is true, the URL string will be saved in the composable instance after the
    * request is made. If false, the URL string will _not_ be saved in the composable instance and a
    * new URL string will be need to be created for the next request.
    *
@@ -356,10 +401,20 @@ export const useFetch = () => {
    * containing the response data.
    */
   const post = async <T>(
-    url?: string,
+    url?: string | CreateUrlOptions,
     options: RequestInit & { saveUrl?: boolean } = { saveUrl: true }
   ): Promise<NhtsaResponse<T>> => {
-    url = url ?? _url
+    /* If url is an object, create and store a url string from it */
+    if (url && getTypeof(url) === 'object') {
+      /* POST requests should not include query string */
+      url = cacheUrl({
+        ...(url as CreateUrlOptions),
+        saveUrl: options.saveUrl,
+        includeQueryString: false,
+      })
+    }
+
+    url = getTypeof(url) === 'string' ? url : getUrl()
 
     catchInvalidArguments({
       args: [
@@ -376,22 +431,26 @@ export const useFetch = () => {
         },
         {
           name: 'options.body',
-          value: options,
+          value: options.body,
           types: ['string'],
         },
       ],
     })
 
+    /* Set specific POST fetch options, url and body guaranteed to be a string after this point */
     return await get(url, {
       ...options,
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: encodeURI(`DATA=${options?.body}&format=${NHTSA_RESPONSE_FORMAT}`),
+      body: createPostBody(options.body as string),
     })
   }
 
   return {
+    getUrl,
+    cacheUrl,
     createUrl,
+    createPostBody,
     get,
     post,
   }
