@@ -13,7 +13,6 @@
  * It will also accurately recognize any Error types, Error, TypeError, etc., as 'error'.
  *
  * @param {any} value - Any kind of value (string, object, array, function, etc).
- *
  * @returns {string} - Type of value, normalized to a lowercase string.
  */
 export const getTypeof = (value: unknown): string => {

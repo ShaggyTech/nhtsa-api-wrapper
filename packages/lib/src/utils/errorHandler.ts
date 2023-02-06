@@ -1,4 +1,4 @@
-import { getTypeof } from '.'
+import { getTypeof } from '@/utils'
 
 export const isError = (error: unknown): boolean => {
   return getTypeof(error) === 'error'
