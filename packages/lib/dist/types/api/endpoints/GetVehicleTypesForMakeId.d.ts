@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `GetVehicleTypesForMakeId` returns the Models in the vPIC dataset for a specified Make
  * whose ID is equal to the `makeID` in the vPIC Dataset.
@@ -20,7 +20,6 @@ import type { NhtsaResponse } from '../../types';
  * - `DecodeVin`
  * - `DecodeVinExtended`
  *
- * @async
  * @param {(string|number)} makeId - Make ID to search
  * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>)} - Api Response object
  */

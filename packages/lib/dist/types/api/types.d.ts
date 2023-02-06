@@ -1,4 +1,5 @@
 export * from './endpoints/types';
+export type { CreateUrlOptions } from './useNHTSA';
 /**
  * Response data returned from the NHSTA API. `Results` key will be an array of objects of type "T"
  */

@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `DecodeVinExtended` decodes a Vehicle Identification Number (VIN) and returns useful information
  * about the vehicle.
@@ -23,15 +23,15 @@ import type { NhtsaResponse } from '../../types';
  *   - In case of partial VINs, a `*` could be used to indicate the unavailable characters
  *   - The 9th digit is not necessary
  *
- * NOTE: Unless you have a specific need to obtain `ValueID` or `VariableID` for each variable
+ * NOTE: Unless you have a specific need to obtain "ValueID" or "VariableID" for each variable
  * in a decoded VIN, this package recommends using one of the `DecodeVinValues*` endpoints
  * instead. This is because they will return a single flat format object of key/value pairs,
  * where key is the name of the variable. `DecodeVinValuesBatch` will return multple flat format
  * objects, one for each VIN you search. The flat format is more efficient and easier to work with
  * as you won't have to iterate through a bunch of objects just to get all variable names/values.
  *
- * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinExtendedResults>>)} - Api Response object
  */

@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
  * information about the vehicle in in a _flat format_. This means the endpoint will return an
@@ -31,9 +31,8 @@ import type { NhtsaResponse } from '../../types';
  * "Variable", "Value", "ValueID" and "VariableID" properties.
  *
  *
- * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param {Object} [params] - Query Search Parameters to append to the URL
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinExtendedResults>>)} - Api Response object
  */

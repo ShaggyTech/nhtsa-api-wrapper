@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable
  * that are stored in the vPIC dataset.
@@ -8,7 +8,6 @@ import type { NhtsaResponse } from '../../types';
  *
  * `variableValue` can be also be a number, which is the ID of the variable, e.g., 1, 2, 3, etc.
  *
- * @async
  * @param {(string|number)} variableValue - The variable you want to get a values list of
  * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>)} - Api Response object
  */

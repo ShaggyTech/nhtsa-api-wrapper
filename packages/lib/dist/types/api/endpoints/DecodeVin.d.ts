@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `DecodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about
  * the vehicle.
@@ -26,9 +26,8 @@ import type { NhtsaResponse } from '../../types';
  * objects, one for each VIN you search. The flat format is more efficient and easier to work with
  * as you won't have to iterate through a bunch of objects just to get all variable names/values.
  *
- * @async
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param {Object} [params] - Query Search Parameters to append to the URL
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @returns {(Promise<NhtsaResponse<DecodeVinResults>>)} - Api Response object
  */

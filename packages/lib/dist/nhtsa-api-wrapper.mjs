@@ -1,46 +1,46 @@
-const a = ({
+const s = ({
   args: e,
-  mode: t = "default"
+  mode: r = "default"
 }) => {
   if (g(e) !== "array" && !e.length)
     throw Error(
       'catchInvalidArguments requires "args" that must be an array of IArgToValidate objects'
     );
-  if (t === "default")
-    e.forEach((r) => {
-      f(r);
+  if (r === "default")
+    e.forEach((t) => {
+      f(t);
     });
-  else if (t === "atLeast" && !e.find((n) => !!n.value))
+  else if (r === "atLeast" && !e.find((n) => !!n.value))
     throw Error(
       `must provide at least one of the following arguments: ${e.map((n) => n.name).join(", ")}`
     );
 }, f = ({
   name: e,
-  value: t,
-  required: r,
+  value: r,
+  required: t,
   types: n,
-  errorMode: o = "error"
+  errorMode: l = "error"
 }) => {
   if (g(e) !== "string")
     throw Error("'name', is required and must be of type string");
-  let c = "";
-  const l = g(t), s = `error validating argument named "${e}",`, d = `received value: ${t} - of type: <${l}>`;
+  let a = "";
+  const d = g(r), o = `error validating argument named "${e}",`, i = `received value: ${r} - of type: <${d}>`;
   if (n && g(n) !== "array" && !n.length)
-    throw Error(`${s} 'types' must be an array of strings`);
-  const y = n ? `<${n.join(" | ")}>` : "";
-  if (r && !n ? t || (c = `${s} is required, ${d}`) : n && !r ? t !== void 0 && !n.includes(l) && (c = `${s} must be of type(s) ${y}, ${d}`) : r && n && (!t || !n.includes(l)) && (c = `${s} is required and must be of type(s) ${y}, ${d}`), c.length) {
-    if (o === "boolean")
+    throw Error(`${o} 'types' must be an array of strings`);
+  const m = n ? `<${n.join(" | ")}>` : "";
+  if (t && !n ? r || (a = `${o} is required, ${i}`) : n && !t ? r !== void 0 && !n.includes(d) && (a = `${o} must be of type(s) ${m}, ${i}`) : t && n && (!r || !n.includes(d)) && (a = `${o} is required and must be of type(s) ${m}, ${i}`), a.length) {
+    if (l === "boolean")
       return !1;
-    throw Error(c);
+    throw Error(a);
   }
   return !0;
-}, b = (e) => g(e) === "error", q = (e) => {
-  let t = "an unknown error occurred.";
-  return b(e) ? e : (g(e) === "string" && (t = e), Error(t));
-}, u = async (e) => (b(e) || (e = q(e)), Promise.reject(e)), g = (e) => {
-  const t = Object.prototype.toString.call(e).toLowerCase();
-  return t.slice(8, t.length - 1);
-}, T = {
+}, V = (e) => g(e) === "error", $ = (e) => {
+  let r = "an unknown error occurred.";
+  return V(e) ? e : (g(e) === "string" && (r = e), Error(r));
+}, c = async (e) => (V(e) || (e = $(e)), Promise.reject(e)), g = (e) => {
+  const r = Object.prototype.toString.call(e).toLowerCase();
+  return r.slice(8, r.length - 1);
+}, k = {
   A: 1,
   B: 2,
   C: 3,
@@ -64,7 +64,7 @@ const a = ({
   X: 7,
   Y: 8,
   Z: 9
-}, $ = [
+}, N = [
   8,
   7,
   6,
@@ -83,221 +83,142 @@ const a = ({
   3,
   2
 ];
-function U(e) {
+function E(e) {
   if (typeof e != "string" || e.length != 17)
     return !1;
   e = e.toUpperCase();
-  const t = e.split(""), r = t[8];
-  if (isNaN(parseInt(r)) && r !== "X")
+  const r = e.split(""), t = r[8];
+  if (isNaN(parseInt(t)) && t !== "X")
     return !1;
-  const n = r === "X" ? 10 : parseInt(r);
-  return t.map((c, l) => {
-    let s;
-    isNaN(parseInt(c)) ? s = T[c] : s = parseInt(c);
-    const d = $[l];
-    return s * d;
-  }).reduce((c, l) => c + l, 0) % 11 === n;
+  const n = t === "X" ? 10 : parseInt(t);
+  return r.map((a, d) => {
+    let o;
+    isNaN(parseInt(a)) ? o = k[a] : o = parseInt(a);
+    const i = N[d];
+    return o * i;
+  }).reduce((a, d) => a + d, 0) % 11 === n;
 }
-const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
-  let e;
-  const t = ({
-    endpointName: o,
-    allowEmptyParams: c = !1,
-    includeQueryString: l = !0,
-    path: s = "",
-    params: d,
-    saveUrl: y = !0
-  }) => {
-    if (!o)
-      throw Error("Endpoint name is required to create URL string");
-    const m = l ? k(d, c) : "", h = encodeURI(
-      `${G}/${o}/${s}${m}`
-    );
-    return y && (e = h), h;
-  }, r = async (o, c = { saveUrl: !0 }) => (o = o ?? e, a({
-    args: [
-      {
-        name: "url",
-        value: o,
-        required: !0,
-        types: ["string"]
-      },
-      {
-        name: "options",
-        value: c,
-        types: ["object"]
-      }
-    ]
-  }), c.saveUrl && (e = o), await fetch(o, c).then(async (s) => {
-    if (!s.ok)
-      throw Error(`${s.status} ${s.url}`);
-    const d = s.headers.get("content-type"), m = ["application/json", "text/json"].some((V) => d == null ? void 0 : d.includes(V)), h = `content-type: ${d},responseStatus: ${s.status},responseUrl: ${s.url}`;
-    if (!m)
-      throw Error(
-        `API response is not in JSON format, got ${h}`
-      );
-    const v = await s.json();
-    if (!v)
-      throw Error(
-        `API responded but returned no data, got ${h}`
-      );
-    return v;
-  }).catch((s) => (s.message = `There was an error fetching API data: ${s.message}`, u(s))));
-  return {
-    createUrl: t,
-    get: r,
-    post: async (o, c = { saveUrl: !0 }) => (o = o ?? e, a({
-      args: [
-        {
-          name: "url",
-          value: o,
-          required: !0,
-          types: ["string"]
-        },
-        {
-          name: "options",
-          value: c,
-          types: ["object"]
-        },
-        {
-          name: "options.body",
-          value: c,
-          types: ["string"]
-        }
-      ]
-    }), await r(o, {
-      ...c,
-      method: "POST",
-      headers: { "content-type": "application/x-www-form-urlencoded" },
-      body: encodeURI(`${c == null ? void 0 : c.body}&format=${M}`)
-    }))
-  };
-}, k = (e, t = !1) => {
-  const r = { format: M }, n = g(e) === "object" ? { ...e, ...r } : r;
-  return "?" + Object.entries(p(n)).map(([c, l], s, d) => l.length || t && l === "" ? `${c}=${l}${s < d.length - 1 ? "&" : ""}` : "").join("");
-}, p = (e) => Object.entries(e).filter(
-  ([t, r]) => f({
+const j = "https://vpic.nhtsa.dot.gov/api/vehicles", q = "json", A = (e = {}, r = !1) => {
+  f({
+    name: "params",
+    value: e,
+    types: ["object"]
+  });
+  const t = b({
+    ...e,
+    format: q
+  });
+  return "?" + Object.entries(t).map(([n, l], a, d) => l.length || r && l === "" ? `${n}=${l}${a < d.length - 1 ? "&" : ""}` : "").join("");
+}, b = (e) => Object.entries(e).filter(
+  ([t, n]) => f({
     name: t,
     types: ["string", "number", "boolean"],
-    value: r,
+    value: n,
     errorMode: "boolean"
   })
-).reduce((t, [r, n]) => (t[r] = encodeURIComponent(n), t), {}), N = async (e, t) => {
-  const r = "DecodeVin";
+).reduce((t, [n, l]) => (t[n] = encodeURIComponent(l), t), {}), I = async (e, r) => {
+  const t = "DecodeVin";
   try {
     const n = [
       { name: "vin", value: e, required: !0, types: ["string"] },
-      { name: "params", value: t, types: ["object"] },
+      { name: "params", value: r, types: ["object"] },
       {
         name: "modelYear",
-        value: t == null ? void 0 : t.modelYear,
+        value: r == null ? void 0 : r.modelYear,
         types: ["string", "number"]
       }
     ];
-    a({ args: n });
-    const { createUrl: o, get: c } = i();
-    return o({ endpointName: r, path: e, params: t }), c();
+    return s({ args: n }), u().get({ endpointName: t, path: e, params: r });
   } catch (n) {
-    return u(n);
+    return c(n);
   }
-}, j = async (e, t) => {
-  const r = "DecodeVinExtended";
+}, S = async (e, r) => {
+  const t = "DecodeVinExtended";
   try {
     const n = [
       { name: "vin", value: e, required: !0, types: ["string"] },
-      { name: "params", value: t, types: ["object"] },
+      { name: "params", value: r, types: ["object"] },
       {
         name: "modelYear",
-        value: t == null ? void 0 : t.modelYear,
+        value: r == null ? void 0 : r.modelYear,
         types: ["string", "number"]
       }
     ];
-    a({ args: n });
-    const { createUrl: o, get: c } = i();
-    return o({ endpointName: r, path: e, params: t }), c();
+    return s({ args: n }), u().get({ endpointName: t, path: e, params: r });
   } catch (n) {
-    return u(n);
+    return c(n);
   }
-}, I = async (e, t) => {
-  const r = "DecodeVinValues";
+}, w = async (e, r) => {
+  const t = "DecodeVinValues";
   try {
     const n = [
       { name: "vin", value: e, required: !0, types: ["string"] },
-      { name: "params", value: t, types: ["object"] },
+      { name: "params", value: r, types: ["object"] },
       {
         name: "modelYear",
-        value: t == null ? void 0 : t.modelYear,
+        value: r == null ? void 0 : r.modelYear,
         types: ["string", "number"]
       }
     ];
-    a({ args: n });
-    const { createUrl: o, get: c } = i();
-    return o({ endpointName: r, path: e, params: t }), await c();
+    return s({ args: n }), u().get({ endpointName: t, path: e, params: r });
   } catch (n) {
-    return u(n);
+    return c(n);
   }
-}, A = async (e) => {
-  const t = "DecodeVinValuesBatch";
+}, Y = async (e) => {
+  const r = "DecodeVinValuesBatch";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "inputString",
         value: e,
         required: !0,
         types: ["string"]
       }
-    ] });
-    const n = `DATA=${e}`, { createUrl: o, post: c } = i();
-    return o({ endpointName: t, includeQueryString: !1 }), c(void 0, { body: n });
-  } catch (r) {
-    return u(r);
+    ] }), u().post({ endpointName: r }, { body: e });
+  } catch (t) {
+    return c(t);
   }
-}, E = async (e, t) => {
-  const r = "DecodeVinValuesExtended";
+}, D = async (e, r) => {
+  const t = "DecodeVinValuesExtended";
   try {
     const n = [
       { name: "vin", value: e, required: !0, types: ["string"] },
-      { name: "params", value: t, types: ["object"] },
+      { name: "params", value: r, types: ["object"] },
       {
         name: "modelYear",
-        value: t == null ? void 0 : t.modelYear,
+        value: r == null ? void 0 : r.modelYear,
         types: ["string", "number"]
       }
     ];
-    a({ args: n });
-    const { createUrl: o, get: c } = i();
-    return o({ endpointName: r, path: e, params: t }), await c();
+    return s({ args: n }), u().get({ endpointName: t, path: e, params: r });
   } catch (n) {
-    return u(n);
+    return c(n);
   }
-}, S = async (e) => {
-  const t = "DecodeWMI";
+}, F = async (e) => {
+  const r = "DecodeWMI";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "WMI",
         value: e,
         required: !0,
         types: ["string"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({ endpointName: t, path: e }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e });
+  } catch (t) {
+    return c(t);
   }
-}, Y = async () => {
+}, U = async () => {
   const e = "GetAllMakes";
   try {
-    const { createUrl: t, get: r } = i();
-    return t({ endpointName: e }), r();
-  } catch (t) {
-    return u(t);
+    return u().get({ endpointName: e });
+  } catch (r) {
+    return c(r);
   }
-}, w = async (e) => {
-  const t = "GetAllManufacturers";
+}, L = async (e) => {
+  const r = "GetAllManufacturers";
   try {
-    const r = [
+    const t = [
       { name: "params", value: e, types: ["object"] },
       {
         name: "manufacturerType",
@@ -310,16 +231,14 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
         types: ["string", "number"]
       }
     ];
-    a({ args: r });
-    const { createUrl: n, get: o } = i();
-    return n({ endpointName: t, params: e }), o();
-  } catch (r) {
-    return u(r);
+    return s({ args: t }), u().get({ endpointName: r, params: e });
+  } catch (t) {
+    return c(t);
   }
-}, F = async (e) => {
-  const t = "GetCanadianVehicleSpecifications";
+}, P = async (e) => {
+  const r = "GetCanadianVehicleSpecifications";
   try {
-    const r = [
+    const t = [
       { name: "params", value: e, required: !0, types: ["object"] },
       {
         name: "year",
@@ -331,10 +250,8 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
       { name: "model", value: e.model, types: ["string"] },
       { name: "units", value: e.units, types: ["string"] }
     ];
-    a({ args: r });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
+    return s({ args: t }), u().get({
+      endpointName: r,
       params: {
         make: "",
         model: "",
@@ -342,14 +259,14 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
         ...e
       },
       allowEmptyParams: !0
-    }), o();
-  } catch (r) {
-    return u(r);
+    });
+  } catch (t) {
+    return c(t);
   }
-}, D = async (e) => {
-  const t = "GetEquipmentPlantCodes";
+}, R = async (e) => {
+  const r = "GetEquipmentPlantCodes";
   try {
-    const r = [
+    const t = [
       { name: "params", value: e, required: !0, types: ["object"] },
       {
         name: "year",
@@ -370,36 +287,26 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
         types: ["string"]
       }
     ];
-    a({ args: r });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      params: e
-    }), o();
-  } catch (r) {
-    return u(r);
+    return s({ args: t }), u().get({ endpointName: r, params: e });
+  } catch (t) {
+    return c(t);
   }
-}, L = async (e) => {
-  const t = "GetMakeForManufacturer";
+}, O = async (e) => {
+  const r = "GetMakeForManufacturer";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "manufacturer",
         value: e,
         required: !0,
         types: ["string", "number"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e.toString()
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e.toString() });
+  } catch (t) {
+    return c(t);
   }
-}, P = async (e, t) => {
-  const r = "GetMakesForManufacturerAndYear";
+}, _ = async (e, r) => {
+  const t = "GetMakesForManufacturerAndYear";
   try {
     const n = [
       {
@@ -408,104 +315,82 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
         required: !0,
         types: ["string", "number"]
       },
-      { name: "params", value: t, required: !0, types: ["object"] },
+      { name: "params", value: r, required: !0, types: ["object"] },
       {
         name: "year",
-        value: t.year,
+        value: r.year,
         required: !0,
         types: ["string", "number"]
       }
     ];
-    a({ args: n });
-    const { createUrl: o, get: c } = i();
-    return o({
-      endpointName: r,
+    return s({ args: n }), u().get({
+      endpointName: t,
       path: e.toString(),
-      params: t
-    }), c();
+      params: r
+    });
   } catch (n) {
-    return u(n);
+    return c(n);
   }
-}, R = async (e) => {
-  const t = "GetMakesForVehicleType";
+}, C = async (e) => {
+  const r = "GetMakesForVehicleType";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "typeName",
         value: e,
         required: !0,
         types: ["string"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e });
+  } catch (t) {
+    return c(t);
   }
-}, O = async (e) => {
-  const t = "GetManufacturerDetails";
+}, x = async (e) => {
+  const r = "GetManufacturerDetails";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "manufacturer",
         value: e,
         required: !0,
         types: ["string", "number"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e.toString()
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e.toString() });
+  } catch (t) {
+    return c(t);
   }
-}, C = async (e) => {
-  const t = "GetModelsForMake";
+}, W = async (e) => {
+  const r = "GetModelsForMake";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "makeName",
         value: e,
         required: !0,
         types: ["string"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e });
+  } catch (t) {
+    return c(t);
   }
-}, _ = async (e) => {
-  const t = "GetModelsForMakeId";
+}, B = async (e) => {
+  const r = "GetModelsForMakeId";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "makeId",
         value: e,
         required: !0,
         types: ["string", "number"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e.toString()
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e.toString() });
+  } catch (t) {
+    return c(t);
   }
-}, x = async (e) => {
-  const t = "GetModelsForMakeIdYear";
+}, H = async (e) => {
+  const r = "GetModelsForMakeIdYear";
   try {
-    const r = [
+    const t = [
       {
         name: "modelYear",
         value: e.modelYear,
@@ -524,24 +409,19 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
         required: !0,
         types: ["string"]
       },
-      ...r
+      ...t
     ];
-    a({ args: n }), a({ args: r, mode: "atLeast" });
-    const { makeId: o, modelYear: c, vehicleType: l } = p(e);
-    let s = `/make/${o}/`;
-    s += c ? `modelYear/${c}` : "", s += l ? `${c ? "/" : ""}vehicleType/${l}/` : "";
-    const { createUrl: d, get: y } = i();
-    return d({
-      endpointName: t,
-      path: s
-    }), y();
-  } catch (r) {
-    return u(r);
+    s({ args: n }), s({ args: t, mode: "atLeast" });
+    const { makeId: l, modelYear: a, vehicleType: d } = b(e);
+    let o = `/make/${l}/`;
+    return o += a ? `modelYear/${a}` : "", o += d ? `${a ? "/" : ""}vehicleType/${d}/` : "", u().get({ endpointName: r, path: o });
+  } catch (t) {
+    return c(t);
   }
-}, W = async (e) => {
-  const t = "GetModelsForMakeYear";
+}, J = async (e) => {
+  const r = "GetModelsForMakeYear";
   try {
-    const r = [
+    const t = [
       {
         name: "modelYear",
         value: e.modelYear,
@@ -555,110 +435,82 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
     ], n = [
       { name: "params", value: e, required: !0, types: ["object"] },
       { name: "make", value: e.make, required: !0, types: ["string"] },
-      ...r
+      ...t
     ];
-    a({ args: n }), a({ args: r, mode: "atLeast" });
-    const { make: o, modelYear: c, vehicleType: l } = p(e);
-    let s = `/make/${o}/`;
-    s += c ? `modelYear/${c}` : "", s += l ? `${c ? "/" : ""}vehicleType/${l}/` : "";
-    const { createUrl: d, get: y } = i();
-    return d({
-      endpointName: t,
-      path: s
-    }), y();
-  } catch (r) {
-    return u(r);
+    s({ args: n }), s({ args: t, mode: "atLeast" });
+    const { make: l, modelYear: a, vehicleType: d } = b(e);
+    let o = `/make/${l}/`;
+    return o += a ? `modelYear/${a}` : "", o += d ? `${a ? "/" : ""}vehicleType/${d}/` : "", u().get({ endpointName: r, path: o });
+  } catch (t) {
+    return c(t);
   }
-}, B = async (e) => {
-  const t = "GetParts";
+}, Q = async (e) => {
+  const r = "GetParts";
   try {
-    const r = [
+    const t = [
       { name: "params", value: e, types: ["object"] },
       { name: "type", value: e == null ? void 0 : e.type, types: ["string", "number"] },
       { name: "fromDate", value: e == null ? void 0 : e.fromDate, types: ["string"] },
       { name: "toDate", value: e == null ? void 0 : e.toDate, types: ["string"] },
       { name: "page", value: e == null ? void 0 : e.page, types: ["string", "number"] }
     ];
-    a({ args: r });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      params: e
-    }), o();
-  } catch (r) {
-    return u(r);
+    return s({ args: t }), u().get({ endpointName: r, params: e });
+  } catch (t) {
+    return c(t);
   }
-}, H = async (e) => {
-  const t = "GetVehicleTypesForMake";
+}, X = async (e) => {
+  const r = "GetVehicleTypesForMake";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "makeName",
         value: e,
         required: !0,
         types: ["string"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e });
+  } catch (t) {
+    return c(t);
   }
-}, J = async (e) => {
-  const t = "GetVehicleTypesForMakeId";
+}, K = async (e) => {
+  const r = "GetVehicleTypesForMakeId";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "makeId",
         value: e,
         required: !0,
         types: ["string", "number"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e.toString()
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e.toString() });
+  } catch (t) {
+    return c(t);
   }
-}, Q = async () => {
+}, Z = async () => {
   const e = "GetVehicleVariableList";
   try {
-    const { createUrl: t, get: r } = i();
-    return t({
-      endpointName: e
-    }), r();
-  } catch (t) {
-    return u(t);
+    return u().get({ endpointName: e });
+  } catch (r) {
+    return c(r);
   }
-}, X = async (e) => {
-  const t = "GetVehicleVariableValuesList";
+}, z = async (e) => {
+  const r = "GetVehicleVariableValuesList";
   try {
-    a({ args: [
+    return s({ args: [
       {
         name: "variableValue",
         value: e,
         required: !0,
         types: ["string", "number"]
       }
-    ] });
-    const { createUrl: n, get: o } = i();
-    return n({
-      endpointName: t,
-      path: e.toString()
-    }), o();
-  } catch (r) {
-    return u(r);
+    ] }), u().get({ endpointName: r, path: e.toString() });
+  } catch (t) {
+    return c(t);
   }
-}, K = async (e) => {
-  const t = "GetWMIsForManufacturer";
+}, ee = async (e) => {
+  const r = "GetWMIsForManufacturer";
   try {
-    const r = [
+    const t = [
       {
         name: "manufacturer",
         value: e == null ? void 0 : e.manufacturer,
@@ -671,44 +523,130 @@ const G = "https://vpic.nhtsa.dot.gov/api/vehicles", M = "json", i = () => {
       }
     ], n = [
       { name: "params", value: e, required: !0, types: ["object"] },
-      ...r
+      ...t
     ];
-    a({ args: n }), a({ args: r, mode: "atLeast" });
-    const o = e != null && e.manufacturer ? encodeURIComponent(e.manufacturer) : "", c = (e == null ? void 0 : e.vehicleType) || "", { createUrl: l, get: s } = i();
-    return l({
-      endpointName: t,
-      path: o,
-      params: { vehicleType: c }
-    }), s();
-  } catch (r) {
-    return u(r);
+    s({ args: n }), s({ args: t, mode: "atLeast" });
+    const l = e != null && e.manufacturer ? encodeURIComponent(e.manufacturer) : "", a = (e == null ? void 0 : e.vehicleType) || "";
+    return u().get({
+      endpointName: r,
+      path: l,
+      params: { vehicleType: a }
+    });
+  } catch (t) {
+    return c(t);
   }
+}, u = () => {
+  let e;
+  const r = () => e, t = (o) => encodeURI(`DATA=${o}&format=${q}`), n = ({
+    endpointName: o,
+    allowEmptyParams: i = !1,
+    includeQueryString: m = !0,
+    path: y = "",
+    params: h,
+    saveUrl: p = !0
+  }) => {
+    if (!o)
+      throw Error("Endpoint name is required to create URL string");
+    const M = m ? A(h, i) : "", v = encodeURI(
+      `${j}/${o}/${y}${M}`
+    );
+    return p && (e = v), v;
+  }, l = (o) => n({ ...o, saveUrl: !1 }), a = async (o, i = { saveUrl: !0 }) => (o && g(o) === "object" && (o = n({ ...o, saveUrl: i.saveUrl })), o = g(o) === "string" ? o : r(), s({
+    args: [
+      {
+        name: "url",
+        value: o,
+        required: !0,
+        types: ["string"]
+      },
+      {
+        name: "options",
+        value: i,
+        types: ["object"]
+      }
+    ]
+  }), i.saveUrl && (e = o), await fetch(o, i).then(async (y) => {
+    if (!y)
+      throw Error(
+        "APi responded with an error, no response object returned"
+      );
+    const h = y.headers.get("content-type"), p = `content-type: ${h},responseStatus: ${y.status},responseUrl: ${y.url}`;
+    if (!y.ok)
+      throw Error(`APi responded with an error, got ${p}`);
+    if (!["application/json", "text/json"].some((G) => h == null ? void 0 : h.includes(G)))
+      throw Error(
+        `API response is not in JSON format, got ${p}`
+      );
+    const T = await y.json();
+    if (T)
+      return T;
+    throw Error(
+      `API response OK but returned no data, got ${p}`
+    );
+  }).catch((y) => (y.message = `There was an error fetching API data: ${y.message}`, c(y))));
+  return {
+    getUrl: r,
+    cacheUrl: n,
+    createUrl: l,
+    createPostBody: t,
+    get: a,
+    post: async (o, i = { saveUrl: !0 }) => (o && g(o) === "object" && (o = n({
+      ...o,
+      saveUrl: i.saveUrl,
+      includeQueryString: !1
+    })), o = g(o) === "string" ? o : r(), s({
+      args: [
+        {
+          name: "url",
+          value: o,
+          required: !0,
+          types: ["string"]
+        },
+        {
+          name: "options",
+          value: i,
+          types: ["object"]
+        },
+        {
+          name: "options.body",
+          value: i.body,
+          types: ["string"]
+        }
+      ]
+    }), await a(o, {
+      ...i,
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: t(i.body)
+    }))
+  };
 };
 export {
-  N as DecodeVin,
-  j as DecodeVinExtended,
-  I as DecodeVinValues,
-  A as DecodeVinValuesBatch,
-  E as DecodeVinValuesExtended,
-  S as DecodeWMI,
-  Y as GetAllMakes,
-  w as GetAllManufacturers,
-  F as GetCanadianVehicleSpecifications,
-  D as GetEquipmentPlantCodes,
-  L as GetMakeForManufacturer,
-  P as GetMakesForManufacturerAndYear,
-  R as GetMakesForVehicleType,
-  O as GetManufacturerDetails,
-  C as GetModelsForMake,
-  _ as GetModelsForMakeId,
-  x as GetModelsForMakeIdYear,
-  W as GetModelsForMakeYear,
-  B as GetParts,
-  H as GetVehicleTypesForMake,
-  J as GetVehicleTypesForMakeId,
-  Q as GetVehicleVariableList,
-  X as GetVehicleVariableValuesList,
-  K as GetWMIsForManufacturer,
-  U as isValidVin
+  I as DecodeVin,
+  S as DecodeVinExtended,
+  w as DecodeVinValues,
+  Y as DecodeVinValuesBatch,
+  D as DecodeVinValuesExtended,
+  F as DecodeWMI,
+  U as GetAllMakes,
+  L as GetAllManufacturers,
+  P as GetCanadianVehicleSpecifications,
+  R as GetEquipmentPlantCodes,
+  O as GetMakeForManufacturer,
+  _ as GetMakesForManufacturerAndYear,
+  C as GetMakesForVehicleType,
+  x as GetManufacturerDetails,
+  W as GetModelsForMake,
+  B as GetModelsForMakeId,
+  H as GetModelsForMakeIdYear,
+  J as GetModelsForMakeYear,
+  Q as GetParts,
+  X as GetVehicleTypesForMake,
+  K as GetVehicleTypesForMakeId,
+  Z as GetVehicleVariableList,
+  z as GetVehicleVariableValuesList,
+  ee as GetWMIsForManufacturer,
+  E as isValidVin,
+  u as useNHTSA
 };
 //# sourceMappingURL=nhtsa-api-wrapper.mjs.map

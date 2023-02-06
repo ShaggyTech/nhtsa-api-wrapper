@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns
  * useful information about the vehicles in in a _flat format_. This means the endpoint will return
@@ -10,7 +10,7 @@ import type { NhtsaResponse } from '../../types';
  * char.
  *
  * The `inputString` parameter should be in the following format:
- * - ex: `5UXWX7C5\*BA,2011; 5YJSA3DS\*EF`
+ * - ex: `5UXWX7C5*BA, 2011; 5YJSA3DS*EF`
  * - no modelYear: `vin; vin; vin`
  * - with modelYear: `vin, modelYear; vin, modelYear; vin, modelYear`
  * - mix of with/without modelYear: `vin; vin, modelYear`
@@ -35,15 +35,13 @@ import type { NhtsaResponse } from '../../types';
  * "Variable", "Value", "ValueID" and "VariableID" properties.
  *
  * *NOTE:* This endpoint is the only one to use a POST request instead of a GET request. We want to
- * ensure that response format is always set to 'json' in all requests, even POST requests. Due to
- * the way this particular endpoint operates, we can't set the response format to 'json' in a query
- * string like every other endpoint, as POST requests do not allow query strings. Therefore, we
+ * ensure that response format is always set to 'json' in all requests, even POST requests. as POST
+ * requests do not allow query strings, we can't set the response format to 'json' in a query
+ * string like every other endpoint. Therefore, we
  * have to set the response format in the body of the request before sending it. This is performed
- * internally by the post function in `useFetch` composable but it is worth noting here.  We also
- * set `includeQueryString` to `false` in `createUrl` function here because we don't want to
- * include the default query string when building the url for this endpoint.
+ * internally by the post function in `useNHTSA` composable but it is worth noting here.  We also
  *
- * @async
+ *
  * @param {string} inputString - A string of Vehicle Identification Numbers (full or partial)
  * following the format listed in the description
  * @returns {(Promise<DecodeVINValuesBatchResponse>)} - Api Response object

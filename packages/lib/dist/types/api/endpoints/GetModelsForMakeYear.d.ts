@@ -1,4 +1,4 @@
-import type { NhtsaResponse, AtLeastOne } from '../../types';
+import type { NhtsaResponse, AtLeastOne } from '@/types';
 /**
  * `GetModelsForMakeYear` returns the Models in the vPIC dataset for a specified Model Year and
  * Make whose name is LIKE the Make in the vPIC Dataset.
@@ -17,8 +17,7 @@ import type { NhtsaResponse, AtLeastOne } from '../../types';
  * endpoint. To account for this, we pass the params object to the `createUrl` function as the
  * `path`, after encoding the params object key:values into a url path string.
  *
- * @async
- * @param {Object} params - Query Search Parameters to append to the URL
+ * @param params - Object of Query Search names and values to append to the URL as a query string
  * @param {string} params.make - Make name to search
  * @param {(string|number)} [params.modelYear] - A number representing the model year to search
  * (required if !vehicleType)

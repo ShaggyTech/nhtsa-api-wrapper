@@ -1,11 +1,10 @@
-import type { AtLeastOne, NhtsaResponse } from '../../types';
+import type { AtLeastOne, NhtsaResponse } from '@/types';
 /**
  * `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
  * specified `manufacturer`. Only WMIs registered in vPICList are displayed. Multiple results are
  * returned in case of multiple matches.
  *
- * Both `params.manufacturer` and `params.vehicleType` are optional but at least one must be
- * provided.
+ * Both `manufacturer` and `vehicleType` are optional but at least one must be provided.
  *
  * `manufacturer` can be a partial name, or a full name for more specificity, or WMI ID number,
  *  e.g., "Merc", "Mercedes Benz", 987, etc.
@@ -18,9 +17,14 @@ import type { AtLeastOne, NhtsaResponse } from '../../types';
  * - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
  *   name (it accepts a partial VehicleType name as an input).
  *
- * @async
- * @param {Object} params - Query Search Parameters to append to the URL.
- * @param {(string|number)} [params.manufacturer] - Manufacturer Name, or Manufacturer ID, or WMI ID
+ * For this endpoint, `manufacturer` is actually part of the path string, not a query param. We
+ * include `manufacturer` in params as it's easier to type the function args using the 'AtLeastOne'
+ * type if they are placed in the same object (params). This can cause confusion as it's not
+ * consistent with other endpoint methods where path string is the first arg, and the query params
+ * are the second arg.
+ *
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
+ * @param {(string|number)} [params.manufacturer] - Manufacturer Name or ID, or WMI ID
  * (required if !vehicleType)
  * @param {(string|number)} [params.vehicleType] - Optional Vehicle Type search parameter
  * (required if !manufacturer)

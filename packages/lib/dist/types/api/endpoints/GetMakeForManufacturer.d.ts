@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '../../types';
+import type { NhtsaResponse } from '@/types';
 /**
  * `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
  * that is requested. Multiple results are returned in case of multiple matches.
@@ -10,7 +10,6 @@ import type { NhtsaResponse } from '../../types';
  * - If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the
  *   provided name. It accepts a partial manufacturer name as an input.
  *
- * @async
  * @param {(string|number)} manufacturer - Manufacturer Name or ID
  * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults>>)} - Api Response object
  */
