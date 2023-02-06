@@ -1,4 +1,5 @@
-import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
@@ -27,13 +28,7 @@ export const GetVehicleTypesForMake = async (
     ]
     catchInvalidArguments({ args })
 
-    const { createUrl, get } = useFetch()
-    createUrl({
-      endpointName,
-      path: makeName,
-    })
-
-    return get()
+    return useNHTSA().get({ endpointName, path: makeName })
   } catch (error) {
     return rejectWithError(error)
   }

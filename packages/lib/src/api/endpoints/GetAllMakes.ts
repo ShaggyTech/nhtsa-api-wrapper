@@ -1,4 +1,5 @@
-import { rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { rejectWithError } from '@/utils'
 import type { NhtsaResponse } from '@/types'
 
 /**
@@ -16,10 +17,7 @@ export const GetAllMakes = async (): Promise<
   const endpointName = 'GetAllMakes'
 
   try {
-    const { createUrl, get } = useFetch()
-    createUrl({ endpointName })
-
-    return get()
+    return useNHTSA().get({ endpointName })
   } catch (error) {
     return rejectWithError(error)
   }

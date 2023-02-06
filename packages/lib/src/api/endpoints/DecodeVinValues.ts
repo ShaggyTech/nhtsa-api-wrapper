@@ -1,4 +1,5 @@
-import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
@@ -52,10 +53,7 @@ export const DecodeVinValues = async (
     ]
     catchInvalidArguments({ args })
 
-    const { createUrl, get } = useFetch()
-    createUrl({ endpointName, path: vin, params })
-
-    return await get()
+    return useNHTSA().get({ endpointName, path: vin, params })
   } catch (error) {
     return rejectWithError(error)
   }

@@ -1,4 +1,5 @@
-import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
@@ -33,10 +34,7 @@ export const DecodeWMI = async (
     ]
     catchInvalidArguments({ args })
 
-    const { createUrl, get } = useFetch()
-    createUrl({ endpointName, path: WMI })
-
-    return get()
+    return useNHTSA().get({ endpointName, path: WMI })
   } catch (error) {
     return rejectWithError(error)
   }

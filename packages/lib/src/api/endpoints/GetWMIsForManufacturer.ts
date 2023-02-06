@@ -1,4 +1,5 @@
-import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
@@ -6,8 +7,7 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
  * specified `manufacturer`. Only WMIs registered in vPICList are displayed. Multiple results are
  * returned in case of multiple matches.
  *
- * Both `params.manufacturer` and `params.vehicleType` are optional but at least one must be
- * provided.
+ * Both `manufacturer` and `vehicleType` are optional but at least one must be provided.
  *
  * `manufacturer` can be a partial name, or a full name for more specificity, or WMI ID number,
  *  e.g., "Merc", "Mercedes Benz", 987, etc.
@@ -19,6 +19,12 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
  * - If `vehicleType` is a number - method will do exact match on VehicleType's Id
  * - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
  *   name (it accepts a partial VehicleType name as an input).
+ *
+ * For this endpoint, `manufacturer` is actually part of the path string, not a query param. We
+ * include `manufacturer` in params as it's easier to type the function args using the 'AtLeastOne'
+ * type if they are placed in the same object (params). This can cause confusion as it's not
+ * consistent with other endpoint methods where path string is the first arg, and the query params
+ * are the second arg.
  *
  * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.manufacturer] - Manufacturer Name or ID, or WMI ID
@@ -56,26 +62,17 @@ export const GetWMIsForManufacturer = async (
     catchInvalidArguments({ args })
     catchInvalidArguments({ args: atLeastOne, mode: 'atLeast' })
 
-    /*
-     * manufacturer and vehicleType are optional but at least one must be provided.
-     * `manufacturer` is actually part of the path for this endpoint and not a query param.
-     * We include `manufacturer` in params as it's easier to type the function using 'AtLeastOne'
-     * type if they are placed in the same object. Maybe a little confusing to end user as it's
-     * not consistent with other endpoints.
-     */
+    /* manufacturer is part of the path string, not a query param */
     const manufacturer = params?.manufacturer
       ? encodeURIComponent(params.manufacturer)
       : ''
     const vehicleType = params?.vehicleType || ''
 
-    const { createUrl, get } = useFetch()
-    createUrl({
+    return useNHTSA().get({
       endpointName,
       path: manufacturer,
       params: { vehicleType },
     })
-
-    return get()
   } catch (error) {
     return rejectWithError(error)
   }

@@ -1,4 +1,5 @@
-import { catchInvalidArguments, rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
@@ -12,7 +13,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * char.
  *
  * The `inputString` parameter should be in the following format:
- * - ex: `5UXWX7C5\*BA,2011; 5YJSA3DS\*EF`
+ * - ex: `5UXWX7C5*BA, 2011; 5YJSA3DS*EF`
  * - no modelYear: `vin; vin; vin`
  * - with modelYear: `vin, modelYear; vin, modelYear; vin, modelYear`
  * - mix of with/without modelYear: `vin; vin, modelYear`
@@ -41,7 +42,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * requests do not allow query strings, we can't set the response format to 'json' in a query
  * string like every other endpoint. Therefore, we
  * have to set the response format in the body of the request before sending it. This is performed
- * internally by the post function in `useFetch` composable but it is worth noting here.  We also
+ * internally by the post function in `useNHTSA` composable but it is worth noting here.  We also
  *
  *
  * @param {string} inputString - A string of Vehicle Identification Numbers (full or partial)
@@ -64,12 +65,7 @@ export const DecodeVinValuesBatch = async (
     ]
     catchInvalidArguments({ args })
 
-    const { createUrl, post } = useFetch()
-    /* we use includeQueryString = false because we are making a PO
-     * include the default query string when building the url for this endpoint.  */
-    createUrl({ endpointName, includeQueryString: false })
-
-    return post(undefined, { body: inputString })
+    return useNHTSA().post({ endpointName }, { body: inputString })
   } catch (error) {
     return rejectWithError(error)
   }

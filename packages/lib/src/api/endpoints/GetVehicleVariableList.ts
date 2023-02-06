@@ -1,4 +1,5 @@
-import { rejectWithError, useFetch } from '@/utils'
+import { useNHTSA } from '@/api'
+import { rejectWithError } from '@/utils'
 import type { NhtsaResponse } from '@/types'
 
 /**
@@ -13,12 +14,7 @@ export const GetVehicleVariableList = async (): Promise<
   const endpointName = 'GetVehicleVariableList'
 
   try {
-    const { createUrl, get } = useFetch()
-    createUrl({
-      endpointName,
-    })
-
-    return get()
+    return useNHTSA().get({ endpointName })
   } catch (error) {
     return rejectWithError(error)
   }

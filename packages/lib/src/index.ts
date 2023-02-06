@@ -1,6 +1,3 @@
-export * from './types'
-
-export { isValidVin } from './utils'
 export {
   DecodeVin,
   DecodeVinExtended,
@@ -26,4 +23,9 @@ export {
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
   GetWMIsForManufacturer,
-} from './api'
+  useNHTSA,
+} from '@/api'
+
+export { isValidVin } from '@/utils'
+
+export * from '@/types'

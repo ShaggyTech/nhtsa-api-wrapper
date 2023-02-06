@@ -1,8 +1,8 @@
+import { useNHTSA } from '@/api'
 import {
   catchInvalidArguments,
   encodeQueryStringParams,
   rejectWithError,
-  useFetch,
 } from '@/utils'
 import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '@/types'
 
@@ -76,13 +76,7 @@ export const GetModelsForMakeYear = async (
       ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}/`
       : ''
 
-    const { createUrl, get } = useFetch()
-    createUrl({
-      endpointName,
-      path,
-    })
-
-    return get()
+    return useNHTSA().get({ endpointName, path })
   } catch (error) {
     return rejectWithError(error)
   }
