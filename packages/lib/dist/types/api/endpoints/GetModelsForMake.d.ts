@@ -8,8 +8,12 @@ import type { NhtsaResponse } from '@/types';
  *
  * @param {string} makeName - Vehicle make name
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetModelsForMakeResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
-export declare const GetModelsForMake: (makeName: string) => Promise<NhtsaResponse<GetModelsForMakeResults>>;
+export declare const GetModelsForMake: (makeName: string, doFetch?: boolean) => Promise<NhtsaResponse<GetModelsForMakeResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetModelsForMake endpoint
  *

@@ -42,7 +42,9 @@ section.
 
 ### This package provides two ways to interact with the API:
 
-- The first is a set of 24 functions to retrieve data from each of the API endpoints.
+- The first is a set of 24 functions to retrieve data from each of the API endpoints. You can also
+  use them to build the API url and query parameters for you to use with your own fetch
+  implementation.
 - The second is a function that takes input parameters and returns the full API endpoint URL
   for you to use with your own fetch implementation.
 
@@ -55,9 +57,9 @@ you.
 Example:
 
 ```javascript
-import { DecodeVin } from "@shaggytools/nhtsa-api-wrapper";
+import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
 
-const results = await DecodeVin("WA1A4AFY2J2008189", { modelYear: 2018 });
+const results = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 })
 /* 
 results = {
   Count: 136, - number of Results objects returned
@@ -68,41 +70,95 @@ results = {
 */
 ```
 
-#### Endpoint URL Builder (`useNHTSA`):
+#### Endpoint URL Builder (`doFetch = false` -or- `useNHTSA`):
 
 Using it as a URL builder is useful if you want to use your own fetch implementation or your project
 runtime doesn't support native fetch and you don't want to use a polyfill.
 
-This package exports `useNHTSA` which is a composable function that returns an object of helper
-functions to interact with the API. The `createUrl` function is the only one you need to use to
-build the API endpoint URL. If you're making a POST request, you can use the `createBody` function
-to build the request body properly formatted for the API. There are other helper functions exported
-by `useNHTSA` that are used internally but you don't need to use them in this case.
+There are two ways to use this package as a URL builder only:
 
-See:
+- pass `false` as the last argument of the endpoint helper function, this sets the `doFetch` boolean
+  to `false` and returns the full API endpoint URL for you to use with your own fetch implementation.
+  No fetching will happen.
+- use the `useNHTSA` hook to get the `createURL` function. This is used under the hood by the endpoint
+  functions to build the API endpoint URL. You can use it to build the URL for any of the 24 endpoints
+  and use it with your own fetch implementation.
 
-- [Alternate Use Without Polyfills](#alternate-use-without-polyfills)
-- [This Package Uses Native Fetch](#this-package-uses-native-fetch)
+See [Alternate Use Without Polyfills](#alternate-use-without-polyfills) for more info.
+
+##### Setting `doFetch` boolean to `false`:
+
+You can prevent the endpoint helper functions (DecodeVin, etc.) from making the request and instead
+return the full API endpoint URL for you to use with your own fetch implementation. To use it in
+this way, pass boolean `false` as the last (or only depending on endpoint) arg of the
+endpoint helper function. The endpoint helper function will then return the full API endpoint URL
+and skip fetching the request for you.
+
+Special note that some endpoints require query params and some don't. If the endpoint has optional
+query params, you don't have to passs in an empty object as `params` arg, nor set the `params` arg
+to undefined, simply omit the params and use `doFetch` boolean in it's place.
+
+For example if an endpoint helper function takes a **required** first arg, **optional** `params`
+object as the second, and `doFetch` boolean as the third, you can do the following:
+
+```javascript
+// you can do this:
+const results = await DecodeVin('WA1A4AFY2J2008189', false)
+// instead of passing `params` arg as undefined like this:
+const results2 = await DecodeVin('WA1A4AFY2J2008189', undefined, false)
+```
+
+If the endpoint function has **optional** `params` as first arg, and `doFetch` boolean as the second,
+you can do the following:
+
+```javascript
+// you can do this:
+const results = await GetAllManufacturers(false)
+// instead of passing undefined as the first arg like this:
+const results2 = await GetAllManufacturers(undefined, false)
+```
+
+All other cases, simply use the `doFetch` boolean as the last arg.
+
+##### Using `useNHTSA` composable and `createURL` function:
+
+Another way to use this package as a URL builder only is a function this package exports called
+`useNHTSA`, which is a composable function that returns an object of helper functions to interact
+with the API.
+
+The `createUrl` function from `useNHTSA` is the only one you need to use to build the API endpoint
+URL.
+
+If you're making a POST request, you can also use the `createBody` from `useNHTSA` composable to build
+the request body properly formatted for the API.
+
+There are other helper functions exported by `useNHTSA` that are used internally but you don't need
+to use them in this case.
 
 Example (using axios as the fetch implementation)):
 
 ```javascript
-import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
-import axios from "axios"; // or any other fetch implementation
+import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
+import axios from 'axios' // or any other fetch implementation
 
 // composable destructuring
-const { createUrl } = useNHTSA();
+const { createUrl } = useNHTSA()
 
 // alternatively: useNHTSA().createUrl({ ... })
 const url = createUrl({
-  endpointName: "DecodeVin",
-  path: "WA1A4AFY2J2008189",
+  endpointName: 'DecodeVin',
+  path: 'WA1A4AFY2J2008189',
   params: { modelYear: 2018 },
-});
+})
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 
-const results = await axios.get(url);
+const results = await axios.get(url)
 ```
+
+See Also:
+
+- [Alternate Use Without Polyfills](#alternate-use-without-polyfills)
+- [This Package Uses Native Fetch](#this-package-uses-native-fetch)
 
 ---
 
@@ -116,9 +172,9 @@ See [Offline VIN Validation](#offline-vin-validation) for more information.
 Example:
 
 ```javascript
-import { isValidVin } from "@shaggytools/nhtsa-api-wrapper";
+import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
 
-const isValid = isValidVin("WA1A4AFY2J2008189");
+const isValid = isValidVin('WA1A4AFY2J2008189')
 // isValid = true
 ```
 
@@ -271,7 +327,7 @@ import {
   useNHTSA,
   // function for offline VIN validation
   isValidVin,
-} from "@shaggytools/nhtsa-api-wrapper";
+} from '@shaggytools/nhtsa-api-wrapper'
 ```
 
 ---
@@ -538,29 +594,115 @@ point (or at least, before the package that needs fetch is imported):
 - server:
 
 ```ts
-import fetch from "node-fetch";
-global.fetch = fetch;
+import fetch from 'node-fetch'
+global.fetch = fetch
 
 // only import the package _after_
-import packageThatUsesFetch from "package-that-uses-fetch";
+import packageThatUsesFetch from 'package-that-uses-fetch'
 ```
 
 - browser:
 
 ```ts
 // browser
-import "whatwg-fetch";
+import 'whatwg-fetch'
 
 // only import the package _after_
-import packageThatUsesFetch from "package-that-uses-fetch";
+import packageThatUsesFetch from 'package-that-uses-fetch'
 ```
 
 From then on, you're free to use the package as you see fit.
 
 ### Alternate Use Without Polyfills
 
-If you don't want to polyfill native fetch for unsupported runtimes, you can still use this package
-as a URL builder to easily create URLs compatible with the NHTSA API.
+There are two ways to use this package as a URL builder only and not depend on native fetch:
+
+- pass `false` as the last argument of the endpoint helper function, this sets the `doFetch` boolean
+  to `false` and returns the full API endpoint URL for you to use with your own fetch implementation.
+  No fetching will happen.
+- use the `useNHTSA` composable to get the `createURL` function. This is used under the hood by the
+  endpoint functions to build the API endpoint URL. You can use it to build the URL for any of the
+  24 endpoints and use it with your own fetch implementation.
+
+See [Alternate Use Without Polyfills](#alternate-use-without-polyfills) for more info.
+
+#### Setting `doFetch` boolean to `false`
+
+This is the easiest way to use your own fetch implementation.
+
+You can prevent the endpoint helper functions (DecodeVin, etc.) from making the request and instead
+return the full API endpoint URL for you to use with your own fetch implementation.
+
+To use it in this way, pass boolean `false` as the last (or only depending on endpoint) arg of the
+endpoint helper function. The endpoint helper function will then return the full API endpoint URL
+and skip fetching the request for you.
+
+Special note that some endpoints require query params and some don't. If the endpoint has optional
+query params, you don't have to passs in an empty object as `params` arg, nor set the `params` arg
+to undefined, simply omit the params and use `doFetch` boolean in it's place.
+
+For example if an endpoint helper function takes a **required** first arg, **optional** `params`
+object as the second, and `doFetch` boolean as the third, you can do the following:
+
+```javascript
+// you can do this:
+const results = await DecodeVin('WA1A4AFY2J2008189', false)
+// instead of passing `params` arg as undefined like this:
+const results2 = await DecodeVin('WA1A4AFY2J2008189', undefined, false)
+// or if you're using optional params for this endpoint you would do this:
+const results3 = await DecodeVin(
+  'WA1A4AFY2J2008189',
+  { modelYear: 2018 },
+  false
+)
+```
+
+If the endpoint function has **optional** `params` as first arg, and `doFetch` boolean as the second,
+you can do the following:
+
+```javascript
+// you can do this:
+const results = await GetAllManufacturers(false)
+// instead of passing undefined as the first arg like this:
+const results2 = await GetAllManufacturers(undefined, false)
+```
+
+All other cases, simply use the `doFetch` boolean as the last arg.
+
+#### Using `useNHTSA` composable and `createURL` function
+
+Another way to use this package as a URL builder only is a function this package exports called
+`useNHTSA`, which is a composable function that returns an object of helper functions to interact
+with the API.
+
+The `createUrl` function from `useNHTSA` is the only one you need to use to build the API endpoint
+URL.
+
+If you're making a POST request, you can also use the `createBody` from `useNHTSA` composable to build
+the request body properly formatted for the API.
+
+There are other helper functions exported by `useNHTSA` that are used internally but you don't need
+to use them in this case.
+
+Example (using axios as the fetch implementation)):
+
+```javascript
+import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
+import axios from 'axios' // or any other fetch implementation
+
+// composable destructuring
+const { createUrl } = useNHTSA()
+
+// alternatively: useNHTSA().createUrl({ ... })
+const url = createUrl({
+  endpointName: 'DecodeVin',
+  path: 'WA1A4AFY2J2008189',
+  params: { modelYear: 2018 },
+})
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
+
+const results = await axios.get(url)
+```
 
 You can use the `cacheUrl` or `createUrl` methods from the `useNHTSA` composable that this package
 exports. Use either one of them to get the URL string based on the endpoint name, path, and params.
@@ -601,7 +743,7 @@ Here are the CreateUrlOptions for `cacheUrl` and `createUrl`:
 - `includeQueryString` - If true, the query string will be included in the url (default: true)
 - `saveUrl` - If true, the url will be cached in the composable instance (default: true)
 
-#### Using GET
+##### Using GET
 
 Here's a simplified example of retrieving data from the NHTSA API using this package as a URL
 builder ONLY. This example uses axios as the fetch implementation, but you can use any fetch
@@ -609,21 +751,21 @@ implementation you want. The purpose of this example is to show how to use creat
 the URL string from this package and then use your own fetch implementation to make the request.
 
 ```javascript
-import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
-import axios from "axios";
+import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
+import axios from 'axios'
 
-const { createUrl } = useNHTSA();
+const { createUrl } = useNHTSA()
 const url = createUrl({
-  endpointName: "DecodeVin",
-  path: "SOME_VIN",
+  endpointName: 'DecodeVin',
+  path: 'SOME_VIN',
   params: {
     modelyear: 2011,
   },
-});
+})
 // url = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/SOME_VIN?modelYear=2011&format=json"
 
 // use your own fetch implementation to make the GET request, axios in this example
-const response = await axios.get(url);
+const response = await axios.get(url)
 ```
 
 `endpointName` is the NHTSA API endpoint you're trying to use. `DecodeVin` in the example below.
@@ -635,7 +777,7 @@ to the final query string that is built for you. Keep in mind, `path` and `param
 each endpoint. If the endpoint doesn't require a path or params you can omit those keys from the
 createUrl object and just provide `endpointName`.
 
-#### Using POST
+##### Using POST
 
 Note that POST requests to the NHTSA API requires body to be a string and certain headers set.
 The post() method of this composable will handle this for you, but if you use createUrl() to get
@@ -646,21 +788,21 @@ FYI `DecodeVinValuesBatch` is the only endpoint that uses a POST request.
 Here is a simplified example of how to make a POST request with your own fetch implementation:
 
 ```javascript
-import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
-import axios from "axios";
+import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
+import axios from 'axios'
 
-const { createUrl, createPostBody } = useNHTSA();
+const { createUrl, createPostBody } = useNHTSA()
 const url = createUrl({
-  endpointName: "DecodeVinValuesBatch",
+  endpointName: 'DecodeVinValuesBatch',
   includeQueryString: false,
-});
-const body = createPostBody("5UXWX7C5*BA; 5UXWX7C5*BB");
+})
+const body = createPostBody('5UXWX7C5*BA; 5UXWX7C5*BB')
 // body = "DATA=5UXWX7C5*BA;%205UXWX7C5*BB&format=json "
 const headers = {
-  "Content-Type": "application/x-www-form-urlencoded",
-};
+  'Content-Type': 'application/x-www-form-urlencoded',
+}
 // use your own fetch implementation to make the POST request, axios in this example
-const response = await axios.post(url, body, { headers });
+const response = await axios.post(url, body, { headers })
 ```
 
 It requires a few things:

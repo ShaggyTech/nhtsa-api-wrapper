@@ -9,9 +9,12 @@ import type { NhtsaResponse } from '@/types';
  * `variableValue` can be also be a number, which is the ID of the variable, e.g., 1, 2, 3, etc.
  *
  * @param {(string|number)} variableValue - The variable you want to get a values list of
- * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
-export declare const GetVehicleVariableValuesList: (variableValue: number | string) => Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>;
+export declare const GetVehicleVariableValuesList: (variableValue: number | string, doFetch?: boolean) => Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableValuesList endpoint
  *

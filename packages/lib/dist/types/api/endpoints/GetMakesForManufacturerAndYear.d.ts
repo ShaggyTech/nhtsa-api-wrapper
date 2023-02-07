@@ -19,11 +19,14 @@ import type { NhtsaResponse } from '@/types';
  * @param {(string|number)} manufacturer - Manufacturer Name (string) or Manufacturer ID (number)
  * @param params - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} params.year - Model year of the vehicle - Number, >= 2016
- * @returns {(Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string>)} - Api
+ * Response `object` -or- url `string` if `doFetch = false`
  */
 export declare const GetMakesForManufacturerAndYear: (manufacturer: string, params: {
     year: string | number;
-}) => Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>>;
+}, doFetch?: boolean) => Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetMakesForManufacturerAndYear endpoint
  *

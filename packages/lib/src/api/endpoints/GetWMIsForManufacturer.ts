@@ -31,14 +31,18 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
  * (required if !vehicleType)
  * @param {(string|number)} [params.vehicleType] - Optional Vehicle Type search parameter
  * (required if !manufacturer)
- * @returns {(Promise<NhtsaResponse<GetWMIsForManufacturerResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export const GetWMIsForManufacturer = async (
   params: AtLeastOne<{
     manufacturer?: string | number
     vehicleType?: string | number
-  }>
-): Promise<NhtsaResponse<GetWMIsForManufacturerResults>> => {
+  }>,
+  doFetch = true
+): Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string> => {
   const endpointName = 'GetWMIsForManufacturer'
 
   try {
@@ -68,11 +72,15 @@ export const GetWMIsForManufacturer = async (
       : ''
     const vehicleType = params?.vehicleType || ''
 
-    return useNHTSA().get({
-      endpointName,
-      path: manufacturer,
-      params: { vehicleType },
-    })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path: manufacturer, params: { vehicleType } })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

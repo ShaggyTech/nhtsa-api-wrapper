@@ -38,7 +38,7 @@ export type CreateUrlOptions = {
  *
  * - `createUrl` - Builds the URL string but does not store it in internal state
  *
- * - `getURL` - Returns the internal URL string
+ * - `getCachedUrl` - Returns the internal URL string
  *
  */
 export const useNHTSA = () => {
@@ -46,7 +46,7 @@ export const useNHTSA = () => {
   let _url: string
 
   /** Gets url from internal state */
-  const getUrl = () => _url
+  const getCachedUrl = () => _url
 
   /** Function to create final POST body string */
   const createPostBody = (data: string) => {
@@ -199,7 +199,7 @@ export const useNHTSA = () => {
       url = cacheUrl({ ...(url as CreateUrlOptions), saveUrl: options.saveUrl })
     }
 
-    url = getTypeof(url) === 'string' ? url : getUrl()
+    url = getTypeof(url) === 'string' ? url : getCachedUrl()
 
     catchInvalidArguments({
       args: [
@@ -333,7 +333,7 @@ export const useNHTSA = () => {
       })
     }
 
-    url = getTypeof(url) === 'string' ? url : getUrl()
+    url = getTypeof(url) === 'string' ? url : getCachedUrl()
 
     catchInvalidArguments({
       args: [
@@ -366,7 +366,7 @@ export const useNHTSA = () => {
   }
 
   return {
-    getUrl,
+    getCachedUrl,
     cacheUrl,
     createUrl,
     createPostBody,

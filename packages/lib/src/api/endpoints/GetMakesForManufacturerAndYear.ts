@@ -22,14 +22,18 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @param {(string|number)} manufacturer - Manufacturer Name (string) or Manufacturer ID (number)
  * @param params - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} params.year - Model year of the vehicle - Number, >= 2016
- * @returns {(Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string>)} - Api
+ * Response `object` -or- url `string` if `doFetch = false`
  */
 export const GetMakesForManufacturerAndYear = async (
   manufacturer: string,
   params: {
     year: string | number
-  }
-): Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>> => {
+  },
+  doFetch = true
+): Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string> => {
   const endpointName = 'GetMakesForManufacturerAndYear'
 
   try {
@@ -50,11 +54,19 @@ export const GetMakesForManufacturerAndYear = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({
       endpointName,
       path: manufacturer.toString(),
       params,
     })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

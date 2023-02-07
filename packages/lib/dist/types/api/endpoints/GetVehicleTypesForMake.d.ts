@@ -7,9 +7,12 @@ import type { NhtsaResponse } from '@/types';
  * "Mercedes Benz", etc.
  *
  * @param {string} makeName - Name of the vehicle make to search
- * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
-export declare const GetVehicleTypesForMake: (makeName: string) => Promise<NhtsaResponse<GetVehicleTypesForMakeResults>>;
+export declare const GetVehicleTypesForMake: (makeName: string, doFetch?: boolean) => Promise<NhtsaResponse<GetVehicleTypesForMakeResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMake endpoint
  *

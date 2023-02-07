@@ -47,11 +47,15 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  *
  * @param {string} inputString - A string of Vehicle Identification Numbers (full or partial)
  * following the format listed in the description
- * @returns {(Promise<DecodeVINValuesBatchResponse>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
 export const DecodeVinValuesBatch = async (
-  inputString: string
-): Promise<NhtsaResponse<DecodeVinValuesBatchResults>> => {
+  inputString: string,
+  doFetch = true
+): Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string> => {
   const endpointName = 'DecodeVinValuesBatch'
 
   try {
@@ -65,7 +69,15 @@ export const DecodeVinValuesBatch = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().post({ endpointName }, { body: inputString })
+    const { post, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, includeQueryString: false })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return post(getCachedUrl(), { body: inputString })
+    }
   } catch (error) {
     return rejectWithError(error)
   }

@@ -28,12 +28,15 @@ import type { AtLeastOne, NhtsaResponse } from '@/types';
  * (required if !vehicleType)
  * @param {(string|number)} [params.vehicleType] - Optional Vehicle Type search parameter
  * (required if !manufacturer)
- * @returns {(Promise<NhtsaResponse<GetWMIsForManufacturerResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export declare const GetWMIsForManufacturer: (params: AtLeastOne<{
     manufacturer?: string | number;
     vehicleType?: string | number;
-}>) => Promise<NhtsaResponse<GetWMIsForManufacturerResults>>;
+}>, doFetch?: boolean) => Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetWMIsForManufacturer endpoint
  *

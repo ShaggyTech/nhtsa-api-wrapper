@@ -44,9 +44,12 @@ import type { NhtsaResponse } from '@/types';
  *
  * @param {string} inputString - A string of Vehicle Identification Numbers (full or partial)
  * following the format listed in the description
- * @returns {(Promise<DecodeVINValuesBatchResponse>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
-export declare const DecodeVinValuesBatch: (inputString: string) => Promise<NhtsaResponse<DecodeVinValuesBatchResults>>;
+export declare const DecodeVinValuesBatch: (inputString: string, doFetch?: boolean) => Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string>;
 /**
  * Objects returned in the NhtsaResponse 'Results' array of DecodeVinValuesBatch endpoint
  *

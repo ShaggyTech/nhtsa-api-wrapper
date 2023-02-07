@@ -21,9 +21,12 @@ import type { NhtsaResponse } from '@/types';
  * - `DecodeVinExtended`
  *
  * @param {(string|number)} makeId - Make ID to search
- * @returns {(Promise<NhtsaResponse<GetModelsForMakeIdResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetModelsForMakeIdResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
-export declare const GetModelsForMakeId: (makeId: string | number) => Promise<NhtsaResponse<GetModelsForMakeIdResults>>;
+export declare const GetModelsForMakeId: (makeId: string | number, doFetch?: boolean) => Promise<NhtsaResponse<GetModelsForMakeIdResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeId endpoint
  *

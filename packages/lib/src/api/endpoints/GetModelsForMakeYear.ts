@@ -30,14 +30,18 @@ import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '@/types'
  * (required if !vehicleType)
  * @param {string} [params.vehicleType] - String representing the vehicle type to search
  * (required if !modelYear)
- * @returns {(Promise<NhtsaResponse<GetModelsForMakeYearResults>>)} Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetModelsForMakeYearResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
 export const GetModelsForMakeYear = async (
   params: { make: string } & AtLeastOne<{
     modelYear?: string | number
     vehicleType?: string
-  }>
-): Promise<NhtsaResponse<GetModelsForMakeYearResults>> => {
+  }>,
+  doFetch = true
+): Promise<NhtsaResponse<GetModelsForMakeYearResults> | string> => {
   const endpointName = 'GetModelsForMakeYear'
 
   try {
@@ -76,7 +80,15 @@ export const GetModelsForMakeYear = async (
       ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}/`
       : ''
 
-    return useNHTSA().get({ endpointName, path })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

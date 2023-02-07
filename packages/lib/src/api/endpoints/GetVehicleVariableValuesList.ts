@@ -12,11 +12,15 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * `variableValue` can be also be a number, which is the ID of the variable, e.g., 1, 2, 3, etc.
  *
  * @param {(string|number)} variableValue - The variable you want to get a values list of
- * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export const GetVehicleVariableValuesList = async (
-  variableValue: number | string
-): Promise<NhtsaResponse<GetVehicleVariableValuesListResults>> => {
+  variableValue: number | string,
+  doFetch = true
+): Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string> => {
   const endpointName = 'GetVehicleVariableValuesList'
 
   try {
@@ -30,7 +34,15 @@ export const GetVehicleVariableValuesList = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, path: variableValue.toString() })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path: variableValue.toString() })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

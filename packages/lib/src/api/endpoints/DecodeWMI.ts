@@ -15,12 +15,16 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * be available in vPIC data sets.
  *
  * @param {string} WMI - World Manufacturer Identifier
- * @returns {(Promise<NhtsaResponse<DecodeWMIResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<DecodeWMIResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false` (default: `true`)
  */
 
 export const DecodeWMI = async (
-  WMI: string
-): Promise<NhtsaResponse<DecodeWMIResults>> => {
+  WMI: string,
+  doFetch = true
+): Promise<NhtsaResponse<DecodeWMIResults> | string> => {
   const endpointName = 'DecodeWMI'
 
   try {
@@ -34,7 +38,15 @@ export const DecodeWMI = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, path: WMI })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path: WMI })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

@@ -11,53 +11,54 @@
     ></script>
 
     <script type="module">
-      console.log(`Successfully imported via ESModule import`);
+      console.log(`Successfully imported via ESModule import`)
 
-      const Client = NHTSA.Client;
+      const Client = NHTSA.Client
 
-      const logResults = (results) => console.log("Results: ", results);
+      const logResults = (results) => console.log('Results: ', results)
       document
-        .getElementById("GetCanadianVehicleSpecifications")
-        .addEventListener("click", async () => {
+        .getElementById('GetCanadianVehicleSpecifications')
+        .addEventListener('click', async () => {
           /* Lazy Loading */
           const {
             DecodeVinValues,
             DecodeVinValuesBatch,
             GetMakesForManufacturerAndYear,
           } = await import(
-            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
-          ).catch((err) => err);
+            '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
+          ).catch((err) => err)
 
           const results = await DecodeVinValuesBatch(
-            "5UXWX7C5*BA, 2011; 5YJSA3DS*EF"
+            '5UXWX7C5*BA, 2011; 5YJSA3DS*EF',
+            false
           )
             .then((results) => {
-              logResults(results);
+              logResults(results)
               // return DecodeVinValuesBatch('5UXWX7C5\*BA,2011; 5YJSA3DS\*EF')
             })
-            .catch((err) => console.error(err));
+            .catch((err) => console.error(err))
 
-          const results2 = await GetMakesForManufacturerAndYear("Audi", {
-            manufacturer: "",
-          })
-            .then((results) => {
-              logResults(results);
-              return results;
-            })
-            .catch((err) => console.error(err));
+          // const results2 = await GetMakesForManufacturerAndYear('Audi', {
+          //   manufacturer: '',
+          // })
+          //   .then((results) => {
+          //     logResults(results)
+          //     return results
+          //   })
+          //   .catch((err) => console.error(err))
 
-          const results3 = await GetMakesForManufacturerAndYear("Ford", {
-            year: 2009,
-            manufacturer: false,
-          })
-            .then((results) => {
-              logResults(results);
-              return results;
-            })
-            .catch((err) => console.error(err));
+          // const results3 = await GetMakesForManufacturerAndYear('Ford', {
+          //   year: 2009,
+          //   manufacturer: false,
+          // })
+          //   .then((results) => {
+          //     logResults(results)
+          //     return results
+          //   })
+          //   .catch((err) => console.error(err))
 
-          return results;
-        });
+          return results
+        })
 
       // document
       //   .getElementById('GetCanadianVehicleSpecifications')
@@ -87,33 +88,33 @@
       //   })
 
       document
-        .getElementById("DecodeVin")
-        .addEventListener("click", async () => {
+        .getElementById('DecodeVin')
+        .addEventListener('click', async () => {
           /* Lazy Loading */
           const { DecodeVin } = await import(
-            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
-          ).catch((err) => err);
+            '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
+          ).catch((err) => err)
 
-          const results = await DecodeVin("WVWHV71K69W144983")
+          const results = await DecodeVin('WVWHV71K69W144983', false)
             .then((results) => results)
-            .catch((err) => console.error(err));
+            .catch((err) => console.error(err))
 
-          console.log(results);
+          console.log(results)
           document.querySelector(
-            "#DecodeVinResults"
-          ).innerHTML = `${JSON.stringify(results)}`;
-        });
+            '#DecodeVinResults'
+          ).innerHTML = `${JSON.stringify(results)}`
+        })
 
       document
-        .getElementById("isValidVin")
-        .addEventListener("click", async function () {
+        .getElementById('isValidVin')
+        .addEventListener('click', async function () {
           const { isValidVin } = await import(
-            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
-          );
-          const result = isValidVin("WVWHV71K69W144983");
-          console.log(`isValidVin result: ${result}`);
-          document.getElementById("isValidVinResults").innerText = result;
-        });
+            '../../packages/lib/dist/nhtsa-api-wrapper.mjs'
+          )
+          const result = isValidVin('WVWHV71K69W144983')
+          console.log(`isValidVin result: ${result}`)
+          document.getElementById('isValidVinResults').innerText = result
+        })
     </script>
   </head>
   <body>

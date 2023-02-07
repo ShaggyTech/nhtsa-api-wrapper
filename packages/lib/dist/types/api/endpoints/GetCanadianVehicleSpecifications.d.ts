@@ -25,14 +25,17 @@ import type { NhtsaResponse } from '@/types';
  * @param {string} [params.model=''] - Vehicle's model, like "Pilot", "Focus". Can also include
  * some other elements like Body Type, Engine Model/size, etc...
  * @param {string} [params.units=''] - "Metric" (default), or "US" for standard units
- * @returns {(Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string>)} - Api
+ * Response `object` -or- url `string` if `doFetch = false`
  */
 export declare const GetCanadianVehicleSpecifications: (params: {
     year: string | number;
     make?: string;
     model?: string;
     units?: string;
-}) => Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>;
+}, doFetch?: boolean) => Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetCanadianVehicleSpecifications endpoint
  *

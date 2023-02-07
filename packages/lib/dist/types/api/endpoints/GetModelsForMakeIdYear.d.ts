@@ -37,14 +37,17 @@ import type { NhtsaResponse, AtLeastOne } from '@/types';
  * @param {(string|number)} params.makeId - Make ID to search
  * @param {(string|number)} [params.modelYear] - A number representing the model year to search
  * @param {string} [params.vehicleType] - String representing the vehicle type to search
- * @returns {(Promise<NhtsaResponse<GetModelsForMakeIdYearResults>>)} Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetModelsForMakeIdYearResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export declare const GetModelsForMakeIdYear: (params: {
     makeId: string | number;
 } & AtLeastOne<{
     modelYear?: string | number;
     vehicleType?: string;
-}>) => Promise<NhtsaResponse<GetModelsForMakeIdYearResults>>;
+}>, doFetch?: boolean) => Promise<NhtsaResponse<GetModelsForMakeIdYearResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeIdYear endpoint
  *

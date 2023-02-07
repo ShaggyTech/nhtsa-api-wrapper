@@ -30,13 +30,19 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @param {(string|number)} params.year - Year >= 2016
  * @param {(string|number)} params.equipmentType - Number equal to 1, 3, 13, or 16
  * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'
- * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
-export const GetEquipmentPlantCodes = async (params: {
-  year: string | number
-  equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16
-  reportType: 'New' | 'Updated' | 'Closed' | 'All'
-}): Promise<NhtsaResponse<GetEquipmentPlantCodesResults>> => {
+export const GetEquipmentPlantCodes = async (
+  params: {
+    year: string | number
+    equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16
+    reportType: 'New' | 'Updated' | 'Closed' | 'All'
+  },
+  doFetch = true
+): Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string> => {
   const endpointName = 'GetEquipmentPlantCodes'
 
   try {
@@ -64,7 +70,15 @@ export const GetEquipmentPlantCodes = async (params: {
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, params })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, params })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

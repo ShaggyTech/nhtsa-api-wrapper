@@ -34,17 +34,32 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * as you won't have to iterate through a bunch of objects just to get all variable names/values.
  *
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param [params] - Object of Query Search names and values to append to the URL as a query string
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string.
+ * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
+ * the second arg in place of params, instead of having to pass all 3 args with params as undefined,
+ * i.e. you don't have to do this: `func(arg1, undefined, doFetch)`, and can instead do this:
+ * `func(arg1, doFetch)`
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
- * @returns {(Promise<NhtsaResponse<DecodeVinExtendedResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<DecodeVinExtendedResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false` (default: `true`)
  */
 export const DecodeVinExtended = async (
   vin: string,
-  params?: {
-    modelYear?: string | number
-  }
-): Promise<NhtsaResponse<DecodeVinExtendedResults>> => {
+  params?:
+    | {
+        modelYear?: string | number
+      }
+    | boolean,
+  doFetch = true
+): Promise<NhtsaResponse<DecodeVinExtendedResults> | string> => {
   const endpointName = 'DecodeVinExtended'
+
+  if (typeof params === 'boolean') {
+    doFetch = params
+    params = undefined
+  }
 
   try {
     const args: IArgToValidate[] = [
@@ -58,7 +73,15 @@ export const DecodeVinExtended = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, path: vin, params })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path: vin, params })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

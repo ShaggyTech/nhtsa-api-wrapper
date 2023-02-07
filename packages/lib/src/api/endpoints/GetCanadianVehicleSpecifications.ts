@@ -28,15 +28,21 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @param {string} [params.model=''] - Vehicle's model, like "Pilot", "Focus". Can also include
  * some other elements like Body Type, Engine Model/size, etc...
  * @param {string} [params.units=''] - "Metric" (default), or "US" for standard units
- * @returns {(Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string>)} - Api
+ * Response `object` -or- url `string` if `doFetch = false`
  */
 
-export const GetCanadianVehicleSpecifications = async (params: {
-  year: string | number
-  make?: string
-  model?: string
-  units?: string
-}): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>> => {
+export const GetCanadianVehicleSpecifications = async (
+  params: {
+    year: string | number
+    make?: string
+    model?: string
+    units?: string
+  },
+  doFetch = true
+): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string> => {
   const endpointName = 'GetCanadianVehicleSpecifications'
 
   try {
@@ -55,7 +61,9 @@ export const GetCanadianVehicleSpecifications = async (params: {
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({
       endpointName,
       params: {
         make: '',
@@ -65,6 +73,12 @@ export const GetCanadianVehicleSpecifications = async (params: {
       },
       allowEmptyParams: true,
     })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

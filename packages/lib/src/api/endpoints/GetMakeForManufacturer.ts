@@ -14,11 +14,15 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  *   provided name. It accepts a partial manufacturer name as an input.
  *
  * @param {(string|number)} manufacturer - Manufacturer Name or ID
- * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export const GetMakeForManufacturer = async (
-  manufacturer: string | number
-): Promise<NhtsaResponse<GetMakeForManufacturerResults>> => {
+  manufacturer: string | number,
+  doFetch = true
+): Promise<NhtsaResponse<GetMakeForManufacturerResults> | string> => {
   const endpointName = 'GetMakeForManufacturer'
 
   try {
@@ -32,7 +36,15 @@ export const GetMakeForManufacturer = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, path: manufacturer.toString() })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path: manufacturer.toString() })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

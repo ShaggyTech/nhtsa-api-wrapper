@@ -10,11 +10,15 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * "Mercedes Benz", etc.
  *
  * @param {string} makeName - Name of the vehicle make to search
- * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetVehicleTypesForMakeResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export const GetVehicleTypesForMake = async (
-  makeName: string
-): Promise<NhtsaResponse<GetVehicleTypesForMakeResults>> => {
+  makeName: string,
+  doFetch = true
+): Promise<NhtsaResponse<GetVehicleTypesForMakeResults> | string> => {
   const endpointName = 'GetVehicleTypesForMake'
 
   try {
@@ -28,7 +32,15 @@ export const GetVehicleTypesForMake = async (
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, path: makeName })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, path: makeName })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

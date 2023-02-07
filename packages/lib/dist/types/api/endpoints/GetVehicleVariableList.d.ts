@@ -3,9 +3,12 @@ import type { NhtsaResponse } from '@/types';
  * `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the
  * vPIC dataset. Information on the name, description and the type of the variable is provided.
  *
- * @returns {(Promise<NhtsaResponse<GetVehicleVariableListResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetVehicleVariableListResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
-export declare const GetVehicleVariableList: () => Promise<NhtsaResponse<GetVehicleVariableListResults>>;
+export declare const GetVehicleVariableList: (doFetch?: boolean) => Promise<NhtsaResponse<GetVehicleVariableListResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableList endpoint
  *

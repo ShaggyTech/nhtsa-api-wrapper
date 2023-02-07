@@ -12,9 +12,12 @@ import type { NhtsaResponse } from '@/types';
  * be available in vPIC data sets.
  *
  * @param {string} WMI - World Manufacturer Identifier
- * @returns {(Promise<NhtsaResponse<DecodeWMIResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<DecodeWMIResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false` (default: `true`)
  */
-export declare const DecodeWMI: (WMI: string) => Promise<NhtsaResponse<DecodeWMIResults>>;
+export declare const DecodeWMI: (WMI: string, doFetch?: boolean) => Promise<NhtsaResponse<DecodeWMIResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of DecodeWMI endpoint
  *

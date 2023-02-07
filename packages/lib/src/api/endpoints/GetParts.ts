@@ -27,20 +27,37 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * `params.page`:
  *  - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
  *
- * @param [params] - Object of Query Search names and values to append to the URL as a query string
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string.
+ * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
+ * the first arg in place of params, instead of having to pass the first arg as undefined, i.e. you
+ * don't have to do this: `func(undefined, doFetch)`, and can instead do this: `func(doFetch)`
  * @param {(string|number)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query
- * @param {(string|number)} [params.page] - Which page number of results to request (100 results per page)
- * @returns {(Promise<NhtsaResponse<GetPartsResults>>)} - Api Response object
+ * @param {(string|number)} [params.page] - Which page number of results to request
+ * (up to 1000 results per page)
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetPartsResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
-export const GetParts = async (params?: {
-  type?: string | number
-  fromDate?: string
-  toDate?: string
-  page?: string | number
-}): Promise<NhtsaResponse<GetPartsResults>> => {
+export const GetParts = async (
+  params?:
+    | {
+        type?: string | number
+        fromDate?: string
+        toDate?: string
+        page?: string | number
+      }
+    | boolean,
+  doFetch = true
+): Promise<NhtsaResponse<GetPartsResults> | string> => {
   const endpointName = 'GetParts'
+
+  if (typeof params === 'boolean') {
+    doFetch = params
+    params = undefined
+  }
 
   try {
     /* Validate the arguments */
@@ -53,7 +70,15 @@ export const GetParts = async (params?: {
     ]
     catchInvalidArguments({ args })
 
-    return useNHTSA().get({ endpointName, params })
+    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+
+    cacheUrl({ endpointName, params })
+
+    if (!doFetch) {
+      return getCachedUrl()
+    } else {
+      return get()
+    }
   } catch (error) {
     return rejectWithError(error)
   }

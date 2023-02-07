@@ -11,9 +11,12 @@ import type { NhtsaResponse } from '@/types';
  *   provided name. It accepts a partial manufacturer name as an input.
  *
  * @param {(string|number)} manufacturer - Manufacturer Name or ID
- * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
-export declare const GetMakeForManufacturer: (manufacturer: string | number) => Promise<NhtsaResponse<GetMakeForManufacturerResults>>;
+export declare const GetMakeForManufacturer: (manufacturer: string | number, doFetch?: boolean) => Promise<NhtsaResponse<GetMakeForManufacturerResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetMakeForManufacturer endpoint
  *

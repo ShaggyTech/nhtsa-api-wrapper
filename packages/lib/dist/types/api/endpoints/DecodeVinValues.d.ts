@@ -26,13 +26,20 @@ import type { NhtsaResponse } from '@/types';
  * obtain the values in a _nested format_.
  *
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param [params] - Object of Query Search names and values to append to the URL as a query string
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string.
+ * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
+ * the second arg in place of params, instead of having to pass all 3 args with params as undefined,
+ * i.e. you don't have to do this: `func(arg1, undefined, doFetch)`, and can instead do this:
+ * `func(arg1, doFetch)`
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
- * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults>>)} Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults> | string>)} - Api Response `object`
+ * -or- url `string` if `doFetch = false`
  */
 export declare const DecodeVinValues: (vin: string, params?: {
     modelYear?: string | number;
-}) => Promise<NhtsaResponse<DecodeVinValuesResults>>;
+} | boolean, doFetch?: boolean) => Promise<NhtsaResponse<DecodeVinValuesResults> | string>;
 /**
  * Objects returned in the NhtsaResponse 'Results' array of DecodeVinValues endpoint
  *

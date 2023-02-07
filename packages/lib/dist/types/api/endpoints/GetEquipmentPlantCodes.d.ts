@@ -27,13 +27,16 @@ import type { NhtsaResponse } from '@/types';
  * @param {(string|number)} params.year - Year >= 2016
  * @param {(string|number)} params.equipmentType - Number equal to 1, 3, 13, or 16
  * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'
- * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>)} - Api Response object
+ * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
+ * (default: `true`)
+ * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>)} - Api Response
+ * `object` -or- url `string` if `doFetch = false`
  */
 export declare const GetEquipmentPlantCodes: (params: {
     year: string | number;
     equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16;
     reportType: 'New' | 'Updated' | 'Closed' | 'All';
-}) => Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>;
+}, doFetch?: boolean) => Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>;
 /**
  * Objects found in the NhtsaResponse 'Results' array of GetEquipmentPlantCodes endpoint
  *
