@@ -1,0 +1,16 @@
+{
+  "name": "documentation",
+  "version": "3.0.0",
+  "description": "Documentation website for @shaggytools/nhtsa-api-wrapper npm package",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev src",
+    "docs:build": "vitepress build src",
+    "docs:preview": "vitepress preview src"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.45",
+    "vue": "3.2.47"
+  }
+}
