@@ -45,19 +45,19 @@ export const useNHTSA = () => {
   /* Internal State */
   let _url: string
 
-  /** Gets url from internal state */
+  /** Gets cached VPIC URL from internal state */
   const getCachedUrl = () => _url
 
-  /** Function to create final POST body string */
+  /** Function to create final POST body string from a VPIC data string */
   const createPostBody = (data: string) => {
     return encodeURI(`DATA=${data}&format=${NHTSA_RESPONSE_FORMAT}`)
   }
 
   /**
-   * This builds the URL string and sets it as a private variable in the composable instance if
+   * This builds the VPIC URL string and sets it as a private variable in the composable instance if
    * saveUrl option is true.
    *
-   * Takes an object of type `CreateUrlOptions` as an argument and returns a full URL string.
+   * Takes an object of type `CreateUrlOptions` as an argument and returns a full VPIC URL string.
    *
    * Set `allowEmptyParams` to true to allow empty parameters in the query string. This is useful if
    * you need to make a request with an empty parameter in some endpoints.
@@ -87,7 +87,7 @@ export const useNHTSA = () => {
    * query "format=json" is always included unless options.includeQueryString is false.
    * @param {boolean} [options.saveUrl=true] - Whether to save the URL in the composable instance
    * (default: true)
-   * @returns {string} URL string
+   * @returns {string} VPIC API URL string
    */
   const cacheUrl = ({
     endpointName,
@@ -98,7 +98,7 @@ export const useNHTSA = () => {
     saveUrl = true,
   }: CreateUrlOptions): string => {
     if (!endpointName) {
-      throw Error('Endpoint name is required to create URL string')
+      throw Error('Endpoint name is required to create a VPIC URL string')
     }
 
     const queryString = includeQueryString
@@ -117,11 +117,12 @@ export const useNHTSA = () => {
   }
 
   /**
-   * Simply a wrapper for cacheUrl() with saveUrl set to false.
+   * Simply a wrapper for `cacheUrl` with `saveUrl` set to false.
    *
-   * Takes an object of type `CreateUrlOptions` as an argument and returns a full URL string.
+   * Takes an object of type `CreateUrlOptions` as an argument and returns a full VPIC URL string.
    *
-   * This builds the URL string but does not set it as a private cached variable of the composable.
+   * This builds the VPIC URL string but does not set it as a private cached variable of the
+   * composable. Use `cacheUrl` if you need to save the URL in the composable instance.
    *
    * @param options Object of type `CreateUrlOptions` containing the following properties:
    * @param {string} options.endpointName - Name of the endpoint to use in the URL (required)
@@ -132,7 +133,7 @@ export const useNHTSA = () => {
    * @param {string} [options.path=''] - Path to append to the URL (default: '')
    * @param {Object} [options.params] - Query string parameters to build into the URL. Default
    * query "format=json" is always included unless options.includeQueryString is false.
-   * @returns {string} URL string
+   * @returns {string} VPIC API URL string
    */
   const createUrl = (options: CreateUrlOptions) => {
     return cacheUrl({ ...options, saveUrl: false })
