@@ -74,9 +74,9 @@ For a real world example of this, check out one of my projects that uses this AP
 
 [✔️] - Provides a set of helper functions to retrieve data from each of the 24 API endpoints.
 
-> - DecodeVin, GetMakesForYear, etc.
-> - Can turn off default fetching and use your own fetch implementation, returns only the URL string
->   in this case.
+> - See: [NHTSA Endpoints](#nhtsa-api-endpoints)
+
+[✔️] - Provides a set of helper functions to build the custom URLs for each of the 24 API endpoints.
 
 [✔️] - Provides a helper composable function with tools to interact with the VPIC API and build the
 custom URLs.
@@ -89,17 +89,20 @@ your IDE.
 [✔️] - Has fully typed responses unique to each endpoint so you can use code completion and IDE type
 hints to help you build your app.
 
-> - See: [TODO - NhtsaApiResponse](#NhtsaApiResponse)
+[✔️] - Built in runtime type-checking and error handling for all functions, so you can be sure
 
 [✋💀] - Built in runtime type-checking and error handling for all functions, so you can be sure
 at the very least the default VPIC response will be returned as valid JSON. It will throw errors:
 
-> - if any required paths or query parameters are missing from function calls which would cause the
->   API to return a `400 Bad Request` response.
-> - if the VPIC API returns `response.ok = false`.
-> - if response is not `json` format or able to be parsed with `response.json()`.
-> - if given an invalid value for a query parameter or path parameter that would cause URI encoding
->   to fail.
+- if any required paths or query parameters are missing from function calls which would cause the
+  API to return a `400 Bad Request` response.
+- if the VPIC API returns `response.ok = false`.
+- if response is not `json` format or able to be parsed with `response.json()`.
+- if given an invalid value for a query parameter or path parameter that would cause URI encoding
+  to fail.
+
+> - See: [TODO - NhtsaApiResponse](#NhtsaApiResponse)
+> - See: [Typescript](#typescript)
 
 ---
 
@@ -151,23 +154,29 @@ results = {
 */
 ```
 
+See Also:
+
+- [NHTSA API Endpoints](#nhtsa-api-endpoints)
+
 ### 2. Endpoint URL Builder (`doFetch = false` -or- `useNHTSA`):
 
 Using it as a URL builder is useful if you want to use your own fetch implementation or your project
 runtime doesn't support native fetch and you don't want to use a polyfill.
 
-There are two ways to use this package as a URL builder only:
-
-- Option 1: pass `false` as the last argument of the endpoint helper function (DecodeVin, etc.).
+- [Option 1](#option-1-setting-dofetch-boolean-to-false):
+  Pass `false` as the last argument of the endpoint helper function (DecodeVin, etc).
   This sets the `doFetch` boolean to `false` and returns the full VPIC URL ready to use with
   your own fetch implementation (axios, nitro, etc.). The endpoint functions will build the URL,
   return it as a string, and then terminate; skipping the fetch request.
+- [Option 2](#option-2-using-the-usenhtsa-composable-and-createurl-function):
+  Use the `useNHTSA` composable to get the `createUrl` function. This is used under the hood by the
+  endpoint functions to build the VPIC endpoint URL. You can use it to build the URL for any of the
+  24 endpoints and use it with your own fetch implementation. Function `createPostBody` is also
+  available for formatting and returning the body of a VPIC POST request.
 
-- Option 2: use the `useNHTSA` composable to get the `createUrl` function. This is used under the
-  hood by the endpoint functions to build the VPIC endpoint URL. You can use it to build the URL for
-  any of the 24 endpoints and use it with your own fetch implementation.
+See Also:
 
-See [Alternate Use Without Polyfills](#alternate-use-without-polyfills) for more info.
+- [Alternate Use Without Polyfills](#alternate-use-without-polyfills)
 
 ---
 
@@ -176,7 +185,6 @@ See [Alternate Use Without Polyfills](#alternate-use-without-polyfills) for more
 There is also an offline VIN validation function called `isValidVin`, that can be used to validate a
 VIN without making a request to the API. Useful if you want to validate a VIN before making an
 unecessary request to the API with an invalid VIN.
-See [Offline VIN Validation](#offline-vin-validation) for more information.
 
 Example:
 
@@ -186,6 +194,10 @@ import { isValidVin } from "@shaggytools/nhtsa-api-wrapper";
 const isValid = isValidVin("WA1A4AFY2J2008189");
 // isValid = true
 ```
+
+See Also:
+
+- [Offline VIN Validation](#offline-vin-validation)
 
 ---
 
@@ -630,14 +642,16 @@ From then on, you're free to use the package as you see fit.
 
 There are two ways to use this package and not depend on native fetch or a polyfill:
 
-- Option 1: pass `false` as the last argument of the endpoint helper function (DecodeVin, etc.).
+- [Option 1](#option-1-setting-dofetch-boolean-to-false):
+  Pass `false` as the last argument of the endpoint helper function (DecodeVin, etc).
   This sets the `doFetch` boolean to `false` and returns the full VPIC URL ready to use with
   your own fetch implementation (axios, nitro, etc.). The endpoint functions will build the URL,
   return it as a string, and then terminate; skipping the fetch request.
-- Option 2: use the `useNHTSA` composable to get the `createUrl` function. This is used under the
-  hood by the endpoint functions to build the VPIC endpoint URL. You can use it to build the URL for
-  any of the 24 endpoints and use it with your own fetch implementation. Function `createPostBody`
-  is also available for formatting and returning the body of a VPIC POST request.
+- [Option 2](#option-2-using-the-usenhtsa-composable-and-createurl-function):
+  Use the `useNHTSA` composable to get the `createUrl` function. This is used under the hood by the
+  endpoint functions to build the VPIC endpoint URL. You can use it to build the URL for any of the
+  24 endpoints and use it with your own fetch implementation. Function `createPostBody` is also
+  available for formatting and returning the body of a VPIC POST request.
 
 This is useful:
 
@@ -655,90 +669,6 @@ the purpose of this section. Worth mentioning though.
 
 ### Option 1: **Setting `doFetch` boolean to `false`**:
 
-You can prevent the endpoint helper functions (DecodeVin, etc.) from making the request and instead
-return the full API endpoint URL for you to use with your own fetch implementation. To use it in
-this way, pass boolean `false` as the last (or only depending on endpoint) arg of the
-endpoint helper function. The endpoint helper function will then return the full API endpoint URL
-and skip fetching the request for you.
-
-In most cases, simply use the `doFetch` boolean as the last/only argument.
-
-Special note that some endpoints require query params and some don't. If the endpoint has optional
-query `params`, you don't have to passs in an empty object as `params` arg, nor set the `params` arg
-to undefined, simply omit the `params` and use `doFetch` boolean in it's place.
-
-Under the hood, the endpoint functions will see `params` is a boolean and not an object. Then they
-will internally assign the boolean value to `doFetch` and set `params` to undefined before building
-and returning the final URL.
-
-For example if an endpoint helper function takes a **required** first arg, **optional** `params`
-object as the second, and `doFetch` boolean as the third, you can do the following:
-
-```javascript
-// you can do this:
-const results = await DecodeVin("WA1A4AFY2J2008189", false);
-// instead of passing `params` arg as undefined like this:
-const results2 = await DecodeVin("WA1A4AFY2J2008189", undefined, false);
-```
-
-If the endpoint function has **optional** `params` as first arg, and `doFetch` boolean as the
-second, you can do the following:
-
-```javascript
-// you can do this:
-const results = await GetAllManufacturers(false);
-// instead of passing undefined as the first arg like this:
-const results2 = await GetAllManufacturers(undefined, false);
-```
-
-This should be obvious, but if the endpoint function has no other args besides `doFetch`, you can
-simply pass `false` as the only arg.
-
-### Option 2: Using the `useNHTSA` composable and `createUrl` function:
-
-Another way to use this package as a URL builder only is a function this package exports called
-`useNHTSA`, which is a composable function that returns an object of helper functions to interact
-with the API.
-
-The `createUrl` function from `useNHTSA` is the only one you need to use to build the VPIC URL. It
-will take a single object that describes the components of the endpoint URL and return the full URL
-as a string.
-
-If you're making a POST request, you can also use the `createBody` from `useNHTSA` composable to
-build the request body properly formatted for the API. `DecodeVinValuesBatch` is the only endpoint
-that uses a POST request.
-
-There are other helper functions exported by `useNHTSA` that are used internally but you don't need
-to use them in this case. The other available functions are `get`, `post`, `cacheUrl`, and
-`getCachedUrl`.
-
-Example (using axios as the fetch implementation)):
-
-```javascript
-import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
-import axios from "axios"; // or any other fetch implementation
-
-// composable destructuring
-const { createUrl } = useNHTSA();
-
-// alternatively: useNHTSA().createUrl({ ... })
-const url = createUrl({
-  endpointName: "DecodeVin",
-  path: "WA1A4AFY2J2008189",
-  params: { modelYear: 2018 },
-});
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
-
-const results = await axios.get(url);
-```
-
-See Also:
-
-- [Alternate Use Without Polyfills](#alternate-use-without-polyfills)
-- [This Package Uses Native Fetch](#this-package-uses-native-fetch)
-
-### Setting `doFetch` boolean to `false`
-
 This is the easiest way to use your own fetch implementation.
 
 You can prevent the endpoint helper functions (DecodeVin, etc.) from making the request and instead
@@ -748,54 +678,47 @@ To use it in this way, pass boolean `false` as the last (or only depending on en
 endpoint helper function. The endpoint helper function will then return the full API endpoint URL
 and skip fetching the request for you.
 
-Special note that some endpoints require query params and some don't. If the endpoint has optional
-query params, you don't have to passs in an empty object as `params` arg, nor set the `params` arg
-to undefined, simply omit the params and use `doFetch` boolean in it's place.
+In most cases, simply use the `doFetch` boolean as the last/only argument. This should be obvious,
+but if the endpoint function has no other args besides `doFetch`, you can simply pass `false` as the
+only arg.
+
+Here are some workarounds for the endpoints that have optional or no `params`/`path` args so you
+don't have to pass `undefined` in their place:
+
+Some endpoints require query params and some don't some don't have a trailing `path`. If the
+endpoint has optional query `params`, you don't have to passs in an empty object as `params` arg,
+nor set the `params` arg to undefined. Simply omit the `params` arg and use `doFetch` boolean in
+it's place.
+
+Under the hood, the endpoint functions will see `params` arg is a boolean and not an object. Then
+they will internally assign the boolean value to `doFetch` and set `params` to undefined before
+building and returning the final URL.
 
 For example if an endpoint helper function takes a **required** first arg, **optional** `params`
 object as the second, and `doFetch` boolean as the third, you can do the following:
 
 ```javascript
-// you can do this:
-const results = await DecodeVin("WA1A4AFY2J2008189", false);
 // instead of passing `params` arg as undefined like this:
 const results2 = await DecodeVin("WA1A4AFY2J2008189", undefined, false);
-// or if you're using optional params for this endpoint you would do this:
-const results3 = await DecodeVin(
-  "WA1A4AFY2J2008189",
-  { modelYear: 2018 },
-  false
-);
+// you can do this:
+const results = await DecodeVin("WA1A4AFY2J2008189", false);
 ```
 
-If the endpoint function has **optional** `params` as first arg, and `doFetch` boolean as the second,
-you can do the following:
+If the endpoint function has **optional** `params` as first arg, and `doFetch` boolean as the
+second, you can do the following:
 
 ```javascript
-// you can do this:
-const results = await GetAllManufacturers(false);
 // instead of passing undefined as the first arg like this:
 const results2 = await GetAllManufacturers(undefined, false);
+// you can do this:
+const results = await GetAllManufacturers(false);
 ```
 
-All other cases, simply use the `doFetch` boolean as the last arg.
-
-### Using `useNHTSA` composable and `createURL` function
+### Option 2: Using the `useNHTSA` composable and `createUrl` function:
 
 Another way to use this package as a URL builder only is a function this package exports called
 `useNHTSA`, which is a composable function that returns an object of helper functions to interact
 with the API.
-
-The `createUrl` function from `useNHTSA` is the only one you need to use to build the API endpoint
-URL.
-
-If you're making a POST request, you can also use the `createBody` from `useNHTSA` composable to build
-the request body properly formatted for the API.
-
-There are other helper functions exported by `useNHTSA` that are used internally but you don't need
-to use them in this case.
-
-Example (using axios as the fetch implementation)):
 
 ```javascript
 import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
@@ -818,11 +741,23 @@ const results = await axios.get(url);
 You can use the `cacheUrl` or `createUrl` methods from the `useNHTSA` composable that this package
 exports. Use either one of them to get the URL string based on the endpoint name, path, and params.
 Then use your own fetch implementation to make the request. You would essentially be using this
-package as a utility to build the URL string for the NHTSA API.
+package as a utility to build the URL string for the VPIC API with custom `path` and `params`.
 
 - `cacheUrl` creates the URL string and saves it to the `useNHTSA` instance cache.
 - `createUrl` is just a wrapper around `cacheurl` that doesn't save the url to the the `useNHTSA`
-  instance cache.
+  instance cache. Good for one-off requests where you don't want to reuse the composable instance.
+
+The `createUrl` function from `useNHTSA` is the only one you need to use to build the VPIC URL. It
+will take a single object that describes the components of the endpoint URL and return the full URL
+as a string.
+
+If you're making a POST request, you can also use the `createBody` from `useNHTSA` composable to
+build the request body properly formatted for the API. `DecodeVinValuesBatch` is the only endpoint
+that uses a POST request.
+
+There are other helper functions exported by `useNHTSA` that are used internally but you don't need
+to use them in this case. The other available functions are `get`, `post`, `cacheUrl`, and
+`getCachedUrl`.
 
 If you use it in this way because your app doesn't support native fetch and you don't want to
 polyfill:
@@ -834,9 +769,9 @@ polyfill:
 - If you try to use any of the above without native fetch support, you will get an error.
 
 Using it this way won't make the request for you, nor will it handle the path and params in a smart
-way such as when using one of the endpoint methods directly (DecodeVin, etc.). It simply makes
-fetching data from the NHTSA API easier by handling the URL and query string building, the rest is
-up to you to implement.
+and consistent way such as when using one of the endpoint methods directly (DecodeVin, etc.).It
+simply makes fetching data from the NHTSA API easier by handling the URL and query string building,
+it gives you back the full VPIC URL and the rest is up to you to implement.
 
 You will need to have some knowledge of the NHTSA API url structure because each endpoint has a
 different `path` and required/optional `params`. You can see url examples for each endpoint in the
@@ -854,6 +789,9 @@ Here are the CreateUrlOptions for `cacheUrl` and `createUrl`:
 - `includeQueryString` - If true, the query string will be included in the url (default: true)
 - `saveUrl` - If true, the url will be cached in the composable instance (default: true)
 
+> This is why method #1 described above is recommended, it simplifies all of this for you and
+> still ensures runtime type safety and consistency.
+
 #### Using GET
 
 Here's a simplified example of retrieving data from the NHTSA API using this package as a URL
@@ -861,32 +799,42 @@ builder ONLY. This example uses axios as the fetch implementation, but you can u
 implementation you want. The purpose of this example is to show how to use createUrl() to get
 the URL string from this package and then use your own fetch implementation to make the request.
 
+Example (using axios as the fetch implementation)):
+
 ```javascript
 import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
-import axios from "axios";
+import axios from "axios"; // or any other fetch implementation
 
+// composable destructuring
 const { createUrl } = useNHTSA();
+
+// alternatively: useNHTSA().createUrl({ ... })
 const url = createUrl({
   endpointName: "DecodeVin",
-  path: "SOME_VIN",
-  params: {
-    modelyear: 2011,
-  },
+  path: "WA1A4AFY2J2008189",
+  params: { modelYear: 2018 },
 });
-// url = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/SOME_VIN?modelYear=2011&format=json"
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 
-// use your own fetch implementation to make the GET request, axios in this example
-const response = await axios.get(url);
+const results = await axios.get(url);
 ```
 
-`endpointName` is the NHTSA API endpoint you're trying to use. `DecodeVin` in the example below.
-It's not required for it to have uppercase letters, all lowercase is fine.
+- `endpointName` is the NHTSA API endpoint you're trying to use. `DecodeVin` in the example below.
+  It's not required for it to have uppercase letters, all lowercase is fine.
 
-The `path` for `DecodeVin` endpoint is the VIN you are searching, `params` are the query string
-params to use for the endpoint, in this case modelYear=2011. `format=json` will always be appended
-to the final query string that is built for you. Keep in mind, `path` and `params` will be unique to
-each endpoint. If the endpoint doesn't require a path or params you can omit those keys from the
-createUrl object and just provide `endpointName`.
+- The `path` for `DecodeVin` endpoint is the VIN you are searching.
+
+- `params` are the query string paramameters to use for the endpoint, in this case `modelYear=2011`.
+  Keep in mind, `path` and `params` will be unique to each endpoint.
+
+- `format=json` will always be appended to the final query string that is built for you. This is the
+  only format supported by this package.
+
+- If the endpoint doesn't require a `path` or `params` you can omit those keys from the `createUrl`
+  object and just provide `endpointName`.
+
+- You could also get the base url for the VPIC API this way, just use `{ endpointName: "" }`. This
+  will return the base url for the VPIC API.
 
 #### Using POST
 
