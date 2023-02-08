@@ -10,8 +10,6 @@ importers:
       rimraf: 4.1.1
       turbo: 1.7.0
       typescript: 4.9.4
-      vite: 4.0.4
-      vite-plugin-dts: 1.7.1
     devDependencies:
       '@commitlint/cli': 17.4.2
       '@commitlint/config-conventional': 17.4.2
@@ -19,8 +17,6 @@ importers:
       rimraf: 4.1.1
       turbo: 1.7.0
       typescript: 4.9.4
-      vite: 4.0.4
-      vite-plugin-dts: 1.7.1_vite@4.0.4
 
   apps/documentation:
     specifiers:
@@ -60,6 +56,9 @@ importers:
     dependencies:
       '@types/node': 18.11.18
 
+  config/typedoc-config:
+    specifiers: {}
+
   packages/lib:
     specifiers:
       eslint: 8.32.0
@@ -68,6 +67,8 @@ importers:
       prettier-config: workspace:*
       rimraf: 4.1.1
       tsconfig: workspace:*
+      typedoc: 0.23.24
+      typedoc-config: workspace:*
       typescript: 4.9.4
       vite: 4.0.4
       vite-plugin-dts: 1.7.1
@@ -79,6 +80,8 @@ importers:
       prettier-config: link:../../config/prettier-config
       rimraf: 4.1.1
       tsconfig: link:../../config/tsconfig
+      typedoc: 0.23.24_typescript@4.9.4
+      typedoc-config: link:../../config/typedoc-config
       typescript: 4.9.4
       vite: 4.0.4
       vite-plugin-dts: 1.7.1_vite@4.0.4
@@ -2195,6 +2198,10 @@ packages:
     dependencies:
       yallist: 4.0.0
 
+  /lunr/2.3.9:
+    resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
+    dev: true
+
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -2213,6 +2220,12 @@ packages:
   /map-obj/4.3.0:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
+    dev: true
+
+  /marked/4.2.12:
+    resolution: {integrity: sha512-yr8hSKa3Fv4D3jdZmtMMPghgVt6TWbk86WQaWhDloQjRSQhMMYCAro7jP7VDJrjjdV8pxVxMssXS8B8Y5DZ5aw==}
+    engines: {node: '>= 12'}
+    hasBin: true
     dev: true
 
   /mdast-util-from-markdown/0.8.5:
@@ -2657,6 +2670,14 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
+  /shiki/0.12.1:
+    resolution: {integrity: sha512-aieaV1m349rZINEBkjxh2QbBvFFQOlgqYTNtCal82hHj4dDZ76oMlQIX+C7ryerBTDiga3e5NfH6smjdJ02BbQ==}
+    dependencies:
+      jsonc-parser: 3.2.0
+      vscode-oniguruma: 1.7.0
+      vscode-textmate: 8.0.0
+    dev: true
+
   /shiki/0.14.0:
     resolution: {integrity: sha512-fb9Fg1Yx/ElVJcTqPQIEOSfn7mSZlrT1W3CkymY08lL2Jsi+t7jPcZzKO1lCsQwlSDuyNhHvolnyA2OI4EgJNg==}
     dependencies:
@@ -2965,6 +2986,20 @@ packages:
   /type-fest/0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
+    dev: true
+
+  /typedoc/0.23.24_typescript@4.9.4:
+    resolution: {integrity: sha512-bfmy8lNQh+WrPYcJbtjQ6JEEsVl/ce1ZIXyXhyW+a1vFrjO39t6J8sL/d6FfAGrJTc7McCXgk9AanYBSNvLdIA==}
+    engines: {node: '>= 14.14'}
+    hasBin: true
+    peerDependencies:
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x
+    dependencies:
+      lunr: 2.3.9
+      marked: 4.2.12
+      minimatch: 5.1.6
+      shiki: 0.12.1
+      typescript: 4.9.4
     dev: true
 
   /typescript/4.8.4:

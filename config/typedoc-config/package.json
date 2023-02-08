@@ -1,0 +1,10 @@
+{
+  "name": "typedoc-config",
+  "version": "3.0.0",
+  "description": "Internal shared typedoc-config for the @shaggytools/nhtsa-api-wrapper monorepo",
+  "private": true,
+  "main": "typedoc-config.js",
+  "peerDependencies": {
+    "typedoc": "0.23.24"
+  }
+}
