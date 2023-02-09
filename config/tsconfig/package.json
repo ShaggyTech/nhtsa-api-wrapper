@@ -8,7 +8,8 @@
     "library.json",
     "nextjs.json",
     "react-library.json",
-    "vite-library.json"
+    "vite-library.json",
+    "vite-press.json"
   ],
   "dependencies": {
     "@types/node": "18.11.18"

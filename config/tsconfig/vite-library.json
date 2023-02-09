@@ -4,11 +4,11 @@
   "extends": "./base.json",
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["ESNext", "DOM"],
-    "module": "ESNext",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "esnext",
     "noImplicitReturns": true,
     "resolveJsonModule": true,
-    "target": "ESNext",
+    "target": "esnext",
     "useDefineForClassFields": true
   }
 }
