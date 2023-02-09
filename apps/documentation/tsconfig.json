@@ -1,0 +1,14 @@
+{
+  "shcema": "https://json.schemastore.org/tsconfig",
+  "extends": "tsconfig/vitepress.json",
+  "include": [
+    "src/**/*.ts",
+    "src/.vitepress/**/*.ts",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.spec.ts"
+  ]
+}

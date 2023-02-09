@@ -5,11 +5,21 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "docs:dev": "vitepress dev src",
     "docs:build": "vitepress build src",
     "docs:preview": "vitepress preview src"
   },
   "devDependencies": {
+    "@shaggytools/nhtsa-api-wrapper": "workspace:*",
+    "eslint": "8.32.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "2.8.3",
+    "prettier-config": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "4.9.4",
     "vitepress": "1.0.0-alpha.45",
     "vue": "3.2.47"
   }
