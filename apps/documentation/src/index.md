@@ -6,8 +6,8 @@ titleTemplate: Javascript Wrapper for the NHTSA VPIC Vehicle Decoding API
 
 hero:
   name: '@shaggytools/nhtsa-api-wrapper'
-  text: Javascript Wrapper for the NHTSA VPIC Vehicle Decoding API
-  tagline: Decode a VIN, get a list of all vehicle makes, and many more.
+  text: Helper Functions for the NHTSA VPIC Vehicle Decoding API
+  tagline: Decode a VIN, Get Vehicle Models by Make, and many more.
   actions:
     - theme: brand
       text: Get Started
@@ -17,21 +17,20 @@ hero:
       link: https://github.com/shaggytech/nhtsa-api-wrapper
 
 features:
-  - icon: 👍
-    title: Use the VPIC API With Ease
-    details: Does all the heavy lifting for you. Just pass in a VIN and get back a decoded vehicle in JSON format.
-  - title: Universal JavaScript Package
-    details: Works in Node.js and browsers out of the box. Use it in server, client, browser scripts, Vite, Rollup, and more.
-  - title: Tree Shaking
-    details: Bundled with Vite library mode. Only import what you need, and keep your bundle size small. Plays nice with bundlers for easy tree-shaking.
-  - title: Lightweight/
-    details: Uses native fetch with no polyfills or dependencies. Just install and go. Requires Node 18+ or a modern browser.
+  - title: Simplify the VPIC API
+    details: Does all the heavy lifting for you. Just pass in a VIN and get back a decoded vehicle in JSON format. No query strings, path parameters, or headers to worry about.
+  - title: Universal Support
+    details: Use it client or server side. Works in Node.js versions > 18 and modern browsers out of the box.
   - title: BYOF - Bring Your Own Fetch
-    details: Uses native fetch by default, but you can use any fetch library. Can skip fetching and instead get the full URL via the same functions.
+    details: Don't want to polyfill fetch in Node versions < 18? Includes an option to bypass fetching and get back a fully built VPIC URL ready to use how you want.
+  - title: Tree Shaking
+    details: Bundled with Vite library mode. Only import what you need, and keep your bundle size small. Plays nice with bundlers like Webpack and Rollup.
+  - title: Lightweight
+    details: Small package size with no polyfills or dependencies in the final package bundle. Under 4kb minified and gzipped.
   - title: Fully documented
-    details: Includes full documentation for all methods and properties. Get started quickly with the included examples.
+    details: Get started quickly with the included examples. Includes full documentation for all methods and properties.
   - title: Error Handling
-    details: Includes error handling for all API calls. Get back a detailed error message if something goes wrong.
+    details: Includes error handling for all API calls with built in run-time type checking for all methods. Get back a detailed error message if something goes wrong.
   - title: TypeScript Support
-    details: Written in TypeScript and includes type definitions for easy type hints and IDE code completion.
+    details: Get easy type hints and code completion in your IDE. Written with Typescript support top of mind. Includes type definitions for all methods and VPIC responses.
 ---

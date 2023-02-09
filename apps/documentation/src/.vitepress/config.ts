@@ -63,8 +63,8 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Guide', link: '/guide/what-is-vitepress', activeMatch: '/guide/' },
-    { text: 'Configs', link: '/config/introduction', activeMatch: '/config/' },
+    { text: 'Guide', link: '/guide/introduction', activeMatch: '/guide/' },
+    { text: 'API Reference', link: '/api/introduction', activeMatch: '/api/' },
     {
       text: pkg.version,
       items: [

@@ -8,7 +8,7 @@
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
-    "docs:dev": "vitepress dev src",
+    "docs:dev": "vitepress dev src --host",
     "docs:build": "vitepress build src",
     "docs:preview": "vitepress preview src"
   },
