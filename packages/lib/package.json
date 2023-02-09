@@ -10,15 +10,17 @@
   "sideEffects": false,
   "main": "./dist/nhtsa-api-wrapper.umd.js",
   "module": "./dist/nhtsa-api-wrapper.mjs",
+  "types": "./dist/types/index.d.ts",
   "unpkg": "./dist/nhtsa-api-wrapper.iife.js",
   "jsdelivr": "./dist/nhtsa-api-wrapper.iife.js",
-  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/nhsta-api-wrapper.mjs",
-      "require": "./dist/nhsta-api-wrapper.umd.js",
-      "types": "./dist/types/index.d.ts"
-    }
+      "require": "./dist/nhsta-api-wrapper.umd.js"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
@@ -36,7 +38,7 @@
     "clean:docs": "rimraf docs/*",
     "build": "pnpm run lint && pnpm run clean:dist && pnpm run build:lib",
     "build:lib": "tsc --noEmit && vite build",
-    "build:docs": "typedoc --options typedoc.js",
+    "build:typedocs": "typedoc --options typedoc.js",
     "dev": "vite build --watch --outDir dev/dist",
     "preview": "vite preview",
     "lint": "eslint .",
