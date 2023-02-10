@@ -11,7 +11,23 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["markdown", "@typescript-eslint", "prettier"],
+  overrides: [
+    {
+      // 2. Enable the Markdown processor for all .md files.
+      files: ["**/*.md"],
+      processor: "markdown/markdown",
+    },
+    {
+      // 3. Optionally, customize the configuration ESLint uses for ```js
+      // fenced code blocks inside .md files.
+      files: ["**/*.md/*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+      },
+    },
+  ],
   ignorePatterns: [
     ".github",
     ".vscode",

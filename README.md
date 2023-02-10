@@ -138,9 +138,9 @@ parameters, request, and response format/parsing for you.
 Example:
 
 ```javascript
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVin } from "@shaggytools/nhtsa-api-wrapper";
 
-const results = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 })
+const results = await DecodeVin("WA1A4AFY2J2008189", { modelYear: 2018 });
 /* 
 results = {
   Count: 136, - number of Results objects returned
@@ -186,9 +186,9 @@ unecessary request to the API with an invalid VIN.
 Example:
 
 ```javascript
-import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
+import { isValidVin } from "@shaggytools/nhtsa-api-wrapper";
 
-const isValid = isValidVin('WA1A4AFY2J2008189')
+const isValid = isValidVin("WA1A4AFY2J2008189");
 // isValid = true
 ```
 
@@ -340,7 +340,7 @@ import {
   useNHTSA,
   // function for offline VIN validation
   isValidVin,
-} from '@shaggytools/nhtsa-api-wrapper'
+} from "@shaggytools/nhtsa-api-wrapper";
 ```
 
 ---
@@ -614,21 +614,21 @@ point (or at least, before the package that needs fetch is imported):
 - server:
 
 ```ts
-import fetch from 'node-fetch'
-global.fetch = fetch
+import fetch from "node-fetch";
+global.fetch = fetch;
 
 // only import the package _after_
-import packageThatUsesFetch from 'package-that-uses-fetch'
+import packageThatUsesFetch from "package-that-uses-fetch";
 ```
 
 - browser:
 
 ```ts
 // browser
-import 'whatwg-fetch'
+import "whatwg-fetch";
 
 // only import the package _after_
-import packageThatUsesFetch from 'package-that-uses-fetch'
+import packageThatUsesFetch from "package-that-uses-fetch";
 ```
 
 From then on, you're free to use the package as you see fit.
@@ -696,9 +696,9 @@ object as the second, and `doFetch` boolean as the third, you can do the followi
 
 ```javascript
 // instead of passing `params` arg as undefined like this:
-const results2 = await DecodeVin('WA1A4AFY2J2008189', undefined, false)
+const results2 = await DecodeVin("WA1A4AFY2J2008189", undefined, false);
 // you can do this:
-const results = await DecodeVin('WA1A4AFY2J2008189', false)
+const results = await DecodeVin("WA1A4AFY2J2008189", false);
 ```
 
 If the endpoint function has **optional** `params` as first arg, and `doFetch` boolean as the
@@ -706,9 +706,9 @@ second, you can do the following:
 
 ```javascript
 // instead of passing undefined as the first arg like this:
-const results2 = await GetAllManufacturers(undefined, false)
+const results2 = await GetAllManufacturers(undefined, false);
 // you can do this:
-const results = await GetAllManufacturers(false)
+const results = await GetAllManufacturers(false);
 ```
 
 ### Option 2: Using the `useNHTSA` composable and `createUrl` function:
@@ -718,21 +718,21 @@ Another way to use this package as a URL builder only is a function this package
 with the API.
 
 ```javascript
-import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
-import axios from 'axios' // or any other fetch implementation
+import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
+import axios from "axios"; // or any other fetch implementation
 
 // composable destructuring
-const { createUrl } = useNHTSA()
+const { createUrl } = useNHTSA();
 
 // alternatively: useNHTSA().createUrl({ ... })
 const url = createUrl({
-  endpointName: 'DecodeVin',
-  path: 'WA1A4AFY2J2008189',
+  endpointName: "DecodeVin",
+  path: "WA1A4AFY2J2008189",
   params: { modelYear: 2018 },
-})
+});
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 
-const results = await axios.get(url)
+const results = await axios.get(url);
 ```
 
 You can use the `cacheUrl` or `createUrl` methods from the `useNHTSA` composable that this package
@@ -799,21 +799,21 @@ the URL string from this package and then use your own fetch implementation to m
 Example (using axios as the fetch implementation)):
 
 ```javascript
-import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
-import axios from 'axios' // or any other fetch implementation
+import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
+import axios from "axios"; // or any other fetch implementation
 
 // composable destructuring
-const { createUrl } = useNHTSA()
+const { createUrl } = useNHTSA();
 
 // alternatively: useNHTSA().createUrl({ ... })
 const url = createUrl({
-  endpointName: 'DecodeVin',
-  path: 'WA1A4AFY2J2008189',
+  endpointName: "DecodeVin",
+  path: "WA1A4AFY2J2008189",
   params: { modelYear: 2018 },
-})
+});
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 
-const results = await axios.get(url)
+const results = await axios.get(url);
 ```
 
 - `endpointName` is the NHTSA API endpoint you're trying to use. `DecodeVin` in the example below.
@@ -844,21 +844,21 @@ FYI `DecodeVinValuesBatch` is the only endpoint that uses a POST request.
 Here is a simplified example of how to make a POST request with your own fetch implementation:
 
 ```javascript
-import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
-import axios from 'axios'
+import { useNHTSA } from "@shaggytools/nhtsa-api-wrapper";
+import axios from "axios";
 
-const { createUrl, createPostBody } = useNHTSA()
+const { createUrl, createPostBody } = useNHTSA();
 const url = createUrl({
-  endpointName: 'DecodeVinValuesBatch',
+  endpointName: "DecodeVinValuesBatch",
   includeQueryString: false,
-})
-const body = createPostBody('5UXWX7C5*BA; 5UXWX7C5*BB')
+});
+const body = createPostBody("5UXWX7C5*BA; 5UXWX7C5*BB");
 // body = "DATA=5UXWX7C5*BA;%205UXWX7C5*BB&format=json "
 const headers = {
-  'Content-Type': 'application/x-www-form-urlencoded',
-}
+  "Content-Type": "application/x-www-form-urlencoded",
+};
 // use your own fetch implementation to make the POST request, axios in this example
-const response = await axios.post(url, body, { headers })
+const response = await axios.post(url, body, { headers });
 ```
 
 It requires a few things:
