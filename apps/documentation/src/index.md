@@ -24,9 +24,9 @@ features:
   - title: BYOF - Bring Your Own Fetch
     details: Don't want to polyfill fetch in Node versions < 18? Includes an option to bypass fetching and get back a fully built VPIC URL ready to use how you want.
   - title: Tree Shaking
-    details: Bundled with Vite library mode. Only import what you need, and keep your bundle size small. Plays nice with bundlers like Webpack and Rollup.
+    details: Bundled with Vite library mode. Only import what you need, and keep your app size small. Plays nice with bundlers like Webpack and Rollup.
   - title: Lightweight
-    details: Small package size with no polyfills or dependencies in the final package bundle. Under 4kb minified and gzipped.
+    details: Small package size with no polyfills or dependencies in the final package bundle. Only 3 kB minified and gzipped.
   - title: Fully documented
     details: Get started quickly with the included examples. Includes full documentation for all methods and properties.
   - title: Error Handling

@@ -63,8 +63,8 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Guide', link: '/guide/introduction', activeMatch: '/guide/' },
-    { text: 'API Reference', link: '/api/introduction', activeMatch: '/api/' },
+    { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
+    { text: 'API Reference', link: '/api/', activeMatch: '/api/' },
     {
       text: pkg.version,
       items: [
@@ -84,10 +84,10 @@ function nav() {
 function sidebarGuide() {
   return [
     {
-      text: 'Introduction',
+      text: 'Guide',
       collapsed: false,
       items: [
-        { text: 'What is VitePress?', link: '/guide/what-is-vitepress' },
+        { text: 'Introduction', link: '/guide/' },
         { text: 'Getting Started', link: '/guide/getting-started' },
         { text: 'Configuration', link: '/guide/configuration' },
         { text: 'Routing', link: '/guide/routing' },
