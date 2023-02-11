@@ -89,10 +89,11 @@ function sidebarGuide() {
       items: [
         { text: 'Introduction', link: '/guide/' },
         { text: 'Getting Started', link: '/guide/getting-started' },
-        { text: 'Configuration', link: '/guide/configuration' },
-        { text: 'Routing', link: '/guide/routing' },
-        { text: 'Deploying', link: '/guide/deploying' },
-        { text: 'Internationalization', link: '/guide/i18n' },
+        { text: 'Typescript Support', link: '/guide/typescript' },
+        {
+          text: 'This Package Uses Native Fetch',
+          link: '/guide/this-package-uses-native-fetch',
+        },
       ],
     },
     {

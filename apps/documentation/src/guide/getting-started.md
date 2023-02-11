@@ -21,15 +21,15 @@ with no bundled polyfill for very old Browsers or Node.js versions `< 18`.
 
 ::: code-group
 
-```bash [npm]
+```sh [npm]
 $ npm install @shaggytools/nhtsa-api-wrapper
 ```
 
-```bash [yarn]
+```sh [yarn]
 $ yarn add @shaggytools/nhtsa-api-wrapper
 ```
 
-```bash [pnpm]
+```sh [pnpm]
 $ pnpm add @shaggytools/nhtsa-api-wrapper
 ```
 
@@ -49,51 +49,81 @@ $ pnpm add @shaggytools/nhtsa-api-wrapper
 
 :::
 
-## Included Package Bundles
+## Quick Start
 
-::: code-group
+There are two ways to use this package as designed:
 
-```bash [ES Module]
-@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.mjs
+- The first is a set of 24 functions to retrieve data from each of the API endpoints. You can also
+  use them to build the VPIC URLs and query parameters, to use with your own fetch implementation.
+- The second is a composable function that returns a set of helper functions to interact with the
+  VPIC API in a more flexible way.
+
+### 1. Endpoint Helper Functions
+
+This is the recommended way to use the package. The helper functions make it easy to retrieve data
+from the API with only a few input parameters. They will handle the API URL building, query
+parameters, request, and response format/parsing for you.
+
+Example:
+
+```javascript
+import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+
+const results = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 })
+/* 
+results = {
+  Count: 136, - number of Results objects returned
+  Message: 'Results returned successfully ...',
+  SearchCriteria: 'VIN:WA1A4AFY2J2008189',
+  Results: [ {...}, {...} ] - an array of DecodeVinResults objects
+}
+*/
 ```
 
-```bash [UMD]
-@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.js
+More Info:
+
+- [TODO - NHTSA API Endpoints](#nhtsa-api-endpoints)
+
+### 2. Endpoint URL Builder (no fetching)
+
+Using it as a URL builder is useful if you want to use your own fetch implementation or your project
+runtime doesn't support native fetch and you don't want to use a polyfill.
+
+- [TODO - Option 1](#option-1-setting-dofetch-boolean-to-false):
+  Pass `false` as the last argument of the endpoint helper function (DecodeVin, etc).
+  This sets the `doFetch` boolean to `false` and returns the full VPIC URL ready to use with
+  your own fetch implementation (axios, nitro, etc.). The endpoint functions will build the URL,
+  return it as a string, and then terminate; skipping the fetch request.
+- [TODO - Option 2](#option-2-using-the-usenhtsa-composable-and-createurl-function):
+  Use the `useNHTSA` composable to get the `createUrl` function. This is used under the hood by the
+  endpoint functions to build the VPIC endpoint URL. You can use it to build the URL for any of the
+  24 endpoints and use it with your own fetch implementation. Function `createPostBody` is also
+  available for formatting and returning the body of a VPIC POST request.
+
+More Info:
+
+- [TODO - Alternate Use Without Polyfills](#alternate-use-without-polyfills)
+
+---
+
+### Extra: Offline VIN Validation
+
+There is also an offline VIN validation function called `isValidVin`, that can be used to validate a
+VIN without making a request to the API. Useful if you want to validate a VIN before making an
+unnecessary request to the API with an invalid VIN.
+
+Example:
+
+```javascript
+import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
+
+const isValid = isValidVin('WA1A4AFY2J2008189')
+// isValid = true
 ```
 
-```bash [CommonJS]
-@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.js
-```
+More Info:
 
-```bash [IIFE]
-@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js
-```
-
-:::
-
-This package is bundled in the following formats:
-
-ES Module (mjs):
-
-- `dist/nhtsa-api-wrapper.mjs`
-- import: `import NHTSA from '@shaggytools/nhtsa-api-wrapper'`
-
-CommonJS (cjs):
-
-- `dist/nhtsa-api-wrapper.js`
-- require (node): `const NHTSA = require('@shaggytools/nhtsa-api-wrapper')`
-
-Universal Module Definition (umd)
-
-- `dist/nhtsa-api-wrapper.umd.js`
-- global (browser): `window.NHTSA`
-- require (node):
-  `const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.js')`
-
-IIFE Bundle (iife):
-
-- `dist/nhtsa-api-wrapper.iife.js`
-- global (browser): `window.NHTSA`
+- [TODO - Offline VIN Validation](#offline-vin-validation)
 
 ## List of Exported Functions
 
@@ -297,78 +327,52 @@ CDN: [IIFE Build](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/di
 </script>
 ```
 
-## Quick Start
+## Included Package Bundles
 
-There are two ways to use this package as designed:
+::: code-group
 
-- The first is a set of 24 functions to retrieve data from each of the API endpoints. You can also
-  use them to build the VPIC URLs and query parameters, to use with your own fetch implementation.
-- The second is a composable function that returns a set of helper functions to interact with the
-  VPIC API in a more flexible way.
-
-### 1. Endpoint Helper Functions
-
-This is the recommended way to use the package. The helper functions make it easy to retrieve data
-from the API with only a few input parameters. They will handle the API URL building, query
-parameters, request, and response format/parsing for you.
-
-Example:
-
-```javascript
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
-
-const results = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 })
-/* 
-results = {
-  Count: 136, - number of Results objects returned
-  Message: 'Results returned successfully ...',
-  SearchCriteria: 'VIN:WA1A4AFY2J2008189',
-  Results: [ {...}, {...} ] - an array of DecodeVinResults objects
-}
-*/
+```sh [ES Module]
+@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.mjs
 ```
 
-More Info:
-
-- [TODO - NHTSA API Endpoints](#nhtsa-api-endpoints)
-
-### 2. Endpoint URL Builder (no fetching)
-
-Using it as a URL builder is useful if you want to use your own fetch implementation or your project
-runtime doesn't support native fetch and you don't want to use a polyfill.
-
-- [TODO - Option 1](#option-1-setting-dofetch-boolean-to-false):
-  Pass `false` as the last argument of the endpoint helper function (DecodeVin, etc).
-  This sets the `doFetch` boolean to `false` and returns the full VPIC URL ready to use with
-  your own fetch implementation (axios, nitro, etc.). The endpoint functions will build the URL,
-  return it as a string, and then terminate; skipping the fetch request.
-- [TODO - Option 2](#option-2-using-the-usenhtsa-composable-and-createurl-function):
-  Use the `useNHTSA` composable to get the `createUrl` function. This is used under the hood by the
-  endpoint functions to build the VPIC endpoint URL. You can use it to build the URL for any of the
-  24 endpoints and use it with your own fetch implementation. Function `createPostBody` is also
-  available for formatting and returning the body of a VPIC POST request.
-
-More Info:
-
-- [TODO - Alternate Use Without Polyfills](#alternate-use-without-polyfills)
-
----
-
-### Extra: Offline VIN Validation
-
-There is also an offline VIN validation function called `isValidVin`, that can be used to validate a
-VIN without making a request to the API. Useful if you want to validate a VIN before making an
-unnecessary request to the API with an invalid VIN.
-
-Example:
-
-```javascript
-import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
-
-const isValid = isValidVin('WA1A4AFY2J2008189')
-// isValid = true
+```sh [UMD]
+@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.js
 ```
 
-More Info:
+```sh [CommonJS]
+@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.js
+```
 
-- [TODO - Offline VIN Validation](#offline-vin-validation)
+```sh [IIFE]
+@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js
+```
+
+:::
+
+This package is bundled in the following formats:
+
+### **Modern Browsers and Node.js Versions > 14**
+
+ES Module:
+
+- `dist/nhtsa-api-wrapper.mjs`
+- import: `import NHTSA from '@shaggytools/nhtsa-api-wrapper'`
+
+### **Old Browsers and Node.js Versions < 14**
+
+CommonJS:
+
+- `dist/nhtsa-api-wrapper.js`
+- require (node): `const NHTSA = require('@shaggytools/nhtsa-api-wrapper')`
+
+Universal Module Definition:
+
+- `dist/nhtsa-api-wrapper.umd.js`
+- global (browser): `window.NHTSA`
+- require (node):
+  `const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.js')`
+
+IIFE Bundle:
+
+- `dist/nhtsa-api-wrapper.iife.js`
+- global (browser): `window.NHTSA`
