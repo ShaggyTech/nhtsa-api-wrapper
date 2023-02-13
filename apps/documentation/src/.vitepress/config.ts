@@ -28,7 +28,7 @@ export default defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/introduction/': sidebarGuide(),
+      '/guide/': sidebarGuide(),
       '/api/': sidebarApi(),
     },
 
@@ -54,7 +54,7 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Guide', link: '/introduction/', activeMatch: '/introduction/' },
+    { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
     { text: 'API Reference', link: '/api/', activeMatch: '/api/' },
     {
       text: pkg.version,
@@ -78,31 +78,19 @@ function sidebarGuide() {
       text: 'Guide',
       collapsed: false,
       items: [
-        { text: 'Introduction', link: '/introduction/' },
-        { text: 'Getting Started', link: '/introduction/getting-started' },
+        { text: 'Introduction', link: '/guide/' },
+        { text: 'Getting Started', link: '/guide/getting-started' },
         {
           text: 'BYOF - Bring Your Own Fetch',
-          link: '/introduction/bring-your-own-fetch',
+          link: '/guide/bring-your-own-fetch',
         },
-        { text: 'Typescript Support', link: '/introduction/typescript' },
+        { text: 'Typescript Support', link: '/guide/typescript' },
         {
           text: 'Support for Node Versions < 18',
-          link: '/introduction/native-fetch',
+          link: '/guide/native-fetch',
         },
-        { text: 'VPIC API Response', link: '/introduction/vpic-api-response' },
       ],
     },
-    // {
-    //   text: 'Writing',
-    //   collapsed: false,
-    //   items: [
-    //     { text: 'Markdown', link: '/guide/markdown' },
-    //     { text: 'Asset Handling', link: '/guide/asset-handling' },
-    //     { text: 'Frontmatter', link: '/guide/frontmatter' },
-    //     { text: 'Using Vue in Markdown', link: '/guide/using-vue' },
-    //     { text: 'API Reference', link: '/guide/api' },
-    //   ],
-    // },
     // {
     //   text: 'Theme',
     //   collapsed: false,
@@ -142,12 +130,21 @@ function sidebarGuide() {
 function sidebarApi() {
   return [
     {
-      text: 'API',
+      text: 'API Reference',
       items: [
-        { text: 'Introduction', link: '/config/introduction' },
-        { text: 'App Configs', link: '/config/app-configs' },
-        { text: 'Theme Configs', link: '/config/theme-configs' },
-        { text: 'Frontmatter Configs', link: '/config/frontmatter-configs' },
+        {
+          text: 'Introduction',
+          link: '/api/',
+        },
+        {
+          text: 'VPIC API Response',
+          link: '/api/vpic-api-response',
+        },
+        {
+          text: 'VPIC API Endpoints',
+          collapsed: false,
+          items: [{ text: 'DecodeVin', link: '/api/decode-vin' }],
+        },
       ],
     },
   ]

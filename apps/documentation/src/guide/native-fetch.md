@@ -46,8 +46,10 @@ You can use the endpoint functions to get a url string _without_ fetching. Use t
 retrieve the data however you want, Express or Axios for example. This way `fetch` is never called
 and you won't need a polyfill, at least not specifically for this package.
 
-See the [Alternate Use Without Polyfills](#alternate-use-without-polyfills) section below for more
+::: tip :bulb: Tip
+See the [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md) section for more
 details on using it this way.
+:::
 
 ## Do I need a polyfill?
 

@@ -119,5 +119,5 @@ type NhtsaApiResponse<DecodeVinResults> = {
 }
 ```
 
-Check out the [TODO - API Reference](/introduction/api-reference) page for specific details on each
+Check out the [TODO - API Reference](/guide/api-reference) page for specific details on each
 endpoint's `Results` array types.

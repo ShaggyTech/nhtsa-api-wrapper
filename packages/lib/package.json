@@ -16,8 +16,8 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/nhsta-api-wrapper.mjs",
-      "require": "./dist/nhsta-api-wrapper.umd.js"
+      "import": "./dist/nhtsa-api-wrapper.mjs",
+      "require": "./dist/nhtsa-api-wrapper.umd.js"
     },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"

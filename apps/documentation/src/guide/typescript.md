@@ -92,7 +92,7 @@ type NhtsaApiResponse<T> = {
 
 :::
 
-See [VPIC Response Structure](/introduction/vpic-api-response#response-structure) for more details
+See [VPIC Response Structure](/api/vpic-api-response#response-structure) for more details
 on the response returned by the VPIC API.
 
 ## Note for Beginners

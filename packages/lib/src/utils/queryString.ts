@@ -54,7 +54,7 @@ export const useQueryString = () => {
  * Utility function to generate a query string conforming to URI component standards. Takes an an
  * optional object of search parameters and returns an encoded query string.
  *
- * The paramater { format: 'json' } is hardcoded and cannot be overridden, this package provides
+ * The parameter `{ format: 'json' }` is hardcoded and cannot be overridden, this package provides
  * no support for CSV or XML formats at this time. The default query string will be "?format=json"
  * even if no `params` are provided by user.
  *

@@ -16,10 +16,10 @@ hero:
   actions:
     - theme: brand
       text: Learn More
-      link: /introduction/
+      link: /guide/
     - theme: brand
       text: Getting Started
-      link: /introduction/getting-started
+      link: /guide/getting-started
     - theme: alt
       text: View on GitHub
       link: https://github.com/shaggytech/nhtsa-api-wrapper

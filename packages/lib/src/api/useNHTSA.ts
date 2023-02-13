@@ -66,7 +66,7 @@ export const useNHTSA = () => {
    * is useful if you need to make a POST request with a URL that already has a query string in the
    * POST body.
    *
-   * `path` is a search parameter that is not part of the query string for most NHSTA API endpoints.
+   * `path` is a search parameter that is not part of the query string for most NHTSA API endpoints.
    * For example if decoding a VIN, the path would be the VIN number. If you need to make a request
    * with a path, set `path` to the path string.
    *
@@ -181,7 +181,7 @@ export const useNHTSA = () => {
    *
    * When called from post(), you should set `options.includeQueryString` to false as query strings
    * are not allowed in a POST request. In POST requests, "&format=json" is appended to the POST
-   * body string instead of in the query string. Using the post method direclty for POST requests
+   * body string instead of in the query string. Using the post method directly for POST requests
    * will automatically set `options.includeQueryString` to false and append "&format=json" to the
    * POST body string.
    *
@@ -218,7 +218,7 @@ export const useNHTSA = () => {
       ],
     })
 
-    /* url guranateed to be a string at this point, so ok to cast it */
+    /* url guaranteed to be a string at this point, so ok to cast it */
     if (options.saveUrl) {
       _url = url as string
     }

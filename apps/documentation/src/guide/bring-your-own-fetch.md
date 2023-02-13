@@ -42,7 +42,7 @@ body string, but fetching is left up to you.
 
 ::: tip RELATED:
 
-- [This Package Uses Native Fetch](../introduction/native-fetch.md#this-package-uses-native-fetch)
+- [This Package Uses Native Fetch](../guide/native-fetch.md#this-package-uses-native-fetch)
 
 :::
 

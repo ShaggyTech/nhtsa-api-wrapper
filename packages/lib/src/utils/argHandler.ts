@@ -85,8 +85,9 @@ export const catchInvalidArguments = ({
  * error message in the case of validation failure.
  *
  * - `options.name` and `options.value` are required in each arg object. It's ok to pass undefined
- * as the value, i.e. { value: someVarThatMightBeUndefined }, but you must provide a name for the
+ * as the value, i.e. `{ value: someVarThatMightBeUndefined }`, but you must provide a name for the
  * argument. If you didn't provide a name then the error message would not be as helpful.
+ *
  * - `options.required` and `options.types` are optional.
  *
  * At least one of `options.required` or `options.types` must be provided as part of each arg
