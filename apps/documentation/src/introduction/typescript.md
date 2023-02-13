@@ -14,8 +14,8 @@ in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't 
 We've tried to be as accurate as possible typing the API responses based on testing real responses
 from the NHTSA API. Please report any discrepancies you may find and they will be fixed.
 
-Check out the [TODO - API Reference](/guide/api-reference) page for more details on each endpoint
-helper function and their return types.
+Check out the [TODO - API Reference](/introduction/api-reference) page for more details on each
+endpoint helper function and their return types.
 
 ## Using Typescript
 
@@ -59,7 +59,7 @@ The NHTSA VPIC API response is an object with the following structure:
 
 ::: code-group
 
-```ts [NhtsaApiResponse]
+```ts [Interface NhtsaApiResponse]
 type NhtsaApiResponse<T> = {
   Count: number
   Message: string
@@ -70,58 +70,30 @@ type NhtsaApiResponse<T> = {
 
 :::
 
-See [TODO - NhtsaApiResponse](/guide/api-reference#nhtsaapiresponse) for more details on the
-response returned by the VPIC API.
+::: code-group
 
-### Count
-
-The `Count` property is a `number` that represents the number of objects in the `Results` array.
-
-### Message
-
-The `Message` property is a `string` that contains a message from the API. It's usually used to
-indicate if there was an error or incomplete data returned.
-
-### SearchCriteria
-
-The `SearchCriteria` property is a `string` that contains the search criteria used when requesting
-data from the API. It's used to indicate what the user searched for, VIN, WMI, Model, etc.
-
-### Results
-
-The `Results` array is an array of objects that contain the actual data returned by the API. The
-number of objects and structure of each depends on the endpoint you're using.
-
-The `Results` array is typed according to the endpoint you're using. All return types are the same
-name as the endpoint function with the word `Results` appended to the end, i.e. `DecodeVin` endpoint
-returns an array of `DecodeVinResults` objects.
-
-For example if you use the `DecodeVin` endpoint, the `Results` array will contain multiple objects
-with the following structure:
-
-```ts [DecodeVinResults]
-type DecodeVinResults = {
-  Variable: string
-  Value: string
-  ValueId: number
-  VariableId: number
+```json [Example Response]
+{
+  "Count": 136,
+  "Message": "Results returned successfully ...",
+  "SearchCriteria": "VIN(s): 5UXWX7C5*BA",
+  "Results": [
+    {
+      ...
+      "Make": "BMW",
+      "Model": "X5",
+      "ModelYear": "2011",
+      "PlantCountry": "GERMANY",
+      ...
+    }
+  ]
 }
 ```
 
-And the `NhtsaApiResponse<T>` will look like this, `DecodeVinResults` takes the place of generic
-`<T>` type in this example:
+:::
 
-```ts [NhtsaApiResponse]
-type NhtsaApiResponse<DecodeVinResults> = {
-  Count: number
-  Message: string
-  SearchCriteria: string
-  Results: Array<DecodeVinResults>
-}
-```
-
-Check out the [TODO - API Reference](/guide/api-reference) page for specific details on each
-endpoint's `Results` array types.
+See [VPIC Response Structure](/introduction/vpic-api-response#response-structure) for more details
+on the response returned by the VPIC API.
 
 ## Note for Beginners
 
@@ -144,12 +116,12 @@ of `GetAllMakes`. This means that the function returns a `Promise` that resolves
 `NhtsaApiResponse` object or a `string`. All of the endpoint functions return a similar type using
 their own `Results` array type.
 
-**Explanation with Examples:**
+### Benefits of Typescript
 
-In the example above, you can see that the `DecodeVin` function returns an array of
-`DecodeVinResults` objects in the `Results` key.
+We'll show some examples of how Typescript can help you avoid common mistakes and make you a more
+efficient developer.
 
-For this example lets say you saved the response from the `DecodeVin` function to a variable named
+For this example lets say you saved the return from the `DecodeVin` to a variable named
 `data`.
 
 ```ts

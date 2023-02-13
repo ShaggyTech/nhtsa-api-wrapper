@@ -15,8 +15,11 @@ hero:
   tagline: Easily Decode a VIN, Get Vehicle Models by Make, and many more.
   actions:
     - theme: brand
-      text: Get Started
-      link: /guide/getting-started
+      text: Learn More
+      link: /introduction/
+    - theme: brand
+      text: Getting Started
+      link: /introduction/getting-started
     - theme: alt
       text: View on GitHub
       link: https://github.com/shaggytech/nhtsa-api-wrapper
@@ -31,11 +34,7 @@ features:
   - title: Tree Shaking
     details: Bundled with Vite library mode. Only import what you need, and keep your app size small. Plays nice with bundlers like Webpack and Rollup.
   - title: Lightweight
-    details: Small package size with no polyfills or dependencies in the final package bundle. Only 3 kB minified and gzipped.
-  - title: Fully documented
-    details: Get started quickly with the included examples. Includes full documentation for all methods and properties.
-  - title: Error Handling
-    details: Includes error handling for all API calls with built in run-time type checking for all methods. Get back a detailed error message if something goes wrong.
+    details: Small package size with no polyfills or dependencies in the final bundle. Only 3 kB minified and gzipped.
   - title: TypeScript Support
     details: Get easy type hints and code completion in your IDE. Written with Typescript support top of mind. Includes type definitions for all methods and VPIC responses.
 ---

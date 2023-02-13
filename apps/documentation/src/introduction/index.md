@@ -28,7 +28,7 @@ See: [TODO - NHTSA Endpoints](#nhtsa-api-endpoints)
 See [TODO - useNHTSA](#useNHTSA)
 
 ✔️ All functions and endpoints are typed with TypeScript and have full type hints and code
-completion in your IDE. See [TODO - API Reference](#api-reference)
+completion in your IDE. See [NHTSA API Response Types](../introduction/typescript.md#nhtsa-api-response-types)
 
 ✔️ Built in runtime type-checking and error handling for all functions, so you can be sure
 you'll get back a valid response from the VPIC API. See [TODO - Error Handling](#error-handling)
@@ -63,15 +63,17 @@ For a real world example of this, check out some of my other projects that use t
 
 ## Where can you use this package?
 
-- Use it in any Javascript environment that can use the native
-  [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+Use it in any Javascript environment that can use the native
+[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-> More Info: [TODO - This Package Uses Native Fetch](#this-package-uses-native-fetch).
+> See:
+> [This Package Uses Native Fetch](../introduction/native-fetch.md#this-package-uses-native-fetch).
 
-- Use it in any Javascript environment to simply build the url strings for the endpoints
-  and do the fetching yourself. It will not use the native Fetch API in this case.
+Use it in any Javascript environment to simply build the url strings for the endpoints
+and do the fetching yourself. It will not use the native Fetch API in this case.
 
-> More Info: [TODO - Alternate Use Without Polyfills](#alternate-use-without-polyfills).
+> See:
+> [Alternate Use Of This Package](../introduction/bring-your-own-fetch.md#alternate-use-of-this-package)
 
 ## Why this package?
 
