@@ -12,13 +12,14 @@ This section describes the responses returned by the VPIC API.
 
 ## Response Format
 
+::: warning ATTENTION
+This package only supports JSON API response format
+:::
+
 The VPIC API will return data in either `JSON`, `XML`, or `CSV` format.
 
 The VPIC requires that format is specified via the request URL, either using the `format=` string in
 a query parameter or in the request `body` for POST requests.
-
-::: warning This package only supports JSON format
-:::
 
 ## Response Codes
 
@@ -46,8 +47,8 @@ The response from the VPIC API is a JSON object with the following structure:
 type NhtsaApiResponse<T> = {
   Count: number
   Message: string
-  SearchCriteria: string
   Results: Array<T>
+  SearchCriteria: string
 }
 ```
 
@@ -55,17 +56,16 @@ type NhtsaApiResponse<T> = {
 {
   "Count": 136,
   "Message": "Results returned successfully ...",
-  "SearchCriteria": "VIN(s): 5UXWX7C5*BA",
   "Results": [
     {
-      ...
       "Make": "BMW",
       "Model": "X5",
       "ModelYear": "2011",
       "PlantCountry": "GERMANY",
-      ...
+      ...etc
     }
   ]
+  "SearchCriteria": "VIN(s): 5UXWX7C5*BA",
 }
 ```
 
@@ -80,11 +80,6 @@ If it's `0` then there's no data in the `Results` array and you should check the
 
 The `Message` property is a `string` that contains a message from the API. It's usually used to
 indicate if there was an error or incomplete data returned, otherwise it's indicates success.
-
-### SearchCriteria
-
-The `SearchCriteria` property is a `string` that contains the search criteria used when requesting
-data from the API. It's used to indicate what the user searched for, VIN, WMI, Model, etc.
 
 ### Results
 
@@ -121,3 +116,8 @@ type NhtsaApiResponse<DecodeVinResults> = {
 
 Check out the [TODO - API Reference](/guide/api-reference) page for specific details on each
 endpoint's `Results` array types.
+
+### SearchCriteria
+
+The `SearchCriteria` property is a `string` that contains the search criteria used when requesting
+data from the API. It's used to indicate what the user searched for, VIN, WMI, Model, etc.

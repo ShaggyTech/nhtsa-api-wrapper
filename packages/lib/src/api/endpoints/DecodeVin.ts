@@ -22,19 +22,8 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  *   - In case of partial VINs, a `*` could be used to indicate the unavailable characters
  *   - The 9th digit is not necessary
  *
- * NOTE: Unless you have a specific need to obtain "ValueID" or "VariableID" for each variable
- * in a decoded VIN, this package recommends using one of the `DecodeVinValues*` endpoints
- * instead. This is because they will return a single flat format object of key/value pairs,
- * where key is the name of the variable. `DecodeVinValuesBatch` will return multple flat format
- * objects, one for each VIN you search. The flat format is more efficient and easier to work with
- * as you won't have to iterate through a bunch of objects just to get all variable names/values.
- *
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param [params] - Object of Query Search names and values to append to the URL as a query string.
- * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
- * the second arg in place of params, instead of having to pass all 3 args with params as undefined,
- * i.e. you don't have to do this: `func(arg1, undefined, doFetch)`, and can instead do this:
- * `func(arg1, doFetch)`
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
  * (default: `true`)

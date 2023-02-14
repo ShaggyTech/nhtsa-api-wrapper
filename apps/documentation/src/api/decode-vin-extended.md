@@ -2,14 +2,14 @@
 outline: deep
 ---
 
-# DecodeVin
+# DecodeVinExtended
 
 [[toc]]
 
 ---
 
 ```typescript
-function DecodeVin (
+function DecodeVinExtended (
   vin: string,
   params?:
     | {
@@ -17,7 +17,7 @@ function DecodeVin (
       }
     | boolean,
   doFetch?: boolean
-) => Promise<NhtsaResponse<DecodeVinResults> | string>
+) => Promise<NhtsaResponse<DecodeVinExtendedResults> | string>
 ```
 
 ## Parameters
@@ -43,8 +43,12 @@ having to pass `undefined` in place of intentionally undefined `params`.
 
 ## Description
 
-`DecodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about
-the vehicle.
+`DecodeVinExtended` decodes a Vehicle Identification Number (VIN) and returns useful information
+about the vehicle.
+
+This endpoint is similar to `DecodeVin` but returns additional information on variables related
+to other NHTSA programs like the
+[NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa).
 
 Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
 older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
@@ -74,28 +78,54 @@ bunch of objects just to get all variable names/values.
 **Default:**
 
 Returns a Promise that resolves to a NhtsaResponse object containing an array of
-[DecodeVinResults](#type-decodevinresults) objects in the `Results` key.
+[DecodeVinExtendedResults](#type-decodevinextendedresults) objects in the `Results` key.
 
 ```typescript
-=> Promise<NhtsaResponse<DecodeVinResults>>
+=> Promise<NhtsaResponse<DecodeVinExtendedResults>>
 ```
 
 ::: code-group
 
 ```typescript [NhtsaApiResponse]
-interface NhtsaApiResponse<DecodeVinResults> = {
+interface NhtsaApiResponse<DecodeVinExtendedResults> = {
   Count: number
   Message: string
-  Results: Array<DecodeVinResults>
+  Results: Array<DecodeVinExtendedResults>
   SearchCriteria: string
 }
 ```
 
 ```typescript [Example Response]
 const exampleResponse = {
-  Count: 136,
+  Count: 140,
   Message: 'Results returned successfully ...',
   Results: [
+    // unique to "Extended" endpoints
+        {
+      Value: 'Compact Utility (Utility Vehicle Categories "Small" and "Midsize")',
+      ValueId: '14',
+      Variable: 'NCSA Body Type',
+      VariableId: 96,
+    },
+    {
+      Value: 'Audi',
+      ValueId: '32',
+      Variable: 'NCSA Make',
+      VariableId: 97,
+    },
+    {
+      Value: 'SQ5',
+      ValueId: '404',
+      Variable: 'NCSA Model',
+      VariableId: 98,
+    },
+    {
+      Value: null,
+      ValueId: '',
+      Variable: 'NCSA Note',
+      VariableId: 186,
+    },
+    // remainder is similar to other non flat file endpoints
     {
       Value: '',
       ValueId: '',
@@ -929,16 +959,16 @@ Returns the URL string that can be used to fetch the data, does _not_ fetch the 
 ```typescript
 => Promise<<string>
 
-// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?format=json'
+// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinExtended/WA1A4AFY2J2008189?format=json'
 ```
 
 ::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
-## Type - DecodeVinResults
+## Type DecodeVinExtendedResults
 
 ```typescript
-type DecodeVinResults = {
+type DecodeVinExtendedResults = {
   Value: string | null
   ValueId: string | null
   Variable: string
@@ -946,9 +976,9 @@ type DecodeVinResults = {
 }
 ```
 
-Ƭ **DecodeVinResults**: `Object`
+Ƭ **DecodeVinExtendedResults**: `Object`
 
-Objects returned in the `Results` array of `DecodeVin` endpoint response.
+Objects returned in the `Results` array of `DecodeVinExtended` endpoint response.
 
 In the return object, `Results` will be an array with multiple objects containing 'key:value'
 results. Each object will contain:
@@ -964,32 +994,34 @@ results. Each object will contain:
 ::: tip :bulb: Examples 1-3:
 
 - Fetches data internally
-- Returns `Promise<NhtsaResponse<DecodeVinResults>>`
+- Returns `Promise<NhtsaResponse<DecodeVinExtendedResults>>`
 
 :::
 
 ### Example 1: Decode VIN
 
 ```ts
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinExtended } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await DecodeVin('WA1A4AFY2J2008189')
+const response = await DecodeVinExtended('WA1A4AFY2J2008189')
 ```
 
 ### Example 2: Decode VIN with optional Model Year
 
 ```ts
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinExtended } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 })
+const response = await DecodeVinExtended('WA1A4AFY2J2008189', {
+  modelYear: 2018
+})
 ```
 
 ### Example 3: Decode Partial VIN
 
 ```ts
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinExtended } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await DecodeVin('5UXWX7C5*BA')
+const response = await DecodeVinExtended('5UXWX7C5*BA')
 ```
 
 ---
@@ -1005,9 +1037,9 @@ const response = await DecodeVin('5UXWX7C5*BA')
 ### Example 4: Decode VIN and doFetch = false
 
 ```ts
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinExtended } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await DecodeVin('WA1A4AFY2J2008189', false)
+const url = await DecodeVinExtended('WA1A4AFY2J2008189', false)
 
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?format=json'
 ```
@@ -1015,9 +1047,13 @@ const url = await DecodeVin('WA1A4AFY2J2008189', false)
 ### Example 5: Decode VIN with optional Model Year and doFetch = false
 
 ```ts
-import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinExtended } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 }, false)
+const url = await DecodeVinExtended(
+  'WA1A4AFY2J2008189',
+  { modelYear: 2018 },
+  false
+)
 
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 ```

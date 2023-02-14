@@ -63,8 +63,8 @@ The NHTSA VPIC API response is an object with the following structure:
 type NhtsaApiResponse<T> = {
   Count: number
   Message: string
-  SearchCriteria: string
   Results: Array<T>
+  SearchCriteria: string
 }
 ```
 
@@ -76,17 +76,16 @@ type NhtsaApiResponse<T> = {
 {
   "Count": 136,
   "Message": "Results returned successfully ...",
-  "SearchCriteria": "VIN(s): 5UXWX7C5*BA",
-  "Results": [
+    "Results": [
     {
-      ...
       "Make": "BMW",
       "Model": "X5",
       "ModelYear": "2011",
       "PlantCountry": "GERMANY",
-      ...
+      ...etc
     }
   ]
+  "SearchCriteria": "VIN(s): 5UXWX7C5*BA",
 }
 ```
 
@@ -136,8 +135,8 @@ The `data` variable is of type `NhtsaApiResponse<DecodeVinResults>`:
 type NhtsaApiResponse<DecodeVinResults> = {
   Count: number
   Message: string
-  SearchCriteria: string
   Results: Array<DecodeVinResults>
+  SearchCriteria: string
 }
 ```
 
