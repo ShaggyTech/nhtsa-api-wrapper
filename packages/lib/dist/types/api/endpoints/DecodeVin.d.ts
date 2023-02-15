@@ -19,28 +19,27 @@ import type { NhtsaResponse } from '@/types';
  *   - In case of partial VINs, a `*` could be used to indicate the unavailable characters
  *   - The 9th digit is not necessary
  *
- * NOTE: Unless you have a specific need to obtain "ValueID" or "VariableID" for each variable
- * in a decoded VIN, this package recommends using one of the `DecodeVinValues*` endpoints
- * instead. This is because they will return a single flat format object of key/value pairs,
- * where key is the name of the variable. `DecodeVinValuesBatch` will return multple flat format
- * objects, one for each VIN you search. The flat format is more efficient and easier to work with
- * as you won't have to iterate through a bunch of objects just to get all variable names/values.
- *
  * @param {string} vin - Vehicle Identification Number (full or partial)
- * @param [params] - Object of Query Search names and values to append to the URL as a query string.
- * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
- * the second arg in place of params, instead of having to pass all 3 args with params as undefined,
- * i.e. you don't have to do this: `func(arg1, undefined, doFetch)`, and can instead do this:
- * `func(arg1, doFetch)`
+ * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
  * (default: `true`)
  * @returns {(Promise<NhtsaResponse<DecodeVinResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-export declare const DecodeVin: (vin: string, params?: {
-    modelYear?: string | number;
-} | boolean, doFetch?: boolean) => Promise<NhtsaResponse<DecodeVinResults> | string>;
+declare function DecodeVin(vin: string): Promise<NhtsaResponse<DecodeVinResults>>;
+declare function DecodeVin(vin: string, params: {
+    modelYear: string | number;
+}): Promise<NhtsaResponse<DecodeVinResults>>;
+declare function DecodeVin(vin: string, params: {
+    modelYear: string | number;
+}, doFetch: true): Promise<NhtsaResponse<DecodeVinResults>>;
+declare function DecodeVin(vin: string, doFetch: true, _dummy?: undefined): Promise<NhtsaResponse<DecodeVinResults>>;
+declare function DecodeVin(vin: string, params: {
+    modelYear: string | number;
+}, doFetch: false): Promise<string>;
+declare function DecodeVin(vin: string, doFetch: false, _dummy?: undefined): Promise<string>;
+export { DecodeVin };
 /**
  * Objects returned in the NhtsaResponse 'Results' array of DecodeVin endpoint
  *
@@ -49,7 +48,8 @@ export declare const DecodeVin: (vin: string, params?: {
 export declare type DecodeVinResults = {
     Value: string | null;
     ValueId: string | null;
-    Variable: string;
+    Variable: DecodeVinVariables;
     VariableId: number;
 };
+export declare type DecodeVinVariables = 'Suggested VIN' | 'Error Code' | 'Possible Values' | 'Additional Error Text' | 'Error Text' | 'Vehicle Descriptor' | 'Destination Market' | 'Make' | 'Manufacturer Name' | 'Model' | 'Model Year' | 'Plant City' | 'Series' | 'Trim' | 'Vehicle Type' | 'Plant Country' | 'Plant Company Name' | 'Plant State' | 'Trim2' | 'Series2' | 'Note' | 'Base Price ($)' | 'Non-Land Use' | 'Body Class' | 'Doors' | 'Windows' | 'Wheel Base Type' | 'Track Width (inches)' | 'Gross Vehicle Weight Rating From' | 'Bed Length (inches)' | 'Curb Weight (pounds)' | 'Wheel Base (inches) From' | 'Wheel Base (inches) To' | 'Gross Combination Weight Rating From' | 'Gross Combination Weight Rating To' | 'Gross Vehicle Weight Rating To' | 'Bed Type' | 'Cab Type' | 'Trailer Type Connection' | 'Trailer Body Type' | 'Trailer Length (feet)' | 'Other Trailer Info' | 'Number of Wheels' | 'Wheel Size Front (inches)' | 'Wheel Size Rear (inches)' | 'Entertainment System' | 'Steering Location' | 'Number of Seats' | 'Number of Seat Rows' | 'Transmission Style' | 'Transmission Speeds' | 'Drive Type' | 'Axles' | 'Axle Configuration' | 'Brake System Type' | 'Brake System Description' | 'Other Battery Info' | 'Battery Type' | 'Number of Battery Cells per Module' | 'Battery Current (Amps) From' | 'Battery Voltage (Volts) From' | 'Battery Energy (kWh) From' | 'EV Drive Unit' | 'Battery Current (Amps) To' | 'Battery Voltage (Volts) To' | 'Battery Energy (kWh) To' | 'Number of Battery Modules per Pack' | 'Number of Battery Packs per Vehicle' | 'Charger Level' | 'Charger Power (kW)' | 'Engine Number of Cylinders' | 'Displacement (CC)' | 'Displacement (CI)' | 'Displacement (L)' | 'Engine Stroke Cycles' | 'Engine Model' | 'Engine Power (kW)' | 'Fuel Type - Primary' | 'Valve Train Design' | 'Engine Configuration' | 'Fuel Type - Secondary' | 'Fuel Delivery / Fuel Injection Type' | 'Engine Brake (hp) From' | 'Cooling Type' | 'Engine Brake (hp) To' | 'Electrification Level' | 'Other Engine Info' | 'Turbo' | 'Top Speed (MPH)' | 'Engine Manufacturer' | 'Pretensioner' | 'Seat Belt Type' | 'Other Restraint System Info' | 'Curtain Air Bag Locations' | 'Seat Cushion Air Bag Locations' | 'Front Air Bag Locations' | 'Knee Air Bag Locations' | 'Side Air Bag Locations' | 'Anti-lock Braking System (ABS)' | 'Electronic Stability Control (ESC)' | 'Traction Control' | 'Tire Pressure Monitoring System (TPMS) Type' | 'Active Safety System Note' | 'Auto-Reverse System for Windows and Sunroofs' | 'Automatic Pedestrian Alerting Sound (for Hybrid and EV only)' | 'Event Data Recorder (EDR)' | 'Keyless Ignition' | 'SAE Automation Level From' | 'SAE Automation Level To' | 'Adaptive Cruise Control (ACC)' | 'Crash Imminent Braking (CIB)' | 'Blind Spot Warning (BSW)' | 'Forward Collision Warning (FCW)' | 'Lane Departure Warning (LDW)' | 'Lane Keeping Assistance (LKA)' | 'Backup Camera' | 'Parking Assist' | 'Bus Length (feet)' | 'Bus Floor Configuration Type' | 'Bus Type' | 'Other Bus Info' | 'Custom Motorcycle Type' | 'Motorcycle Suspension Type' | 'Motorcycle Chassis Type' | 'Other Motorcycle Info' | 'Dynamic Brake Support (DBS)' | 'Pedestrian Automatic Emergency Braking (PAEB)' | 'Automatic Crash Notification (ACN) / Advanced Automatic Crash Notification (AACN)' | 'Daytime Running Light (DRL)' | 'Headlamp Light Source' | 'Semiautomatic Headlamp Beam Switching' | 'Adaptive Driving Beam (ADB)' | 'Rear Cross Traffic Alert' | 'Rear Automatic Emergency Braking' | 'Blind Spot Intervention (BSI)' | 'Lane Centering Assistance';
 //# sourceMappingURL=DecodeVin.d.ts.map

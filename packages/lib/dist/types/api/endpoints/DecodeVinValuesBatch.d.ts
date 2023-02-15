@@ -22,26 +22,6 @@ import type { NhtsaResponse } from '@/types';
  * the current, or older (pre-1980), model year ranges. It is recommended to always provide
  * the model year if it is known at the time of decoding, but it is not required.
  *
- * The variable names and values in the flat format objects are equivalent to "Variable" and "Value"
- * keys found in objects returned from _nested format_ endpoints such as `DecodeVin` and
- * `DecodeVinExtended`.
- *
- * *NOTE:* For decoding VINs this package recommends using `DecodeVinValues*` endpoints such as
- * this one. The flat format is more efficient and easier to work with as you won't have to iterate
- * through a bunch of objects just to get all variable names/values as is the case with
- * _nested format_. Unless you need to obtain "ValueID" and/or "VariableID" for each variable in a
- * decoded VIN. In that case, you should use either `DecodeVin` or `DecodeVinExtended` endpoints to
- * obtain the values in a _nested format_ where each variable is an object containing individual
- * "Variable", "Value", "ValueID" and "VariableID" properties.
- *
- * *NOTE:* This endpoint is the only one to use a POST request instead of a GET request. We want to
- * ensure that response format is always set to 'json' in all requests, even POST requests. as POST
- * requests do not allow query strings, we can't set the response format to 'json' in a query
- * string like every other endpoint. Therefore, we
- * have to set the response format in the body of the request before sending it. This is performed
- * internally by the post function in `useNHTSA` composable but it is worth noting here.  We also
- *
- *
  * @param {string} inputString - A string of Vehicle Identification Numbers (full or partial)
  * following the format listed in the description
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL

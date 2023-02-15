@@ -23,21 +23,21 @@ const i = ({
 }) => {
   if (f(e) !== "string")
     throw Error("'name', is required and must be of type string");
-  let s = "";
-  const c = f(t), a = `error validating argument named "${e}",`, u = `received value: ${t} - of type: <${c}>`;
+  let c = "";
+  const s = f(t), a = `error validating argument named "${e}",`, u = `received value: ${t} - of type: <${s}>`;
   if (r && f(r) !== "array" && !r.length)
     throw Error(`${a} 'types' must be an array of strings`);
   const y = r ? `<${r.join(" | ")}>` : "";
-  if (n && !r ? t || (s = `${a} is required, ${u}`) : r && !n ? t !== void 0 && !r.includes(c) && (s = `${a} must be of type(s) ${y}, ${u}`) : n && r && (!t || !r.includes(c)) && (s = `${a} is required and must be of type(s) ${y}, ${u}`), s.length) {
+  if (n && !r ? t || (c = `${a} is required, ${u}`) : r && !n ? t !== void 0 && !r.includes(s) && (c = `${a} must be of type(s) ${y}, ${u}`) : n && r && (!t || !r.includes(s)) && (c = `${a} is required and must be of type(s) ${y}, ${u}`), c.length) {
     if (o === "boolean")
       return !1;
-    throw Error(s);
+    throw Error(c);
   }
   return !0;
-}, T = (e) => f(e) === "error", G = (e) => {
+}, V = (e) => f(e) === "error", G = (e) => {
   let t = "an unknown error occurred.";
-  return T(e) ? e : (f(e) === "string" && (t = e), Error(t));
-}, l = async (e) => (T(e) || (e = G(e)), Promise.reject(e)), f = (e) => {
+  return V(e) ? e : (f(e) === "string" && (t = e), Error(t));
+}, l = async (e) => (V(e) || (e = G(e)), Promise.reject(e)), f = (e) => {
   const t = Object.prototype.toString.call(e).toLowerCase();
   return t.slice(8, t.length - 1);
 }, $ = {
@@ -83,7 +83,7 @@ const i = ({
   3,
   2
 ];
-function A(e) {
+function j(e) {
   if (typeof e != "string" || e.length != 17)
     return !1;
   e = e.toUpperCase();
@@ -91,14 +91,14 @@ function A(e) {
   if (isNaN(parseInt(n)) && n !== "X")
     return !1;
   const r = n === "X" ? 10 : parseInt(n);
-  return t.map((s, c) => {
+  return t.map((c, s) => {
     let a;
-    isNaN(parseInt(s)) ? a = $[s] : a = parseInt(s);
-    const u = k[c];
+    isNaN(parseInt(c)) ? a = $[c] : a = parseInt(c);
+    const u = k[s];
     return a * u;
-  }).reduce((s, c) => s + c, 0) % 11 === r;
+  }).reduce((c, s) => c + s, 0) % 11 === r;
 }
-const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t = !1) => {
+const C = "https://vpic.nhtsa.dot.gov/api/vehicles", T = "json", N = (e = {}, t = !1) => {
   p({
     name: "params",
     value: e,
@@ -106,9 +106,9 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
   });
   const n = b({
     ...e,
-    format: V
+    format: T
   });
-  return "?" + Object.entries(n).map(([r, o], s, c) => o.length || t && o === "" ? `${r}=${o}${s < c.length - 1 ? "&" : ""}` : "").join("");
+  return "?" + Object.entries(n).map(([r, o], c, s) => o.length || t && o === "" ? `${r}=${o}${c < s.length - 1 ? "&" : ""}` : "").join("");
 }, b = (e) => Object.entries(e).filter(
   ([n, r]) => p({
     name: n,
@@ -116,10 +116,11 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
     value: r,
     errorMode: "boolean"
   })
-).reduce((n, [r, o]) => (n[r] = encodeURIComponent(o), n), {}), E = async (e, t, n = !0) => {
+).reduce((n, [r, o]) => (n[r] = encodeURIComponent(o), n), {});
+async function A(e, t, n = !0) {
   const r = "DecodeVin";
-  typeof t == "boolean" && (n = t, t = void 0);
   try {
+    typeof t == "boolean" && (n = t, t = void 0);
     const o = [
       { name: "vin", value: e, required: !0, types: ["string"] },
       { name: "params", value: t, types: ["object"] },
@@ -130,12 +131,13 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: o });
-    const { get: s, cacheUrl: c, getUrl: a } = g();
-    return c({ endpointName: r, path: e, params: t }), n ? s() : a();
+    const { get: c, cacheUrl: s, getCachedUrl: a } = d();
+    return s({ endpointName: r, path: e, params: t }), !t && !n ? a() : c();
   } catch (o) {
     return l(o);
   }
-}, I = async (e, t, n = !0) => {
+}
+const I = async (e, t, n = !0) => {
   const r = "DecodeVinExtended";
   typeof t == "boolean" && (n = t, t = void 0);
   try {
@@ -149,12 +151,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: o });
-    const { get: s, cacheUrl: c, getUrl: a } = g();
-    return c({ endpointName: r, path: e, params: t }), n ? s() : a();
+    const { get: c, cacheUrl: s, getCachedUrl: a } = d();
+    return s({ endpointName: r, path: e, params: t }), n ? c() : a();
   } catch (o) {
     return l(o);
   }
-}, S = async (e, t, n = !0) => {
+}, E = async (e, t, n = !0) => {
   const r = "DecodeVinValues";
   typeof t == "boolean" && (n = t, t = void 0);
   try {
@@ -168,12 +170,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: o });
-    const { get: s, cacheUrl: c, getUrl: a } = g();
-    return c({ endpointName: r, path: e, params: t }), n ? s() : a();
+    const { get: c, cacheUrl: s, getCachedUrl: a } = d();
+    return s({ endpointName: r, path: e, params: t }), n ? c() : a();
   } catch (o) {
     return l(o);
   }
-}, w = async (e, t = !0) => {
+}, S = async (e, t = !0) => {
   const n = "DecodeVinValuesBatch";
   try {
     i({ args: [
@@ -184,12 +186,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string"]
       }
     ] });
-    const { post: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, includeQueryString: !1 }), t ? o(c(), { body: e }) : c();
+    const { post: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, includeQueryString: !1 }), t ? o(s(), { body: e }) : s();
   } catch (r) {
     return l(r);
   }
-}, Y = async (e, t, n = !0) => {
+}, w = async (e, t, n = !0) => {
   const r = "DecodeVinValuesExtended";
   typeof t == "boolean" && (n = t, t = void 0);
   try {
@@ -203,12 +205,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: o });
-    const { get: s, cacheUrl: c, getUrl: a } = g();
-    return c({ endpointName: r, path: e, params: t }), n ? s() : a();
+    const { get: c, cacheUrl: s, getCachedUrl: a } = d();
+    return s({ endpointName: r, path: e, params: t }), n ? c() : a();
   } catch (o) {
     return l(o);
   }
-}, D = async (e, t = !0) => {
+}, Y = async (e, t = !0) => {
   const n = "DecodeWMI";
   try {
     i({ args: [
@@ -219,15 +221,15 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
-}, L = async (e = !1) => {
+}, D = async (e = !1) => {
   const t = "GetAllMakes";
   try {
-    const { get: n, cacheUrl: r, getUrl: o } = g();
+    const { get: n, cacheUrl: r, getCachedUrl: o } = d();
     return r({ endpointName: t }), e ? n() : o();
   } catch (n) {
     return l(n);
@@ -250,12 +252,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: r });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, params: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, params: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
-}, F = async (e, t = !0) => {
+}, L = async (e, t = !0) => {
   const n = "GetCanadianVehicleSpecifications";
   try {
     const r = [
@@ -271,8 +273,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       { name: "units", value: e.units, types: ["string"] }
     ];
     i({ args: r });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({
       endpointName: n,
       params: {
         make: "",
@@ -281,11 +283,11 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         ...e
       },
       allowEmptyParams: !0
-    }), t ? o() : c();
+    }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
-}, R = async (e, t = !0) => {
+}, F = async (e, t = !0) => {
   const n = "GetEquipmentPlantCodes";
   try {
     const r = [
@@ -310,12 +312,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: r });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, params: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, params: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
-}, O = async (e, t = !0) => {
+}, R = async (e, t = !0) => {
   const n = "GetMakeForManufacturer";
   try {
     i({ args: [
@@ -326,12 +328,12 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string", "number"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e.toString() }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e.toString() }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
-}, _ = async (e, t, n = !0) => {
+}, O = async (e, t, n = !0) => {
   const r = "GetMakesForManufacturerAndYear";
   try {
     const o = [
@@ -350,16 +352,16 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       }
     ];
     i({ args: o });
-    const { get: s, cacheUrl: c, getUrl: a } = g();
-    return c({
+    const { get: c, cacheUrl: s, getCachedUrl: a } = d();
+    return s({
       endpointName: r,
       path: e.toString(),
       params: t
-    }), n ? s() : a();
+    }), n ? c() : a();
   } catch (o) {
     return l(o);
   }
-}, C = async (e, t = !0) => {
+}, _ = async (e, t = !0) => {
   const n = "GetMakesForVehicleType";
   try {
     i({ args: [
@@ -370,8 +372,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -386,8 +388,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string", "number"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e.toString() }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e.toString() }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -402,8 +404,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -418,8 +420,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string", "number"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e.toString() }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e.toString() }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -448,11 +450,11 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       ...r
     ];
     i({ args: o }), i({ args: r, mode: "atLeast" });
-    const { makeId: s, modelYear: c, vehicleType: a } = b(e);
-    let u = `/make/${s}/`;
-    u += c ? `modelYear/${c}` : "", u += a ? `${c ? "/" : ""}vehicleType/${a}/` : "";
-    const { get: y, cacheUrl: d, getUrl: h } = g();
-    return d({ endpointName: n, path: u }), t ? y() : h();
+    const { makeId: c, modelYear: s, vehicleType: a } = b(e);
+    let u = `/make/${c}/`;
+    u += s ? `modelYear/${s}` : "", u += a ? `${s ? "/" : ""}vehicleType/${a}/` : "";
+    const { get: y, cacheUrl: g, getCachedUrl: h } = d();
+    return g({ endpointName: n, path: u }), t ? y() : h();
   } catch (r) {
     return l(r);
   }
@@ -476,11 +478,11 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       ...r
     ];
     i({ args: o }), i({ args: r, mode: "atLeast" });
-    const { make: s, modelYear: c, vehicleType: a } = b(e);
-    let u = `/make/${s}/`;
-    u += c ? `modelYear/${c}` : "", u += a ? `${c ? "/" : ""}vehicleType/${a}/` : "";
-    const { get: y, cacheUrl: d, getUrl: h } = g();
-    return d({ endpointName: n, path: u }), t ? y() : h();
+    const { make: c, modelYear: s, vehicleType: a } = b(e);
+    let u = `/make/${c}/`;
+    u += s ? `modelYear/${s}` : "", u += a ? `${s ? "/" : ""}vehicleType/${a}/` : "";
+    const { get: y, cacheUrl: g, getCachedUrl: h } = d();
+    return g({ endpointName: n, path: u }), t ? y() : h();
   } catch (r) {
     return l(r);
   }
@@ -496,8 +498,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       { name: "page", value: e == null ? void 0 : e.page, types: ["string", "number"] }
     ];
     i({ args: r });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, params: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, params: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -512,8 +514,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -528,15 +530,15 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string", "number"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e.toString() }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e.toString() }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
 }, Z = async (e = !0) => {
   const t = "GetVehicleVariableList";
   try {
-    const { get: n, cacheUrl: r, getUrl: o } = g();
+    const { get: n, cacheUrl: r, getCachedUrl: o } = d();
     return r({ endpointName: t }), e ? n() : o();
   } catch (n) {
     return l(n);
@@ -552,8 +554,8 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["string", "number"]
       }
     ] });
-    const { get: o, cacheUrl: s, getUrl: c } = g();
-    return s({ endpointName: n, path: e.toString() }), t ? o() : c();
+    const { get: o, cacheUrl: c, getCachedUrl: s } = d();
+    return c({ endpointName: n, path: e.toString() }), t ? o() : s();
   } catch (r) {
     return l(r);
   }
@@ -576,28 +578,28 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
       ...r
     ];
     i({ args: o }), i({ args: r, mode: "atLeast" });
-    const s = e != null && e.manufacturer ? encodeURIComponent(e.manufacturer) : "", c = (e == null ? void 0 : e.vehicleType) || "", { get: a, cacheUrl: u, getUrl: y } = g();
-    return u({ endpointName: n, path: s, params: { vehicleType: c } }), t ? a() : y();
+    const c = e != null && e.manufacturer ? encodeURIComponent(e.manufacturer) : "", s = (e == null ? void 0 : e.vehicleType) || "", { get: a, cacheUrl: u, getCachedUrl: y } = d();
+    return u({ endpointName: n, path: c, params: { vehicleType: s } }), t ? a() : y();
   } catch (r) {
     return l(r);
   }
-}, g = () => {
+}, d = () => {
   let e;
-  const t = () => e, n = (a) => encodeURI(`DATA=${a}&format=${V}`), r = ({
+  const t = () => e, n = (a) => encodeURI(`DATA=${a}&format=${T}`), r = ({
     endpointName: a,
     allowEmptyParams: u = !1,
     includeQueryString: y = !0,
-    path: d = "",
+    path: g = "",
     params: h,
     saveUrl: v = !0
   }) => {
     if (!a)
-      throw Error("Endpoint name is required to create URL string");
-    const U = y ? j(h, u) : "", m = encodeURI(
-      `${N}/${a}/${d}${U}`
+      throw Error("Endpoint name is required to create a VPIC URL string");
+    const U = y ? N(h, u) : "", m = encodeURI(
+      `${C}/${a}/${g}${U}`
     );
     return v && (e = m), m;
-  }, o = (a) => r({ ...a, saveUrl: !1 }), s = async (a, u = { saveUrl: !0 }) => (a && f(a) === "object" && (a = r({ ...a, saveUrl: u.saveUrl })), a = f(a) === "string" ? a : t(), i({
+  }, o = (a) => r({ ...a, saveUrl: !1 }), c = async (a, u = { saveUrl: !0 }) => (a && f(a) === "object" && (a = r({ ...a, saveUrl: u.saveUrl })), a = f(a) === "string" ? a : t(), i({
     args: [
       {
         name: "url",
@@ -611,31 +613,31 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
         types: ["object"]
       }
     ]
-  }), u.saveUrl && (e = a), await fetch(a, u).then(async (d) => {
-    if (!d)
+  }), u.saveUrl && (e = a), await fetch(a, u).then(async (g) => {
+    if (!g)
       throw Error(
         "APi responded with an error, no response object returned"
       );
-    const h = d.headers.get("content-type"), v = `content-type: ${h},responseStatus: ${d.status},responseUrl: ${d.url}`;
-    if (!d.ok)
+    const h = g.headers.get("content-type"), v = `content-type: ${h},responseStatus: ${g.status},responseUrl: ${g.url}`;
+    if (!g.ok)
       throw Error(`APi responded with an error, got ${v}`);
     if (!["application/json", "text/json"].some((q) => h == null ? void 0 : h.includes(q)))
       throw Error(
         `API response is not in JSON format, got ${v}`
       );
-    const M = await d.json();
+    const M = await g.json();
     if (M)
       return M;
     throw Error(
       `API response OK but returned no data, got ${v}`
     );
-  }).catch((d) => (d.message = `There was an error fetching API data: ${d.message}`, l(d))));
+  }).catch((g) => (g.message = `There was an error fetching API data: ${g.message}`, l(g))));
   return {
-    getUrl: t,
+    getCachedUrl: t,
     cacheUrl: r,
     createUrl: o,
     createPostBody: n,
-    get: s,
+    get: c,
     post: async (a, u = { saveUrl: !0 }) => (a && f(a) === "object" && (a = r({
       ...a,
       saveUrl: u.saveUrl,
@@ -659,7 +661,7 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
           types: ["string"]
         }
       ]
-    }), await s(a, {
+    }), await c(a, {
       ...u,
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
@@ -668,19 +670,19 @@ const N = "https://vpic.nhtsa.dot.gov/api/vehicles", V = "json", j = (e = {}, t 
   };
 };
 export {
-  E as DecodeVin,
+  A as DecodeVin,
   I as DecodeVinExtended,
-  S as DecodeVinValues,
-  w as DecodeVinValuesBatch,
-  Y as DecodeVinValuesExtended,
-  D as DecodeWMI,
-  L as GetAllMakes,
+  E as DecodeVinValues,
+  S as DecodeVinValuesBatch,
+  w as DecodeVinValuesExtended,
+  Y as DecodeWMI,
+  D as GetAllMakes,
   P as GetAllManufacturers,
-  F as GetCanadianVehicleSpecifications,
-  R as GetEquipmentPlantCodes,
-  O as GetMakeForManufacturer,
-  _ as GetMakesForManufacturerAndYear,
-  C as GetMakesForVehicleType,
+  L as GetCanadianVehicleSpecifications,
+  F as GetEquipmentPlantCodes,
+  R as GetMakeForManufacturer,
+  O as GetMakesForManufacturerAndYear,
+  _ as GetMakesForVehicleType,
   x as GetManufacturerDetails,
   W as GetModelsForMake,
   B as GetModelsForMakeId,
@@ -692,7 +694,7 @@ export {
   Z as GetVehicleVariableList,
   z as GetVehicleVariableValuesList,
   ee as GetWMIsForManufacturer,
-  A as isValidVin,
-  g as useNHTSA
+  j as isValidVin,
+  d as useNHTSA
 };
 //# sourceMappingURL=nhtsa-api-wrapper.mjs.map

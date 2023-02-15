@@ -27,7 +27,7 @@ importers:
       prettier-config: workspace:*
       tsconfig: workspace:*
       typescript: 4.9.4
-      vitepress: 1.0.0-alpha.45
+      vitepress: 1.0.0-alpha.46
       vue: 3.2.47
     devDependencies:
       '@shaggytools/nhtsa-api-wrapper': link:../../packages/lib
@@ -37,7 +37,7 @@ importers:
       prettier-config: link:../../config/prettier-config
       tsconfig: link:../../config/tsconfig
       typescript: 4.9.4
-      vitepress: 1.0.0-alpha.45
+      vitepress: 1.0.0-alpha.46
       vue: 3.2.47
 
   config/eslint-config-custom:
@@ -446,7 +446,7 @@ packages:
     resolution: {integrity: sha512-2xAv2GFuHzzmG0SSZgf8wHX0qZX8n9Y1ZirKUk5Wrdc+vH9CL837x2hZIUdwcPZI9caBA+/CzxsS68O4waYjUQ==}
     dependencies:
       '@docsearch/react': 3.3.3
-      preact: 10.12.0
+      preact: 10.12.1
     transitivePeerDependencies:
       - '@algolia/client-search'
       - '@types/react'
@@ -2528,8 +2528,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /preact/10.12.0:
-    resolution: {integrity: sha512-+w8ix+huD8CNZemheC53IPjMUFk921i02o30u0K6h53spMX41y/QhVDnG/nU2k42/69tvqWmVsgNLIiwRAcmxg==}
+  /preact/10.12.1:
+    resolution: {integrity: sha512-l8386ixSsBdbreOAkqtrwqHwdvR35ID8c3rKPa8lCWuO86dBi32QWHV4vfsZK1utLLFMvw+Z5Ad4XLkZzchscg==}
     dev: true
 
   /prelude-ls/1.2.1:
@@ -2716,8 +2716,8 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
-  /shiki/0.14.0:
-    resolution: {integrity: sha512-fb9Fg1Yx/ElVJcTqPQIEOSfn7mSZlrT1W3CkymY08lL2Jsi+t7jPcZzKO1lCsQwlSDuyNhHvolnyA2OI4EgJNg==}
+  /shiki/0.14.1:
+    resolution: {integrity: sha512-+Jz4nBkCBe0mEDqo1eKRcCdjRtrCjozmcbTUjbPTX7OOJfEbTZzlUWlZtGe3Gb5oV1/jnojhG//YZc3rs9zSEw==}
     dependencies:
       ansi-sequence-parser: 1.1.0
       jsonc-parser: 3.2.0
@@ -3173,8 +3173,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress/1.0.0-alpha.45:
-    resolution: {integrity: sha512-8AVWdymQqBUPmXmAbpapDDg18iDmkNJ47l5eOklBlAjj3n8P3zDAsBhOWSQ6+Nvm6+/GaZATyAvsrg47JD5Idw==}
+  /vitepress/1.0.0-alpha.46:
+    resolution: {integrity: sha512-HiKiHzC0iTPsRsKs8XcsMeMzCpcCt5LWcX9mpDr288Ju+nQf1G8A2+Wm44ZkBsVv4EHxFK4ChmWyZrL1OJUXpg==}
     hasBin: true
     dependencies:
       '@docsearch/css': 3.3.3
@@ -3183,7 +3183,7 @@ packages:
       '@vue/devtools-api': 6.5.0
       '@vueuse/core': 9.12.0_vue@3.2.47
       body-scroll-lock: 4.0.0-beta.0
-      shiki: 0.14.0
+      shiki: 0.14.1
       vite: 4.0.4
       vue: 3.2.47
     transitivePeerDependencies:

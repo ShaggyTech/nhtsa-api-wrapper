@@ -270,7 +270,14 @@ Returns the URL string that can be used to fetch the data, does _not_ fetch the 
 
 ## Type - DecodeVinValuesResults
 
-::: details Click to Show Type Definition
+Ƭ **DecodeVinValuesResults**: `Object`
+
+Object returned in the `Results` array of `DecodeVinValues` endpoint response.
+
+In the return object, `Results` will be an array with a single object of type
+`DecodeVinValuesResults`.
+
+::: details Click to See Type Definition
 
 ```typescript
 type DecodeVinValuesResults = {
@@ -428,13 +435,6 @@ type DecodeVinValuesResults = {
 ```
 
 :::
-
-Ƭ **DecodeVinValuesResults**: `Object`
-
-Object returned in the `Results` array of `DecodeVinValues` endpoint response.
-
-In the return object, `Results` will be an array with a single object of type
-`DecodeVinValuesResults`.
 
 ## Examples
 

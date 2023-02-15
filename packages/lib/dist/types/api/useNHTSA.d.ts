@@ -29,11 +29,11 @@ export declare type CreateUrlOptions = {
  *
  * - `createUrl` - Builds the URL string but does not store it in internal state
  *
- * - `getURL` - Returns the internal URL string
+ * - `getCachedUrl` - Returns the internal URL string
  *
  */
 export declare const useNHTSA: () => {
-    getUrl: () => string;
+    getCachedUrl: () => string;
     cacheUrl: ({ endpointName, allowEmptyParams, includeQueryString, path, params, saveUrl, }: CreateUrlOptions) => string;
     createUrl: (options: CreateUrlOptions) => string;
     createPostBody: (data: string) => string;
