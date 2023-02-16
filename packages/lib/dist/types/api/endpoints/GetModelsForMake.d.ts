@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetModelsForMake` returns the Models in the vPIC dataset for a specified `makeName`
  * whose Name is LIKE the Make in vPIC Dataset.

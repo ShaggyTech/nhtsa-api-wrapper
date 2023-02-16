@@ -1,4 +1,4 @@
-import type { NhtsaResponse, AtLeastOne } from '@/types';
+import type { NhtsaResponse, AtLeastOne } from '../../types';
 /**
  * `GetModelsForMakeIdYear` returns the Models in the vPIC dataset for a specified Model Year
  * and Make whose name is LIKE the Make in the vPIC Dataset.

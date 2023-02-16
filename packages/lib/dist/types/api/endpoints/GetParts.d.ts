@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetParts` provides a list of ORGs with letter date in the given range of the dates and with
  * specified Type (`params.type`) of ORG.

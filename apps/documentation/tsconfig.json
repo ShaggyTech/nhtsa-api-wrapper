@@ -1,5 +1,5 @@
 {
-  "shcema": "https://json.schemastore.org/tsconfig",
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "tsconfig/vitepress.json",
   "include": [
     "src/**/*.ts",

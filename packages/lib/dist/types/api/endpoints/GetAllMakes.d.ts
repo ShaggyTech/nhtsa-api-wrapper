@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.
  * Each object in the `Results` array represents the `Make_ID` and the `Make_Name` of

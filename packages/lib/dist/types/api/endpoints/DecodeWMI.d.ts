@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `DecodeWMI` provides information on the World Manufacturer Identifier for a specific `WMI` code.
  *

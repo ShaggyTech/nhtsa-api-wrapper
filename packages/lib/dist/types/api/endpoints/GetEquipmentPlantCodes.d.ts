@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,
  * Equipment Type and Report Type.

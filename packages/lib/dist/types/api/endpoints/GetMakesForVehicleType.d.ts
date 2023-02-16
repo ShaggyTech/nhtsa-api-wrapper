@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetMakesForVehicleType` returns all the Makes in the vPIC dataset for a specified vehicle type
  * (`typeName`), whose name is LIKE the vehicle type name in vPIC Dataset.

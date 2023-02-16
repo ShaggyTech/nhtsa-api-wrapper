@@ -1,4 +1,4 @@
-import type { AtLeastOne, NhtsaResponse } from '@/types';
+import type { AtLeastOne, NhtsaResponse } from '../../types';
 /**
  * `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
  * specified `manufacturer`. Only WMIs registered in vPICList are displayed. Multiple results are

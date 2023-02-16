@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.
  *

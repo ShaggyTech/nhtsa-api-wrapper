@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns
  * useful information about the vehicles in in a _flat format_. This means the endpoint will return

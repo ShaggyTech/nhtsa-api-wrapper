@@ -655,6 +655,30 @@ const Results = [
     VariableId: 182,
   },
   {
+    Value: 'Compact Utility (Utility Vehicle Categories "Small" and "Midsize")',
+    ValueId: "14",
+    Variable: "NCSA Body Type",
+    VariableId: 96,
+  },
+  {
+    Value: "Audi",
+    ValueId: "32",
+    Variable: "NCSA Make",
+    VariableId: 97,
+  },
+  {
+    Value: "SQ5",
+    ValueId: "404",
+    Variable: "NCSA Model",
+    VariableId: 98,
+  },
+  {
+    Value: null,
+    ValueId: "",
+    Variable: "NCSA Note",
+    VariableId: 186,
+  },
+  {
     Value: null,
     ValueId: null,
     Variable: "Adaptive Cruise Control (ACC)",

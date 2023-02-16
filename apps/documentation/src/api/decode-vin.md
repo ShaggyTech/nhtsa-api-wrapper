@@ -87,10 +87,8 @@ type NhtsaApiResponse<DecodeVinResults> = {
 }
 ```
 
-Example Response:
-
-::: details Click to View
-<<< @/data/endpoints/decode-vin.ts#example-response
+::: details Click to View Full Example Response
+<<< @/snippets/endpoints/decode-vin.ts#example-response
 :::
 
 ### If `doFetch` is set to `false`
@@ -108,7 +106,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 
 ## Type - DecodeVinResults
 
-<<< @/data/endpoints/decode-vin.ts#type-results
+<<< @/snippets/endpoints/decode-vin.ts#type-results
 
 Ƭ **DecodeVinResults**: `Object`
 

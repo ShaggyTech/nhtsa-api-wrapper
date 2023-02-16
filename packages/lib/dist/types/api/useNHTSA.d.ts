@@ -1,4 +1,4 @@
-import type { NhtsaResponse, QueryStringParams } from '@/types';
+import type { NhtsaResponse, QueryStringParams } from '../types';
 export declare type CreateUrlOptions = {
     endpointName: string;
     allowEmptyParams?: boolean;

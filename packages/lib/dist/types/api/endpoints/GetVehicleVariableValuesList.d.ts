@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable
  * that are stored in the vPIC dataset.

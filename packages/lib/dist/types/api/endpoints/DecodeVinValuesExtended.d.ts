@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
  * information about the vehicle in in a _flat format_. This means the endpoint will return an

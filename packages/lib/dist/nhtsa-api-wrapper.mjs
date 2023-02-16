@@ -132,12 +132,12 @@ async function A(e, t, n = !0) {
     ];
     i({ args: o });
     const { get: c, cacheUrl: s, getCachedUrl: a } = d();
-    return s({ endpointName: r, path: e, params: t }), !t && !n ? a() : c();
+    return s({ endpointName: r, path: e, params: t }), n ? c() : a();
   } catch (o) {
     return l(o);
   }
 }
-const I = async (e, t, n = !0) => {
+async function I(e, t, n = !0) {
   const r = "DecodeVinExtended";
   typeof t == "boolean" && (n = t, t = void 0);
   try {
@@ -156,7 +156,8 @@ const I = async (e, t, n = !0) => {
   } catch (o) {
     return l(o);
   }
-}, E = async (e, t, n = !0) => {
+}
+const E = async (e, t, n = !0) => {
   const r = "DecodeVinValues";
   typeof t == "boolean" && (n = t, t = void 0);
   try {

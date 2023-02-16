@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetManufacturerDetails` provides the details for a specific manufacturer that is requested.
  * Multiple results are returned in case of multiple matches.

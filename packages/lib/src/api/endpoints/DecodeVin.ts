@@ -95,7 +95,7 @@ async function DecodeVin(
 
     cacheUrl({ endpointName, path: vin, params })
 
-    if (!params && !doFetch) {
+    if (!doFetch) {
       return getCachedUrl()
     } else {
       return get()

@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).
  * The CVS consists of a database of original vehicle dimensions, used primarily in

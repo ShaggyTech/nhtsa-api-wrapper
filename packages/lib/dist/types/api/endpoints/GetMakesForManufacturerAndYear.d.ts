@@ -1,4 +1,4 @@
-import type { NhtsaResponse } from '@/types';
+import type { NhtsaResponse } from '../../types';
 /**
  * `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified
  * `manufacturer`, and whose "Year From" and "Year To" range cover the specified `year`. Multiple

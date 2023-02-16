@@ -1,4 +1,4 @@
-import type { AtLeastOne } from '@/types';
+import type { AtLeastOne } from '../types';
 export declare type IArgToValidate = {
     name: string;
     value: unknown;
