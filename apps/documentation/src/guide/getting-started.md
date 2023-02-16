@@ -11,12 +11,12 @@ outline: deep
 ::: warning 🔞 WARNING
 This package uses the
 [built-in Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) with no bundled
-polyfill for very old Browsers or Node.js versions `< 18`.
+polyfill for very old Browsers or Node.js versions < 18.
 
 Related:
 
 - [This Package Uses Native Fetch](../guide/native-fetch.md#this-package-uses-native-fetch)
-- [Alternate Use Without Polyfills](../guide/url-builder-mode.md#alternate-use-of-this-package)
+- [Alternate Use Without Polyfills](../guide/bring-your-own-fetch.md)
 
 :::
 

@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/DecodeVinExtended
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
@@ -118,7 +123,7 @@ export { DecodeVinExtended }
 export type DecodeVinExtendedResults = {
   Value: string | null
   ValueId: string | null
-  Variable: DecodeVinExtendedVariableName | string
+  Variable: DecodeVinExtendedVariable | string
   VariableId: number
 }
 
@@ -134,7 +139,7 @@ export type DecodeVinExtendedResults = {
  *
  * Last Updated: 02/14/2023
  */
-export type DecodeVinExtendedVariableName =
+export type DecodeVinExtendedVariable =
   | 'Suggested VIN'
   | 'Error Code'
   | 'Possible Values'
@@ -275,3 +280,4 @@ export type DecodeVinExtendedVariableName =
   | 'Rear Automatic Emergency Braking'
   | 'Blind Spot Intervention (BSI)'
   | 'Lane Centering Assistance'
+  | (string & Record<string, never>)

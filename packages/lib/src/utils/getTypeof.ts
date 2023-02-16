@@ -1,6 +1,6 @@
 /**
  * @module utils/getTypeof
- * @category Utils
+ * @category Internal Utility Functions
  */
 
 /**

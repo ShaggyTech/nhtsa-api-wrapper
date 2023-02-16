@@ -1,5 +1,5 @@
-export type { DecodeVinResults, DecodeVinVariableName } from './DecodeVin';
-export type { DecodeVinExtendedResults, DecodeVinExtendedVariableName, } from './DecodeVinExtended';
+export type { DecodeVinResults, DecodeVinVariable } from './DecodeVin';
+export type { DecodeVinExtendedResults, DecodeVinExtendedVariable, } from './DecodeVinExtended';
 export type { DecodeVinValuesResults } from './DecodeVinValues';
 export type { DecodeVinValuesBatchResults } from './DecodeVinValuesBatch';
 export type { DecodeVinValuesExtendedResults } from './DecodeVinValuesExtended';

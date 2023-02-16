@@ -10,12 +10,12 @@ outline: deep
 
 ---
 
-::: warning ATTENTION
-This section is only applicable to you if using this package in Node versions < 18 and very old
-browsers.
+::: warning IMPORTANT
+This section is likely only applicable if using this package in Node versions < 18 and very
+old browsers.
 :::
 
-::: info Did you know?
+::: info :bulb: Did you know?
 You can get your Node version by running `node -v` in your terminal.
 :::
 
@@ -27,17 +27,26 @@ method internally, for both Node and Browser.
 Native, or built-in, `fetch()` was introduced in Node v18, which is the current LTS version.
 It has also been available in modern browsers for years now.
 
-The terms `native` or `built-in` mean you don't have to import it, it's included and available
-globally in the browser and in Node versions > 17.
+The terms `native` or `built-in` mean you don't have to explicitly import it, it's available
+globally in the browser and in Node.js versions 18+.
 
 ::: danger :exclamation: A polyfill for `fetch` is **_NOT_** bundled with this package.
 :::
 
+## Do I need a polyfill?
+
+Here's a brief definition of a
+[polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill):
+
+> A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality
+> on older environments that do not natively support it.
+
 If you need to use this package in Node versions < 18, one of the following is required:
 
-- include a [polyfill](#polyfills) for fetch yourself.
-- use this package as a [URL Builder](#alternate-use-without-polyfills), and then use a fetching
-  library like [Axios](https://www.npmjs.com/package/axios) to retrieve the data
+- include a [polyfill](#available-polyfills) for fetch yourself.
+- use this package as a
+  [URL Builder](../guide/bring-your-own-fetch.md#alternate-use-of-this-package), and then use a
+  fetching library like [Axios](https://www.npmjs.com/package/axios) to retrieve the data.
 
 We realize not everyone is using the latest version yet, so we provide a way to use this package
 without a `fetch` polyfill.
@@ -51,20 +60,8 @@ See the [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md) section 
 details on using it this way.
 :::
 
-## Do I need a polyfill?
-
-Here's a brief definition of a
-[polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill):
-
-> A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality
-> on older environments that do not natively support it.
-
-If using this package in Node versions < 18, you _**WILL**_ need a polyfill for `fetch` unless you
-use it as a [URL Builder](#alternate-use-without-polyfills) without fetching.
-
 You _**DO NOT**_ need a polyfill for `fetch` if using this package:
 
-- as a [URL Builder](#alternate-use-without-polyfills)
 - in Node versions > 17
 - in a modern browser
 

@@ -1,6 +1,6 @@
 /**
  * @module utils/isValidVin
- * @category Utils
+ * @category Utility Functions
  */
 
 /**

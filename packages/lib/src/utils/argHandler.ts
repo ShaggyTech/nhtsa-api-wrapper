@@ -1,3 +1,8 @@
+/**
+ * @module utils/argHandler
+ * @category Internal Utility Functions
+ */
+
 import { getTypeof } from '@/utils'
 import type { AtLeastOne } from '@/types'
 

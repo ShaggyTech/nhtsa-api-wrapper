@@ -1,3 +1,8 @@
+/**
+ * @module utils/types
+ * @category Utility Types
+ */
+
 export type { IArgToValidate } from './argHandler'
 
 export type {

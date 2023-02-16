@@ -1,3 +1,8 @@
+/**
+ * @module utils
+ * @category Internal Utility Functions
+ */
+
 export { catchInvalidArguments, validateArgument } from './argHandler'
 export { handleError, isError, rejectWithError } from './errorHandler'
 export { getTypeof } from './getTypeof'

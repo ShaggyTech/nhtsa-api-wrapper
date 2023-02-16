@@ -20,6 +20,10 @@ function DecodeVin (
 ) => Promise<NhtsaResponse<DecodeVinResults> | string>
 ```
 
+::: tip :bulb: Full Details and Type Definitions
+See: [Package Reference](../typedoc/modules/api_endpoints_DecodeVin.md)
+:::
+
 ## Parameters
 
 | Name                | Type                 | Default Value | Description                                                                     |

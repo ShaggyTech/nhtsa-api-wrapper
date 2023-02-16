@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints
+ * @category API Endpoints
+ */
+
 export { DecodeVin } from './DecodeVin'
 export { DecodeVinExtended } from './DecodeVinExtended'
 export { DecodeVinValues } from './DecodeVinValues'

@@ -4,11 +4,7 @@ outline: deep
 
 # BYOF - Bring Your Own Fetch
 
-[[toc]]
-
----
-
-::: tip 📦 TIP
+::: tip 📦 INFO
 In some cases, you may want to use this package without a `fetch` polyfill or fetch the data
 yourself.
 
@@ -16,6 +12,10 @@ This package can be used in "_URL Builder_ mode", which means you can use the en
 functions to get the full API endpoint URL string, but skip the `fetch` request.
 
 :::
+
+---
+
+[[toc]]
 
 ## Alternate Use of This Package
 

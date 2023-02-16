@@ -1,7 +1,3 @@
-/**
- * @module utils/createQueryString
- * @category Internal Utility Functions
- */
 /** Valid URI component types */
 export declare type QueryStringTypes = string | number | boolean;
 /** Object to build the query string with */
@@ -11,6 +7,9 @@ export declare type QueryStringParamsEncoded<T> = {
     [key in keyof T]: string;
 };
 /**
+ * @module utils/createQueryString
+ * @category Internal Utility Functions
+ *
  * `useQueryString` is a composable function that returns an object containing methods for creating
  * and handling query strings.
  *

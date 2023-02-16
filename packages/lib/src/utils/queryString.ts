@@ -1,5 +1,5 @@
 /**
- * @module utils/createQueryString
+ * @module utils/queryString
  * @category Internal Utility Functions
  */
 
@@ -64,7 +64,7 @@ export const useQueryString = () => {
  * - If second argument `allowEmptyParams` is set to `true`, the function will include keys with
  *   empty string values, e.g. 'emptyKey='
  *
- * @internal This function is not exported by the package, but is used internally by other
+ * This function is not exported by the package, but is used internally by other
  * functions. However, it _is_ exported by the package as part of the composable function
  * `useQueryString`, and renamed to `createString` for less verbose use.
  *
@@ -118,7 +118,7 @@ export const createQueryString = <T extends QueryStringParams>(
  * in the returned object, you can use the `validateArgument()` function to check the types of all
  * values are valid before calling this function.
  *
- * @internal This function is not exported by the package, but is used internally by other
+ * This function is not exported by the package, but is used internally by other
  * functions. However, it _is_ exported by the package as part of the composable function
  * `useQueryString`, and renamed to `encodeParams` for less verbose use.
  *

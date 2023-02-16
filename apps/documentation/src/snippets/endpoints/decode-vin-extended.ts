@@ -2,13 +2,14 @@
 type DecodeVinExtendedResults = {
   Value: string | null
   ValueId: string | null
-  Variable: DecodeVinExtendedVariableName | string
+  Variable: DecodeVinExtendedVariable | string
   VariableId: number
 }
 // #endregion type-results
 
 // #region type-variable-names
-type DecodeVinExtendedVariableName =
+type DecodeVinExtendedVariable =
+  | string
   | 'Suggested VIN'
   | 'Error Code'
   | 'Possible Values'
@@ -1822,5 +1823,5 @@ const exampleResponse = {
 }
 // #endregion example-response
 
-export type { DecodeVinExtendedResults }
+export type { DecodeVinExtendedResults, DecodeVinExtendedVariable }
 export { exampleResponse }

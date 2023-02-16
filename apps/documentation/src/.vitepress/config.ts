@@ -81,15 +81,19 @@ function sidebarGuide() {
         { text: 'Introduction', link: '/guide/' },
         { text: 'Getting Started', link: '/guide/getting-started' },
         {
-          text: 'Support for Node Versions < 18',
-          link: '/guide/native-fetch',
-        },
-        {
           text: 'BYOF - Bring Your Own Fetch',
           link: '/guide/bring-your-own-fetch',
         },
+        {
+          text: 'Support for Node Versions < 18',
+          link: '/guide/native-fetch',
+        },
         { text: 'Typescript Support', link: '/guide/typescript' },
       ],
+    },
+    {
+      text: 'Package Reference',
+      link: '/typedoc/',
     },
     // {
     //   text: 'Theme',

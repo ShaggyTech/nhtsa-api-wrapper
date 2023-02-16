@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/DecodeVin
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
@@ -30,36 +35,38 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-/* Overloads */
-/* Default */
+/** With `vin` */
 function DecodeVin(vin: string): Promise<NhtsaResponse<DecodeVinResults>>
+/** With `vin` + `params` */
 function DecodeVin(
   vin: string,
   params: { modelYear: string | number }
 ): Promise<NhtsaResponse<DecodeVinResults>>
 
-/* doFetch = true */
-function DecodeVin(
-  vin: string,
-  params: { modelYear: string | number },
-  doFetch: true
-): Promise<NhtsaResponse<DecodeVinResults>>
+/** With `vin` + `doFetch = true` */
 function DecodeVin(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinResults>>
-
-/* doFetch = false */
+/** `vin` + `params` + `doFetch = true` */
 function DecodeVin(
   vin: string,
   params: { modelYear: string | number },
-  doFetch: false
-): Promise<string>
+  doFetch: true
+): Promise<NhtsaResponse<DecodeVinResults>>
+
+/** With `vin` + `doFetch = false` */
 function DecodeVin(
   vin: string,
   doFetch: false,
   _dummy?: undefined
+): Promise<string>
+/** With `vin` + `params` + `doFetch = false` */
+function DecodeVin(
+  vin: string,
+  params: { modelYear: string | number },
+  doFetch: false
 ): Promise<string>
 
 /* Implementation */
@@ -113,7 +120,7 @@ export { DecodeVin }
 export type DecodeVinResults = {
   Value: string | null
   ValueId: string | null
-  Variable: DecodeVinVariableName
+  Variable: DecodeVinVariable
   VariableId: number
 }
 
@@ -129,7 +136,7 @@ export type DecodeVinResults = {
  *
  * Last Updated: 02/14/2023
  */
-export type DecodeVinVariableName =
+export type DecodeVinVariable =
   | 'Suggested VIN'
   | 'Error Code'
   | 'Possible Values'
@@ -266,3 +273,4 @@ export type DecodeVinVariableName =
   | 'Rear Automatic Emergency Braking'
   | 'Blind Spot Intervention (BSI)'
   | 'Lane Centering Assistance'
+  | (string & Record<string, never>)
