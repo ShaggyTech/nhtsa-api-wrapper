@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeWMI
+
 # Module: api/endpoints/DecodeWMI
 
 ## Table of contents
@@ -43,7 +45,7 @@ be available in vPIC data sets.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:29](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeWMI.ts#L29)
+[api/endpoints/DecodeWMI.ts:29](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/DecodeWMI.ts#L29)
 
 ## Type Aliases
 
@@ -73,4 +75,4 @@ DecodeWMIResults
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeWMI.ts#L65)
+[api/endpoints/DecodeWMI.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/DecodeWMI.ts#L65)

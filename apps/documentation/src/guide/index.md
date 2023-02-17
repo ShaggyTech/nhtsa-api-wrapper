@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # @shaggytools/nhtsa-api-wrapper
 
 ---
@@ -35,7 +31,7 @@ you'll get back a valid response from the VPIC API. See [TODO - Error Handling](
 
 ## What is the NHTSA VPIC API?
 
-::: tip 📦 TIP
+::: tip :bulb: TIP
 When this documentation mentions "API endpoints" it's referring to the 24 `Actions` listed in
 the [VPIC API Docs](https://vpic.nhtsa.dot.gov/api/).
 

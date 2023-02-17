@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableValuesList
+
 # Module: api/endpoints/GetVehicleVariableValuesList
 
 ## Table of contents
@@ -40,7 +42,7 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:25](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L25)
+[api/endpoints/GetVehicleVariableValuesList.ts:25](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L25)
 
 ## Type Aliases
 
@@ -64,4 +66,4 @@ GetVehicleVariableValuesListResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L61)
+[api/endpoints/GetVehicleVariableValuesList.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L61)

@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/errorHandler
+
 # Module: utils/errorHandler
 
 ## Table of contents
@@ -32,7 +34,7 @@ Accepts any type of value but will return default error message of `an unknown e
 
 #### Defined in
 
-[utils/errorHandler.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/errorHandler.ts#L26)
+[utils/errorHandler.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/errorHandler.ts#L26)
 
 ___
 
@@ -56,7 +58,7 @@ Checks if `error` is an instance of any Error type.
 
 #### Defined in
 
-[utils/errorHandler.ts:14](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/errorHandler.ts#L14)
+[utils/errorHandler.ts:14](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/errorHandler.ts#L14)
 
 ___
 
@@ -80,4 +82,4 @@ not an Error type.
 
 #### Defined in
 
-[utils/errorHandler.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/errorHandler.ts#L44)
+[utils/errorHandler.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/errorHandler.ts#L44)

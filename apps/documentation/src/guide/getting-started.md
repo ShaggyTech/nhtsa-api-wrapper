@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # Getting Started
 
 [[toc]]
@@ -123,9 +119,8 @@ results = {
 */
 ```
 
-More Info:
-
-- [TODO - NHTSA API Endpoints](#nhtsa-api-endpoints)
+::: tip :mag: See: [VPIC API Endpoints](../api/#vpic-api-endpoints)
+:::
 
 ---
 

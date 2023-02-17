@@ -19,17 +19,16 @@ export default defineConfig({
 
   markdown: {
     theme: 'one-dark-pro',
-    headers: {
-      level: [0, 0],
-    },
   },
 
   themeConfig: {
+    outline: 'deep',
     nav: nav(),
 
     sidebar: {
       '/guide/': sidebarGuide(),
-      '/api/': sidebarApi(),
+      '/api/': sidebarGuide(),
+      '/typedoc/': sidebarGuide(),
     },
 
     editLink: {
@@ -56,6 +55,7 @@ function nav() {
   return [
     { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
     { text: 'API Reference', link: '/api/', activeMatch: '/api/' },
+    { text: 'Typedocs', link: '/typedoc/', activeMatch: '/typedoc/' },
     {
       text: pkg.version,
       items: [
@@ -89,6 +89,52 @@ function sidebarGuide() {
           link: '/guide/native-fetch',
         },
         { text: 'Typescript Support', link: '/guide/typescript' },
+      ],
+    },
+    {
+      text: 'API Reference',
+      items: [
+        {
+          text: 'Introduction',
+          link: '/api/',
+        },
+        {
+          text: 'VPIC API Response',
+          link: '/api/vpic-api-response',
+        },
+        {
+          text: 'VPIC API Endpoints',
+          collapsed: false,
+          items: [
+            { text: 'DecodeVin', link: '/api/decode-vin' },
+            { text: 'DecodeVinExtended', link: '/api/decode-vin-extended' },
+            { text: 'DecodeVinValues', link: '/api/decode-vin-values' },
+            {
+              text: 'DecodeVinValuesBatch',
+              link: '/api/decode-vin-values-batch',
+            },
+            // { text: 'DecodeVinValuesExtended', link: '/api/decode-vin-values-extended' },
+            // { text: 'DecodeWMI', link: '/api/decode-wmi' },
+            // { text: 'GetAllMakes', link: '/api/get-all-makes' },
+            // { text: 'GetAllManufacturers', link: '/api/get-all-manufacturers' },
+            // { text: 'GetCanadianVehicleSpecifications', link: '/api/get-canadian-vehicle-specifications' },
+            // { text: 'GetEquipmentPlantCodes', link: '/api/get-equipment-plant-codes' },
+            // { text: 'GetMakeForManufacturer', link: '/api/get-make-for-manufacturer' },
+            // { text: 'GetMakesForManufacturerAndYear', link: '/api/get-makes-for-manufacturer-and-year' },
+            // { text: 'GetMakesForVehicleType', link: '/api/get-makes-for-vehicle-type' },
+            // { text: 'GetManufacturerDetails', link: '/api/get-manufacturer-details' },
+            // { text: 'GetModelsForMake', link: '/api/get-models-for-make' },
+            // { text: 'GetModelsForMakeId', link: '/api/get-models-for-make-id' },
+            // { text: 'GetModelsForMakeIdYear', link: '/api/get-models-for-make-id-year' },
+            // { text: 'GetModelsForMakeYear', link: '/api/get-models-for-make-year' },
+            // { text: 'GetParts', link: '/api/get-parts' },
+            // { text: 'GetVehicleTypesForMake', link: '/api/get-vehicle-types-for-make' },
+            // { text: 'GetVehicleTypesForMakeId', link: '/api/get-vehicle-types-for-make-id' },
+            // { text: 'GetVehicleVariableList', link: '/api/get-vehicle-variable-list' },
+            // { text: 'GetVehicleVariableValuesList', link: '/api/get-vehicle-variable-values-list' },
+            // { text: 'GetWMIsForManufacturer', link: '/api/get-wmis-for-manufacturer' },
+          ],
+        },
       ],
     },
     {
@@ -151,7 +197,10 @@ function sidebarApi() {
             { text: 'DecodeVin', link: '/api/decode-vin' },
             { text: 'DecodeVinExtended', link: '/api/decode-vin-extended' },
             { text: 'DecodeVinValues', link: '/api/decode-vin-values' },
-            // { text: 'DecodeVinValuesBatch', link: '/api/decode-vin-values-batch' },
+            {
+              text: 'DecodeVinValuesBatch',
+              link: '/api/decode-vin-values-batch',
+            },
             // { text: 'DecodeVinValuesExtended', link: '/api/decode-vin-values-extended' },
             // { text: 'DecodeWMI', link: '/api/decode-wmi' },
             // { text: 'GetAllMakes', link: '/api/get-all-makes' },

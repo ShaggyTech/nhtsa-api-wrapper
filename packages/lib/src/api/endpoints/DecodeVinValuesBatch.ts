@@ -8,14 +8,17 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [DecodeVinValuesBatch Documentation](/api/decode-vin-values-batch)
+ * :::
+ *
  * `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns
  * useful information about the vehicles in in a _flat format_. This means the endpoint will return
  * an array with multiple objects of results. Each object represents a VIN from the `inputString`
  * and the key:value pairs in the objects are variables and their values for each particular VIN.
  *
  * For this particular API you just have to provide a string of VINs, `inputString`, that are
- * separated by a `;` char. You can also indicate the model year after the vin, preceded by a `,`
- * char.
+ * separated by a `;`. You can also indicate the model year after the vin, preceded by a `,`.
  *
  * The `inputString` parameter should be in the following format:
  * - ex: `5UXWX7C5*BA, 2011; 5YJSA3DS*EF`
@@ -23,7 +26,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * - with modelYear: `vin, modelYear; vin, modelYear; vin, modelYear`
  * - mix of with/without modelYear: `vin; vin, modelYear`
  * - _vin_ and _modelYear_ are placeholders for real values in these examples
- * - all spaces between `;` and `,` are used in these examples for readability ard are optional
+ * - all spaces between `;` and `,` are used in these examples for readability and are optional
  * - _Max 50 VINs per batch_
  *
  * Providing the modelYear in the input string allows for the decoding to specifically be done in
@@ -69,9 +72,7 @@ export const DecodeVinValuesBatch = async (
 }
 
 /**
- * Objects returned in the NhtsaResponse 'Results' array of DecodeVinValuesBatch endpoint
- *
- * @alias DecodeVINValuesBatchResults
+ * Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response.
  */
 export type DecodeVinValuesBatchResults = {
   ABS: string

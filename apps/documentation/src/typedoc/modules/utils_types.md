@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/types
+
 # Module: utils/types
 
 ## Table of contents
@@ -32,7 +34,7 @@ https://stackoverflow.com/a/49725198
 
 #### Defined in
 
-[utils/types.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/types.ts#L18)
+[utils/types.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/types.ts#L18)
 
 ___
 
@@ -52,7 +54,7 @@ https://stackoverflow.com/a/49725198
 
 #### Defined in
 
-[utils/types.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/types.ts#L26)
+[utils/types.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/types.ts#L26)
 
 ## References
 

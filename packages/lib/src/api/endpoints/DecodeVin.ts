@@ -15,12 +15,6 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * `DecodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about
  * the vehicle.
  *
- * In the return object, `Results` will be an array with multiple objects containing 'key:value'
- * results. Each object will contain:
- * - "Variable" (variable name) and "Value" (variable value)
- * - "VariableID" and "ValueID" (unique ID associated with the variable/value)
- * - In case of text variables, the "ValueID" is not applicable
- *
  * Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
  * older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
  * the model year is known at the time of decoding, but it is not required.
@@ -41,16 +35,14 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  */
 function DecodeVin(vin: string): Promise<NhtsaResponse<DecodeVinResults>>
 /**
- * ---
- * Provide: `vin` + `params`
+ * ### Overload: `vin` + `params`
  */
 function DecodeVin(
   vin: string,
   params: { modelYear: string | number }
 ): Promise<NhtsaResponse<DecodeVinResults>>
 /**
- * ---
- * Provide: `vin` + `doFetch = true`
+ * ### Overload: `vin` + `doFetch = true`
  */
 function DecodeVin(
   vin: string,
@@ -58,8 +50,7 @@ function DecodeVin(
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinResults>>
 /**
- * ---
- * Provide: `vin` + `params` + `doFetch = true`
+ * ### Overload: `vin` + `params` + `doFetch = true`
  */
 function DecodeVin(
   vin: string,
@@ -67,8 +58,7 @@ function DecodeVin(
   doFetch: true
 ): Promise<NhtsaResponse<DecodeVinResults>>
 /**
- * ---
- * Provide: `vin` + `doFetch = false`
+ * ### Overload: `vin` + `doFetch = false`
  */
 function DecodeVin(
   vin: string,
@@ -76,8 +66,7 @@ function DecodeVin(
   _dummy?: undefined
 ): Promise<string>
 /**
- * ---
- * Provide: `vin` + `params` + `doFetch = false`
+ * ### Overload: `vin` + `params` + `doFetch = false`
  */
 function DecodeVin(
   vin: string,

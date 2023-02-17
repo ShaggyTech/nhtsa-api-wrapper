@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
+
 # Module: api/endpoints/GetWMIsForManufacturer
 
 ## Table of contents
@@ -55,7 +57,7 @@ are the second arg.
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L44)
+[api/endpoints/GetWMIsForManufacturer.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L44)
 
 ## Type Aliases
 
@@ -84,4 +86,4 @@ GetWMIsForManufacturerResults
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:99](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L99)
+[api/endpoints/GetWMIsForManufacturer.ts:99](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L99)

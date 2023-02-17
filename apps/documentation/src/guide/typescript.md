@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # Typescript Support
 
 [[toc]]
@@ -14,7 +10,7 @@ in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't 
 We've tried to be as accurate as possible typing the API responses based on testing real responses
 from the NHTSA API. Please report any discrepancies you may find and they will be fixed.
 
-Check out the [TODO - API Reference](/introduction/api-reference) page for more details on each
+Check out the [API Reference](/api/) page for more details on each
 endpoint helper function and their return types.
 
 ## Using Typescript

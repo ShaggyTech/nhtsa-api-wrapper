@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllMakes
+
 # Module: api/endpoints/GetAllMakes
 
 ## Table of contents
@@ -37,7 +39,7 @@ an individual vehicle Make.
 
 #### Defined in
 
-[api/endpoints/GetAllMakes.ts:22](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetAllMakes.ts#L22)
+[api/endpoints/GetAllMakes.ts:22](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetAllMakes.ts#L22)
 
 ## Type Aliases
 
@@ -60,4 +62,4 @@ GetAllMakesResults
 
 #### Defined in
 
-[api/endpoints/GetAllMakes.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetAllMakes.ts#L47)
+[api/endpoints/GetAllMakes.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetAllMakes.ts#L47)

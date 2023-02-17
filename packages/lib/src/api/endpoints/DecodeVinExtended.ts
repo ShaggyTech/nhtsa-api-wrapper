@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeVin Documentation](/api/decode-vin-extended)
+ * See: [DecodeVinExtended Documentation](/api/decode-vin-extended)
  * :::
  *
  * `DecodeVinExtended` decodes a Vehicle Identification Number (VIN) and returns useful information
@@ -18,12 +18,6 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * This endpoint is similar to `DecodeVin` but returns additional information on variables related
  * to other NHTSA programs like the
  * [NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa).
- *
- * In the return object, `Results` will be an array with multiple objects containing 'key:value'
- * results. Each object will contain:
- * - "Variable" (variable name) and "Value" (variable value)
- * - "VariableID" and "ValueID" (unique ID associated with the variable/value)
- * - In case of text variables, the "ValueID" is not applicable
  *
  * Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
  * older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
@@ -47,16 +41,14 @@ function DecodeVinExtended(
   vin: string
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
 /**
- * ---
- * Provide: `vin` + `params`
+ * ### Overload: `vin` + `params`
  */
 function DecodeVinExtended(
   vin: string,
   params: { modelYear: string | number }
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
 /**
- * ---
- * Provide: `vin` + `doFetch = true`
+ * ### Overload: `vin` + `doFetch = true`
  */
 function DecodeVinExtended(
   vin: string,
@@ -64,8 +56,7 @@ function DecodeVinExtended(
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
 /**
- * ---
- * Provide: `vin` + `params` + `doFetch = true`
+ * ### Overload: `vin` + `params` + `doFetch = true`
  */
 function DecodeVinExtended(
   vin: string,
@@ -73,8 +64,7 @@ function DecodeVinExtended(
   doFetch: true
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
 /**
- * ---
- * Provide: `vin` + `doFetch = false`
+ * ### Overload: `vin` + `doFetch = false`
  */
 function DecodeVinExtended(
   vin: string,
@@ -82,8 +72,7 @@ function DecodeVinExtended(
   _dummy?: undefined
 ): Promise<string>
 /**
- * ---
- * Provide: `vin` + `params` + `doFetch = false`
+ * ### Overload: `vin` + `params` + `doFetch = false`
  */
 function DecodeVinExtended(
   vin: string,

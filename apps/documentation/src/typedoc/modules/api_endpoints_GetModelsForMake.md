@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMake
+
 # Module: api/endpoints/GetModelsForMake
 
 ## Table of contents
@@ -40,7 +42,7 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:24](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMake.ts#L24)
+[api/endpoints/GetModelsForMake.ts:24](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetModelsForMake.ts#L24)
 
 ## Type Aliases
 
@@ -65,4 +67,4 @@ GetModelsForMakeResults
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMake.ts#L60)
+[api/endpoints/GetModelsForMake.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetModelsForMake.ts#L60)

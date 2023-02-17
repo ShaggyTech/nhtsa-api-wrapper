@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # VPIC API Response
 
 This section describes the responses returned by the VPIC API.
@@ -53,6 +49,7 @@ type NhtsaApiResponse<T> = {
 ```
 
 ```json [Example Response]
+// Truncated example using DecodeVinValues('5UXWX7C5*BA')
 {
   "Count": 136,
   "Message": "Results returned successfully ...",
@@ -63,8 +60,8 @@ type NhtsaApiResponse<T> = {
       "ModelYear": "2011",
       "PlantCountry": "GERMANY",
       ...etc
-    }
-  ]
+    },
+  ],
   "SearchCriteria": "VIN(s): 5UXWX7C5*BA",
 }
 ```
@@ -74,6 +71,10 @@ type NhtsaApiResponse<T> = {
 ### Count
 
 The `Count` property is a `number` that represents the number of results in the `Results` array.
+
+It could be the number of objects returned or the number of keys in a single object. It depends on
+the endpoint you're using.
+
 If it's `0` then there's no data in the `Results` array and you should check the `Message` property.
 
 ### Message
@@ -81,13 +82,27 @@ If it's `0` then there's no data in the `Results` array and you should check the
 The `Message` property is a `string` that contains a message from the API. It's usually used to
 indicate if there was an error or incomplete data returned, otherwise it's indicates success.
 
+Example messages:
+
+::: code-group
+
+```typescript [Message: Success]
+Message: 'Results returned successfully. NOTE: Any missing decoded values should be interpreted as NHTSA does not have data on the specific variable. Missing value should NOT be interpreted as an indication that a feature or technology is unavailable for a vehicle.'
+```
+
+```typescript [Message: No Data]
+Message: 'ERROR: Invalid Year Submitted – Pre-1981 Year Decode Attempt'
+```
+
+:::
+
 ### Results
 
 `Results` is an array of objects that contain the actual data returned by the API. The
 number of objects and structure of each depends on the endpoint you're using.
 
-The `Results` array is typed according to the endpoint you're using. All return types are the same
-name as the endpoint function with the word `Results` appended to the end, i.e. `DecodeVin` endpoint
+The `Results` are typed according to the endpoint you're using. All return types are the same
+name as the endpoint function with the word "Results" appended to the end, i.e. `DecodeVin` endpoint
 returns an array of `DecodeVinResults` objects.
 
 For example if you use the `DecodeVin` endpoint, the `Results` array will contain multiple objects
@@ -102,10 +117,11 @@ type DecodeVinResults = {
 }
 ```
 
-And the `NhtsaApiResponse<T>` will look like this, `DecodeVinResults` takes the place of generic
-`<T>` type in this example:
+And the `NhtsaApiResponse<T>` will look like this:
 
 ```ts [NhtsaApiResponse]
+// `DecodeVinResults` takes the place of generic `<T>` in `NhtsaApiResponse<T>`
+
 type NhtsaApiResponse<DecodeVinResults> = {
   Count: number
   Message: string
@@ -114,10 +130,21 @@ type NhtsaApiResponse<DecodeVinResults> = {
 }
 ```
 
-Check out the [TODO - API Reference](/guide/api-reference) page for specific details on each
+::: tip :bulb: TIP
+Check out the [Api Reference](/api/) section for specific details on each
 endpoint's `Results` array types.
+
+Here's [DecodeVinResults](../api/decode-vin#type-decodevinresults) that was mentioned in the above
+example.
+:::
 
 ### SearchCriteria
 
 The `SearchCriteria` property is a `string` that contains the search criteria used when requesting
 data from the API. It's used to indicate what the user searched for, VIN, WMI, Model, etc.
+
+Example:
+
+```typescript
+SearchCriteria: 'VIN:WA1A4AFY2J2008189'
+```

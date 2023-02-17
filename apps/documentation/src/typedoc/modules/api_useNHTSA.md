@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/useNHTSA
+
 # Module: api/useNHTSA
 
 ## Table of contents
@@ -29,7 +31,7 @@
 
 #### Defined in
 
-[api/useNHTSA.ts:15](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/useNHTSA.ts#L15)
+[api/useNHTSA.ts:15](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/useNHTSA.ts#L15)
 
 ## Functions
 
@@ -75,4 +77,4 @@ The exported methods are:
 
 #### Defined in
 
-[api/useNHTSA.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/useNHTSA.ts#L49)
+[api/useNHTSA.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/useNHTSA.ts#L49)

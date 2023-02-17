@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeId
+
 # Module: api/endpoints/GetModelsForMakeId
 
 ## Table of contents
@@ -52,7 +54,7 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L37)
+[api/endpoints/GetModelsForMakeId.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L37)
 
 ## Type Aliases
 
@@ -77,4 +79,4 @@ GetModelsForMakeIdResults
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L73)
+[api/endpoints/GetModelsForMakeId.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L73)

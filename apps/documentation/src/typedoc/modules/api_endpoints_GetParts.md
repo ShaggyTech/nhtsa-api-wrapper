@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
+
 # Module: api/endpoints/GetParts
 
 ## Table of contents
@@ -56,7 +58,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetParts.ts#L49)
+[api/endpoints/GetParts.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetParts.ts#L49)
 
 ## Type Aliases
 
@@ -86,4 +88,4 @@ GetPartsResults
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetParts.ts#L97)
+[api/endpoints/GetParts.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetParts.ts#L97)

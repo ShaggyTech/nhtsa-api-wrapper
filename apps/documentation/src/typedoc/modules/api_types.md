@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/types
+
 # Module: api/types
 
 ## Table of contents
@@ -223,4 +225,4 @@ Response data returned from the NHTSA VPIC API. `Results` key will be an array o
 
 #### Defined in
 
-[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/types.ts#L12)
+[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/types.ts#L12)

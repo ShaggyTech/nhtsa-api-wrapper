@@ -153,6 +153,7 @@ type DecodeVinExtendedVariable =
 // #endregion type-variable-names
 
 // #region example-response
+// Using DecodeVinExtended('WA1A4AFY2J2008189')
 const exampleResponse = {
   Count: 136,
   Message: 'Results returned successfully ...',

@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesExtended
+
 # Module: api/endpoints/DecodeVinValuesExtended
 
 ## Table of contents
@@ -51,7 +53,7 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L38)
+[api/endpoints/DecodeVinValuesExtended.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L38)
 
 ## Type Aliases
 
@@ -222,4 +224,4 @@ DecodeVinValuesExtendedResults
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L85)
+[api/endpoints/DecodeVinValuesExtended.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L85)

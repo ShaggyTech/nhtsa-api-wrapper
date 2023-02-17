@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # DecodeVin
 
 [[toc]]
@@ -20,7 +16,7 @@ function DecodeVin (
 ) => Promise<NhtsaResponse<DecodeVinResults> | string>
 ```
 
-::: tip :bulb: Source Reference and Type Definitions
+::: tip :bulb: More In Depth
 See: [Package Reference](../typedoc/modules/api_endpoints_DecodeVin.md)
 :::
 
@@ -39,18 +35,6 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 - In this case, the VIN will be decoded partially with the available characters
 - In case of partial VINs, a `*` could be used to indicate the unavailable characters
 - The 9th digit is not necessary
-
-::: tip :bulb: TIP
-This package recommends using one of the `DecodeVinValuesX` endpoints before this one, unless you
-have a specific need to obtain "ValueID" or "VariableID" for each variable in a decoded VIN.
-
-This is because they will return a single flat format object of key/value pairs,
-where key is the name of the variable. `DecodeVinValuesBatch` will return multiple flat format
-objects, one for each VIN you search.
-
-The flat format is more efficient and easier to work with as you won't have to iterate through a
-bunch of objects just to get all variable names/values.
-:::
 
 ## Parameters
 
@@ -91,7 +75,7 @@ type NhtsaApiResponse<DecodeVinResults> = {
 }
 ```
 
-::: details Click to View Full Example Response
+::: details :mag: Click to View Full Example Response
 <<< @/snippets/endpoints/decode-vin.ts#example-response
 :::
 
@@ -100,7 +84,7 @@ type NhtsaApiResponse<DecodeVinResults> = {
 Returns a URL string that can be used to fetch the data, does _not_ fetch the data internally.
 
 ```typescript
-=> Promise<<string>
+=> Promise<string>
 
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?format=json'
 ```
@@ -111,6 +95,10 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 ## Type - DecodeVinResults
 
 <<< @/snippets/endpoints/decode-vin.ts#type-results
+
+::: details :mag: Click to View All Possible `Variable` Names
+<<< @/snippets/endpoints/decode-vin.ts#type-variable-names
+:::
 
 Ƭ **DecodeVinResults**: `Object`
 
@@ -125,12 +113,13 @@ results. Each object will contain:
 
 ## Examples
 
----
-
 ::: tip :bulb: Examples 1-3:
 
-- Fetches data internally
-- Returns `Promise<NhtsaResponse<DecodeVinResults>>`
+```typescript
+=> Promise<NhtsaResponse<DecodeVinResults>>
+```
+
+- Fetches data from VPIC API internally
 
 :::
 
@@ -158,12 +147,13 @@ import { DecodeVin } from '@shaggytools/nhtsa-api-wrapper'
 const response = await DecodeVin('5UXWX7C5*BA')
 ```
 
----
-
 ::: warning :bulb: Examples 4-5:
 
-- Does _not_ fetch data internally
-- Returns `Promise<string>`
+```typescript
+=> Promise<string>
+```
+
+- Does _NOT_ fetch data from VPIC API internally
 - See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
@@ -178,6 +168,8 @@ const url = await DecodeVin('WA1A4AFY2J2008189', false)
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?format=json'
 ```
 
+See: [Overload](../typedoc/modules/api_endpoints_DecodeVin#overload-vin-dofetch-false)
+
 ### Example 5: Decode VIN with optional Model Year and doFetch = false
 
 ```ts
@@ -187,3 +179,5 @@ const url = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 }, false)
 
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 ```
+
+See: [Overload](../typedoc/modules/api_endpoints_DecodeVin#overload-vin-params-dofetch-false)

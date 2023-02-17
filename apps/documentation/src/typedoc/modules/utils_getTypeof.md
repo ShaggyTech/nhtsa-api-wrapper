@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/getTypeof
+
 # Module: utils/getTypeof
 
 ## Table of contents
@@ -34,4 +36,4 @@ It will also accurately recognize any Error types, Error, TypeError, etc., as 'e
 
 #### Defined in
 
-[utils/getTypeof.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/getTypeof.ts#L18)
+[utils/getTypeof.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/getTypeof.ts#L18)

@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
+
 # Module: api/endpoints/GetCanadianVehicleSpecifications
 
 ## Table of contents
@@ -55,7 +57,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L42)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L42)
 
 ## Type Aliases
 
@@ -77,4 +79,4 @@ GetCanadianVehicleSpecificationsResults
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L97)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L97)

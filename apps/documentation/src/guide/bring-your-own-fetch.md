@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # BYOF - Bring Your Own Fetch
 
 ::: tip 📦 INFO
@@ -76,6 +72,11 @@ const makes = await GetAllMakes(false)
 ```
 
 ### Using `doFetch`
+
+::: tip :bulb: TIP
+If using `doFetch` = `false` on a POST endpoint, such as `DecodeVinValuesBatch`, see
+[Using With Post Endpoints](../guide/bring-your-own-fetch#using-with-post-endpoints) for more info.
+:::
 
 Some endpoints require query params and some don't have a trailing `path`.
 
@@ -257,7 +258,7 @@ Note that POST requests to the NHTSA API requires body to be a string and certai
 The endpoint functions would handle this for you automatically, but if you use createUrl() to get
 the URL string and then use your own fetch implementation, you will need to handle this yourself.
 
-::: tip
+::: tip :bulb: TIP
 `DecodeVinValuesBatch` is the only endpoint that uses a POST request.
 :::
 

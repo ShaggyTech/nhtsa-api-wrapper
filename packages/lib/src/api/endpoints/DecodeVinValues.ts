@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [DecodeVinValues Documentation](/api/decode-vin-values)
+ * :::
+ *
  * `DecodeVinValues` decodes a Vehicle Identification Number (VIN) and returns useful information
  * about the vehicle in in a _flat format_. This means the endpoint will return an array with a
  * single object of results. Each key in the object is the name of a variable.
@@ -30,24 +34,18 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-/**
- * ---
- * Provide: `vin`
- */
 function DecodeVinValues(
   vin: string
 ): Promise<NhtsaResponse<DecodeVinValuesResults>>
 /**
- * ---
- * Provide: `vin` + `params`
+ * ### Overload: `vin` + `params`
  */
 function DecodeVinValues(
   vin: string,
   params: { modelYear: string | number }
 ): Promise<NhtsaResponse<DecodeVinValuesResults>>
 /**
- * ---
- * Provide: `vin` + `doFetch = true`
+ * ### Overload: `vin` + `doFetch = true`
  */
 function DecodeVinValues(
   vin: string,
@@ -55,8 +53,7 @@ function DecodeVinValues(
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinValuesResults>>
 /**
- * ---
- * Provide: `vin` + `params` + `doFetch = true`
+ * ### Overload: `vin` + `params` + `doFetch = true`
  */
 function DecodeVinValues(
   vin: string,
@@ -64,8 +61,7 @@ function DecodeVinValues(
   doFetch: true
 ): Promise<NhtsaResponse<DecodeVinValuesResults>>
 /**
- * ---
- * Provide: `vin` + `doFetch = false`
+ * ### Overload: `vin` + `doFetch = false`
  */
 function DecodeVinValues(
   vin: string,
@@ -73,8 +69,7 @@ function DecodeVinValues(
   _dummy?: undefined
 ): Promise<string>
 /**
- * ---
- * Provide: `vin` + `params` + `doFetch = false`
+ * ### Overload: `vin` + `params` + `doFetch = false`
  */
 function DecodeVinValues(
   vin: string,
@@ -94,12 +89,12 @@ async function DecodeVinValues(
 ): Promise<NhtsaResponse<DecodeVinValuesResults> | string> {
   const endpointName = 'DecodeVinValues'
 
-  if (typeof params === 'boolean') {
-    doFetch = params
-    params = undefined
-  }
-
   try {
+    if (typeof params === 'boolean') {
+      doFetch = params
+      params = undefined
+    }
+
     const args: IArgToValidate[] = [
       { name: 'vin', value: vin, required: true, types: ['string'] },
       { name: 'params', value: params, types: ['object'] },

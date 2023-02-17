@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
+
 # Module: api/endpoints/GetVehicleVariableList
 
 ## Table of contents
@@ -34,7 +36,7 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:19](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L19)
+[api/endpoints/GetVehicleVariableList.ts:19](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L19)
 
 ## Type Aliases
 
@@ -60,4 +62,4 @@ GetVehicleVariableListResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L44)
+[api/endpoints/GetVehicleVariableList.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L44)

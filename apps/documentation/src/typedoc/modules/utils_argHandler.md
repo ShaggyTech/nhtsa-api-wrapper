@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/argHandler
+
 # Module: utils/argHandler
 
 ## Table of contents
@@ -19,7 +21,7 @@
 
 #### Defined in
 
-[utils/argHandler.ts:9](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/argHandler.ts#L9)
+[utils/argHandler.ts:9](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/argHandler.ts#L9)
 
 ## Functions
 
@@ -54,7 +56,7 @@ validation logic works and how to override the default error throwing behavior.
 
 #### Defined in
 
-[utils/argHandler.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/argHandler.ts#L35)
+[utils/argHandler.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/argHandler.ts#L35)
 
 ___
 
@@ -131,4 +133,4 @@ validation failure, mode 'boolean' returns false in the case of validation failu
 
 #### Defined in
 
-[utils/argHandler.ts:129](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/argHandler.ts#L129)
+[utils/argHandler.ts:129](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/argHandler.ts#L129)

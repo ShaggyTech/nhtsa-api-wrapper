@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
+
 # Module: api/endpoints/GetMakesForManufacturerAndYear
 
 ## Table of contents
@@ -50,7 +52,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L35)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L35)
 
 ## Type Aliases
 
@@ -75,4 +77,4 @@ GetMakesForManufacturerAndYearResults
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L85)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L85)

@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesBatch
+
 # Module: api/endpoints/DecodeVinValuesBatch
 
 ## Table of contents
@@ -16,14 +18,17 @@
 
 ▸ **DecodeVinValuesBatch**(`inputString`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesBatchResults`](api_endpoints_DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
 
+::: tip :bulb: More Information
+See: [DecodeVinValuesBatch Documentation](/api/decode-vin-values-batch)
+:::
+
 `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns
 useful information about the vehicles in in a _flat format_. This means the endpoint will return
 an array with multiple objects of results. Each object represents a VIN from the `inputString`
 and the key:value pairs in the objects are variables and their values for each particular VIN.
 
 For this particular API you just have to provide a string of VINs, `inputString`, that are
-separated by a `;` char. You can also indicate the model year after the vin, preceded by a `,`
-char.
+separated by a `;`. You can also indicate the model year after the vin, preceded by a `,`.
 
 The `inputString` parameter should be in the following format:
 - ex: `5UXWX7C5*BA, 2011; 5YJSA3DS*EF`
@@ -31,7 +36,7 @@ The `inputString` parameter should be in the following format:
 - with modelYear: `vin, modelYear; vin, modelYear; vin, modelYear`
 - mix of with/without modelYear: `vin; vin, modelYear`
 - _vin_ and _modelYear_ are placeholders for real values in these examples
-- all spaces between `;` and `,` are used in these examples for readability ard are optional
+- all spaces between `;` and `,` are used in these examples for readability and are optional
 - _Max 50 VINs per batch_
 
 Providing the modelYear in the input string allows for the decoding to specifically be done in
@@ -54,7 +59,7 @@ the model year if it is known at the time of decoding, but it is not required.
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:40](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L40)
+[api/endpoints/DecodeVinValuesBatch.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L43)
 
 ## Type Aliases
 
@@ -62,11 +67,7 @@ the model year if it is known at the time of decoding, but it is not required.
 
 Ƭ **DecodeVinValuesBatchResults**: `Object`
 
-Objects returned in the NhtsaResponse 'Results' array of DecodeVinValuesBatch endpoint
-
-**`Alias`**
-
-DecodeVINValuesBatchResults
+Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response.
 
 #### Type declaration
 
@@ -225,4 +226,4 @@ DecodeVINValuesBatchResults
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:76](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L76)
+[api/endpoints/DecodeVinValuesBatch.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L77)

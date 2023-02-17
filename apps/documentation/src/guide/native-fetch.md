@@ -1,7 +1,3 @@
----
-outline: deep
----
-
 # Support for Node Versions < 18
 
 ---

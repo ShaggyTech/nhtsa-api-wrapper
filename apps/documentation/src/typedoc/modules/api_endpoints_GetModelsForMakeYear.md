@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
+
 # Module: api/endpoints/GetModelsForMakeYear
 
 ## Table of contents
@@ -49,7 +51,7 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeYear.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L43)
+[api/endpoints/GetModelsForMakeYear.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L43)
 
 ## Type Aliases
 
@@ -74,4 +76,4 @@ GetModelsForMakeYearResults
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeYear.ts:107](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L107)
+[api/endpoints/GetModelsForMakeYear.ts:107](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L107)

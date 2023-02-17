@@ -7,7 +7,7 @@ type DecodeVinResults = {
 }
 // #endregion type-results
 
-// #region type-variable-name
+// #region type-variable-names
 type DecodeVinVariable =
   | string
   | 'Suggested VIN'
@@ -149,6 +149,7 @@ type DecodeVinVariable =
 // #endregion type-variable-names
 
 // #region example-response
+// Using DecodeVin('WA1A4AFY2J2008189')
 const exampleResponse = {
   Count: 136,
   Message: 'Results returned successfully ...',

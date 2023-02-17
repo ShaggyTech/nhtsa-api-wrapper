@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForVehicleType
+
 # Module: api/endpoints/GetMakesForVehicleType
 
 ## Table of contents
@@ -38,7 +40,7 @@
 
 #### Defined in
 
-[api/endpoints/GetMakesForVehicleType.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L23)
+[api/endpoints/GetMakesForVehicleType.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L23)
 
 ## Type Aliases
 
@@ -63,4 +65,4 @@ GetMakesForVehicleTypeResults
 
 #### Defined in
 
-[api/endpoints/GetMakesForVehicleType.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L59)
+[api/endpoints/GetMakesForVehicleType.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L59)

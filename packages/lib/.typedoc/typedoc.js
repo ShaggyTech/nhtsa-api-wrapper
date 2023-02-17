@@ -11,9 +11,9 @@ const json = path.join(out, 'typedoc-output.json')
 /** @type {import('typedoc').TypeDocOptions} */
 module.exports = {
   extends: 'typedoc-config',
-  entryDocument: './index.md',
-  hideBreadcrumbs: true,
   json,
   out,
+  // typedoc-plugin-markdown options
+  entryDocument: './index.md',
   readme: './README.md',
 }

@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetManufacturerDetails
+
 # Module: api/endpoints/GetManufacturerDetails
 
 ## Table of contents
@@ -42,7 +44,7 @@ Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L27)
+[api/endpoints/GetManufacturerDetails.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L27)
 
 ## Type Aliases
 
@@ -88,4 +90,4 @@ GetManufacturerDetailsResults
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L63)
+[api/endpoints/GetManufacturerDetails.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L63)

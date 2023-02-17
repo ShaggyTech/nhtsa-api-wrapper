@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/isValidVin
+
 # Module: utils/isValidVin
 
 ## Table of contents
@@ -49,4 +51,4 @@ True for a valid VIN, false for an invalid VIN.
 
 #### Defined in
 
-[utils/isValidVin.ts:66](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/isValidVin.ts#L66)
+[utils/isValidVin.ts:66](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/utils/isValidVin.ts#L66)

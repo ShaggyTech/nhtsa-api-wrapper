@@ -1,3 +1,5 @@
+[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMake
+
 # Module: api/endpoints/GetVehicleTypesForMake
 
 ## Table of contents
@@ -38,7 +40,7 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L23)
+[api/endpoints/GetVehicleTypesForMake.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L23)
 
 ## Type Aliases
 
@@ -63,4 +65,4 @@ GetVehicleTypesForMakeResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L59)
+[api/endpoints/GetVehicleTypesForMake.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L59)
