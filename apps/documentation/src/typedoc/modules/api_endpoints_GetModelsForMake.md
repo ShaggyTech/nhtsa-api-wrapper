@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetModelsForMakeResults](api_endpoints_GetModelsForMake.md#getmodelsformakeresults)
-
 ### Functions
 
 - [GetModelsForMake](api_endpoints_GetModelsForMake.md#getmodelsformake)
 
-## Type Aliases
+### Type Aliases
 
-### GetModelsForMakeResults
-
-Ƭ **GetModelsForMakeResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetModelsForMake endpoint
-
-**`Alias`**
-
-GetModelsForMakeResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
-| `Model_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetModelsForMake.ts:55](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMake.ts#L55)
+- [GetModelsForMakeResults](api_endpoints_GetModelsForMake.md#getmodelsformakeresults)
 
 ## Functions
 
@@ -65,4 +40,29 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:19](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMake.ts#L19)
+[api/endpoints/GetModelsForMake.ts:24](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMake.ts#L24)
+
+## Type Aliases
+
+### GetModelsForMakeResults
+
+Ƭ **GetModelsForMakeResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetModelsForMake endpoint
+
+**`Alias`**
+
+GetModelsForMakeResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Make_ID` | `number` |
+| `Make_Name` | `string` |
+| `Model_ID` | `number` |
+| `Model_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetModelsForMake.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMake.ts#L60)

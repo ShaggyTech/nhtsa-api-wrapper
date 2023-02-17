@@ -1,3 +1,8 @@
+/**
+ * @module api/useNHTSA
+ * @category API
+ */
+
 import {
   catchInvalidArguments,
   createQueryString,

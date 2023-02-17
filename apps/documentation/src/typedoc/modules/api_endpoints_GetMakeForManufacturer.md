@@ -2,37 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetMakeForManufacturerResults](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)
-
 ### Functions
 
 - [GetMakeForManufacturer](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturer)
 
-## Type Aliases
+### Type Aliases
 
-### GetMakeForManufacturerResults
-
-Ƭ **GetMakeForManufacturerResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetMakeForManufacturer endpoint
-
-**`Alias`**
-
-GetMakeForManufacturerResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Mfr_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetMakeForManufacturer.ts:58](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L58)
+- [GetMakeForManufacturerResults](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)
 
 ## Functions
 
@@ -66,4 +42,28 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetMakeForManufacturer.ts:22](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L22)
+[api/endpoints/GetMakeForManufacturer.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L27)
+
+## Type Aliases
+
+### GetMakeForManufacturerResults
+
+Ƭ **GetMakeForManufacturerResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetMakeForManufacturer endpoint
+
+**`Alias`**
+
+GetMakeForManufacturerResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Make_ID` | `number` |
+| `Make_Name` | `string` |
+| `Mfr_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetMakeForManufacturer.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L63)

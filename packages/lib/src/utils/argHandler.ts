@@ -1,6 +1,6 @@
 /**
  * @module utils/argHandler
- * @category Internal Utility Functions
+ * @category Utility Functions
  */
 
 import { getTypeof } from '@/utils'

@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetMakesForVehicleTypeResults](api_endpoints_GetMakesForVehicleType.md#getmakesforvehicletyperesults)
-
 ### Functions
 
 - [GetMakesForVehicleType](api_endpoints_GetMakesForVehicleType.md#getmakesforvehicletype)
 
-## Type Aliases
+### Type Aliases
 
-### GetMakesForVehicleTypeResults
-
-Ƭ **GetMakesForVehicleTypeResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetMakesForVehicleType endpoint
-
-**`Alias`**
-
-GetMakesForVehicleTypeResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `MakeId` | `number` |
-| `MakeName` | `string` |
-| `VehicleTypeId` | `number` |
-| `VehicleTypeName` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetMakesForVehicleType.ts:54](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L54)
+- [GetMakesForVehicleTypeResults](api_endpoints_GetMakesForVehicleType.md#getmakesforvehicletyperesults)
 
 ## Functions
 
@@ -63,4 +38,29 @@ GetMakesForVehicleTypeResults
 
 #### Defined in
 
-[api/endpoints/GetMakesForVehicleType.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L18)
+[api/endpoints/GetMakesForVehicleType.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L23)
+
+## Type Aliases
+
+### GetMakesForVehicleTypeResults
+
+Ƭ **GetMakesForVehicleTypeResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetMakesForVehicleType endpoint
+
+**`Alias`**
+
+GetMakesForVehicleTypeResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `MakeId` | `number` |
+| `MakeName` | `string` |
+| `VehicleTypeId` | `number` |
+| `VehicleTypeName` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetMakesForVehicleType.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForVehicleType.ts#L59)

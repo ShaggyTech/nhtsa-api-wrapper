@@ -49,4 +49,4 @@ True for a valid VIN, false for an invalid VIN.
 
 #### Defined in
 
-[utils/isValidVin.ts:66](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/isValidVin.ts#L66)
+[utils/isValidVin.ts:66](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/isValidVin.ts#L66)

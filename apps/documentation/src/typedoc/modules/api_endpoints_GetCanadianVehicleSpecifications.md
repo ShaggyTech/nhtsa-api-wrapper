@@ -2,35 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
-
 ### Functions
 
 - [GetCanadianVehicleSpecifications](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecifications)
 
-## Type Aliases
+### Type Aliases
 
-### GetCanadianVehicleSpecificationsResults
-
-Ƭ **GetCanadianVehicleSpecificationsResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetCanadianVehicleSpecifications endpoint
-
-**`Alias`**
-
-GetCanadianVehicleSpecificationsResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Specs` | { `Name`: ``"Make"`` \| ``"Model"`` \| ``"MYR"`` \| ``"OL"`` \| ``"OW"`` \| ``"OH"`` \| ``"WB"`` \| ``"CW"`` \| ``"A"`` \| ``"B"`` \| ``"C"`` \| ``"D"`` \| ``"E"`` \| ``"F"`` \| ``"G"`` \| ``"TWF"`` \| ``"TWR"`` \| ``"WD"`` ; `Value`: `string`  }[] |
-
-#### Defined in
-
-[api/endpoints/GetCanadianVehicleSpecifications.ts:92](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L92)
+- [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
 
 ## Functions
 
@@ -77,4 +55,26 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L37)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L42)
+
+## Type Aliases
+
+### GetCanadianVehicleSpecificationsResults
+
+Ƭ **GetCanadianVehicleSpecificationsResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetCanadianVehicleSpecifications endpoint
+
+**`Alias`**
+
+GetCanadianVehicleSpecificationsResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Specs` | { `Name`: ``"Make"`` \| ``"Model"`` \| ``"MYR"`` \| ``"OL"`` \| ``"OW"`` \| ``"OH"`` \| ``"WB"`` \| ``"CW"`` \| ``"A"`` \| ``"B"`` \| ``"C"`` \| ``"D"`` \| ``"E"`` \| ``"F"`` \| ``"G"`` \| ``"TWF"`` \| ``"TWR"`` \| ``"WD"`` ; `Value`: `string`  }[] |
+
+#### Defined in
+
+[api/endpoints/GetCanadianVehicleSpecifications.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L97)

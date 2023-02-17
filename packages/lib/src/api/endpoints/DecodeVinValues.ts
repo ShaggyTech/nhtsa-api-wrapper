@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/DecodeVinValues
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
@@ -25,7 +30,60 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-export const DecodeVinValues = async (
+/**
+ * ---
+ * Provide: `vin`
+ */
+function DecodeVinValues(
+  vin: string
+): Promise<NhtsaResponse<DecodeVinValuesResults>>
+/**
+ * ---
+ * Provide: `vin` + `params`
+ */
+function DecodeVinValues(
+  vin: string,
+  params: { modelYear: string | number }
+): Promise<NhtsaResponse<DecodeVinValuesResults>>
+/**
+ * ---
+ * Provide: `vin` + `doFetch = true`
+ */
+function DecodeVinValues(
+  vin: string,
+  doFetch: true,
+  _dummy?: undefined
+): Promise<NhtsaResponse<DecodeVinValuesResults>>
+/**
+ * ---
+ * Provide: `vin` + `params` + `doFetch = true`
+ */
+function DecodeVinValues(
+  vin: string,
+  params: { modelYear: string | number },
+  doFetch: true
+): Promise<NhtsaResponse<DecodeVinValuesResults>>
+/**
+ * ---
+ * Provide: `vin` + `doFetch = false`
+ */
+function DecodeVinValues(
+  vin: string,
+  doFetch: false,
+  _dummy?: undefined
+): Promise<string>
+/**
+ * ---
+ * Provide: `vin` + `params` + `doFetch = false`
+ */
+function DecodeVinValues(
+  vin: string,
+  params: { modelYear: string | number },
+  doFetch: false
+): Promise<string>
+
+/* Implementation */
+async function DecodeVinValues(
   vin: string,
   params?:
     | {
@@ -33,7 +91,7 @@ export const DecodeVinValues = async (
       }
     | boolean,
   doFetch = true
-): Promise<NhtsaResponse<DecodeVinValuesResults> | string> => {
+): Promise<NhtsaResponse<DecodeVinValuesResults> | string> {
   const endpointName = 'DecodeVinValues'
 
   if (typeof params === 'boolean') {
@@ -67,10 +125,10 @@ export const DecodeVinValues = async (
   }
 }
 
+export { DecodeVinValues }
+
 /**
- * Objects returned in the NhtsaResponse 'Results' array of DecodeVinValues endpoint
- *
- * @alias DecodeVinValuesResults
+ * Single object found in the `Results` array of `DecodeVinValues` endpoint response.
  */
 export type DecodeVinValuesResults = {
   ABS: string

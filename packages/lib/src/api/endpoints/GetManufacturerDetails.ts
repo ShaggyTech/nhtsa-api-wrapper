@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/GetManufacturerDetails
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'

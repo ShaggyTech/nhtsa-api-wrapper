@@ -34,4 +34,4 @@ It will also accurately recognize any Error types, Error, TypeError, etc., as 'e
 
 #### Defined in
 
-[utils/getTypeof.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/getTypeof.ts#L18)
+[utils/getTypeof.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/getTypeof.ts#L18)

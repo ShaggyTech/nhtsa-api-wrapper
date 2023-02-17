@@ -1,3 +1,8 @@
+/**
+ * @module api/types
+ * @category Types
+ */
+
 export * from './endpoints/types'
 export type { CreateUrlOptions } from './useNHTSA'
 

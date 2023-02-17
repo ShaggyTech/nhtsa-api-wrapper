@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/DecodeVinValuesBatch
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'

@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/types
+ * @category Types
+ */
+
 export type { DecodeVinResults, DecodeVinVariable } from './DecodeVin'
 export type {
   DecodeVinExtendedResults,

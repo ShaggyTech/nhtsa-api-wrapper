@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetMakesForManufacturerAndYearResults](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)
-
 ### Functions
 
 - [GetMakesForManufacturerAndYear](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyear)
 
-## Type Aliases
+### Type Aliases
 
-### GetMakesForManufacturerAndYearResults
-
-Ƭ **GetMakesForManufacturerAndYearResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetMakesForManufacturerAndYear endpoint
-
-**`Alias`**
-
-GetMakesForManufacturerAndYearResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `MakeId` | `number` |
-| `MakeName` | `string` |
-| `MfrId` | `number` |
-| `MfrName` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetMakesForManufacturerAndYear.ts:80](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L80)
+- [GetMakesForManufacturerAndYearResults](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)
 
 ## Functions
 
@@ -75,4 +50,29 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:30](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L30)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L35)
+
+## Type Aliases
+
+### GetMakesForManufacturerAndYearResults
+
+Ƭ **GetMakesForManufacturerAndYearResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetMakesForManufacturerAndYear endpoint
+
+**`Alias`**
+
+GetMakesForManufacturerAndYearResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `MakeId` | `number` |
+| `MakeName` | `string` |
+| `MfrId` | `number` |
+| `MfrName` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetMakesForManufacturerAndYear.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L85)

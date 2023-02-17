@@ -2,43 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetPartsResults](api_endpoints_GetParts.md#getpartsresults)
-
 ### Functions
 
 - [GetParts](api_endpoints_GetParts.md#getparts)
 
-## Type Aliases
+### Type Aliases
 
-### GetPartsResults
-
-Ƭ **GetPartsResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetParts endpoint
-
-**`Alias`**
-
-GetPartsResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `CoverLetterURL` | `string` |
-| `LetterDate` | `string` |
-| `ManufacturerId` | `number` |
-| `ManufacturerName` | `string` |
-| `ModelYearFrom` | `number` \| ``null`` |
-| `ModelYearTo` | `number` \| ``null`` |
-| `Name` | `string` |
-| `Type` | `string` |
-| `URL` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetParts.ts:92](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetParts.ts#L92)
+- [GetPartsResults](api_endpoints_GetParts.md#getpartsresults)
 
 ## Functions
 
@@ -86,4 +56,34 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetParts.ts#L44)
+[api/endpoints/GetParts.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetParts.ts#L49)
+
+## Type Aliases
+
+### GetPartsResults
+
+Ƭ **GetPartsResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetParts endpoint
+
+**`Alias`**
+
+GetPartsResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `CoverLetterURL` | `string` |
+| `LetterDate` | `string` |
+| `ManufacturerId` | `number` |
+| `ManufacturerName` | `string` |
+| `ModelYearFrom` | `number` \| ``null`` |
+| `ModelYearTo` | `number` \| ``null`` |
+| `Name` | `string` |
+| `Type` | `string` |
+| `URL` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetParts.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetParts.ts#L97)

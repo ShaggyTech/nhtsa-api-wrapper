@@ -2,39 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetAllManufacturersResults](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)
-
 ### Functions
 
 - [GetAllManufacturers](api_endpoints_GetAllManufacturers.md#getallmanufacturers)
 
-## Type Aliases
+### Type Aliases
 
-### GetAllManufacturersResults
-
-Ƭ **GetAllManufacturersResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetAllManufacturers endpoint
-
-**`Alias`**
-
-GetAllManufacturersResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Country` | `string` |
-| `Mfr_CommonName` | `string` \| ``null`` |
-| `Mfr_ID` | `number` |
-| `Mfr_Name` | `string` |
-| `VehicleTypes` | { `IsPrimary?`: `boolean` ; `Name?`: `string`  }[] |
-
-#### Defined in
-
-[api/endpoints/GetAllManufacturers.ts:79](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L79)
+- [GetAllManufacturersResults](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)
 
 ## Functions
 
@@ -68,4 +42,30 @@ pages of 100 items.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:28](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L28)
+[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
+
+## Type Aliases
+
+### GetAllManufacturersResults
+
+Ƭ **GetAllManufacturersResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetAllManufacturers endpoint
+
+**`Alias`**
+
+GetAllManufacturersResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Country` | `string` |
+| `Mfr_CommonName` | `string` \| ``null`` |
+| `Mfr_ID` | `number` |
+| `Mfr_Name` | `string` |
+| `VehicleTypes` | { `IsPrimary?`: `boolean` ; `Name?`: `string`  }[] |
+
+#### Defined in
+
+[api/endpoints/GetAllManufacturers.ts:84](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L84)

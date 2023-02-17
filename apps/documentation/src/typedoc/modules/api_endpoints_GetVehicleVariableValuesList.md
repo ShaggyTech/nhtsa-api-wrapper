@@ -2,37 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetVehicleVariableValuesListResults](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)
-
 ### Functions
 
 - [GetVehicleVariableValuesList](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslist)
 
-## Type Aliases
+### Type Aliases
 
-### GetVehicleVariableValuesListResults
-
-Ƭ **GetVehicleVariableValuesListResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableValuesList endpoint
-
-**`Alias`**
-
-GetVehicleVariableValuesListResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `ElementName` | `string` |
-| `Id` | `number` |
-| `Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetVehicleVariableValuesList.ts:56](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L56)
+- [GetVehicleVariableValuesListResults](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)
 
 ## Functions
 
@@ -64,4 +40,28 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:20](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L20)
+[api/endpoints/GetVehicleVariableValuesList.ts:25](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L25)
+
+## Type Aliases
+
+### GetVehicleVariableValuesListResults
+
+Ƭ **GetVehicleVariableValuesListResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableValuesList endpoint
+
+**`Alias`**
+
+GetVehicleVariableValuesListResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `ElementName` | `string` |
+| `Id` | `number` |
+| `Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetVehicleVariableValuesList.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L61)

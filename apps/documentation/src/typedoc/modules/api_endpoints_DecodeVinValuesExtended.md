@@ -2,13 +2,56 @@
 
 ## Table of contents
 
+### Functions
+
+- [DecodeVinValuesExtended](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextended)
+
 ### Type Aliases
 
 - [DecodeVinValuesExtendedResults](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)
 
-### Functions
+## Functions
 
-- [DecodeVinValuesExtended](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextended)
+### DecodeVinValuesExtended
+
+▸ **DecodeVinValuesExtended**(`vin`, `params?`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+`DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
+information about the vehicle in in a _flat format_. This means the endpoint will return an
+array with a single object of results. Each key in the object is the name of a variable.
+
+This endpoint is similar to `DecodeVinValues` but returns additional information on variables
+related to other NHTSA programs like
+[NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
+
+Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
+older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
+the model year is known at the time of decoding, but it is not required.
+
+This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
+  - Ex: "5UXWX7C5*BA"
+  - In this case, the VIN will be decoded partially with the available characters
+  - In case of partial VINs, a `*` could be used to indicate the unavailable characters
+  - The 9th digit is not necessary
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `vin` | `string` | `undefined` | Vehicle Identification Number (full or partial) |
+| `params?` | `boolean` \| { `modelYear?`: `string` \| `number`  } | `undefined` | Object of Query Search names and values to append to the URL as a query string `func(arg1, doFetch)` |
+| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+
+#### Returns
+
+`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+- Api Response
+`object` -or- url `string` if `doFetch = false`
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L38)
 
 ## Type Aliases
 
@@ -179,47 +222,4 @@ DecodeVinValuesExtendedResults
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:80](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L80)
-
-## Functions
-
-### DecodeVinValuesExtended
-
-▸ **DecodeVinValuesExtended**(`vin`, `params?`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-`DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
-information about the vehicle in in a _flat format_. This means the endpoint will return an
-array with a single object of results. Each key in the object is the name of a variable.
-
-This endpoint is similar to `DecodeVinValues` but returns additional information on variables
-related to other NHTSA programs like
-[NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
-
-Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
-older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
-the model year is known at the time of decoding, but it is not required.
-
-This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
-  - Ex: "5UXWX7C5*BA"
-  - In this case, the VIN will be decoded partially with the available characters
-  - In case of partial VINs, a `*` could be used to indicate the unavailable characters
-  - The 9th digit is not necessary
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `vin` | `string` | `undefined` | Vehicle Identification Number (full or partial) |
-| `params?` | `boolean` \| { `modelYear?`: `string` \| `number`  } | `undefined` | Object of Query Search names and values to append to the URL as a query string `func(arg1, doFetch)` |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
-
-#### Returns
-
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-- Api Response
-`object` -or- url `string` if `doFetch = false`
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L33)
+[api/endpoints/DecodeVinValuesExtended.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L85)

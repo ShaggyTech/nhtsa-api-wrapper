@@ -2,36 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetAllMakesResults](api_endpoints_GetAllMakes.md#getallmakesresults)
-
 ### Functions
 
 - [GetAllMakes](api_endpoints_GetAllMakes.md#getallmakes)
 
-## Type Aliases
+### Type Aliases
 
-### GetAllMakesResults
-
-Ƭ **GetAllMakesResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetAllMakes endpoint
-
-**`Alias`**
-
-GetAllMakesResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetAllMakes.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetAllMakes.ts#L42)
+- [GetAllMakesResults](api_endpoints_GetAllMakes.md#getallmakesresults)
 
 ## Functions
 
@@ -60,4 +37,27 @@ an individual vehicle Make.
 
 #### Defined in
 
-[api/endpoints/GetAllMakes.ts:17](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetAllMakes.ts#L17)
+[api/endpoints/GetAllMakes.ts:22](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetAllMakes.ts#L22)
+
+## Type Aliases
+
+### GetAllMakesResults
+
+Ƭ **GetAllMakesResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetAllMakes endpoint
+
+**`Alias`**
+
+GetAllMakesResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Make_ID` | `number` |
+| `Make_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetAllMakes.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetAllMakes.ts#L47)

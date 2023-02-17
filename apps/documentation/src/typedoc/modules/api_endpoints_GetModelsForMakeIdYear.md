@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetModelsForMakeIdYearResults](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)
-
 ### Functions
 
 - [GetModelsForMakeIdYear](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyear)
 
-## Type Aliases
+### Type Aliases
 
-### GetModelsForMakeIdYearResults
-
-Ƭ **GetModelsForMakeIdYearResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeIdYear endpoint
-
-**`Alias`**
-
-GetModelsForMakeIdYearResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
-| `Model_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetModelsForMakeIdYear.ts:123](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L123)
+- [GetModelsForMakeIdYearResults](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)
 
 ## Functions
 
@@ -90,4 +65,29 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeIdYear.ts:52](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L52)
+[api/endpoints/GetModelsForMakeIdYear.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L57)
+
+## Type Aliases
+
+### GetModelsForMakeIdYearResults
+
+Ƭ **GetModelsForMakeIdYearResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeIdYear endpoint
+
+**`Alias`**
+
+GetModelsForMakeIdYearResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Make_ID` | `number` |
+| `Make_Name` | `string` |
+| `Model_ID` | `number` |
+| `Model_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetModelsForMakeIdYear.ts:128](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L128)

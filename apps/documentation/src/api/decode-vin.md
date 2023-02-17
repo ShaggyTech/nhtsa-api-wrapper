@@ -20,29 +20,8 @@ function DecodeVin (
 ) => Promise<NhtsaResponse<DecodeVinResults> | string>
 ```
 
-::: tip :bulb: Full Details and Type Definitions
+::: tip :bulb: Source Reference and Type Definitions
 See: [Package Reference](../typedoc/modules/api_endpoints_DecodeVin.md)
-:::
-
-## Parameters
-
-| Name                | Type                 | Default Value | Description                                                                     |
-| ------------------- | -------------------- | ------------- | ------------------------------------------------------------------------------- |
-| `vin`               | `string`             | `undefined`   | Vehicle Identification Number (full or partial)                                 |
-| `params?`           | `Object \| boolean ` | `undefined`   | Object of query search names and values to append to the URL as a query string. |
-| `params.modelYear?` | `string \| number`   | `undefined`   | Optional Model Year search parameter                                            |
-| `doFetch`           | `boolean`            | `true`        | Whether to fetch the data or just return the URL (default: `true`)              |
-
-::: warning 📝 NOTE
-
-Any `params` that are not listed in the table above will be ignored.
-
-As `params` is optional, it also has type `| boolean`, so you can set `doFetch` without
-having to pass `undefined` in place of intentionally undefined `params`.
-
-- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
-  for more info.
-
 :::
 
 ## Description
@@ -71,6 +50,27 @@ objects, one for each VIN you search.
 
 The flat format is more efficient and easier to work with as you won't have to iterate through a
 bunch of objects just to get all variable names/values.
+:::
+
+## Parameters
+
+| Name                | Type                 | Default Value | Description                                                                     |
+| ------------------- | -------------------- | ------------- | ------------------------------------------------------------------------------- |
+| `vin`               | `string`             | `undefined`   | Vehicle Identification Number (full or partial)                                 |
+| `params?`           | `Object \| boolean ` | `undefined`   | Object of query search names and values to append to the URL as a query string. |
+| `params.modelYear?` | `string \| number`   | `undefined`   | Optional Model Year search parameter                                            |
+| `doFetch`           | `boolean`            | `true`        | Whether to fetch the data or just return the URL (default: `true`)              |
+
+::: warning 📝 NOTE
+
+Any `params` that are not listed in the table above will be ignored.
+
+As `params` is optional, it also has type `| boolean`, so you can set `doFetch` without
+having to pass `undefined` in place of intentionally undefined `params`.
+
+- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+  for more info.
+
 :::
 
 ## Returns

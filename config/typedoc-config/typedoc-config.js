@@ -17,4 +17,5 @@ module.exports = {
   navigationLinks,
   plugin: ["typedoc-plugin-markdown"],
   searchInComments: true,
+  sort: "alphabetical",
 };

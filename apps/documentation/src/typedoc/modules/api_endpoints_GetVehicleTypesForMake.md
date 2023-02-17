@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetVehicleTypesForMakeResults](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)
-
 ### Functions
 
 - [GetVehicleTypesForMake](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformake)
 
-## Type Aliases
+### Type Aliases
 
-### GetVehicleTypesForMakeResults
-
-Ƭ **GetVehicleTypesForMakeResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMake endpoint
-
-**`Alias`**
-
-GetVehicleTypesForMakeResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `MakeId` | `number` |
-| `MakeName` | `string` |
-| `VehicleTypeId` | `number` |
-| `VehicleTypeName` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetVehicleTypesForMake.ts:54](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L54)
+- [GetVehicleTypesForMakeResults](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)
 
 ## Functions
 
@@ -63,4 +38,29 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L18)
+[api/endpoints/GetVehicleTypesForMake.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L23)
+
+## Type Aliases
+
+### GetVehicleTypesForMakeResults
+
+Ƭ **GetVehicleTypesForMakeResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMake endpoint
+
+**`Alias`**
+
+GetVehicleTypesForMakeResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `MakeId` | `number` |
+| `MakeName` | `string` |
+| `VehicleTypeId` | `number` |
+| `VehicleTypeName` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetVehicleTypesForMake.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L59)

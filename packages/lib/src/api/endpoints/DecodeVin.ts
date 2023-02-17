@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [DecodeVin Documentation](/api/decode-vin)
+ * :::
+ *
  * `DecodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about
  * the vehicle.
  *
@@ -35,34 +39,46 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-/** With `vin` */
 function DecodeVin(vin: string): Promise<NhtsaResponse<DecodeVinResults>>
-/** With `vin` + `params` */
+/**
+ * ---
+ * Provide: `vin` + `params`
+ */
 function DecodeVin(
   vin: string,
   params: { modelYear: string | number }
 ): Promise<NhtsaResponse<DecodeVinResults>>
-
-/** With `vin` + `doFetch = true` */
+/**
+ * ---
+ * Provide: `vin` + `doFetch = true`
+ */
 function DecodeVin(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinResults>>
-/** `vin` + `params` + `doFetch = true` */
+/**
+ * ---
+ * Provide: `vin` + `params` + `doFetch = true`
+ */
 function DecodeVin(
   vin: string,
   params: { modelYear: string | number },
   doFetch: true
 ): Promise<NhtsaResponse<DecodeVinResults>>
-
-/** With `vin` + `doFetch = false` */
+/**
+ * ---
+ * Provide: `vin` + `doFetch = false`
+ */
 function DecodeVin(
   vin: string,
   doFetch: false,
   _dummy?: undefined
 ): Promise<string>
-/** With `vin` + `params` + `doFetch = false` */
+/**
+ * ---
+ * Provide: `vin` + `params` + `doFetch = false`
+ */
 function DecodeVin(
   vin: string,
   params: { modelYear: string | number },

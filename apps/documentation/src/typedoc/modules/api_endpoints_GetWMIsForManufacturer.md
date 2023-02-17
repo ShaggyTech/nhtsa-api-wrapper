@@ -2,42 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetWMIsForManufacturerResults](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)
-
 ### Functions
 
 - [GetWMIsForManufacturer](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturer)
 
-## Type Aliases
+### Type Aliases
 
-### GetWMIsForManufacturerResults
-
-Ƭ **GetWMIsForManufacturerResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetWMIsForManufacturer endpoint
-
-**`Alias`**
-
-GetWMIsForManufacturerResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Country` | `string` \| ``null`` |
-| `CreatedOn` | `string` |
-| `DateAvailableToPublic` | `string` |
-| `Id` | `number` |
-| `Name` | `string` |
-| `UpdatedOn` | `string` |
-| `VehicleType` | `string` |
-| `WMI` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetWMIsForManufacturer.ts:94](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L94)
+- [GetWMIsForManufacturerResults](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)
 
 ## Functions
 
@@ -84,4 +55,33 @@ are the second arg.
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:39](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L39)
+[api/endpoints/GetWMIsForManufacturer.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L44)
+
+## Type Aliases
+
+### GetWMIsForManufacturerResults
+
+Ƭ **GetWMIsForManufacturerResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetWMIsForManufacturer endpoint
+
+**`Alias`**
+
+GetWMIsForManufacturerResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Country` | `string` \| ``null`` |
+| `CreatedOn` | `string` |
+| `DateAvailableToPublic` | `string` |
+| `Id` | `number` |
+| `Name` | `string` |
+| `UpdatedOn` | `string` |
+| `VehicleType` | `string` |
+| `WMI` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetWMIsForManufacturer.ts:99](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L99)

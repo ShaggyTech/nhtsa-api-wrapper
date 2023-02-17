@@ -1,6 +1,6 @@
 /**
  * @module utils
- * @category Internal Utility Functions
+ * @category Utility Functions
  */
 
 export { catchInvalidArguments, validateArgument } from './argHandler'

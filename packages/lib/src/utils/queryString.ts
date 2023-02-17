@@ -1,6 +1,6 @@
 /**
  * @module utils/queryString
- * @category Internal Utility Functions
+ * @category Utility Functions
  */
 
 import { NHTSA_RESPONSE_FORMAT } from '@/constants'
@@ -8,47 +8,12 @@ import { validateArgument } from '@/utils'
 
 /** Valid URI component types */
 export type QueryStringTypes = string | number | boolean
+
 /** Object to build the query string with */
 export type QueryStringParams = Record<string, QueryStringTypes>
+
 /** Object returned by encodeQueryStringParams() */
 export type QueryStringParamsEncoded<T> = { [key in keyof T]: string }
-
-/**
- * `useQueryString` is a composable function that returns an object containing methods for creating
- * and handling query strings.
- *
- * The exported methods are:
- * - `createString()` - Creates a query string from an object of search parameters.
- * - `encodeParams()` - Encodes all params in an object into URI component encoded strings and
- *   returns a new object with the encoded params. Silently filters out any params that are not
- *   strings, numbers, or booleans.
- *
- * @example
- * // Create a query string from an object of search parameters
- * const params = { param1: 'value1', param2: 'value with spaces' }
- * const queryString = useQueryString().createString(params)
- * // queryString === '?param1=value1&param2=value%20with%20spaces&format=json'
- * // format=json is hardcoded and is always included in the query string for this package.
- *
- * @example
- * // Same params and return value but using destructure syntax
- * const { createString } = useQueryString()
- * const queryString = createString(params)
- *
- * @example
- * // Encode query string params values into URI component encoded strings and return a new object
- * const params = {  param1: 'value1', param2: true, param3: ['array will be filtered']  }
- * const encodedParams = useQueryString().encodeParams(params)
- * // encodedParams === { param1: 'value1', param2: 'true' }
- *
- * @returns {object} - Object containing methods for creating and handling query strings.
- */
-export const useQueryString = () => {
-  return {
-    createString: createQueryString,
-    encodeParams: encodeQueryStringParams,
-  }
-}
 
 /**
  * Utility function to generate a query string conforming to URI component standards. Takes an an
@@ -146,4 +111,41 @@ export const encodeQueryStringParams = <T extends QueryStringParams>(
     }, {} as QueryStringParamsEncoded<T>)
 
   return _params
+}
+
+/**
+ * `useQueryString` is a composable function that returns an object containing methods for creating
+ * and handling query strings.
+ *
+ * The exported methods are:
+ * - `createString()` - Creates a query string from an object of search parameters.
+ * - `encodeParams()` - Encodes all params in an object into URI component encoded strings and
+ *   returns a new object with the encoded params. Silently filters out any params that are not
+ *   strings, numbers, or booleans.
+ *
+ * @example
+ * // Create a query string from an object of search parameters
+ * const params = { param1: 'value1', param2: 'value with spaces' }
+ * const queryString = useQueryString().createString(params)
+ * // queryString === '?param1=value1&param2=value%20with%20spaces&format=json'
+ * // format=json is hardcoded and is always included in the query string for this package.
+ *
+ * @example
+ * // Same params and return value but using destructure syntax
+ * const { createString } = useQueryString()
+ * const queryString = createString(params)
+ *
+ * @example
+ * // Encode query string params values into URI component encoded strings and return a new object
+ * const params = { param1: 'value1', param2: true, param3: ['array will be filtered'] }
+ * const encodedParams = useQueryString().encodeParams(params)
+ * // encodedParams === { param1: 'value1', param2: 'true' }
+ *
+ * @returns {object} - Object containing methods for creating and handling query strings.
+ */
+export const useQueryString = () => {
+  return {
+    createString: createQueryString,
+    encodeParams: encodeQueryStringParams,
+  }
 }

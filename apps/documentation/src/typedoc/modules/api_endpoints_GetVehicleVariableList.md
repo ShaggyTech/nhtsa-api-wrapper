@@ -2,39 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetVehicleVariableListResults](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)
-
 ### Functions
 
 - [GetVehicleVariableList](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelist)
 
-## Type Aliases
+### Type Aliases
 
-### GetVehicleVariableListResults
-
-Ƭ **GetVehicleVariableListResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableList endpoint
-
-**`Alias`**
-
-GetVehicleVariableListResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `DataType` | ``"string"`` \| ``"int"`` \| ``"decimal"`` \| ``"lookup"`` |
-| `Description` | `string` |
-| `GroupName` | `string` \| ``null`` |
-| `ID` | `number` |
-| `Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetVehicleVariableList.ts:39](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L39)
+- [GetVehicleVariableListResults](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)
 
 ## Functions
 
@@ -60,4 +34,30 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:14](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L14)
+[api/endpoints/GetVehicleVariableList.ts:19](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L19)
+
+## Type Aliases
+
+### GetVehicleVariableListResults
+
+Ƭ **GetVehicleVariableListResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableList endpoint
+
+**`Alias`**
+
+GetVehicleVariableListResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `DataType` | ``"string"`` \| ``"int"`` \| ``"decimal"`` \| ``"lookup"`` |
+| `Description` | `string` |
+| `GroupName` | `string` \| ``null`` |
+| `ID` | `number` |
+| `Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetVehicleVariableList.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L44)

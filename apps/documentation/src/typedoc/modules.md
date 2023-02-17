@@ -5,23 +5,13 @@
 ### API Modules
 
 - [api](modules/api.md)
+- [api/useNHTSA](modules/api_useNHTSA.md)
 
 ### API Endpoints Modules
 
 - [api/endpoints](modules/api_endpoints.md)
 - [api/endpoints/DecodeVin](modules/api_endpoints_DecodeVin.md)
 - [api/endpoints/DecodeVinExtended](modules/api_endpoints_DecodeVinExtended.md)
-
-### Internal Utility Functions Modules
-
-- [utils](modules/utils.md)
-- [utils/argHandler](modules/utils_argHandler.md)
-- [utils/errorHandler](modules/utils_errorHandler.md)
-- [utils/getTypeof](modules/utils_getTypeof.md)
-- [utils/queryString](modules/utils_queryString.md)
-
-### Other Modules
-
 - [api/endpoints/DecodeVinValues](modules/api_endpoints_DecodeVinValues.md)
 - [api/endpoints/DecodeVinValuesBatch](modules/api_endpoints_DecodeVinValuesBatch.md)
 - [api/endpoints/DecodeVinValuesExtended](modules/api_endpoints_DecodeVinValuesExtended.md)
@@ -44,18 +34,25 @@
 - [api/endpoints/GetVehicleVariableList](modules/api_endpoints_GetVehicleVariableList.md)
 - [api/endpoints/GetVehicleVariableValuesList](modules/api_endpoints_GetVehicleVariableValuesList.md)
 - [api/endpoints/GetWMIsForManufacturer](modules/api_endpoints_GetWMIsForManufacturer.md)
-- [api/endpoints/types](modules/api_endpoints_types.md)
-- [api/types](modules/api_types.md)
-- [api/useNHTSA](modules/api_useNHTSA.md)
+
+### Other Modules
+
 - [constants](modules/constants.md)
 - [index](modules/index.md)
-- [types](modules/types.md)
 - [vite-env](modules/vite_env.md)
+
+### Types Modules
+
+- [api/endpoints/types](modules/api_endpoints_types.md)
+- [api/types](modules/api_types.md)
+- [types](modules/types.md)
+- [utils/types](modules/utils_types.md)
 
 ### Utility Functions Modules
 
+- [utils](modules/utils.md)
+- [utils/argHandler](modules/utils_argHandler.md)
+- [utils/errorHandler](modules/utils_errorHandler.md)
+- [utils/getTypeof](modules/utils_getTypeof.md)
 - [utils/isValidVin](modules/utils_isValidVin.md)
-
-### Utility Types Modules
-
-- [utils/types](modules/utils_types.md)
+- [utils/queryString](modules/utils_queryString.md)

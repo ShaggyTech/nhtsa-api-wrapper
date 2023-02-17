@@ -24,7 +24,7 @@ Object to build the query string with
 
 #### Defined in
 
-[utils/queryString.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/queryString.ts#L12)
+[utils/queryString.ts:13](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/queryString.ts#L13)
 
 ___
 
@@ -42,7 +42,7 @@ Object returned by encodeQueryStringParams()
 
 #### Defined in
 
-[utils/queryString.ts:14](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/queryString.ts#L14)
+[utils/queryString.ts:16](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/queryString.ts#L16)
 
 ___
 
@@ -54,7 +54,7 @@ Valid URI component types
 
 #### Defined in
 
-[utils/queryString.ts:10](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/queryString.ts#L10)
+[utils/queryString.ts:10](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/queryString.ts#L10)
 
 ## Functions
 
@@ -100,7 +100,7 @@ functions. However, it _is_ exported by the package as part of the composable fu
 
 #### Defined in
 
-[utils/queryString.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/queryString.ts#L77)
+[utils/queryString.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/queryString.ts#L42)
 
 ___
 
@@ -147,7 +147,7 @@ boolean are filtered out of final object.
 
 #### Defined in
 
-[utils/queryString.ts:130](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/queryString.ts#L130)
+[utils/queryString.ts:95](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/queryString.ts#L95)
 
 ___
 
@@ -186,7 +186,7 @@ const queryString = createString(params)
 
 ```ts
 // Encode query string params values into URI component encoded strings and return a new object
-const params = {  param1: 'value1', param2: true, param3: ['array will be filtered']  }
+const params = { param1: 'value1', param2: true, param3: ['array will be filtered'] }
 const encodedParams = useQueryString().encodeParams(params)
 // encodedParams === { param1: 'value1', param2: 'true' }
 ```
@@ -204,4 +204,4 @@ const encodedParams = useQueryString().encodeParams(params)
 
 #### Defined in
 
-[utils/queryString.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/utils/queryString.ts#L46)
+[utils/queryString.ts:146](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/utils/queryString.ts#L146)

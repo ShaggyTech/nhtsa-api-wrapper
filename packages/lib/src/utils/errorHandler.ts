@@ -1,6 +1,6 @@
 /**
  * @module utils/errorHandler
- * @category Internal Utility Functions
+ * @category Utility Functions
  */
 
 import { getTypeof } from '@/utils'

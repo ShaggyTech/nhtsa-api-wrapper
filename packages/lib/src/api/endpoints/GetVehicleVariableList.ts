@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/GetVehicleVariableList
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { rejectWithError } from '@/utils'
 import type { NhtsaResponse } from '@/types'

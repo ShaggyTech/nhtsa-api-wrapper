@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/GetModelsForMakeYear
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import {
   catchInvalidArguments,

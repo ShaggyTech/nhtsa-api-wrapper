@@ -2,43 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetEquipmentPlantCodesResults](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)
-
 ### Functions
 
 - [GetEquipmentPlantCodes](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodes)
 
-## Type Aliases
+### Type Aliases
 
-### GetEquipmentPlantCodesResults
-
-Ƭ **GetEquipmentPlantCodesResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetEquipmentPlantCodes endpoint
-
-**`Alias`**
-
-GetEquipmentPlantCodesResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Address` | `string` \| ``null`` |
-| `City` | `string` \| ``null`` |
-| `Country` | `string` |
-| `DOTCode` | `string` |
-| `Name` | `string` |
-| `OldDotCode` | `string` |
-| `PostalCode` | `string` \| ``null`` |
-| `StateProvince` | `string` \| ``null`` |
-| `Status` | `string` \| ``null`` |
-
-#### Defined in
-
-[api/endpoints/GetEquipmentPlantCodes.ts:92](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L92)
+- [GetEquipmentPlantCodesResults](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)
 
 ## Functions
 
@@ -88,4 +58,34 @@ values in the query string.
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L38)
+[api/endpoints/GetEquipmentPlantCodes.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L43)
+
+## Type Aliases
+
+### GetEquipmentPlantCodesResults
+
+Ƭ **GetEquipmentPlantCodesResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetEquipmentPlantCodes endpoint
+
+**`Alias`**
+
+GetEquipmentPlantCodesResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Address` | `string` \| ``null`` |
+| `City` | `string` \| ``null`` |
+| `Country` | `string` |
+| `DOTCode` | `string` |
+| `Name` | `string` |
+| `OldDotCode` | `string` |
+| `PostalCode` | `string` \| ``null`` |
+| `StateProvince` | `string` \| ``null`` |
+| `Status` | `string` \| ``null`` |
+
+#### Defined in
+
+[api/endpoints/GetEquipmentPlantCodes.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L97)

@@ -2,13 +2,47 @@
 
 ## Table of contents
 
+### Functions
+
+- [GetManufacturerDetails](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetails)
+
 ### Type Aliases
 
 - [GetManufacturerDetailsResults](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)
 
-### Functions
+## Functions
 
-- [GetManufacturerDetails](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetails)
+### GetManufacturerDetails
+
+▸ **GetManufacturerDetails**(`manufacturer`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetManufacturerDetailsResults`](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
+
+`GetManufacturerDetails` provides the details for a specific manufacturer that is requested.
+Multiple results are returned in case of multiple matches.
+
+`manufacturer` name can be a partial name, or a full name for more specificity, e.g. "988",
+"honda", "HONDA OF CANADA MFG., INC.", etc.
+
+- If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id.
+- If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the
+  provided name. It accepts a partial manufacturer name as an input.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `manufacturer` | `string` \| `number` | `undefined` | Manufacturer Name or ID |
+| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+
+#### Returns
+
+`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetManufacturerDetailsResults`](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
+
+- Api Response
+`object` -or- url `string` if `doFetch = false`
+
+#### Defined in
+
+[api/endpoints/GetManufacturerDetails.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L27)
 
 ## Type Aliases
 
@@ -54,38 +88,4 @@ GetManufacturerDetailsResults
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:58](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L58)
-
-## Functions
-
-### GetManufacturerDetails
-
-▸ **GetManufacturerDetails**(`manufacturer`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetManufacturerDetailsResults`](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
-
-`GetManufacturerDetails` provides the details for a specific manufacturer that is requested.
-Multiple results are returned in case of multiple matches.
-
-`manufacturer` name can be a partial name, or a full name for more specificity, e.g. "988",
-"honda", "HONDA OF CANADA MFG., INC.", etc.
-
-- If supplied `manufacturer` is a number - method will do exact match on Manufacturer's Id.
-- If supplied `manufacturer` is a string - it will look for manufacturers whose name is LIKE the
-  provided name. It accepts a partial manufacturer name as an input.
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `manufacturer` | `string` \| `number` | `undefined` | Manufacturer Name or ID |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
-
-#### Returns
-
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetManufacturerDetailsResults`](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
-
-- Api Response
-`object` -or- url `string` if `doFetch = false`
-
-#### Defined in
-
-[api/endpoints/GetManufacturerDetails.ts:22](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L22)
+[api/endpoints/GetManufacturerDetails.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L63)

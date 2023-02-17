@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [DecodeVin Documentation](/api/decode-vin-extended)
+ * :::
+ *
  * `DecodeVinExtended` decodes a Vehicle Identification Number (VIN) and returns useful information
  * about the vehicle.
  *
@@ -39,40 +43,55 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinExtendedResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false` (default: `true`)
  */
-/* Overloads */
-/* Default */
 function DecodeVinExtended(
   vin: string
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
+/**
+ * ---
+ * Provide: `vin` + `params`
+ */
 function DecodeVinExtended(
   vin: string,
   params: { modelYear: string | number }
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
-
-/* doFetch = true */
-function DecodeVinExtended(
-  vin: string,
-  params: { modelYear: string | number },
-  doFetch: true
-): Promise<NhtsaResponse<DecodeVinExtendedResults>>
+/**
+ * ---
+ * Provide: `vin` + `doFetch = true`
+ */
 function DecodeVinExtended(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
-
-/* doFetch = false */
+/**
+ * ---
+ * Provide: `vin` + `params` + `doFetch = true`
+ */
 function DecodeVinExtended(
   vin: string,
   params: { modelYear: string | number },
-  doFetch: false
-): Promise<string>
+  doFetch: true
+): Promise<NhtsaResponse<DecodeVinExtendedResults>>
+/**
+ * ---
+ * Provide: `vin` + `doFetch = false`
+ */
 function DecodeVinExtended(
   vin: string,
   doFetch: false,
   _dummy?: undefined
 ): Promise<string>
+/**
+ * ---
+ * Provide: `vin` + `params` + `doFetch = false`
+ */
+function DecodeVinExtended(
+  vin: string,
+  params: { modelYear: string | number },
+  doFetch: false
+): Promise<string>
 
+/* Implementation */
 async function DecodeVinExtended(
   vin: string,
   params?:
@@ -84,12 +103,12 @@ async function DecodeVinExtended(
 ): Promise<NhtsaResponse<DecodeVinExtendedResults> | string> {
   const endpointName = 'DecodeVinExtended'
 
-  if (typeof params === 'boolean') {
-    doFetch = params
-    params = undefined
-  }
-
   try {
+    if (typeof params === 'boolean') {
+      doFetch = params
+      params = undefined
+    }
+
     const args: IArgToValidate[] = [
       { name: 'vin', value: vin, required: true, types: ['string'] },
       { name: 'params', value: params, types: ['object'] },
@@ -123,7 +142,7 @@ export { DecodeVinExtended }
 export type DecodeVinExtendedResults = {
   Value: string | null
   ValueId: string | null
-  Variable: DecodeVinExtendedVariable | string
+  Variable: DecodeVinExtendedVariable
   VariableId: number
 }
 

@@ -2,43 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [DecodeWMIResults](api_endpoints_DecodeWMI.md#decodewmiresults)
-
 ### Functions
 
 - [DecodeWMI](api_endpoints_DecodeWMI.md#decodewmi)
 
-## Type Aliases
+### Type Aliases
 
-### DecodeWMIResults
-
-Ƭ **DecodeWMIResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of DecodeWMI endpoint
-
-**`Alias`**
-
-DecodeWMIResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `CommonName` | `string` |
-| `CreatedOn` | `string` |
-| `DateAvailableToPublic` | `string` |
-| `Make` | `string` |
-| `ManufacturerName` | `string` |
-| `ParentCompanyName` | `string` |
-| `URL` | `string` |
-| `UpdatedOn` | `string` \| ``null`` |
-| `VehicleType` | `string` |
-
-#### Defined in
-
-[api/endpoints/DecodeWMI.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/DecodeWMI.ts#L60)
+- [DecodeWMIResults](api_endpoints_DecodeWMI.md#decodewmiresults)
 
 ## Functions
 
@@ -73,4 +43,34 @@ be available in vPIC data sets.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:24](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/DecodeWMI.ts#L24)
+[api/endpoints/DecodeWMI.ts:29](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeWMI.ts#L29)
+
+## Type Aliases
+
+### DecodeWMIResults
+
+Ƭ **DecodeWMIResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of DecodeWMI endpoint
+
+**`Alias`**
+
+DecodeWMIResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `CommonName` | `string` |
+| `CreatedOn` | `string` |
+| `DateAvailableToPublic` | `string` |
+| `Make` | `string` |
+| `ManufacturerName` | `string` |
+| `ParentCompanyName` | `string` |
+| `URL` | `string` |
+| `UpdatedOn` | `string` \| ``null`` |
+| `VehicleType` | `string` |
+
+#### Defined in
+
+[api/endpoints/DecodeWMI.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/DecodeWMI.ts#L65)

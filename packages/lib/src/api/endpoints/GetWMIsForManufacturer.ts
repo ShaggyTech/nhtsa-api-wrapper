@@ -1,3 +1,8 @@
+/**
+ * @module api/endpoints/GetWMIsForManufacturer
+ * @category API Endpoints
+ */
+
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'

@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[api/useNHTSA.ts:10](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/useNHTSA.ts#L10)
+[api/useNHTSA.ts:15](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/useNHTSA.ts#L15)
 
 ## Functions
 
@@ -75,4 +75,4 @@ The exported methods are:
 
 #### Defined in
 
-[api/useNHTSA.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/useNHTSA.ts#L44)
+[api/useNHTSA.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/useNHTSA.ts#L49)

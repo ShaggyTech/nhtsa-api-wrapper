@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetModelsForMakeYearResults](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyearresults)
-
 ### Functions
 
 - [GetModelsForMakeYear](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyear)
 
-## Type Aliases
+### Type Aliases
 
-### GetModelsForMakeYearResults
-
-Ƭ **GetModelsForMakeYearResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeYear endpoint
-
-**`Alias`**
-
-GetModelsForMakeYearResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
-| `Model_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetModelsForMakeYear.ts:102](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L102)
+- [GetModelsForMakeYearResults](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyearresults)
 
 ## Functions
 
@@ -74,4 +49,29 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeYear.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L38)
+[api/endpoints/GetModelsForMakeYear.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L43)
+
+## Type Aliases
+
+### GetModelsForMakeYearResults
+
+Ƭ **GetModelsForMakeYearResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeYear endpoint
+
+**`Alias`**
+
+GetModelsForMakeYearResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Make_ID` | `number` |
+| `Make_Name` | `string` |
+| `Model_ID` | `number` |
+| `Model_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetModelsForMakeYear.ts:107](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L107)

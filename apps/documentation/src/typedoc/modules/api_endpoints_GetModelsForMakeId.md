@@ -2,38 +2,13 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [GetModelsForMakeIdResults](api_endpoints_GetModelsForMakeId.md#getmodelsformakeidresults)
-
 ### Functions
 
 - [GetModelsForMakeId](api_endpoints_GetModelsForMakeId.md#getmodelsformakeid)
 
-## Type Aliases
+### Type Aliases
 
-### GetModelsForMakeIdResults
-
-Ƭ **GetModelsForMakeIdResults**: `Object`
-
-Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeId endpoint
-
-**`Alias`**
-
-GetModelsForMakeIdResults
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
-| `Model_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetModelsForMakeId.ts:68](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L68)
+- [GetModelsForMakeIdResults](api_endpoints_GetModelsForMakeId.md#getmodelsformakeidresults)
 
 ## Functions
 
@@ -77,4 +52,29 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/8c71dfe/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L32)
+[api/endpoints/GetModelsForMakeId.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L37)
+
+## Type Aliases
+
+### GetModelsForMakeIdResults
+
+Ƭ **GetModelsForMakeIdResults**: `Object`
+
+Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeId endpoint
+
+**`Alias`**
+
+GetModelsForMakeIdResults
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `Make_ID` | `number` |
+| `Make_Name` | `string` |
+| `Model_ID` | `number` |
+| `Model_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetModelsForMakeId.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a64bd4e/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L73)
