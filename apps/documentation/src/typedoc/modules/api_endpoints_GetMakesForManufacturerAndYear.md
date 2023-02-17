@@ -52,7 +52,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L35)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L35)
 
 ## Type Aliases
 
@@ -77,4 +77,4 @@ GetMakesForManufacturerAndYearResults
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L85)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:85](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L85)

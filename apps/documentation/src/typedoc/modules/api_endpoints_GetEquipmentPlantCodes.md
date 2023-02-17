@@ -60,7 +60,7 @@ values in the query string.
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L43)
+[api/endpoints/GetEquipmentPlantCodes.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L43)
 
 ## Type Aliases
 
@@ -90,4 +90,4 @@ GetEquipmentPlantCodesResults
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L97)
+[api/endpoints/GetEquipmentPlantCodes.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L97)

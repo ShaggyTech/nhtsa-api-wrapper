@@ -221,8 +221,8 @@ Response data returned from the NHTSA VPIC API. `Results` key will be an array o
 | `Count` | `number` | The number of items returned in the Results object. Will = 0 if no Results |
 | `Message` | `string` | A message describing the Results. If Count is 0 check the Message for helpful info |
 | `Results` | `T`[] | An array of objects returned by NHTSA VPIC API, specific to each individual API Action. |
-| `SearchCriteria` | `string` | Search terms (VIN, WMI, etc) used in the request URL. |
+| `SearchCriteria` | `string` \| ``null`` | Search terms (VIN, WMI, etc) used in the request URL. |
 
 #### Defined in
 
-[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/types.ts#L12)
+[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/types.ts#L12)

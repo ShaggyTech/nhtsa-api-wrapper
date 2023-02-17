@@ -78,7 +78,7 @@ type NhtsaApiResponse<DecodeVinValuesBatchResults> = {
 }
 ```
 
-::: details :mag: Click to View Full Example Response
+::: details :mag: Click to Show Full Example Response
 <<< @/snippets/endpoints/decode-vin-values-batch.ts#example-response
 :::
 
@@ -99,7 +99,7 @@ use the URL string to fetch the data in a POST request such as this endpoint.
 
 ## Type - DecodeVinValuesBatchResults
 
-::: details :mag: Click to View Type Definition
+::: details :mag: Click to Show Type Definition
 <<< @/snippets/endpoints/decode-vin-values-batch.ts#type-results
 :::
 

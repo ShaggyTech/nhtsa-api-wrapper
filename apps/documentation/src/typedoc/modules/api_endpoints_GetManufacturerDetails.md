@@ -44,7 +44,7 @@ Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L27)
+[api/endpoints/GetManufacturerDetails.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L27)
 
 ## Type Aliases
 
@@ -90,4 +90,4 @@ GetManufacturerDetailsResults
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L63)
+[api/endpoints/GetManufacturerDetails.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L63)

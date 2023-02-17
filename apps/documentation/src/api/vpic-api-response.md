@@ -44,7 +44,7 @@ type NhtsaApiResponse<T> = {
   Count: number
   Message: string
   Results: Array<T>
-  SearchCriteria: string
+  SearchCriteria: string | null
 }
 ```
 

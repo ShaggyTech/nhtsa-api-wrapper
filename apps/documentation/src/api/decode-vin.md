@@ -75,7 +75,7 @@ type NhtsaApiResponse<DecodeVinResults> = {
 }
 ```
 
-::: details :mag: Click to View Full Example Response
+::: details :mag: Click to Show Full Example Response
 <<< @/snippets/endpoints/decode-vin.ts#example-response
 :::
 
@@ -96,7 +96,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 
 <<< @/snippets/endpoints/decode-vin.ts#type-results
 
-::: details :mag: Click to View All Possible `Variable` Names
+::: details :mag: Click to Show All Possible `Variable` Names
 <<< @/snippets/endpoints/decode-vin.ts#type-variable-names
 :::
 

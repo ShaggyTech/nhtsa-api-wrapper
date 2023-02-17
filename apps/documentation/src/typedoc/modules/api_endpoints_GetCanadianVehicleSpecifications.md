@@ -57,7 +57,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L42)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L42)
 
 ## Type Aliases
 
@@ -79,4 +79,4 @@ GetCanadianVehicleSpecificationsResults
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L97)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L97)

@@ -8,6 +8,10 @@ import { rejectWithError } from '@/utils'
 import type { NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetAllMakes Documentation](/api/get-all-makes)
+ * :::
+ *
  * `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.
  * Each object in the `Results` array represents the `Make_ID` and the `Make_Name` of
  * an individual vehicle Make.
@@ -19,9 +23,20 @@ import type { NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetAllMakesResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false` (default: `true`)
  */
-export const GetAllMakes = async (
+function GetAllMakes(): Promise<NhtsaResponse<GetAllMakesResults>>
+/**
+ * ### Overload: `doFetch = true`
+ */
+function GetAllMakes(doFetch: true): Promise<NhtsaResponse<GetAllMakesResults>>
+/**
+ * ### Overload: `doFetch = false`
+ */
+function GetAllMakes(doFetch: false): Promise<string>
+
+/* Implementation */
+async function GetAllMakes(
   doFetch = false
-): Promise<NhtsaResponse<GetAllMakesResults> | string> => {
+): Promise<NhtsaResponse<GetAllMakesResults> | string> {
   const endpointName = 'GetAllMakes'
 
   try {
@@ -39,10 +54,10 @@ export const GetAllMakes = async (
   }
 }
 
+export { GetAllMakes }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetAllMakes endpoint
- *
- * @alias GetAllMakesResults
+ * Objects found in the `Results` array of `GetAllMakes` endpoint response.
  */
 export type GetAllMakesResults = {
   Make_ID: number

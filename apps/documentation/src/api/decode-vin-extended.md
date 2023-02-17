@@ -79,7 +79,7 @@ type NhtsaApiResponse<DecodeVinExtendedResults> = {
 }
 ```
 
-::: details :mag: Click to View Full Example Response
+::: details :mag: Click to Show Full Example Response
 <<< @/snippets/endpoints/decode-vin-extended.ts#example-response
 :::
 
@@ -100,7 +100,7 @@ Returns the URL string that can be used to fetch the data, does _not_ fetch the 
 
 <<< @/snippets/endpoints/decode-vin-extended.ts#type-results
 
-::: details :mag: Click to View All Possible `Variable` Names
+::: details :mag: Click to Show All Possible `Variable` Names
 <<< @/snippets/endpoints/decode-vin-extended.ts#type-variable-names
 :::
 

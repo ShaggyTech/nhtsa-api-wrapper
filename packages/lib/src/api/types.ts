@@ -17,7 +17,7 @@ export type NhtsaResponse<T> = {
   /** An array of objects returned by NHTSA VPIC API, specific to each individual API Action. */
   Results: Array<T>
   /** Search terms (VIN, WMI, etc) used in the request URL. */
-  SearchCriteria: string
+  SearchCriteria: string | null
 }
 
 export {}

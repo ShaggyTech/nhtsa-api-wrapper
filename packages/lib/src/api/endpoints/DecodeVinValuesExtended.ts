@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [DecodeVinValuesExtended Documentation](/api/decode-vin-values-extended)
+ * :::
+ *
  * `DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
  * information about the vehicle in in a _flat format_. This means the endpoint will return an
  * array with a single object of results. Each key in the object is the name of a variable.
@@ -35,7 +39,51 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesExtendedResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const DecodeVinValuesExtended = async (
+function DecodeVinValuesExtended(
+  vin: string
+): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
+/**
+ * ### Overload: `vin` + `params`
+ */
+function DecodeVinValuesExtended(
+  vin: string,
+  params: { modelYear: string | number }
+): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
+/**
+ * ### Overload: `vin` + `doFetch = true`
+ */
+function DecodeVinValuesExtended(
+  vin: string,
+  doFetch: true,
+  _dummy?: undefined
+): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
+/**
+ * ### Overload: `vin` + `params` + `doFetch = true`
+ */
+function DecodeVinValuesExtended(
+  vin: string,
+  params: { modelYear: string | number },
+  doFetch: true
+): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
+/**
+ * ### Overload: `vin` + `doFetch = false`
+ */
+function DecodeVinValuesExtended(
+  vin: string,
+  doFetch: false,
+  _dummy?: undefined
+): Promise<string>
+/**
+ * ### Overload: `vin` + `params` + `doFetch = false`
+ */
+function DecodeVinValuesExtended(
+  vin: string,
+  params: { modelYear: string | number },
+  doFetch: false
+): Promise<string>
+
+/* Implementation */
+async function DecodeVinValuesExtended(
   vin: string,
   params?:
     | {
@@ -43,15 +91,15 @@ export const DecodeVinValuesExtended = async (
       }
     | boolean,
   doFetch = true
-): Promise<NhtsaResponse<DecodeVinValuesExtendedResults> | string> => {
+): Promise<NhtsaResponse<DecodeVinValuesExtendedResults> | string> {
   const endpointName = 'DecodeVinValuesExtended'
 
-  if (typeof params === 'boolean') {
-    doFetch = params
-    params = undefined
-  }
-
   try {
+    if (typeof params === 'boolean') {
+      doFetch = params
+      params = undefined
+    }
+
     const args: IArgToValidate[] = [
       { name: 'vin', value: vin, required: true, types: ['string'] },
       { name: 'params', value: params, types: ['object'] },
@@ -77,10 +125,10 @@ export const DecodeVinValuesExtended = async (
   }
 }
 
+export { DecodeVinValuesExtended }
+
 /**
- * Objects returned in the NhtsaResponse 'Results' array of DecodeVinValuesExtended endpoint
- *
- * @alias DecodeVinValuesExtendedResults
+ * Single object found in the `Results` array of `DecodeVinValuesExtended` endpoint response.
  */
 export type DecodeVinValuesExtendedResults = {
   ABS: string

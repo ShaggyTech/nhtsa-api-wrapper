@@ -40,10 +40,29 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-export const DecodeVinValuesBatch = async (
+function DecodeVinValuesBatch(
+  inputString: string
+): Promise<NhtsaResponse<DecodeVinValuesBatchResults>>
+/**
+ * ### Overload: `inputString` + `doFetch = true`
+ */
+function DecodeVinValuesBatch(
+  inputString: string,
+  doFetch: true
+): Promise<NhtsaResponse<DecodeVinValuesBatchResults>>
+/**
+ * ### Overload: `inputString` + `doFetch = false`
+ */
+function DecodeVinValuesBatch(
+  inputString: string,
+  doFetch: false
+): Promise<string>
+
+/* Implementation */
+async function DecodeVinValuesBatch(
   inputString: string,
   doFetch = true
-): Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string> => {
+): Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string> {
   const endpointName = 'DecodeVinValuesBatch'
 
   try {
@@ -70,6 +89,8 @@ export const DecodeVinValuesBatch = async (
     return rejectWithError(error)
   }
 }
+
+export { DecodeVinValuesBatch }
 
 /**
  * Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response.

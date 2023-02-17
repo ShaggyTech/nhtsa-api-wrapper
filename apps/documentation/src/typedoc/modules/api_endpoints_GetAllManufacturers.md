@@ -44,7 +44,7 @@ pages of 100 items.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
+[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
 
 ## Type Aliases
 
@@ -70,4 +70,4 @@ GetAllManufacturersResults
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:84](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/19d28b5/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L84)
+[api/endpoints/GetAllManufacturers.ts:84](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L84)
