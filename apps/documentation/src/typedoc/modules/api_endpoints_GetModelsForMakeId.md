@@ -54,7 +54,7 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L37)
+[api/endpoints/GetModelsForMakeId.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L37)
 
 ## Type Aliases
 
@@ -79,4 +79,4 @@ GetModelsForMakeIdResults
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L73)
+[api/endpoints/GetModelsForMakeId.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L73)

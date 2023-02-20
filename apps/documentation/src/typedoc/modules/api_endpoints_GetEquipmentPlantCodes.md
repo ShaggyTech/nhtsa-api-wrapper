@@ -10,13 +10,18 @@
 
 ### Type Aliases
 
+- [GetEquipmentPlantCodesParams](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
 - [GetEquipmentPlantCodesResults](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)
 
 ## Functions
 
 ### GetEquipmentPlantCodes
 
-▸ **GetEquipmentPlantCodes**(`params`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetEquipmentPlantCodesResults`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)\>\>
+▸ **GetEquipmentPlantCodes**(`params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetEquipmentPlantCodesResults`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetEquipmentPlantCodes Documentation](/api/get-equipment-plant-codes)
+:::
 
 `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,
 Equipment Type and Report Type.
@@ -43,26 +48,60 @@ values in the query string.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `params` | `Object` | `undefined` | Object of Query Search names and values to append to the URL as a query string |
-| `params.equipmentType` | ``"1"`` \| ``"3"`` \| ``"13"`` \| ``"16"`` \| ``1`` \| ``3`` \| ``13`` \| ``16`` | `undefined` | Number equal to 1, 3, 13, or 16 |
-| `params.reportType` | ``"New"`` \| ``"Updated"`` \| ``"Closed"`` \| ``"All"`` | `undefined` | 'New', 'Updated', 'Closed', or 'All' |
-| `params.year` | `string` \| `number` | `undefined` | Year >= 2016 |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `params` | [`GetEquipmentPlantCodesParams`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams) | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetEquipmentPlantCodesResults`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetEquipmentPlantCodesResults`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L43)
+[api/endpoints/GetEquipmentPlantCodes.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L47)
+
+▸ **GetEquipmentPlantCodes**(`params`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetEquipmentPlantCodesParams`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams) |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetEquipmentPlantCodes.ts:52](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L52)
 
 ## Type Aliases
+
+### GetEquipmentPlantCodesParams
+
+Ƭ **GetEquipmentPlantCodesParams**: `Object`
+
+Query String Parameters for this endpoint
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `equipmentType` | ``"1"`` \| ``"3"`` \| ``"13"`` \| ``"16"`` \| ``1`` \| ``3`` \| ``13`` \| ``16`` |
+| `reportType` | ``"New"`` \| ``"Updated"`` \| ``"Closed"`` \| ``"All"`` \| ``"new"`` \| ``"updated"`` \| ``"closed"`` \| ``"all"`` |
+| `year` | `string` \| `number` |
+
+#### Defined in
+
+[api/endpoints/GetEquipmentPlantCodes.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L105)
+
+___
 
 ### GetEquipmentPlantCodesResults
 
@@ -90,4 +129,4 @@ GetEquipmentPlantCodesResults
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L97)
+[api/endpoints/GetEquipmentPlantCodes.ts:124](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L124)

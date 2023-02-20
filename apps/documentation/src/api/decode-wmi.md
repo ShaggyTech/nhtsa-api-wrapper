@@ -5,7 +5,7 @@
 ---
 
 ```typescript
-function DecodeWMI(
+async function DecodeWMI(
   WMI: string,
   doFetch?: boolean
 ) => Promise<NhtsaResponse<DecodeWMIResults> | string>

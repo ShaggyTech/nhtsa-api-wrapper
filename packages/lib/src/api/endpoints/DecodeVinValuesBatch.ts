@@ -41,18 +41,10 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * -or- url `string` if `doFetch = false`
  */
 function DecodeVinValuesBatch(
-  inputString: string
-): Promise<NhtsaResponse<DecodeVinValuesBatchResults>>
-/**
- * ### Overload: `inputString` + `doFetch = true`
- */
-function DecodeVinValuesBatch(
   inputString: string,
-  doFetch: true
+  doFetch?: true
 ): Promise<NhtsaResponse<DecodeVinValuesBatchResults>>
-/**
- * ### Overload: `inputString` + `doFetch = false`
- */
+
 function DecodeVinValuesBatch(
   inputString: string,
   doFetch: false

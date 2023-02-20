@@ -5,7 +5,7 @@
 ---
 
 ```typescript
-function DecodeVinValuesExtended(
+async function DecodeVinValuesExtended(
   vin: string,
   params?:
     | {

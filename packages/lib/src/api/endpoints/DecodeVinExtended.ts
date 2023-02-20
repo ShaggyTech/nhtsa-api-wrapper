@@ -40,45 +40,30 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 function DecodeVinExtended(
   vin: string
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
-/**
- * ### Overload: `vin` + `params`
- */
-function DecodeVinExtended(
-  vin: string,
-  params: { modelYear: string | number }
-): Promise<NhtsaResponse<DecodeVinExtendedResults>>
-/**
- * ### Overload: `vin` + `doFetch = true`
- */
+
 function DecodeVinExtended(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinExtendedResults>>
-/**
- * ### Overload: `vin` + `params` + `doFetch = true`
- */
-function DecodeVinExtended(
-  vin: string,
-  params: { modelYear: string | number },
-  doFetch: true
-): Promise<NhtsaResponse<DecodeVinExtendedResults>>
-/**
- * ### Overload: `vin` + `doFetch = false`
- */
+
 function DecodeVinExtended(
   vin: string,
   doFetch: false,
   _dummy?: undefined
 ): Promise<string>
-/**
- * ### Overload: `vin` + `params` + `doFetch = false`
- */
+
 function DecodeVinExtended(
   vin: string,
-  params: { modelYear: string | number },
+  params: { modelYear?: string | number },
   doFetch: false
 ): Promise<string>
+
+function DecodeVinExtended(
+  vin: string,
+  params?: { modelYear?: string | number },
+  doFetch?: true
+): Promise<NhtsaResponse<DecodeVinExtendedResults>>
 
 /* Implementation */
 async function DecodeVinExtended(

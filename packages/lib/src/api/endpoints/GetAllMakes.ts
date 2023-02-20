@@ -23,14 +23,8 @@ import type { NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetAllMakesResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false` (default: `true`)
  */
-function GetAllMakes(): Promise<NhtsaResponse<GetAllMakesResults>>
-/**
- * ### Overload: `doFetch = true`
- */
-function GetAllMakes(doFetch: true): Promise<NhtsaResponse<GetAllMakesResults>>
-/**
- * ### Overload: `doFetch = false`
- */
+function GetAllMakes(doFetch?: true): Promise<NhtsaResponse<GetAllMakesResults>>
+
 function GetAllMakes(doFetch: false): Promise<string>
 
 /* Implementation */

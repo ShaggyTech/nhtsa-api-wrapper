@@ -119,9 +119,15 @@ function sidebarGuide() {
             },
             { text: 'DecodeWMI', link: '/api/decode-wmi' },
             { text: 'GetAllMakes', link: '/api/get-all-makes' },
-            // { text: 'GetAllManufacturers', link: '/api/get-all-manufacturers' },
-            // { text: 'GetCanadianVehicleSpecifications', link: '/api/get-canadian-vehicle-specifications' },
-            // { text: 'GetEquipmentPlantCodes', link: '/api/get-equipment-plant-codes' },
+            { text: 'GetAllManufacturers', link: '/api/get-all-manufacturers' },
+            {
+              text: 'GetCanadianVehicleSpecifications',
+              link: '/api/get-canadian-vehicle-specifications',
+            },
+            {
+              text: 'GetEquipmentPlantCodes',
+              link: '/api/get-equipment-plant-codes',
+            },
             // { text: 'GetMakeForManufacturer', link: '/api/get-make-for-manufacturer' },
             // { text: 'GetMakesForManufacturerAndYear', link: '/api/get-makes-for-manufacturer-and-year' },
             // { text: 'GetMakesForVehicleType', link: '/api/get-makes-for-vehicle-type' },

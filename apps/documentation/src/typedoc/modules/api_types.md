@@ -225,4 +225,4 @@ Response data returned from the NHTSA VPIC API. `Results` key will be an array o
 
 #### Defined in
 
-[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/types.ts#L12)
+[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/types.ts#L12)

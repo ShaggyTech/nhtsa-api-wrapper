@@ -55,32 +55,10 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L42)
-
-▸ **DecodeVinValuesExtended**(`vin`, `params`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-### Overload: `vin` + `params`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `vin` | `string` |
-| `params` | `Object` |
-| `params.modelYear` | `string` \| `number` |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L48)
+[api/endpoints/DecodeVinValuesExtended.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L41)
 
 ▸ **DecodeVinValuesExtended**(`vin`, `doFetch`, `_dummy?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
 
-### Overload: `vin` + `doFetch = true`
-
 #### Parameters
 
 | Name | Type |
@@ -95,33 +73,10 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:55](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L55)
-
-▸ **DecodeVinValuesExtended**(`vin`, `params`, `doFetch`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-### Overload: `vin` + `params` + `doFetch = true`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `vin` | `string` |
-| `params` | `Object` |
-| `params.modelYear` | `string` \| `number` |
-| `doFetch` | ``true`` |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L63)
+[api/endpoints/DecodeVinValuesExtended.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L45)
 
 ▸ **DecodeVinValuesExtended**(`vin`, `doFetch`, `_dummy?`): `Promise`<`string`\>
 
-### Overload: `vin` + `doFetch = false`
-
 #### Parameters
 
 | Name | Type |
@@ -136,11 +91,9 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L71)
+[api/endpoints/DecodeVinValuesExtended.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L51)
 
 ▸ **DecodeVinValuesExtended**(`vin`, `params`, `doFetch`): `Promise`<`string`\>
-
-### Overload: `vin` + `params` + `doFetch = false`
 
 #### Parameters
 
@@ -148,7 +101,7 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 | :------ | :------ |
 | `vin` | `string` |
 | `params` | `Object` |
-| `params.modelYear` | `string` \| `number` |
+| `params.modelYear?` | `string` \| `number` |
 | `doFetch` | ``false`` |
 
 #### Returns
@@ -157,7 +110,26 @@ This endpoint also supports partial VIN decoding (VINs that are less than 17 cha
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:79](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L79)
+[api/endpoints/DecodeVinValuesExtended.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L57)
+
+▸ **DecodeVinValuesExtended**(`vin`, `params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `vin` | `string` |
+| `params?` | `Object` |
+| `params.modelYear?` | `string` \| `number` |
+| `doFetch?` | ``true`` |
+
+#### Returns
+
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L63)
 
 ## Type Aliases
 
@@ -324,4 +296,4 @@ Single object found in the `Results` array of `DecodeVinValuesExtended` endpoint
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesExtended.ts:133](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L133)
+[api/endpoints/DecodeVinValuesExtended.ts:117](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L117)

@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetEquipmentPlantCodes Documentation](/api/get-equipment-plant-codes)
+ * :::
+ *
  * `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,
  * Equipment Type and Report Type.
  *
@@ -40,14 +44,20 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetEquipmentPlantCodes = async (
-  params: {
-    year: string | number
-    equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16
-    reportType: 'New' | 'Updated' | 'Closed' | 'All'
-  },
+function GetEquipmentPlantCodes(
+  params: GetEquipmentPlantCodesParams,
+  doFetch?: true
+): Promise<NhtsaResponse<GetEquipmentPlantCodesResults>>
+
+function GetEquipmentPlantCodes(
+  params: GetEquipmentPlantCodesParams,
+  doFetch: false
+): Promise<string>
+
+async function GetEquipmentPlantCodes(
+  params: GetEquipmentPlantCodesParams,
   doFetch = true
-): Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string> => {
+): Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string> {
   const endpointName = 'GetEquipmentPlantCodes'
 
   try {
@@ -89,10 +99,25 @@ export const GetEquipmentPlantCodes = async (
   }
 }
 
+export { GetEquipmentPlantCodes }
+
+/** Query String Parameters for this endpoint */
+export type GetEquipmentPlantCodesParams = {
+  year: string | number
+  equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16
+  reportType:
+    | 'New'
+    | 'Updated'
+    | 'Closed'
+    | 'All'
+    | 'new'
+    | 'updated'
+    | 'closed'
+    | 'all'
+}
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetEquipmentPlantCodes endpoint
- *
- * @alias GetEquipmentPlantCodesResults
+ * Objects found in the `Results` array of `GetEquipmentPlantCodes` endpoint response.
  */
 export type GetEquipmentPlantCodesResults = {
   Address: string | null

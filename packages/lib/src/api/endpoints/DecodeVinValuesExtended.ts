@@ -32,7 +32,6 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  *
  * @param {string} vin - Vehicle Identification Number (full or partial)
  * @param [params] - Object of Query Search names and values to append to the URL as a query string
- * `func(arg1, doFetch)`
  * @param {(string|number)} [params.modelYear] - Optional Model Year search parameter
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
  * (default: `true`)
@@ -42,45 +41,30 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 function DecodeVinValuesExtended(
   vin: string
 ): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
-/**
- * ### Overload: `vin` + `params`
- */
-function DecodeVinValuesExtended(
-  vin: string,
-  params: { modelYear: string | number }
-): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
-/**
- * ### Overload: `vin` + `doFetch = true`
- */
+
 function DecodeVinValuesExtended(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
-/**
- * ### Overload: `vin` + `params` + `doFetch = true`
- */
-function DecodeVinValuesExtended(
-  vin: string,
-  params: { modelYear: string | number },
-  doFetch: true
-): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
-/**
- * ### Overload: `vin` + `doFetch = false`
- */
+
 function DecodeVinValuesExtended(
   vin: string,
   doFetch: false,
   _dummy?: undefined
 ): Promise<string>
-/**
- * ### Overload: `vin` + `params` + `doFetch = false`
- */
+
 function DecodeVinValuesExtended(
   vin: string,
-  params: { modelYear: string | number },
+  params: { modelYear?: string | number },
   doFetch: false
 ): Promise<string>
+
+function DecodeVinValuesExtended(
+  vin: string,
+  params?: { modelYear?: string | number },
+  doFetch?: true
+): Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
 
 /* Implementation */
 async function DecodeVinValuesExtended(

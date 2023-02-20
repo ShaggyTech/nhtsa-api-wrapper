@@ -37,45 +37,30 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 function DecodeVinValues(
   vin: string
 ): Promise<NhtsaResponse<DecodeVinValuesResults>>
-/**
- * ### Overload: `vin` + `params`
- */
-function DecodeVinValues(
-  vin: string,
-  params: { modelYear: string | number }
-): Promise<NhtsaResponse<DecodeVinValuesResults>>
-/**
- * ### Overload: `vin` + `doFetch = true`
- */
+
 function DecodeVinValues(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinValuesResults>>
-/**
- * ### Overload: `vin` + `params` + `doFetch = true`
- */
-function DecodeVinValues(
-  vin: string,
-  params: { modelYear: string | number },
-  doFetch: true
-): Promise<NhtsaResponse<DecodeVinValuesResults>>
-/**
- * ### Overload: `vin` + `doFetch = false`
- */
+
 function DecodeVinValues(
   vin: string,
   doFetch: false,
   _dummy?: undefined
 ): Promise<string>
-/**
- * ### Overload: `vin` + `params` + `doFetch = false`
- */
+
 function DecodeVinValues(
   vin: string,
-  params: { modelYear: string | number },
+  params: { modelYear?: string | number },
   doFetch: false
 ): Promise<string>
+
+function DecodeVinValues(
+  vin: string,
+  params?: { modelYear?: string | number },
+  doFetch?: true
+): Promise<NhtsaResponse<DecodeVinValuesResults>>
 
 /* Implementation */
 async function DecodeVinValues(
@@ -121,6 +106,11 @@ async function DecodeVinValues(
 }
 
 export { DecodeVinValues }
+
+/** Query String Parameters for this endpoint */
+export type DecodeVinValuesParams = {
+  modelYear?: string | number
+}
 
 /**
  * Single object found in the `Results` array of `DecodeVinValues` endpoint response.

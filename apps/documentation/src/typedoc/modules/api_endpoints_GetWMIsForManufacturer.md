@@ -57,7 +57,7 @@ are the second arg.
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L44)
+[api/endpoints/GetWMIsForManufacturer.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L44)
 
 ## Type Aliases
 
@@ -86,4 +86,4 @@ GetWMIsForManufacturerResults
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:99](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L99)
+[api/endpoints/GetWMIsForManufacturer.ts:99](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L99)

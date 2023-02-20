@@ -16,7 +16,7 @@
 
 ### DecodeVinValuesBatch
 
-▸ **DecodeVinValuesBatch**(`inputString`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesBatchResults`](api_endpoints_DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
+▸ **DecodeVinValuesBatch**(`inputString`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesBatchResults`](api_endpoints_DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
 
 ::: tip :bulb: More Information
 See: [DecodeVinValuesBatch Documentation](/api/decode-vin-values-batch)
@@ -48,6 +48,7 @@ the model year if it is known at the time of decoding, but it is not required.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `inputString` | `string` | A string of Vehicle Identification Numbers (full or partial) following the format listed in the description |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
@@ -58,30 +59,9 @@ the model year if it is known at the time of decoding, but it is not required.
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L43)
-
-▸ **DecodeVinValuesBatch**(`inputString`, `doFetch`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesBatchResults`](api_endpoints_DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
-
-### Overload: `inputString` + `doFetch = true`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `inputString` | `string` |
-| `doFetch` | ``true`` |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesBatchResults`](api_endpoints_DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesBatch.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L49)
+[api/endpoints/DecodeVinValuesBatch.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L43)
 
 ▸ **DecodeVinValuesBatch**(`inputString`, `doFetch`): `Promise`<`string`\>
-
-### Overload: `inputString` + `doFetch = false`
 
 #### Parameters
 
@@ -96,7 +76,7 @@ the model year if it is known at the time of decoding, but it is not required.
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:56](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L56)
+[api/endpoints/DecodeVinValuesBatch.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L48)
 
 ## Type Aliases
 
@@ -263,4 +243,4 @@ Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:98](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L98)
+[api/endpoints/DecodeVinValuesBatch.ts:90](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L90)

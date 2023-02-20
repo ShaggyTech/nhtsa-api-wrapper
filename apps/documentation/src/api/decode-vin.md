@@ -5,7 +5,7 @@
 ---
 
 ```typescript
-function DecodeVin (
+async function DecodeVin(
   vin: string,
   params?:
     | {
@@ -168,8 +168,6 @@ const url = await DecodeVin('WA1A4AFY2J2008189', false)
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?format=json'
 ```
 
-See: [Overload](../typedoc/modules/api_endpoints_DecodeVin#overload-vin-dofetch-false)
-
 ### Example 5: Decode VIN with optional Model Year and doFetch = false
 
 ```ts
@@ -179,5 +177,3 @@ const url = await DecodeVin('WA1A4AFY2J2008189', { modelYear: 2018 }, false)
 
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 ```
-
-See: [Overload](../typedoc/modules/api_endpoints_DecodeVin#overload-vin-params-dofetch-false)

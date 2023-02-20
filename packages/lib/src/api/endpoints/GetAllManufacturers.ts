@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetAllManufacturers Documentation](/api/get-all-manufacturers)
+ * :::
+ *
  * `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.
  *
  * `params.manufacturerType` is optional but allows the user to filter the list based on
@@ -19,18 +23,41 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * pages of 100 items.
  *
  * @param [params] - Object of Query Search names and values to append to the URL as a query string.
- * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
- * the first arg in place of params, instead of having to pass the first arg as undefined, i.e. you
- * don't have to do this: `func(undefined, doFetch)`, and can instead do this: `func(doFetch)`
- * @param {string} [params.manufacturerType] - See endpoint description
+ * @param {string} [params.manufacturerType] - See function description
  * @param {(string|number)} [params.page] - Specify page number (results returned 100 at a time)
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
  * (default: `true`)
  * @returns {(Promise<NhtsaResponse<GetAllManufacturersResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
+function GetAllManufacturers(
+  doFetch: true,
+  _dummy?: undefined
+): Promise<NhtsaResponse<GetAllManufacturersResults>>
 
-export const GetAllManufacturers = async (
+function GetAllManufacturers(
+  doFetch?: false,
+  _dummy?: undefined
+): Promise<string>
+
+function GetAllManufacturers(
+  params: {
+    manufacturerType?: string
+    page?: string | number
+  },
+  doFetch: false
+): Promise<string>
+
+function GetAllManufacturers(
+  params?: {
+    manufacturerType?: string
+    page?: string | number
+  },
+  doFetch?: true
+): Promise<NhtsaResponse<GetAllManufacturersResults>>
+
+/* Implementation */
+async function GetAllManufacturers(
   params?:
     | {
         manufacturerType?: string
@@ -38,15 +65,15 @@ export const GetAllManufacturers = async (
       }
     | boolean,
   doFetch = true
-): Promise<NhtsaResponse<GetAllManufacturersResults> | string> => {
+): Promise<NhtsaResponse<GetAllManufacturersResults> | string> {
   const endpointName = 'GetAllManufacturers'
 
-  if (typeof params === 'boolean') {
-    doFetch = params
-    params = undefined
-  }
-
   try {
+    if (typeof params === 'boolean') {
+      doFetch = params
+      params = undefined
+    }
+
     const args: IArgToValidate[] = [
       { name: 'params', value: params, types: ['object'] },
       {
@@ -76,10 +103,10 @@ export const GetAllManufacturers = async (
   }
 }
 
+export { GetAllManufacturers }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetAllManufacturers endpoint
- *
- * @alias GetAllManufacturersResults
+ * Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
  */
 export type GetAllManufacturersResults = {
   Country: string

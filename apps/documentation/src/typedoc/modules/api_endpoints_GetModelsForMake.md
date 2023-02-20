@@ -42,7 +42,7 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:24](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetModelsForMake.ts#L24)
+[api/endpoints/GetModelsForMake.ts:24](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetModelsForMake.ts#L24)
 
 ## Type Aliases
 
@@ -67,4 +67,4 @@ GetModelsForMakeResults
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetModelsForMake.ts#L60)
+[api/endpoints/GetModelsForMake.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetModelsForMake.ts#L60)

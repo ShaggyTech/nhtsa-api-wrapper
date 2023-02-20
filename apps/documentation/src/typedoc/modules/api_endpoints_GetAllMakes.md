@@ -16,7 +16,7 @@
 
 ### GetAllMakes
 
-▸ **GetAllMakes**(): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
+▸ **GetAllMakes**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
 
 ::: tip :bulb: More Information
 See: [GetAllMakes Documentation](/api/get-all-makes)
@@ -28,6 +28,12 @@ an individual vehicle Make.
 
 - FYI there are over 10,000 registered makes in the database!
 
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
@@ -37,29 +43,9 @@ an individual vehicle Make.
 
 #### Defined in
 
-[api/endpoints/GetAllMakes.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllMakes.ts#L26)
-
-▸ **GetAllMakes**(`doFetch`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
-
-### Overload: `doFetch = true`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `doFetch` | ``true`` |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
-
-#### Defined in
-
-[api/endpoints/GetAllMakes.ts:30](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllMakes.ts#L30)
+[api/endpoints/GetAllMakes.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllMakes.ts#L41)
 
 ▸ **GetAllMakes**(`doFetch`): `Promise`<`string`\>
-
-### Overload: `doFetch = false`
 
 #### Parameters
 
@@ -73,7 +59,7 @@ an individual vehicle Make.
 
 #### Defined in
 
-[api/endpoints/GetAllMakes.ts:34](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllMakes.ts#L34)
+[api/endpoints/GetAllMakes.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllMakes.ts#L43)
 
 ## Type Aliases
 
@@ -92,4 +78,4 @@ Objects found in the `Results` array of `GetAllMakes` endpoint response.
 
 #### Defined in
 
-[api/endpoints/GetAllMakes.ts:62](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllMakes.ts#L62)
+[api/endpoints/GetAllMakes.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllMakes.ts#L71)

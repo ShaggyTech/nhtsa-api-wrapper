@@ -42,7 +42,7 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:25](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L25)
+[api/endpoints/GetVehicleVariableValuesList.ts:25](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L25)
 
 ## Type Aliases
 
@@ -66,4 +66,4 @@ GetVehicleVariableValuesListResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L61)
+[api/endpoints/GetVehicleVariableValuesList.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L61)

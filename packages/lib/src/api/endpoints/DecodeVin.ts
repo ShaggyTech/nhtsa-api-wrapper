@@ -34,45 +34,30 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * -or- url `string` if `doFetch = false`
  */
 function DecodeVin(vin: string): Promise<NhtsaResponse<DecodeVinResults>>
-/**
- * ### Overload: `vin` + `params`
- */
-function DecodeVin(
-  vin: string,
-  params: { modelYear: string | number }
-): Promise<NhtsaResponse<DecodeVinResults>>
-/**
- * ### Overload: `vin` + `doFetch = true`
- */
+
 function DecodeVin(
   vin: string,
   doFetch: true,
   _dummy?: undefined
 ): Promise<NhtsaResponse<DecodeVinResults>>
-/**
- * ### Overload: `vin` + `params` + `doFetch = true`
- */
-function DecodeVin(
-  vin: string,
-  params: { modelYear: string | number },
-  doFetch: true
-): Promise<NhtsaResponse<DecodeVinResults>>
-/**
- * ### Overload: `vin` + `doFetch = false`
- */
+
 function DecodeVin(
   vin: string,
   doFetch: false,
   _dummy?: undefined
 ): Promise<string>
-/**
- * ### Overload: `vin` + `params` + `doFetch = false`
- */
+
 function DecodeVin(
   vin: string,
-  params: { modelYear: string | number },
+  params: { modelYear?: string | number },
   doFetch: false
 ): Promise<string>
+
+function DecodeVin(
+  vin: string,
+  params?: { modelYear?: string | number },
+  doFetch?: true
+): Promise<NhtsaResponse<DecodeVinResults>>
 
 /* Implementation */
 async function DecodeVin(

@@ -5,7 +5,7 @@
 ---
 
 ```typescript
-function GetAllMakes(
+async function GetAllMakes(
   doFetch?: boolean
 ) => Promise<NhtsaResponse<GetAllMakesResults> | string>
 ```

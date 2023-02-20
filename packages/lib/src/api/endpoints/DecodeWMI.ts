@@ -29,17 +29,11 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<DecodeWMIResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false` (default: `true`)
  */
-function DecodeWMI(WMI: string): Promise<NhtsaResponse<DecodeWMIResults>>
-/**
- * ### Overload: `WMI` + `doFetch = true`
- */
 function DecodeWMI(
   WMI: string,
-  doFetch: true
+  doFetch?: true
 ): Promise<NhtsaResponse<DecodeWMIResults>>
-/**
- * ### Overload: `WMI` + `doFetch = false`
- */
+
 function DecodeWMI(WMI: string, doFetch: false): Promise<string>
 
 /* Implementation */

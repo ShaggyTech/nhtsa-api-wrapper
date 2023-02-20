@@ -5,7 +5,7 @@
 ---
 
 ```typescript
-function DecodeVinValuesBatch(
+async function DecodeVinValuesBatch(
   inputString: string,
   doFetch?: boolean
 ) => Promise<NhtsaResponse<DecodeVinValuesBatchResults> | string>

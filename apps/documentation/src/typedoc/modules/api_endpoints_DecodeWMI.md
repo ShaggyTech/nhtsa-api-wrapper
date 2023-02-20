@@ -16,7 +16,7 @@
 
 ### DecodeWMI
 
-▸ **DecodeWMI**(`WMI`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeWMIResults`](api_endpoints_DecodeWMI.md#decodewmiresults)\>\>
+▸ **DecodeWMI**(`WMI`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeWMIResults`](api_endpoints_DecodeWMI.md#decodewmiresults)\>\>
 
 ::: tip :bulb: More Information
 See: [DecodeWMI Documentation](/api/decode-wmi)
@@ -38,6 +38,7 @@ be available in VPIC data sets.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `WMI` | `string` | World Manufacturer Identifier |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
@@ -48,30 +49,9 @@ be available in VPIC data sets.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeWMI.ts#L32)
-
-▸ **DecodeWMI**(`WMI`, `doFetch`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeWMIResults`](api_endpoints_DecodeWMI.md#decodewmiresults)\>\>
-
-### Overload: `WMI` + `doFetch = true`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `WMI` | `string` |
-| `doFetch` | ``true`` |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeWMIResults`](api_endpoints_DecodeWMI.md#decodewmiresults)\>\>
-
-#### Defined in
-
-[api/endpoints/DecodeWMI.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeWMI.ts#L36)
+[api/endpoints/DecodeWMI.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeWMI.ts#L32)
 
 ▸ **DecodeWMI**(`WMI`, `doFetch`): `Promise`<`string`\>
-
-### Overload: `WMI` + `doFetch = false`
 
 #### Parameters
 
@@ -86,7 +66,7 @@ be available in VPIC data sets.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeWMI.ts#L43)
+[api/endpoints/DecodeWMI.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeWMI.ts#L37)
 
 ## Type Aliases
 
@@ -112,4 +92,4 @@ Objects found in the `Results` array of `DecodeWMI` endpoint response.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:82](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/DecodeWMI.ts#L82)
+[api/endpoints/DecodeWMI.ts:76](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/DecodeWMI.ts#L76)

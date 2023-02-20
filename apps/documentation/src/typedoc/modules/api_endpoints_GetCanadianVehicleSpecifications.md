@@ -10,13 +10,18 @@
 
 ### Type Aliases
 
+- [GetCanadianVehicleSpecificationsParams](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams)
 - [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
 
 ## Functions
 
 ### GetCanadianVehicleSpecifications
 
-▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetCanadianVehicleSpecificationsResults`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
+▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetCanadianVehicleSpecificationsResults`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetCanadianVehicleSpecifications Documentation](/api/get-canadian-vehicle-specifications)
+:::
 
 `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).
 The CVS consists of a database of original vehicle dimensions, used primarily in
@@ -27,9 +32,9 @@ Transport Canada. Visit official
 [Canadian Vehicle Specifications](http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/)
 page for more details.
 
-`params.year` is the only required query parameter, all others are optional but will still be included
-in the query string as blank values even if not provided by the user. See below Note for more
-details.
+`params.year` is the only required query parameter, all others are optional but will still be
+included in the query string as blank values even if not provided by the user.
+See below Note for more details.
 
 _NOTE:_ This endpoint does not like missing query keys and will return a 404 error if any of
 them are omitted from the query string. Therefore, we must set default values to empty strings
@@ -39,37 +44,67 @@ no default value is set for it so that an error will be thrown if not provided b
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `params` | `Object` | `undefined` | Object of Query Search names and values to append to the URL as a query string |
-| `params.make?` | `string` | `undefined` | Vehicle's make, like "Honda", "Toyota", etc... |
-| `params.model?` | `string` | `undefined` | Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc... |
-| `params.units?` | `string` | `undefined` | "Metric" (default), or "US" for standard units |
-| `params.year` | `string` \| `number` | `undefined` | Model year of the vehicle - year >= 1971 |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `params` | [`GetCanadianVehicleSpecificationsParams`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams) | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetCanadianVehicleSpecificationsResults`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetCanadianVehicleSpecificationsResults`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
 
 - Api
 Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L42)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
+
+▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch?`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | [`GetCanadianVehicleSpecificationsParams`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams) |
+| `doFetch?` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetCanadianVehicleSpecifications.ts:50](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L50)
 
 ## Type Aliases
+
+### GetCanadianVehicleSpecificationsParams
+
+Ƭ **GetCanadianVehicleSpecificationsParams**: `Object`
+
+Query String Parameters for this endpoint
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `make?` | `string` |
+| `model?` | `string` |
+| `units?` | `string` |
+| `year` | `string` \| `number` |
+
+#### Defined in
+
+[api/endpoints/GetCanadianVehicleSpecifications.ts:103](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L103)
+
+___
 
 ### GetCanadianVehicleSpecificationsResults
 
 Ƭ **GetCanadianVehicleSpecificationsResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetCanadianVehicleSpecifications endpoint
-
-**`Alias`**
-
-GetCanadianVehicleSpecificationsResults
+Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpoint response.
 
 #### Type declaration
 
@@ -79,4 +114,4 @@ GetCanadianVehicleSpecificationsResults
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L97)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:113](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L113)

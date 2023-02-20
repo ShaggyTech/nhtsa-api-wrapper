@@ -16,7 +16,11 @@
 
 ### GetAllManufacturers
 
-▸ **GetAllManufacturers**(`params?`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
+▸ **GetAllManufacturers**(`doFetch?`, `_dummy?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetAllManufacturers Documentation](/api/get-all-manufacturers)
+:::
 
 `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.
 
@@ -30,21 +34,76 @@ pages of 100 items.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `params?` | `boolean` \| { `manufacturerType?`: `string` ; `page?`: `string` \| `number`  } | `undefined` | Object of Query Search names and values to append to the URL as a query string. - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as the first arg in place of params, instead of having to pass the first arg as undefined, i.e. you don't have to do this: `func(undefined, doFetch)`, and can instead do this: `func(doFetch)` |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| `_dummy?` | `undefined` | - |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
 
 - Api Response `object`
 -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
+[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
+
+▸ **GetAllManufacturers**(`doFetch?`, `_dummy?`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `doFetch?` | ``false`` |
+| `_dummy?` | `undefined` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetAllManufacturers.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L38)
+
+▸ **GetAllManufacturers**(`params`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.manufacturerType?` | `string` |
+| `params.page?` | `string` \| `number` |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetAllManufacturers.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L43)
+
+▸ **GetAllManufacturers**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params?` | `Object` |
+| `params.manufacturerType?` | `string` |
+| `params.page?` | `string` \| `number` |
+| `doFetch?` | ``true`` |
+
+#### Returns
+
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
+
+#### Defined in
+
+[api/endpoints/GetAllManufacturers.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L51)
 
 ## Type Aliases
 
@@ -52,11 +111,7 @@ pages of 100 items.
 
 Ƭ **GetAllManufacturersResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetAllManufacturers endpoint
-
-**`Alias`**
-
-GetAllManufacturersResults
+Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
 
 #### Type declaration
 
@@ -70,4 +125,4 @@ GetAllManufacturersResults
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:84](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/6668ba3/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L84)
+[api/endpoints/GetAllManufacturers.ts:111](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L111)

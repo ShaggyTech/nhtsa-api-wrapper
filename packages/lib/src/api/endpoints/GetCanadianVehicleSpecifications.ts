@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetCanadianVehicleSpecifications Documentation](/api/get-canadian-vehicle-specifications)
+ * :::
+ *
  * `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).
  * The CVS consists of a database of original vehicle dimensions, used primarily in
  * collision investigation and reconstruction, combined with a search engine.
@@ -17,9 +21,9 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * [Canadian Vehicle Specifications](http://www.carsp.ca/research/resources/safety-sources/canadian-vehicle-specifications/)
  * page for more details.
  *
- * `params.year` is the only required query parameter, all others are optional but will still be included
- * in the query string as blank values even if not provided by the user. See below Note for more
- * details.
+ * `params.year` is the only required query parameter, all others are optional but will still be
+ * included in the query string as blank values even if not provided by the user.
+ * See below Note for more details.
  *
  * _NOTE:_ This endpoint does not like missing query keys and will return a 404 error if any of
  * them are omitted from the query string. Therefore, we must set default values to empty strings
@@ -38,16 +42,20 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string>)} - Api
  * Response `object` -or- url `string` if `doFetch = false`
  */
+function GetCanadianVehicleSpecifications(
+  params: GetCanadianVehicleSpecificationsParams,
+  doFetch?: true
+): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>
 
-export const GetCanadianVehicleSpecifications = async (
-  params: {
-    year: string | number
-    make?: string
-    model?: string
-    units?: string
-  },
+function GetCanadianVehicleSpecifications(
+  params: GetCanadianVehicleSpecificationsParams,
+  doFetch: false
+): Promise<string>
+
+async function GetCanadianVehicleSpecifications(
+  params: GetCanadianVehicleSpecificationsParams,
   doFetch = true
-): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string> => {
+): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string> {
   const endpointName = 'GetCanadianVehicleSpecifications'
 
   try {
@@ -89,10 +97,18 @@ export const GetCanadianVehicleSpecifications = async (
   }
 }
 
+export { GetCanadianVehicleSpecifications }
+
+/** Query String Parameters for this endpoint */
+export type GetCanadianVehicleSpecificationsParams = {
+  year: string | number
+  make?: string
+  model?: string
+  units?: string
+}
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetCanadianVehicleSpecifications endpoint
- *
- * @alias GetCanadianVehicleSpecificationsResults
+ * Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpoint response.
  */
 export type GetCanadianVehicleSpecificationsResults = {
   Specs: Array<{
