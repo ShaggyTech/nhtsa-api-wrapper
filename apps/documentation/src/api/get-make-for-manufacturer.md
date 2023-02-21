@@ -88,7 +88,7 @@ Objects returned in the `Results` array of `GetMakeForManufacturer` endpoint res
 
 ## Examples
 
-::: tip :bulb: Examples 1-4:
+::: tip :bulb: Examples 1-2:
 
 ```typescript
 => Promise<NhtsaResponse<GetMakeForManufacturerResults>>
@@ -98,44 +98,23 @@ Objects returned in the `Results` array of `GetMakeForManufacturer` endpoint res
 
 :::
 
-### Example 1: Get Makes for Manufacturer
+### Example 1: Get Makes for Manufacturer Name
 
 ```ts
-import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
+import { GetMakeForManufacturer } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await GetAllManufacturers()
+const response = await GetMakeForManufacturer('honda')
 ```
 
-### Example 2: Get All Manufacturers and filter by type
+### Example 2: Get Makes for Manufacturer ID
 
 ```ts
-import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
+import { GetMakeForManufacturer } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await GetAllManufacturers({
-  manufacturerType: 'Completed Vehicle Manufacturer'
-})
+const response = await GetMakeForManufacturer(988)
 ```
 
-### Example 3: Get All Manufacturers and filter by page
-
-```ts
-import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
-
-const response = await GetAllManufacturers({ page: 2 })
-```
-
-### Example 4: Get All Manufacturers and filter by type and page
-
-```ts
-import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
-
-const response = await GetAllManufacturers({
-  manufacturerType: 'Final-Staged Manufacturer',
-  page: 2
-})
-```
-
-::: warning :bulb: Examples 5-6:
+::: warning :bulb: Examples 3-4:
 
 ```typescript
 => Promise<string>
@@ -146,30 +125,22 @@ const response = await GetAllManufacturers({
 
 :::
 
-### Example 5: Get All Manufacturers and doFetch = false
+### Example 3: Get Makes for Manufacturer Name with doFetch = false
 
 ```ts
-import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
+import { GetMakeForManufacturer } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await GetAllManufacturers(false)
+const url = await GetMakeForManufacturer('honda', false)
 
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetAllManufacturers/?format=json'
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetMakeForManufacturer/honda?format=json'
 ```
 
-See: [Overload](../typedoc/modules/api_endpoints_DecodeVin#overload-vin-dofetch-false)
-
-### Example 6: Get All Manufacturers with optional filters and doFetch = false
+### Example 4: Get Makes for Manufacturer ID with doFetch = false
 
 ```ts
-import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
+import { GetMakeForManufacturer } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await GetAllManufacturers(
-  {
-    manufacturerType: 'Incomplete Vehicles',
-    page: 3
-  },
-  false
-)
+const url = await GetMakeForManufacturer(988, false)
 
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetAllManufacturers/?manufacturerType=Incomplete%20Vehicles&page=3&format=json'
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetMakeForManufacturer/988?format=json'
 ```
