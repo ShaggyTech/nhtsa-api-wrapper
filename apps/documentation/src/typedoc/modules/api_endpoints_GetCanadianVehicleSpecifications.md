@@ -58,16 +58,16 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
 
-▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch?`): `Promise`<`string`\>
+▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch`): `Promise`<`string`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `params` | [`GetCanadianVehicleSpecificationsParams`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams) |
-| `doFetch?` | ``false`` |
+| `doFetch` | ``false`` |
 
 #### Returns
 
@@ -75,7 +75,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:50](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L50)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:50](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L50)
 
 ## Type Aliases
 
@@ -96,7 +96,7 @@ Query String Parameters for this endpoint
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:103](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L103)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:103](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L103)
 
 ___
 
@@ -114,4 +114,4 @@ Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpo
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:113](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L113)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:113](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L113)

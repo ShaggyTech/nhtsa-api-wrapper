@@ -34,7 +34,7 @@ https://stackoverflow.com/a/49725198
 
 #### Defined in
 
-[utils/types.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/utils/types.ts#L18)
+[utils/types.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/utils/types.ts#L18)
 
 ___
 
@@ -54,7 +54,7 @@ https://stackoverflow.com/a/49725198
 
 #### Defined in
 
-[utils/types.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/utils/types.ts#L26)
+[utils/types.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/utils/types.ts#L26)
 
 ## References
 

@@ -166,8 +166,6 @@ const url = await GetAllManufacturers(false)
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetAllManufacturers/?format=json'
 ```
 
-See: [Overload](../typedoc/modules/api_endpoints_DecodeVin#overload-vin-dofetch-false)
-
 ### Example 6: Get All Manufacturers with optional filters and doFetch = false
 
 ```ts

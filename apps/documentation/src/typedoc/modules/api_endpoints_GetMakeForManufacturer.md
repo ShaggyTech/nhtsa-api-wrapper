@@ -16,7 +16,11 @@
 
 ### GetMakeForManufacturer
 
-▸ **GetMakeForManufacturer**(`manufacturer`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
+▸ **GetMakeForManufacturer**(`manufacturer`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetMakeForManufacturer Documentation](/api/get-makes-for-manufacturer)
+:::
 
 `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
 that is requested. Multiple results are returned in case of multiple matches.
@@ -30,21 +34,38 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `manufacturer` | `string` \| `number` | `undefined` | Manufacturer Name or ID |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `manufacturer` | `string` \| `number` | Manufacturer Name or ID |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetMakeForManufacturer.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L27)
+[api/endpoints/GetMakeForManufacturer.ts:31](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L31)
+
+▸ **GetMakeForManufacturer**(`manufacturer`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `manufacturer` | `string` \| `number` |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetMakeForManufacturer.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L36)
 
 ## Type Aliases
 
@@ -52,11 +73,7 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 Ƭ **GetMakeForManufacturerResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetMakeForManufacturer endpoint
-
-**`Alias`**
-
-GetMakeForManufacturerResults
+Objects found in the `Results` array of `GetMakeForManufacturer` endpoint response.
 
 #### Type declaration
 
@@ -68,4 +85,4 @@ GetMakeForManufacturerResults
 
 #### Defined in
 
-[api/endpoints/GetMakeForManufacturer.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L63)
+[api/endpoints/GetMakeForManufacturer.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L77)

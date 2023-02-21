@@ -62,7 +62,7 @@ values in the query string.
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L47)
+[api/endpoints/GetEquipmentPlantCodes.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L47)
 
 ▸ **GetEquipmentPlantCodes**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -79,7 +79,7 @@ values in the query string.
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:52](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L52)
+[api/endpoints/GetEquipmentPlantCodes.ts:52](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L52)
 
 ## Type Aliases
 
@@ -99,7 +99,7 @@ Query String Parameters for this endpoint
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L105)
+[api/endpoints/GetEquipmentPlantCodes.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L105)
 
 ___
 
@@ -107,11 +107,7 @@ ___
 
 Ƭ **GetEquipmentPlantCodesResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetEquipmentPlantCodes endpoint
-
-**`Alias`**
-
-GetEquipmentPlantCodesResults
+Objects found in the `Results` array of `GetEquipmentPlantCodes` endpoint response.
 
 #### Type declaration
 
@@ -129,4 +125,4 @@ GetEquipmentPlantCodesResults
 
 #### Defined in
 
-[api/endpoints/GetEquipmentPlantCodes.ts:124](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/ffa4a7a/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L124)
+[api/endpoints/GetEquipmentPlantCodes.ts:122](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetEquipmentPlantCodes.ts#L122)

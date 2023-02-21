@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetMakeForManufacturer Documentation](/api/get-makes-for-manufacturer)
+ * :::
+ *
  * `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
  * that is requested. Multiple results are returned in case of multiple matches.
  *
@@ -24,10 +28,20 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetMakeForManufacturerResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetMakeForManufacturer = async (
+function GetMakeForManufacturer(
+  manufacturer: string | number,
+  doFetch?: true
+): Promise<NhtsaResponse<GetMakeForManufacturerResults>>
+
+function GetMakeForManufacturer(
+  manufacturer: string | number,
+  doFetch: false
+): Promise<string>
+
+async function GetMakeForManufacturer(
   manufacturer: string | number,
   doFetch = true
-): Promise<NhtsaResponse<GetMakeForManufacturerResults> | string> => {
+): Promise<NhtsaResponse<GetMakeForManufacturerResults> | string> {
   const endpointName = 'GetMakeForManufacturer'
 
   try {
@@ -55,10 +69,10 @@ export const GetMakeForManufacturer = async (
   }
 }
 
+export { GetMakeForManufacturer }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetMakeForManufacturer endpoint
- *
- * @alias GetMakeForManufacturerResults
+ * Objects found in the `Results` array of `GetMakeForManufacturer` endpoint response.
  */
 export type GetMakeForManufacturerResults = {
   Make_ID: number
