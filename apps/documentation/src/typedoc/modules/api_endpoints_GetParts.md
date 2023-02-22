@@ -58,7 +58,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetParts.ts#L49)
+[api/endpoints/GetParts.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetParts.ts#L49)
 
 ## Type Aliases
 
@@ -88,4 +88,4 @@ GetPartsResults
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetParts.ts#L97)
+[api/endpoints/GetParts.ts:97](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetParts.ts#L97)

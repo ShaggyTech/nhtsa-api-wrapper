@@ -128,8 +128,14 @@ function sidebarGuide() {
               text: 'GetEquipmentPlantCodes',
               link: '/api/get-equipment-plant-codes',
             },
-            // { text: 'GetMakeForManufacturer', link: '/api/get-make-for-manufacturer' },
-            // { text: 'GetMakesForManufacturerAndYear', link: '/api/get-makes-for-manufacturer-and-year' },
+            {
+              text: 'GetMakeForManufacturer',
+              link: '/api/get-make-for-manufacturer',
+            },
+            {
+              text: 'GetMakesForManufacturerAndYear',
+              link: '/api/get-makes-for-manufacturer-and-year',
+            },
             // { text: 'GetMakesForVehicleType', link: '/api/get-makes-for-vehicle-type' },
             // { text: 'GetManufacturerDetails', link: '/api/get-manufacturer-details' },
             // { text: 'GetModelsForMake', link: '/api/get-models-for-make' },

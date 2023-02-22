@@ -67,7 +67,7 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeIdYear.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L57)
+[api/endpoints/GetModelsForMakeIdYear.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L57)
 
 ## Type Aliases
 
@@ -92,4 +92,4 @@ GetModelsForMakeIdYearResults
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeIdYear.ts:128](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L128)
+[api/endpoints/GetModelsForMakeIdYear.ts:128](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L128)

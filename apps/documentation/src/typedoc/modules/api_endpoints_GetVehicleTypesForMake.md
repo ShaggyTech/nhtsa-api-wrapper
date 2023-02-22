@@ -40,7 +40,7 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L23)
+[api/endpoints/GetVehicleTypesForMake.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L23)
 
 ## Type Aliases
 
@@ -65,4 +65,4 @@ GetVehicleTypesForMakeResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L59)
+[api/endpoints/GetVehicleTypesForMake.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L59)

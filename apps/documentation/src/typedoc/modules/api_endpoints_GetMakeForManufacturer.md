@@ -19,7 +19,7 @@
 ▸ **GetMakeForManufacturer**(`manufacturer`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakeForManufacturer Documentation](/api/get-makes-for-manufacturer)
+See: [GetMakeForManufacturer Documentation](/api/get-make-for-manufacturer)
 :::
 
 `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
@@ -48,7 +48,7 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetMakeForManufacturer.ts:31](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L31)
+[api/endpoints/GetMakeForManufacturer.ts:31](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L31)
 
 ▸ **GetMakeForManufacturer**(`manufacturer`, `doFetch`): `Promise`<`string`\>
 
@@ -65,7 +65,7 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetMakeForManufacturer.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L36)
+[api/endpoints/GetMakeForManufacturer.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L36)
 
 ## Type Aliases
 
@@ -85,4 +85,4 @@ Objects found in the `Results` array of `GetMakeForManufacturer` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetMakeForManufacturer.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/a4e673e/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L77)
+[api/endpoints/GetMakeForManufacturer.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/1e31d45/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L77)

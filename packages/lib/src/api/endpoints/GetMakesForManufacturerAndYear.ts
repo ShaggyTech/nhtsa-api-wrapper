@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetMakesForManufacturerAndYear Documentation](/api/get-makes-for-manufacturer-and-year)
+ * :::
+ *
  * `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified
  * `manufacturer`, and whose "Year From" and "Year To" range cover the specified `year`. Multiple
  * results are returned in case of multiple matches.
@@ -22,7 +26,11 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  *   provided name. It accepts a partial manufacturer name as an input.
  *
  * `params.year` must be a number > 2016, years prior to 2016 are not supported according to the
- * NHTSA API.
+ * NHTSA API. During testing it was found that the API still returns data for years prior to 2016.
+ *
+ * ::: warning :exclamation: Required Parameters
+ * Both `manufacturer` and `params.year` are required.
+ *  :::
  *
  * @param {(string|number)} manufacturer - Manufacturer Name (string) or Manufacturer ID (number)
  * @param params - Object of Query Search names and values to append to the URL as a query string
@@ -32,13 +40,25 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string>)} - Api
  * Response `object` -or- url `string` if `doFetch = false`
  */
-export const GetMakesForManufacturerAndYear = async (
-  manufacturer: string,
+function GetMakesForManufacturerAndYear(
+  manufacturer: string | number,
+  params: { year: string | number },
+  doFetch?: true
+): Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>>
+
+function GetMakesForManufacturerAndYear(
+  manufacturer: string | number,
+  params: { year: string | number },
+  doFetch: false
+): Promise<string>
+
+async function GetMakesForManufacturerAndYear(
+  manufacturer: string | number,
   params: {
     year: string | number
   },
   doFetch = true
-): Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string> => {
+): Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string> {
   const endpointName = 'GetMakesForManufacturerAndYear'
 
   try {
@@ -77,10 +97,10 @@ export const GetMakesForManufacturerAndYear = async (
   }
 }
 
+export { GetMakesForManufacturerAndYear }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetMakesForManufacturerAndYear endpoint
- *
- * @alias GetMakesForManufacturerAndYearResults
+ * Objects found in the `Results` array of `GetMakesForManufacturerAndYear` endpoint response.
  */
 export type GetMakesForManufacturerAndYearResults = {
   MakeId: number
