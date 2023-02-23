@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetVehicleVariableValuesList Documentation](/api/get-vehicle-variable-values-list)
+ * :::
+ *
  * `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable
  * that are stored in the vPIC dataset.
  *
@@ -22,10 +26,20 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetVehicleVariableValuesList = async (
-  variableValue: number | string,
+function GetVehicleVariableValuesList(
+  variableValue: string | number,
+  doFetch?: true
+): Promise<NhtsaResponse<GetVehicleVariableValuesListResults>>
+
+function GetVehicleVariableValuesList(
+  variableValue: string | number,
+  doFetch: false
+): Promise<string>
+
+async function GetVehicleVariableValuesList(
+  variableValue: string | number,
   doFetch = true
-): Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string> => {
+): Promise<NhtsaResponse<GetVehicleVariableValuesListResults> | string> {
   const endpointName = 'GetVehicleVariableValuesList'
 
   try {
@@ -53,10 +67,10 @@ export const GetVehicleVariableValuesList = async (
   }
 }
 
+export { GetVehicleVariableValuesList }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableValuesList endpoint
- *
- * @alias GetVehicleVariableValuesListResults
+ * Objects found in the `Results` array of `GetVehicleVariableValuesList` endpoint response.
  */
 export type GetVehicleVariableValuesListResults = {
   ElementName: string

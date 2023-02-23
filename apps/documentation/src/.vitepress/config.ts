@@ -154,12 +154,27 @@ function sidebarGuide() {
               text: 'GetModelsForMakeYear',
               link: '/api/get-models-for-make-year',
             },
-            // { text: 'GetParts', link: '/api/get-parts' },
-            // { text: 'GetVehicleTypesForMake', link: '/api/get-vehicle-types-for-make' },
-            // { text: 'GetVehicleTypesForMakeId', link: '/api/get-vehicle-types-for-make-id' },
-            // { text: 'GetVehicleVariableList', link: '/api/get-vehicle-variable-list' },
-            // { text: 'GetVehicleVariableValuesList', link: '/api/get-vehicle-variable-values-list' },
-            // { text: 'GetWMIsForManufacturer', link: '/api/get-wmis-for-manufacturer' },
+            { text: 'GetParts', link: '/api/get-parts' },
+            {
+              text: 'GetVehicleTypesForMake',
+              link: '/api/get-vehicle-types-for-make',
+            },
+            {
+              text: 'GetVehicleTypesForMakeId',
+              link: '/api/get-vehicle-types-for-make-id',
+            },
+            {
+              text: 'GetVehicleVariableList',
+              link: '/api/get-vehicle-variable-list',
+            },
+            {
+              text: 'GetVehicleVariableValuesList',
+              link: '/api/get-vehicle-variable-values-list',
+            },
+            {
+              text: 'GetWMIsForManufacturer',
+              link: '/api/get-wmis-for-manufacturer',
+            },
           ],
         },
       ],

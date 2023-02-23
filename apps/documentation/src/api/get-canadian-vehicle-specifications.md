@@ -6,15 +6,6 @@
 
 ```typescript
 async function GetCanadianVehicleSpecifications(
-  params: GetCanadianVehicleSpecificationsParams,
-  doFetch?: boolean
-): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string>
-```
-
-Shown with expanded `params` types:
-
-```typescript
-async function GetCanadianVehicleSpecifications(
   params: {
     year: string | number
     make?: string
@@ -108,21 +99,13 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 ::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
-## Type - GetCanadianVehicleSpecificationsParams
-
-<<< @/snippets/endpoints/get-canadian-vehicle-specifications.ts#type-params
-
-Ƭ **GetCanadianVehicleSpecificationsParams**: `Object`
-
-Query String Parameters for this endpoint
-
 ## Type - GetCanadianVehicleSpecificationsResults
 
 <<< @/snippets/endpoints/get-canadian-vehicle-specifications.ts#type-results
 
 Ƭ **GetCanadianVehicleSpecificationsResults**: `Object`
 
-Objects returned in the `Results` array of `GetCanadianVehicleSpecificationsResults` endpoint
+Objects returned in the `Results` array of `GetCanadianVehicleSpecifications` endpoint
 response.
 
 ## Examples

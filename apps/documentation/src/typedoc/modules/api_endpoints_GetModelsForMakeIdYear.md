@@ -71,7 +71,7 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeIdYear.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L61)
+[api/endpoints/GetModelsForMakeIdYear.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L61)
 
 ▸ **GetModelsForMakeIdYear**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -88,7 +88,7 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeIdYear.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L71)
+[api/endpoints/GetModelsForMakeIdYear.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L71)
 
 ## Type Aliases
 
@@ -109,4 +109,4 @@ Objects found in the `Results` array of `GetModelsForMakeIdYear` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeIdYear.ts:152](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L152)
+[api/endpoints/GetModelsForMakeIdYear.ts:152](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L152)

@@ -7,7 +7,7 @@
 ```typescript
 async function GetEquipmentPlantCodes(
   params: GetEquipmentPlantCodesParams,
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>
 ```
 

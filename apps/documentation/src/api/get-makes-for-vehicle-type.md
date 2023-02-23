@@ -7,7 +7,7 @@
 ```typescript
 async function GetMakesForVehicleType(
   typeName: string,
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetMakesForVehicleTypeResults> | string>
 ```
 

@@ -49,7 +49,7 @@ be available in VPIC data sets.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/DecodeWMI.ts#L32)
+[api/endpoints/DecodeWMI.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/DecodeWMI.ts#L32)
 
 ▸ **DecodeWMI**(`WMI`, `doFetch`): `Promise`<`string`\>
 
@@ -66,7 +66,7 @@ be available in VPIC data sets.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/DecodeWMI.ts#L37)
+[api/endpoints/DecodeWMI.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/DecodeWMI.ts#L37)
 
 ## Type Aliases
 
@@ -92,4 +92,4 @@ Objects found in the `Results` array of `DecodeWMI` endpoint response.
 
 #### Defined in
 
-[api/endpoints/DecodeWMI.ts:76](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/DecodeWMI.ts#L76)
+[api/endpoints/DecodeWMI.ts:76](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/DecodeWMI.ts#L76)

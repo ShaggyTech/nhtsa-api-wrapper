@@ -48,7 +48,7 @@ Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:31](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L31)
+[api/endpoints/GetManufacturerDetails.ts:31](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L31)
 
 ▸ **GetManufacturerDetails**(`manufacturer`, `doFetch`): `Promise`<`string`\>
 
@@ -65,7 +65,7 @@ Multiple results are returned in case of multiple matches.
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L36)
+[api/endpoints/GetManufacturerDetails.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L36)
 
 ## Type Aliases
 
@@ -107,4 +107,4 @@ Objects found in the `Results` array of `GetManufacturerDetails` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetManufacturerDetails.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L77)
+[api/endpoints/GetManufacturerDetails.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L77)

@@ -8,14 +8,14 @@
 async function GetParts(
   params?:
     | {
+        manufacturer?: string | number
         type?: string | number
         fromDate?: string
         toDate?: string
-        manufacturer?: string | number
         page?: string | number
       }
     | boolean,
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetPartsResults> | string>
 ```
 
@@ -33,6 +33,16 @@ specified Type (`params.type`) of ORG.
 
 All query `params` are optional.
 
+`params.manufacturer`:
+
+- (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
+- if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
+  name
+- it accepts a partial manufacturer name as an input
+- multiple results are returned in case of multiple matches
+- manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
+  "HONDA", "HONDA OF CANADA MFG., INC.", etc.
+
 `params.type`:
 
 - (optional) number, 565 (Vehicle Identification Number Guidance, based on 49 CFR Part 565)
@@ -46,16 +56,6 @@ All query `params` are optional.
 
 - (optional) ORG's Letter Date should be on or before this date
 
-`params.manufacturer`:
-
-- (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
-- if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
-  name
-- it accepts a partial manufacturer name as an input
-- multiple results are returned in case of multiple matches
-- manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
-  "HONDA", "HONDA OF CANADA MFG., INC.", etc.
-
 `params.page`:
 
 - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
@@ -65,10 +65,10 @@ All query `params` are optional.
 | Name                   | Type                 | Default Value | Description                                                                     |
 | ---------------------- | -------------------- | ------------- | ------------------------------------------------------------------------------- |
 | `params?`              | `Object \| boolean ` | `undefined`   | Object of query search names and values to append to the URL as a query string. |
+| `params.manufacturer?` | `string \| number`   | `undefined`   | Manufacturer Name or ID                                                         |
 | `params.type?`         | `string \| number`   | `undefined`   | Specified type of ORG to search                                                 |
 | `params.fromDate?`     | `string`             | `undefined`   | Start date of search query                                                      |
 | `params.toDate?`       | `string`             | `undefined`   | End date of search query                                                        |
-| `params.manufacturer?` | `string \| number`   | `undefined`   | Manufacturer Name or ID                                                         |
 | `params.page?`         | `string \| number`   | `undefined`   | Which page number of results to request (up to 1000 results per page)           |
 | `doFetch`              | `boolean`            | `true`        | Whether to fetch the data or just return the URL (default: `true`)              |
 

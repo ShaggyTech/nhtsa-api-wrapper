@@ -7,7 +7,7 @@
 ```typescript
 async function GetManufacturerDetails(
   manufacturer: string | number,
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetManufacturerDetailsResults> | string>
 ```
 

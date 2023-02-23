@@ -16,7 +16,11 @@
 
 ### GetVehicleTypesForMake
 
-▸ **GetVehicleTypesForMake**(`makeName`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeResults`](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)\>\>
+▸ **GetVehicleTypesForMake**(`makeName`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeResults`](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetVehicleTypesForMake Documentation](/api/get-vehicle-types-for-make)
+:::
 
 `GetVehicleTypesForMake` returns all the Vehicle Types in the vPIC dataset for a specified Make,
 whose name is LIKE the make name in the vPIC Dataset.
@@ -26,21 +30,38 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `makeName` | `string` | `undefined` | Name of the vehicle make to search |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `makeName` | `string` | Name of the vehicle make to search |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeResults`](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeResults`](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L23)
+[api/endpoints/GetVehicleTypesForMake.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L27)
+
+▸ **GetVehicleTypesForMake**(`makeName`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `makeName` | `string` |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetVehicleTypesForMake.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L32)
 
 ## Type Aliases
 
@@ -48,11 +69,7 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 Ƭ **GetVehicleTypesForMakeResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMake endpoint
-
-**`Alias`**
-
-GetVehicleTypesForMakeResults
+Objects found in the `Results` array of `GetVehicleTypesForMake` endpoint response.
 
 #### Type declaration
 
@@ -65,4 +82,4 @@ GetVehicleTypesForMakeResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:59](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L59)
+[api/endpoints/GetVehicleTypesForMake.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L73)

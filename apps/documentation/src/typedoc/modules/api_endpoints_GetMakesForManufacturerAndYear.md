@@ -60,7 +60,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L43)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L43)
 
 ▸ **GetMakesForManufacturerAndYear**(`manufacturer`, `params`, `doFetch`): `Promise`<`string`\>
 
@@ -79,7 +79,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L49)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L49)
 
 ## Type Aliases
 
@@ -100,4 +100,4 @@ Objects found in the `Results` array of `GetMakesForManufacturerAndYear` endpoin
 
 #### Defined in
 
-[api/endpoints/GetMakesForManufacturerAndYear.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L105)
+[api/endpoints/GetMakesForManufacturerAndYear.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L105)

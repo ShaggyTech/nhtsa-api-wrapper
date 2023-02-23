@@ -43,17 +43,32 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * Response `object` -or- url `string` if `doFetch = false`
  */
 function GetCanadianVehicleSpecifications(
-  params: GetCanadianVehicleSpecificationsParams,
+  params: {
+    year: string | number
+    make?: string
+    model?: string
+    units?: string
+  },
   doFetch?: true
 ): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>
 
 function GetCanadianVehicleSpecifications(
-  params: GetCanadianVehicleSpecificationsParams,
+  params: {
+    year: string | number
+    make?: string
+    model?: string
+    units?: string
+  },
   doFetch: false
 ): Promise<string>
 
 async function GetCanadianVehicleSpecifications(
-  params: GetCanadianVehicleSpecificationsParams,
+  params: {
+    year: string | number
+    make?: string
+    model?: string
+    units?: string
+  },
   doFetch = true
 ): Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults> | string> {
   const endpointName = 'GetCanadianVehicleSpecifications'
@@ -98,14 +113,6 @@ async function GetCanadianVehicleSpecifications(
 }
 
 export { GetCanadianVehicleSpecifications }
-
-/** Query String Parameters for this endpoint */
-export type GetCanadianVehicleSpecificationsParams = {
-  year: string | number
-  make?: string
-  model?: string
-  units?: string
-}
 
 /**
  * Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpoint response.

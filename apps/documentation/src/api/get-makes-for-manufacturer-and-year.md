@@ -10,7 +10,7 @@ async function GetMakesForManufacturerAndYear(
   params: {
     year: string | number
   },
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults> | string>
 ```
 

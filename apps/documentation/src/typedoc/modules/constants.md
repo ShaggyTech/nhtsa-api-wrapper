@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[constants.ts:1](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/constants.ts#L1)
+[constants.ts:1](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/constants.ts#L1)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[constants.ts:2](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/constants.ts#L2)
+[constants.ts:2](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/constants.ts#L2)

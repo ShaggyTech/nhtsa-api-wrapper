@@ -16,7 +16,11 @@
 
 ### GetVehicleVariableList
 
-▸ **GetVehicleVariableList**(`doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
+▸ **GetVehicleVariableList**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\> \| `string`\>
+
+::: tip :bulb: More Information
+See: [GetVehicleTypesForMakeId Documentation](/api/get-vehicle-variable-list)
+:::
 
 `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the
 vPIC dataset. Information on the name, description and the type of the variable is provided.
@@ -29,14 +33,14 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\> \| `string`\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:19](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L19)
+[api/endpoints/GetVehicleVariableList.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L23)
 
 ## Type Aliases
 
@@ -44,11 +48,7 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 Ƭ **GetVehicleVariableListResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableList endpoint
-
-**`Alias`**
-
-GetVehicleVariableListResults
+Objects found in the `Results` array of `GetVehicleVariableList` endpoint response.
 
 #### Type declaration
 
@@ -62,4 +62,4 @@ GetVehicleVariableListResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L44)
+[api/endpoints/GetVehicleVariableList.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L48)

@@ -16,7 +16,11 @@
 
 ### GetVehicleTypesForMakeId
 
-▸ **GetVehicleTypesForMakeId**(`makeId`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeIdResults`](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)\>\>
+▸ **GetVehicleTypesForMakeId**(`makeId`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeIdResults`](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetVehicleTypesForMakeId Documentation](/api/get-vehicle-types-for-make-id)
+:::
 
 `GetVehicleTypesForMakeId` returns the Models in the vPIC dataset for a specified Make
 whose ID is equal to the `makeID` in the vPIC Dataset.
@@ -40,21 +44,38 @@ endpoint.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `makeId` | `string` \| `number` | `undefined` | Make ID to search |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `makeId` | `string` \| `number` | Make ID to search |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeIdResults`](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeIdResults`](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMakeId.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L37)
+[api/endpoints/GetVehicleTypesForMakeId.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L41)
+
+▸ **GetVehicleTypesForMakeId**(`makeId`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `makeId` | `string` \| `number` |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetVehicleTypesForMakeId.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L46)
 
 ## Type Aliases
 
@@ -62,21 +83,15 @@ endpoint.
 
 Ƭ **GetVehicleTypesForMakeIdResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetVehicleTypesForMakeId endpoint
-
-**`Alias`**
-
-GetVehicleTypesForMakeIdResults
+Objects found in the `Results` array of `GetVehicleTypesForMakeId` endpoint response.
 
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `MakeId` | `number` |
-| `MakeName` | `string` |
 | `VehicleTypeId` | `number` |
 | `VehicleTypeName` | `string` |
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMakeId.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L73)
+[api/endpoints/GetVehicleTypesForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L87)

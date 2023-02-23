@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetWMIsForManufacturer Documentation](/api/get-wmis-for-manufacturer)
+ * :::
+ *
  * `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
  * specified `manufacturer`. Only WMIs registered in vPICList are displayed. Multiple results are
  * returned in case of multiple matches.
@@ -25,11 +29,11 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
  * - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
  *   name (it accepts a partial VehicleType name as an input).
  *
- * For this endpoint, `manufacturer` is actually part of the path string, not a query param. We
- * include `manufacturer` in params as it's easier to type the function args using the 'AtLeastOne'
- * type if they are placed in the same object (params). This can cause confusion as it's not
- * consistent with other endpoint methods where path string is the first arg, and the query params
- * are the second arg.
+ * _NOTE_: For this endpoint, `manufacturer` is actually part of the path string, not a query param.
+ * We include `manufacturer` in params as it's easier to type the function args using the
+ * 'AtLeastOne' type if they are placed in the same object (params). This can cause confusion as
+ * it's not consistent with other endpoint methods where path string is the first arg, and the query
+ * params are the second arg.
  *
  * @param [params] - Object of Query Search names and values to append to the URL as a query string
  * @param {(string|number)} [params.manufacturer] - Manufacturer Name or ID, or WMI ID
@@ -41,13 +45,29 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetWMIsForManufacturer = async (
+function GetWMIsForManufacturer(
+  params: AtLeastOne<{
+    manufacturer?: string | number
+    vehicleType?: string | number
+  }>,
+  doFetch?: true
+): Promise<NhtsaResponse<GetWMIsForManufacturerResults>>
+
+function GetWMIsForManufacturer(
+  params: AtLeastOne<{
+    manufacturer?: string | number
+    vehicleType?: string | number
+  }>,
+  doFetch: false
+): Promise<string>
+
+async function GetWMIsForManufacturer(
   params: AtLeastOne<{
     manufacturer?: string | number
     vehicleType?: string | number
   }>,
   doFetch = true
-): Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string> => {
+): Promise<NhtsaResponse<GetWMIsForManufacturerResults> | string> {
   const endpointName = 'GetWMIsForManufacturer'
 
   try {
@@ -91,10 +111,10 @@ export const GetWMIsForManufacturer = async (
   }
 }
 
+export { GetWMIsForManufacturer }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetWMIsForManufacturer endpoint
- *
- * @alias GetWMIsForManufacturerResults
+ * Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint response.
  */
 export type GetWMIsForManufacturerResults = {
   Country: string | null

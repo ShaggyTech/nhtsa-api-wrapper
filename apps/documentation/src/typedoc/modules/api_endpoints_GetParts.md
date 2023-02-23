@@ -30,6 +30,15 @@ specified Type (`params.type`) of ORG.
 
 All query `params` are optional.
 
+`params.manufacturer`:
+- (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
+- if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
+  name
+- it accepts a partial manufacturer name as an input
+- multiple results are returned in case of multiple matches
+- manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
+  "HONDA", "HONDA OF CANADA MFG., INC.", etc.
+
 `params.type`:
 - (optional) number, 565 (Vehicle Identification Number Guidance, based on 49 CFR Part 565)
   or 566 (Manufacturer Identification – Reporting Requirements based on 49 CFR Part 566)
@@ -39,15 +48,6 @@ All query `params` are optional.
 
 `params.toDate`:
 - (optional) ORG's Letter Date should be on or before this date
-
-`params.manufacturer`:
-- (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
-- if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
-  name
-- it accepts a partial manufacturer name as an input
-- multiple results are returned in case of multiple matches
-- manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
-  "HONDA", "HONDA OF CANADA MFG., INC.", etc.
 
 `params.page`:
  - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
@@ -68,7 +68,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetParts.ts#L60)
+[api/endpoints/GetParts.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L60)
 
 ▸ **GetParts**(`doFetch?`, `_dummy?`): `Promise`<`string`\>
 
@@ -85,7 +85,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetParts.ts#L65)
+[api/endpoints/GetParts.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L65)
 
 ▸ **GetParts**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -107,7 +107,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:67](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetParts.ts#L67)
+[api/endpoints/GetParts.ts:67](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L67)
 
 ▸ **GetParts**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetPartsResults`](api_endpoints_GetParts.md#getpartsresults)\>\>
 
@@ -129,7 +129,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:78](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetParts.ts#L78)
+[api/endpoints/GetParts.ts:78](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L78)
 
 ## Type Aliases
 
@@ -155,4 +155,4 @@ Objects found in the `Results` array of `GetParts` endpoint response.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:138](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetParts.ts#L138)
+[api/endpoints/GetParts.ts:143](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L143)

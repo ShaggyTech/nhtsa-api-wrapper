@@ -8,6 +8,10 @@ import { rejectWithError } from '@/utils'
 import type { NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetVehicleVariableList Documentation](/api/get-vehicle-variable-list)
+ * :::
+ *
  * `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the
  * vPIC dataset. Information on the name, description and the type of the variable is provided.
  *
@@ -16,9 +20,15 @@ import type { NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetVehicleVariableListResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetVehicleVariableList = async (
+function GetVehicleVariableList(
+  doFetch?: true
+): Promise<NhtsaResponse<GetVehicleVariableListResults>>
+
+function GetVehicleVariableList(doFetch: false): Promise<string>
+
+async function GetVehicleVariableList(
   doFetch = true
-): Promise<NhtsaResponse<GetVehicleVariableListResults> | string> => {
+): Promise<NhtsaResponse<GetVehicleVariableListResults> | string> {
   const endpointName = 'GetVehicleVariableList'
 
   try {
@@ -36,10 +46,10 @@ export const GetVehicleVariableList = async (
   }
 }
 
+export { GetVehicleVariableList }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableList endpoint
- *
- * @alias GetVehicleVariableListResults
+ * Objects found in the `Results` array of `GetVehicleVariableList` endpoint response.
  */
 export type GetVehicleVariableListResults = {
   DataType: 'string' | 'int' | 'decimal' | 'lookup'

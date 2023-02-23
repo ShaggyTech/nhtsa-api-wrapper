@@ -1,12 +1,3 @@
-// #region type-params
-type GetCanadianVehicleSpecificationsParams = {
-  year: string | number
-  make?: string
-  model?: string
-  units?: string
-}
-// #endregion type-params
-
 // #region type-results
 type GetCanadianVehicleSpecificationsResults = {
   Specs: Array<{
@@ -729,8 +720,5 @@ const exampleResponse = {
 }
 // #endregion example-response
 
-export type {
-  GetCanadianVehicleSpecificationsParams,
-  GetCanadianVehicleSpecificationsResults,
-}
+export type { GetCanadianVehicleSpecificationsResults }
 export { exampleResponse }

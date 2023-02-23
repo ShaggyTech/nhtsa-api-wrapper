@@ -10,7 +10,6 @@
 
 ### Type Aliases
 
-- [GetCanadianVehicleSpecificationsParams](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams)
 - [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
 
 ## Functions
@@ -46,7 +45,11 @@ no default value is set for it so that an error will be thrown if not provided b
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `params` | [`GetCanadianVehicleSpecificationsParams`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams) | Object of Query Search names and values to append to the URL as a query string |
+| `params` | `Object` | Object of Query Search names and values to append to the URL as a query string |
+| `params.make?` | `string` | Vehicle's make, like "Honda", "Toyota", etc... |
+| `params.model?` | `string` | Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc... |
+| `params.units?` | `string` | "Metric" (default), or "US" for standard units |
+| `params.year` | `string` \| `number` | Model year of the vehicle - year >= 1971 |
 | `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
@@ -58,7 +61,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
 
 ▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -66,7 +69,11 @@ Response `object` -or- url `string` if `doFetch = false`
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`GetCanadianVehicleSpecificationsParams`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsparams) |
+| `params` | `Object` |
+| `params.make?` | `string` |
+| `params.model?` | `string` |
+| `params.units?` | `string` |
+| `params.year` | `string` \| `number` |
 | `doFetch` | ``false`` |
 
 #### Returns
@@ -75,30 +82,9 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:50](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L50)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:55](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L55)
 
 ## Type Aliases
-
-### GetCanadianVehicleSpecificationsParams
-
-Ƭ **GetCanadianVehicleSpecificationsParams**: `Object`
-
-Query String Parameters for this endpoint
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `make?` | `string` |
-| `model?` | `string` |
-| `units?` | `string` |
-| `year` | `string` \| `number` |
-
-#### Defined in
-
-[api/endpoints/GetCanadianVehicleSpecifications.ts:103](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L103)
-
-___
 
 ### GetCanadianVehicleSpecificationsResults
 
@@ -114,4 +100,4 @@ Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpo
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:113](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L113)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:120](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L120)

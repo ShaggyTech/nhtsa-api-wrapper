@@ -12,7 +12,7 @@ async function GetAllManufacturers(
         page?: string | number
       }
     | boolean,
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetAllManufacturersResults> | string>
 ```
 

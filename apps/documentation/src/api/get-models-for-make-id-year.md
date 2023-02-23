@@ -12,7 +12,7 @@ async function GetModelsForMakeIdYear(
     modelYear?: string | number
     vehicleType?: string
   }>,
-  doFetch = true
+  doFetch?: boolean
 ): Promise<NhtsaResponse<GetModelsForMakeIdYearResults> | string>
 ```
 

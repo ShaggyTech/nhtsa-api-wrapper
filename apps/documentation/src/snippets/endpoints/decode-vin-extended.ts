@@ -9,7 +9,6 @@ type DecodeVinExtendedResults = {
 
 // #region type-variable-names
 type DecodeVinExtendedVariable =
-  | string
   | 'Suggested VIN'
   | 'Error Code'
   | 'Possible Values'

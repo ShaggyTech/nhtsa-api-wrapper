@@ -20,6 +20,15 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  *
  * All query `params` are optional.
  *
+ * `params.manufacturer`:
+ * - (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
+ * - if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
+ *   name
+ * - it accepts a partial manufacturer name as an input
+ * - multiple results are returned in case of multiple matches
+ * - manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
+ *   "HONDA", "HONDA OF CANADA MFG., INC.", etc.
+ *
  * `params.type`:
  * - (optional) number, 565 (Vehicle Identification Number Guidance, based on 49 CFR Part 565)
  *   or 566 (Manufacturer Identification – Reporting Requirements based on 49 CFR Part 566)
@@ -30,15 +39,6 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * `params.toDate`:
  * - (optional) ORG's Letter Date should be on or before this date
  *
- * `params.manufacturer`:
- * - (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
- * - if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
- *   name
- * - it accepts a partial manufacturer name as an input
- * - multiple results are returned in case of multiple matches
- * - manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
- *   "HONDA", "HONDA OF CANADA MFG., INC.", etc.
- *
  * `params.page`:
  *  - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
  *
@@ -46,10 +46,10 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * - If not providing `params` and want you want to set `doFetch = false`, you can pass `false` as
  * the first arg in place of params, instead of having to pass the first arg as undefined, i.e. you
  * don't have to do this: `func(undefined, doFetch)`, and can instead do this: `func(doFetch)`
+ * @param {string} [params.manufacturer] - Manufacturer Name or ID
  * @param {(string|number)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query
- * @param {string} [params.manufacturer] - Manufacturer Name or ID
  * @param {(string|number)} [params.page] - Which page number of results to request
  * (up to 1000 results per page)
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
@@ -66,10 +66,10 @@ function GetParts(doFetch?: false, _dummy?: undefined): Promise<string>
 
 function GetParts(
   params: {
+    manufacturer?: string | number
     type?: string | number
     fromDate?: string
     toDate?: string
-    manufacturer?: string | number
     page?: string | number
   },
   doFetch: false
@@ -77,10 +77,10 @@ function GetParts(
 
 function GetParts(
   params?: {
+    manufacturer?: string | number
     type?: string | number
     fromDate?: string
     toDate?: string
-    manufacturer?: string | number
     page?: string | number
   },
   doFetch?: true
@@ -89,10 +89,10 @@ function GetParts(
 async function GetParts(
   params?:
     | {
+        manufacturer?: string | number
         type?: string | number
         fromDate?: string
         toDate?: string
-        manufacturer?: string | number
         page?: string | number
       }
     | boolean,
@@ -109,6 +109,11 @@ async function GetParts(
     /* Validate the arguments */
     const args: IArgToValidate[] = [
       { name: 'params', value: params, types: ['object'] },
+      {
+        name: 'type',
+        value: params?.manufacturer,
+        types: ['string', 'number'],
+      },
       { name: 'type', value: params?.type, types: ['string', 'number'] },
       { name: 'fromDate', value: params?.fromDate, types: ['string'] },
       { name: 'toDate', value: params?.toDate, types: ['string'] },

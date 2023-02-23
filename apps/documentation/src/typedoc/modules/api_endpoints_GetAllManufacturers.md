@@ -48,7 +48,7 @@ pages of 100 items.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
+[api/endpoints/GetAllManufacturers.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L33)
 
 ▸ **GetAllManufacturers**(`doFetch?`, `_dummy?`): `Promise`<`string`\>
 
@@ -65,7 +65,7 @@ pages of 100 items.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L38)
+[api/endpoints/GetAllManufacturers.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L38)
 
 ▸ **GetAllManufacturers**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -84,7 +84,7 @@ pages of 100 items.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L43)
+[api/endpoints/GetAllManufacturers.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L43)
 
 ▸ **GetAllManufacturers**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
 
@@ -103,7 +103,7 @@ pages of 100 items.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L51)
+[api/endpoints/GetAllManufacturers.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L51)
 
 ## Type Aliases
 
@@ -125,4 +125,4 @@ Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
 
 #### Defined in
 
-[api/endpoints/GetAllManufacturers.ts:111](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/881ab5c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L111)
+[api/endpoints/GetAllManufacturers.ts:111](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L111)
