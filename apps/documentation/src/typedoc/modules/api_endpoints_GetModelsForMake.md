@@ -46,7 +46,7 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:28](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMake.ts#L28)
+[api/endpoints/GetModelsForMake.ts:28](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMake.ts#L28)
 
 ▸ **GetModelsForMake**(`makeName`, `doFetch`): `Promise`<`string`\>
 
@@ -63,7 +63,7 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMake.ts#L33)
+[api/endpoints/GetModelsForMake.ts:33](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMake.ts#L33)
 
 ## Type Aliases
 
@@ -84,4 +84,4 @@ Objects found in the `Results` array of `GetModelsForMake` endpoint response.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMake.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMake.ts#L71)
+[api/endpoints/GetModelsForMake.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMake.ts#L71)

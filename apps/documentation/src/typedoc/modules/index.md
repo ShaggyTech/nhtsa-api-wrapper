@@ -29,6 +29,7 @@
 - [GetCanadianVehicleSpecifications](index.md#getcanadianvehiclespecifications)
 - [GetCanadianVehicleSpecificationsResults](index.md#getcanadianvehiclespecificationsresults)
 - [GetEquipmentPlantCodes](index.md#getequipmentplantcodes)
+- [GetEquipmentPlantCodesParams](index.md#getequipmentplantcodesparams)
 - [GetEquipmentPlantCodesResults](index.md#getequipmentplantcodesresults)
 - [GetMakeForManufacturer](index.md#getmakeformanufacturer)
 - [GetMakeForManufacturerResults](index.md#getmakeformanufacturerresults)
@@ -204,6 +205,12 @@ ___
 ### GetEquipmentPlantCodes
 
 Re-exports [GetEquipmentPlantCodes](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodes)
+
+___
+
+### GetEquipmentPlantCodesParams
+
+Re-exports [GetEquipmentPlantCodesParams](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
 
 ___
 

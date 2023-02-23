@@ -58,7 +58,7 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L41)
+[api/endpoints/GetModelsForMakeId.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L41)
 
 ▸ **GetModelsForMakeId**(`makeId`, `doFetch`): `Promise`<`string`\>
 
@@ -75,7 +75,7 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L46)
+[api/endpoints/GetModelsForMakeId.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L46)
 
 ## Type Aliases
 
@@ -96,4 +96,4 @@ Objects found in the `Results` array of `GetModelsForMakeId` endpoint response.
 
 #### Defined in
 
-[api/endpoints/GetModelsForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L87)
+[api/endpoints/GetModelsForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeId.ts#L87)

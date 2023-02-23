@@ -68,7 +68,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L60)
+[api/endpoints/GetParts.ts:60](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L60)
 
 ▸ **GetParts**(`doFetch?`, `_dummy?`): `Promise`<`string`\>
 
@@ -85,7 +85,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L65)
+[api/endpoints/GetParts.ts:65](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L65)
 
 ▸ **GetParts**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -107,7 +107,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:67](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L67)
+[api/endpoints/GetParts.ts:67](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L67)
 
 ▸ **GetParts**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetPartsResults`](api_endpoints_GetParts.md#getpartsresults)\>\>
 
@@ -129,7 +129,7 @@ All query `params` are optional.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:78](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L78)
+[api/endpoints/GetParts.ts:78](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L78)
 
 ## Type Aliases
 
@@ -155,4 +155,4 @@ Objects found in the `Results` array of `GetParts` endpoint response.
 
 #### Defined in
 
-[api/endpoints/GetParts.ts:143](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetParts.ts#L143)
+[api/endpoints/GetParts.ts:143](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L143)

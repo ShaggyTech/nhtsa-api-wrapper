@@ -26,7 +26,7 @@ Object to build the query string with
 
 #### Defined in
 
-[utils/queryString.ts:13](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/utils/queryString.ts#L13)
+[utils/queryString.ts:13](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L13)
 
 ___
 
@@ -44,7 +44,7 @@ Object returned by encodeQueryStringParams()
 
 #### Defined in
 
-[utils/queryString.ts:16](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/utils/queryString.ts#L16)
+[utils/queryString.ts:16](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L16)
 
 ___
 
@@ -56,7 +56,7 @@ Valid URI component types
 
 #### Defined in
 
-[utils/queryString.ts:10](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/utils/queryString.ts#L10)
+[utils/queryString.ts:10](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L10)
 
 ## Functions
 
@@ -102,7 +102,7 @@ functions. However, it _is_ exported by the package as part of the composable fu
 
 #### Defined in
 
-[utils/queryString.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/utils/queryString.ts#L42)
+[utils/queryString.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L42)
 
 ___
 
@@ -149,7 +149,7 @@ boolean are filtered out of final object.
 
 #### Defined in
 
-[utils/queryString.ts:95](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/utils/queryString.ts#L95)
+[utils/queryString.ts:95](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L95)
 
 ___
 
@@ -206,4 +206,4 @@ const encodedParams = useQueryString().encodeParams(params)
 
 #### Defined in
 
-[utils/queryString.ts:146](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/utils/queryString.ts#L146)
+[utils/queryString.ts:146](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L146)

@@ -16,7 +16,11 @@
 
 ### GetVehicleVariableValuesList
 
-▸ **GetVehicleVariableValuesList**(`variableValue`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableValuesListResults`](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)\>\>
+▸ **GetVehicleVariableValuesList**(`variableValue`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableValuesListResults`](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetVehicleVariableValuesList Documentation](/api/get-vehicle-variable-values-list)
+:::
 
 `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable
 that are stored in the vPIC dataset.
@@ -28,21 +32,38 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `variableValue` | `string` \| `number` | `undefined` | The variable you want to get a values list of |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `variableValue` | `string` \| `number` | The variable you want to get a values list of |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableValuesListResults`](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableValuesListResults`](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:25](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L25)
+[api/endpoints/GetVehicleVariableValuesList.ts:29](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L29)
+
+▸ **GetVehicleVariableValuesList**(`variableValue`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `variableValue` | `string` \| `number` |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetVehicleVariableValuesList.ts:34](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L34)
 
 ## Type Aliases
 
@@ -50,11 +71,7 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 Ƭ **GetVehicleVariableValuesListResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetVehicleVariableValuesList endpoint
-
-**`Alias`**
-
-GetVehicleVariableValuesListResults
+Objects found in the `Results` array of `GetVehicleVariableValuesList` endpoint response.
 
 #### Type declaration
 
@@ -66,4 +83,4 @@ GetVehicleVariableValuesListResults
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableValuesList.ts:61](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L61)
+[api/endpoints/GetVehicleVariableValuesList.ts:75](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableValuesList.ts#L75)

@@ -16,7 +16,11 @@
 
 ### GetWMIsForManufacturer
 
-▸ **GetWMIsForManufacturer**(`params?`, `doFetch?`): `Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
+▸ **GetWMIsForManufacturer**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
+
+::: tip :bulb: More Information
+See: [GetWMIsForManufacturer Documentation](/api/get-wmis-for-manufacturer)
+:::
 
 `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
 specified `manufacturer`. Only WMIs registered in vPICList are displayed. Multiple results are
@@ -35,29 +39,46 @@ Both `manufacturer` and `vehicleType` are optional but at least one must be prov
 - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
   name (it accepts a partial VehicleType name as an input).
 
-For this endpoint, `manufacturer` is actually part of the path string, not a query param. We
-include `manufacturer` in params as it's easier to type the function args using the 'AtLeastOne'
-type if they are placed in the same object (params). This can cause confusion as it's not
-consistent with other endpoint methods where path string is the first arg, and the query params
-are the second arg.
+_NOTE_: For this endpoint, `manufacturer` is actually part of the path string, not a query param.
+We include `manufacturer` in params as it's easier to type the function args using the
+'AtLeastOne' type if they are placed in the same object (params). This can cause confusion as
+it's not consistent with other endpoint methods where path string is the first arg, and the query
+params are the second arg.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `params?` | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number`  }, ``"manufacturer"`` \| ``"vehicleType"``\> | `undefined` | Object of Query Search names and values to append to the URL as a query string |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `params?` | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number`  }, ``"manufacturer"`` \| ``"vehicleType"``\> | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<`string` \| [`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L44)
+[api/endpoints/GetWMIsForManufacturer.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L48)
+
+▸ **GetWMIsForManufacturer**(`params`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number`  }, ``"manufacturer"`` \| ``"vehicleType"``\> |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetWMIsForManufacturer.ts:56](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L56)
 
 ## Type Aliases
 
@@ -65,11 +86,7 @@ are the second arg.
 
 Ƭ **GetWMIsForManufacturerResults**: `Object`
 
-Objects found in the NhtsaResponse 'Results' array of GetWMIsForManufacturer endpoint
-
-**`Alias`**
-
-GetWMIsForManufacturerResults
+Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint response.
 
 #### Type declaration
 
@@ -86,4 +103,4 @@ GetWMIsForManufacturerResults
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:99](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L99)
+[api/endpoints/GetWMIsForManufacturer.ts:119](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L119)

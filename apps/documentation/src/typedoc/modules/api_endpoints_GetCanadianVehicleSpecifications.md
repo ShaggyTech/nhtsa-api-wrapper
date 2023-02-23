@@ -61,7 +61,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L45)
 
 ▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch`): `Promise`<`string`\>
 
@@ -82,7 +82,7 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:55](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L55)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:55](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L55)
 
 ## Type Aliases
 
@@ -100,4 +100,4 @@ Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpo
 
 #### Defined in
 
-[api/endpoints/GetCanadianVehicleSpecifications.ts:120](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L120)
+[api/endpoints/GetCanadianVehicleSpecifications.ts:120](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L120)

@@ -19,6 +19,7 @@
 - [GetAllMakesResults](types.md#getallmakesresults)
 - [GetAllManufacturersResults](types.md#getallmanufacturersresults)
 - [GetCanadianVehicleSpecificationsResults](types.md#getcanadianvehiclespecificationsresults)
+- [GetEquipmentPlantCodesParams](types.md#getequipmentplantcodesparams)
 - [GetEquipmentPlantCodesResults](types.md#getequipmentplantcodesresults)
 - [GetMakeForManufacturerResults](types.md#getmakeformanufacturerresults)
 - [GetMakesForManufacturerAndYearResults](types.md#getmakesformanufacturerandyearresults)
@@ -118,6 +119,12 @@ ___
 ### GetCanadianVehicleSpecificationsResults
 
 Re-exports [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
+
+___
+
+### GetEquipmentPlantCodesParams
+
+Re-exports [GetEquipmentPlantCodesParams](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
 
 ___
 

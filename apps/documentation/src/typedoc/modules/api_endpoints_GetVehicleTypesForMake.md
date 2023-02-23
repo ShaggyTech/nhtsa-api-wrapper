@@ -44,7 +44,7 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L27)
+[api/endpoints/GetVehicleTypesForMake.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L27)
 
 ▸ **GetVehicleTypesForMake**(`makeName`, `doFetch`): `Promise`<`string`\>
 
@@ -61,7 +61,7 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L32)
+[api/endpoints/GetVehicleTypesForMake.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L32)
 
 ## Type Aliases
 
@@ -82,4 +82,4 @@ Objects found in the `Results` array of `GetVehicleTypesForMake` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMake.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L73)
+[api/endpoints/GetVehicleTypesForMake.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L73)

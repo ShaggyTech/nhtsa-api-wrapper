@@ -18,6 +18,7 @@
 - [GetAllMakesResults](api_types.md#getallmakesresults)
 - [GetAllManufacturersResults](api_types.md#getallmanufacturersresults)
 - [GetCanadianVehicleSpecificationsResults](api_types.md#getcanadianvehiclespecificationsresults)
+- [GetEquipmentPlantCodesParams](api_types.md#getequipmentplantcodesparams)
 - [GetEquipmentPlantCodesResults](api_types.md#getequipmentplantcodesresults)
 - [GetMakeForManufacturerResults](api_types.md#getmakeformanufacturerresults)
 - [GetMakesForManufacturerAndYearResults](api_types.md#getmakesformanufacturerandyearresults)
@@ -109,6 +110,12 @@ ___
 ### GetCanadianVehicleSpecificationsResults
 
 Re-exports [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
+
+___
+
+### GetEquipmentPlantCodesParams
+
+Re-exports [GetEquipmentPlantCodesParams](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
 
 ___
 
@@ -225,4 +232,4 @@ Response data returned from the NHTSA VPIC API. `Results` key will be an array o
 
 #### Defined in
 
-[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/types.ts#L12)
+[api/types.ts:12](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/types.ts#L12)

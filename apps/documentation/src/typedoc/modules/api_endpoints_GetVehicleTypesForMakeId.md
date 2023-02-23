@@ -58,7 +58,7 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMakeId.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L41)
+[api/endpoints/GetVehicleTypesForMakeId.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L41)
 
 ▸ **GetVehicleTypesForMakeId**(`makeId`, `doFetch`): `Promise`<`string`\>
 
@@ -75,7 +75,7 @@ endpoint.
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMakeId.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L46)
+[api/endpoints/GetVehicleTypesForMakeId.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L46)
 
 ## Type Aliases
 
@@ -94,4 +94,4 @@ Objects found in the `Results` array of `GetVehicleTypesForMakeId` endpoint resp
 
 #### Defined in
 
-[api/endpoints/GetVehicleTypesForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L87)
+[api/endpoints/GetVehicleTypesForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L87)

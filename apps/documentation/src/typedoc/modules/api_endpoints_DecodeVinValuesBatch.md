@@ -59,7 +59,7 @@ the model year if it is known at the time of decoding, but it is not required.
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L43)
+[api/endpoints/DecodeVinValuesBatch.ts:43](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L43)
 
 ▸ **DecodeVinValuesBatch**(`inputString`, `doFetch`): `Promise`<`string`\>
 
@@ -76,7 +76,7 @@ the model year if it is known at the time of decoding, but it is not required.
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L48)
+[api/endpoints/DecodeVinValuesBatch.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L48)
 
 ## Type Aliases
 
@@ -243,4 +243,4 @@ Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response
 
 #### Defined in
 
-[api/endpoints/DecodeVinValuesBatch.ts:90](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L90)
+[api/endpoints/DecodeVinValuesBatch.ts:90](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesBatch.ts#L90)

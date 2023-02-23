@@ -16,10 +16,10 @@
 
 ### GetVehicleVariableList
 
-▸ **GetVehicleVariableList**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\> \| `string`\>
+▸ **GetVehicleVariableList**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetVehicleTypesForMakeId Documentation](/api/get-vehicle-variable-list)
+See: [GetVehicleVariableList Documentation](/api/get-vehicle-variable-list)
 :::
 
 `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the
@@ -27,20 +27,36 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `doFetch?` | `boolean` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\> \| `string`\>
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
 
 - Api Response
 `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L23)
+[api/endpoints/GetVehicleVariableList.ts:23](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L23)
+
+▸ **GetVehicleVariableList**(`doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `doFetch` | ``false`` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/GetVehicleVariableList.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L27)
 
 ## Type Aliases
 
@@ -62,4 +78,4 @@ Objects found in the `Results` array of `GetVehicleVariableList` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetVehicleVariableList.ts:48](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/158685c/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L48)
+[api/endpoints/GetVehicleVariableList.ts:54](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L54)

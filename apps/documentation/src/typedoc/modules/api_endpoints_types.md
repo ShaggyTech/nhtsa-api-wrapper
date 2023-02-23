@@ -17,6 +17,7 @@
 - [GetAllMakesResults](api_endpoints_types.md#getallmakesresults)
 - [GetAllManufacturersResults](api_endpoints_types.md#getallmanufacturersresults)
 - [GetCanadianVehicleSpecificationsResults](api_endpoints_types.md#getcanadianvehiclespecificationsresults)
+- [GetEquipmentPlantCodesParams](api_endpoints_types.md#getequipmentplantcodesparams)
 - [GetEquipmentPlantCodesResults](api_endpoints_types.md#getequipmentplantcodesresults)
 - [GetMakeForManufacturerResults](api_endpoints_types.md#getmakeformanufacturerresults)
 - [GetMakesForManufacturerAndYearResults](api_endpoints_types.md#getmakesformanufacturerandyearresults)
@@ -98,6 +99,12 @@ ___
 ### GetCanadianVehicleSpecificationsResults
 
 Re-exports [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
+
+___
+
+### GetEquipmentPlantCodesParams
+
+Re-exports [GetEquipmentPlantCodesParams](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
 
 ___
 
