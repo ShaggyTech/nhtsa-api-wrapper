@@ -12,12 +12,16 @@ import {
 import type { IArgToValidate, NhtsaResponse, AtLeastOne } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetModelsForMakeIdYear Documentation](/api/get-models-for-make-id-year)
+ * :::
+ *
  * `GetModelsForMakeIdYear` returns the Models in the vPIC dataset for a specified Model Year
  * and Make whose name is LIKE the Make in the vPIC Dataset.
  *
- * `params.makeId` is required
+ * `params.makeId` is an integer and is **required**.
  *
- * A minimum of one of the following are also required (or a combination of both):
+ * A minimum of one of the following are also **required** (or a combination of both):
  * - `params.modelYear` year you want to search for (years >= 1995 are supported according to NHTSA
  *   docs)
  * - `params.vehicleType` can be a partial name, or a full name for more specificity, e.g.,
@@ -54,7 +58,27 @@ import type { IArgToValidate, NhtsaResponse, AtLeastOne } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeIdYearResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetModelsForMakeIdYear = async (
+function GetModelsForMakeIdYear(
+  params: {
+    makeId: string | number
+  } & AtLeastOne<{
+    modelYear?: string | number
+    vehicleType?: string
+  }>,
+  doFetch?: true
+): Promise<NhtsaResponse<GetModelsForMakeIdYearResults>>
+
+function GetModelsForMakeIdYear(
+  params: {
+    makeId: string | number
+  } & AtLeastOne<{
+    modelYear?: string | number
+    vehicleType?: string
+  }>,
+  doFetch: false
+): Promise<string>
+
+async function GetModelsForMakeIdYear(
   params: {
     makeId: string | number
   } & AtLeastOne<{
@@ -62,7 +86,7 @@ export const GetModelsForMakeIdYear = async (
     vehicleType?: string
   }>,
   doFetch = true
-): Promise<NhtsaResponse<GetModelsForMakeIdYearResults> | string> => {
+): Promise<NhtsaResponse<GetModelsForMakeIdYearResults> | string> {
   const endpointName = 'GetModelsForMakeIdYear'
 
   try {
@@ -120,10 +144,10 @@ export const GetModelsForMakeIdYear = async (
   }
 }
 
+export { GetModelsForMakeIdYear }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetModelsForMakeIdYear endpoint
- *
- * @alias GetModelsForMakeIdYearResults
+ * Objects found in the `Results` array of `GetModelsForMakeIdYear` endpoint response.
  */
 export type GetModelsForMakeIdYearResults = {
   Make_ID: number

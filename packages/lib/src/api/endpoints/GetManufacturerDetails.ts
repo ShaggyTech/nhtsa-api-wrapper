@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+ * :::
+ *
  * `GetManufacturerDetails` provides the details for a specific manufacturer that is requested.
  * Multiple results are returned in case of multiple matches.
  *
@@ -24,10 +28,20 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetManufacturerDetailsResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetManufacturerDetails = async (
+function GetManufacturerDetails(
+  manufacturer: string | number,
+  doFetch?: true
+): Promise<NhtsaResponse<GetManufacturerDetailsResults>>
+
+function GetManufacturerDetails(
+  manufacturer: string | number,
+  doFetch: false
+): Promise<string>
+
+async function GetManufacturerDetails(
   manufacturer: string | number,
   doFetch = true
-): Promise<NhtsaResponse<GetManufacturerDetailsResults> | string> => {
+): Promise<NhtsaResponse<GetManufacturerDetailsResults> | string> {
   const endpointName = 'GetManufacturerDetails'
 
   try {
@@ -55,10 +69,10 @@ export const GetManufacturerDetails = async (
   }
 }
 
+export { GetManufacturerDetails }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetManufacturerDetails endpoint
- *
- * @alias GetManufacturerDetailsResults
+ * Objects found in the `Results` array of `GetManufacturerDetails` endpoint response.
  */
 export type GetManufacturerDetailsResults = {
   Address: string | null

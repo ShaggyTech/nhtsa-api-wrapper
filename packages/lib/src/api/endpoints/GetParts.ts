@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetParts Documentation](/api/get-parts)
+ * :::
+ *
  * `GetParts` provides a list of ORGs with letter date in the given range of the dates and with
  * specified Type (`params.type`) of ORG.
  *
@@ -19,8 +23,13 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * `params.type`:
  * - (optional) number, 565 (Vehicle Identification Number Guidance, based on 49 CFR Part 565)
  *   or 566 (Manufacturer Identification – Reporting Requirements based on 49 CFR Part 566)
+ *
  * `params.fromDate`:
  * - (optional) ORG's Letter Date should be on or after this date
+ *
+ * `params.toDate`:
+ * - (optional) ORG's Letter Date should be on or before this date
+ *
  * `params.manufacturer`:
  * - (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
  * - if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
@@ -29,6 +38,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * - multiple results are returned in case of multiple matches
  * - manufacturer name can be a partial name, or a full name for more specificity, e.g., "988",
  *   "HONDA", "HONDA OF CANADA MFG., INC.", etc.
+ *
  * `params.page`:
  *  - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
  *
@@ -39,6 +49,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @param {(string|number)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query
+ * @param {string} [params.manufacturer] - Manufacturer Name or ID
  * @param {(string|number)} [params.page] - Which page number of results to request
  * (up to 1000 results per page)
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
@@ -46,17 +57,47 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetPartsResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-export const GetParts = async (
+function GetParts(
+  doFetch: true,
+  _dummy?: undefined
+): Promise<NhtsaResponse<GetPartsResults>>
+
+function GetParts(doFetch?: false, _dummy?: undefined): Promise<string>
+
+function GetParts(
+  params: {
+    type?: string | number
+    fromDate?: string
+    toDate?: string
+    manufacturer?: string | number
+    page?: string | number
+  },
+  doFetch: false
+): Promise<string>
+
+function GetParts(
+  params?: {
+    type?: string | number
+    fromDate?: string
+    toDate?: string
+    manufacturer?: string | number
+    page?: string | number
+  },
+  doFetch?: true
+): Promise<NhtsaResponse<GetPartsResults>>
+
+async function GetParts(
   params?:
     | {
         type?: string | number
         fromDate?: string
         toDate?: string
+        manufacturer?: string | number
         page?: string | number
       }
     | boolean,
   doFetch = true
-): Promise<NhtsaResponse<GetPartsResults> | string> => {
+): Promise<NhtsaResponse<GetPartsResults> | string> {
   const endpointName = 'GetParts'
 
   if (typeof params === 'boolean') {
@@ -89,10 +130,10 @@ export const GetParts = async (
   }
 }
 
+export { GetParts }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetParts endpoint
- *
- * @alias GetPartsResults
+ * Objects found in the `Results` array of `GetParts` endpoint response.
  */
 export type GetPartsResults = {
   CoverLetterURL: string

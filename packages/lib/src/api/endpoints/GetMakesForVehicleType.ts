@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+ * :::
+ *
  * `GetMakesForVehicleType` returns all the Makes in the vPIC dataset for a specified vehicle type
  * (`typeName`), whose name is LIKE the vehicle type name in vPIC Dataset.
  *
@@ -20,10 +24,20 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetMakesForVehicleTypeResults> | string>)} - Api Response
  * `object` -or- url `string` if `doFetch = false`
  */
-export const GetMakesForVehicleType = async (
+function GetMakesForVehicleType(
+  typeName: string,
+  doFetch?: true
+): Promise<NhtsaResponse<GetMakesForVehicleTypeResults>>
+
+function GetMakesForVehicleType(
+  typeName: string,
+  doFetch: false
+): Promise<string>
+
+async function GetMakesForVehicleType(
   typeName: string,
   doFetch = true
-): Promise<NhtsaResponse<GetMakesForVehicleTypeResults> | string> => {
+): Promise<NhtsaResponse<GetMakesForVehicleTypeResults> | string> {
   const endpointName = 'GetMakesForVehicleType'
 
   try {
@@ -51,10 +65,10 @@ export const GetMakesForVehicleType = async (
   }
 }
 
+export { GetMakesForVehicleType }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetMakesForVehicleType endpoint
- *
- * @alias GetMakesForVehicleTypeResults
+ * Objects found in the `Results` array of `GetMakesForVehicleType` endpoint response.
  */
 export type GetMakesForVehicleTypeResults = {
   MakeId: number

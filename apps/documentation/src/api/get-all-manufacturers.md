@@ -82,7 +82,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 ```typescript
 => Promise<string>
 
-// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetAllManufacturers/?format=json'
+// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetParts?type=565&fromDate=1/1/2015&toDate=5/5/2015&manufacturer=hon&format=json'
 ```
 
 ::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)

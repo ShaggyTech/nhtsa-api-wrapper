@@ -8,6 +8,10 @@ import { catchInvalidArguments, rejectWithError } from '@/utils'
 import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
+ * ::: tip :bulb: More Information
+ * See: [GetModelsForMake Documentation](/api/get-models-for-make)
+ * :::
+ *
  * `GetModelsForMake` returns the Models in the vPIC dataset for a specified `makeName`
  * whose Name is LIKE the Make in vPIC Dataset.
  *
@@ -21,10 +25,17 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * @returns {(Promise<NhtsaResponse<GetModelsForMakeResults> | string>)} - Api Response `object`
  * -or- url `string` if `doFetch = false`
  */
-export const GetModelsForMake = async (
+function GetModelsForMake(
+  makeName: string,
+  doFetch?: true
+): Promise<NhtsaResponse<GetModelsForMakeResults>>
+
+function GetModelsForMake(makeName: string, doFetch: false): Promise<string>
+
+async function GetModelsForMake(
   makeName: string,
   doFetch = true
-): Promise<NhtsaResponse<GetModelsForMakeResults> | string> => {
+): Promise<NhtsaResponse<GetModelsForMakeResults> | string> {
   const endpointName = 'GetModelsForMake'
 
   try {
@@ -52,10 +63,10 @@ export const GetModelsForMake = async (
   }
 }
 
+export { GetModelsForMake }
+
 /**
- * Objects found in the NhtsaResponse 'Results' array of GetModelsForMake endpoint
- *
- * @alias GetModelsForMakeResults
+ * Objects found in the `Results` array of `GetModelsForMake` endpoint response.
  */
 export type GetModelsForMakeResults = {
   Make_ID: number

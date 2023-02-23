@@ -122,7 +122,7 @@ import { GetMakesForManufacturerAndYear } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetMakesForManufacturerAndYear('volks', { year: 2020 })
 ```
 
-### Example 1: Get Makes for Manufacturer ID and Year
+### Example 2: Get Makes for Manufacturer ID and Year
 
 ```ts
 import { GetMakesForManufacturerAndYear } from '@shaggytools/nhtsa-api-wrapper'
