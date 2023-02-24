@@ -26,6 +26,6 @@ export {
   useNHTSA,
 } from '@/api'
 
-export { isValidVin } from '@/utils'
+export { createQueryString, encodeQueryStringParams, isValidVin } from '@/utils'
 
 export * from '@/types'

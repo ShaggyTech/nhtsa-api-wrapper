@@ -15,7 +15,10 @@ export type { DecodeWMIResults } from './DecodeWMI'
 export type { GetAllMakesResults } from './GetAllMakes'
 export type { GetAllManufacturersResults } from './GetAllManufacturers'
 export type { GetCanadianVehicleSpecificationsResults } from './GetCanadianVehicleSpecifications'
-export type { GetEquipmentPlantCodesResults } from './GetEquipmentPlantCodes'
+export type {
+  GetEquipmentPlantCodesResults,
+  GetEquipmentPlantCodesParams,
+} from './GetEquipmentPlantCodes'
 export type { GetMakeForManufacturerResults } from './GetMakeForManufacturer'
 export type { GetMakesForManufacturerAndYearResults } from './GetMakesForManufacturerAndYear'
 export type { GetMakesForVehicleTypeResults } from './GetMakesForVehicleType'
