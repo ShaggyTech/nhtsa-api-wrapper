@@ -3,9 +3,13 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", "**/.vitepress/dist/**"]
     },
     "lint": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "lint:fix": {
       "outputs": []
     },
     "format": {
@@ -14,6 +18,9 @@
     },
     "dev": {
       "cache": false
+    },
+    "test": {
+      "outputs": []
     }
   }
 }

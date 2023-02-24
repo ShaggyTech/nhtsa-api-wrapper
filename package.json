@@ -21,7 +21,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "turbo run format"
+    "format": "turbo run format",
+    "lint:fix": "turbo run lint:fix",
+    "test": "turbo run test"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.2",

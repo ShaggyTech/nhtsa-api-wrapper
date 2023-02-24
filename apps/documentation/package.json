@@ -6,11 +6,12 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "dev": "vitepress dev src --host",
+    "build": "vitepress build src",
+    "preview": "vitepress preview src",
     "lint": "eslint .",
-    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
-    "docs:dev": "vitepress dev src --host",
-    "docs:build": "vitepress build src",
-    "docs:preview": "vitepress preview src"
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@shaggytools/nhtsa-api-wrapper": "workspace:*",

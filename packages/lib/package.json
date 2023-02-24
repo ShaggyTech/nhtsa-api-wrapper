@@ -27,21 +27,26 @@
   ],
   "packageManager": "pnpm@7.25.1",
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=16.13.0",
     "pnpm": ">=7.0.0",
     "npm": ">=8.0.0"
   },
+  "workspaces": [
+    "apps/*",
+    "config/*",
+    "packages/*"
+  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "clean:dist": "rimraf dist/*",
-    "clean:dev": "rimraf dev/*",
-    "build": "pnpm run lint && pnpm run clean:dist && pnpm run build:lib",
+    "build": "pnpm run build:lib && pnpm run build:typedocs",
     "build:lib": "tsc --noEmit && vite build",
-    "typedocs:build": "typedoc --options .typedoc/typedoc.js",
-    "typedocs:watch": "typedoc --options .typedoc/typedoc.js --watch",
-    "dev": "vite build --watch --outDir dev/dist",
+    "build:typedocs": "typedoc --options .typedoc/typedoc.js",
+    "dev": "pnpm run dev:lib & pnpm run dev:typedocs",
+    "dev:lib": "vite build --watch --outDir dev/dist",
+    "dev:typedocs": "typedoc --options .typedoc/typedoc.js --watch",
     "preview": "vite preview",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
