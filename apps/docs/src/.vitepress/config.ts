@@ -1,5 +1,6 @@
 import { createRequire } from 'module'
 import { defineConfig } from 'vitepress'
+import { packageReferenceLinks, vpicEndpointLinks } from './menu'
 
 const require = createRequire(import.meta.url)
 const pkg = require('@shaggytools/nhtsa-api-wrapper/package.json')
@@ -26,9 +27,9 @@ export default defineConfig({
     nav: nav(),
 
     sidebar: {
-      '/guide/': sidebarGuide(),
-      '/api/': sidebarGuide(),
-      '/typedoc/': sidebarGuide(),
+      '/guide/': sidebar(),
+      '/api/': sidebar(),
+      '/typedoc/': sidebar(),
     },
 
     editLink: {
@@ -72,7 +73,7 @@ function nav() {
   ]
 }
 
-function sidebarGuide() {
+function sidebar() {
   return [
     {
       text: 'Guide',
@@ -93,6 +94,7 @@ function sidebarGuide() {
     },
     {
       text: 'API Reference',
+      collapsed: false,
       items: [
         {
           text: 'Introduction',
@@ -104,166 +106,23 @@ function sidebarGuide() {
         },
         {
           text: 'VPIC API Endpoints',
-          collapsed: false,
-          items: [
-            { text: 'DecodeVin', link: '/api/decode-vin' },
-            { text: 'DecodeVinExtended', link: '/api/decode-vin-extended' },
-            { text: 'DecodeVinValues', link: '/api/decode-vin-values' },
-            {
-              text: 'DecodeVinValuesBatch',
-              link: '/api/decode-vin-values-batch',
-            },
-            {
-              text: 'DecodeVinValuesExtended',
-              link: '/api/decode-vin-values-extended',
-            },
-            { text: 'DecodeWMI', link: '/api/decode-wmi' },
-            { text: 'GetAllMakes', link: '/api/get-all-makes' },
-            { text: 'GetAllManufacturers', link: '/api/get-all-manufacturers' },
-            {
-              text: 'GetCanadianVehicleSpecifications',
-              link: '/api/get-canadian-vehicle-specifications',
-            },
-            {
-              text: 'GetEquipmentPlantCodes',
-              link: '/api/get-equipment-plant-codes',
-            },
-            {
-              text: 'GetMakeForManufacturer',
-              link: '/api/get-make-for-manufacturer',
-            },
-            {
-              text: 'GetMakesForManufacturerAndYear',
-              link: '/api/get-makes-for-manufacturer-and-year',
-            },
-            {
-              text: 'GetMakesForVehicleType',
-              link: '/api/get-makes-for-vehicle-type',
-            },
-            {
-              text: 'GetManufacturerDetails',
-              link: '/api/get-manufacturer-details',
-            },
-            { text: 'GetModelsForMake', link: '/api/get-models-for-make' },
-            { text: 'GetModelsForMakeId', link: '/api/get-models-for-make-id' },
-            {
-              text: 'GetModelsForMakeIdYear',
-              link: '/api/get-models-for-make-id-year',
-            },
-            {
-              text: 'GetModelsForMakeYear',
-              link: '/api/get-models-for-make-year',
-            },
-            { text: 'GetParts', link: '/api/get-parts' },
-            {
-              text: 'GetVehicleTypesForMake',
-              link: '/api/get-vehicle-types-for-make',
-            },
-            {
-              text: 'GetVehicleTypesForMakeId',
-              link: '/api/get-vehicle-types-for-make-id',
-            },
-            {
-              text: 'GetVehicleVariableList',
-              link: '/api/get-vehicle-variable-list',
-            },
-            {
-              text: 'GetVehicleVariableValuesList',
-              link: '/api/get-vehicle-variable-values-list',
-            },
-            {
-              text: 'GetWMIsForManufacturer',
-              link: '/api/get-wmis-for-manufacturer',
-            },
-          ],
+          collapsed: true,
+          items: vpicEndpointLinks,
         },
       ],
     },
     {
       text: 'Package Reference',
-      link: '/typedoc/',
-    },
-    // {
-    //   text: 'Theme',
-    //   collapsed: false,
-    //   items: [
-    //     { text: 'Introduction', link: '/guide/theme-introduction' },
-    //     { text: 'Nav', link: '/guide/theme-nav' },
-    //     { text: 'Sidebar', link: '/guide/theme-sidebar' },
-    //     { text: 'Prev Next Link', link: '/guide/theme-prev-next-link' },
-    //     { text: 'Edit Link', link: '/guide/theme-edit-link' },
-    //     { text: 'Last Updated', link: '/guide/theme-last-updated' },
-    //     { text: 'Layout', link: '/guide/theme-layout' },
-    //     { text: 'Home Page', link: '/guide/theme-home-page' },
-    //     { text: 'Team Page', link: '/guide/theme-team-page' },
-    //     { text: 'Badge', link: '/guide/theme-badge' },
-    //     { text: 'Footer', link: '/guide/theme-footer' },
-    //     { text: 'Search', link: '/guide/theme-search' },
-    //     { text: 'Carbon Ads', link: '/guide/theme-carbon-ads' },
-    //   ],
-    // },
-    // {
-    //   text: 'Migrations',
-    //   collapsed: false,
-    //   items: [
-    //     {
-    //       text: 'Migration from VuePress',
-    //       link: '/guide/migration-from-vuepress',
-    //     },
-    //     {
-    //       text: 'Migration from VitePress 0.x',
-    //       link: '/guide/migration-from-vitepress-0',
-    //     },
-    //   ],
-    // },
-  ]
-}
-
-function sidebarApi() {
-  return [
-    {
-      text: 'API Reference',
+      collapsed: false,
       items: [
         {
           text: 'Introduction',
-          link: '/api/',
+          link: '/typedoc/',
         },
         {
-          text: 'VPIC API Response',
-          link: '/api/vpic-api-response',
-        },
-        {
-          text: 'VPIC API Endpoints',
+          text: 'Typedocs',
           collapsed: false,
-          items: [
-            { text: 'DecodeVin', link: '/api/decode-vin' },
-            { text: 'DecodeVinExtended', link: '/api/decode-vin-extended' },
-            { text: 'DecodeVinValues', link: '/api/decode-vin-values' },
-            {
-              text: 'DecodeVinValuesBatch',
-              link: '/api/decode-vin-values-batch',
-            },
-            // { text: 'DecodeVinValuesExtended', link: '/api/decode-vin-values-extended' },
-            // { text: 'DecodeWMI', link: '/api/decode-wmi' },
-            // { text: 'GetAllMakes', link: '/api/get-all-makes' },
-            // { text: 'GetAllManufacturers', link: '/api/get-all-manufacturers' },
-            // { text: 'GetCanadianVehicleSpecifications', link: '/api/get-canadian-vehicle-specifications' },
-            // { text: 'GetEquipmentPlantCodes', link: '/api/get-equipment-plant-codes' },
-            // { text: 'GetMakeForManufacturer', link: '/api/get-make-for-manufacturer' },
-            // { text: 'GetMakesForManufacturerAndYear', link: '/api/get-makes-for-manufacturer-and-year' },
-            // { text: 'GetMakesForVehicleType', link: '/api/get-makes-for-vehicle-type' },
-            // { text: 'GetManufacturerDetails', link: '/api/get-manufacturer-details' },
-            // { text: 'GetModelsForMake', link: '/api/get-models-for-make' },
-            // { text: 'GetModelsForMakeId', link: '/api/get-models-for-make-id' },
-            // { text: 'GetModelsForMakeIdYear', link: '/api/get-models-for-make-id-year' },
-            // { text: 'GetModelsForMakeYear', link: '/api/get-models-for-make-year' },
-            // { text: 'GetParts', link: '/api/get-parts' },
-            // { text: 'GetVehicleTypesForMake', link: '/api/get-vehicle-types-for-make' },
-            // { text: 'GetVehicleTypesForMakeId', link: '/api/get-vehicle-types-for-make-id' },
-            // { text: 'GetVehicleVariableList', link: '/api/get-vehicle-variable-list' },
-            // { text: 'GetVehicleVariableValuesList', link: '/api/get-vehicle-variable-values-list' },
-            // { text: 'GetWMIsForManufacturer', link: '/api/get-wmis-for-manufacturer' },
-          ],
+          items: packageReferenceLinks,
         },
       ],
     },
