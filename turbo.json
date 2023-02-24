@@ -6,7 +6,6 @@
       "outputs": ["dist/**", "**/.vitepress/dist/**"]
     },
     "lint": {
-      "dependsOn": ["^build"],
       "outputs": []
     },
     "lint:fix": {

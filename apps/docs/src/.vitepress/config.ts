@@ -33,7 +33,7 @@ export default defineConfig({
 
     editLink: {
       pattern:
-        'https://github.com/shaggytech/nhtsa-api-wrapper/edit/main/apps/documentation/:path',
+        'https://github.com/shaggytech/nhtsa-api-wrapper/edit/main/apps/docs/:path',
       text: 'Edit this page on GitHub',
     },
 

@@ -3,7 +3,7 @@ require('typedoc-config')
 const path = require('path')
 
 const cwd = process.cwd()
-const outDir = '../../apps/documentation/src/typedoc'
+const outDir = '../../apps/docs/src/typedoc'
 
 const out = path.join(cwd, outDir)
 // const json = path.join(out, 'typedoc-output.json')
