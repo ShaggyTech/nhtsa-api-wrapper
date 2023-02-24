@@ -28,8 +28,7 @@
   "packageManager": "pnpm@7.25.1",
   "engines": {
     "node": ">=16.13.0",
-    "pnpm": ">=7.0.0",
-    "npm": ">=8.0.0"
+    "pnpm": ">=7.27.1"
   },
   "workspaces": [
     "apps/*",
@@ -38,10 +37,10 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build": "pnpm run build:lib && pnpm run build:typedocs",
+    "build": "pnpm run \"/^build:.*/\"",
     "build:lib": "tsc --noEmit && vite build",
     "build:typedocs": "typedoc --options .typedoc/typedoc.js",
-    "dev": "pnpm run dev:lib & pnpm run dev:typedocs",
+    "dev": "pnpm run \"/^dev:.*/\"",
     "dev:lib": "vite build --watch --outDir dev/dist",
     "dev:typedocs": "typedoc --options .typedoc/typedoc.js --watch",
     "preview": "vite preview",

@@ -1,5 +1,5 @@
 {
-  "name": "documentation",
+  "name": "docs",
   "version": "3.0.0",
   "description": "Documentation website for @shaggytools/nhtsa-api-wrapper npm package",
   "private": true,

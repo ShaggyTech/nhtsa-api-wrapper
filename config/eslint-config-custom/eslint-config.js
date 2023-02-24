@@ -14,17 +14,17 @@ module.exports = {
   plugins: ["@typescript-eslint", "prettier", "markdown"],
   overrides: [
     {
-      // 2. Enable the Markdown processor for all .md files.
+      // Enable the Markdown processor for all .md files.
       files: ["**/*.md"],
       processor: "markdown/markdown",
     },
     {
-      // 3. Optionally, customize the configuration ESLint uses for ```js
-      // fenced code blocks inside .md files.
+      // Customize the config for fenced code blocks inside .md files.
       files: ["**/*.md/*.js", "**/*.md/*.ts"],
       rules: {
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-unused-vars": "off",
+        "no-console": "off",
       },
     },
   ],
