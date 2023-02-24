@@ -39,7 +39,7 @@ e.g., "Merc", "Mercedes Benz", 987, etc.
 - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
   name (it accepts a partial VehicleType name as an input).
 
-For this endpoint, `manufacturer` is actually part of the path string, not a query param. We
+_NOTE_: For this endpoint, `manufacturer` is actually part of the path string, not a query param. We
 include `manufacturer` in params as it's easier to type the function args using the 'AtLeastOne'
 type if they are placed in the same object (params). This can cause confusion as it's not
 consistent with other endpoint methods where path string is the first arg, and the query params
