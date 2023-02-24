@@ -12,6 +12,7 @@ const navigationLinks = {
 module.exports = {
   entryPoints: [entryPoint],
   entryPointStrategy: "expand",
+  gitRevision: "main",
   hideGenerator: true,
   includeVersion: true,
   navigationLinks,
