@@ -14,7 +14,6 @@
 - [isError](utils.md#iserror)
 - [isValidVin](utils.md#isvalidvin)
 - [rejectWithError](utils.md#rejectwitherror)
-- [useQueryString](utils.md#usequerystring)
 - [validateArgument](utils.md#validateargument)
 
 ## References
@@ -64,12 +63,6 @@ ___
 ### rejectWithError
 
 Re-exports [rejectWithError](utils_errorHandler.md#rejectwitherror)
-
-___
-
-### useQueryString
-
-Re-exports [useQueryString](utils_queryString.md#usequerystring)
 
 ___
 

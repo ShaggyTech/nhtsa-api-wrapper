@@ -65,6 +65,8 @@
 - [QueryStringParamsEncoded](index.md#querystringparamsencoded)
 - [QueryStringTypes](index.md#querystringtypes)
 - [RequireOnlyOne](index.md#requireonlyone)
+- [createQueryString](index.md#createquerystring)
+- [encodeQueryStringParams](index.md#encodequerystringparams)
 - [isValidVin](index.md#isvalidvin)
 - [useNHTSA](index.md#usenhtsa)
 
@@ -421,6 +423,18 @@ ___
 ### RequireOnlyOne
 
 Re-exports [RequireOnlyOne](utils_types.md#requireonlyone)
+
+___
+
+### createQueryString
+
+Re-exports [createQueryString](utils_queryString.md#createquerystring)
+
+___
+
+### encodeQueryStringParams
+
+Re-exports [encodeQueryStringParams](utils_queryString.md#encodequerystringparams)
 
 ___
 

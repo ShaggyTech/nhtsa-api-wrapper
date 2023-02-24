@@ -14,7 +14,6 @@
 
 - [createQueryString](utils_queryString.md#createquerystring)
 - [encodeQueryStringParams](utils_queryString.md#encodequerystringparams)
-- [useQueryString](utils_queryString.md#usequerystring)
 
 ## Type Aliases
 
@@ -150,60 +149,3 @@ boolean are filtered out of final object.
 #### Defined in
 
 [utils/queryString.ts:95](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L95)
-
-___
-
-### useQueryString
-
-▸ **useQueryString**(): `Object`
-
-`useQueryString` is a composable function that returns an object containing methods for creating
-and handling query strings.
-
-The exported methods are:
-- `createString()` - Creates a query string from an object of search parameters.
-- `encodeParams()` - Encodes all params in an object into URI component encoded strings and
-  returns a new object with the encoded params. Silently filters out any params that are not
-  strings, numbers, or booleans.
-
-**`Example`**
-
-```ts
-// Create a query string from an object of search parameters
-const params = { param1: 'value1', param2: 'value with spaces' }
-const queryString = useQueryString().createString(params)
-// queryString === '?param1=value1&param2=value%20with%20spaces&format=json'
-// format=json is hardcoded and is always included in the query string for this package.
-```
-
-**`Example`**
-
-```ts
-// Same params and return value but using destructure syntax
-const { createString } = useQueryString()
-const queryString = createString(params)
-```
-
-**`Example`**
-
-```ts
-// Encode query string params values into URI component encoded strings and return a new object
-const params = { param1: 'value1', param2: true, param3: ['array will be filtered'] }
-const encodedParams = useQueryString().encodeParams(params)
-// encodedParams === { param1: 'value1', param2: 'true' }
-```
-
-#### Returns
-
-`Object`
-
-- Object containing methods for creating and handling query strings.
-
-| Name | Type |
-| :------ | :------ |
-| `createString` | <T\>(`params`: `T`, `allowEmptyParams?`: `boolean`) => `string` |
-| `encodeParams` | <T\>(`params`: `T`) => [`QueryStringParamsEncoded`](utils_queryString.md#querystringparamsencoded)<`T`\> |
-
-#### Defined in
-
-[utils/queryString.ts:146](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L146)

@@ -37,16 +37,10 @@ what they return.
 - [GetVehicleVariableValuesList](../api/get-vehicle-variable-values-list.md)
 - [GetWMIsForManufacturer](../api/get-wmis-for-manufacturer.md)
 
-## Package Utility Functions
-
-- [isValidVin](../api/is-valid-vin.md)
-- [useNHTSA](../api/use-nhtsa.md)
-
-## All Exported Package Functions
+## All Exported VPIC API Functions
 
 ```javascript
 import {
-  // NHTSA API Endpoints
   DecodeVin,
   DecodeVinExtended,
   DecodeVinValues,
@@ -70,10 +64,6 @@ import {
   GetVehicleTypesForMakeId,
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
-  GetWMIsForManufacturer,
-  // composable function returning helper functions for NHTSA API
-  useNHTSA,
-  // function for offline VIN validation
-  isValidVin
+  GetWMIsForManufacturer
 } from '@shaggytools/nhtsa-api-wrapper'
 ```
