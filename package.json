@@ -1,23 +1,21 @@
 {
   "name": "nhtsa-api-wrapper",
-  "version": "3.0.0",
-  "description": "Monorepo for the @shaggytools/nhtsa-api-wrapper package",
+  "private": true,
+  "version": "0.0.0",
+  "description": "@shaggytools/nhtsa-api-wrapper Monorepo",
   "author": "Brandon Eichler <github.com/shaggytech>",
   "license": "MIT",
-  "private": true,
-  "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=7.0.0",
-    "npm": ">=8.0.0"
+  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git"
   },
-  "packageManager": "pnpm@7.26.0",
-  "workspaces": [
-    "apps/*",
-    "config/*",
-    "packages/*"
-  ],
+  "bugs": {
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prepare": "turbo run prepare",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
@@ -25,6 +23,11 @@
     "lint:fix": "turbo run lint:fix",
     "test": "turbo run test"
   },
+  "workspaces": [
+    "apps/*",
+    "config/*",
+    "packages/*"
+  ],
   "devDependencies": {
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
@@ -33,30 +36,14 @@
     "turbo": "1.7.0",
     "typescript": "4.9.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
-    "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper"
+  "packageManager": "pnpm@7.27.1",
+  "engines": {
+    "node": ">=18.13.0",
+    "pnpm": ">=7.27.1"
   },
-  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
-  "bugs": {
-    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
-  },
-  "keywords": [
-    "VIN",
-    "Vehicle Identification Number",
-    "NHTSA.gov",
-    "NHTSA.dot.gov",
-    "NHTSA",
-    "National Highway Traffic Safety Administration",
-    "api",
-    "VIN decode",
-    "VIN decoder",
-    "typescript"
-  ],
   "husky": {
     "hooks": {
-      "pre-commit": "pnpm prettier",
+      "pre-commit": "pnpm lint",
       "pre-push": "pnpm verify"
     }
   },
