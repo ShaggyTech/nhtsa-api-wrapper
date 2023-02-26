@@ -3,17 +3,17 @@
   "version": "3.0.0",
   "description": "Internal shared eslint-config for the @shaggytools/nhtsa-api-wrapper monorepo",
   "private": true,
-  "main": "eslint-config.js",
+  "main": "eslint-config.cjs",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "5.48.1",
-    "@typescript-eslint/parser": "5.48.1",
+    "@typescript-eslint/eslint-plugin": "5.53.0",
+    "@typescript-eslint/parser": "5.53.0",
     "eslint": "8.32.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-markdown": "3.0.0",
     "eslint-plugin-prettier": "4.2.1",
-    "prettier": "2.8.3"
+    "prettier": "2.8.4"
   },
   "devDependencies": {
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   }
 }
