@@ -106,7 +106,7 @@ function sidebar() {
         },
         {
           text: 'VPIC API Endpoints',
-          collapsed: true,
+          collapsed: false,
           items: vpicEndpointLinks,
         },
       ],
@@ -121,7 +121,7 @@ function sidebar() {
         },
         {
           text: 'Typedocs',
-          collapsed: false,
+          collapsed: true,
           items: packageReferenceLinks,
         },
       ],
