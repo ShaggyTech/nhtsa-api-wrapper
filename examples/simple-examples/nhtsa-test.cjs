@@ -4,10 +4,10 @@
 
 async function testApi() {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const nhsta = await require('../../dist/nhtsa-api-wrapper.umd.js')
-  const result = await nhsta.DecodeVin('3VWCK21C92M452103')
-  console.log(result)
-  return result
+  const nhsta = await require("../../packages/lib/dist/nhtsa-api-wrapper.cjs");
+  const result = await nhsta.DecodeVin("3VWCK21C92M452103", false);
+  console.log(result);
+  return result;
 }
 
-testApi()
+testApi();
