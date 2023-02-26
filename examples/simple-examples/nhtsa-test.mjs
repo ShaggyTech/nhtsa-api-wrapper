@@ -2,8 +2,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 
-import { DecodeVin } from "../../packages/lib/dist/nhtsa-api-wrapper.js";
+import { DecodeVin } from "../../packages/lib/dist/nhtsa-api-wrapper.mjs";
 
-const { Results } = await DecodeVin("3VWCK21C92M452103").catch((err) => err);
+const results = await DecodeVin("3VWCK21C92M452103").catch((err) => err);
 
-console.log(JSON.stringify(Results));
+console.log(JSON.stringify(results));

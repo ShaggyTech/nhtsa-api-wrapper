@@ -4,16 +4,23 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-// variable to store if this is dev mode
-const isDevMode = process.env.NODE_ENV === 'development'
-const dtsOutDir = isDevMode ? 'dev/dist/types' : 'dist/types'
+const packageName = 'nhtsa-api-wrapper';
+
+const fileName = {
+  es: `${packageName}.mjs`,
+  cjs: `${packageName}.cjs`,
+  umd: `${packageName}.umd.cjs`,
+  iife: `${packageName}.iife.js`,
+};
+
+const formats = Object.keys(fileName) as Array<keyof typeof fileName>;
 
 export default defineConfig({
   plugins: [
     tsconfigPaths(),
     dts({
       entryRoot: './src/',
-      outputDir: dtsOutDir,
+      outputDir: './dist/types',
       insertTypesEntry: true,
     }),
   ],
@@ -37,7 +44,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'NHTSA',
-      formats: ['es', 'iife', 'umd', 'cjs'],
+      formats,
+      fileName: (format) => fileName[format],
     },
     sourcemap: true,
     reportCompressedSize: true,

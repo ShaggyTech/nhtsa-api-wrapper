@@ -18,7 +18,7 @@
             DecodeVinValuesBatch,
             GetMakesForManufacturerAndYear,
           } = await import(
-            "../../packages/lib/dist/nhtsa-api-wrapper.js"
+            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
           ).catch((err) => err);
 
           const results = await DecodeVinValuesBatch(
@@ -85,7 +85,7 @@
         .addEventListener("click", async () => {
           /* Lazy Loading */
           const { DecodeVin } = await import(
-            "../../packages/lib/dist/nhtsa-api-wrapper.js"
+            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
           ).catch((err) => err);
 
           const results = await DecodeVin("WVWHV71K69W144983", true)
@@ -102,7 +102,7 @@
         .getElementById("isValidVin")
         .addEventListener("click", async function () {
           const { isValidVin } = await import(
-            "../../packages/lib/dist/nhtsa-api-wrapper.js"
+            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
           );
           const result = isValidVin("WVWHV71K69W144983");
           console.log(`isValidVin result: ${result}`);

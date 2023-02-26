@@ -6,34 +6,36 @@
     <title>Testing module imports</title>
 
     <script type="module">
-      console.log(`Successfully imported via ESModule import`)
+      console.log(`Successfully imported via ESModule import`);
 
       document
-        .getElementById('DecodeVin')
-        .addEventListener('click', async () => {
+        .getElementById("DecodeVin")
+        .addEventListener("click", async () => {
           /* Lazy Loading */
           const { DecodeVin } = await import(
-            '../../dist/nhtsa-api-wrapper.mjs'
-          ).catch((err) => err)
+            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
+          ).catch((err) => err);
 
-          const { Results } = await DecodeVin('3VWCK21C92M452103').catch(
+          const { Results } = await DecodeVin("3VWCK21C92M452103").catch(
             (err) => err
-          )
+          );
 
-          console.log(Results)
+          console.log(Results);
           document.querySelector(
-            '#DecodeVinResults'
-          ).innerHTML = `${JSON.stringify(Results)}`
-        })
+            "#DecodeVinResults"
+          ).innerHTML = `${JSON.stringify(Results)}`;
+        });
 
       document
-        .getElementById('isValidVin')
-        .addEventListener('click', async function () {
-          const { isValidVin } = await import('../dist/nhtsa-api-wrapper.mjs')
-          const result = isValidVin('WVWHV71K69W144983')
-          console.log(`isValidVin result: ${result}`)
-          document.getElementById('isValidVinResults').innerText = result
-        })
+        .getElementById("isValidVin")
+        .addEventListener("click", async function () {
+          const { isValidVin } = await import(
+            "../../packages/lib/dist/nhtsa-api-wrapper.mjs"
+          );
+          const result = isValidVin("WVWHV71K69W144983");
+          console.log(`isValidVin result: ${result}`);
+          document.getElementById("isValidVinResults").innerText = result;
+        });
     </script>
   </head>
   <body>

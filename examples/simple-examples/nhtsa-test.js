@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 
-import { DecodeVin } from "../../packages/lib/dist/nhtsa-api-wrapper.js";
+import { DecodeVin } from "../../packages/lib/dist/nhtsa-api-wrapper.mjs";
 
 async function testApi() {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

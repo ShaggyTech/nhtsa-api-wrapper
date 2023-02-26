@@ -1,7 +1,7 @@
 {
   "name": "@shaggytools/nhtsa-api-wrapper",
   "private": false,
-  "version": "3.0.0",
+  "version": "3.0.0-beta.0",
   "description": "Universal javascript wrapper for the NHTSA.dot.gov VPIC 'vehicles' API, useful for VIN decoding, etc.",
   "author": "Brandon Eichler <github.com/shaggytech>",
   "license": "MIT",
@@ -36,10 +36,10 @@
   "sideEffects": false,
   "type": "module",
   "main": "dist/nhtsa-api-wrapper.cjs",
-  "module": "dist/nhtsa-api-wrapper.js",
+  "module": "dist/nhtsa-api-wrapper.mjs",
   "types": "dist/types/index.d.ts",
   "source": "src/index.ts",
-  "unpkg": "dist/nhtsa-api-wrapper.iife.js",
+  "unpkg": "dist/nhtsa-api-wrapper.iife.mjs",
   "jsdelivr": "dist/nhtsa-api-wrapper.iife.js",
   "files": [
     "dist"
@@ -49,7 +49,7 @@
       "types": "./dist/types/index.d.ts",
       "import": {
         "node": "./dist/nhtsa-api-wrapper.cjs",
-        "default": "./dist/nhtsa-api-wrapper.js"
+        "default": "./dist/nhtsa-api-wrapper.mjs"
       },
       "require": "./dist/nhtsa-api-wrapper.cjs"
     },
@@ -83,6 +83,7 @@
     "typescript": "4.9.5",
     "vite": "4.1.4",
     "vite-plugin-dts": "2.0.2",
-    "vite-tsconfig-paths": "4.0.5"
+    "vite-tsconfig-paths": "4.0.5",
+    "vitest": "0.29.1"
   }
 }
