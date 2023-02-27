@@ -6,7 +6,10 @@
       "outputs": ["dist/**", "**/.vitepress/dist/**"]
     },
     "prepare": {
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", "**/.vitepress/dist/**"]
+    },
+    "docs#prepare": {
+      "dependsOn": ["@shaggytools/nhtsa-api-wrapper#prepare"]
     },
     "lint": {
       "outputs": []

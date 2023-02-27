@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prepare": "pnpm run build",
     "dev": "vitepress dev src --host",
     "build": "vitepress build src",
     "preview": "vitepress preview src",
@@ -25,5 +26,12 @@
     "tsconfig": "workspace:*",
     "typescript": "4.9.5",
     "vitepress": "1.0.0-alpha.48"
-  }
+  },
+  "eslintConfig": {
+    "extends": [
+      "custom"
+    ],
+    "root": true
+  },
+  "prettier": "prettier-config"
 }

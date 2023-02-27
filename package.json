@@ -13,6 +13,16 @@
   "bugs": {
     "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
   },
+  "packageManager": "pnpm@7.27.1",
+  "workspaces": [
+    "apps/*",
+    "config/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18.13.0",
+    "pnpm": ">=7.27.1"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "turbo run prepare",
@@ -23,11 +33,6 @@
     "lint:fix": "turbo run lint:fix",
     "test": "turbo run test"
   },
-  "workspaces": [
-    "apps/*",
-    "config/*",
-    "packages/*"
-  ],
   "devDependencies": {
     "@commitlint/cli": "17.4.4",
     "@commitlint/config-conventional": "17.4.4",
@@ -35,11 +40,6 @@
     "rimraf": "4.1.2",
     "turbo": "1.8.2",
     "typescript": "4.9.5"
-  },
-  "packageManager": "pnpm@7.27.1",
-  "engines": {
-    "node": ">=18.13.0",
-    "pnpm": ">=7.27.1"
   },
   "husky": {
     "hooks": {

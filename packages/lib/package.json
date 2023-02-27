@@ -70,9 +70,12 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "test": "vitest",
+    "coverage": "vitest --coverage"
   },
   "devDependencies": {
+    "@vitest/coverage-c8": "0.29.1",
     "eslint": "8.35.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.4",
@@ -85,5 +88,12 @@
     "vite-plugin-dts": "2.0.2",
     "vite-tsconfig-paths": "4.0.5",
     "vitest": "0.29.1"
-  }
+  },
+  "eslintConfig": {
+    "extends": [
+      "custom"
+    ],
+    "root": true
+  },
+  "prettier": "prettier-config"
 }

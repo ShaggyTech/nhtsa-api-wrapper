@@ -29,18 +29,13 @@ module.exports = {
     },
   ],
   ignorePatterns: [
-    ".github",
-    ".vscode",
+    "!.vitepress",
+    "!.vitest",
+    "cache/",
     "coverage/",
     "dist/",
     "dev/",
-    "docs/",
-    "node_modules/",
-    "bin/",
-    "tests/",
-    "e2e",
-    ".eslintrc.js",
-    "pretter.config.js",
+    "typeDoc/",
   ],
   // 0 = off, 1 = warn, 2 = error
   rules: {
