@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
 
 # Module: api/endpoints/GetModelsForMakeYear
 
@@ -29,6 +29,7 @@ Make whose name is LIKE the Make in the vPIC Dataset.
 "Harley", "Harley Davidson", etc.
 
 A minimum of one of the following are also **required** (or a combination of both):
+
 - `params.modelYear` year you want to search for (years >= 1995 are supported according to NHTSA
   docs)
 - `params.vehicleType` can be a partial name, or a full name for more specificity, e.g.,
@@ -41,17 +42,17 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | `Object` | Object of Query Search names and values to append to the URL as a query string |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type     | Description                                                                    |
+| :--------- | :------- | :----------------------------------------------------------------------------- |
+| `params`   | `Object` | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | `true`   | Whether to fetch the data or just return the URL (default: `true`)             |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeYearResults`](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyearresults)\>\>
 
 - Api Response `object`
--or- url `string` if `doFetch = false`
+  -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -61,10 +62,10 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `doFetch` | ``false`` |
+| Name      | Type     |
+| :-------- | :------- |
+| `params`  | `Object` |
+| `doFetch` | `false`  |
 
 #### Returns
 
@@ -84,11 +85,11 @@ Objects found in the `Results` array of `GetModelsForMakeYear` endpoint response
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
+| Name         | Type     |
+| :----------- | :------- |
+| `Make_ID`    | `number` |
+| `Make_Name`  | `string` |
+| `Model_ID`   | `number` |
 | `Model_Name` | `string` |
 
 #### Defined in

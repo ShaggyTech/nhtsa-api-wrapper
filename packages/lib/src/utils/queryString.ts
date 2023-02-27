@@ -39,7 +39,7 @@ export type QueryStringParamsEncoded<T> = { [key in keyof T]: string }
  * boolean are filtered out of final object.
  */
 export const encodeQueryStringParams = <T extends QueryStringParams>(
-  params: T,
+  params: T
 ): QueryStringParamsEncoded<T> => {
   /* Validate user provided params is an object */
   validateArgument({
@@ -56,7 +56,7 @@ export const encodeQueryStringParams = <T extends QueryStringParams>(
         types: ['string', 'number', 'boolean'],
         value,
         errorMode: 'boolean',
-      }),
+      })
     )
     .reduce((acc, [key, value]) => {
       /* can expect only strings, numbers, and booleans after filtering */
@@ -93,7 +93,7 @@ export const encodeQueryStringParams = <T extends QueryStringParams>(
  */
 export const createQueryString = <T extends QueryStringParams>(
   params = {} as T,
-  allowEmptyParams = false,
+  allowEmptyParams = false
 ): string => {
   /* Validate user provided params is an object */
   validateArgument({

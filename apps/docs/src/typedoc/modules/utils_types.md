@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/types
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / utils/types
 
 # Module: utils/types
 
@@ -27,16 +27,16 @@ https://stackoverflow.com/a/49725198
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
-| `R` | extends keyof `T` = keyof `T` |
+| Name | Type                          |
+| :--- | :---------------------------- |
+| `T`  | `T`                           |
+| `R`  | extends keyof `T` = keyof `T` |
 
 #### Defined in
 
 [utils/types.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/types.ts#L18)
 
-___
+---
 
 ### RequireOnlyOne
 
@@ -47,9 +47,9 @@ https://stackoverflow.com/a/49725198
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `T` |
+| Name   | Type                          |
+| :----- | :---------------------------- |
+| `T`    | `T`                           |
 | `Keys` | extends keyof `T` = keyof `T` |
 
 #### Defined in
@@ -62,19 +62,19 @@ https://stackoverflow.com/a/49725198
 
 Re-exports [IArgToValidate](utils_argHandler.md#iargtovalidate)
 
-___
+---
 
 ### QueryStringParams
 
 Re-exports [QueryStringParams](utils_queryString.md#querystringparams)
 
-___
+---
 
 ### QueryStringParamsEncoded
 
 Re-exports [QueryStringParamsEncoded](utils_queryString.md#querystringparamsencoded)
 
-___
+---
 
 ### QueryStringTypes
 

@@ -16,7 +16,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: '3VWD07AJ5EM388203',
             required: true,
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -24,7 +24,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: 1234,
             required: true,
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -32,7 +32,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             required: true,
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -40,7 +40,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: { a: '1', b: '2', c: '3' },
             required: true,
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -48,7 +48,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: () => 'this is a function',
             required: true,
-          }),
+          })
         ).toEqual(true)
       })
 
@@ -59,7 +59,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: undefined,
             required: true,
-          }),
+          })
         ).toThrowError()
 
         /* null throws error */
@@ -68,7 +68,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: null,
             required: true,
-          }),
+          })
         ).toThrowError()
 
         /* empty string throws error */
@@ -77,7 +77,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: '',
             required: true,
-          }),
+          })
         ).toThrowError()
 
         /* empty array throws error */
@@ -96,7 +96,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: undefined,
             types: ['string'],
-          }),
+          })
         ).toEqual(true)
 
         /* empty string does not throw error */
@@ -105,7 +105,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: '',
             types: ['string'],
-          }),
+          })
         ).toEqual(true)
 
         /* returns true if types match */
@@ -114,7 +114,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: '3VWD07AJ5EM388203',
             types: ['string'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -122,7 +122,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: 132,
             types: ['string', 'number'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -130,7 +130,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             types: ['array'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -138,7 +138,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: { a: '1', b: '2', c: '3' },
             types: ['object', 'boolean'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -146,7 +146,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: () => 'this is a function',
             types: ['function'],
-          }),
+          })
         ).toEqual(true)
       })
 
@@ -157,7 +157,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: null,
             types: ['string'],
-          }),
+          })
         ).toThrowError()
 
         /* wrong type throws error */
@@ -166,7 +166,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: 123,
             types: ['string'],
-          }),
+          })
         ).toThrowError()
 
         expect(() =>
@@ -174,7 +174,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             types: ['number', 'object'],
-          }),
+          })
         ).toThrowError()
 
         /* invalid types throws error */
@@ -183,7 +183,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             types: [] as any,
-          }),
+          })
         ).toThrowError()
 
         expect(() =>
@@ -191,7 +191,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             types: 'string' as any,
-          }),
+          })
         ).toThrowError()
 
         expect(() =>
@@ -199,7 +199,7 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             types: { a: '1' } as any,
-          }),
+          })
         ).toThrowError()
       })
     })
@@ -213,7 +213,7 @@ describe('validateArgument - utility helper function', () => {
             value: '3VWD07AJ5EM388203',
             required: true,
             types: ['string'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -222,7 +222,7 @@ describe('validateArgument - utility helper function', () => {
             value: 132,
             required: true,
             types: ['string', 'number'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -231,7 +231,7 @@ describe('validateArgument - utility helper function', () => {
             value: ['1', '2', '3'],
             required: true,
             types: ['array'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -240,7 +240,7 @@ describe('validateArgument - utility helper function', () => {
             value: { a: '1', b: '2', c: '3' },
             required: true,
             types: ['object', 'boolean'],
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -249,7 +249,7 @@ describe('validateArgument - utility helper function', () => {
             value: () => 'this is a function',
             required: true,
             types: ['function'],
-          }),
+          })
         ).toEqual(true)
       })
 
@@ -261,7 +261,7 @@ describe('validateArgument - utility helper function', () => {
             value: undefined,
             required: true,
             types: ['string'],
-          }),
+          })
         ).toThrowError()
 
         /* null throws error */
@@ -271,7 +271,7 @@ describe('validateArgument - utility helper function', () => {
             value: null,
             required: true,
             types: ['string'],
-          }),
+          })
         ).toThrowError()
 
         /* empty string throws error */
@@ -281,7 +281,7 @@ describe('validateArgument - utility helper function', () => {
             value: '',
             required: true,
             types: ['string'],
-          }),
+          })
         ).toThrowError()
 
         /* wrong type throws error */
@@ -291,7 +291,7 @@ describe('validateArgument - utility helper function', () => {
             value: 123,
             required: true,
             types: ['array'],
-          }),
+          })
         ).toThrowError()
 
         expect(() =>
@@ -300,7 +300,7 @@ describe('validateArgument - utility helper function', () => {
             value: ['1', '2', '3'],
             required: true,
             types: ['number', 'object'],
-          }),
+          })
         ).toThrowError()
       })
     })
@@ -315,7 +315,7 @@ describe('validateArgument - utility helper function', () => {
             value: '3VWD07AJ5EM388203',
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -324,7 +324,7 @@ describe('validateArgument - utility helper function', () => {
             value: 1234,
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -333,7 +333,7 @@ describe('validateArgument - utility helper function', () => {
             value: ['1', '2', '3'],
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -342,7 +342,7 @@ describe('validateArgument - utility helper function', () => {
             value: { a: '1', b: '2', c: '3' },
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -351,7 +351,7 @@ describe('validateArgument - utility helper function', () => {
             value: () => 'this is a function',
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
       })
 
@@ -363,7 +363,7 @@ describe('validateArgument - utility helper function', () => {
             value: undefined,
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         /* null returns false */
@@ -373,7 +373,7 @@ describe('validateArgument - utility helper function', () => {
             value: null,
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         /* empty string returns false */
@@ -383,7 +383,7 @@ describe('validateArgument - utility helper function', () => {
             value: '',
             required: true,
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
       })
     })
@@ -397,7 +397,7 @@ describe('validateArgument - utility helper function', () => {
             value: undefined,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         /* empty string does not throw error */
@@ -407,7 +407,7 @@ describe('validateArgument - utility helper function', () => {
             value: '',
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         /* returns true if types match */
@@ -417,7 +417,7 @@ describe('validateArgument - utility helper function', () => {
             value: '3VWD07AJ5EM388203',
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -426,7 +426,7 @@ describe('validateArgument - utility helper function', () => {
             value: 132,
             types: ['string', 'number'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -435,7 +435,7 @@ describe('validateArgument - utility helper function', () => {
             value: ['1', '2', '3'],
             types: ['array'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -444,7 +444,7 @@ describe('validateArgument - utility helper function', () => {
             value: { a: '1', b: '2', c: '3' },
             types: ['object', 'boolean'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -453,7 +453,7 @@ describe('validateArgument - utility helper function', () => {
             value: () => 'this is a function',
             types: ['function'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
       })
 
@@ -465,7 +465,7 @@ describe('validateArgument - utility helper function', () => {
             value: null,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         /* wrong type returns false */
@@ -475,7 +475,7 @@ describe('validateArgument - utility helper function', () => {
             value: 123,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         expect(
@@ -484,7 +484,7 @@ describe('validateArgument - utility helper function', () => {
             value: ['1', '2', '3'],
             types: ['number', 'object'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
       })
     })
@@ -499,7 +499,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -509,7 +509,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['string', 'number'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -519,7 +519,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['array'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -529,7 +529,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['object', 'boolean'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
 
         expect(
@@ -539,7 +539,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['function'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(true)
       })
 
@@ -552,7 +552,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         /* null returns false */
@@ -563,7 +563,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         /* empty string returns false */
@@ -574,7 +574,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['string'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         /* wrong type returns false */
@@ -585,7 +585,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['array'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
 
         expect(
@@ -595,7 +595,7 @@ describe('validateArgument - utility helper function', () => {
             required: true,
             types: ['number', 'object'],
             errorMode: 'boolean',
-          }),
+          })
         ).toEqual(false)
       })
     })
@@ -613,7 +613,7 @@ describe('catchInvalidArguments - utility helper function', () => {
     expect(() => catchInvalidArguments({} as any)).toThrowError()
 
     expect(() =>
-      catchInvalidArguments({ args: 'string' } as any),
+      catchInvalidArguments({ args: 'string' } as any)
     ).toThrowError()
 
     expect(() => catchInvalidArguments({ args: [] })).toThrowError()
@@ -647,7 +647,7 @@ describe('catchInvalidArguments - utility helper function', () => {
               types: ['string'],
             },
           ],
-        }),
+        })
       ).toThrowError()
 
       expect(() =>
@@ -660,7 +660,7 @@ describe('catchInvalidArguments - utility helper function', () => {
               types: ['string'],
             },
           ],
-        }),
+        })
       ).toThrowError()
 
       expect(() =>
@@ -672,7 +672,7 @@ describe('catchInvalidArguments - utility helper function', () => {
               types: ['number'],
             },
           ],
-        }),
+        })
       ).toThrowError()
     })
   })
@@ -720,7 +720,7 @@ describe('catchInvalidArguments - utility helper function', () => {
               types: ['string'],
             },
           ],
-        }),
+        })
       ).toThrowError()
 
       /* null values do not pass validation */
@@ -739,7 +739,7 @@ describe('catchInvalidArguments - utility helper function', () => {
               types: ['string'],
             },
           ],
-        }),
+        })
       ).toThrowError()
 
       /* both undefined, throws error */
@@ -758,7 +758,7 @@ describe('catchInvalidArguments - utility helper function', () => {
               types: ['string'],
             },
           ],
-        }),
+        })
       ).toThrowError()
     })
   })

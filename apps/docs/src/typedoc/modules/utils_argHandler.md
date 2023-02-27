@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/argHandler
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / utils/argHandler
 
 # Module: utils/argHandler
 
@@ -17,7 +17,7 @@
 
 ### IArgToValidate
 
-Ƭ **IArgToValidate**: { `name`: `string` ; `value`: `unknown`  } & [`AtLeastOne`](utils_types.md#atleastone)<{ `required?`: `boolean` ; `types?`: `string`[]  }\>
+Ƭ **IArgToValidate**: { `name`: `string` ; `value`: `unknown` } & [`AtLeastOne`](utils_types.md#atleastone)<{ `required?`: `boolean` ; `types?`: `string`[] }\>
 
 #### Defined in
 
@@ -27,7 +27,7 @@
 
 ### catchInvalidArguments
 
-▸ **catchInvalidArguments**(`options`): `void`
+▸ **catchInvalidArguments**(`options`): `boolean`
 
 Catches invalid arguments passed to functions and throws an error with a message detailing the
 invalid argument(s) and what was expected.
@@ -42,23 +42,23 @@ validation logic works and how to override the default error throwing behavior.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `options` | `Object` | options object |
-| `options.args` | [`IArgToValidate`](utils_argHandler.md#iargtovalidate)[] | array of IArgToValidate objects |
-| `options.mode?` | ``"default"`` \| ``"atLeast"`` | 'default' or 'atLeast' - 'default' will validate all args, 'atLeast' will validate at least one arg in in the array has a defined value |
+| Name            | Type                                                     | Description                                                                                                                             |
+| :-------------- | :------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| `options`       | `Object`                                                 | options object                                                                                                                          |
+| `options.args`  | [`IArgToValidate`](utils_argHandler.md#iargtovalidate)[] | array of IArgToValidate objects                                                                                                         |
+| `options.mode?` | `"default"` \| `"atLeast"`                               | 'default' or 'atLeast' - 'default' will validate all args, 'atLeast' will validate at least one arg in in the array has a defined value |
 
 #### Returns
 
-`void`
+`boolean`
 
 - true if validation passes, throws error in the case of validation failure
 
 #### Defined in
 
-[utils/argHandler.ts:35](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L35)
+[utils/argHandler.ts:147](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L147)
 
-___
+---
 
 ### validateArgument
 
@@ -68,6 +68,7 @@ Will validate a single argument based on the provided options and throws an erro
 detailing the invalid argument(s) and what was expected.
 
 There are two modes for this function:
+
 - 'error' - (default) - Throws an error if the argument fails validation.
 - 'boolean' - Returns false if the argument fails validation, does not throw an error.
 
@@ -92,8 +93,8 @@ In default mode, it uses the `options.name` and `options.types` array (if provid
 error message in the case of validation failure.
 
 - `options.name` and `options.value` are required in each arg object. It's ok to pass undefined
-as the value, i.e. `{ value: someVarThatMightBeUndefined }`, but you must provide a name for the
-argument. If you didn't provide a name then the error message would not be as helpful.
+  as the value, i.e. `{ value: someVarThatMightBeUndefined }`, but you must provide a name for the
+  argument. If you didn't provide a name then the error message would not be as helpful.
 
 - `options.required` and `options.types` are optional.
 
@@ -110,18 +111,18 @@ that the typeof value is one of the provided strings in the `types` array.
 If `required` is true and no `types` are provided, it will only validate value is defined.
 
 - If `types` is provided but it is not `required`, it will only validate value is one of the
-type strings in the `types` array.
+  type strings in the `types` array.
 - If `types` is provided but it is not `required` and value is 'undefined' it will skip
-validation as there is no value to validate against and user would mark it required if they
-wanted to validate against a defined value. If the value is not required and you give types of
-['string', 'number'] for example, it will validate that the value is either a string or a number.
+  validation as there is no value to validate against and user would mark it required if they
+  wanted to validate against a defined value. If the value is not required and you give types of
+  ['string', 'number'] for example, it will validate that the value is either a string or a number.
 - If neither `required` nor `types` are provided, it will not peerform validation and will
-simply return true.
+  simply return true.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name      | Type     | Description    |
+| :-------- | :------- | :------------- |
 | `options` | `Object` | options object |
 
 #### Returns
@@ -129,8 +130,8 @@ simply return true.
 `boolean`
 
 - true if validation passes, mode 'error' throws Error in the case of
-validation failure, mode 'boolean' returns false in the case of validation failure
+  validation failure, mode 'boolean' returns false in the case of validation failure
 
 #### Defined in
 
-[utils/argHandler.ts:129](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L129)
+[utils/argHandler.ts:82](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L82)

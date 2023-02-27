@@ -158,7 +158,7 @@ import { GetEquipmentPlantCodes } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetEquipmentPlantCodes({
   year: 2015,
   equipmentType: 1,
-  reportType: 'New'
+  reportType: 'New',
 })
 ```
 
@@ -182,7 +182,7 @@ const url = await GetEquipmentPlantCodes(
   {
     year: 2015,
     equipmentType: 1,
-    reportType: 'New'
+    reportType: 'New',
   },
   false
 )

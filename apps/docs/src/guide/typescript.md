@@ -45,7 +45,7 @@ Here's an example of how to import specific types from this package:
 ```ts
 import type {
   DecodeVinResults,
-  GetAllMakesResults
+  GetAllMakesResults,
 } from '@shaggytools/nhtsa-api-wrapper'
 ```
 

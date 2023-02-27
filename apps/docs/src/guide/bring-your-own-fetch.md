@@ -118,7 +118,7 @@ with custom `path` and `params`.
 const url = createUrl({
   endpointName: 'DecodeVin',
   path: 'WA1A4AFY2J2008189',
-  params: { modelYear: 2018 }
+  params: { modelYear: 2018 },
 })
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 ```
@@ -197,7 +197,7 @@ To explain the above example:
   const url = createUrl({
     endpointName: 'DecodeVin', // [!code focus]
     path: 'WA1A4AFY2J2008189',
-    params: { modelYear: 2018 }
+    params: { modelYear: 2018 },
   })
   ```
 
@@ -210,7 +210,7 @@ To explain the above example:
   const url = createUrl({
     endpointName: 'DecodeVin',
     path: 'WA1A4AFY2J2008189', // [!code focus]
-    params: { modelYear: 2018 }
+    params: { modelYear: 2018 },
   })
   ```
 
@@ -223,7 +223,7 @@ To explain the above example:
   const url = createUrl({
     endpointName: 'DecodeVin',
     path: 'WA1A4AFY2J2008189',
-    params: { modelYear: 2018 } // [!code focus]
+    params: { modelYear: 2018 }, // [!code focus]
   })
   ```
 

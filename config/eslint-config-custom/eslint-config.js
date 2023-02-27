@@ -21,6 +21,9 @@ module.exports = {
     {
       // Customize the config for fenced code blocks inside .md files.
       files: ["**/*.md/*.js", "**/*.md/*.ts"],
+      options: {
+        trailingComma: "es5",
+      },
       rules: {
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/no-unused-vars": "off",

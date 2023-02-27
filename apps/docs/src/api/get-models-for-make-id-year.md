@@ -145,7 +145,7 @@ import { GetModelsForMakeIdYear } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetModelsForMakeIdYear({
   makeId: 474,
-  modelYear: 2015
+  modelYear: 2015,
 })
 ```
 
@@ -156,7 +156,7 @@ import { GetModelsForMakeIdYear } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetModelsForMakeIdYear({
   makeId: 474,
-  vehicleType: 'truck'
+  vehicleType: 'truck',
 })
 ```
 
@@ -168,7 +168,7 @@ import { GetModelsForMakeIdYear } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetModelsForMakeIdYear({
   makeId: 474,
   modelYear: 2015,
-  vehicleType: 'truck'
+  vehicleType: 'truck',
 })
 ```
 
@@ -191,7 +191,7 @@ import { GetModelsForMakeIdYear } from '@shaggytools/nhtsa-api-wrapper'
 const url = await GetModelsForMakeIdYear(
   {
     makeId: 474,
-    modelYear: 2015
+    modelYear: 2015,
   },
   false
 )
@@ -207,7 +207,7 @@ import { GetModelsForMakeIdYear } from '@shaggytools/nhtsa-api-wrapper'
 const url = await GetModelsForMakeIdYear(
   {
     makeId: 474,
-    vehicleType: 'truck'
+    vehicleType: 'truck',
   },
   false
 )
@@ -224,7 +224,7 @@ const url = await GetModelsForMakeIdYear(
   {
     makeId: 474,
     modelYear: 2015,
-    vehicleType: 'truck'
+    vehicleType: 'truck',
   },
   false
 )

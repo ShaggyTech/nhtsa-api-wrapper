@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
 
 # Module: api/endpoints/GetWMIsForManufacturer
 
@@ -29,12 +29,14 @@ returned in case of multiple matches.
 Both `manufacturer` and `vehicleType` are optional but at least one must be provided.
 
 `manufacturer` can be a partial name, or a full name for more specificity, or WMI ID number,
- e.g., "Merc", "Mercedes Benz", 987, etc.
+e.g., "Merc", "Mercedes Benz", 987, etc.
+
 - If `manufacturer` is a number - method will do exact match on Manufacturer's Id
 - If `manufacturer` is a string - it will look for manufacturers whose name is LIKE the provided
   name (it accepts a partial Manufacturer name as an input)
 
 `vehicleType` can be a string or number, e.g., "car", 1, etc.
+
 - If `vehicleType` is a number - method will do exact match on VehicleType's Id
 - If `vehicleType` is a string - it will look for VehicleType whose name is LIKE the provided
   name (it accepts a partial VehicleType name as an input).
@@ -47,17 +49,17 @@ params are the second arg.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params?` | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number`  }, ``"manufacturer"`` \| ``"vehicleType"``\> | Object of Query Search names and values to append to the URL as a query string |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type                                                                                                                                                              | Description                                                                    |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| `params?`  | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number` }, `"manufacturer"` \| `"vehicleType"`\> | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | `true`                                                                                                                                                            | Whether to fetch the data or just return the URL (default: `true`)             |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -67,10 +69,10 @@ params are the second arg.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number`  }, ``"manufacturer"`` \| ``"vehicleType"``\> |
-| `doFetch` | ``false`` |
+| Name      | Type                                                                                                                                                              |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `params`  | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number` }, `"manufacturer"` \| `"vehicleType"`\> |
+| `doFetch` | `false`                                                                                                                                                           |
 
 #### Returns
 
@@ -90,16 +92,16 @@ Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint respon
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Country` | `string` \| ``null`` |
-| `CreatedOn` | `string` |
-| `DateAvailableToPublic` | `string` |
-| `Id` | `number` |
-| `Name` | `string` |
-| `UpdatedOn` | `string` |
-| `VehicleType` | `string` |
-| `WMI` | `string` |
+| Name                    | Type               |
+| :---------------------- | :----------------- |
+| `Country`               | `string` \| `null` |
+| `CreatedOn`             | `string`           |
+| `DateAvailableToPublic` | `string`           |
+| `Id`                    | `number`           |
+| `Name`                  | `string`           |
+| `UpdatedOn`             | `string`           |
+| `VehicleType`           | `string`           |
+| `WMI`                   | `string`           |
 
 #### Defined in
 

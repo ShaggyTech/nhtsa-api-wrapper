@@ -82,7 +82,7 @@ import {
   // composable function returning helper functions for NHTSA API
   useNHTSA,
   // function for offline VIN validation
-  isValidVin
+  isValidVin,
 } from '@shaggytools/nhtsa-api-wrapper'
 ```
 

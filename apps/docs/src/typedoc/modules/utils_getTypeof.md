@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/getTypeof
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / utils/getTypeof
 
 # Module: utils/getTypeof
 
@@ -24,8 +24,8 @@ It will also accurately recognize any Error types, Error, TypeError, etc., as 'e
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name    | Type      | Description                                               |
+| :------ | :-------- | :-------------------------------------------------------- |
 | `value` | `unknown` | Any kind of value (string, object, array, function, etc). |
 
 #### Returns

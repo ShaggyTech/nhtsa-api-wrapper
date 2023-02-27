@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMake
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMake
 
 # Module: api/endpoints/GetModelsForMake
 
@@ -30,10 +30,10 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `makeName` | `string` | Vehicle make name |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type     | Description                                                        |
+| :--------- | :------- | :----------------------------------------------------------------- |
+| `makeName` | `string` | Vehicle make name                                                  |
+| `doFetch?` | `true`   | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
@@ -42,7 +42,7 @@ whose Name is LIKE the Make in vPIC Dataset.
 - Api Response object
 
 - Api Response `object`
--or- url `string` if `doFetch = false`
+  -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -52,10 +52,10 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type     |
+| :--------- | :------- |
 | `makeName` | `string` |
-| `doFetch` | ``false`` |
+| `doFetch`  | `false`  |
 
 #### Returns
 
@@ -75,11 +75,11 @@ Objects found in the `Results` array of `GetModelsForMake` endpoint response.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
+| Name         | Type     |
+| :----------- | :------- |
+| `Make_ID`    | `number` |
+| `Make_Name`  | `string` |
+| `Model_ID`   | `number` |
 | `Model_Name` | `string` |
 
 #### Defined in

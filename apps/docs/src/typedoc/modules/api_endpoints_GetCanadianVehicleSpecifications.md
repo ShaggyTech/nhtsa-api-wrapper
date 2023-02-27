@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
 
 # Module: api/endpoints/GetCanadianVehicleSpecifications
 
@@ -43,21 +43,21 @@ no default value is set for it so that an error will be thrown if not provided b
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | `Object` | Object of Query Search names and values to append to the URL as a query string |
-| `params.make?` | `string` | Vehicle's make, like "Honda", "Toyota", etc... |
-| `params.model?` | `string` | Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc... |
-| `params.units?` | `string` | "Metric" (default), or "US" for standard units |
-| `params.year` | `string` \| `number` | Model year of the vehicle - year >= 1971 |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name            | Type                 | Description                                                                                                            |
+| :-------------- | :------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `params`        | `Object`             | Object of Query Search names and values to append to the URL as a query string                                         |
+| `params.make?`  | `string`             | Vehicle's make, like "Honda", "Toyota", etc...                                                                         |
+| `params.model?` | `string`             | Vehicle's model, like "Pilot", "Focus". Can also include some other elements like Body Type, Engine Model/size, etc... |
+| `params.units?` | `string`             | "Metric" (default), or "US" for standard units                                                                         |
+| `params.year`   | `string` \| `number` | Model year of the vehicle - year >= 1971                                                                               |
+| `doFetch?`      | `true`               | Whether to fetch the data or just return the URL (default: `true`)                                                     |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetCanadianVehicleSpecificationsResults`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
 
 - Api
-Response `object` -or- url `string` if `doFetch = false`
+  Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -67,14 +67,14 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `params.make?` | `string` |
-| `params.model?` | `string` |
-| `params.units?` | `string` |
-| `params.year` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| Name            | Type                 |
+| :-------------- | :------------------- |
+| `params`        | `Object`             |
+| `params.make?`  | `string`             |
+| `params.model?` | `string`             |
+| `params.units?` | `string`             |
+| `params.year`   | `string` \| `number` |
+| `doFetch`       | `false`              |
 
 #### Returns
 
@@ -94,9 +94,9 @@ Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpo
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Specs` | { `Name`: ``"Make"`` \| ``"Model"`` \| ``"MYR"`` \| ``"OL"`` \| ``"OW"`` \| ``"OH"`` \| ``"WB"`` \| ``"CW"`` \| ``"A"`` \| ``"B"`` \| ``"C"`` \| ``"D"`` \| ``"E"`` \| ``"F"`` \| ``"G"`` \| ``"TWF"`` \| ``"TWR"`` \| ``"WD"`` ; `Value`: `string`  }[] |
+| Name    | Type                                                                                                                                                                                                                |
+| :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Specs` | { `Name`: `"Make"` \| `"Model"` \| `"MYR"` \| `"OL"` \| `"OW"` \| `"OH"` \| `"WB"` \| `"CW"` \| `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F"` \| `"G"` \| `"TWF"` \| `"TWR"` \| `"WD"` ; `Value`: `string` }[] |
 
 #### Defined in
 

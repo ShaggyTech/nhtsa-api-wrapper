@@ -141,7 +141,7 @@ const response = await DecodeVinExtended('WA1A4AFY2J2008189')
 import { DecodeVinExtended } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await DecodeVinExtended('WA1A4AFY2J2008189', {
-  modelYear: 2018
+  modelYear: 2018,
 })
 ```
 

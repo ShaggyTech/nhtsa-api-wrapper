@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
 
 # Module: api/endpoints/GetVehicleVariableList
 
@@ -27,16 +27,16 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type   | Description                                                        |
+| :--------- | :----- | :----------------------------------------------------------------- |
+| `doFetch?` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -46,9 +46,9 @@ vPIC dataset. Information on the name, description and the type of the variable 
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `doFetch` | ``false`` |
+| Name      | Type    |
+| :-------- | :------ |
+| `doFetch` | `false` |
 
 #### Returns
 
@@ -68,13 +68,13 @@ Objects found in the `Results` array of `GetVehicleVariableList` endpoint respon
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `DataType` | ``"string"`` \| ``"int"`` \| ``"decimal"`` \| ``"lookup"`` |
-| `Description` | `string` |
-| `GroupName` | `string` \| ``null`` |
-| `ID` | `number` |
-| `Name` | `string` |
+| Name          | Type                                               |
+| :------------ | :------------------------------------------------- |
+| `DataType`    | `"string"` \| `"int"` \| `"decimal"` \| `"lookup"` |
+| `Description` | `string`                                           |
+| `GroupName`   | `string` \| `null`                                 |
+| `ID`          | `number`                                           |
+| `Name`        | `string`                                           |
 
 #### Defined in
 

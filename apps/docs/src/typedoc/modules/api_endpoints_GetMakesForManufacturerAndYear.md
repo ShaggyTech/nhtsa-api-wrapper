@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
 
 # Module: api/endpoints/GetMakesForManufacturerAndYear
 
@@ -40,23 +40,23 @@ NHTSA API. During testing it was found that the API still returns data for years
 
 ::: warning :exclamation: Required Parameters
 Both `manufacturer` and `params.year` are required.
- :::
+:::
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `manufacturer` | `string` \| `number` | Manufacturer Name (string) or Manufacturer ID (number) |
-| `params` | `Object` | Object of Query Search names and values to append to the URL as a query string |
-| `params.year` | `string` \| `number` | Model year of the vehicle - Number, >= 2016 |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name           | Type                 | Description                                                                    |
+| :------------- | :------------------- | :----------------------------------------------------------------------------- |
+| `manufacturer` | `string` \| `number` | Manufacturer Name (string) or Manufacturer ID (number)                         |
+| `params`       | `Object`             | Object of Query Search names and values to append to the URL as a query string |
+| `params.year`  | `string` \| `number` | Model year of the vehicle - Number, >= 2016                                    |
+| `doFetch?`     | `true`               | Whether to fetch the data or just return the URL (default: `true`)             |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakesForManufacturerAndYearResults`](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)\>\>
 
 - Api
-Response `object` -or- url `string` if `doFetch = false`
+  Response `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -66,12 +66,12 @@ Response `object` -or- url `string` if `doFetch = false`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name           | Type                 |
+| :------------- | :------------------- |
 | `manufacturer` | `string` \| `number` |
-| `params` | `Object` |
-| `params.year` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| `params`       | `Object`             |
+| `params.year`  | `string` \| `number` |
+| `doFetch`      | `false`              |
 
 #### Returns
 
@@ -91,12 +91,12 @@ Objects found in the `Results` array of `GetMakesForManufacturerAndYear` endpoin
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `MakeId` | `number` |
+| Name       | Type     |
+| :--------- | :------- |
+| `MakeId`   | `number` |
 | `MakeName` | `string` |
-| `MfrId` | `number` |
-| `MfrName` | `string` |
+| `MfrId`    | `number` |
+| `MfrName`  | `string` |
 
 #### Defined in
 

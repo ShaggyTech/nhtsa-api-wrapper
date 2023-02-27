@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/queryString
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / utils/queryString
 
 # Module: utils/queryString
 
@@ -27,7 +27,7 @@ Object to build the query string with
 
 [utils/queryString.ts:13](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L13)
 
-___
+---
 
 ### QueryStringParamsEncoded
 
@@ -38,14 +38,14 @@ Object returned by encodeQueryStringParams()
 #### Type parameters
 
 | Name |
-| :------ |
-| `T` |
+| :--- |
+| `T`  |
 
 #### Defined in
 
 [utils/queryString.ts:16](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L16)
 
-___
+---
 
 ### QueryStringTypes
 
@@ -82,16 +82,16 @@ functions. However, it _is_ exported by the package as part of the composable fu
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`QueryStringParams`](utils_queryString.md#querystringparams) |
+| Name | Type                                                                  |
+| :--- | :-------------------------------------------------------------------- |
+| `T`  | extends [`QueryStringParams`](utils_queryString.md#querystringparams) |
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `params` | `T` | `undefined` | An object of search parameters to be converted to a query string. |
-| `allowEmptyParams?` | `boolean` | `false` | Set to `true` to include keys with empty string values, e.g. 'emptyKey='. |
+| Name                | Type      | Default value | Description                                                               |
+| :------------------ | :-------- | :------------ | :------------------------------------------------------------------------ |
+| `params`            | `T`       | `undefined`   | An object of search parameters to be converted to a query string.         |
+| `allowEmptyParams?` | `boolean` | `false`       | Set to `true` to include keys with empty string values, e.g. 'emptyKey='. |
 
 #### Returns
 
@@ -101,9 +101,9 @@ functions. However, it _is_ exported by the package as part of the composable fu
 
 #### Defined in
 
-[utils/queryString.ts:42](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L42)
+[utils/queryString.ts:94](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L94)
 
-___
+---
 
 ### encodeQueryStringParams
 
@@ -128,24 +128,24 @@ functions. However, it _is_ exported by the package as part of the composable fu
 
 #### Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends [`QueryStringParams`](utils_queryString.md#querystringparams) |
+| Name | Type                                                                  |
+| :--- | :-------------------------------------------------------------------- |
+| `T`  | extends [`QueryStringParams`](utils_queryString.md#querystringparams) |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | `T` | An object of search parameters to be encoded. |
+| Name     | Type | Description                                   |
+| :------- | :--- | :-------------------------------------------- |
+| `params` | `T`  | An object of search parameters to be encoded. |
 
 #### Returns
 
 [`QueryStringParamsEncoded`](utils_queryString.md#querystringparamsencoded)<`T`\>
 
 - A new object of same keys as the original object with
-values converted to URI component strings. Any keys with values not a string, number, or
-boolean are filtered out of final object.
+  values converted to URI component strings. Any keys with values not a string, number, or
+  boolean are filtered out of final object.
 
 #### Defined in
 
-[utils/queryString.ts:95](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L95)
+[utils/queryString.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L41)

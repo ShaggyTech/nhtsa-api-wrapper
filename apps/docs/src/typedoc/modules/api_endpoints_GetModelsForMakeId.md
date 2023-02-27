@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeId
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeId
 
 # Module: api/endpoints/GetModelsForMakeId
 
@@ -26,12 +26,14 @@ See: [GetModelsForMakeId Documentation](/api/get-models-for-make-id)
 equal to the `makeID` in the vPIC Dataset.
 
 You can get `makeID`s via `MAKE_ID` key in Results objects of the following endpoints:
+
 - `GetAllMakes` endpoint
 - `GetMakeForManufacturer` endpoint
 - `GetModelsForMake` endpoint
 - `GetModelsForMakeYear` endpoint
 
 You can get `makeID`s via `MakeID` key in Results objects of the following endpoints:
+
 - `DecodeVinValues`
 - `DecodeVinValuesBatch`
 
@@ -39,22 +41,23 @@ You can get `makeID`s via `ValueId` key in Results objects of the following endp
 One of the objects in the `Results` array will contain both `Variable: "Make"` and
 `VariableId: 26`. The `ValueId` key in that same object is the `makeID` for use in this
 endpoint.
+
 - `DecodeVin`
 - `DecodeVinExtended`
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `makeId` | `string` \| `number` | Make ID to search |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type                 | Description                                                        |
+| :--------- | :------------------- | :----------------------------------------------------------------- |
+| `makeId`   | `string` \| `number` | Make ID to search                                                  |
+| `doFetch?` | `true`               | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeIdResults`](api_endpoints_GetModelsForMakeId.md#getmodelsformakeidresults)\>\>
 
 - Api Response `object`
--or- url `string` if `doFetch = false`
+  -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -64,10 +67,10 @@ endpoint.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `makeId` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| Name      | Type                 |
+| :-------- | :------------------- |
+| `makeId`  | `string` \| `number` |
+| `doFetch` | `false`              |
 
 #### Returns
 
@@ -87,11 +90,11 @@ Objects found in the `Results` array of `GetModelsForMakeId` endpoint response.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
+| Name         | Type     |
+| :----------- | :------- |
+| `Make_ID`    | `number` |
+| `Make_Name`  | `string` |
+| `Model_ID`   | `number` |
 | `Model_Name` | `string` |
 
 #### Defined in

@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakeForManufacturer
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakeForManufacturer
 
 # Module: api/endpoints/GetMakeForManufacturer
 
@@ -34,17 +34,17 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `manufacturer` | `string` \| `number` | Manufacturer Name or ID |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name           | Type                 | Description                                                        |
+| :------------- | :------------------- | :----------------------------------------------------------------- |
+| `manufacturer` | `string` \| `number` | Manufacturer Name or ID                                            |
+| `doFetch?`     | `true`               | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -54,10 +54,10 @@ that is requested. Multiple results are returned in case of multiple matches.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name           | Type                 |
+| :------------- | :------------------- |
 | `manufacturer` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| `doFetch`      | `false`              |
 
 #### Returns
 
@@ -77,11 +77,11 @@ Objects found in the `Results` array of `GetMakeForManufacturer` endpoint respon
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
+| Name        | Type     |
+| :---------- | :------- |
+| `Make_ID`   | `number` |
 | `Make_Name` | `string` |
-| `Mfr_Name` | `string` |
+| `Mfr_Name`  | `string` |
 
 #### Defined in
 

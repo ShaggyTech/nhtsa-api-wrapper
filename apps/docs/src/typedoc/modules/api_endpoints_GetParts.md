@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
 
 # Module: api/endpoints/GetParts
 
@@ -31,6 +31,7 @@ specified Type (`params.type`) of ORG.
 All query `params` are optional.
 
 `params.manufacturer`:
+
 - (optional) if supplied value is a number - method will do exact match on Manufacturer's Id
 - if supplied value is a string - it will look for manufacturers whose name is LIKE the provided
   name
@@ -40,31 +41,35 @@ All query `params` are optional.
   "HONDA", "HONDA OF CANADA MFG., INC.", etc.
 
 `params.type`:
+
 - (optional) number, 565 (Vehicle Identification Number Guidance, based on 49 CFR Part 565)
   or 566 (Manufacturer Identification – Reporting Requirements based on 49 CFR Part 566)
 
 `params.fromDate`:
+
 - (optional) ORG's Letter Date should be on or after this date
 
 `params.toDate`:
+
 - (optional) ORG's Letter Date should be on or before this date
 
 `params.page`:
- - (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
+
+- (optional) number, 1 (default) first 1000 records, 2 - next 1000 records, etc
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
-| `_dummy?` | `undefined` | - |
+| Name       | Type        | Description                                                        |
+| :--------- | :---------- | :----------------------------------------------------------------- |
+| `doFetch?` | `true`      | Whether to fetch the data or just return the URL (default: `true`) |
+| `_dummy?`  | `undefined` | -                                                                  |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetPartsResults`](api_endpoints_GetParts.md#getpartsresults)\>\>
 
 - Api Response `object`
--or- url `string` if `doFetch = false`
+  -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -74,10 +79,10 @@ All query `params` are optional.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `doFetch?` | ``false`` |
-| `_dummy?` | `undefined` |
+| Name       | Type        |
+| :--------- | :---------- |
+| `doFetch?` | `false`     |
+| `_dummy?`  | `undefined` |
 
 #### Returns
 
@@ -91,15 +96,15 @@ All query `params` are optional.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `params.fromDate?` | `string` |
+| Name                   | Type                 |
+| :--------------------- | :------------------- |
+| `params`               | `Object`             |
+| `params.fromDate?`     | `string`             |
 | `params.manufacturer?` | `string` \| `number` |
-| `params.page?` | `string` \| `number` |
-| `params.toDate?` | `string` |
-| `params.type?` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| `params.page?`         | `string` \| `number` |
+| `params.toDate?`       | `string`             |
+| `params.type?`         | `string` \| `number` |
+| `doFetch`              | `false`              |
 
 #### Returns
 
@@ -113,15 +118,15 @@ All query `params` are optional.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `Object` |
-| `params.fromDate?` | `string` |
+| Name                   | Type                 |
+| :--------------------- | :------------------- |
+| `params?`              | `Object`             |
+| `params.fromDate?`     | `string`             |
 | `params.manufacturer?` | `string` \| `number` |
-| `params.page?` | `string` \| `number` |
-| `params.toDate?` | `string` |
-| `params.type?` | `string` \| `number` |
-| `doFetch?` | ``true`` |
+| `params.page?`         | `string` \| `number` |
+| `params.toDate?`       | `string`             |
+| `params.type?`         | `string` \| `number` |
+| `doFetch?`             | `true`               |
 
 #### Returns
 
@@ -141,17 +146,17 @@ Objects found in the `Results` array of `GetParts` endpoint response.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `CoverLetterURL` | `string` |
-| `LetterDate` | `string` |
-| `ManufacturerId` | `number` |
-| `ManufacturerName` | `string` |
-| `ModelYearFrom` | `number` \| ``null`` |
-| `ModelYearTo` | `number` \| ``null`` |
-| `Name` | `string` |
-| `Type` | `string` |
-| `URL` | `string` |
+| Name               | Type               |
+| :----------------- | :----------------- |
+| `CoverLetterURL`   | `string`           |
+| `LetterDate`       | `string`           |
+| `ManufacturerId`   | `number`           |
+| `ManufacturerName` | `string`           |
+| `ModelYearFrom`    | `number` \| `null` |
+| `ModelYearTo`      | `number` \| `null` |
+| `Name`             | `string`           |
+| `Type`             | `string`           |
+| `URL`              | `string`           |
 
 #### Defined in
 

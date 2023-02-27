@@ -137,7 +137,7 @@ const response = await GetCanadianVehicleSpecifications({
   year: 2015,
   make: 'Audi',
   model: 'RS7',
-  units: 'Metric'
+  units: 'Metric',
 })
 ```
 

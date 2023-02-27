@@ -126,7 +126,7 @@ import { GetModelsForMakeYear } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetModelsForMakeYear({
   make: 'Audi',
-  modelYear: 2018
+  modelYear: 2018,
 })
 ```
 
@@ -137,7 +137,7 @@ import { GetModelsForMakeYear } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetModelsForMakeYear({
   make: 'audi',
-  vehicleType: 'car'
+  vehicleType: 'car',
 })
 ```
 
@@ -149,7 +149,7 @@ import { GetModelsForMakeYear } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetModelsForMakeYear({
   make: 'audi',
   modelYear: 2018,
-  vehicleType: 'car'
+  vehicleType: 'car',
 })
 ```
 
@@ -172,7 +172,7 @@ import { GetModelsForMakeYear } from '@shaggytools/nhtsa-api-wrapper'
 const url = await GetModelsForMakeYear(
   {
     make: 'Audi',
-    modelYear: 2018
+    modelYear: 2018,
   },
   false
 )
@@ -188,7 +188,7 @@ import { GetModelsForMakeYear } from '@shaggytools/nhtsa-api-wrapper'
 const url = await GetModelsForMakeYear(
   {
     make: 'Audi',
-    vehicleType: 'car'
+    vehicleType: 'car',
   },
   false
 )
@@ -205,7 +205,7 @@ const url = await GetModelsForMakeYear(
   {
     make: 'Audi',
     modelYear: 2018,
-    vehicleType: 'car'
+    vehicleType: 'car',
   },
   false
 )

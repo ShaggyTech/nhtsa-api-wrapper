@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeIdYear
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeIdYear
 
 # Module: api/endpoints/GetModelsForMakeIdYear
 
@@ -28,18 +28,21 @@ and Make whose name is LIKE the Make in the vPIC Dataset.
 `params.makeId` is an integer and is **required**.
 
 A minimum of one of the following are also **required** (or a combination of both):
+
 - `params.modelYear` year you want to search for (years >= 1995 are supported according to NHTSA
   docs)
 - `params.vehicleType` can be a partial name, or a full name for more specificity, e.g.,
   "Vehicle", "Moto", "Low Speed Vehicle", etc.
 
 You can get `makeID`s via `MAKE_ID` key in Results objects of the following endpoints:
+
 - `GetAllMakes` endpoint
 - `GetMakeForManufacturer` endpoint
 - `GetModelsForMake` endpoint
 - `GetModelsForMakeYear` endpoint
 
 You can get `makeID`s via `MakeID` key in Results objects of the following endpoints:
+
 - `DecodeVinValues`
 - `DecodeVinValuesBatch`
 
@@ -47,6 +50,7 @@ You can get `makeID`s via `ValueId` key in Results objects of the following endp
 One of the objects in the `Results` array will contain both `Variable: "Make"` and
 `VariableId: 26`. The `ValueId` key in that same object is the `makeID` for use in this
 endpoint.
+
 - `DecodeVin`
 - `DecodeVinExtended`
 
@@ -57,17 +61,17 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | `Object` | Object of Query Search names and values to append to the URL as a query string |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type     | Description                                                                    |
+| :--------- | :------- | :----------------------------------------------------------------------------- |
+| `params`   | `Object` | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | `true`   | Whether to fetch the data or just return the URL (default: `true`)             |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeIdYearResults`](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -77,10 +81,10 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `doFetch` | ``false`` |
+| Name      | Type     |
+| :-------- | :------- |
+| `params`  | `Object` |
+| `doFetch` | `false`  |
 
 #### Returns
 
@@ -100,11 +104,11 @@ Objects found in the `Results` array of `GetModelsForMakeIdYear` endpoint respon
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
-| `Make_Name` | `string` |
-| `Model_ID` | `number` |
+| Name         | Type     |
+| :----------- | :------- |
+| `Make_ID`    | `number` |
+| `Make_Name`  | `string` |
+| `Model_ID`   | `number` |
 | `Model_Name` | `string` |
 
 #### Defined in

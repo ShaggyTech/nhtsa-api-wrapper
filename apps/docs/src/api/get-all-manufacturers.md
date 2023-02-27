@@ -122,7 +122,7 @@ const response = await GetAllManufacturers()
 import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetAllManufacturers({
-  manufacturerType: 'Completed Vehicle Manufacturer'
+  manufacturerType: 'Completed Vehicle Manufacturer',
 })
 ```
 
@@ -141,7 +141,7 @@ import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetAllManufacturers({
   manufacturerType: 'Final-Staged Manufacturer',
-  page: 2
+  page: 2,
 })
 ```
 
@@ -174,7 +174,7 @@ import { GetAllManufacturers } from '@shaggytools/nhtsa-api-wrapper'
 const url = await GetAllManufacturers(
   {
     manufacturerType: 'Incomplete Vehicles',
-    page: 3
+    page: 3,
   },
   false
 )

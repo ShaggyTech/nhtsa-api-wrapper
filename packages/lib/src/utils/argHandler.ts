@@ -153,7 +153,7 @@ export const catchInvalidArguments = ({
 }) => {
   if (getTypeof(args) !== 'array' || !args.length) {
     throw Error(
-      `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`,
+      `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`
     )
   }
 
@@ -167,7 +167,7 @@ export const catchInvalidArguments = ({
       throw Error(
         `must provide at least one of the following arguments: ${args
           .map((arg) => arg.name)
-          .join(', ')}`,
+          .join(', ')}`
       )
     }
   }

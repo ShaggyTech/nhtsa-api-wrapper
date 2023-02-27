@@ -144,7 +144,7 @@ import { GetWMIsForManufacturer } from '@shaggytools/nhtsa-api-wrapper'
 
 const response = await GetWMIsForManufacturer({
   manufacturer: 'honda',
-  vehicleType: 'car'
+  vehicleType: 'car',
 })
 ```
 

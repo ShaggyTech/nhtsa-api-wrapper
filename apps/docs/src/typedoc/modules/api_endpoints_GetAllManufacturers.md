@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllManufacturers
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllManufacturers
 
 # Module: api/endpoints/GetAllManufacturers
 
@@ -34,17 +34,17 @@ pages of 100 items.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
-| `_dummy?` | `undefined` | - |
+| Name       | Type        | Description                                                        |
+| :--------- | :---------- | :----------------------------------------------------------------- |
+| `doFetch?` | `true`      | Whether to fetch the data or just return the URL (default: `true`) |
+| `_dummy?`  | `undefined` | -                                                                  |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
 
 - Api Response `object`
--or- url `string` if `doFetch = false`
+  -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -54,10 +54,10 @@ pages of 100 items.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `doFetch?` | ``false`` |
-| `_dummy?` | `undefined` |
+| Name       | Type        |
+| :--------- | :---------- |
+| `doFetch?` | `false`     |
+| `_dummy?`  | `undefined` |
 
 #### Returns
 
@@ -71,12 +71,12 @@ pages of 100 items.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `params.manufacturerType?` | `string` |
-| `params.page?` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| Name                       | Type                 |
+| :------------------------- | :------------------- |
+| `params`                   | `Object`             |
+| `params.manufacturerType?` | `string`             |
+| `params.page?`             | `string` \| `number` |
+| `doFetch`                  | `false`              |
 
 #### Returns
 
@@ -90,12 +90,12 @@ pages of 100 items.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `Object` |
-| `params.manufacturerType?` | `string` |
-| `params.page?` | `string` \| `number` |
-| `doFetch?` | ``true`` |
+| Name                       | Type                 |
+| :------------------------- | :------------------- |
+| `params?`                  | `Object`             |
+| `params.manufacturerType?` | `string`             |
+| `params.page?`             | `string` \| `number` |
+| `doFetch?`                 | `true`               |
 
 #### Returns
 
@@ -115,13 +115,13 @@ Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Country` | `string` |
-| `Mfr_CommonName` | `string` \| ``null`` |
-| `Mfr_ID` | `number` |
-| `Mfr_Name` | `string` |
-| `VehicleTypes` | { `IsPrimary?`: `boolean` ; `Name?`: `string`  }[] |
+| Name             | Type                                              |
+| :--------------- | :------------------------------------------------ |
+| `Country`        | `string`                                          |
+| `Mfr_CommonName` | `string` \| `null`                                |
+| `Mfr_ID`         | `number`                                          |
+| `Mfr_Name`       | `string`                                          |
+| `VehicleTypes`   | { `IsPrimary?`: `boolean` ; `Name?`: `string` }[] |
 
 #### Defined in
 

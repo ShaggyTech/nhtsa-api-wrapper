@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/errorHandler
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / utils/errorHandler
 
 # Module: utils/errorHandler
 
@@ -22,8 +22,8 @@ Accepts any type of value but will return default error message of `an unknown e
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name    | Type      | Description       |
+| :------ | :-------- | :---------------- |
 | `error` | `unknown` | Any type of value |
 
 #### Returns
@@ -36,7 +36,7 @@ Accepts any type of value but will return default error message of `an unknown e
 
 [utils/errorHandler.ts:26](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/errorHandler.ts#L26)
 
-___
+---
 
 ### isError
 
@@ -46,8 +46,8 @@ Checks if `error` is an instance of any Error type.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name    | Type      | Description       |
+| :------ | :-------- | :---------------- |
 | `error` | `unknown` | Any type of value |
 
 #### Returns
@@ -60,7 +60,7 @@ Checks if `error` is an instance of any Error type.
 
 [utils/errorHandler.ts:14](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/errorHandler.ts#L14)
 
-___
+---
 
 ### rejectWithError
 
@@ -72,8 +72,8 @@ not an Error type.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name    | Type      | Description       |
+| :------ | :-------- | :---------------- |
 | `error` | `unknown` | Any type of value |
 
 #### Returns

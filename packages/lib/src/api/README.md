@@ -213,7 +213,7 @@ const { createUrl, get, post } = useNHTSA()
 // create a url string with options
 const urlString = createUrl({ ...options })
 // use the url string
-const reponse1 = get(urlString)
+const response1 = get(urlString)
 
 // or full url string directly, truncated for brevity
 const response2 = post('https://.../DecodeVinValuesBatch', {
@@ -231,7 +231,7 @@ const response2 = get({ ...differentOptions })
 
 const postResponse = post(
   { endpointName: 'DecodeVinValuesBatch' },
-  { body: '5UXWX7C5*BA' },
+  { body: '5UXWX7C5*BA' }
 )
 ```
 
@@ -247,7 +247,7 @@ const response1 = get({ ...options }, { saveUrl: false })
 
 const postResponse = post(
   { endpointName: 'DecodeVinValuesBatch' },
-  { body: '5UXWX7C5*BA', saveUrl: false },
+  { body: '5UXWX7C5*BA', saveUrl: false }
 )
 ```
 

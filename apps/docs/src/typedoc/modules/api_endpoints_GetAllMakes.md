@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllMakes
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllMakes
 
 # Module: api/endpoints/GetAllMakes
 
@@ -30,16 +30,16 @@ an individual vehicle Make.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type   | Description                                                        |
+| :--------- | :----- | :----------------------------------------------------------------- |
+| `doFetch?` | `true` | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
 
 - Api Response `object`
--or- url `string` if `doFetch = false` (default: `true`)
+  -or- url `string` if `doFetch = false` (default: `true`)
 
 #### Defined in
 
@@ -49,9 +49,9 @@ an individual vehicle Make.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `doFetch` | ``false`` |
+| Name      | Type    |
+| :-------- | :------ |
+| `doFetch` | `false` |
 
 #### Returns
 
@@ -71,9 +71,9 @@ Objects found in the `Results` array of `GetAllMakes` endpoint response.
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `Make_ID` | `number` |
+| Name        | Type     |
+| :---------- | :------- |
+| `Make_ID`   | `number` |
 | `Make_Name` | `string` |
 
 #### Defined in

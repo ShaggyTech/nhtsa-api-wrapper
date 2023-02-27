@@ -64,6 +64,6 @@ import {
   GetVehicleTypesForMakeId,
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
-  GetWMIsForManufacturer
+  GetWMIsForManufacturer,
 } from '@shaggytools/nhtsa-api-wrapper'
 ```

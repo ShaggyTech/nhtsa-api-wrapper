@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/useNHTSA
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/useNHTSA
 
 # Module: api/useNHTSA
 
@@ -20,14 +20,14 @@
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `allowEmptyParams?` | `boolean` |
-| `endpointName` | `string` |
-| `includeQueryString?` | `boolean` |
-| `params?` | [`QueryStringParams`](utils_queryString.md#querystringparams) |
-| `path?` | `string` |
-| `saveUrl?` | `boolean` |
+| Name                  | Type                                                          |
+| :-------------------- | :------------------------------------------------------------ |
+| `allowEmptyParams?`   | `boolean`                                                     |
+| `endpointName`        | `string`                                                      |
+| `includeQueryString?` | `boolean`                                                     |
+| `params?`             | [`QueryStringParams`](utils_queryString.md#querystringparams) |
+| `path?`               | `string`                                                      |
+| `saveUrl?`            | `boolean`                                                     |
 
 #### Defined in
 
@@ -66,14 +66,14 @@ The exported methods are:
 
 `Object`
 
-| Name | Type |
-| :------ | :------ |
-| `cacheUrl` | (`options`: [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string` |
-| `createPostBody` | (`data`: `string`) => `string` |
-| `createUrl` | (`options`: [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string` |
-| `get` | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean`  }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
-| `getCachedUrl` | () => `string` |
-| `post` | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean`  }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
+| Name             | Type                                                                                                                                                                                                       |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cacheUrl`       | (`options`: [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string`                                                                                                                            |
+| `createPostBody` | (`data`: `string`) => `string`                                                                                                                                                                             |
+| `createUrl`      | (`options`: [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string`                                                                                                                            |
+| `get`            | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean` }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
+| `getCachedUrl`   | () => `string`                                                                                                                                                                                             |
+| `post`           | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean` }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
 
 #### Defined in
 

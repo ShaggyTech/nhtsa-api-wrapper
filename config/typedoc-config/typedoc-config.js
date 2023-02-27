@@ -12,6 +12,7 @@ const navigationLinks = {
 module.exports = {
   entryPoints: [entryPoint],
   entryPointStrategy: "expand",
+  exclude: "**/*+(.spec|.e2e|.test).ts",
   gitRevision: "main",
   hideGenerator: true,
   includeVersion: true,

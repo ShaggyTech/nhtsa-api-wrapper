@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / utils/isValidVin
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / utils/isValidVin
 
 # Module: utils/isValidVin
 
@@ -15,7 +15,7 @@
 ▸ **isValidVin**(`vin`): `boolean`
 
 Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
-[VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
+[VIN Check Algorithm](<https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit>).
 
 If you need to test that the algorithm is working correctly, you can use 17 zeros `0` as
 the VIN and it should return `true` as the result.
@@ -23,6 +23,7 @@ the VIN and it should return `true` as the result.
 **`Example`**
 
 Browser via html script tags
+
 ```ts
 const isValid = NHTSA.isValidVin('3VWD07AJ5EM388202')
 console.log(isValid) // true
@@ -31,6 +32,7 @@ console.log(isValid) // true
 **`Example`**
 
 Imported as a module
+
 ```ts
 import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
 const isValid = isValidVin('3VWD07AJ5EM388202')
@@ -39,8 +41,8 @@ console.log(isValid) // true
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
+| Name  | Type     | Description                    |
+| :---- | :------- | :----------------------------- |
 | `vin` | `string` | Vehicle Identification Number. |
 
 #### Returns

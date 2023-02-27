@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMake
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMake
 
 # Module: api/endpoints/GetVehicleTypesForMake
 
@@ -30,17 +30,17 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `makeName` | `string` | Name of the vehicle make to search |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type     | Description                                                        |
+| :--------- | :------- | :----------------------------------------------------------------- |
+| `makeName` | `string` | Name of the vehicle make to search                                 |
+| `doFetch?` | `true`   | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleTypesForMakeResults`](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -50,10 +50,10 @@ whose name is LIKE the make name in the vPIC Dataset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type     |
+| :--------- | :------- |
 | `makeName` | `string` |
-| `doFetch` | ``false`` |
+| `doFetch`  | `false`  |
 
 #### Returns
 
@@ -73,11 +73,11 @@ Objects found in the `Results` array of `GetVehicleTypesForMake` endpoint respon
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `MakeId` | `number` |
-| `MakeName` | `string` |
-| `VehicleTypeId` | `number` |
+| Name              | Type     |
+| :---------------- | :------- |
+| `MakeId`          | `number` |
+| `MakeName`        | `string` |
+| `VehicleTypeId`   | `number` |
 | `VehicleTypeName` | `string` |
 
 #### Defined in

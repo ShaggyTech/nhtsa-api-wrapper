@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableValuesList
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableValuesList
 
 # Module: api/endpoints/GetVehicleVariableValuesList
 
@@ -32,17 +32,17 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `variableValue` | `string` \| `number` | The variable you want to get a values list of |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name            | Type                 | Description                                                        |
+| :-------------- | :------------------- | :----------------------------------------------------------------- |
+| `variableValue` | `string` \| `number` | The variable you want to get a values list of                      |
+| `doFetch?`      | `true`               | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableValuesListResults`](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -52,10 +52,10 @@ If `variableValue` is a string, it must use full name, not just part of it, e.g.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type                 |
+| :-------------- | :------------------- |
 | `variableValue` | `string` \| `number` |
-| `doFetch` | ``false`` |
+| `doFetch`       | `false`              |
 
 #### Returns
 
@@ -75,11 +75,11 @@ Objects found in the `Results` array of `GetVehicleVariableValuesList` endpoint 
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type     |
+| :------------ | :------- |
 | `ElementName` | `string` |
-| `Id` | `number` |
-| `Name` | `string` |
+| `Id`          | `number` |
+| `Name`        | `string` |
 
 #### Defined in
 

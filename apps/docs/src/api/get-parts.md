@@ -157,7 +157,7 @@ const response = await GetParts({
   fromDate: '2019-01-01',
   toDate: '2019-12-31',
   manufacturer: 'honda',
-  page: 1
+  page: 1,
 })
 ```
 
@@ -193,7 +193,7 @@ const url = await GetParts(
     fromDate: '1/1/2015',
     toDate: '5/5/2015',
     manufacturer: 'honda',
-    page: 2
+    page: 2,
   },
   false
 )

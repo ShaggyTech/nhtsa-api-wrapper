@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / constants
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / constants
 
 # Module: constants
 
@@ -6,24 +6,24 @@
 
 ### Variables
 
-- [NHTSA\_BASE\_URL](constants.md#nhtsa_base_url)
-- [NHTSA\_RESPONSE\_FORMAT](constants.md#nhtsa_response_format)
+- [NHTSA_BASE_URL](constants.md#nhtsa_base_url)
+- [NHTSA_RESPONSE_FORMAT](constants.md#nhtsa_response_format)
 
 ## Variables
 
-### NHTSA\_BASE\_URL
+### NHTSA_BASE_URL
 
-• `Const` **NHTSA\_BASE\_URL**: ``"https://vpic.nhtsa.dot.gov/api/vehicles"``
+• `Const` **NHTSA_BASE_URL**: `"https://vpic.nhtsa.dot.gov/api/vehicles"`
 
 #### Defined in
 
 [constants.ts:1](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/constants.ts#L1)
 
-___
+---
 
-### NHTSA\_RESPONSE\_FORMAT
+### NHTSA_RESPONSE_FORMAT
 
-• `Const` **NHTSA\_RESPONSE\_FORMAT**: ``"json"``
+• `Const` **NHTSA_RESPONSE_FORMAT**: `"json"`
 
 #### Defined in
 

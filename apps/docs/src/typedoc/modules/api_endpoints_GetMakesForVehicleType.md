@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForVehicleType
+[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForVehicleType
 
 # Module: api/endpoints/GetMakesForVehicleType
 
@@ -30,17 +30,17 @@ See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `typeName` | `string` | A partial or full vehicle type name |
-| `doFetch?` | ``true`` | Whether to fetch the data or just return the URL (default: `true`) |
+| Name       | Type     | Description                                                        |
+| :--------- | :------- | :----------------------------------------------------------------- |
+| `typeName` | `string` | A partial or full vehicle type name                                |
+| `doFetch?` | `true`   | Whether to fetch the data or just return the URL (default: `true`) |
 
 #### Returns
 
 `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakesForVehicleTypeResults`](api_endpoints_GetMakesForVehicleType.md#getmakesforvehicletyperesults)\>\>
 
 - Api Response
-`object` -or- url `string` if `doFetch = false`
+  `object` -or- url `string` if `doFetch = false`
 
 #### Defined in
 
@@ -50,10 +50,10 @@ See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type     |
+| :--------- | :------- |
 | `typeName` | `string` |
-| `doFetch` | ``false`` |
+| `doFetch`  | `false`  |
 
 #### Returns
 
@@ -73,11 +73,11 @@ Objects found in the `Results` array of `GetMakesForVehicleType` endpoint respon
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `MakeId` | `number` |
-| `MakeName` | `string` |
-| `VehicleTypeId` | `number` |
+| Name              | Type     |
+| :---------------- | :------- |
+| `MakeId`          | `number` |
+| `MakeName`        | `string` |
+| `VehicleTypeId`   | `number` |
 | `VehicleTypeName` | `string` |
 
 #### Defined in
