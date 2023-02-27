@@ -16,6 +16,58 @@ export type QueryStringParams = Record<string, QueryStringTypes>
 export type QueryStringParamsEncoded<T> = { [key in keyof T]: string }
 
 /**
+ * Utility function to perform URI component encoding on all values in an object, for use in URL
+ * query strings.
+ *
+ * - Returns an object of valid URI encoded parameters with same keys as the original object.
+ * - Will silently filter out parameters with values that are not type `string`, `number`, or
+ *   `boolean`.
+ * - It filters invalid key/values so that encodeURIComponent() does not throw an error.
+ *
+ * In it's current implementation, this function assumes that invalid types have already been
+ * filtered out, and that all values are valid. If you need to be sure that all keys are present
+ * in the returned object, you can use the `validateArgument()` function to check the types of all
+ * values are valid before calling this function.
+ *
+ * This function is not exported by the package, but is used internally by other
+ * functions. However, it _is_ exported by the package as part of the composable function
+ * `useQueryString`, and renamed to `encodeParams` for less verbose use.
+ *
+ * @param {QueryStringParams} params - An object of search parameters to be encoded.
+ * @returns {QueryStringParamsEncoded} - A new object of same keys as the original object with
+ * values converted to URI component strings. Any keys with values not a string, number, or
+ * boolean are filtered out of final object.
+ */
+export const encodeQueryStringParams = <T extends QueryStringParams>(
+  params: T,
+): QueryStringParamsEncoded<T> => {
+  /* Validate user provided params is an object */
+  validateArgument({
+    name: 'params',
+    value: params,
+    required: true,
+    types: ['object'],
+  })
+
+  const _params = Object.entries(params)
+    .filter(([key, value]) =>
+      validateArgument({
+        name: key,
+        types: ['string', 'number', 'boolean'],
+        value,
+        errorMode: 'boolean',
+      }),
+    )
+    .reduce((acc, [key, value]) => {
+      /* can expect only strings, numbers, and booleans after filtering */
+      acc[key as keyof T] = encodeURIComponent(value)
+      return acc
+    }, {} as QueryStringParamsEncoded<T>)
+
+  return _params
+}
+
+/**
  * Utility function to generate a query string conforming to URI component standards. Takes an an
  * optional object of search parameters and returns an encoded query string.
  *
@@ -41,7 +93,7 @@ export type QueryStringParamsEncoded<T> = { [key in keyof T]: string }
  */
 export const createQueryString = <T extends QueryStringParams>(
   params = {} as T,
-  allowEmptyParams = false
+  allowEmptyParams = false,
 ): string => {
   /* Validate user provided params is an object */
   validateArgument({
@@ -67,48 +119,4 @@ export const createQueryString = <T extends QueryStringParams>(
       })
       .join('')
   )
-}
-
-/**
- * Utility function to perform URI component encoding on all values in an object, for use in URL
- * query strings.
- *
- * - Returns an object of valid URI encoded parameters with same keys as the original object.
- * - Will silently filter out parameters with values that are not type `string`, `number`, or
- *   `boolean`.
- * - It filters invalid key/values so that encodeURIComponent() does not throw an error.
- *
- * In it's current implementation, this function assumes that invalid types have already been
- * filtered out, and that all values are valid. If you need to be sure that all keys are present
- * in the returned object, you can use the `validateArgument()` function to check the types of all
- * values are valid before calling this function.
- *
- * This function is not exported by the package, but is used internally by other
- * functions. However, it _is_ exported by the package as part of the composable function
- * `useQueryString`, and renamed to `encodeParams` for less verbose use.
- *
- * @param {QueryStringParams} params - An object of search parameters to be encoded.
- * @returns {QueryStringParamsEncoded} - A new object of same keys as the original object with
- * values converted to URI component strings. Any keys with values not a string, number, or
- * boolean are filtered out of final object.
- */
-export const encodeQueryStringParams = <T extends QueryStringParams>(
-  params: T
-): QueryStringParamsEncoded<T> => {
-  const _params = Object.entries(params)
-    .filter(([key, value]) =>
-      validateArgument({
-        name: key,
-        types: ['string', 'number', 'boolean'],
-        value,
-        errorMode: 'boolean',
-      })
-    )
-    .reduce((acc, [key, value]) => {
-      /* can expect only strings, numbers, and booleans after filtering */
-      acc[key as keyof T] = encodeURIComponent(value)
-      return acc
-    }, {} as QueryStringParamsEncoded<T>)
-
-  return _params
 }

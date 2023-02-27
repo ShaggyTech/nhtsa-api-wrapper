@@ -15,53 +15,6 @@ export type IArgToValidate = {
 }>
 
 /**
- * Catches invalid arguments passed to functions and throws an error with a message detailing the
- * invalid argument(s) and what was expected.
- *
- * At least one of `required` or `types` must be provided for each arg to validate against or it
- * will validate nothing and return true for that arg value as if it was valid.
- *
- * Under the hood it loops through the args and calls `validateArgument` to validate each arg.
- * `validateArgument` will throw an error if any of the arguments are invalid based on the provided
- * options in each arg. See the description for `validateArgument` for more details on how
- * validation logic works and how to override the default error throwing behavior.
- *
- * @param {Object} options - options object
- * @param {IArgToValidate[]} options.args - array of IArgToValidate objects
- * @param {boolean} [options.mode=default] - 'default' or 'atLeast' - 'default' will validate all
- * args, 'atLeast' will validate at least one arg in in the array has a defined value
- * @returns {boolean} - true if validation passes, throws error in the case of validation failure
- */
-export const catchInvalidArguments = ({
-  args,
-  mode = 'default',
-}: {
-  args: IArgToValidate[]
-  mode?: 'default' | 'atLeast'
-}) => {
-  if (getTypeof(args) !== 'array' && !args.length) {
-    throw Error(
-      `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`
-    )
-  }
-
-  if (mode === 'default') {
-    args.forEach((arg) => {
-      validateArgument(arg)
-    })
-  } else if (mode === 'atLeast') {
-    const providedArg = args.find((arg) => !!arg.value)
-    if (!providedArg) {
-      throw Error(
-        `must provide at least one of the following arguments: ${args
-          .map((arg) => arg.name)
-          .join(', ')}`
-      )
-    }
-  }
-}
-
-/**
  * Will validate a single argument based on the provided options and throws an error with a message
  * detailing the invalid argument(s) and what was expected.
  *
@@ -168,6 +121,55 @@ export const validateArgument = ({
   if (error.length) {
     if (errorMode === 'boolean') return false
     else throw Error(error)
+  }
+
+  return true
+}
+
+/**
+ * Catches invalid arguments passed to functions and throws an error with a message detailing the
+ * invalid argument(s) and what was expected.
+ *
+ * At least one of `required` or `types` must be provided for each arg to validate against or it
+ * will validate nothing and return true for that arg value as if it was valid.
+ *
+ * Under the hood it loops through the args and calls `validateArgument` to validate each arg.
+ * `validateArgument` will throw an error if any of the arguments are invalid based on the provided
+ * options in each arg. See the description for `validateArgument` for more details on how
+ * validation logic works and how to override the default error throwing behavior.
+ *
+ * @param {Object} options - options object
+ * @param {IArgToValidate[]} options.args - array of IArgToValidate objects
+ * @param {boolean} [options.mode=default] - 'default' or 'atLeast' - 'default' will validate all
+ * args, 'atLeast' will validate at least one arg in in the array has a defined value
+ * @returns {boolean} - true if validation passes, throws error in the case of validation failure
+ */
+export const catchInvalidArguments = ({
+  args,
+  mode = 'default',
+}: {
+  args: IArgToValidate[]
+  mode?: 'default' | 'atLeast'
+}) => {
+  if (getTypeof(args) !== 'array' || !args.length) {
+    throw Error(
+      `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`,
+    )
+  }
+
+  if (mode === 'default') {
+    args.forEach((arg) => {
+      validateArgument(arg)
+    })
+  } else if (mode === 'atLeast') {
+    const providedArg = args.find((arg) => !!arg.value)
+    if (!providedArg) {
+      throw Error(
+        `must provide at least one of the following arguments: ${args
+          .map((arg) => arg.name)
+          .join(', ')}`,
+      )
+    }
   }
 
   return true
