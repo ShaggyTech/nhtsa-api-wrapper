@@ -1,25 +1,27 @@
-// vite.config.ts
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-const packageName = 'nhtsa-api-wrapper';
+const packageName = 'nhtsa-api-wrapper'
 
 const fileName = {
   es: `${packageName}.mjs`,
   cjs: `${packageName}.cjs`,
   umd: `${packageName}.umd.cjs`,
   iife: `${packageName}.iife.js`,
-};
+}
 
-const formats = Object.keys(fileName) as Array<keyof typeof fileName>;
+const formats = Object.keys(fileName) as Array<keyof typeof fileName>
 
 export default defineConfig({
   plugins: [
     tsconfigPaths(),
     dts({
-      entryRoot: './src/',
+      entryRoot: './src',
       outputDir: './dist/types',
       insertTypesEntry: true,
     }),
@@ -54,5 +56,15 @@ export default defineConfig({
         sourcemap: true,
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: 'node',
+    coverage: {
+      provider: 'c8',
+      all: true,
+      src: ['./src'],
+    },
+    // setupFiles: ['./.vitest/setup.ts'],
   },
 })

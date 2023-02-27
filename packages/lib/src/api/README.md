@@ -189,13 +189,13 @@ const { createUrl, get } = useNHTSA()
 const options: CreateUrlOptions = {
   endpointName: 'DecodeVinValues',
   path: '5UXWX7C5*BA', // VIN is the path in this endpoint
-  params: { modelYear: 2009 } // optional query string params specific to this endpoint
+  params: { modelYear: 2009 }, // optional query string params specific to this endpoint
 }
 
 /* GetAllMakes is a different endpoint, so we need a different url, this one is simple and doesn't
    require a path or params */
 const differentOptions: CreateUrlOptions = {
-  endpointName: 'GetAllMakes'
+  endpointName: 'GetAllMakes',
 }
 
 cacheUrl({ ...options }) // create a url to fetch DecodeVinValues and cache it
@@ -217,7 +217,7 @@ const reponse1 = get(urlString)
 
 // or full url string directly, truncated for brevity
 const response2 = post('https://.../DecodeVinValuesBatch', {
-  body: '5UXWX7C5*BA'
+  body: '5UXWX7C5*BA',
 })
 ```
 
@@ -231,7 +231,7 @@ const response2 = get({ ...differentOptions })
 
 const postResponse = post(
   { endpointName: 'DecodeVinValuesBatch' },
-  { body: '5UXWX7C5*BA' }
+  { body: '5UXWX7C5*BA' },
 )
 ```
 
@@ -247,7 +247,7 @@ const response1 = get({ ...options }, { saveUrl: false })
 
 const postResponse = post(
   { endpointName: 'DecodeVinValuesBatch' },
-  { body: '5UXWX7C5*BA', saveUrl: false }
+  { body: '5UXWX7C5*BA', saveUrl: false },
 )
 ```
 
