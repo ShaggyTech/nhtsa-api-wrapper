@@ -31,7 +31,8 @@
     "lint": "turbo run lint",
     "format": "turbo run format",
     "lint:fix": "turbo run lint:fix",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "clean": "turbo run clean"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.4",

@@ -72,7 +72,9 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "test": "vitest",
-    "coverage": "vitest --coverage"
+    "coverage": "vitest --coverage",
+    "clean": "rimraf dist coverage",
+    "clean:all": "pnpm run clean && rimraf node_modules .turbo"
   },
   "devDependencies": {
     "@vitest/coverage-c8": "0.29.1",
@@ -80,6 +82,7 @@
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.4",
     "prettier-config": "workspace:*",
+    "rimraf": "4.1.2",
     "tsconfig": "workspace:*",
     "typedoc": "0.23.25",
     "typedoc-config": "workspace:*",

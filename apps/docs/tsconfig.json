@@ -7,9 +7,7 @@
     "src/**/*.d.ts"
   ],
   "exclude": [
-    "node_modules",
     "cache",
-    "dist",
-    "src/**/*.spec.ts"
+    "dist"
   ]
 }

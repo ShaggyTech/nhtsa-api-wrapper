@@ -25,6 +25,7 @@ importers:
       eslint-config-custom: workspace:*
       prettier: 2.8.4
       prettier-config: workspace:*
+      rimraf: 4.1.2
       tsconfig: workspace:*
       typescript: 4.9.5
       vitepress: 1.0.0-alpha.48
@@ -37,6 +38,7 @@ importers:
       eslint-config-custom: link:../../config/eslint-config-custom
       prettier: 2.8.4
       prettier-config: link:../../config/prettier-config
+      rimraf: 4.1.2
       tsconfig: link:../../config/tsconfig
       typescript: 4.9.5
       vitepress: 1.0.0-alpha.48
@@ -88,6 +90,7 @@ importers:
       eslint-config-custom: workspace:*
       prettier: 2.8.4
       prettier-config: workspace:*
+      rimraf: 4.1.2
       tsconfig: workspace:*
       typedoc: 0.23.25
       typedoc-config: workspace:*
@@ -102,6 +105,7 @@ importers:
       eslint-config-custom: link:../../config/eslint-config-custom
       prettier: 2.8.4
       prettier-config: link:../../config/prettier-config
+      rimraf: 4.1.2
       tsconfig: link:../../config/tsconfig
       typedoc: 0.23.25_typescript@4.9.5
       typedoc-config: link:../../config/typedoc-config

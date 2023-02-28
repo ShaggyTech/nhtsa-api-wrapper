@@ -12,7 +12,9 @@
     "preview": "vitepress preview src",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "clean": "rimraf src/.vitepress/dist src/.vitepress/cache",
+    "clean:all": "pnpm run clean && rimraf node_modules .turbo"
   },
   "dependencies": {
     "@shaggytools/nhtsa-api-wrapper": "workspace:*",
@@ -23,6 +25,7 @@
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.4",
     "prettier-config": "workspace:*",
+    "rimraf": "4.1.2",
     "tsconfig": "workspace:*",
     "typescript": "4.9.5",
     "vitepress": "1.0.0-alpha.48"

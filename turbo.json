@@ -24,10 +24,10 @@
     "dev": {
       "cache": false
     },
-    "docs#dev": {
-      "dependsOn": ["@shaggytools/nhtsa-api-wrapper#prepare"]
-    },
     "test": {
+      "outputs": []
+    },
+    "clean": {
       "outputs": []
     }
   }
