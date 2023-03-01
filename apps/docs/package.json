@@ -6,15 +6,15 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "pnpm run build",
     "dev": "vitepress dev src --host",
     "build": "vitepress build src",
     "preview": "vitepress preview src",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
-    "clean": "rimraf src/.vitepress/dist src/.vitepress/cache",
-    "clean:all": "pnpm run clean && rimraf node_modules .turbo"
+    "format:typedoc": "prettier --write \"src/typedoc/**/*.md\"",
+    "clean": "rimraf src/.vitepress/dist src/.vitepress/cache .turbo",
+    "clean:all": "pnpm run clean && rimraf node_modules"
   },
   "dependencies": {
     "@shaggytools/nhtsa-api-wrapper": "workspace:*",

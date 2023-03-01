@@ -60,8 +60,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prepare": "pnpm run build:lib",
-    "build": "pnpm run \"/^build:.*/\"",
+    "build": "pnpm run \"/^build:.*/\" && pnpm run format:typedoc",
     "build:lib": "tsc --noEmit && vite build",
     "build:typedocs": "typedoc --options .typedoc/typedoc.cjs",
     "dev": "pnpm run \"/^dev:.*/\"",
@@ -71,10 +70,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "format:typedoc": "pnpm --filter docs run format:typedoc",
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "clean": "rimraf dist coverage",
-    "clean:all": "pnpm run clean && rimraf node_modules .turbo"
+    "clean": "rimraf ./dist ./coverage .turbo",
+    "clean:all": "pnpm run clean && rimraf node_modules"
   },
   "devDependencies": {
     "@vitest/coverage-c8": "0.29.1",
