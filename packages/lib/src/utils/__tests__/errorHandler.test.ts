@@ -22,7 +22,7 @@ describe('isError', () => {
   /**************
    * Successes
    **************/
-  it('correctly identifies errors', () => {
+  it('returns true for errors', () => {
     expect(isError(new Error())).toBe(true)
     expect(isError(new TypeError())).toBe(true)
     expect(isError(new SyntaxError())).toBe(true)
@@ -32,7 +32,7 @@ describe('isError', () => {
     expect(isError(new URIError())).toBe(true)
   })
 
-  it('correctly identifies non-errors', () => {
+  it('returns false for non-errors', () => {
     expect(isError(123)).toBe(false)
     expect(isError('string')).toBe(false)
     expect(isError({ message: 'test' })).toBe(false)
@@ -43,26 +43,6 @@ describe('isError', () => {
     expect(isError(false)).toBe(false)
     expect(isError(() => null)).toBe(false)
   })
-
-  /**************
-   * Failures
-   **************/
-  // describe('fails when:', () => {
-  //   test('arg is an array', () => {
-  //     expect(() =>
-  //       createQueryString(['test', 'invalid'] as unknown as Record<
-  //         string,
-  //         string
-  //       >)
-  //     ).toThrowError()
-  //   })
-
-  //   test('arg is a string', () => {
-  //     expect(() =>
-  //       createQueryString('test' as unknown as Record<string, string>)
-  //     ).toThrowError()
-  //   })
-  // })
 })
 
 // describe('encodeQueryStringParams - utility helper function', () => {
