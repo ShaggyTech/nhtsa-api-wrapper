@@ -1,16 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, test, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { catchInvalidArguments, validateArgument } from '../argHandler'
 
-describe('validateArgument - utility helper function', () => {
-  test('it exists', () => {
+describe('argHandler.ts - exports', () => {
+  it('catchInvalidArguments function', () => {
+    expect(catchInvalidArguments).toBeDefined()
+    expect(catchInvalidArguments).toBeInstanceOf(Function)
+  })
+
+  it('validateArgument function', () => {
     expect(validateArgument).toBeDefined()
     expect(validateArgument).toBeInstanceOf(Function)
   })
+})
 
-  describe('it catches invalid arguments (default error mode):', () => {
-    describe('required only', () => {
-      test('returns true - required only', () => {
+describe('validateArgument - utility helper function', () => {
+  describe('all modes', () => {
+    it('throws error when arg is empty array', () => {
+      expect(() => validateArgument([] as any)).toThrowError()
+    })
+
+    it('throws error when arg is empty object', () => {
+      expect(() => validateArgument({} as any)).toThrowError()
+    })
+  })
+
+  describe('errorMode: error (default)', () => {
+    describe('only required', () => {
+      /****************
+       * Returns true
+       ****************/
+      it('returns true with defined value', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -52,8 +72,30 @@ describe('validateArgument - utility helper function', () => {
         ).toEqual(true)
       })
 
-      test('throws error - required only', () => {
-        /* undefined throws error */
+      it('returns true when value is empty array', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: [],
+            required: true,
+          })
+        ).toEqual(true)
+      })
+
+      it('returns true when value is empty object', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: {},
+            required: true,
+          })
+        ).toEqual(true)
+      })
+
+      /****************
+       * Throws Error
+       ****************/
+      it('throws error when value is undefined', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -61,8 +103,9 @@ describe('validateArgument - utility helper function', () => {
             required: true,
           })
         ).toThrowError()
+      })
 
-        /* null throws error */
+      it('throws error when value is null', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -70,8 +113,9 @@ describe('validateArgument - utility helper function', () => {
             required: true,
           })
         ).toThrowError()
+      })
 
-        /* empty string throws error */
+      it('throws error when value is empty string', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -79,36 +123,14 @@ describe('validateArgument - utility helper function', () => {
             required: true,
           })
         ).toThrowError()
-
-        /* empty array throws error */
-        expect(() => validateArgument([] as any)).toThrowError()
-
-        /* empty object throws error */
-        expect(() => validateArgument({} as any)).toThrowError()
       })
     })
 
-    describe('types only', () => {
-      test('returns true - types only', () => {
-        /* undefined does not throw error */
-        expect(
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            types: ['string'],
-          })
-        ).toEqual(true)
-
-        /* empty string does not throw error */
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '',
-            types: ['string'],
-          })
-        ).toEqual(true)
-
-        /* returns true if types match */
+    describe('only types', () => {
+      /****************
+       * Returns true
+       ****************/
+      it('returns true with matching type', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -150,8 +172,50 @@ describe('validateArgument - utility helper function', () => {
         ).toEqual(true)
       })
 
-      test('throws error - types only', () => {
-        /* null throws error */
+      it('returns true with undefined value', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: undefined,
+            types: ['string'],
+          })
+        ).toEqual(true)
+      })
+
+      it('returns true with empty string when tested against type string', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: '',
+            types: ['string'],
+          })
+        ).toEqual(true)
+      })
+
+      it('returns true with empty array when tested against type array', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: [],
+            types: ['array'],
+          })
+        ).toEqual(true)
+      })
+
+      it('returns true with empty object when tested against type object', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: {},
+            types: ['object'],
+          })
+        ).toEqual(true)
+      })
+
+      /****************
+       * Throws Error
+       ****************/
+      it('throws error when types do not match and value is defined', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -160,7 +224,6 @@ describe('validateArgument - utility helper function', () => {
           })
         ).toThrowError()
 
-        /* wrong type throws error */
         expect(() =>
           validateArgument({
             name: 'test',
@@ -176,8 +239,9 @@ describe('validateArgument - utility helper function', () => {
             types: ['number', 'object'],
           })
         ).toThrowError()
+      })
 
-        /* invalid types throws error */
+      it('throws error when types array is empty', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -185,7 +249,9 @@ describe('validateArgument - utility helper function', () => {
             types: [] as any,
           })
         ).toThrowError()
+      })
 
+      it('throws error when types is not an array', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -205,8 +271,10 @@ describe('validateArgument - utility helper function', () => {
     })
 
     describe('required and types', () => {
-      test('returns true', () => {
-        /* returns true if types match */
+      /****************
+       * Returns True
+       ****************/
+      it('returns true if value is defined and types match', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -253,8 +321,32 @@ describe('validateArgument - utility helper function', () => {
         ).toEqual(true)
       })
 
-      test('throws error', () => {
-        /* undefined throws error */
+      it('returns true with empty array when tested against type array', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: [],
+            required: true,
+            types: ['array'],
+          })
+        ).toEqual(true)
+      })
+
+      it('returns true with empty object when tested against type object', () => {
+        expect(
+          validateArgument({
+            name: 'test',
+            value: {},
+            required: true,
+            types: ['object'],
+          })
+        ).toEqual(true)
+      })
+
+      /****************
+       * Throws Error
+       ****************/
+      it('throws error if value is undefined', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -263,8 +355,9 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
           })
         ).toThrowError()
+      })
 
-        /* null throws error */
+      it('throws error if value is null', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -273,8 +366,9 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
           })
         ).toThrowError()
+      })
 
-        /* empty string throws error */
+      it('throws error with empty string when tested against type string', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -283,8 +377,9 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
           })
         ).toThrowError()
+      })
 
-        /* wrong type throws error */
+      it('throws error when type of value does not match', () => {
         expect(() =>
           validateArgument({
             name: 'test',
@@ -299,64 +394,24 @@ describe('validateArgument - utility helper function', () => {
             name: 'test',
             value: ['1', '2', '3'],
             required: true,
-            types: ['number', 'object'],
+            types: ['number', 'string', 'object'],
           })
         ).toThrowError()
       })
     })
   })
 
-  describe('it catches invalid arguments (boolean mode):', () => {
-    describe('required only', () => {
-      test('returns true - required only', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '3VWD07AJ5EM388203',
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
+  describe('errorMode: boolean', () => {
+    describe('only required', () => {
+      /****************
+       * Returns true
+       * - same as default mode
+       ****************/
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 1234,
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: { a: '1', b: '2', c: '3' },
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: () => 'this is a function',
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-      })
-
-      test('returns false - required only', () => {
-        /* undefined returns false */
+      /****************
+       * Returns false
+       ****************/
+      it('returns false when value is undefined', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -365,8 +420,9 @@ describe('validateArgument - utility helper function', () => {
             errorMode: 'boolean',
           })
         ).toEqual(false)
+      })
 
-        /* null returns false */
+      it('returns false when value is null', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -375,8 +431,9 @@ describe('validateArgument - utility helper function', () => {
             errorMode: 'boolean',
           })
         ).toEqual(false)
+      })
 
-        /* empty string returns false */
+      it('returns false when value is empty string', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -388,77 +445,16 @@ describe('validateArgument - utility helper function', () => {
       })
     })
 
-    describe('types only', () => {
-      test('returns true - types only', () => {
-        /* undefined does not throw error */
-        expect(
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            types: ['string'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
+    describe('only types', () => {
+      /****************
+       * Returns true
+       * - same as default mode
+       ****************/
 
-        /* empty string does not throw error */
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '',
-            types: ['string'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        /* returns true if types match */
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '3VWD07AJ5EM388203',
-            types: ['string'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 132,
-            types: ['string', 'number'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: ['array'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: { a: '1', b: '2', c: '3' },
-            types: ['object', 'boolean'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: () => 'this is a function',
-            types: ['function'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-      })
-
-      test('returns false - types only', () => {
-        /* null returns false */
+      /****************
+       * Returns false
+       ****************/
+      it('returns false when types do not match and value is defined', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -466,9 +462,8 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
 
-        /* wrong type returns false */
         expect(
           validateArgument({
             name: 'test',
@@ -476,7 +471,7 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
 
         expect(
           validateArgument({
@@ -485,66 +480,53 @@ describe('validateArgument - utility helper function', () => {
             types: ['number', 'object'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
+      })
+
+      /****************
+       * Throws Error
+       ****************/
+      it('throws error when types array is empty', () => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: ['1', '2', '3'],
+            types: [] as any,
+            errorMode: 'boolean',
+          })
+        ).toThrowError()
+      })
+
+      it('throws error when types is not an array', () => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: ['1', '2', '3'],
+            types: 'string' as any,
+            errorMode: 'boolean',
+          })
+        ).toThrowError()
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: ['1', '2', '3'],
+            types: { a: '1' } as any,
+            errorMode: 'boolean',
+          })
+        ).toThrowError()
       })
     })
 
     describe('required and types', () => {
-      test('returns true', () => {
-        /* returns true if types match */
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '3VWD07AJ5EM388203',
-            required: true,
-            types: ['string'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
+      /****************
+       * Returns true
+       * - same as default mode
+       ****************/
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 132,
-            required: true,
-            types: ['string', 'number'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: ['array'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: { a: '1', b: '2', c: '3' },
-            required: true,
-            types: ['object', 'boolean'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: () => 'this is a function',
-            required: true,
-            types: ['function'],
-            errorMode: 'boolean',
-          })
-        ).toEqual(true)
-      })
-
-      test('returns false', () => {
-        /* undefined returns false */
+      /****************
+       * Returns false
+       ****************/
+      it('returns false if value is undefined', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -553,9 +535,10 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
+      })
 
-        /* null returns false */
+      it('returns false if value is null', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -564,9 +547,10 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
+      })
 
-        /* empty string returns false */
+      it('returns false with empty string when tested against type string', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -575,9 +559,10 @@ describe('validateArgument - utility helper function', () => {
             types: ['string'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
+      })
 
-        /* wrong type returns false */
+      it('returns false when type of value does not match', () => {
         expect(
           validateArgument({
             name: 'test',
@@ -586,43 +571,82 @@ describe('validateArgument - utility helper function', () => {
             types: ['array'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
 
         expect(
           validateArgument({
             name: 'test',
             value: ['1', '2', '3'],
             required: true,
-            types: ['number', 'object'],
+            types: ['number', 'string', 'object'],
             errorMode: 'boolean',
           })
-        ).toEqual(false)
+        ).toBe(false)
+      })
+
+      /****************
+       * Throws Error
+       ****************/
+      it('throws error when types array is empty', () => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: ['1', '2', '3'],
+            required: true,
+            types: [] as any,
+            errorMode: 'boolean',
+          })
+        ).toThrowError()
+      })
+
+      it('throws error when types is not an array', () => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: ['1', '2', '3'],
+            required: true,
+            types: 'string' as any,
+            errorMode: 'boolean',
+          })
+        ).toThrowError()
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: ['1', '2', '3'],
+            required: true,
+            types: { a: '1' } as any,
+            errorMode: 'boolean',
+          })
+        ).toThrowError()
       })
     })
   })
 })
 
 describe('catchInvalidArguments - utility helper function', () => {
-  test('it exists', () => {
-    expect(catchInvalidArguments).toBeDefined()
-    expect(catchInvalidArguments).toBeInstanceOf(Function)
-  })
+  describe('all modes', () => {
+    /****************
+     * Throws Error
+     ****************/
+    it('throws error with empty or invalid args array', () => {
+      expect(() => catchInvalidArguments(undefined as any)).toThrowError()
+      expect(() => catchInvalidArguments({} as any)).toThrowError()
 
-  test('throws error with empty or invalid args array', () => {
-    expect(() => catchInvalidArguments(undefined as any)).toThrowError()
-    expect(() => catchInvalidArguments({} as any)).toThrowError()
+      expect(() =>
+        catchInvalidArguments({ args: 'string' } as any)
+      ).toThrowError()
 
-    expect(() =>
-      catchInvalidArguments({ args: 'string' } as any)
-    ).toThrowError()
+      expect(() => catchInvalidArguments({ args: [] })).toThrowError()
 
-    expect(() => catchInvalidArguments({ args: [] })).toThrowError()
-
-    expect(() => catchInvalidArguments({ args: {} } as any)).toThrowError()
+      expect(() => catchInvalidArguments({ args: {} } as any)).toThrowError()
+    })
   })
 
   describe('default mode', () => {
-    test('returns true if all args are valid', () => {
+    /****************
+     * Returns true
+     ****************/
+    it('returns true if all args are valid', () => {
       const args = [
         { name: 'make', value: 'Audi', required: true, types: ['string'] },
         { name: 'params', value: { a: '1' }, types: ['object'] },
@@ -632,11 +656,13 @@ describe('catchInvalidArguments - utility helper function', () => {
           types: ['string', 'number'],
         },
       ]
-      expect(catchInvalidArguments({ args })).toEqual(true)
+      expect(catchInvalidArguments({ args })).toBe(true)
     })
 
-    test('throws error if validation fails', () => {
-      /* does not pass validation */
+    /****************
+     * Throws Error
+     ****************/
+    it('throws error if validation fails', () => {
       expect(() =>
         catchInvalidArguments({
           args: [
@@ -678,7 +704,7 @@ describe('catchInvalidArguments - utility helper function', () => {
   })
 
   describe('atLeast mode', () => {
-    test('returns true if at least one two args defined', () => {
+    it('returns true if at least one two args defined', () => {
       const args = [
         { name: 'make', value: undefined, types: ['string'] },
         { name: 'year', value: 1999, types: ['number'] },
@@ -686,7 +712,7 @@ describe('catchInvalidArguments - utility helper function', () => {
       expect(catchInvalidArguments({ mode: 'atLeast', args })).toEqual(true)
     })
 
-    test('returns true if both args defined', () => {
+    it('returns true if both args defined', () => {
       const args = [
         { name: 'make', value: 'Audi', types: ['string'] },
         { name: 'year', value: 1999, types: ['number'] },
@@ -694,7 +720,7 @@ describe('catchInvalidArguments - utility helper function', () => {
       expect(catchInvalidArguments({ mode: 'atLeast', args })).toEqual(true)
     })
 
-    test('returns true if at least one of three args defined', () => {
+    it('returns true if at least one of three args defined', () => {
       const args = [
         { name: 'make', value: undefined, types: ['string'] },
         { name: 'year', value: undefined, types: ['number'] },
@@ -703,7 +729,7 @@ describe('catchInvalidArguments - utility helper function', () => {
       expect(catchInvalidArguments({ mode: 'atLeast', args })).toEqual(true)
     })
 
-    test('throws error if validation fails', () => {
+    it('throws error if validation fails', () => {
       /* empty strings do not pass validation */
       expect(() =>
         catchInvalidArguments({
