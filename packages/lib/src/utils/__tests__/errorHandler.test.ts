@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { isError, handleError, rejectWithError } from '../errorHandler'
 
+const defaultErrorMessage = 'an unknown error occurred.'
+
 describe('errorHandler - utility helper functions for error handling', () => {
   it('exports isError function', () => {
     expect(isError).toBeDefined()
@@ -19,17 +21,14 @@ describe('errorHandler - utility helper functions for error handling', () => {
 })
 
 describe('isError', () => {
-  /**************
-   * Successes
-   **************/
   it('returns true for errors', () => {
-    expect(isError(new Error())).toBe(true)
-    expect(isError(new TypeError())).toBe(true)
-    expect(isError(new SyntaxError())).toBe(true)
-    expect(isError(new EvalError())).toBe(true)
-    expect(isError(new RangeError())).toBe(true)
-    expect(isError(new ReferenceError())).toBe(true)
-    expect(isError(new URIError())).toBe(true)
+    expect(isError(Error())).toBe(true)
+    expect(isError(TypeError())).toBe(true)
+    expect(isError(SyntaxError())).toBe(true)
+    expect(isError(EvalError())).toBe(true)
+    expect(isError(RangeError())).toBe(true)
+    expect(isError(ReferenceError())).toBe(true)
+    expect(isError(URIError())).toBe(true)
   })
 
   it('returns false for non-errors', () => {
@@ -45,78 +44,75 @@ describe('isError', () => {
   })
 })
 
-// describe('encodeQueryStringParams - utility helper function', () => {
-//   test('it is defined', () => {
-//     expect(encodeQueryStringParams).toBeDefined()
-//   })
+describe('handleError', () => {
+  it('returns same Error when provided an Error', () => {
+    expect(handleError(Error('test error'))).toBeInstanceOf(Error)
+    expect(handleError(Error('test error')).message).toBe('test error')
 
-//   /**************
-//    * Successes
-//    **************/
-//   describe('it returns correct string with:', () => {
-//     test('params as an empty object', () => {
-//       expect(encodeQueryStringParams({})).toEqual({})
-//     })
+    expect(handleError(TypeError('test error'))).toBeInstanceOf(TypeError)
+    expect(handleError(SyntaxError('test error'))).toBeInstanceOf(SyntaxError)
+    expect(handleError(EvalError('test error'))).toBeInstanceOf(EvalError)
+    expect(handleError(RangeError('test error'))).toBeInstanceOf(RangeError)
+    expect(handleError(ReferenceError('test error'))).toBeInstanceOf(
+      ReferenceError
+    )
+    expect(handleError(URIError('test error'))).toBeInstanceOf(URIError)
+  })
 
-//     test('one param', () => {
-//       expect(
-//         encodeQueryStringParams({
-//           modelYear: '2019',
-//         })
-//       ).toEqual({ modelYear: '2019' })
-//     })
+  it('returns an Error with message when provided a message string', () => {
+    expect(handleError('test error')).toBeInstanceOf(Error)
+    expect(handleError('test error').message).toBe('test error')
 
-//     test('one param with spaces', () => {
-//       expect(
-//         encodeQueryStringParams({
-//           variable: 'Some Variable',
-//         })
-//       ).toEqual({ variable: 'Some%20Variable' })
-//     })
+    expect(handleError('')).toBeInstanceOf(Error)
+    expect(handleError('').message).toBe('')
+  })
 
-//     test('empty string value', () => {
-//       expect(
-//         encodeQueryStringParams({
-//           empty: '',
-//         })
-//       ).toEqual({ empty: '' })
-//     })
+  it('returns an Error with default message', () => {
+    expect(handleError(Error())).toBeInstanceOf(Error)
+    expect(handleError(Error()).message).toBe(defaultErrorMessage)
 
-//     test('params with encodable characters', () => {
-//       expect(
-//         encodeQueryStringParams({
-//           variable: 'something./?&=+[] {}-_|!@#$%^&*()<>:;"',
-//         })
-//       ).toEqual({
-//         variable:
-//           'something.%2F%3F%26%3D%2B%5B%5D%20%7B%7D-_%7C!%40%23%24%25%5E%26*()%3C%3E%3A%3B%22',
-//       })
-//     })
-//   })
+    expect(handleError(undefined)).toBeInstanceOf(Error)
+    expect(handleError(undefined).message).toBe(defaultErrorMessage)
 
-//   /**************
-//    * Failures
-//    **************/
-//   describe('fails when:', () => {
-//     test('params is undefined', () => {
-//       expect(() =>
-//         encodeQueryStringParams(undefined as unknown as Record<string, string>)
-//       ).toThrowError()
-//     })
+    expect(handleError(null)).toBeInstanceOf(Error)
+    expect(handleError(null).message).toBe(defaultErrorMessage)
 
-//     test('params is an array', () => {
-//       expect(() =>
-//         encodeQueryStringParams(['test', 'invalid'] as unknown as Record<
-//           string,
-//           string
-//         >)
-//       ).toThrowError()
-//     })
+    expect(handleError({ message: 'test error', b: 2 })).toBeInstanceOf(Error)
+    expect(handleError({ message: 'test error', b: 2 }).message).toBe(
+      defaultErrorMessage
+    )
 
-//     test('params is a string', () => {
-//       expect(() =>
-//         encodeQueryStringParams('test' as unknown as Record<string, string>)
-//       ).toThrowError()
-//     })
-//   })
-// })
+    expect(handleError(['a', 'b', 'c'])).toBeInstanceOf(Error)
+    expect(handleError(['a', 'b', 'c']).message).toBe(defaultErrorMessage)
+  })
+})
+
+describe('rejectWithError', () => {
+  it('rejects with provided Error', () => {
+    expect(rejectWithError(Error('test error'))).rejects.toBeInstanceOf(Error)
+    expect(rejectWithError(Error('test error'))).rejects.toHaveProperty(
+      'message',
+      'test error'
+    )
+  })
+
+  it('rejects with a new Error if not provided an Error', () => {
+    expect(rejectWithError('test error')).rejects.toBeInstanceOf(Error)
+    expect(rejectWithError('test error')).rejects.toHaveProperty(
+      'message',
+      'test error'
+    )
+
+    expect(rejectWithError('')).rejects.toBeInstanceOf(Error)
+    expect(rejectWithError('')).rejects.toHaveProperty('message', '')
+
+    expect(rejectWithError(Error())).rejects.toBeInstanceOf(Error)
+    expect(rejectWithError(Error())).rejects.toHaveProperty('message', '')
+
+    expect(rejectWithError(undefined)).rejects.toBeInstanceOf(Error)
+    expect(rejectWithError(undefined)).rejects.toHaveProperty(
+      'message',
+      defaultErrorMessage
+    )
+  })
+})
