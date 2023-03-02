@@ -9,6 +9,7 @@ import type { AtLeastOne } from '@/types'
 export type IArgToValidate = {
   name: string
   value: unknown
+  errorMode?: 'error' | 'boolean'
 } & AtLeastOne<{
   required?: boolean
   types?: string[]
@@ -85,7 +86,7 @@ export const validateArgument = ({
   required,
   types,
   errorMode = 'error',
-}: IArgToValidate & { errorMode?: 'error' | 'boolean' }): boolean => {
+}: IArgToValidate): boolean => {
   if (getTypeof(name) !== 'string') {
     throw Error(`'name', is required and must be of type string`)
   }
@@ -95,7 +96,7 @@ export const validateArgument = ({
   const errorPrepend = `error validating argument named "${name}",`
   const errorAppend = `received value: ${value} - of type: <${typeofValue}>`
 
-  if (types && getTypeof(types) !== 'array' && !types.length) {
+  if (types && (getTypeof(types) !== 'array' || !types.length)) {
     throw Error(`${errorPrepend} 'types' must be an array of strings`)
   }
 
@@ -147,9 +148,11 @@ export const validateArgument = ({
 export const catchInvalidArguments = ({
   args,
   mode = 'default',
+  errorMode = 'error',
 }: {
   args: IArgToValidate[]
   mode?: 'default' | 'atLeast'
+  errorMode?: 'error' | 'boolean'
 }) => {
   if (getTypeof(args) !== 'array' || !args.length) {
     throw Error(
@@ -159,6 +162,7 @@ export const catchInvalidArguments = ({
 
   if (mode === 'default') {
     args.forEach((arg) => {
+      if (!arg.errorMode) arg.errorMode = errorMode
       validateArgument(arg)
     })
   } else if (mode === 'atLeast') {
