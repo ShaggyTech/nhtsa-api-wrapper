@@ -1,8 +1,8 @@
-import { describe, test, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { createQueryString, encodeQueryStringParams } from '../queryString'
 
 describe('createQueryString - utility helper function', () => {
-  test('it exists', () => {
+  it('exists', () => {
     expect(createQueryString).toBeDefined()
     expect(createQueryString).toBeInstanceOf(Function)
   })
@@ -11,11 +11,11 @@ describe('createQueryString - utility helper function', () => {
    * Successes
    **************/
   describe('returns correct string with:', () => {
-    test('no params', () => {
+    it('no params', () => {
       expect(createQueryString()).toBe('?format=json')
     })
 
-    test('one param', () => {
+    it('one param', () => {
       expect(
         createQueryString({
           modelYear: '2019',
@@ -23,7 +23,7 @@ describe('createQueryString - utility helper function', () => {
       ).toBe('?modelYear=2019&format=json')
     })
 
-    test('two params', () => {
+    it('two params', () => {
       expect(
         createQueryString({
           modelYear: '2019',
@@ -32,7 +32,7 @@ describe('createQueryString - utility helper function', () => {
       ).toBe('?modelYear=2019&page=2&format=json')
     })
 
-    test('ignores empty string values #1', () => {
+    it('ignores empty string values #1', () => {
       expect(
         createQueryString({
           empty: '',
@@ -40,7 +40,7 @@ describe('createQueryString - utility helper function', () => {
       ).toBe('?format=json')
     })
 
-    test('ignores empty string values #2', () => {
+    it('ignores empty string values #2', () => {
       expect(
         createQueryString({
           empty: '',
@@ -49,7 +49,7 @@ describe('createQueryString - utility helper function', () => {
       ).toBe('?modelYear=2019&format=json')
     })
 
-    test('URI encodes string values', () => {
+    it('URI encodes string values', () => {
       expect(
         createQueryString({
           variable: 'vehicle type',
@@ -62,19 +62,19 @@ describe('createQueryString - utility helper function', () => {
   })
 
   describe('returns default string when:', () => {
-    test('params arg is an empty object', () => {
+    it('params arg is an empty object', () => {
       expect(createQueryString({})).toBe('?format=json')
     })
 
-    test('params arg is undefined', () => {
+    it('params arg is undefined', () => {
       expect(createQueryString(undefined)).toBe('?format=json')
     })
 
-    test('only one param is provided containing an empty string value', () => {
+    it('only one param is provided containing an empty string value', () => {
       expect(createQueryString({ nothingHere: '' })).toBe('?format=json')
     })
 
-    test('ignores invalid values', () => {
+    it('ignores invalid values', () => {
       const params = { outer: { inner: true } }
       expect(
         createQueryString(params as unknown as Record<string, string>)
@@ -83,19 +83,19 @@ describe('createQueryString - utility helper function', () => {
   })
 
   describe('it handles allowEmptyStringValues option set to true:', () => {
-    test('only one param is provided containing an empty string value', () => {
+    it('only one param is provided containing an empty string value', () => {
       expect(createQueryString({ nothingHere: '' }, true)).toBe(
         '?nothingHere=&format=json'
       )
     })
 
-    test('multiple params are provided containing empty string values', () => {
+    it('multiple params are provided containing empty string values', () => {
       expect(createQueryString({ nothingHere: '', second: '' }, true)).toBe(
         '?nothingHere=&second=&format=json'
       )
     })
 
-    test('a mix of non-empty values and empty string values are provided', () => {
+    it('a mix of non-empty values and empty string values are provided', () => {
       expect(
         createQueryString({ nothingHere: '', modelYear: 2019 }, true)
       ).toBe('?nothingHere=&modelYear=2019&format=json')
@@ -106,25 +106,25 @@ describe('createQueryString - utility helper function', () => {
    * Failures
    **************/
   describe('fails when:', () => {
-    test('arg is an array', () => {
+    it('arg is an array', () => {
       expect(() =>
-        createQueryString(['test', 'invalid'] as unknown as Record<
+        createQueryString(['it', 'invalid'] as unknown as Record<
           string,
           string
         >)
       ).toThrowError()
     })
 
-    test('arg is a string', () => {
+    it('arg is a string', () => {
       expect(() =>
-        createQueryString('test' as unknown as Record<string, string>)
+        createQueryString('it' as unknown as Record<string, string>)
       ).toThrowError()
     })
   })
 })
 
 describe('encodeQueryStringParams - utility helper function', () => {
-  test('it is defined', () => {
+  it('it is defined', () => {
     expect(encodeQueryStringParams).toBeDefined()
   })
 
@@ -132,11 +132,11 @@ describe('encodeQueryStringParams - utility helper function', () => {
    * Successes
    **************/
   describe('it returns correct string with:', () => {
-    test('params as an empty object', () => {
+    it('params as an empty object', () => {
       expect(encodeQueryStringParams({})).toEqual({})
     })
 
-    test('one param', () => {
+    it('one param', () => {
       expect(
         encodeQueryStringParams({
           modelYear: '2019',
@@ -144,7 +144,7 @@ describe('encodeQueryStringParams - utility helper function', () => {
       ).toEqual({ modelYear: '2019' })
     })
 
-    test('one param with spaces', () => {
+    it('one param with spaces', () => {
       expect(
         encodeQueryStringParams({
           variable: 'Some Variable',
@@ -152,7 +152,7 @@ describe('encodeQueryStringParams - utility helper function', () => {
       ).toEqual({ variable: 'Some%20Variable' })
     })
 
-    test('empty string value', () => {
+    it('empty string value', () => {
       expect(
         encodeQueryStringParams({
           empty: '',
@@ -160,7 +160,7 @@ describe('encodeQueryStringParams - utility helper function', () => {
       ).toEqual({ empty: '' })
     })
 
-    test('params with encodable characters', () => {
+    it('params with encodable characters', () => {
       expect(
         encodeQueryStringParams({
           variable: 'something./?&=+[] {}-_|!@#$%^&*()<>:;"',
@@ -176,24 +176,24 @@ describe('encodeQueryStringParams - utility helper function', () => {
    * Failures
    **************/
   describe('fails when:', () => {
-    test('params is undefined', () => {
+    it('params is undefined', () => {
       expect(() =>
         encodeQueryStringParams(undefined as unknown as Record<string, string>)
       ).toThrowError()
     })
 
-    test('params is an array', () => {
+    it('params is an array', () => {
       expect(() =>
-        encodeQueryStringParams(['test', 'invalid'] as unknown as Record<
+        encodeQueryStringParams(['it', 'invalid'] as unknown as Record<
           string,
           string
         >)
       ).toThrowError()
     })
 
-    test('params is a string', () => {
+    it('params is a string', () => {
       expect(() =>
-        encodeQueryStringParams('test' as unknown as Record<string, string>)
+        encodeQueryStringParams('it' as unknown as Record<string, string>)
       ).toThrowError()
     })
   })

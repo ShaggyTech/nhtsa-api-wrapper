@@ -18,6 +18,7 @@ const fileName = {
 const formats = Object.keys(fileName) as Array<keyof typeof fileName>
 
 export default defineConfig({
+  server: { port: 3000 },
   plugins: [
     tsconfigPaths(),
     dts({
@@ -38,9 +39,6 @@ export default defineConfig({
       },
     ],
   },
-  server: {
-    port: 3000,
-  },
   build: {
     outDir: 'dist',
     lib: {
@@ -58,9 +56,9 @@ export default defineConfig({
     },
   },
   test: {
-    globals: true,
     environment: 'node',
-    reporters: ['default', 'html'],
+    globals: true,
+    watch: false, // turned off for CI/CD runs
     coverage: {
       provider: 'c8',
       all: true,

@@ -3,18 +3,18 @@ import { isError, handleError, rejectWithError } from '../errorHandler'
 
 const defaultErrorMessage = 'an unknown error occurred.'
 
-describe('errorHandler - utility helper functions for error handling', () => {
-  it('exports isError function', () => {
+describe('errorHandler.ts - exports', () => {
+  it('isError function', () => {
     expect(isError).toBeDefined()
     expect(isError).toBeInstanceOf(Function)
   })
 
-  it('exports handleError function', () => {
+  it('handleError function', () => {
     expect(handleError).toBeDefined()
     expect(handleError).toBeInstanceOf(Function)
   })
 
-  it('exports rejectWithError function', () => {
+  it('rejectWithError function', () => {
     expect(rejectWithError).toBeDefined()
     expect(rejectWithError).toBeInstanceOf(Function)
   })

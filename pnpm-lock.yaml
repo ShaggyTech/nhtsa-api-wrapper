@@ -86,7 +86,7 @@ importers:
   packages/lib:
     specifiers:
       '@vitest/coverage-c8': 0.29.1
-      '@vitest/ui': ^0.29.2
+      '@vitest/ui': 0.29.2
       eslint: 8.35.0
       eslint-config-custom: workspace:*
       prettier: 2.8.4
