@@ -26,6 +26,9 @@ export const isError = (error: unknown): boolean => {
 export const handleError = (error: unknown): Error => {
   let message = 'an unknown error occurred.'
   if (isError(error)) {
+    if (!(error as Error).message) {
+      ;(error as Error).message = message
+    }
     return error as Error
   }
   if (getTypeof(error) === 'string') {
