@@ -148,11 +148,9 @@ export const validateArgument = ({
 export const catchInvalidArguments = ({
   args,
   mode = 'default',
-  errorMode = 'error',
 }: {
   args: IArgToValidate[]
   mode?: 'default' | 'atLeast'
-  errorMode?: 'error' | 'boolean'
 }) => {
   if (getTypeof(args) !== 'array' || !args.length) {
     throw Error(
@@ -161,10 +159,7 @@ export const catchInvalidArguments = ({
   }
 
   if (mode === 'default') {
-    args.forEach((arg) => {
-      if (!arg.errorMode) arg.errorMode = errorMode
-      validateArgument(arg)
-    })
+    args.forEach((arg) => validateArgument(arg))
   } else if (mode === 'atLeast') {
     const providedArg = args.find((arg) => !!arg.value)
     if (!providedArg) {
