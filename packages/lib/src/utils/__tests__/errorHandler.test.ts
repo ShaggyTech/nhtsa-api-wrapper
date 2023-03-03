@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isError, handleError, rejectWithError } from '../errorHandler'
+import { handleError, isError, rejectWithError } from '../errorHandler'
 
 const defaultErrorMessage = 'an unknown error occurred.'
 
@@ -88,29 +88,34 @@ describe('handleError', () => {
 })
 
 describe('rejectWithError', () => {
-  it('rejects with provided Error', () => {
-    expect(rejectWithError(Error('test error'))).rejects.toBeInstanceOf(Error)
-    expect(rejectWithError(Error('test error'))).rejects.toHaveProperty(
+  it('rejects with provided Error', async () => {
+    await expect(rejectWithError(Error('test error'))).rejects.toBeInstanceOf(
+      Error
+    )
+    await expect(rejectWithError(Error('test error'))).rejects.toHaveProperty(
       'message',
       'test error'
     )
   })
 
-  it('rejects with a new Error if not provided an Error', () => {
-    expect(rejectWithError('test error')).rejects.toBeInstanceOf(Error)
-    expect(rejectWithError('test error')).rejects.toHaveProperty(
+  it('rejects with a new Error if not provided an Error', async () => {
+    await expect(rejectWithError('test error')).rejects.toBeInstanceOf(Error)
+    await expect(rejectWithError('test error')).rejects.toHaveProperty(
       'message',
       'test error'
     )
 
-    expect(rejectWithError('')).rejects.toBeInstanceOf(Error)
-    expect(rejectWithError('')).rejects.toHaveProperty('message', '')
+    await expect(rejectWithError('')).rejects.toBeInstanceOf(Error)
+    await expect(rejectWithError('')).rejects.toHaveProperty('message', '')
 
-    expect(rejectWithError(Error())).rejects.toBeInstanceOf(Error)
-    expect(rejectWithError(Error())).rejects.toHaveProperty('message', '')
+    await expect(rejectWithError(Error())).rejects.toBeInstanceOf(Error)
+    await expect(rejectWithError(Error())).rejects.toHaveProperty(
+      'message',
+      defaultErrorMessage
+    )
 
-    expect(rejectWithError(undefined)).rejects.toBeInstanceOf(Error)
-    expect(rejectWithError(undefined)).rejects.toHaveProperty(
+    await expect(rejectWithError(undefined)).rejects.toBeInstanceOf(Error)
+    await expect(rejectWithError(undefined)).rejects.toHaveProperty(
       'message',
       defaultErrorMessage
     )

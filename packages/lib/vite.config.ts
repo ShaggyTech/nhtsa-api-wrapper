@@ -63,6 +63,7 @@ export default defineConfig({
       provider: 'c8',
       all: true,
       src: ['./src'],
+      exclude: ['**/*types.ts', '**/__tests__/**/*'],
     },
     // setupFiles: ['./.vitest/setup.ts'],
   },

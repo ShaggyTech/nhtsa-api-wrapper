@@ -1,13 +1,15 @@
-import { describe, test, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { isValidVin } from '../isValidVin'
 
-describe('isValidVin - utility helper function', () => {
-  test('it exists', () => {
+describe('isValidVin.ts - exports', () => {
+  it('isValidVin function', () => {
     expect(isValidVin).toBeDefined()
     expect(isValidVin).toBeInstanceOf(Function)
   })
+})
 
-  test('it should return true with a valid VIN', () => {
+describe('isValidVin - utility helper function', () => {
+  it('it should return true with a valid VIN', () => {
     // All zeros
     expect(isValidVin('00000000000000000')).toBe(true)
     // valid uppercase
@@ -18,7 +20,7 @@ describe('isValidVin - utility helper function', () => {
     expect(isValidVin('3vwd07aj5em388202')).toBe(true)
   })
 
-  test('it should fail with invalid arguments', async () => {
+  it('it should fail with invalid arguments', async () => {
     // known invalid VIN
     expect(isValidVin('3VWD07AJ5EM388203')).toBe(false)
     // VIN too short

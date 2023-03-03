@@ -14,7 +14,7 @@ describe('argHandler.ts - exports', () => {
   })
 })
 
-describe('validateArgument - utility helper function', () => {
+describe('validateArgument', () => {
   describe('all modes', () => {
     it('throws error when arg is empty array', () => {
       expect(() => validateArgument([] as any)).toThrowError()
@@ -25,7 +25,7 @@ describe('validateArgument - utility helper function', () => {
     })
   })
 
-  describe('errorMode: error (default)', () => {
+  describe('errorMode: "error" (default)', () => {
     describe('only required', () => {
       /****************
        * Returns true
@@ -401,7 +401,7 @@ describe('validateArgument - utility helper function', () => {
     })
   })
 
-  describe('errorMode: boolean', () => {
+  describe('errorMode: "boolean"', () => {
     describe('only required', () => {
       /****************
        * Returns true
@@ -623,7 +623,7 @@ describe('validateArgument - utility helper function', () => {
   })
 })
 
-describe('catchInvalidArguments - utility helper function', () => {
+describe('catchInvalidArguments', () => {
   describe('all modes', () => {
     /****************
      * Throws Error
@@ -642,7 +642,7 @@ describe('catchInvalidArguments - utility helper function', () => {
     })
   })
 
-  describe('default mode', () => {
+  describe('mode: "default" (default)', () => {
     /****************
      * Returns true
      ****************/
@@ -704,6 +704,9 @@ describe('catchInvalidArguments - utility helper function', () => {
   })
 
   describe('atLeast mode', () => {
+    /****************
+     * Returns true
+     ****************/
     it('returns true if at least one two args defined', () => {
       const args = [
         { name: 'make', value: undefined, types: ['string'] },
@@ -722,65 +725,34 @@ describe('catchInvalidArguments - utility helper function', () => {
 
     it('returns true if at least one of three args defined', () => {
       const args = [
-        { name: 'make', value: undefined, types: ['string'] },
+        { name: 'make', value: null, types: ['string'] },
         { name: 'year', value: undefined, types: ['number'] },
         { name: 'params', value: { a: '1' }, types: ['object'] },
       ]
       expect(catchInvalidArguments({ mode: 'atLeast', args })).toEqual(true)
     })
 
-    it('throws error if validation fails', () => {
-      /* empty strings do not pass validation */
+    /****************
+     * Throws Error
+     ****************/
+    it('throws error if not at least one', () => {
       expect(() =>
         catchInvalidArguments({
           mode: 'atLeast',
           args: [
             {
-              name: 'make',
+              name: 'model',
               value: '',
               types: ['string'],
             },
             {
-              name: 'model',
+              name: 'make',
               value: undefined,
               types: ['string'],
             },
-          ],
-        })
-      ).toThrowError()
-
-      /* null values do not pass validation */
-      expect(() =>
-        catchInvalidArguments({
-          mode: 'atLeast',
-          args: [
             {
-              name: 'make',
+              name: 'model',
               value: null,
-              types: ['string'],
-            },
-            {
-              name: 'model',
-              value: undefined,
-              types: ['string'],
-            },
-          ],
-        })
-      ).toThrowError()
-
-      /* both undefined, throws error */
-      expect(() =>
-        catchInvalidArguments({
-          mode: 'atLeast',
-          args: [
-            {
-              name: 'make',
-              value: undefined,
-              types: ['string'],
-            },
-            {
-              name: 'model',
-              value: undefined,
               types: ['string'],
             },
           ],

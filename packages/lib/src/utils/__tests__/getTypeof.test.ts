@@ -1,13 +1,15 @@
-import { describe, test, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { getTypeof } from '../getTypeof'
 
-describe('getTypeof - utility helper function', () => {
-  test('it exists', () => {
+describe('getTypeof.ts - exports', () => {
+  it('getTypeof function', () => {
     expect(getTypeof).toBeDefined()
     expect(getTypeof).toBeInstanceOf(Function)
   })
+})
 
-  test('it returns correct type', () => {
+describe('getTypeof', () => {
+  it('it returns correct type', () => {
     expect(getTypeof(undefined)).toBe('undefined')
     expect(getTypeof(null)).toBe('null')
     expect(getTypeof(true)).toBe('boolean')
@@ -17,7 +19,7 @@ describe('getTypeof - utility helper function', () => {
     expect(getTypeof(['an', 'array'])).toBe('array')
   })
 
-  test('it handles different Error types as type "error"', () => {
+  it('it handles different Error types as type "error"', () => {
     const error = new Error('this is an error')
     const typeError = new TypeError('this is a type error')
     const rangeError = new RangeError('this is a range error')
