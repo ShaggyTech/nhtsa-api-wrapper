@@ -45,8 +45,5 @@ export const handleError = (error: unknown): Error => {
  * @param error - Any type of value
  */
 export const rejectWithError = async (error: unknown): Promise<never> => {
-  if (!isError(error)) {
-    error = handleError(error)
-  }
-  return Promise.reject(error)
+  return Promise.reject(handleError(error))
 }
