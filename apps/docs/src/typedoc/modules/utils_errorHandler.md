@@ -82,4 +82,4 @@ not an Error type.
 
 #### Defined in
 
-[utils/errorHandler.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/errorHandler.ts#L44)
+[utils/errorHandler.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/errorHandler.ts#L47)

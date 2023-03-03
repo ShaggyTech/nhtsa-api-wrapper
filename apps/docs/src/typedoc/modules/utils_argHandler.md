@@ -17,7 +17,7 @@
 
 ### IArgToValidate
 
-Ƭ **IArgToValidate**: { `name`: `string` ; `value`: `unknown` } & [`AtLeastOne`](utils_types.md#atleastone)<{ `required?`: `boolean` ; `types?`: `string`[] }\>
+Ƭ **IArgToValidate**: { `errorMode?`: `"error"` \| `"boolean"` ; `name`: `string` ; `value`: `unknown` } & [`AtLeastOne`](utils_types.md#atleastone)<{ `required?`: `boolean` ; `types?`: `string`[] }\>
 
 #### Defined in
 
@@ -56,7 +56,7 @@ validation logic works and how to override the default error throwing behavior.
 
 #### Defined in
 
-[utils/argHandler.ts:147](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L147)
+[utils/argHandler.ts:148](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L148)
 
 ---
 
@@ -121,9 +121,9 @@ If `required` is true and no `types` are provided, it will only validate value i
 
 #### Parameters
 
-| Name      | Type     | Description    |
-| :-------- | :------- | :------------- |
-| `options` | `Object` | options object |
+| Name      | Type                                                   | Description    |
+| :-------- | :----------------------------------------------------- | :------------- |
+| `options` | [`IArgToValidate`](utils_argHandler.md#iargtovalidate) | options object |
 
 #### Returns
 
@@ -134,4 +134,4 @@ If `required` is true and no `types` are provided, it will only validate value i
 
 #### Defined in
 
-[utils/argHandler.ts:82](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L82)
+[utils/argHandler.ts:83](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L83)

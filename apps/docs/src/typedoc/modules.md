@@ -41,7 +41,6 @@
 
 - [constants](modules/constants.md)
 - [index](modules/index.md)
-- [vite-env](modules/vite_env.md)
 
 ### Types Modules
 
