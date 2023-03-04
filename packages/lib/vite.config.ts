@@ -65,6 +65,6 @@ export default defineConfig({
       src: ['./src'],
       exclude: ['**/*/types.ts', '**/__tests__/**/*', 'vite-env.d.ts'],
     },
-    // setupFiles: ['./.vitest/setup.ts'],
+    setupFiles: ['./.vitest/setup.ts'],
   },
 })

@@ -91,7 +91,8 @@
     "vite": "4.1.4",
     "vite-plugin-dts": "2.0.2",
     "vite-tsconfig-paths": "4.0.5",
-    "vitest": "0.29.1"
+    "vitest": "0.29.1",
+    "vitest-fetch-mock": "0.2.2"
   },
   "eslintConfig": {
     "extends": [
