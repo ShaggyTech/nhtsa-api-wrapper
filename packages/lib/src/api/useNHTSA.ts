@@ -50,13 +50,14 @@ export const useNHTSA = () => {
   /* Internal State */
   let _url: string
 
+  /** Sets cached VPIC URL in internal state */
+  const setCachedUrl = (url: string) => (_url = url)
+
   /** Gets cached VPIC URL from internal state */
   const getCachedUrl = () => _url
 
-  /** Function to create final POST body string from a VPIC data string */
-  const createPostBody = (data: string) => {
-    return encodeURI(`DATA=${data}&format=${NHTSA_RESPONSE_FORMAT}`)
-  }
+  /** Clears cached VPIC URL from internal state */
+  const clearCachedUrl = () => (_url = '')
 
   /**
    * This builds the VPIC URL string and sets it as a private variable in the composable instance if
@@ -94,14 +95,21 @@ export const useNHTSA = () => {
    * (default: true)
    * @returns {string} VPIC API URL string
    */
-  const cacheUrl = ({
-    endpointName,
-    allowEmptyParams = false,
-    includeQueryString = true,
-    path = '',
-    params,
-    saveUrl = true,
-  }: CreateUrlOptions): string => {
+  const cacheUrl = (input: CreateUrlOptions | string): string => {
+    if (typeof input === 'string') {
+      setCachedUrl(input)
+      return input
+    }
+
+    const {
+      endpointName,
+      allowEmptyParams = false,
+      includeQueryString = true,
+      path = '',
+      params,
+      saveUrl = true,
+    } = input
+
     if (!endpointName) {
       throw Error('Endpoint name is required to create a VPIC URL string')
     }
@@ -115,7 +123,7 @@ export const useNHTSA = () => {
     )
 
     if (saveUrl) {
-      _url = url
+      setCachedUrl(url)
     }
 
     return url
@@ -269,6 +277,11 @@ export const useNHTSA = () => {
     return nhtsaResponse
   }
 
+  /** Function to create final POST body string from a VPIC data string */
+  const createPostBody = (data: string) => {
+    return encodeURI(`DATA=${data}&format=${NHTSA_RESPONSE_FORMAT}`)
+  }
+
   /**
    * This uses native `fetch()` to make a _POST_ request to the NHTSA API. Returns a promise that
    * resolves to a `NhtsaApiResponse<T>` object, where `T` is the type of the objects in the
@@ -372,7 +385,9 @@ export const useNHTSA = () => {
   }
 
   return {
+    setCachedUrl,
     getCachedUrl,
+    clearCachedUrl,
     cacheUrl,
     createUrl,
     createPostBody,
