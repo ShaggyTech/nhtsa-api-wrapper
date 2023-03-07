@@ -1,5 +1,9 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { useNHTSA } from '../'
+
+// Mocks
+import { createFetchGetResponse } from '../../../.vitest/helpers'
+import { decodeVinResults } from '../../../.vitest/mockData/decode-vin-results'
 
 describe('api/useNHTSA.ts', () => {
   it('exports useNHTSA function', () => {
@@ -238,6 +242,43 @@ describe('useNHTSA', () => {
       expect(() =>
         cacheUrl({ endpointName: undefined as unknown as string })
       ).toThrowError()
+    })
+  })
+
+  describe('get', () => {
+    beforeEach(() => {
+      fetchMock.resetMocks()
+    })
+
+    const vin = 'WA1A4AFY2J2008189'
+    const mockUrl = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/${vin}?modelYear=2018&format=json`
+
+    it('returns data when given a string', async () => {
+      fetchMock.mockResolvedValue(createFetchGetResponse(decodeVinResults))
+
+      const { get } = useNHTSA()
+      const data = await get(mockUrl)
+
+      expect(data).toEqual(decodeVinResults)
+      expect(fetchMock.requests()[0].url).toEqual(mockUrl)
+      expect(fetchMock.requests()[0].method).toEqual('GET')
+      expect(fetchMock.requests()[0].json).toBeDefined()
+    })
+
+    it('returns data when given an object of CreateUrlOptions', async () => {
+      fetchMock.mockResolvedValue(createFetchGetResponse(decodeVinResults))
+
+      const { get } = useNHTSA()
+      const data = await get({
+        endpointName: 'DecodeVin',
+        path: vin,
+        params: { modelYear: 2018 },
+      })
+
+      expect(data).toEqual(decodeVinResults)
+      expect(fetchMock.requests()[0].url).toEqual(mockUrl)
+      expect(fetchMock.requests()[0].method).toEqual('GET')
+      expect(fetchMock.requests()[0].json).toBeDefined()
     })
   })
 })
