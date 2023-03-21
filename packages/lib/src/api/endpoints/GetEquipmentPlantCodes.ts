@@ -18,11 +18,6 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * ALL parameters are required and endpoint will return 404 if there are any undefined keys and/or
  * values in the query string.
  *
- * `params.year`:
- * - year >= 2016
- * - NOTE: It seems API will still respond with years < 2016 but api docs state only years >= 2016
- *   are supported
- *
  * `params.equipmentType`:
  * - 1 (Tires)
  * - 3 (Brake Hoses)
@@ -35,10 +30,15 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * - 'Closed' (The Equipment Plant is no longer Active)
  * - 'All' (All Equipment Plant Codes regardless of year, including their status (active or closed))
  *
+ * `params.year`:
+ * - year >= 2016
+ * - NOTE: It seems API will still respond with years < 2016 but api docs state only years >= 2016
+ *   are supported
+ *
  * @param params - Object of Query Search names and values to append to the URL as a query string
- * @param {(string|number)} params.year - Year >= 2016
  * @param {(string|number)} params.equipmentType - Number equal to 1, 3, 13, or 16
  * @param {string} params.reportType - 'New', 'Updated', 'Closed', or 'All'
+ * @param {(string|number)} params.year - Year >= 2016
  * @param {boolean} [doFetch=true] - Whether to fetch the data or just return the URL
  * (default: `true`)
  * @returns {(Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>)} - Api Response
@@ -65,22 +65,22 @@ async function GetEquipmentPlantCodes(
     const args: IArgToValidate[] = [
       { name: 'params', value: params, required: true, types: ['object'] },
       {
-        name: 'year',
-        value: params.year,
-        required: true,
-        types: ['string', 'number'],
-      },
-      {
         name: 'equipmentType',
-        value: params.equipmentType,
+        value: params?.equipmentType,
         required: true,
         types: ['string', 'number'],
       },
       {
         name: 'reportType',
-        value: params.reportType,
+        value: params?.reportType,
         required: true,
         types: ['string'],
+      },
+      {
+        name: 'year',
+        value: params?.year,
+        required: true,
+        types: ['string', 'number'],
       },
     ]
     catchInvalidArguments({ args })
@@ -103,7 +103,6 @@ export { GetEquipmentPlantCodes }
 
 /** Query String Parameters for this endpoint */
 export type GetEquipmentPlantCodesParams = {
-  year: string | number
   equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16
   reportType:
     | 'New'
@@ -114,6 +113,7 @@ export type GetEquipmentPlantCodesParams = {
     | 'updated'
     | 'closed'
     | 'all'
+  year: string | number
 }
 
 /**

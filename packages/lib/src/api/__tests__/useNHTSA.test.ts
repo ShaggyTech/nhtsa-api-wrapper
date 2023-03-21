@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { useNHTSA } from '../'
 
 // Mocks
-import { createFetchGetResponse } from '../../../.vitest/helpers'
-import { decodeVinResults } from '../../../.vitest/mockData/decode-vin-results'
+import { createMockResponse } from '@vitest/helpers'
+import { mockResults } from '@vitest/data'
 
 describe('api/useNHTSA.ts', () => {
   it('exports useNHTSA function', () => {
@@ -115,6 +115,32 @@ describe('useNHTSA', () => {
       setCachedUrl('mock url 4')
       createUrl({ endpointName: 'Another', path: 'path' })
       expect(getCachedUrl()).toBe('mock url 4')
+    })
+  })
+
+  describe('createPostBody', () => {
+    it('returns a body string for VPIC POST requests', () => {
+      const { createPostBody } = useNHTSA()
+
+      const body = createPostBody('5UXWX7C5*BA;5YJSA3DS*EF,2015')
+      expect(body).toBe('DATA=5UXWX7C5*BA;5YJSA3DS*EF,2015&format=json')
+    })
+
+    it('returns a URI encoded body string for VPIC POST requests', () => {
+      const { createPostBody } = useNHTSA()
+
+      const body = createPostBody('5UXWX7C5*BA; 5YJSA3DS*EF, 2015')
+      expect(body).toBe('DATA=5UXWX7C5*BA;%205YJSA3DS*EF,%202015&format=json')
+    })
+
+    it('returns a URI encoded body string for VPIC POST requests if no data is provided', () => {
+      const { createPostBody } = useNHTSA()
+
+      let body = createPostBody('')
+      expect(body).toBe('DATA=format=json')
+
+      body = createPostBody(undefined as unknown as string)
+      expect(body).toBe('DATA=format=json')
     })
   })
 
@@ -234,9 +260,9 @@ describe('useNHTSA', () => {
     })
 
     /***********************
-     * Throws error
+     * rejects with error
      ***********************/
-    it('throws error if endpointName is not provided in input object', () => {
+    it('rejects with error if endpointName is not provided in input object', () => {
       const { cacheUrl } = useNHTSA()
 
       expect(() =>
@@ -250,35 +276,316 @@ describe('useNHTSA', () => {
       fetchMock.resetMocks()
     })
 
+    const endpointName = 'DecodeVin'
     const vin = 'WA1A4AFY2J2008189'
-    const mockUrl = `https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/${vin}?modelYear=2018&format=json`
+    const params = { modelYear: 2018 }
+    const mockUrl = `https://vpic.nhtsa.dot.gov/api/vehicles/${endpointName}/${vin}?modelYear=2018&format=json`
 
+    /***********************
+     * Returns data
+     ***********************/
     it('returns data when given a string', async () => {
-      fetchMock.mockResolvedValue(createFetchGetResponse(decodeVinResults))
+      fetchMock.mockResolvedValue(createMockResponse(mockResults))
 
       const { get } = useNHTSA()
       const data = await get(mockUrl)
 
-      expect(data).toEqual(decodeVinResults)
+      expect(data).toEqual(mockResults)
       expect(fetchMock.requests()[0].url).toEqual(mockUrl)
       expect(fetchMock.requests()[0].method).toEqual('GET')
-      expect(fetchMock.requests()[0].json).toBeDefined()
     })
 
     it('returns data when given an object of CreateUrlOptions', async () => {
-      fetchMock.mockResolvedValue(createFetchGetResponse(decodeVinResults))
+      fetchMock.mockResolvedValue(createMockResponse(mockResults))
 
       const { get } = useNHTSA()
       const data = await get({
-        endpointName: 'DecodeVin',
+        endpointName: endpointName,
         path: vin,
-        params: { modelYear: 2018 },
+        params,
       })
 
-      expect(data).toEqual(decodeVinResults)
+      expect(data).toEqual(mockResults)
       expect(fetchMock.requests()[0].url).toEqual(mockUrl)
       expect(fetchMock.requests()[0].method).toEqual('GET')
-      expect(fetchMock.requests()[0].json).toBeDefined()
+    })
+
+    it('uses a cached url if not provided one', async () => {
+      fetchMock.mockResolvedValue(createMockResponse(mockResults))
+
+      const { cacheUrl, get } = useNHTSA()
+      cacheUrl({
+        endpointName: endpointName,
+        path: vin,
+        params,
+      })
+      const data = await get()
+
+      expect(data).toEqual(mockResults)
+      expect(fetchMock.requests()[0].url).toEqual(mockUrl)
+      expect(fetchMock.requests()[0].method).toEqual('GET')
+    })
+
+    /***********************
+     * rejects with error
+     ***********************/
+    it.each([1234, ['a', 'b'], null])(
+      'rejects with error if there is no url cached and no valid url is provided, %#',
+      async (arg) => {
+        const { get } = useNHTSA()
+        await expect(() => get(arg as unknown as string)).rejects.toThrowError(
+          /error validating argument named "url"/
+        )
+
+        expect(fetchMock.requests().length).toEqual(0)
+      }
+    )
+
+    it.each([{}, { a: 'b' }, { endpointName: undefined }])(
+      'rejects with error if endpointName is not provided in CreateUrlOptions object, %#',
+      async (arg) => {
+        const { get } = useNHTSA()
+        await expect(() => get(arg as unknown as string)).rejects.toThrowError(
+          /Endpoint name is required to create a VPIC URL string/
+        )
+
+        expect(fetchMock.requests().length).toEqual(0)
+      }
+    )
+
+    /***********************
+     * Network errors
+     ***********************/
+    it('rejects with error if there is no response', async () => {
+      fetchMock.mockResolvedValue(undefined as unknown as Response)
+
+      const { get } = useNHTSA()
+      await expect(() => get(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: APi responded with an error, no response object returned/
+      )
+    })
+
+    it('rejects with error if !response.ok', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse(
+          {},
+          {
+            status: 500,
+            ok: false,
+            headers: new Headers({ 'Content-Type': 'application/xml' }),
+          }
+        )
+      )
+
+      const { get } = useNHTSA()
+      await expect(() => get(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: APi response not ok/
+      )
+    })
+
+    it('rejects with error if response is not json', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse(
+          {},
+          {
+            status: 200,
+            ok: true,
+            headers: new Headers({ 'Content-Type': 'application/xml' }),
+          }
+        )
+      )
+
+      const { get } = useNHTSA()
+      await expect(() => get(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: API response not in JSON format/
+      )
+    })
+
+    it('rejects with error if there is no json() method on the response', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse({}, { json: null } as unknown as Response)
+      )
+
+      const { get } = useNHTSA()
+      await expect(() => get(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: API response not in JSON format/
+      )
+    })
+
+    it('rejects with error if there is no data in response', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse(undefined as unknown as object)
+      )
+
+      const { get } = useNHTSA()
+      await expect(() => get(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: VPIC API returned no data/
+      )
+    })
+  })
+
+  describe('post', () => {
+    beforeEach(() => {
+      fetchMock.resetMocks()
+    })
+
+    const endpointName = 'DecodeVinValuesBatch'
+    const body = '5UXWX7C5*BA;5YJSA3DS*EF,2015'
+    const mockUrl = `https://vpic.nhtsa.dot.gov/api/vehicles/${endpointName}/`
+
+    /***********************
+     * Returns data
+     * ***********************/
+    it('returns data when given an object of CreateUrlOptions', async () => {
+      fetchMock.mockResolvedValue(createMockResponse(mockResults))
+
+      const { post } = useNHTSA()
+      const data = await post({ endpointName }, { body })
+
+      expect(data).toEqual(mockResults)
+      expect(fetchMock.requests()[0].url).toEqual(mockUrl)
+      expect(fetchMock.requests()[0].method).toEqual('POST')
+      expect(fetchMock.requests()[0].headers.get('Content-Type')).toEqual(
+        'application/x-www-form-urlencoded'
+      )
+    })
+
+    it('returns data when given a URL string', async () => {
+      fetchMock.mockResolvedValue(createMockResponse(mockResults))
+
+      const { post } = useNHTSA()
+      const data = await post(mockUrl, { body })
+
+      expect(data).toEqual(mockResults)
+      expect(fetchMock.requests()[0].url).toEqual(mockUrl)
+      expect(fetchMock.requests()[0].method).toEqual('POST')
+      expect(fetchMock.requests()[0].headers.get('Content-Type')).toEqual(
+        'application/x-www-form-urlencoded'
+      )
+    })
+
+    it('uses a cached url if not provided one', async () => {
+      fetchMock.mockResolvedValue(createMockResponse(mockResults))
+
+      const { cacheUrl, getCachedUrl, post } = useNHTSA()
+      cacheUrl({ endpointName, includeQueryString: false })
+      const data = await post(getCachedUrl(), { body })
+
+      expect(data).toEqual(mockResults)
+      expect(fetchMock.requests()[0].url).toEqual(mockUrl)
+      expect(fetchMock.requests()[0].method).toEqual('POST')
+    })
+
+    /***********************
+     * rejects with error
+     ***********************/
+    it.each([1234, ['a', 'b'], null])(
+      'rejects with error if there is no url cached and no valid url is provided, %#',
+      async (arg) => {
+        const { post } = useNHTSA()
+
+        await expect(() => post(arg as unknown as string)).rejects.toThrowError(
+          /error validating argument named "url"/
+        )
+
+        expect(fetchMock.requests().length).toEqual(0)
+      }
+    )
+
+    it.each([{}, { a: 'b' }, { endpointName: undefined }])(
+      'rejects with error if endpointName is not provided in CreateUrlOptions object, %#',
+      async (arg) => {
+        const { post } = useNHTSA()
+        await expect(() => post(arg as unknown as string)).rejects.toThrowError(
+          /Endpoint name is required to create a VPIC URL string/
+        )
+
+        expect(fetchMock.requests().length).toEqual(0)
+      }
+    )
+
+    it.each([{ a: 'b' }, 32, ['a', 'b']])(
+      'rejects with error if body is not a string, %#',
+      async (arg) => {
+        const { post } = useNHTSA()
+
+        await expect(() =>
+          post(
+            { endpointName, includeQueryString: false },
+            { body: arg as unknown as string }
+          )
+        ).rejects.toThrowError(/error validating argument named "options.body"/)
+      }
+    )
+
+    /***********************
+     * Network errors
+     ***********************/
+    it('rejects with error if there is no response', async () => {
+      fetchMock.mockResolvedValue(undefined as unknown as Response)
+
+      const { post } = useNHTSA()
+      await expect(() => post(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: APi responded with an error, no response object returned/
+      )
+    })
+
+    it('rejects with error if !response.ok', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse(
+          {},
+          {
+            status: 500,
+            ok: false,
+            headers: new Headers({ 'Content-Type': 'application/xml' }),
+          }
+        )
+      )
+
+      const { post } = useNHTSA()
+      await expect(() => post(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: APi response not ok/
+      )
+    })
+
+    it('rejects with error if response is not json', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse(
+          {},
+          {
+            status: 200,
+            ok: true,
+            headers: new Headers({ 'Content-Type': 'application/xml' }),
+          }
+        )
+      )
+
+      const { post } = useNHTSA()
+      await expect(() => post(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: API response not in JSON format/
+      )
+    })
+
+    it('rejects with error if there is no json() method on the response', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse({}, { json: null } as unknown as Response)
+      )
+
+      const { post } = useNHTSA()
+      await expect(() => post(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: API response not in JSON format/
+      )
+    })
+
+    it('rejects with error if there is no data in response', async () => {
+      fetchMock.mockResolvedValue(
+        createMockResponse(undefined as unknown as object)
+      )
+
+      const { post } = useNHTSA()
+      await expect(() => post(mockUrl)).rejects.toThrowError(
+        /There was an error fetching API data: VPIC API returned no data/
+      )
     })
   })
 })

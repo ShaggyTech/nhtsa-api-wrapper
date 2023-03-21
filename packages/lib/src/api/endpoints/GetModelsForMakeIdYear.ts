@@ -109,7 +109,7 @@ async function GetModelsForMakeIdYear(
         name: 'makeId',
         value: params.makeId,
         required: true,
-        types: ['string'],
+        types: ['string', 'number'],
       },
       ...atLeastOne,
     ]
@@ -124,10 +124,10 @@ async function GetModelsForMakeIdYear(
     const { makeId, modelYear, vehicleType } = encodeQueryStringParams(params)
 
     /* Build the URL */
-    let path = `/make/${makeId}/`
+    let path = `makeId/${makeId}/`
     path += modelYear ? `modelYear/${modelYear}` : ''
     path += vehicleType
-      ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}/`
+      ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
       : ''
 
     const { get, cacheUrl, getCachedUrl } = useNHTSA()

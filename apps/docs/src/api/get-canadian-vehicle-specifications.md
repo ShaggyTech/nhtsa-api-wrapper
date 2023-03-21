@@ -159,7 +159,7 @@ import { GetCanadianVehicleSpecifications } from '@shaggytools/nhtsa-api-wrapper
 
 const url = await GetCanadianVehicleSpecifications({ year: 2015 }, false)
 
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetCanadianVehicleSpecifications/?Year=2011&Make=&Model=&units=&format=json'
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetCanadianVehicleSpecifications/?make=&model=&units=&year=2011&format=json'
 ```
 
 ### Example 4: Get Results With All `params` and doFetch = false
@@ -168,9 +168,9 @@ const url = await GetCanadianVehicleSpecifications({ year: 2015 }, false)
 import { GetCanadianVehicleSpecifications } from '@shaggytools/nhtsa-api-wrapper'
 
 const url = await GetCanadianVehicleSpecifications(
-  { year: 2015, make: 'Audi', model: 'RS7', units: 'Metric' },
+  { year: 2015, make: 'Audi', model: 'RS7', units: 'US' },
   false
 )
 
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetCanadianVehicleSpecifications/?Year=2015&Make=Audi&Model=RS7&units=Metric&format=json'
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/GetCanadianVehicleSpecifications/?make=Audi&model=RS7&units=US&year=2015&format=json'
 ```

@@ -30,12 +30,12 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '~',
+        find: '@',
         replacement: resolve(__dirname, './src'),
       },
       {
-        find: '@',
-        replacement: resolve(__dirname, './src'),
+        find: '@vitest',
+        replacement: resolve(__dirname, './.vitest'),
       },
     ],
   },

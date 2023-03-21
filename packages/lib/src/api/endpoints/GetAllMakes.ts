@@ -29,7 +29,7 @@ function GetAllMakes(doFetch: false): Promise<string>
 
 /* Implementation */
 async function GetAllMakes(
-  doFetch = false
+  doFetch = true
 ): Promise<NhtsaResponse<GetAllMakesResults> | string> {
   const endpointName = 'GetAllMakes'
 

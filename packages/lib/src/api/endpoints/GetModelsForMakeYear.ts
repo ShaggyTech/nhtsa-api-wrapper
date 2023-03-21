@@ -105,10 +105,10 @@ async function GetModelsForMakeYear(
     const { make, modelYear, vehicleType } = encodeQueryStringParams(params)
 
     /* Build the URL */
-    let path = `/make/${make}/`
+    let path = `make/${make}/`
     path += modelYear ? `modelYear/${modelYear}` : ''
     path += vehicleType
-      ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}/`
+      ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
       : ''
 
     const { get, cacheUrl, getCachedUrl } = useNHTSA()

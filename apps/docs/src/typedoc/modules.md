@@ -40,6 +40,7 @@
 ### Other Modules
 
 - [constants](modules/constants.md)
+- [global](modules/global.md)
 - [index](modules/index.md)
 
 ### Types Modules

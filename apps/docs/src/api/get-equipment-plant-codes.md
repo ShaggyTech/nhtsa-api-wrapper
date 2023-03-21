@@ -16,7 +16,6 @@ Shown with expanded `params` types:
 ```typescript
 async function GetEquipmentPlantCodes(
   params: {
-    year: string | number
     equipmentType: '1' | '3' | '13' | '16' | 1 | 3 | 13 | 16
     reportType:
       | 'New'
@@ -27,6 +26,7 @@ async function GetEquipmentPlantCodes(
       | 'updated'
       | 'closed'
       | 'all'
+    year: string | number
   },
   doFetch = true
 ): Promise<NhtsaResponse<GetEquipmentPlantCodesResults> | string>
@@ -44,12 +44,6 @@ Equipment Type and Report Type.
 ALL parameters are required and endpoint will return 404 if there are any undefined keys and/or
 values in the query string.
 
-`params.year`:
-
-- year >= 2016
-- NOTE: It seems API will still respond with years < 2016 but api docs state only years >= 2016
-  are supported
-
 `params.equipmentType`:
 
 - 1 (Tires)
@@ -63,6 +57,12 @@ values in the query string.
 - 'Updated' (The Equipment Plant data was modified during the selected year)
 - 'Closed' (The Equipment Plant is no longer Active)
 - 'All' (All Equipment Plant Codes regardless of year, including their status (active or closed))
+
+`params.year`:
+
+- year >= 2016
+- NOTE: It seems API will still respond with years < 2016 but api docs state only years >= 2016
+  are supported
 
 ## Parameters
 

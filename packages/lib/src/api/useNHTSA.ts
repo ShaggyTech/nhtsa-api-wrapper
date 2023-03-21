@@ -152,6 +152,13 @@ export const useNHTSA = () => {
     return cacheUrl({ ...options, saveUrl: false })
   }
 
+  /** Function to create final POST body string from a VPIC data string */
+  const createPostBody = (data: string) => {
+    return encodeURI(
+      `DATA=${data ? data + '&' : ''}format=${NHTSA_RESPONSE_FORMAT}`
+    )
+  }
+
   /**
    * This uses native `fetch()` to make a request to the NHTSA API. Returns a promise that
    * resolves to a `NhtsaApiResponse<T>` object, where `T` is the type of the objects in the
@@ -206,7 +213,10 @@ export const useNHTSA = () => {
    */
   const get = async <T>(
     url?: string | CreateUrlOptions,
-    options: RequestInit & { saveUrl?: boolean } = { saveUrl: true }
+    options: RequestInit & { saveUrl?: boolean } = {
+      saveUrl: true,
+      method: 'GET',
+    }
   ): Promise<NhtsaResponse<T>> => {
     /* If url is an object, create and store a url string from it */
     if (url && getTypeof(url) === 'object') {
@@ -245,27 +255,23 @@ export const useNHTSA = () => {
         }
         const contentType = response.headers.get('content-type')
         const responseDetails =
-          `content-type: ${contentType},` +
-          `responseStatus: ${response.status},` +
+          `content-type: ${contentType}, ` +
+          `responseStatus: ${response.status}, ` +
           `responseUrl: ${response.url}`
 
         if (!response.ok) {
-          throw Error(`APi responded with an error, got ${responseDetails}`)
+          throw Error(`APi response not ok, got ${responseDetails}`)
         }
 
         const jsonTypes = ['application/json', 'text/json']
         const isJson = jsonTypes.some((type) => contentType?.includes(type))
-        if (!isJson) {
-          throw Error(
-            `API response is not in JSON format, got ${responseDetails}`
-          )
+        if (!isJson || typeof response.json !== 'function') {
+          throw Error(`API response not in JSON format, got ${responseDetails}`)
         }
 
         const data: NhtsaResponse<T> = await response.json()
         if (!data) {
-          throw Error(
-            `API response OK but returned no data, got ${responseDetails}`
-          )
+          throw Error(`VPIC API returned no data, got ${responseDetails}`)
         } else return data
       })
       .catch((error: Error) => {
@@ -275,11 +281,6 @@ export const useNHTSA = () => {
 
     /* Return the completed ApiResponse */
     return nhtsaResponse
-  }
-
-  /** Function to create final POST body string from a VPIC data string */
-  const createPostBody = (data: string) => {
-    return encodeURI(`DATA=${data}&format=${NHTSA_RESPONSE_FORMAT}`)
   }
 
   /**
@@ -379,7 +380,7 @@ export const useNHTSA = () => {
     return await get(url, {
       ...options,
       method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: createPostBody(options.body as string),
     })
   }
