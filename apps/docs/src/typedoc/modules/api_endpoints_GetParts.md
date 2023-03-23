@@ -103,7 +103,7 @@ All query `params` are optional.
 | `params.manufacturer?` | `string` \| `number` |
 | `params.page?`         | `string` \| `number` |
 | `params.toDate?`       | `string`             |
-| `params.type?`         | `string` \| `number` |
+| `params.type?`         | `565` \| `566`       |
 | `doFetch`              | `false`              |
 
 #### Returns
@@ -125,7 +125,7 @@ All query `params` are optional.
 | `params.manufacturer?` | `string` \| `number` |
 | `params.page?`         | `string` \| `number` |
 | `params.toDate?`       | `string`             |
-| `params.type?`         | `string` \| `number` |
+| `params.type?`         | `565` \| `566`       |
 | `doFetch?`             | `true`               |
 
 #### Returns
