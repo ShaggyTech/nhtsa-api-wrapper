@@ -47,7 +47,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
  * the first arg in place of params, instead of having to pass the first arg as undefined, i.e. you
  * don't have to do this: `func(undefined, doFetch)`, and can instead do this: `func(doFetch)`
  * @param {string} [params.manufacturer] - Manufacturer Name or ID
- * @param {(string|number)} [params.type] - Specified type of ORG to search
+ * @param {(565|566)} [params.type] - Specified type of ORG to search
  * @param {string} [params.fromDate] - Start date of search query
  * @param {string} [params.toDate] - End date of search query
  * @param {(string|number)} [params.page] - Which page number of results to request
@@ -67,7 +67,7 @@ function GetParts(doFetch?: false, _dummy?: undefined): Promise<string>
 function GetParts(
   params: {
     manufacturer?: string | number
-    type?: string | number
+    type?: 565 | 566
     fromDate?: string
     toDate?: string
     page?: string | number
@@ -78,7 +78,7 @@ function GetParts(
 function GetParts(
   params?: {
     manufacturer?: string | number
-    type?: string | number
+    type?: 565 | 566
     fromDate?: string
     toDate?: string
     page?: string | number
@@ -90,7 +90,7 @@ async function GetParts(
   params?:
     | {
         manufacturer?: string | number
-        type?: string | number
+        type?: 565 | 566
         fromDate?: string
         toDate?: string
         page?: string | number
@@ -110,11 +110,11 @@ async function GetParts(
     const args: IArgToValidate[] = [
       { name: 'params', value: params, types: ['object'] },
       {
-        name: 'type',
+        name: 'manufacturer',
         value: params?.manufacturer,
         types: ['string', 'number'],
       },
-      { name: 'type', value: params?.type, types: ['string', 'number'] },
+      { name: 'type', value: params?.type, types: ['number'] },
       { name: 'fromDate', value: params?.fromDate, types: ['string'] },
       { name: 'toDate', value: params?.toDate, types: ['string'] },
       { name: 'page', value: params?.page, types: ['string', 'number'] },

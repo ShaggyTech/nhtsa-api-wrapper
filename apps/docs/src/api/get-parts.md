@@ -9,7 +9,7 @@ async function GetParts(
   params?:
     | {
         manufacturer?: string | number
-        type?: string | number
+        type?: 565 | 566
         fromDate?: string
         toDate?: string
         page?: string | number
@@ -66,7 +66,7 @@ All query `params` are optional.
 | ---------------------- | -------------------- | ------------- | ------------------------------------------------------------------------------- |
 | `params?`              | `Object \| boolean ` | `undefined`   | Object of query search names and values to append to the URL as a query string. |
 | `params.manufacturer?` | `string \| number`   | `undefined`   | Manufacturer Name or ID                                                         |
-| `params.type?`         | `string \| number`   | `undefined`   | Specified type of ORG to search                                                 |
+| `params.type?`         | `565 \| 566`         | `undefined`   | Specified type of ORG to search                                                 |
 | `params.fromDate?`     | `string`             | `undefined`   | Start date of search query                                                      |
 | `params.toDate?`       | `string`             | `undefined`   | End date of search query                                                        |
 | `params.page?`         | `string \| number`   | `undefined`   | Which page number of results to request (up to 1000 results per page)           |
