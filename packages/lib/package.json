@@ -77,8 +77,8 @@
     "clean:all": "pnpm run clean && rimraf node_modules"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.29.1",
-    "@vitest/ui": "0.29.2",
+    "@vitest/coverage-c8": "0.29.8",
+    "@vitest/ui": "0.29.8",
     "eslint": "8.35.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.4",
@@ -91,7 +91,7 @@
     "vite": "4.1.4",
     "vite-plugin-dts": "2.0.2",
     "vite-tsconfig-paths": "4.0.5",
-    "vitest": "0.29.1",
+    "vitest": "0.29.8",
     "vitest-fetch-mock": "0.2.2"
   },
   "eslintConfig": {
