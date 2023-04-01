@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Vite-Library-Mode",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "module": "esnext",
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "useDefineForClassFields": true
+  }
+}

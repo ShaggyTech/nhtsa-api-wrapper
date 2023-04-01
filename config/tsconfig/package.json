@@ -1,0 +1,17 @@
+{
+  "name": "tsconfig",
+  "version": "3.0.0",
+  "description": "Internal shared typescript configs for the @shaggytools/nhtsa-api-wrapper monorepo",
+  "private": true,
+  "files": [
+    "base.json",
+    "library.json",
+    "nextjs.json",
+    "react-library.json",
+    "vite-library.json",
+    "vite-press.json"
+  ],
+  "dependencies": {
+    "@types/node": "18.14.2"
+  }
+}

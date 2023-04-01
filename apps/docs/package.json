@@ -1,0 +1,40 @@
+{
+  "name": "docs",
+  "private": true,
+  "version": "3.0.0-beta.0",
+  "description": "Documentation for @shaggytools/nhtsa-api-wrapper",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "vitepress dev src --host",
+    "build": "vitepress build src",
+    "preview": "vitepress preview src",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "format:typedoc": "prettier --write \"src/typedoc/**/*.md\"",
+    "clean": "rimraf src/.vitepress/dist src/.vitepress/cache .turbo",
+    "clean:all": "pnpm run clean && rimraf node_modules"
+  },
+  "dependencies": {
+    "@shaggytools/nhtsa-api-wrapper": "workspace:*",
+    "vue": "3.2.47"
+  },
+  "devDependencies": {
+    "eslint": "8.35.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "2.8.4",
+    "prettier-config": "workspace:*",
+    "rimraf": "4.1.2",
+    "tsconfig": "workspace:*",
+    "typescript": "4.9.5",
+    "vitepress": "1.0.0-alpha.48"
+  },
+  "eslintConfig": {
+    "extends": [
+      "custom"
+    ],
+    "root": true
+  },
+  "prettier": "prettier-config"
+}
