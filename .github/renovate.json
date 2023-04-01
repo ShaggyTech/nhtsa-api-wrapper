@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranches": ["next"],
   "extends": ["config:base"],
-  "baseBranches": ["staging"],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "prHourlyLimit": 0
 }
