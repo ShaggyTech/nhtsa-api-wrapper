@@ -3,11 +3,14 @@ name: CI
 on:
   push:
     branches:
-      - main
-    tags:
-      - "*"
+      - "**" # matches every branch
+      - "!main" # excludes master
+      - "!next" # excludes next
   pull_request:
-    types: [opened, synchronize]
+    branches:
+      - "**" # matches every branch
+      - "!main" # excludes master
+      - "!next" # excludes next
 
 env:
   PATH_BUILD_DOCS: ./apps/docs/src/.vitepress/dist

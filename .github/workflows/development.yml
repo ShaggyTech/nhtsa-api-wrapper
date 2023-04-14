@@ -6,16 +6,17 @@ name: Push/Pull Development
 on:
   push:
     branches:
-      - '**'        # matches every branch
-      - '!master'   # excludes master
+      - "**" # matches every branch
+      - "!main" # excludes master
+      - "!next" # excludes next
   pull_request:
     branches:
-      - '**'        # matches every branch
-      - '!master'   # excludes master
+      - "**" # matches every branch
+      - "!main" # excludes master
+      - "!next" # excludes next
 
 jobs:
   lint-test-build:
-
     runs-on: ubuntu-20.04
 
     strategy:
@@ -23,27 +24,27 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2.7.0
+      - name: Checkout
+        uses: actions/checkout@v2.7.0
 
-    - name: Setup Node and Install Depedencies
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn --frozen-lockfile
+      - name: Setup Node and Install Depedencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn --frozen-lockfile
 
-    - name: Lint and Test
-      run: |
-        yarn lint
-        yarn test
+      - name: Lint and Test
+        run: |
+          yarn lint
+          yarn test
 
-    - name: Build Package
-      run: yarn build
+      - name: Build Package
+        run: yarn build
 
-    - name: Build Docs
-      run: yarn build-docs
+      - name: Build Docs
+        run: yarn build-docs
 
-    - name: Upload Coverage
-      uses: codecov/codecov-action@v3
-      with:
-        flags: unittests, dev, push, pull # optional
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          flags: unittests, dev, push, pull # optional
