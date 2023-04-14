@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.4.0
+      uses: actions/checkout@v2.7.0
 
     - name: Setup Node and Install Depedencies
       uses: actions/setup-node@v2
@@ -39,12 +39,12 @@ jobs:
       run: yarn build-docs
 
     - name: Upload Coverage
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         flags: unittests, master, push # optional
 
     - name: Deploy Docs to gh-pages branch
-      uses: JamesIves/github-pages-deploy-action@4.1.8
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: docs # The folder the action should deploy.

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "**/.vitepress/dist/**"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "lint:fix": {
+      "outputs": []
+    },
+    "format": {
+      "cache": false,
+      "dependsOn": ["^lint"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "test": {
+      "outputs": []
+    },
+    "coverage": {
+      "outputs": []
+    },
+    "clean": {
+      "outputs": []
+    }
+  }
+}

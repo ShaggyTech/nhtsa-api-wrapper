@@ -1,0 +1,10 @@
+{
+  "name": "prettier-config",
+  "version": "3.0.0",
+  "description": "Internal shared prettier config for the @shaggytools/nhtsa-api-wrapper monorepo",
+  "private": true,
+  "main": "prettier-config.json",
+  "peerDependencies": {
+    "prettier": "2.8.7"
+  }
+}

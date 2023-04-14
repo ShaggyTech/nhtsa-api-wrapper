@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "tsconfig/vitepress.json",
+  "include": [
+    "src/**/*.ts",
+    "src/.vitepress/**/*.ts",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "cache",
+    "dist"
+  ]
+}

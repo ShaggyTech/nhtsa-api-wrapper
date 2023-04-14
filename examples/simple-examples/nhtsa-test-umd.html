@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing UMD bundle imports</title>
+
+    <script
+      type="text/javascript"
+      src="../../packages/lib/dist/nhtsa-api-wrapper.umd.cjs"
+    ></script>
+  </head>
+  <body>
+    <h2>
+      <btn id="client">Click to console.log NHTSA.DecodeVin() results</btn>
+      <div id="clientResults"></div>
+    </h2>
+    <h2>
+      <div id="isValidVin">Click to console.log isValidVin() results</div>
+      <div id="isValidVinResults"></div>
+    </h2>
+  </body>
+  <script type="text/javascript">
+    console.log(`Successfully imported via UMD bundle`);
+
+    document
+      .getElementById("client")
+      .addEventListener("click", async function () {
+        const { Results } = await NHTSA.DecodeVin("3VWD07AJ5EM388202").catch(
+          (err) => err
+        );
+        console.log(Results);
+        document.getElementById("clientResults").innerText =
+          JSON.stringify(Results);
+      });
+
+    document
+      .getElementById("isValidVin")
+      .addEventListener("click", function () {
+        const result = NHTSA.isValidVin("WVWHV71K69W144983");
+        console.log(result);
+        document.getElementById("isValidVinResults").innerText = result;
+      });
+  </script>
+</html>

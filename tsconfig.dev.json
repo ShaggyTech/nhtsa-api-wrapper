@@ -1,7 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "declarationDir": "dev/dist/types",
-    "outDir": "./dev/dist/lib"
-  }
-}

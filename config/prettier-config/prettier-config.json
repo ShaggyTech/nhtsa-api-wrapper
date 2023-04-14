@@ -1,0 +1,13 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": ["**/*.md/*.js", "**/*.md/*.ts"],
+      "options": {
+        "trailingComma": "es5"
+      }
+    }
+  ]
+}

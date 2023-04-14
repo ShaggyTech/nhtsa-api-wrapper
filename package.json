@@ -1,189 +1,59 @@
 {
-  "name": "@shaggytools/nhtsa-api-wrapper",
-  "libraryName": "NHTSA",
-  "version": "2.0.3",
-  "description": "A wrapper around the NHTSA.dot.gov 'vehicles' API, written completely in Typescript.",
-  "engines": {
-    "node": ">=12.22.1",
-    "npm": ">=6.0.0"
-  },
-  "main": "dist/bundle.min.js",
-  "module": "dist/module/index.js",
-  "unpkg": "dist/bundle.min.js",
-  "types": "dist/types/index.d.ts",
-  "files": [
-    "dist/**/*"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "release": {
-    "branches": [
-      "master"
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "releaseRules": [
-            {
-              "type": "refactor",
-              "release": "patch"
-            },
-            {
-              "type": "style",
-              "release": "patch"
-            },
-            {
-              "type": "patch",
-              "release": "patch"
-            },
-            {
-              "type": "bugfix",
-              "release": "patch"
-            }
-          ],
-          "parserOpts": {
-            "noteKeywords": []
-          }
-        }
-      ],
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "package.json",
-            "CHANGELOG.md",
-            "dist/**"
-          ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ],
-      "@semantic-release/github"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "scripts": {
-    "prepare": "husky install",
-    "prebuild": "yarn clean-dist",
-    "build": "rollup -c rollup.config.ts",
-    "prebuild-docs": "yarn clean-docs",
-    "build-docs": "cross-env-shell JSDOC_ENV=production jsdoc -c ./jsdoc.js",
-    "postbuild-docs": "yarn copy-package-size-stats",
-    "build-dev": "concurrently yarn:build-dev-*",
-    "prebuild-dev-dist": "yarn clean-dev-dist && yarn copy-packageJsonToDev",
-    "build-dev-dist": "yarn copy-packageJsonToDev && cross-env ROLLUP_WATCH=true rollup -c rollup.config.ts",
-    "prebuild-dev-docs": "yarn clean-dev-docs",
-    "build-dev-docs": "cross-env-shell JSDOC_ENV=development jsdoc -c ./jsdoc.js",
-    "build-dev-ts": "tsc -p tsconfig.dev.json --module commonjs",
-    "clean": "yarn clean-dist && yarn clean-dev",
-    "clean-dev": "rimraf dev/*",
-    "clean-dist": "rimraf dist/*",
-    "clean-docs": "rimraf docs/*",
-    "clean-dev-dist": "rimraf dev/dist/*",
-    "clean-dev-docs": "rimraf dev/docs/*",
-    "clean-dev-packageJson": "rimraf dev/package.json",
-    "clean-dev-tests": "yarn test-clearCache && rimraf dev/coverage/*",
-    "cleanup": "yarn clean-dev-packageJson && rimraf dist && rimraf dev",
-    "cleanup-everything": "yarn cleanup && yarn test-clearCache && rimraf node_modules",
-    "commit-cz": "git-cz",
-    "precopy-packageJsonToDev": "yarn clean-dev-packageJson",
-    "copy-packageJsonToDev": "copyfiles ./package.json ./dev",
-    "copy-package-size-stats": "copyfiles ./package-size-stats.html ./docs/",
-    "lint": "eslint src",
-    "test": "jest -c ./test/config/jest.config.js",
-    "test-clearCache": "./node_modules/.bin/jest --clearCache",
-    "watch": "yarn clean-dev && yarn copy-packageJsonToDev && node ./bin/watchAll.js",
-    "watch-docs": "npx nodemon --exec yarn build-dev-docs --config ./bin/nodemon.jsdoc.json",
-    "watch-tsc": "tsc -p tsconfig.dev.json -w --module commonjs",
-    "watch-test": "jest --watch --onlyChanged",
-    "watch-rollup": "yarn clean-dev-dist && yarn copy-packageJsonToDev && rollup -c rollup.config.ts -w",
-    "semantic-release": "semantic-release"
-  },
+  "name": "nhtsa-api-wrapper",
+  "private": true,
+  "version": "0.0.0",
+  "description": "@shaggytools/nhtsa-api-wrapper Monorepo",
+  "author": "Brandon Eichler <github.com/shaggytech>",
+  "license": "MIT",
+  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git",
-    "homepage": "https://github.com/ShaggyTech/nhtsa-api-wrapper"
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git"
   },
-  "author": "Brandon Eichler <shaggytech.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
   },
-  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
-  "keywords": [
-    "VIN",
-    "Vehicle Identification Number",
-    "NHTSA.gov",
-    "NHTSA.dot.gov",
-    "NHTSA",
-    "National Highway Traffic Safety Administration",
-    "wrapper",
-    "api",
-    "VIN decode",
-    "VIN decoder",
-    "typescript",
-    "better-docs"
+  "packageManager": "pnpm@8.1.0",
+  "workspaces": [
+    "apps/*",
+    "config/*",
+    "packages/*"
   ],
-  "dependencies": {
-    "@babel/runtime": "7.16.5",
-    "isomorphic-unfetch": "3.1.0"
+  "engines": {
+    "node": ">=18.13.0",
+    "pnpm": ">=7.27.1"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "lint:fix": "turbo run lint:fix",
+    "test": "turbo run test",
+    "coverage": "pnpm --filter @shaggytools/nhtsa-api-wrapper run coverage",
+    "clean": "turbo run clean"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.0",
-    "@babel/core": "7.16.5",
-    "@babel/plugin-transform-runtime": "7.16.5",
-    "@babel/preset-env": "7.16.5",
-    "@babel/preset-typescript": "7.16.5",
-    "@commitlint/cli": "16.0.0",
-    "@commitlint/config-conventional": "16.0.0",
-    "@rollup/plugin-babel": "5.3.0",
-    "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-json": "4.1.0",
-    "@rollup/plugin-node-resolve": "13.1.1",
-    "@semantic-release/changelog": "6.0.1",
-    "@semantic-release/git": "10.0.1",
-    "@types/jest": "27.0.3",
-    "@types/node": "16.11.17",
-    "@typescript-eslint/eslint-plugin": "5.8.0",
-    "@typescript-eslint/parser": "5.8.0",
-    "better-docs": "2.3.2",
-    "concurrently": "6.5.1",
-    "copyfiles": "2.4.1",
-    "cross-env": "7.0.3",
-    "eslint": "8.5.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-jest": "25.3.0",
-    "eslint-plugin-jsdoc": "37.4.0",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "form-data": "4.0.0",
-    "husky": "7.0.4",
-    "jest": "27.4.5",
-    "jest-fetch-mock": "3.0.3",
-    "jsdoc": "3.6.7",
-    "jsdoc-babel": "0.5.0",
-    "jsdoc-plugin-typescript": "2.0.6",
-    "jsdoc-to-markdown": "7.1.0",
-    "lodash.camelcase": "4.3.0",
-    "nodemon": "2.0.15",
-    "prettier": "2.5.1",
-    "rimraf": "3.0.2",
-    "rollup": "2.62.0",
-    "rollup-plugin-gzip": "3.0.0",
-    "rollup-plugin-terser": "7.0.2",
-    "rollup-plugin-typescript2": "0.31.1",
-    "rollup-plugin-visualizer": "5.5.2",
-    "semantic-release": "18.0.1",
-    "ts-jest": "27.1.2",
-    "ts-node": "10.4.0",
-    "typescript": "4.5.4"
+    "@commitlint/cli": "17.5.1",
+    "@commitlint/config-conventional": "17.4.4",
+    "husky": "8.0.3",
+    "rimraf": "4.4.1",
+    "turbo": "1.8.8",
+    "typescript": "5.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint",
+      "pre-push": "pnpm verify"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md}": [
+      "eslint --cache --fix"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

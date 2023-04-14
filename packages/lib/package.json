@@ -1,0 +1,104 @@
+{
+  "name": "@shaggytools/nhtsa-api-wrapper",
+  "private": false,
+  "version": "3.0.0-beta.0",
+  "description": "Universal javascript wrapper for the NHTSA.dot.gov VPIC 'vehicles' API, useful for VIN decoding, etc.",
+  "author": "Brandon Eichler <github.com/shaggytech>",
+  "license": "MIT",
+  "keywords": [
+    "NHTSA",
+    "NHTSA.gov",
+    "NHTSA.dot.gov",
+    "NHTSA API",
+    "NHTSA API Wrapper",
+    "NHTSA API Wrapper for Node",
+    "NHTSA API Wrapper for the browser",
+    "National Highway Traffic Safety Administration",
+    "Typescript",
+    "Vehicle",
+    "Vehicle API",
+    "Vehicle Identification Number",
+    "Vehicle Identification Number API",
+    "VIN",
+    "VIN decode",
+    "VIN decoder",
+    "VPIC"
+  ],
+  "homepage": "https://www.shaggytech.com/nhtsa-api-wrapper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
+  },
+  "libraryName": "nhtsa-api-wrapper",
+  "sideEffects": false,
+  "type": "module",
+  "main": "dist/nhtsa-api-wrapper.cjs",
+  "module": "dist/nhtsa-api-wrapper.mjs",
+  "types": "dist/types/index.d.ts",
+  "source": "src/index.ts",
+  "unpkg": "dist/nhtsa-api-wrapper.iife.mjs",
+  "jsdelivr": "dist/nhtsa-api-wrapper.iife.js",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": {
+        "node": "./dist/nhtsa-api-wrapper.cjs",
+        "default": "./dist/nhtsa-api-wrapper.mjs"
+      },
+      "require": "./dist/nhtsa-api-wrapper.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "pnpm run \"/^build:.*/\" && pnpm run format:typedoc",
+    "build:lib": "tsc --noEmit && vite build",
+    "build:typedocs": "typedoc --options .typedoc/typedoc.cjs",
+    "dev": "pnpm run \"/^dev:.*/\"",
+    "dev:lib": "vite build --watch",
+    "dev:typedocs": "typedoc --options .typedoc/typedoc.cjs --watch",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "format:typedoc": "pnpm --filter docs run format:typedoc",
+    "test": "vitest",
+    "coverage": "vitest --coverage",
+    "clean": "rimraf ./dist ./coverage .turbo",
+    "clean:all": "pnpm run clean && rimraf node_modules"
+  },
+  "devDependencies": {
+    "@vitest/coverage-c8": "0.29.8",
+    "@vitest/ui": "0.29.8",
+    "eslint": "8.37.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "2.8.7",
+    "prettier-config": "workspace:*",
+    "rimraf": "4.4.1",
+    "tsconfig": "workspace:*",
+    "typedoc": "0.23.28",
+    "typedoc-config": "workspace:*",
+    "typescript": "5.0.3",
+    "vite": "4.2.1",
+    "vite-plugin-dts": "2.1.0",
+    "vite-tsconfig-paths": "4.0.7",
+    "vitest": "0.29.8",
+    "vitest-fetch-mock": "0.2.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "custom"
+    ],
+    "root": true
+  },
+  "prettier": "prettier-config"
+}
