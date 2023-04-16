@@ -21,7 +21,7 @@ WMIs, get all makes for a certain year, and more.
 
 ### [https://shaggytech.com/nhtsa-api-wrapper](https://shaggytech.com/nhtsa-api-wrapper/)
 
-- [Introduction](https://www.shaggytech.com/nhtsa-api-wrapper/guide/introduction)
+- [Introduction](https://www.shaggytech.com/nhtsa-api-wrapper/guide)
 - [Install](https://www.shaggytech.com/nhtsa-api-wrapper/guide/getting-started#install)
 - [Quick Start](https://www.shaggytech.com/nhtsa-api-wrapper/guide/getting-started#quick-start)
 - [API Reference](https://www.shaggytech.com/nhtsa-api-wrapper/api/)
