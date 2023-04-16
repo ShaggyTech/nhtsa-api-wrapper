@@ -74,7 +74,6 @@ jobs:
   deploy-docs:
     name: Deploy docs from main branch to github pages
     needs: [build, lint, test]
-    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
 
     environment:
@@ -89,7 +88,7 @@ jobs:
 
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: apps/docs/src/.vitepress/dist
+          folder: ~/apps/docs/src/.vitepress/dist
 # TODO
 
 # Deploy new versions via changesets publish
