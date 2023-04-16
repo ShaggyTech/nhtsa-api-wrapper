@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-custom",
-  "version": "3.0.0",
+  "version": "0.0.1",
   "description": "Internal shared eslint-config for the @shaggytools/nhtsa-api-wrapper monorepo",
   "private": true,
   "main": "eslint-config.js",
