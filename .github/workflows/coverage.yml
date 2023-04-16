@@ -1,0 +1,28 @@
+name: Upload Test Coverage
+
+on:
+  push:
+
+jobs:
+  upload-test-coverage:
+    name: Test and Upload Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: ./.github/workflows/setup
+
+      - name: Test
+        run: pnpm test
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/lib/coverage/coverage-final.json
+          name: shaggytools/nhsta-api-wrapper # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
