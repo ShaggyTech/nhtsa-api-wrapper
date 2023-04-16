@@ -5,7 +5,7 @@ importers:
   .:
     dependencies:
       '@changesets/cli':
-        specifier: ^2.26.1
+        specifier: 2.26.1
         version: 2.26.1
     devDependencies:
       '@commitlint/cli':
