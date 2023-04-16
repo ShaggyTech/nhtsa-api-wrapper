@@ -89,7 +89,7 @@ jobs:
 
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: ${{ env.PATH_DIST_DOCS }}
+          folder: apps/docs/src/.vitepress/dist
 # TODO
 
 # Deploy new versions via changesets publish
