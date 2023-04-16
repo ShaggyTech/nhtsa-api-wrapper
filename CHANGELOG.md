@@ -1,3 +1,47 @@
+[3.0.1](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v2.0.3...v3.0.1) (2023-04-16)
+
+Version 3 release notes
+
+Completely rewritten the entire project to be more modular and easier to maintain.
+
+This is a major release and will require some changes to your code.
+
+Please see the README for more information on how to use the latest version of this package.
+
+### @shaggytools/nhtsa-api-wrapper
+
+- The @shaggytools/nhtsa-api-wrapper package is now part of a larger monorepo that includes the documentation and configiuration for the project.
+- The package source can now be found in the packages/lib directory.
+- We have switched to bundling with Vite and no longer use Rollup directly.
+- Documentation has been moved to the apps/docs directory.
+- Documentation is now built with Vitepress with help from the typedoc-plugin-markdown plugin.
+
+#### Breaking Changes when upgrading from v2.x.x
+
+- The 'actions' are now referred to in the documentation as 'endpoints'. (e.g. 'DecodeVin' and 'GetAllMakes', etc.)
+
+The following changes are breaking and will require some changes to your code.
+
+- The package no longer exports a class that you can instantiate with all of the endpoint methods at once.
+
+- Each endpoint now has its own method that you can import and use directly.
+
+```ts
+import { DecodeVin, GetAllMakes } from "@shaggytools/nhtsa-api-wrapper";
+
+const getAllMakesResponse = await GetAllMakes();
+const decodeVinResponse = await DecodeVin("1G1YY22G965105609");
+```
+
+- The `fetch` method is no longer polyfilled by default. Node v18+ now supports the `fetch` API natively and
+  the decision was made to not include a polyfill by default so that this package has no packaged dependencies.
+  If you are using an older version of Node or really old browsers, you will need to polyfill the `fetch` API yourself or
+  use the package as a URL builder for the NHTSA API and use your own HTTP client to make the request.
+  Please see the documentation for more information on how to do this.
+
+As the package was completely rewritten, there are likely to be other breaking changes that have not been documented here.
+We suggest reading through the new documenation to get a better understanding of how to use the package.
+
 ## [2.0.3](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v2.0.2...v2.0.3) (2021-12-26)
 
 ## [2.0.2](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v2.0.1...v2.0.2) (2021-06-17)
