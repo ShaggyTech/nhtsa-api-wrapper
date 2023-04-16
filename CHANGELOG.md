@@ -1,4 +1,4 @@
-[3.0.1](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v2.0.3...v3.0.1) (2023-04-16)
+[3.0.2](https://github.com/ShaggyTech/nhtsa-api-wrapper/compare/v2.0.3...v3.0.2) (2023-04-15)
 
 Version 3 release notes
 

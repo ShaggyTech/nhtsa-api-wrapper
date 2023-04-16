@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
+[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
 
 # Module: api/endpoints/GetCanadianVehicleSpecifications
 

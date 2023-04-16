@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.0-beta.0](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
+[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
 
 # Module: api/endpoints/GetWMIsForManufacturer
 
@@ -49,10 +49,10 @@ params are the second arg.
 
 #### Parameters
 
-| Name       | Type                                                                                                                                                              | Description                                                                    |
-| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
-| `params?`  | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number` }, `"manufacturer"` \| `"vehicleType"`\> | Object of Query Search names and values to append to the URL as a query string |
-| `doFetch?` | `true`                                                                                                                                                            | Whether to fetch the data or just return the URL (default: `true`)             |
+| Name       | Type                                                                                                                         | Description                                                                    |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| `params?`  | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number` }\> | Object of Query Search names and values to append to the URL as a query string |
+| `doFetch?` | `true`                                                                                                                       | Whether to fetch the data or just return the URL (default: `true`)             |
 
 #### Returns
 
@@ -69,10 +69,10 @@ params are the second arg.
 
 #### Parameters
 
-| Name      | Type                                                                                                                                                              |
-| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `params`  | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number` }, `"manufacturer"` \| `"vehicleType"`\> |
-| `doFetch` | `false`                                                                                                                                                           |
+| Name      | Type                                                                                                                         |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| `params`  | [`AtLeastOne`](utils_types.md#atleastone)<{ `manufacturer?`: `string` \| `number` ; `vehicleType?`: `string` \| `number` }\> |
+| `doFetch` | `false`                                                                                                                      |
 
 #### Returns
 
