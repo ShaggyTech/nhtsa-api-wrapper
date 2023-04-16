@@ -5,29 +5,14 @@ on:
     branches:
       - main
 
-env:
-  PATH_BUILD_DOCS: ./apps/docs/src/.vitepress/dist
-  PATH_DIST_DOCS: apps/docs/src/.vitepress/dist
-  PATH_BUILD_LIB: ./packages/lib/dist
-  CACHE_PATHS_BUILD: |
-    ./apps/docs/pages/.vitepress/dist
-    ./packages/lib/dist
-  CACHE_KEY_BUILD: build-${{ github.sha }}
-# To use Remote Caching, uncomment the next lines and follow the steps below.
-#  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-#  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-
 jobs:
-  build:
-    name: Build
-    timeout-minutes: 15
+  deploy-docs:
+    name: Deploy docs from main branch to github pages
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
 
       - name: Setup
         uses: ./.github/workflows/setup
@@ -35,60 +20,10 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Cache build
-        uses: actions/cache@v3
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: ${{ env.CACHE_PATHS_BUILD }}
-          key: ${{ env.CACHE_KEY_BUILD }}
-
-  lint:
-    name: Lint
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup
-        uses: ./.github/workflows/setup
-
-      - name: Lint
-        run: pnpm lint
-
-  test:
-    name: Test
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup
-        uses: ./.github/workflows/setup
-
-      - name: Test
-        run: pnpm test
-
-  deploy-docs:
-    name: Deploy docs from main branch to github pages
-    needs: [build, lint, test]
-    runs-on: ubuntu-latest
-
-    environment:
-      name: Docs (main)
-      url: https://shaggytech.com/nhtsa-api-wrapper/
-
-    steps:
-      - uses: actions/cache@v3
-        with:
-          path: ${{ env.CACHE_PATHS_BUILD }}
-          key: ${{ env.CACHE_KEY_BUILD }}
-
-      - uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ~/apps/docs/src/.vitepress/dist
+          folder: apps/docs/src/.vitepress/dist
 # TODO
 
 # Deploy new versions via changesets publish
