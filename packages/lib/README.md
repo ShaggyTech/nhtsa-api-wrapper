@@ -9,9 +9,6 @@ The VPIC API is primarily used for decoding useful information from a Vehicle Id
 (VIN) in the United States and Canada. It can also be used to get all models of a make, to decode
 WMIs, get all makes for a certain year, and more.
 
-A list of all 24 VPIC endpoints can be found in the [NHTSA API Endpoints](#nhtsa-api-endpoints)
-section.
-
 ## Documentation
 
 ### [https://shaggytech.com/nhtsa-api-wrapper](https://shaggytech.com/nhtsa-api-wrapper/)
