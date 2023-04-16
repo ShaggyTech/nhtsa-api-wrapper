@@ -2,6 +2,10 @@ import { createRequire } from 'module'
 import { defineConfig } from 'vitepress'
 import { packageReferenceLinks, vpicEndpointLinks } from './menu'
 
+/* Base URL for production deployment on Github Pages = shaggytech.com/nhtsa-api-wrapper */
+/* Set env variable VITEPRESS_PAGE to '/' for Vercel deployment previews */
+const { VITEPRESS_BASE = '/nhtsa-api-wrapper/' } = process.env
+
 const require = createRequire(import.meta.url)
 const pkg = require('@shaggytools/nhtsa-api-wrapper/package.json')
 
@@ -16,7 +20,7 @@ export default defineConfig({
 
   head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
 
-  base: '/nhtsa-api-wrapper/',
+  base: VITEPRESS_BASE,
 
   markdown: {
     theme: 'one-dark-pro',
