@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { DecodeVinValuesExtended } from '../'
 
 // Mocks
-import { createMockResponse } from '@vitest/helpers'
-import { mockResults } from '@vitest/data'
+import { createMockResponse } from '.vitest/helpers'
+import { mockResults } from '.vitest/data'
 
 describe('api/endpoints/DecodeVinValuesExtended.ts', () => {
   it('exports DecodeVinValuesExtended function', () => {
