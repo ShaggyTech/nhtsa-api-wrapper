@@ -21,7 +21,7 @@ jobs:
       - name: Upload Coverage
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }} # don't add this token to PUBLIC repos or action will fail
           files: ./packages/lib/coverage/coverage-final.json
           name: "Upload Test Coverage" # optional
           fail_ci_if_error: true # optional (default = false)
