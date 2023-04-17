@@ -1,6 +1,6 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](index.md) / Exports
+[@shaggytools/nhtsa-api-wrapper](index.md) / Exports
 
-# @shaggytools/nhtsa-api-wrapper - v3.0.2
+# @shaggytools/nhtsa-api-wrapper
 
 ## Table of contents
 
@@ -42,6 +42,7 @@
 - [constants](modules/constants.md)
 - [global](modules/global.md)
 - [index](modules/index.md)
+- [vite-env](modules/vite_env.md)
 
 ### Types Modules
 
