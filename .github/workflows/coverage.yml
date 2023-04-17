@@ -25,4 +25,3 @@ jobs:
           files: ./packages/lib/coverage/coverage-final.json
           name: "@shaggytools/nhtsa-api-wrapper" # optional
           fail_ci_if_error: false # optional (default = false)
-          verbose: true # optional (default = false)
