@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinExtended
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinExtended
 
 # Module: api/endpoints/DecodeVinExtended
 

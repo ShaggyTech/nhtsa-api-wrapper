@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
 
 # Module: api/endpoints/GetModelsForMakeYear
 
