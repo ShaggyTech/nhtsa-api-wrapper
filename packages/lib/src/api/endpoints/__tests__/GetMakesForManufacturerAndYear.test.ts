@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { GetMakesForManufacturerAndYear } from '../'
 
 // Mocks
-import { createMockResponse } from '@vitest/helpers'
-import { mockResults } from '@vitest/data'
+import { createMockResponse } from '.vitest/helpers'
+import { mockResults } from '.vitest/data'
 
 describe('api/endpoints/GetMakesForManufacturerAndYear.ts', () => {
   it('exports GetMakesForManufacturerAndYear function', () => {

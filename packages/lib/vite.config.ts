@@ -34,7 +34,7 @@ export default defineConfig({
         replacement: resolve(__dirname, './src'),
       },
       {
-        find: '@vitest',
+        find: '.vitest',
         replacement: resolve(__dirname, './.vitest'),
       },
     ],

@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { useNHTSA } from '../'
 
 // Mocks
-import { createMockResponse } from '@vitest/helpers'
-import { mockResults } from '@vitest/data'
+import { createMockResponse } from '.vitest/helpers'
+import { mockResults } from '.vitest/data'
 
 describe('api/useNHTSA.ts', () => {
   it('exports useNHTSA function', () => {

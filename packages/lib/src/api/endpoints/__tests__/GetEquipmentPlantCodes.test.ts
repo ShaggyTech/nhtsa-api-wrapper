@@ -4,8 +4,8 @@ import { GetEquipmentPlantCodes } from '../'
 import type { GetEquipmentPlantCodesParams } from '@/types'
 
 // Mocks
-import { createMockResponse } from '@vitest/helpers'
-import { mockResults } from '@vitest/data'
+import { createMockResponse } from '.vitest/helpers'
+import { mockResults } from '.vitest/data'
 
 describe('api/endpoints/GetEquipmentPlantCodes.ts', () => {
   it('exports GetEquipmentPlantCodes function', () => {

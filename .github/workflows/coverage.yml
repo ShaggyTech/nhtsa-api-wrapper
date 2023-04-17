@@ -16,13 +16,12 @@ jobs:
         uses: ./.github/workflows/setup
 
       - name: Test
-        run: pnpm test
+        run: pnpm coverage
 
       - name: Upload Coverage
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }} # don't add this token to PUBLIC repos or action will fail
           files: ./packages/lib/coverage/coverage-final.json
-          name: shaggytools/nhsta-api-wrapper # optional
+          name: "Upload Test Coverage" # optional
           fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
