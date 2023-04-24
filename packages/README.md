@@ -2,11 +2,7 @@
 
 This folder contains the packages in the `@shaggytools/nhtsa-api-wrapper` mono-repo.
 
-Packages are published to npmjs.com and are available for use in other projects.
-
 ## Contents
-
----
 
 ### `packages/lib`
 
