@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetParts Documentation](/api/get-parts)
+ * See: [GetParts Documentation](/api/endpoints/get-parts)
  * :::
  *
  * `GetParts` provides a list of ORGs with letter date in the given range of the dates and with

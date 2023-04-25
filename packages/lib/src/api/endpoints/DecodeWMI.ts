@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeWMI Documentation](/api/decode-wmi)
+ * See: [DecodeWMI Documentation](/api/endpoints/decode-wmi)
  * :::
  *
  * `DecodeWMI` provides information on the World Manufacturer Identifier for a specific `WMI` code.

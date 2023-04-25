@@ -12,7 +12,7 @@ async function GetModelsForMake(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../typedoc/modules/api_endpoints_GetModelsForMake.md)
+See: [Package Reference](../../typedoc/modules/api_endpoints_GetModelsForMake)
 :::
 
 ## Description
@@ -34,7 +34,7 @@ whose Name is LIKE the Make in vPIC Dataset.
 
 Set `doFetch` to `false` if you want to fetch the data yourself.
 
-- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -72,7 +72,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/audi?format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
 ## Type - GetModelsForMakeResults
@@ -110,7 +110,7 @@ const response = await GetModelsForMake('audi')
 ```
 
 - Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

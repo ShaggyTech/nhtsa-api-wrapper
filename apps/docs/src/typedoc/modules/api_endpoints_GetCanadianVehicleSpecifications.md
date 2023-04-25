@@ -19,7 +19,7 @@
 ▸ **GetCanadianVehicleSpecifications**(`params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetCanadianVehicleSpecificationsResults`](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetCanadianVehicleSpecifications Documentation](/api/get-canadian-vehicle-specifications)
+See: [GetCanadianVehicleSpecifications Documentation](/api/endpoints/get-canadian-vehicle-specifications)
 :::
 
 `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).

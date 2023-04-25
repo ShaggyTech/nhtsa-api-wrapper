@@ -19,7 +19,7 @@
 ▸ **GetManufacturerDetails**(`manufacturer`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetManufacturerDetailsResults`](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
 :::
 
 `GetManufacturerDetails` provides the details for a specific manufacturer that is requested.

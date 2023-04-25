@@ -19,7 +19,7 @@
 ▸ **GetWMIsForManufacturer**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetWMIsForManufacturer Documentation](/api/get-wmis-for-manufacturer)
+See: [GetWMIsForManufacturer Documentation](/api/endpoints/get-wmis-for-manufacturer)
 :::
 
 `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a

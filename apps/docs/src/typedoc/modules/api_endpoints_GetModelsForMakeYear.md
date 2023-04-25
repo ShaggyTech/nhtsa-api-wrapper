@@ -19,7 +19,7 @@
 ▸ **GetModelsForMakeYear**(`params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeYearResults`](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyearresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetModelsForMakeYear Documentation](/api/get-models-for-make-year)
+See: [GetModelsForMakeYear Documentation](/api/endpoints/get-models-for-make-year)
 :::
 
 `GetModelsForMakeYear` returns the Models in the vPIC dataset for a specified Model Year and

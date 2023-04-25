@@ -19,7 +19,7 @@
 ▸ **GetModelsForMake**(`makeName`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeResults`](api_endpoints_GetModelsForMake.md#getmodelsformakeresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetModelsForMake Documentation](/api/get-models-for-make)
+See: [GetModelsForMake Documentation](/api/endpoints/get-models-for-make)
 :::
 
 `GetModelsForMake` returns the Models in the vPIC dataset for a specified `makeName`

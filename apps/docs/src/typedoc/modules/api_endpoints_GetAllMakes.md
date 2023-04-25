@@ -19,7 +19,7 @@
 ▸ **GetAllMakes**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetAllMakes Documentation](/api/get-all-makes)
+See: [GetAllMakes Documentation](/api/endpoints/get-all-makes)
 :::
 
 `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.

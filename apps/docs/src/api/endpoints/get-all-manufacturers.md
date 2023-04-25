@@ -17,7 +17,7 @@ async function GetAllManufacturers(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../typedoc/modules/api_endpoints_GetAllManufacturers.md)
+See: [Package Reference](../../typedoc/modules/api_endpoints_GetAllManufacturers)
 :::
 
 ## Description
@@ -48,7 +48,7 @@ Any `params` that are not listed in the table above will be ignored.
 As `params` is optional, it also has type `| boolean`, so you can set `doFetch` without
 having to pass `undefined` in place of intentionally undefined `params`.
 
-- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -85,7 +85,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetParts?type=565&fromDate=1/1/2015&toDate=5/5/2015&manufacturer=hon&format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
 ## Type - GetAllManufacturersResults
@@ -152,7 +152,7 @@ const response = await GetAllManufacturers({
 ```
 
 - Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

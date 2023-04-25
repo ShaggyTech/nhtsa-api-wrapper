@@ -19,7 +19,7 @@
 ▸ **GetVehicleVariableValuesList**(`variableValue`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableValuesListResults`](api_endpoints_GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetVehicleVariableValuesList Documentation](/api/get-vehicle-variable-values-list)
+See: [GetVehicleVariableValuesList Documentation](/api/endpoints/get-vehicle-variable-values-list)
 :::
 
 `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable

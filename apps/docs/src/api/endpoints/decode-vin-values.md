@@ -1,11 +1,11 @@
-# DecodeVinValuesExtended
+# DecodeVinValues
 
 [[toc]]
 
 ---
 
 ```typescript
-async function DecodeVinValuesExtended(
+async function DecodeVinValues(
   vin: string,
   params?:
     | {
@@ -13,22 +13,18 @@ async function DecodeVinValuesExtended(
       }
     | boolean,
   doFetch?: boolean
-) => Promise<NhtsaResponse<DecodeVinValuesExtendedResults> | string>
+) => Promise<NhtsaResponse<DecodeVinValuesResults> | string>
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../typedoc/modules/api_endpoints_DecodeVinValuesExtended.md)
+See: [Package Reference](../../typedoc/modules/api_endpoints_DecodeVinValues)
 :::
 
 ## Description
 
-`DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
-information about the vehicle in in a _flat format_. This means the endpoint will return an
-array with a single object of results. Each key in the object is the name of a variable.
-
-This endpoint is similar to `DecodeVinValues` but returns additional information on variables
-related to other NHTSA programs like
-[NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
+`DecodeVinValues` decodes a Vehicle Identification Number (VIN) and returns useful information
+about the vehicle in in a _flat format_. This means the endpoint will return an array with a
+single object of results. Each key in the object is the name of a variable.
 
 Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
 older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
@@ -66,7 +62,7 @@ Any `params` that are not listed in the table above will be ignored.
 As `params` is optional, it also has type `| boolean`, so you can set `doFetch` without
 having to pass `undefined` in place of intentionally undefined `params`.
 
-- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -74,23 +70,23 @@ having to pass `undefined` in place of intentionally undefined `params`.
 ## Returns
 
 Returns a Promise that resolves to a **_single_** NhtsaResponse object of type
-[DecodeVinValuesExtendedResults](#type-decodevinvaluesextendedresults) in the `Results` key.
+[DecodeVinValuesResults](#type-decodevinvaluesresults) in the `Results` key.
 
 ```typescript
-=> Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
+=> Promise<NhtsaResponse<DecodeVinValuesResults>>
 ```
 
 ```typescript [NhtsaApiResponse]
-interface NhtsaApiResponse<DecodeVinValuesExtendedResults> = {
+interface NhtsaApiResponse<DecodeVinValuesResults> = {
   Count: number
   Message: string
-  Results: Array<DecodeVinValuesExtendedResults>
+  Results: Array<DecodeVinValuesResults>
   SearchCriteria: string
 }
 ```
 
 ::: details :mag: Click to Show Full Example Response
-<<< @/snippets/endpoints/decode-vin-values-extended.ts#example-response
+<<< @/snippets/endpoints/decode-vin-values.ts#example-response
 :::
 
 ### If `doFetch` is set to `false`
@@ -100,23 +96,23 @@ Returns the URL string that can be used to fetch the data, does _not_ fetch the 
 ```typescript
 => Promise<string>
 
-// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/WA1A4AFY2J2008189?format=json'
+// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/WA1A4AFY2J2008189?format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
-## Type - DecodeVinValuesExtendedResults
+## Type - DecodeVinValuesResults
 
-Ƭ **DecodeVinValuesExtendedResults**: `Object`
+Ƭ **DecodeVinValuesResults**: `Object`
 
-Object returned in the `Results` array of `DecodeVinValuesExtended` endpoint response.
+Object returned in the `Results` array of `DecodeVinValues` endpoint response.
 
 In the return object, `Results` will be an array with a _single_ object of type
-`DecodeVinValuesExtendedResults`.
+`DecodeVinValuesResults`.
 
 ::: details :mag: Click to Show Type Definition
-<<< @/snippets/endpoints/decode-vin-values-extended.ts#type-results
+<<< @/snippets/endpoints/decode-vin-values.ts#type-results
 :::
 
 ## Examples
@@ -124,7 +120,7 @@ In the return object, `Results` will be an array with a _single_ object of type
 ::: tip :bulb: Examples 1-3:
 
 ```typescript
-=> Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
+=> Promise<NhtsaResponse<DecodeVinValuesResults>>
 ```
 
 - Fetches data from VPIC API internally
@@ -134,27 +130,25 @@ In the return object, `Results` will be an array with a _single_ object of type
 ### Example 1: Decode VIN
 
 ```ts
-import { DecodeVinValuesExtended } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await DecodeVinValuesExtended('WA1A4AFY2J2008189')
+const response = await DecodeVinValues('WA1A4AFY2J2008189')
 ```
 
 ### Example 2: Decode VIN with optional Model Year
 
 ```ts
-import { DecodeVinValuesExtended } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await DecodeVinValuesExtended('WA1A4AFY2J2008189', {
-  modelYear: 2018,
-})
+const response = await DecodeVinValues('WA1A4AFY2J2008189', { modelYear: 2018 })
 ```
 
 ### Example 3: Decode Partial VIN
 
 ```ts
-import { DecodeVinValuesExtended } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await DecodeVinValuesExtended('5UXWX7C5*BA')
+const response = await DecodeVinValues('5UXWX7C5*BA')
 ```
 
 ::: warning :bulb: Examples 4-5:
@@ -164,30 +158,30 @@ const response = await DecodeVinValuesExtended('5UXWX7C5*BA')
 ```
 
 - Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 
 ### Example 4: Decode VIN and doFetch = false
 
 ```ts
-import { DecodeVinValuesExtended } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await DecodeVinValuesExtended('WA1A4AFY2J2008189', false)
+const url = await DecodeVinValues('WA1A4AFY2J2008189', false)
 
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/WA1A4AFY2J2008189?format=json'
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/WA1A4AFY2J2008189?format=json'
 ```
 
 ### Example 5: Decode VIN with optional Model Year and doFetch = false
 
 ```ts
-import { DecodeVinValuesExtended } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await DecodeVinValuesExtended(
+const url = await DecodeVinValues(
   'WA1A4AFY2J2008189',
   { modelYear: 2018 },
   false
 )
 
-// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/WA1A4AFY2J2008189?modelYear=2018&format=json'
+// url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/WA1A4AFY2J2008189?modelYear=2018&format=json'
 ```

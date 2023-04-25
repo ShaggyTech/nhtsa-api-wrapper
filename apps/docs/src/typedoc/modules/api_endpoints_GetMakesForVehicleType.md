@@ -19,7 +19,7 @@
 ▸ **GetMakesForVehicleType**(`typeName`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakesForVehicleTypeResults`](api_endpoints_GetMakesForVehicleType.md#getmakesforvehicletyperesults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
 :::
 
 `GetMakesForVehicleType` returns all the Makes in the vPIC dataset for a specified vehicle type

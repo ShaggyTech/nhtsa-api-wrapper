@@ -1,72 +1,72 @@
 export const vpicEndpointLinks = [
-  { text: 'DecodeVin', link: '/api/decode-vin' },
-  { text: 'DecodeVinExtended', link: '/api/decode-vin-extended' },
-  { text: 'DecodeVinValues', link: '/api/decode-vin-values' },
+  { text: 'DecodeVin', link: '/api/endpoints/decode-vin' },
+  { text: 'DecodeVinExtended', link: '/api/endpoints/decode-vin-extended' },
+  { text: 'DecodeVinValues', link: '/api/endpoints/decode-vin-values' },
   {
     text: 'DecodeVinValuesBatch',
-    link: '/api/decode-vin-values-batch',
+    link: '/api/endpoints/decode-vin-values-batch',
   },
   {
     text: 'DecodeVinValuesExtended',
-    link: '/api/decode-vin-values-extended',
+    link: '/api/endpoints/decode-vin-values-extended',
   },
-  { text: 'DecodeWMI', link: '/api/decode-wmi' },
-  { text: 'GetAllMakes', link: '/api/get-all-makes' },
-  { text: 'GetAllManufacturers', link: '/api/get-all-manufacturers' },
+  { text: 'DecodeWMI', link: '/api/endpoints/decode-wmi' },
+  { text: 'GetAllMakes', link: '/api/endpoints/get-all-makes' },
+  { text: 'GetAllManufacturers', link: '/api/endpoints/get-all-manufacturers' },
   {
     text: 'GetCanadianVehicleSpecifications',
-    link: '/api/get-canadian-vehicle-specifications',
+    link: '/api/endpoints/get-canadian-vehicle-specifications',
   },
   {
     text: 'GetEquipmentPlantCodes',
-    link: '/api/get-equipment-plant-codes',
+    link: '/api/endpoints/get-equipment-plant-codes',
   },
   {
     text: 'GetMakeForManufacturer',
-    link: '/api/get-make-for-manufacturer',
+    link: '/api/endpoints/get-make-for-manufacturer',
   },
   {
     text: 'GetMakesForManufacturerAndYear',
-    link: '/api/get-makes-for-manufacturer-and-year',
+    link: '/api/endpoints/get-makes-for-manufacturer-and-year',
   },
   {
     text: 'GetMakesForVehicleType',
-    link: '/api/get-makes-for-vehicle-type',
+    link: '/api/endpoints/get-makes-for-vehicle-type',
   },
   {
     text: 'GetManufacturerDetails',
-    link: '/api/get-manufacturer-details',
+    link: '/api/endpoints/get-manufacturer-details',
   },
-  { text: 'GetModelsForMake', link: '/api/get-models-for-make' },
-  { text: 'GetModelsForMakeId', link: '/api/get-models-for-make-id' },
+  { text: 'GetModelsForMake', link: '/api/endpoints/get-models-for-make' },
+  { text: 'GetModelsForMakeId', link: '/api/endpoints/get-models-for-make-id' },
   {
     text: 'GetModelsForMakeIdYear',
-    link: '/api/get-models-for-make-id-year',
+    link: '/api/endpoints/get-models-for-make-id-year',
   },
   {
     text: 'GetModelsForMakeYear',
-    link: '/api/get-models-for-make-year',
+    link: '/api/endpoints/get-models-for-make-year',
   },
-  { text: 'GetParts', link: '/api/get-parts' },
+  { text: 'GetParts', link: '/api/endpoints/get-parts' },
   {
     text: 'GetVehicleTypesForMake',
-    link: '/api/get-vehicle-types-for-make',
+    link: '/api/endpoints/get-vehicle-types-for-make',
   },
   {
     text: 'GetVehicleTypesForMakeId',
-    link: '/api/get-vehicle-types-for-make-id',
+    link: '/api/endpoints/get-vehicle-types-for-make-id',
   },
   {
     text: 'GetVehicleVariableList',
-    link: '/api/get-vehicle-variable-list',
+    link: '/api/endpoints/get-vehicle-variable-list',
   },
   {
     text: 'GetVehicleVariableValuesList',
-    link: '/api/get-vehicle-variable-values-list',
+    link: '/api/endpoints/get-vehicle-variable-values-list',
   },
   {
     text: 'GetWMIsForManufacturer',
-    link: '/api/get-wmis-for-manufacturer',
+    link: '/api/endpoints/get-wmis-for-manufacturer',
   },
 ]
 

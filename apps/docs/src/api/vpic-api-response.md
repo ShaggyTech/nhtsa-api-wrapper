@@ -134,7 +134,7 @@ type NhtsaApiResponse<DecodeVinResults> = {
 Check out the [Api Reference](/api/) section for specific details on each
 endpoint's `Results` array types.
 
-Here's [DecodeVinResults](../api/decode-vin#type-decodevinresults) that was mentioned in the above
+Here's [DecodeVinResults](../api/endpoints/decode-vin#type-decodevinresults) that was mentioned in the above
 example.
 :::
 

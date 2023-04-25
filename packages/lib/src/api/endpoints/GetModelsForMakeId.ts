@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetModelsForMakeId Documentation](/api/get-models-for-make-id)
+ * See: [GetModelsForMakeId Documentation](/api/endpoints/get-models-for-make-id)
  * :::
  *
  * `GetModelsForMakeId` returns the Models in the vPIC dataset for a specified Make whose ID is

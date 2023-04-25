@@ -17,7 +17,7 @@ async function GetCanadianVehicleSpecifications(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../typedoc/modules/api_endpoints_GetCanadianVehicleSpecifications.md)
+See: [Package Reference](../../typedoc/modules/api_endpoints_GetCanadianVehicleSpecifications)
 :::
 
 ## Description
@@ -58,7 +58,7 @@ Any `params` that are not listed in the table above will be ignored.
 
 Set `doFetch` to `false` if you want to fetch the data yourself.
 
-- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -96,7 +96,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetCanadianVehicleSpecifications/?Year=2011&Make=Acura&Model=&units=&format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
 ## Type - GetCanadianVehicleSpecificationsResults
@@ -148,7 +148,7 @@ const response = await GetCanadianVehicleSpecifications({
 ```
 
 - Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

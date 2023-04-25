@@ -1,24 +1,24 @@
-# GetVehicleTypesForMakeId
+# GetModelsForMakeId
 
 [[toc]]
 
 ---
 
 ```typescript
-async function GetVehicleTypesForMakeId(
+async function GetModelsForMakeId(
   makeId: string | number,
   doFetch?: boolean
-): Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults> | string>
+): Promise<NhtsaResponse<GetModelsForMakeIdResults> | string>
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../typedoc/modules/api_endpoints_GetVehicleTypesForMakeId.md)
+See: [Package Reference](../../typedoc/modules/api_endpoints_GetModelsForMakeId)
 :::
 
 ## Description
 
-`GetVehicleTypesForMakeId` returns the Models in the vPIC dataset for a specified Make
-whose ID is equal to the `makeID` in the vPIC Dataset.
+`GetModelsForMakeId` returns the Models in the vPIC dataset for a specified Make whose ID is
+equal to the `makeID` in the vPIC Dataset.
 
 You can get `makeID`s via `MAKE_ID` key in Results objects of the following endpoints:
 
@@ -51,7 +51,7 @@ endpoint.
 
 Set `doFetch` to `false` if you want to fetch the data yourself.
 
-- See [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -59,24 +59,24 @@ Set `doFetch` to `false` if you want to fetch the data yourself.
 ## Returns
 
 Returns a Promise that resolves to a NhtsaResponse object containing an array of
-[GetVehicleTypesForMakeIdResults](#type-getvehicletypesformakeidresults) objects in the
+[GetModelsForMakeIdResults](#type-getmodelsformakeidresults) objects in the
 `Results` key.
 
 ```typescript
-=> Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>
+=> Promise<NhtsaResponse<GetModelsForMakeIdResults>>
 ```
 
 ```typescript
-type NhtsaApiResponse<GetVehicleTypesForMakeIdResults> = {
+type NhtsaApiResponse<GetModelsForMakeIdResults> = {
   Count: number
   Message: string
-  Results: Array<GetVehicleTypesForMakeIdResults>
+  Results: Array<GetModelsForMakeIdResults>
   SearchCriteria: string
 }
 ```
 
 ::: details :mag: Click to Show Full Example Response
-<<< @/snippets/endpoints/get-vehicle-types-for-make-id.ts#example-response
+<<< @/snippets/endpoints/get-models-for-make-id.ts#example-response
 :::
 
 ### If `doFetch` is set to `false`
@@ -86,38 +86,38 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 ```typescript
 => Promise<string>
 
-// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMakeId/449?format=json'
+// ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/582?format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
-## Type - GetVehicleTypesForMakeIdResults
+## Type - GetModelsForMakeIdResults
 
-<<< @/snippets/endpoints/get-vehicle-types-for-make-id.ts#type-results
+<<< @/snippets/endpoints/get-models-for-make-id.ts#type-results
 
-Ƭ **GetVehicleTypesForMakeIdResults**: `Object`
+Ƭ **GetModelsForMakeIdResults**: `Object`
 
-Objects returned in the `Results` array of `GetVehicleTypesForMakeId` endpoint response.
+Objects returned in the `Results` array of `GetModelsForMakeId` endpoint response.
 
 ## Examples
 
 ::: tip :bulb: Example 1:
 
 ```typescript
-=> Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>
+=> Promise<NhtsaResponse<GetModelsForMakeIdResults>>
 ```
 
 - Fetches data from VPIC API internally
 
 :::
 
-### Example 1: Get Vehicle Types for Make ID
+### Example 1: Get Models for Make ID
 
 ```ts
-import { GetVehicleTypesForMakeId } from '@shaggytools/nhtsa-api-wrapper'
+import { GetModelsForMakeId } from '@shaggytools/nhtsa-api-wrapper'
 
-const response = await GetVehicleTypesForMakeId(449)
+const response = await GetModelsForMakeId(582)
 ```
 
 ::: warning :bulb: Example 2:
@@ -127,16 +127,16 @@ const response = await GetVehicleTypesForMakeId(449)
 ```
 
 - Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 
-### Example 2: Get Vehicle Types for Make ID and doFetch = false
+### Example 2: Get Models for Make ID and doFetch = false
 
 ```ts
-import { GetVehicleTypesForMakeId } from '@shaggytools/nhtsa-api-wrapper'
+import { GetModelsForMakeId } from '@shaggytools/nhtsa-api-wrapper'
 
-const url = await GetVehicleTypesForMakeId(449, false)
+const url = await GetModelsForMakeId(582, false)
 
-// url: 'https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMakeId/449?format=json'
+// url: 'https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/582?format=json'
 ```
