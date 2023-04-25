@@ -105,4 +105,4 @@ Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:119](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L119)
+[api/endpoints/GetWMIsForManufacturer.ts:123](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L123)

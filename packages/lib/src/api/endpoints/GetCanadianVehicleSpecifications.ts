@@ -89,9 +89,9 @@ async function GetCanadianVehicleSpecifications(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({
+    createCachedUrl({
       endpointName,
       params: {
         make: '',

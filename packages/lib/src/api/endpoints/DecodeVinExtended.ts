@@ -94,9 +94,9 @@ async function DecodeVinExtended(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: vin, params })
+    createCachedUrl({ endpointName, path: vin, params })
 
     if (!doFetch) {
       return getCachedUrl()

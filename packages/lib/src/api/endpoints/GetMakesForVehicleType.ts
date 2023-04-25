@@ -51,9 +51,9 @@ async function GetMakesForVehicleType(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: typeName })
+    createCachedUrl({ endpointName, path: typeName })
 
     if (!doFetch) {
       return getCachedUrl()

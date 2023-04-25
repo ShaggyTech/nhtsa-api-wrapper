@@ -130,9 +130,9 @@ async function GetModelsForMakeIdYear(
       ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
       : ''
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path })
+    createCachedUrl({ endpointName, path })
 
     if (!doFetch) {
       return getCachedUrl()

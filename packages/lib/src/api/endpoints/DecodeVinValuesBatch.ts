@@ -68,9 +68,9 @@ async function DecodeVinValuesBatch(
     ]
     catchInvalidArguments({ args })
 
-    const { post, cacheUrl, getCachedUrl } = useNHTSA()
+    const { post, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, includeQueryString: false })
+    createCachedUrl({ endpointName, includeQueryString: false })
 
     if (!doFetch) {
       return getCachedUrl()

@@ -56,7 +56,7 @@ The exported methods are:
 
 - `post` - Makes a POST request, uses the internal url variable if no URL is provided
 
-- `cacheUrl` - Builds the URL string and stores it in internal state
+- `createCachedUrl` - Builds the URL string and stores it in internal state
 
 - `createUrl` - Builds the URL string but does not store it in internal state
 
@@ -66,16 +66,16 @@ The exported methods are:
 
 `Object`
 
-| Name             | Type                                                                                                                                                                                                       |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cacheUrl`       | (`input`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string`                                                                                                                  |
-| `clearCachedUrl` | () => `string`                                                                                                                                                                                             |
-| `createPostBody` | (`data`: `string`) => `string`                                                                                                                                                                             |
-| `createUrl`      | (`options`: [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string`                                                                                                                            |
-| `get`            | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean` }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
-| `getCachedUrl`   | () => `string`                                                                                                                                                                                             |
-| `post`           | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean` }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
-| `setCachedUrl`   | (`url`: `string`) => `string`                                                                                                                                                                              |
+| Name              | Type                                                                                                                                                                                                       |
+| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `clearCachedUrl`  | () => `string`                                                                                                                                                                                             |
+| `createCachedUrl` | (`input`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string`                                                                                                                  |
+| `createPostBody`  | (`data`: `string`) => `string`                                                                                                                                                                             |
+| `createUrl`       | (`options`: [`CreateUrlOptions`](api_useNHTSA.md#createurloptions)) => `string`                                                                                                                            |
+| `get`             | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean` }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
+| `getCachedUrl`    | () => `string`                                                                                                                                                                                             |
+| `post`            | <T\>(`url?`: `string` \| [`CreateUrlOptions`](api_useNHTSA.md#createurloptions), `options?`: `RequestInit` & { `saveUrl?`: `boolean` }) => `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<`T`\>\> |
+| `setCachedUrl`    | (`url`: `string`) => `string`                                                                                                                                                                              |
 
 #### Defined in
 

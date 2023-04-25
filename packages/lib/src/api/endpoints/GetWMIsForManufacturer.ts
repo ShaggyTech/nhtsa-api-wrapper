@@ -97,9 +97,13 @@ async function GetWMIsForManufacturer(
       : ''
     const vehicleType = params?.vehicleType || ''
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: manufacturer, params: { vehicleType } })
+    createCachedUrl({
+      endpointName,
+      path: manufacturer,
+      params: { vehicleType },
+    })
 
     if (!doFetch) {
       return getCachedUrl()

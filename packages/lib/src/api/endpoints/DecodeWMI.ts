@@ -54,9 +54,9 @@ async function DecodeWMI(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: WMI })
+    createCachedUrl({ endpointName, path: WMI })
 
     if (!doFetch) {
       return getCachedUrl()

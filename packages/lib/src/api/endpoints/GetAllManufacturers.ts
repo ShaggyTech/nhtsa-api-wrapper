@@ -89,9 +89,9 @@ async function GetAllManufacturers(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, params })
+    createCachedUrl({ endpointName, params })
 
     if (!doFetch) {
       return getCachedUrl()

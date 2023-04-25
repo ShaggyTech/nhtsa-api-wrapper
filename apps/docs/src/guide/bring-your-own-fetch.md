@@ -131,7 +131,7 @@ build the request body properly formatted for the API. See
 [Using createUrl With POST](#using-with-post-endpoints) for more info.
 
 There are other helper functions exported by `useNHTSA` but you don't need to use them in this case.
-The other available functions are `get`, `post`, `cacheUrl`, and `getCachedUrl`.
+The other available functions are `get`, `post`, `createCachedUrl`, and `getCachedUrl`.
 
 ### Caveats
 

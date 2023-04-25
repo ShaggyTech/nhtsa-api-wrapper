@@ -32,9 +32,9 @@ async function GetVehicleVariableList(
   const endpointName = 'GetVehicleVariableList'
 
   try {
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName })
+    createCachedUrl({ endpointName })
 
     if (!doFetch) {
       return getCachedUrl()

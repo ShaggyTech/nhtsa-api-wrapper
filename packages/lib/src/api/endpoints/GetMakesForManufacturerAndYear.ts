@@ -79,9 +79,9 @@ async function GetMakesForManufacturerAndYear(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({
+    createCachedUrl({
       endpointName,
       path: manufacturer.toString(),
       params,

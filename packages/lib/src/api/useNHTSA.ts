@@ -39,7 +39,7 @@ export type CreateUrlOptions = {
  *
  * - `post` - Makes a POST request, uses the internal url variable if no URL is provided
  *
- * - `cacheUrl` - Builds the URL string and stores it in internal state
+ * - `createCachedUrl` - Builds the URL string and stores it in internal state
  *
  * - `createUrl` - Builds the URL string but does not store it in internal state
  *
@@ -95,7 +95,7 @@ export const useNHTSA = () => {
    * (default: true)
    * @returns {string} VPIC API URL string
    */
-  const cacheUrl = (input: CreateUrlOptions | string): string => {
+  const createCachedUrl = (input: CreateUrlOptions | string): string => {
     if (typeof input === 'string') {
       setCachedUrl(input)
       return input
@@ -130,12 +130,12 @@ export const useNHTSA = () => {
   }
 
   /**
-   * Simply a wrapper for `cacheUrl` with `saveUrl` set to false.
+   * Simply a wrapper for `createCachedUrl` with `saveUrl` set to false.
    *
    * Takes an object of type `CreateUrlOptions` as an argument and returns a full VPIC URL string.
    *
    * This builds the VPIC URL string but does not set it as a private cached variable of the
-   * composable. Use `cacheUrl` if you need to save the URL in the composable instance.
+   * composable. Use `createCachedUrl` if you need to save the URL in the composable instance.
    *
    * @param options Object of type `CreateUrlOptions` containing the following properties:
    * @param {string} options.endpointName - Name of the endpoint to use in the URL (required)
@@ -149,7 +149,7 @@ export const useNHTSA = () => {
    * @returns {string} VPIC API URL string
    */
   const createUrl = (options: CreateUrlOptions) => {
-    return cacheUrl({ ...options, saveUrl: false })
+    return createCachedUrl({ ...options, saveUrl: false })
   }
 
   /** Function to create final POST body string from a VPIC data string */
@@ -179,8 +179,8 @@ export const useNHTSA = () => {
    * `url` - either a full url `string` or an `object` of type `CreateUrlOptions`
    *
    * - `required` if there is no url cached in the composable instance
-   * - if a `CreateUrlOptions` object is provided, `cacheUrl` will be called with the object to
-   *   build and cache the url before making the request
+   * - if a `CreateUrlOptions` object is provided, `createCachedUrl` will be called with the object
+   *   to build and cache the url before making the request
    * - if a string is provided, it is assumed the string is a full url and it will be cached in the
    *   as such in the composable instance before making the request
    *
@@ -220,7 +220,10 @@ export const useNHTSA = () => {
   ): Promise<NhtsaResponse<T>> => {
     /* If url is an object, create and store a url string from it */
     if (url && getTypeof(url) === 'object') {
-      url = cacheUrl({ ...(url as CreateUrlOptions), saveUrl: options.saveUrl })
+      url = createCachedUrl({
+        ...(url as CreateUrlOptions),
+        saveUrl: options.saveUrl,
+      })
     }
 
     url = getTypeof(url) === 'string' ? url : getCachedUrl()
@@ -305,10 +308,10 @@ export const useNHTSA = () => {
    * `url` - either a full url `string` or an `object` of type `CreateUrlOptions`
    *
    * - `required` if there is no url cached in the composable instance
-   * - if a `CreateUrlOptions` object is provided, `cacheUrl` will be called with the object to
-   *   build and cache the url before making the request
-   * - if a string is provided, it is assumed the string is a full url and it will be cached in the
-   *   as such in the composable instance before making the request
+   * - if a `CreateUrlOptions` object is provided, `createCachedUrl` will be called with the object
+   *   to build and cache the url before making the request
+   * - if a string is provided, it is assumed the string is a full url and it will be cached as such
+   *   in the composable instance before making the request
    *
    * ### Options
    *
@@ -346,7 +349,7 @@ export const useNHTSA = () => {
     /* If url is an object, create and store a url string from it */
     if (url && getTypeof(url) === 'object') {
       /* POST requests should not include query string */
-      url = cacheUrl({
+      url = createCachedUrl({
         ...(url as CreateUrlOptions),
         saveUrl: options.saveUrl,
         includeQueryString: false,
@@ -389,7 +392,7 @@ export const useNHTSA = () => {
     setCachedUrl,
     getCachedUrl,
     clearCachedUrl,
-    cacheUrl,
+    createCachedUrl,
     createUrl,
     createPostBody,
     get,

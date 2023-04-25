@@ -34,9 +34,9 @@ async function GetAllMakes(
   const endpointName = 'GetAllMakes'
 
   try {
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName })
+    createCachedUrl({ endpointName })
 
     if (!doFetch) {
       return getCachedUrl()

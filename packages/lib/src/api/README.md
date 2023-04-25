@@ -41,24 +41,24 @@ The exported methods are:
 
 - `post` - Makes a POST request, uses the internal url variable if no URL is provided
 
-- `cacheUrl` - Builds the URL string and stores it in internal state
+- `createCachedUrl` - Builds the URL string and stores it in internal state
 
 - `createUrl` - Builds the URL string but does not store it in internal state
 
 - `getCachedUrl` - Returns the internal URL string
 
-`cacheUrl`, `get`, and `post` methods will cache url to internal state if you pass them a url
+`createCachedUrl`, `get`, and `post` methods will cache url to internal state if you pass them a url
 string or options object. They will always overwrite the current cached url and immediately make
 the request. The only exception to this is when providing option of `saveUrl: false` when using
 an options object.
 
 The above is default behavior, but you can also pass `options.saveUrl = false` when using
-an options object with the `cacheUrl`, `createUrl`, `get`, and `post` methods. This will prevent
+an options object with the `createCachedUrl`, `createUrl`, `get`, and `post` methods. This will prevent
 the composable from saving the URL in the composable instance.
 
 ### `useNHTSA` Options
 
-Options for `cacheUrl` and `createUrl` are a single `object` of type `CreateUrlOptions`:
+Options for `createCachedUrl` and `createUrl` are a single `object` of type `CreateUrlOptions`:
 
 - `endpointName` - The name of the endpoint to use, see
   [NHTSA API Endpoints](https://github.com/shaggytech/nhtsa-api-wrapper#nhtsa-api-endpoints)
@@ -80,7 +80,7 @@ Options for `get` and `post`:
 - `url` - either a full url `string` or an `object` of type `CreateUrlOptions` as described above
 
   - `required` if there is no url cached in the composable instance
-  - if an object is provided, `cacheUrl` will be called with the object to build the url before
+  - if an object is provided, `createCachedUrl` will be called with the object to build the url before
     making the request
   - if a string is provided, it is assumed the string is a full url and it will be stored in the
     instance as such before making the request
@@ -91,7 +91,7 @@ In this example all of the code is using the same composable instance and _{...o
 object of type `CreateUrlOptions`:
 
 ```javascript
-const { get, post, cacheUrl createUrl, getCachedUrl } = useNHTSA()
+const { get, post, createCachedUrl createUrl, getCachedUrl } = useNHTSA()
 
 const urlString = createUrl({ ...options }) // does not cache url
 
@@ -112,10 +112,10 @@ createUrl({ ...options })
 
 get() // uses https://some.api.com/api/endpoint/POST from earlier cache -- OOPS!
 
-cacheUrl({ ...options }) // caches url in composable instance
-get() // uses url cached during the preceding cacheUrl() call
+createCachedUrl({ ...options }) // caches url in composable instance
+get() // uses url cached during the preceding createCachedUrl() call
 
-getCachedUrl() // returns url cached during the preceding cacheUrl() call
+getCachedUrl() // returns url cached during the preceding createCachedUrl() call
 
 get(urlString) // uses urlString and caches it in composable instance, overwriting previous url
 get() // uses url cached during the preceding get() call
@@ -130,7 +130,7 @@ its own internal state.
 
 This is also why you must call `createUrl()` before making a request, so that the URL is stored in
 the instance's internal state. You can also pass `CreateUrlOptions` directly to `get()` and `post()`
-and they will call `cacheUrl()` for you before making the request.
+and they will call `createCachedUrl()` for you before making the request.
 
 You can either destructure the methods you want to use from the returned object, or you can
 call them directly on the returned object. If you want to reuse the same instance of the
@@ -143,16 +143,16 @@ For example, the following are equivalent in regards to base functionality:
 import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
 
 // destructure the methods you want to use from the returned object
-const { get, post, cacheUrl, createUrl, getCachedUrl } = useNHTSA()
+const { get, post, createCachedUrl, createUrl, getCachedUrl } = useNHTSA()
 
 // uses the same instance of the composable each time
 const getData = get()
 const postData = post()
-const cachedUrl = cacheUrl({ ...options })
+const cachedUrl = createCachedUrl({ ...options })
 const ephemeralUrl = createUrl({ ...options })
 
 /* this would be undefined if there was no url cached, but in the flow of this example, there is
-   a url cached from the preceding call to cacheUrl() and it will return that one */
+   a url cached from the preceding call to createCachedUrl() and it will return that one */
 const mostRecentUrl = getCachedUrl()
 ```
 
@@ -163,17 +163,17 @@ import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
    and knows nothing about the internal state of the other instances */
 const getData = useNHTSA().get()
 const postData = useNHTSA().post()
-const cachedUrl = useNHTSA().cacheUrl({ ...options })
+const cachedUrl = useNHTSA().createCachedUrl({ ...options })
 const ephemeralUrl = useNHTSA().createUrl({ ...options })
 
 const mostRecentUrl = useNHTSA().getCachedUrl() // this would be undefined, it's a new instance
 ```
 
-Note that neither `cacheUrl` nor `createUrl` are called automatically by `get` or `post` methods.
+Note that neither `createCachedUrl` nor `createUrl` are called automatically by `get` or `post` methods.
 You must call them yourself before making a request or provide `get` and `post` with the pre-built
 url as an argument.
 
-This means if you call `get` or `post` without first calling `cacheUrl` or `createUrl`, or providing
+This means if you call `get` or `post` without first calling `createCachedUrl` or `createUrl`, or providing
 a valid argument to `get` or `post`, an `Error` will be returned saying that the url is undefined.
 
 Example usage:
@@ -198,10 +198,10 @@ const differentOptions: CreateUrlOptions = {
   endpointName: 'GetAllMakes',
 }
 
-cacheUrl({ ...options }) // create a url to fetch DecodeVinValues and cache it
+createCachedUrl({ ...options }) // create a url to fetch DecodeVinValues and cache it
 const results1 = get() // make the request to DecodeVinValues using the url from the cache
 
-cacheUrl({ ...differentOptions }) // create a new url to fetch GetAllMakes and cache it
+createCachedUrl({ ...differentOptions }) // create a new url to fetch GetAllMakes and cache it
 const results2 = get() // make the request to GetAllMakes using the url from the cache
 ```
 
@@ -251,11 +251,11 @@ const postResponse = post(
 )
 ```
 
-Use `cacheUrl` to save the url to the instance state and call `get` or `post` without
-arguments. Will use the cached url from the most recent `cacheUrl` call.
+Use `createCachedUrl` to save the url to the instance state and call `get` or `post` without
+arguments. Will use the cached url from the most recent `createCachedUrl` call.
 
 ```javascript
-const { createUrl, cacheUrl, get, post } = useNHTSA()
+const { createUrl, createCachedUrl, get, post } = useNHTSA()
 
 const urlString = createUrl({ ...options }) // doesn't save to internal state
 
@@ -268,7 +268,7 @@ about saving the results to variables.
 get(urlString, { saveUrl: false }) // uses the url string but doesn't save it to internal state
 get() // errors because no url is cached
 
-cacheUrl({ ...otherOptions }) // saves url to internal state, also returns the url string
+createCachedUrl({ ...otherOptions }) // saves url to internal state, also returns the url string
 get() // uses the url from the most recent createUrl() call
 
 get(urlString) // use the urlString variable, and save it to the internal state

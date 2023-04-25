@@ -53,9 +53,9 @@ async function GetVehicleVariableValuesList(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: variableValue.toString() })
+    createCachedUrl({ endpointName, path: variableValue.toString() })
 
     if (!doFetch) {
       return getCachedUrl()
