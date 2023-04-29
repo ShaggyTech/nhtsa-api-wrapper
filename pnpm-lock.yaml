@@ -107,8 +107,8 @@ importers:
         specifier: 0.24.4
         version: 0.24.4(typescript@5.0.3)
       typedoc-plugin-markdown:
-        specifier: 3.15.1
-        version: 3.15.1(typedoc@0.24.4)
+        specifier: 3.15.3
+        version: 3.15.3(typedoc@0.24.4)
       typescript:
         specifier: 5.0.3
         version: 5.0.3
@@ -4390,8 +4390,8 @@ packages:
       is-typed-array: 1.1.10
     dev: false
 
-  /typedoc-plugin-markdown@3.15.1(typedoc@0.24.4):
-    resolution: {integrity: sha512-TaXE8gc8s5YepU1Ogyqfkh+khPE1/n4rV5vaoZCNyXvSLv62jWmHf443lHiQh7r07qAimUOKAndaaufAeIUSiQ==}
+  /typedoc-plugin-markdown@3.15.3(typedoc@0.24.4):
+    resolution: {integrity: sha512-idntFYu3vfaY3eaD+w9DeRd0PmNGqGuNLKihPU9poxFGnATJYGn9dPtEhn2QrTdishFMg7jPXAhos+2T6YCWRQ==}
     peerDependencies:
       typedoc: '>=0.24.0'
     dependencies:
