@@ -1,9 +1,20 @@
+import { createWriteStream } from 'node:fs'
+import { resolve } from 'node:path'
+import { SitemapStream } from 'sitemap'
+// import { generateSitemap } from 'sitemap-ts'
 import { defineConfig, type HeadConfig } from 'vitepress'
 import { nav, sidebar } from './menu'
 
 /* Base URL for production deployment on Github Pages = shaggytech.com/nhtsa-api-wrapper */
 /* Set env variable VITEPRESS_BASE to '/' for Vercel deployment previews */
 const { VITEPRESS_BASE = '/nhtsa-api-wrapper/' } = process.env
+
+interface SiteMapLink {
+  url: string
+  lastmod?: number
+}
+
+const sitemapLinks: SiteMapLink[] = []
 
 export default defineConfig({
   base: VITEPRESS_BASE,
@@ -43,6 +54,38 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2017-present Brandon Eichler',
     },
+  },
+
+  // buildEnd: async () => {
+  //   return await new Promise((resolve) => {
+  //     return resolve(
+  //       generateSitemap({
+  //         basePath: VITEPRESS_BASE,
+  //         hostname: 'https://vpic.shaggytech.com/',
+  //         outDir: 'src/.vitepress/dist',
+  //       })
+  //     )
+  //   })
+  // },
+
+  transformHtml: (_, id, { pageData }) => {
+    if (!/[\\/]404\.html$/.test(id))
+      sitemapLinks.push({
+        // you might need to change this if not using clean urls mode
+        url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
+        lastmod: pageData.lastUpdated,
+      })
+  },
+
+  buildEnd: async ({ outDir }) => {
+    const sitemap = new SitemapStream({
+      hostname: 'https://vpic.shaggytech.com/',
+    })
+    const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
+    sitemap.pipe(writeStream)
+    sitemapLinks.forEach((link) => sitemap.write(link))
+    sitemap.end()
+    await new Promise((r) => writeStream.on('finish', r))
   },
 })
 
