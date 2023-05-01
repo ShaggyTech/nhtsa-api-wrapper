@@ -1,26 +1,21 @@
-import { createRequire } from 'module'
-import { defineConfig } from 'vitepress'
-import { packageReferenceLinks, vpicEndpointLinks } from './menu'
+import { defineConfig, type HeadConfig } from 'vitepress'
+import { nav, sidebar } from './menu'
 
 /* Base URL for production deployment on Github Pages = shaggytech.com/nhtsa-api-wrapper */
 /* Set env variable VITEPRESS_BASE to '/' for Vercel deployment previews */
 const { VITEPRESS_BASE = '/nhtsa-api-wrapper/' } = process.env
 
-const require = createRequire(import.meta.url)
-const pkg = require('@shaggytools/nhtsa-api-wrapper/package.json')
-
 export default defineConfig({
+  base: VITEPRESS_BASE,
   lang: 'en-US',
   title: '@shaggytools/nhtsa-api-wrapper',
-  description: 'Documentation website for @shaggytools/nhtsa-api-wrapper',
+  description:
+    'A thin Javascript wrapper for the NHTSA VPIC API. Decode a VIN and more with ease.',
+  head: getHeadTags(),
 
   appearance: 'dark',
   lastUpdated: true,
   cleanUrls: true,
-
-  head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
-
-  base: VITEPRESS_BASE,
 
   markdown: {
     theme: 'one-dark-pro',
@@ -29,17 +24,12 @@ export default defineConfig({
   themeConfig: {
     outline: 'deep',
     nav: nav(),
-
-    sidebar: {
-      '/guide/': sidebar(),
-      '/api/': sidebar(),
-      '/typedoc/': sidebar(),
-    },
+    sidebar: sidebar(),
 
     editLink: {
       pattern:
-        'https://github.com/shaggytech/nhtsa-api-wrapper/edit/main/apps/docs/:path',
-      text: 'Edit this page on GitHub',
+        'https://github.com/shaggytech/nhtsa-api-wrapper/edit/main/apps/docs/src/:path',
+      text: 'Suggest changes to this page',
     },
 
     socialLinks: [
@@ -56,79 +46,58 @@ export default defineConfig({
   },
 })
 
-function nav() {
-  return [
-    { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
-    { text: 'API Reference', link: '/api/', activeMatch: '/api/' },
-    { text: 'Typedocs', link: '/typedoc/', activeMatch: '/typedoc/' },
-    {
-      text: pkg.version,
-      items: [
-        {
-          text: 'Changelog',
-          link: 'https://github.com/shaggytech/nhtsa-api-wrapper/blob/main/CHANGELOG.md',
-        },
-        {
-          text: 'Contributing',
-          link: 'https://github.com/shaggytech/nhtsa-api-wrapper/blob/main/.github/contributing.md',
-        },
-      ],
-    },
+function getHeadTags(): HeadConfig[] {
+  const tags: HeadConfig[] = [
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    ['meta', { name: 'author', content: 'Brandon Eichler' }],
+    [
+      'meta',
+      { property: 'og:title', content: '@shaggytools/nhtsa-api-wrapper' },
+    ],
+    [
+      'meta',
+      {
+        property: 'og:image',
+        content: 'https://vpic.shaggytech.com/og-image.png',
+      },
+    ],
+    [
+      'meta',
+      {
+        property: 'og:description',
+        content:
+          'A thin Javascript wrapper for the NHTSA VPIC API. Decode a VIN and more with ease.',
+      },
+    ],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    [
+      'meta',
+      { name: 'twitter:creator', content: '@shaggytools/nhtsa-api-wrapper' },
+    ],
+    [
+      'meta',
+      {
+        name: 'twitter:image',
+        content: 'https://vpic.shaggytech.com/og-image.png',
+      },
+    ],
+    ['link', { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' }],
+    [
+      'link',
+      {
+        rel: 'preconnect',
+        crossorigin: 'anonymous',
+        href: 'https://fonts.gstatic.com',
+      },
+    ],
+    [
+      'link',
+      {
+        href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;400;500&family=Inter:wght@200;400;500;600',
+        rel: 'stylesheet',
+      },
+    ],
   ]
-}
 
-function sidebar() {
-  return [
-    {
-      text: 'Guide',
-      collapsed: false,
-      items: [
-        { text: 'Introduction', link: '/guide/' },
-        { text: 'Getting Started', link: '/guide/getting-started' },
-        {
-          text: 'BYOF - Bring Your Own Fetch',
-          link: '/guide/bring-your-own-fetch',
-        },
-        {
-          text: 'Support for Node Versions < 18',
-          link: '/guide/native-fetch',
-        },
-        { text: 'Typescript Support', link: '/guide/typescript' },
-      ],
-    },
-    {
-      text: 'API Reference',
-      collapsed: false,
-      items: [
-        {
-          text: 'Introduction',
-          link: '/api/',
-        },
-        {
-          text: 'VPIC API Response',
-          link: '/api/vpic-api-response',
-        },
-        {
-          text: 'VPIC API Endpoints',
-          collapsed: false,
-          items: vpicEndpointLinks,
-        },
-      ],
-    },
-    {
-      text: 'Package Reference',
-      collapsed: false,
-      items: [
-        {
-          text: 'Introduction',
-          link: '/typedoc/',
-        },
-        {
-          text: 'Typedocs',
-          collapsed: true,
-          items: packageReferenceLinks,
-        },
-      ],
-    },
-  ]
+  return tags
 }
