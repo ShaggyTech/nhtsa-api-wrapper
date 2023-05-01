@@ -1,0 +1,41 @@
+.top-nav {
+  height: 90px !important;
+}
+
+.news-container {
+  height: auto;
+  line-height: 30px;
+  text-align: center;
+  background-color: #EBEE14;
+}
+
+@media (max-width: 695px) {
+  .news-container {
+      height:auto;
+      line-height: 20px;
+      text-align: center
+  }
+}
+
+.news-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.news-inner {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.news-line {
+  display: inline-block;
+}
+
+.news-highlight {
+  font-weight: bold;
+  color: #ffffff;
+}
