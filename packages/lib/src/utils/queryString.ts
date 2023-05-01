@@ -16,6 +16,9 @@ export type QueryStringParams = Record<string, QueryStringTypes>
 export type QueryStringParamsEncoded<T> = { [key in keyof T]: string }
 
 /**
+ * This function is used internally by other package functions. As a consumer of this package, you
+ * should not need to use this function directly in most cases.
+ *
  * Utility function to perform URI component encoding on all values in an object, for use in URL
  * query strings.
  *
@@ -68,22 +71,25 @@ export const encodeQueryStringParams = <T extends QueryStringParams>(
 }
 
 /**
+ * This function is used internally by other package functions. As a consumer of this package, you
+ * should not need to use this function directly in most cases.
+ *
  * Utility function to generate a query string conforming to URI component standards. Takes an an
  * optional object of search parameters and returns an encoded query string.
  *
- * The parameter `{ format: 'json' }` is hardcoded and cannot be overridden, this package provides
- * no support for CSV or XML formats at this time. The default query string will be "?format=json"
- * even if no `params` are provided by user.
+ * This function will always override `params.format` with `{ format: 'json' }`. This is hardcoded
+ * into the package and cannot be overridden, this package provides no support for CSV or XML
+ * formats at this time. This means the default query string will be `"?format=json"` even if no
+ * `params` are provided by user.
  *
  * - Ignores parameters that are not strings, numbers, or booleans, and also ignores empty strings
  *   by default.
- * - If first argument is not an object then it will be ignored.
- * - If second argument `allowEmptyParams` is set to `true`, the function will include keys with
- *   empty string values, e.g. 'emptyKey='
  *
- * This function is not exported by the package, but is used internally by other
- * functions. However, it _is_ exported by the package as part of the composable function
- * `useQueryString`, and renamed to `createString` for less verbose use.
+ * - If you don't provide an object as the first argument, an error will be thrown. Providing an
+ *   empty object will not throw an error.
+ *
+ * - If the second argument, `allowEmptyParams`, is set to `true`, the function will include keys
+ *   with empty string values in the final query string, e.g. 'emptyKey='.
  *
  * @param {QueryStringParams} params - An object of search parameters to be converted to a query
  * string.
