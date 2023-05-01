@@ -55,12 +55,12 @@ WMIs, get all makes for a certain year, and more.
 
 ## Full Documentation
 
-### [https://shaggytech.com/nhtsa-api-wrapper](https://shaggytech.com/nhtsa-api-wrapper/)
+### [https://vpic.shaggytech.com/](https://vpic.shaggytech.com/)
 
-- [Introduction](https://www.shaggytech.com/nhtsa-api-wrapper/guide)
-- [Install](https://www.shaggytech.com/nhtsa-api-wrapper/guide/getting-started#install)
-- [Quick Start](https://www.shaggytech.com/nhtsa-api-wrapper/guide/getting-started#quick-start)
-- [API Reference](https://www.shaggytech.com/nhtsa-api-wrapper/api/)
+- [Introduction](https://vpic.shaggytech.com/guide)
+- [Install](https://vpic.shaggytech.com/guide/getting-started#install)
+- [Quick Start](https://vpic.shaggytech.com//guide/getting-started#quick-start)
+- [API Reference](https://vpic.shaggytech.com/api/)
 
 ## Mono Repo Structure
 
@@ -114,5 +114,74 @@ Browser global variable: `NHTSA`
 #### UNPKG
 
 ```html [UNPKG]
-<script src="https://www.unpkg.com/@shaggytools/nhtsa-api-wrapper@3.0.2/dist/nhtsa-api-wrapper.iife.js"></script>
+<script src="https://www.unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js"></script>
 ```
+
+## List of Exported Functions
+
+```javascript
+import {
+  // NHTSA API Endpoints
+  DecodeVin,
+  DecodeVinExtended,
+  DecodeVinValues,
+  DecodeVinValuesBatch,
+  DecodeVinValuesExtended,
+  DecodeWMI,
+  GetAllMakes,
+  GetAllManufacturers,
+  GetCanadianVehicleSpecifications,
+  GetEquipmentPlantCodes,
+  GetMakeForManufacturer,
+  GetMakesForManufacturerAndYear,
+  GetMakesForVehicleType,
+  GetManufacturerDetails,
+  GetModelsForMake,
+  GetModelsForMakeId,
+  GetModelsForMakeIdYear,
+  GetModelsForMakeYear,
+  GetParts,
+  GetVehicleTypesForMake,
+  GetVehicleTypesForMakeId,
+  GetVehicleVariableList,
+  GetVehicleVariableValuesList,
+  GetWMIsForManufacturer,
+  // composable function returning helper functions for NHTSA API
+  useNHTSA,
+  // function for offline VIN validation
+  isValidVin,
+} from "@shaggytools/nhtsa-api-wrapper";
+```
+
+## Quick Start
+
+Decoding a VIN is as easy as importing the `DecodeVinValues` function and calling it
+with a VIN.
+
+Make sure to first install via your favorite package manager or use a CDN.
+
+```javascript
+import { DecodeVinValues } from "@shaggytools/nhtsa-api-wrapper";
+
+const results = await DecodeVinValues("WA1A4AFY2J2008189");
+
+/* 
+results = {
+  Count: 136, - number of Results objects returned
+  Message: 'Results returned successfully ...',
+  SearchCriteria: 'VIN:WA1A4AFY2J2008189',
+  Results: [ {...} ] - an array with single object of type DecodeVinValuesResults
+}
+*/
+
+/* You can also use destructuring to get the Results object */
+const { Results } = await DecodeVinValues("WA1A4AFY2J2008189");
+
+/* This endpoint only returns a single object in the Results array
+   The first object in the array is the decoded vin data */
+const decodedVehicle = Results[0]; // equals an object of type DecodeVinValuesResults
+```
+
+For a full example response see: [DecodeVinValues](https://vpic.shaggytech.com/api/endpoints/decode-vin-values#returns)
+
+All available endpoints can be found here: [VPIC API Endpoints](https://vpic.shaggytech.com/api/#vpic-api-endpoints)

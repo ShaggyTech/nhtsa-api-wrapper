@@ -55,12 +55,12 @@ WMIs, get all makes for a certain year, and more.
 
 ## Full Documentation
 
-### [https://shaggytech.com/nhtsa-api-wrapper](https://shaggytech.com/nhtsa-api-wrapper/)
+### [https://vpic.shaggytech.com/](https://vpic.shaggytech.com/)
 
-- [Introduction](https://www.shaggytech.com/nhtsa-api-wrapper/guide)
-- [Install](https://www.shaggytech.com/nhtsa-api-wrapper/guide/getting-started#install)
-- [Quick Start](https://www.shaggytech.com/nhtsa-api-wrapper/guide/getting-started#quick-start)
-- [API Reference](https://www.shaggytech.com/nhtsa-api-wrapper/api/)
+- [Introduction](https://vpic.shaggytech.com/guide)
+- [Install](https://vpic.shaggytech.com/guide/getting-started#install)
+- [Quick Start](https://vpic.shaggytech.com//guide/getting-started#quick-start)
+- [API Reference](https://vpic.shaggytech.com/api/)
 
 ## Install
 
@@ -97,7 +97,7 @@ Browser global variable: `NHTSA`
 #### UNPKG
 
 ```html [UNPKG]
-<script src="https://www.unpkg.com/@shaggytools/nhtsa-api-wrapper@3.0.2/dist/nhtsa-api-wrapper.iife.js"></script>
+<script src="https://www.unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js"></script>
 ```
 
 ## List of Exported Functions
@@ -138,7 +138,7 @@ import {
 
 ## Quick Start
 
-Decoding a VIN is as easy as importing the `DecodeVin` or `DecodeVinValues` function and calling it
+Decoding a VIN is as easy as importing the `DecodeVinValues` function and calling it
 with a VIN.
 
 Make sure to first install via your favorite package manager or use a CDN.
@@ -156,8 +156,15 @@ results = {
   Results: [ {...} ] - an array with single object of type DecodeVinValuesResults
 }
 */
+
+/* You can also use destructuring to get the Results object */
+const { Results } = await DecodeVinValues('WA1A4AFY2J2008189')
+
+/* This endpoint only returns a single object in the Results array
+   The first object in the array is the decoded vin data */
+const decodedVehicle = Results[0] // equals an object of type DecodeVinValuesResults
 ```
 
-For a full example response see: [DecodeVinValues](https://www.shaggytech.com/nhtsa-api-wrapper/api/decode-vin-values#returns)
+For a full example response see: [DecodeVinValues](https://vpic.shaggytech.com/api/endpoints/decode-vin-values#returns)
 
-All available endpoints can be found here: [VPIC API Endpoints](../api/#vpic-api-endpoints)
+All available endpoints can be found here: [VPIC API Endpoints](https://vpic.shaggytech.com/api/#vpic-api-endpoints)
