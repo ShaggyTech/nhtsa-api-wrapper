@@ -1,0 +1,3 @@
+User-agent: * 
+Disallow:
+Sitemap: https://vpic.shaggytech.com/sitemap.xml
