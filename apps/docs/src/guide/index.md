@@ -2,8 +2,6 @@
 
 ---
 
-[[toc]]
-
 ## Features
 
 ✔️ A thin Javascript client for the [NHTSA VPIC API](https://vpic.nhtsa.dot.gov/api/)
@@ -11,8 +9,8 @@
 ✔️ Includes a set of helper functions to retrieve data from each of the
 [24 VPIC API endpoints](../api/index.md#vpic-api-endpoints)
 
-✔️ A helper composable function (`useNHTSA`) with tools to interact with the VPIC API at a lower level.
-See [TODO - useNHTSA](#useNHTSA)
+✔️ A helper composable function (`useNHTSA`) with tools to interact with the VPIC API at a lower
+level. See [useNHTSA](../utils/use-nhtsa-composable.md)
 
 ✔️ Built with TypeScript support in mind. Get full type hints and code
 completion. API responses are [fully typed](../guide/typescript.md#nhtsa-api-response-types)

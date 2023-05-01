@@ -1,7 +1,5 @@
 # GetVehicleVariableList
 
-[[toc]]
-
 ---
 
 ```typescript
@@ -80,13 +78,15 @@ Objects returned in the `Results` array of `GetVehicleVariableList` endpoint res
 
 ## Examples
 
-::: tip :bulb: Example 1:
+::: tip Example 1:
+
+- Fetches data from VPIC API
+
+- Returns:
 
 ```typescript
 => Promise<NhtsaResponse<GetVehicleVariableListResults>>
 ```
-
-- Fetches data from VPIC API internally
 
 :::
 
@@ -98,14 +98,17 @@ import { GetVehicleVariableList } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetVehicleVariableList()
 ```
 
-::: warning :bulb: Example 2:
+::: tip Example 2:
+
+- Does _NOT_ fetch data from VPIC API
+
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+
+- Returns:
 
 ```typescript
 => Promise<string>
 ```
-
-- Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

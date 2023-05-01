@@ -1,7 +1,5 @@
 # GetCanadianVehicleSpecifications
 
-[[toc]]
-
 ---
 
 ```typescript
@@ -110,13 +108,15 @@ response.
 
 ## Examples
 
-::: tip :bulb: Examples 1-2:
+::: tip Examples 1-2:
+
+- Fetches data from VPIC API
+
+- Returns:
 
 ```typescript
 => Promise<NhtsaResponse<GetCanadianVehicleSpecificationsResults>>
 ```
-
-- Fetches data from VPIC API internally
 
 :::
 
@@ -141,14 +141,17 @@ const response = await GetCanadianVehicleSpecifications({
 })
 ```
 
-::: warning :bulb: Examples 3-4:
+::: tip Examples 3-4:
+
+- Does _NOT_ fetch data from VPIC API
+
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+
+- Returns:
 
 ```typescript
 => Promise<string>
 ```
-
-- Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

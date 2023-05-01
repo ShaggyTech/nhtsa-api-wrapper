@@ -1,7 +1,5 @@
 # DecodeWMI
 
-[[toc]]
-
 ---
 
 ```typescript
@@ -93,13 +91,15 @@ In the return object, `Results` will be an array with a _single_ object of type
 
 ## Examples
 
-::: tip :bulb: Examples 1-2:
+::: tip Examples 1-2:
+
+- Fetches data from VPIC API
+
+- Returns:
 
 ```typescript
 => Promise<NhtsaResponse<DecodeWMIResults>>
 ```
-
-- Fetches data from VPIC API internally
 
 :::
 
@@ -119,14 +119,17 @@ import { DecodeWMI } from '@shaggytools/nhtsa-api-wrapper'
 const response = await DecodeWMI('1CG', true)
 ```
 
-::: warning :bulb: Example 3:
+::: tip Example 3:
+
+- Does _NOT_ fetch data from VPIC API
+
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+
+- Returns:
 
 ```typescript
 => Promise<string>
 ```
-
-- Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

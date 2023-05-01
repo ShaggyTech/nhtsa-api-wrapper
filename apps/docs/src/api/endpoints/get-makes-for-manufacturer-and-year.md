@@ -1,7 +1,5 @@
 # GetMakesForManufacturerAndYear
 
-[[toc]]
-
 ---
 
 ```typescript
@@ -104,13 +102,15 @@ Objects returned in the `Results` array of `GetMakesForManufacturerAndYear` endp
 
 ## Examples
 
-::: tip :bulb: Examples 1-2:
+::: tip Examples 1-2:
+
+- Fetches data from VPIC API
+
+- Returns:
 
 ```typescript
 => Promise<NhtsaResponse<GetMakesForManufacturerAndYearResults>>
 ```
-
-- Fetches data from VPIC API internally
 
 :::
 
@@ -130,14 +130,17 @@ import { GetMakesForManufacturerAndYear } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetMakesForManufacturerAndYear(1148, { year: 2020 })
 ```
 
-::: warning :bulb: Examples 3-4:
+::: tip Examples 3-4:
+
+- Does _NOT_ fetch data from VPIC API
+
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+
+- Returns:
 
 ```typescript
 => Promise<string>
 ```
-
-- Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

@@ -1,7 +1,5 @@
 # DecodeVinValuesBatch
 
-[[toc]]
-
 ---
 
 ```typescript
@@ -109,13 +107,15 @@ Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response
 
 ## Examples
 
-::: tip :bulb: Examples 1-4:
+::: tip Examples 1-4:
+
+- Fetches data from VPIC API
+
+- Returns:
 
 ```typescript
 => Promise<NhtsaResponse<DecodeVinValuesBatchResults>>
 ```
-
-- Fetches data from VPIC API internally
 
 :::
 
@@ -153,15 +153,19 @@ import { DecodeVinValuesBatch } from '@shaggytools/nhtsa-api-wrapper'
 const response = await DecodeVinValuesBatch('5UXWX7C5*BA; 5YJSA3DS*EF, 2015')
 ```
 
-::: warning :bulb: Example 5:
+::: tip Example 5:
+
+- Does _NOT_ fetch data from VPIC API
+
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+
+- See: [Using with POST Endpoints](../../guide/bring-your-own-fetch#using-with-post-endpoints)
+
+- Returns:
 
 ```typescript
 => Promise<string>
 ```
-
-- Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
-- See: [Using with POST Endpoints](../../guide/bring-your-own-fetch#using-with-post-endpoints)
 
 :::
 

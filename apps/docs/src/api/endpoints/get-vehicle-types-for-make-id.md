@@ -1,7 +1,5 @@
 # GetVehicleTypesForMakeId
 
-[[toc]]
-
 ---
 
 ```typescript
@@ -102,13 +100,13 @@ Objects returned in the `Results` array of `GetVehicleTypesForMakeId` endpoint r
 
 ## Examples
 
-::: tip :bulb: Example 1:
+::: tip Example 1:
 
 ```typescript
 => Promise<NhtsaResponse<GetVehicleTypesForMakeIdResults>>
 ```
 
-- Fetches data from VPIC API internally
+- Fetches data from VPIC API
 
 :::
 
@@ -120,14 +118,17 @@ import { GetVehicleTypesForMakeId } from '@shaggytools/nhtsa-api-wrapper'
 const response = await GetVehicleTypesForMakeId(449)
 ```
 
-::: warning :bulb: Example 2:
+::: tip Example 2:
+
+- Does _NOT_ fetch data from VPIC API
+
+- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+
+- Returns:
 
 ```typescript
 => Promise<string>
 ```
-
-- Does _NOT_ fetch data from VPIC API internally
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 :::
 

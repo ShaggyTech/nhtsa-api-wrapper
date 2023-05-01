@@ -17,12 +17,9 @@ hero:
     - theme: brand
       text: Learn More
       link: /guide/
-    - theme: brand
-      text: Getting Started
-      link: /guide/getting-started
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/shaggytech/nhtsa-api-wrapper
+      text: VPIC Helper Functions
+      link: /api/
 
 features:
   - title: Simplify the VPIC API
