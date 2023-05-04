@@ -5,9 +5,7 @@ import { SitemapStream } from 'sitemap'
 import { defineConfig, type HeadConfig } from 'vitepress'
 import { nav, sidebar } from './menu'
 
-/* Base URL for production deployment on Github Pages = shaggytech.com/nhtsa-api-wrapper */
-/* Set env variable VITEPRESS_BASE to '/' for Vercel deployment previews */
-const { VITEPRESS_BASE = '/nhtsa-api-wrapper/' } = process.env
+const { VITEPRESS_BASE = '/' } = process.env
 
 interface SiteMapLink {
   url: string
@@ -55,18 +53,6 @@ export default defineConfig({
       copyright: 'Copyright © 2017-present Brandon Eichler',
     },
   },
-
-  // buildEnd: async () => {
-  //   return await new Promise((resolve) => {
-  //     return resolve(
-  //       generateSitemap({
-  //         basePath: VITEPRESS_BASE,
-  //         hostname: 'https://vpic.shaggytech.com/',
-  //         outDir: 'src/.vitepress/dist',
-  //       })
-  //     )
-  //   })
-  // },
 
   transformHtml: (_, id, { pageData }) => {
     if (!/[\\/]404\.html$/.test(id))
