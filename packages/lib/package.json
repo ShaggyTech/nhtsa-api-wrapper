@@ -1,7 +1,7 @@
 {
   "name": "@shaggytools/nhtsa-api-wrapper",
   "private": false,
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Universal javascript wrapper for the NHTSA.dot.gov VPIC 'vehicles' API, useful for VIN decoding, etc.",
   "author": "Brandon Eichler <github.com/shaggytech>",
   "license": "MIT",
