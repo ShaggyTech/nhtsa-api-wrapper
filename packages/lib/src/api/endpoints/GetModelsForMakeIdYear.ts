@@ -13,7 +13,7 @@ import type { IArgToValidate, NhtsaResponse, AtLeastOne } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetModelsForMakeIdYear Documentation](/api/get-models-for-make-id-year)
+ * See: [GetModelsForMakeIdYear Documentation](/api/endpoints/get-models-for-make-id-year)
  * :::
  *
  * `GetModelsForMakeIdYear` returns the Models in the vPIC dataset for a specified Model Year
@@ -130,9 +130,9 @@ async function GetModelsForMakeIdYear(
       ? `${modelYear ? '/' : ''}vehicleType/${vehicleType}`
       : ''
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path })
+    createCachedUrl({ endpointName, path })
 
     if (!doFetch) {
       return getCachedUrl()

@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetMakesForManufacturerAndYear Documentation](/api/get-makes-for-manufacturer-and-year)
+ * See: [GetMakesForManufacturerAndYear Documentation](/api/endpoints/get-makes-for-manufacturer-and-year)
  * :::
  *
  * `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified
@@ -79,9 +79,9 @@ async function GetMakesForManufacturerAndYear(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({
+    createCachedUrl({
       endpointName,
       path: manufacturer.toString(),
       params,

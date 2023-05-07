@@ -1,7 +1,5 @@
 # Typescript Support
 
-[[toc]]
-
 ---
 
 This package is designed for full typescript support and bundles it's own types. Types can be found

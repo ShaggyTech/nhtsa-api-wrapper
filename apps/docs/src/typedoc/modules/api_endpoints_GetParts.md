@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
 
 # Module: api/endpoints/GetParts
 
@@ -19,7 +19,7 @@
 ▸ **GetParts**(`doFetch?`, `_dummy?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetPartsResults`](api_endpoints_GetParts.md#getpartsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetParts Documentation](/api/get-parts)
+See: [GetParts Documentation](/api/endpoints/get-parts)
 :::
 
 `GetParts` provides a list of ORGs with letter date in the given range of the dates and with

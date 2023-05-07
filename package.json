@@ -28,8 +28,8 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "turbo run format",
     "lint:fix": "turbo run lint:fix",
+    "format": "turbo run format",
     "test": "turbo run test",
     "coverage": "pnpm --filter @shaggytools/nhtsa-api-wrapper run coverage",
     "clean": "turbo run clean"
@@ -55,8 +55,5 @@
     "*.{js,ts,tsx,vue,md}": [
       "eslint --cache --fix"
     ]
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

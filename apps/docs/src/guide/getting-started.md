@@ -1,7 +1,5 @@
 # Getting Started
 
-[[toc]]
-
 ---
 
 ::: warning 🔞 WARNING

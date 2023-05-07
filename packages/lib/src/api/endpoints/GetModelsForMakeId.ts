@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetModelsForMakeId Documentation](/api/get-models-for-make-id)
+ * See: [GetModelsForMakeId Documentation](/api/endpoints/get-models-for-make-id)
  * :::
  *
  * `GetModelsForMakeId` returns the Models in the vPIC dataset for a specified Make whose ID is
@@ -65,9 +65,9 @@ async function GetModelsForMakeId(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: makeId.toString() })
+    createCachedUrl({ endpointName, path: makeId.toString() })
 
     if (!doFetch) {
       return getCachedUrl()

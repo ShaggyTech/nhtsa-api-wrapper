@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetAllManufacturers Documentation](/api/get-all-manufacturers)
+ * See: [GetAllManufacturers Documentation](/api/endpoints/get-all-manufacturers)
  * :::
  *
  * `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.
@@ -89,9 +89,9 @@ async function GetAllManufacturers(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, params })
+    createCachedUrl({ endpointName, params })
 
     if (!doFetch) {
       return getCachedUrl()

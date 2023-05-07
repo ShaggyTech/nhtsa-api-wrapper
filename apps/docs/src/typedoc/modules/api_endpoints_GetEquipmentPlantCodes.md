@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetEquipmentPlantCodes
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetEquipmentPlantCodes
 
 # Module: api/endpoints/GetEquipmentPlantCodes
 
@@ -20,7 +20,7 @@
 ▸ **GetEquipmentPlantCodes**(`params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetEquipmentPlantCodesResults`](api_endpoints_GetEquipmentPlantCodes.md#getequipmentplantcodesresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetEquipmentPlantCodes Documentation](/api/get-equipment-plant-codes)
+See: [GetEquipmentPlantCodes Documentation](/api/endpoints/get-equipment-plant-codes)
 :::
 
 `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,

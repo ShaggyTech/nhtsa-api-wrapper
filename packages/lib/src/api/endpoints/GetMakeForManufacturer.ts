@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetMakeForManufacturer Documentation](/api/get-make-for-manufacturer)
+ * See: [GetMakeForManufacturer Documentation](/api/endpoints/get-make-for-manufacturer)
  * :::
  *
  * `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer
@@ -55,9 +55,9 @@ async function GetMakeForManufacturer(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: manufacturer.toString() })
+    createCachedUrl({ endpointName, path: manufacturer.toString() })
 
     if (!doFetch) {
       return getCachedUrl()

@@ -2,10 +2,6 @@
 
 ---
 
-[[toc]]
-
----
-
 ::: warning IMPORTANT
 This section is likely only applicable if using this package in Node versions < 18 and very
 old browsers.
@@ -118,15 +114,15 @@ From then on, you're free to use the package as you see fit.
 
 ## Why no bundled polyfill?
 
-Starting with Node 18, the native Fetch API is available as a built-in function. This means you no
-longer need a polyfill to use `fetch()` natively in Node.
+Because we are not providing an internal polyfill, there are no external dependencies that this
+package relies on and therefore the package size can stay small.
 
 Before Node 18 you had to use a polyfill like [node-fetch](https://www.npmjs.com/package/node-fetch)
 or [cross-fetch](https://www.npmjs.com/package/cross-fetch), otherwise Node would see `fetch()` as
 an undefined function.
 
-Because we are not providing an internal polyfill, there are no external dependencies that this
-package relies on and therefore the package size can stay small.
+Starting with Node 18, the native Fetch API is available as a built-in function. This means you no
+longer need a polyfill to use `fetch()` natively in Node.
 
 This package recently went through a major refactor to be more modern and tree-shakeable. This was
 the perfect time to "modernize" the codebase and remove the polyfill. The resulting package size is

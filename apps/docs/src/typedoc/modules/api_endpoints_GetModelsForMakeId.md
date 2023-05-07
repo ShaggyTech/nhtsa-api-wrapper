@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeId
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeId
 
 # Module: api/endpoints/GetModelsForMakeId
 
@@ -19,7 +19,7 @@
 ▸ **GetModelsForMakeId**(`makeId`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeIdResults`](api_endpoints_GetModelsForMakeId.md#getmodelsformakeidresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetModelsForMakeId Documentation](/api/get-models-for-make-id)
+See: [GetModelsForMakeId Documentation](/api/endpoints/get-models-for-make-id)
 :::
 
 `GetModelsForMakeId` returns the Models in the vPIC dataset for a specified Make whose ID is

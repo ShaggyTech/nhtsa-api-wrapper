@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetVehicleVariableValuesList Documentation](/api/get-vehicle-variable-values-list)
+ * See: [GetVehicleVariableValuesList Documentation](/api/endpoints/get-vehicle-variable-values-list)
  * :::
  *
  * `GetVehicleVariableValuesList` provides a list of all the accepted values for a given variable
@@ -53,9 +53,9 @@ async function GetVehicleVariableValuesList(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: variableValue.toString() })
+    createCachedUrl({ endpointName, path: variableValue.toString() })
 
     if (!doFetch) {
       return getCachedUrl()

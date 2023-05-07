@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+ * See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
  * :::
  *
  * `GetManufacturerDetails` provides the details for a specific manufacturer that is requested.
@@ -55,9 +55,9 @@ async function GetManufacturerDetails(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: manufacturer.toString() })
+    createCachedUrl({ endpointName, path: manufacturer.toString() })
 
     if (!doFetch) {
       return getCachedUrl()

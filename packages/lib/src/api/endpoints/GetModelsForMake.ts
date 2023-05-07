@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetModelsForMake Documentation](/api/get-models-for-make)
+ * See: [GetModelsForMake Documentation](/api/endpoints/get-models-for-make)
  * :::
  *
  * `GetModelsForMake` returns the Models in the vPIC dataset for a specified `makeName`
@@ -49,9 +49,9 @@ async function GetModelsForMake(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: makeName })
+    createCachedUrl({ endpointName, path: makeName })
 
     if (!doFetch) {
       return getCachedUrl()

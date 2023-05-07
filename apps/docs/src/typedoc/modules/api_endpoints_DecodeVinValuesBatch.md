@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesBatch
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesBatch
 
 # Module: api/endpoints/DecodeVinValuesBatch
 
@@ -19,7 +19,7 @@
 ▸ **DecodeVinValuesBatch**(`inputString`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesBatchResults`](api_endpoints_DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
 
 ::: tip :bulb: More Information
-See: [DecodeVinValuesBatch Documentation](/api/decode-vin-values-batch)
+See: [DecodeVinValuesBatch Documentation](/api/endpoints/decode-vin-values-batch)
 :::
 
 `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns

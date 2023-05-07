@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
 
 # Module: api/endpoints/GetVehicleVariableList
 
@@ -19,7 +19,7 @@
 ▸ **GetVehicleVariableList**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetVehicleVariableListResults`](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetVehicleVariableList Documentation](/api/get-vehicle-variable-list)
+See: [GetVehicleVariableList Documentation](/api/endpoints/get-vehicle-variable-list)
 :::
 
 `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the

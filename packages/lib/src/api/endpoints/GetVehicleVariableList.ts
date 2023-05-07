@@ -9,7 +9,7 @@ import type { NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetVehicleVariableList Documentation](/api/get-vehicle-variable-list)
+ * See: [GetVehicleVariableList Documentation](/api/endpoints/get-vehicle-variable-list)
  * :::
  *
  * `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the
@@ -32,9 +32,9 @@ async function GetVehicleVariableList(
   const endpointName = 'GetVehicleVariableList'
 
   try {
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName })
+    createCachedUrl({ endpointName })
 
     if (!doFetch) {
       return getCachedUrl()

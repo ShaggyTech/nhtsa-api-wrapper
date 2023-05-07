@@ -6,25 +6,11 @@ yourself.
 
 This package can be used in "_URL Builder_ mode", which means you can use the endpoint helper
 functions to get the full API endpoint URL string, but skip the `fetch` request.
-
 :::
-
----
-
-[[toc]]
 
 ## Alternate Use of This Package
 
-There are two ways to use this package in _URL Builder_ mode:
-
-- [Option 1](#option-1-set-dofetch-to-false) (recommended):
-  Use the endpoint helper functions (DecodeVin, etc.), but pass `false` as the last
-  argument of the function to skip internal use of `fetch` and instead return the full VPIC url
-  string to use how you want.
-
-- [Option 2](#option-2-using-createurl):
-  Use the `createUrl` function. You can use it to build a custom VPIC url with any endpoint name,
-  path, or query params.
+There are two ways to use this package as a "_URL Builder_" for the VPIC API.
 
 Either option is useful:
 
@@ -35,6 +21,15 @@ Either option is useful:
 
 You'll still get automatic query string building, encoding, and `format=json` appended to the URL or
 body string, but fetching is left up to you.
+
+- [Option 1](#option-1-set-dofetch-to-false) (recommended):
+  Use the endpoint helper functions (DecodeVin, etc.), but pass `false` as the last
+  argument of the function to skip internal use of `fetch` and instead return the full VPIC url
+  string to use how you want.
+
+- [Option 2](#option-2-using-createurl):
+  The `useNHTSA` composable function. You can use it to build a custom VPIC url with any endpoint name,
+  path, or query params.
 
 ::: tip RELATED:
 
@@ -99,12 +94,12 @@ GetAllManufacturers(undefined, false) // [!code --]
 GetAllManufacturers(false) // [!code ++]
 ```
 
-## Option 2: Using `createUrl`
+## Option 2: Using `useNHTSA`
 
 Another alternative is a composable function this package exports called `useNHTSA`, which returns
 an object of helper functions to interact with the API.
 
-Use `createUrl` to get the URL string based on the endpoint name, path, and params. Then use your
+Use `useNHTSA.createUrl` to get the URL string based on the endpoint name, path, and params. Then use your
 own fetch implementation to make the request. See
 [Using createUrl With GET](#using-with-get-endpoints).
 
@@ -131,25 +126,25 @@ build the request body properly formatted for the API. See
 [Using createUrl With POST](#using-with-post-endpoints) for more info.
 
 There are other helper functions exported by `useNHTSA` but you don't need to use them in this case.
-The other available functions are `get`, `post`, `cacheUrl`, and `getCachedUrl`.
+The other available functions are `get`, `post`, `createCachedUrl`, and `getCachedUrl`.
 
 ### Caveats
 
 Using it this way won't make the request for you, nor will it handle the path and params in a smart
 and consistent way such as when using one of the endpoint methods directly (DecodeVin, etc.).
 
-You will need to have some knowledge of the NHTSA API url structure because each endpoint has a
+You will need to have some knowledge of the VPIC API url structure because each endpoint has a
 different `path` and required/optional `params`. You can see url examples for each endpoint in the
-[NHTSA API docs](https://vpic.nhtsa.dot.gov/api/). Also, in the source code of this package, each
-endpoint function is documented and typed if you need help with the path and params structure for
-each.
+[official VPIC docs](https://vpic.nhtsa.dot.gov/api/). The documentation for this package also
+includes examples of each endpoint and their required/optional params as well as what each final
+url will look like.
 
 ::: tip
 This is why method #1 described above is recommended over this one. It simplifies all of this for
 you and still ensures runtime type safety and consistency with the VPIC API.
 :::
 
-### In Depth
+### Options
 
 Here are the CreateUrlOptions for `createUrl`:
 
@@ -161,7 +156,7 @@ Here are the CreateUrlOptions for `createUrl`:
 - `includeQueryString` - If true, the query string will be included in the url (default: true)
 - `saveUrl` - If true, the url will be cached in the composable instance (default: true)
 
-#### Using With GET Endpoints
+### Using With GET Endpoints
 
 Here's a simplified example of retrieving data from the NHTSA API using this package as a URL
 builder ONLY. This example uses axios as the fetch implementation, but you can use any fetch
@@ -170,7 +165,7 @@ the URL string from this package and then use your own fetch implementation to m
 
 Example (using `axios` as the `fetch` implementation):
 
-```javascript{8,9,10,11,12,13,14}
+```javascript
 import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
 import axios from 'axios' // or any other fetch implementation
 
@@ -181,13 +176,15 @@ const { createUrl } = useNHTSA()
 const url = createUrl({
   endpointName: 'DecodeVin',
   path: 'WA1A4AFY2J2008189',
-  params: { modelYear: 2018 }
+  params: { modelYear: 2018 },
 })
 
 // url = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
 
 const results = await axios.get(url)
 ```
+
+---
 
 To explain the above example:
 
@@ -216,30 +213,36 @@ To explain the above example:
 
   In this example `path` is the VIN you are searching. Each endpoint is different, so
   you will need to know the path for each. You can see examples of the paths for each
-  endpoint in the [NHTSA API docs](https://vpic.nhtsa.dot.gov/api/). Path is the last part of the
+  endpoint in the [VPIC API docs](https://vpic.nhtsa.dot.gov/api/). Path is the last part of the
   url path, before the query string.
 
-- ```javascript
-  const url = createUrl({
-    endpointName: 'DecodeVin',
-    path: 'WA1A4AFY2J2008189',
-    params: { modelYear: 2018 }, // [!code focus]
-  })
-  ```
+- `params`
 
-  The `params` are query string parameters to use for the endpoint, in this case `modelYear=2011`.
-  Keep in mind, `params` will be unique to each endpoint, some have required params, some have none.
+```javascript
+const url = createUrl({
+  endpointName: 'DecodeVin',
+  path: 'WA1A4AFY2J2008189',
+  params: { modelYear: 2018 }, // [!code focus]
+})
+```
 
-- ```javascript
-  ㅤ
-  url =
-    'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
+The `params` are query string parameters to use for the endpoint, in this case `modelYear=2011`.
+Keep in mind, `params` will be unique to each endpoint, some have required params, some have none.
 
-  const results = await axios.get(url)
-  ```
+---
 
-  The return from `createUrl` will be a full url string similar to the one above. You can then use
-  your own fetch implementation to make the request. In this example, we use axios.
+All of the above will result in the following url:
+
+```javascript
+ㅤ
+url =
+  'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WA1A4AFY2J2008189?modelYear=2018&format=json'
+
+const results = await axios.get(url)
+```
+
+The return from `createUrl` will be a full url string similar to the one above. You can then use
+your own fetch implementation to make the request. In this example, we use axios.
 
 Some additional things to note:
 
@@ -249,35 +252,39 @@ Some additional things to note:
 - If the endpoint doesn't require a `path` or `params` you can omit those keys and just provide
   `endpointName`.
 
-- You could also get the base url for the VPIC API this way, just use `{ endpointName: "" }`. This
-  will return the base url for the VPIC API.
-
-#### Using with POST Endpoints
-
-Note that POST requests to the NHTSA API requires body to be a string and certain headers set.
-The endpoint functions would handle this for you automatically, but if you use createUrl() to get
-the URL string and then use your own fetch implementation, you will need to handle this yourself.
+### Using with POST Endpoints
 
 ::: tip :bulb: TIP
 `DecodeVinValuesBatch` is the only endpoint that uses a POST request.
 :::
 
-Here is a simplified example of how to make a POST request with your own fetch implementation:
+VPIC POST requests require the post body to be a specially formatted string and certain headers set.
+The helper functions (DecodeVinValuesBatch) would handle this for you automatically, but if you use
+createUrl() to get the URL string and then use your own fetch implementation, you will need to
+handle this yourself.
 
-```javascript{7,9,11,12,13}
+Here is a simplified example of how to make a POST request with your own fetch implementation.
+
+The differences between this example and the GET example above are highlighted below.
+
+```javascript{4,8,11,14,15,16,19}
 import { useNHTSA } from '@shaggytools/nhtsa-api-wrapper'
 import axios from 'axios'
 
 const { createUrl, createPostBody } = useNHTSA()
+
 const url = createUrl({
   endpointName: 'DecodeVinValuesBatch',
   includeQueryString: false
 })
+
 const body = createPostBody('5UXWX7C5*BA; 5UXWX7C5*BB')
 // body = "DATA=5UXWX7C5*BA;%205UXWX7C5*BB&format=json "
+
 const headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
 }
+
 // use your own fetch implementation to make the POST request, axios in this example
 const response = await axios.post(url, body, { headers })
 ```
@@ -285,18 +292,21 @@ const response = await axios.post(url, body, { headers })
 It requires a few things:
 
 - Create the URL string with `createUrl()` and set `includeQueryString: false`
+
 - Create the POST body with `createPostBody()`, you should give it a string as described in the
   `DecodeVinValuesBatch` documentation of this package.
+
 - Set the Content-Type header to `application/x-www-form-urlencoded`
+
 - Use your own fetch implementation to make the request, axios in this example
 
-Using `createPostBody` to create the body string will append `'&format=json'`, which is required for
+When using `createUrl` in this way for a POST request, you should set `includeQueryString = false`.
+This is so that `'&format=json'` will _NOT_ be included in the params, and thus in the url query
+string, which would cause the POST request to error.
+
+Using `createPostBody` will append `'&format=json'` to the final body string, which is required for
 POST requests to respond in JSON format. It will also perform `encodeURI()` on the body string to
 ensure it is encoded properly for the request.
-
-When using `createUrl` in this way for a POST request, you should set `includeQueryString: false` so
-that `'&format=json'` will _not_ be included in the params, and subsequently in a query string,
-which would cause the POST request to fail.
 
 Both of the above are handled for you when using the endpoint methods directly, such as
 `DecodeVinValuesBatch()`.

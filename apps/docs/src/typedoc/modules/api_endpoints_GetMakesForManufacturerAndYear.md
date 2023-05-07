@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
 
 # Module: api/endpoints/GetMakesForManufacturerAndYear
 
@@ -19,7 +19,7 @@
 ▸ **GetMakesForManufacturerAndYear**(`manufacturer`, `params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakesForManufacturerAndYearResults`](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForManufacturerAndYear Documentation](/api/get-makes-for-manufacturer-and-year)
+See: [GetMakesForManufacturerAndYear Documentation](/api/endpoints/get-makes-for-manufacturer-and-year)
 :::
 
 `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified

@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesExtended
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesExtended
 
 # Module: api/endpoints/DecodeVinValuesExtended
 
@@ -19,7 +19,7 @@
 ▸ **DecodeVinValuesExtended**(`vin`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
 
 ::: tip :bulb: More Information
-See: [DecodeVinValuesExtended Documentation](/api/decode-vin-values-extended)
+See: [DecodeVinValuesExtended Documentation](/api/endpoints/decode-vin-values-extended)
 :::
 
 `DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful

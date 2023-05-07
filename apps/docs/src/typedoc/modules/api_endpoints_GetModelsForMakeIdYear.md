@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeIdYear
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeIdYear
 
 # Module: api/endpoints/GetModelsForMakeIdYear
 
@@ -19,7 +19,7 @@
 ▸ **GetModelsForMakeIdYear**(`params`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetModelsForMakeIdYearResults`](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetModelsForMakeIdYear Documentation](/api/get-models-for-make-id-year)
+See: [GetModelsForMakeIdYear Documentation](/api/endpoints/get-models-for-make-id-year)
 :::
 
 `GetModelsForMakeIdYear` returns the Models in the vPIC dataset for a specified Model Year

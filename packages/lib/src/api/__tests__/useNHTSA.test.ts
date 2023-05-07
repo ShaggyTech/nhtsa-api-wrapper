@@ -38,10 +38,10 @@ describe('useNHTSA', () => {
       expect(clearCachedUrl).toBeInstanceOf(Function)
     })
 
-    it('returns cacheUrl function', () => {
-      const { cacheUrl } = useNHTSA()
-      expect(cacheUrl).toBeDefined()
-      expect(cacheUrl).toBeInstanceOf(Function)
+    it('returns createCachedUrl function', () => {
+      const { createCachedUrl } = useNHTSA()
+      expect(createCachedUrl).toBeDefined()
+      expect(createCachedUrl).toBeInstanceOf(Function)
     })
 
     it('returns createUrl function', () => {
@@ -144,15 +144,15 @@ describe('useNHTSA', () => {
     })
   })
 
-  describe('cacheUrl', () => {
+  describe('createCachedUrl', () => {
     /***********************
      * Returns url string
      ***********************/
     it('caches url when provided an object', () => {
-      const { cacheUrl, getCachedUrl } = useNHTSA()
+      const { createCachedUrl, getCachedUrl } = useNHTSA()
 
       expect(getCachedUrl()).toBe(undefined)
-      const url = cacheUrl({ endpointName: 'Test', path: 'path' })
+      const url = createCachedUrl({ endpointName: 'Test', path: 'path' })
       expect(url).toBe(
         'https://vpic.nhtsa.dot.gov/api/vehicles/Test/path?format=json'
       )
@@ -160,31 +160,31 @@ describe('useNHTSA', () => {
         'https://vpic.nhtsa.dot.gov/api/vehicles/Test/path?format=json'
       )
 
-      cacheUrl({ endpointName: 'Another', path: 'path' })
+      createCachedUrl({ endpointName: 'Another', path: 'path' })
       expect(getCachedUrl()).toBe(
         'https://vpic.nhtsa.dot.gov/api/vehicles/Another/path?format=json'
       )
     })
 
     it('caches url when provided a string', () => {
-      const { cacheUrl, getCachedUrl } = useNHTSA()
+      const { createCachedUrl, getCachedUrl } = useNHTSA()
 
       expect(getCachedUrl()).toBe(undefined)
-      let url = cacheUrl('mock url 5')
+      let url = createCachedUrl('mock url 5')
       expect(url).toBe('mock url 5')
       expect(getCachedUrl()).toBe('mock url 5')
 
-      url = cacheUrl('mock url 6')
+      url = createCachedUrl('mock url 6')
       expect(url).toBe('mock url 6')
       expect(getCachedUrl()).toBe('mock url 6')
     })
 
     it('does not cache url when provided an object with saveUrl = false', () => {
-      const { cacheUrl, getCachedUrl } = useNHTSA()
+      const { createCachedUrl, getCachedUrl } = useNHTSA()
 
       expect(getCachedUrl()).toBe(undefined)
 
-      let url = cacheUrl({
+      let url = createCachedUrl({
         endpointName: 'Test',
         path: 'path',
         saveUrl: false,
@@ -196,12 +196,12 @@ describe('useNHTSA', () => {
       expect(getCachedUrl()).toBe(undefined)
 
       /* Cache a url */
-      cacheUrl({ endpointName: 'Another', path: 'path' })
+      createCachedUrl({ endpointName: 'Another', path: 'path' })
       expect(getCachedUrl()).toBe(
         'https://vpic.nhtsa.dot.gov/api/vehicles/Another/path?format=json'
       )
 
-      url = cacheUrl({
+      url = createCachedUrl({
         endpointName: 'Test',
         path: 'path',
         saveUrl: false,
@@ -216,11 +216,11 @@ describe('useNHTSA', () => {
     })
 
     it('ignores empty string params by default', () => {
-      const { cacheUrl, getCachedUrl } = useNHTSA()
+      const { createCachedUrl, getCachedUrl } = useNHTSA()
 
       expect(getCachedUrl()).toBe(undefined)
 
-      const url = cacheUrl({
+      const url = createCachedUrl({
         endpointName: 'DecodeVin',
         path: 'testVin',
         params: { page: '', modelYear: 2009 },
@@ -231,11 +231,11 @@ describe('useNHTSA', () => {
     })
 
     it('uses empty string values when provided an object with allowEmptyParams = true', () => {
-      const { cacheUrl, getCachedUrl } = useNHTSA()
+      const { createCachedUrl, getCachedUrl } = useNHTSA()
 
       expect(getCachedUrl()).toBe(undefined)
 
-      const url = cacheUrl({
+      const url = createCachedUrl({
         endpointName: 'DecodeVin',
         params: { page: '', vin: 'testVIN' },
         allowEmptyParams: true,
@@ -246,11 +246,11 @@ describe('useNHTSA', () => {
     })
 
     it('does not include default query string when provided an object with includeQueryString = false', () => {
-      const { cacheUrl, getCachedUrl } = useNHTSA()
+      const { createCachedUrl, getCachedUrl } = useNHTSA()
 
       expect(getCachedUrl()).toBe(undefined)
 
-      const url = cacheUrl({
+      const url = createCachedUrl({
         endpointName: 'DecodeVinValuesBatch',
         includeQueryString: false,
       })
@@ -263,10 +263,10 @@ describe('useNHTSA', () => {
      * rejects with error
      ***********************/
     it('rejects with error if endpointName is not provided in input object', () => {
-      const { cacheUrl } = useNHTSA()
+      const { createCachedUrl } = useNHTSA()
 
       expect(() =>
-        cacheUrl({ endpointName: undefined as unknown as string })
+        createCachedUrl({ endpointName: undefined as unknown as string })
       ).toThrowError()
     })
   })
@@ -313,8 +313,8 @@ describe('useNHTSA', () => {
     it('uses a cached url if not provided one', async () => {
       fetchMock.mockResolvedValue(createMockResponse(mockResults))
 
-      const { cacheUrl, get } = useNHTSA()
-      cacheUrl({
+      const { createCachedUrl, get } = useNHTSA()
+      createCachedUrl({
         endpointName: endpointName,
         path: vin,
         params,
@@ -467,8 +467,8 @@ describe('useNHTSA', () => {
     it('uses a cached url if not provided one', async () => {
       fetchMock.mockResolvedValue(createMockResponse(mockResults))
 
-      const { cacheUrl, getCachedUrl, post } = useNHTSA()
-      cacheUrl({ endpointName, includeQueryString: false })
+      const { createCachedUrl, getCachedUrl, post } = useNHTSA()
+      createCachedUrl({ endpointName, includeQueryString: false })
       const data = await post(getCachedUrl(), { body })
 
       expect(data).toEqual(mockResults)

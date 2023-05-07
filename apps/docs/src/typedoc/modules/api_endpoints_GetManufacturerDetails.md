@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetManufacturerDetails
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetManufacturerDetails
 
 # Module: api/endpoints/GetManufacturerDetails
 
@@ -19,7 +19,7 @@
 ▸ **GetManufacturerDetails**(`manufacturer`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetManufacturerDetailsResults`](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
 :::
 
 `GetManufacturerDetails` provides the details for a specific manufacturer that is requested.

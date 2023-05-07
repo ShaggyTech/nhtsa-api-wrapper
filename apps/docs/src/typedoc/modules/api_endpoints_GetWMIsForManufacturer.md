@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
 
 # Module: api/endpoints/GetWMIsForManufacturer
 
@@ -19,7 +19,7 @@
 ▸ **GetWMIsForManufacturer**(`params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetWMIsForManufacturerResults`](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetWMIsForManufacturer Documentation](/api/get-wmis-for-manufacturer)
+See: [GetWMIsForManufacturer Documentation](/api/endpoints/get-wmis-for-manufacturer)
 :::
 
 `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
@@ -105,4 +105,4 @@ Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint respon
 
 #### Defined in
 
-[api/endpoints/GetWMIsForManufacturer.ts:119](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L119)
+[api/endpoints/GetWMIsForManufacturer.ts:123](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L123)

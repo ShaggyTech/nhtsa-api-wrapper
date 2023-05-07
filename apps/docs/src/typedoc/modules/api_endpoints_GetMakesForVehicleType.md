@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForVehicleType
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForVehicleType
 
 # Module: api/endpoints/GetMakesForVehicleType
 
@@ -19,7 +19,7 @@
 ▸ **GetMakesForVehicleType**(`typeName`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakesForVehicleTypeResults`](api_endpoints_GetMakesForVehicleType.md#getmakesforvehicletyperesults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForVehicleType Documentation](/api/get-makes-for-vehicle-type)
+See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
 :::
 
 `GetMakesForVehicleType` returns all the Makes in the vPIC dataset for a specified vehicle type

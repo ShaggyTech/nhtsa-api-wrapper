@@ -9,7 +9,7 @@ import type { NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetAllMakes Documentation](/api/get-all-makes)
+ * See: [GetAllMakes Documentation](/api/endpoints/get-all-makes)
  * :::
  *
  * `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.
@@ -34,9 +34,9 @@ async function GetAllMakes(
   const endpointName = 'GetAllMakes'
 
   try {
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName })
+    createCachedUrl({ endpointName })
 
     if (!doFetch) {
       return getCachedUrl()

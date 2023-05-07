@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeVinValuesBatch Documentation](/api/decode-vin-values-batch)
+ * See: [DecodeVinValuesBatch Documentation](/api/endpoints/decode-vin-values-batch)
  * :::
  *
  * `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns
@@ -68,9 +68,9 @@ async function DecodeVinValuesBatch(
     ]
     catchInvalidArguments({ args })
 
-    const { post, cacheUrl, getCachedUrl } = useNHTSA()
+    const { post, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, includeQueryString: false })
+    createCachedUrl({ endpointName, includeQueryString: false })
 
     if (!doFetch) {
       return getCachedUrl()

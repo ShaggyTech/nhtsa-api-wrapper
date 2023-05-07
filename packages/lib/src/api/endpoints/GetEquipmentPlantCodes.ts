@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetEquipmentPlantCodes Documentation](/api/get-equipment-plant-codes)
+ * See: [GetEquipmentPlantCodes Documentation](/api/endpoints/get-equipment-plant-codes)
  * :::
  *
  * `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,
@@ -85,9 +85,9 @@ async function GetEquipmentPlantCodes(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, params })
+    createCachedUrl({ endpointName, params })
 
     if (!doFetch) {
       return getCachedUrl()

@@ -8,8 +8,6 @@ Apps are published to GitHub Pages, Vercel, Netlify, etc.
 
 ## Contents
 
----
-
 ### `apps/docs`
 
 Contains the source code for the `@shaggytools/nhtsa-api-wrapper` documentation.

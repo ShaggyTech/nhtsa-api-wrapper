@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetVehicleTypesForMake Documentation](/api/get-vehicle-types-for-make)
+ * See: [GetVehicleTypesForMake Documentation](/api/endpoints/get-vehicle-types-for-make)
  * :::
  *
  * `GetVehicleTypesForMake` returns all the Vehicle Types in the vPIC dataset for a specified Make,
@@ -51,9 +51,9 @@ async function GetVehicleTypesForMake(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: makeName })
+    createCachedUrl({ endpointName, path: makeName })
 
     if (!doFetch) {
       return getCachedUrl()

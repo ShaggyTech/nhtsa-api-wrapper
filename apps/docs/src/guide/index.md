@@ -2,7 +2,18 @@
 
 ---
 
-[[toc]]
+## Features
+
+✔️ A thin Javascript client for the [NHTSA VPIC API](https://vpic.nhtsa.dot.gov/api/)
+
+✔️ Includes a set of helper functions to retrieve data from each of the
+[24 VPIC API endpoints](../api/index.md#vpic-api-endpoints)
+
+✔️ A helper composable function (`useNHTSA`) with tools to interact with the VPIC API at a lower
+level. See [useNHTSA](../utils/use-nhtsa-composable.md)
+
+✔️ Built with TypeScript support in mind. Get full type hints and code
+completion. API responses are [fully typed](../guide/typescript.md#nhtsa-api-response-types)
 
 ## Overview
 
@@ -13,26 +24,12 @@ It's a thin javascript 'wrapper' or 'client' around the VPIC API. Included are h
 make interacting with the API and retrieving data less of a chore.
 
 You can take a look at the [NHTSA VPIC API Docs](https://vpic.nhtsa.dot.gov/api/) for more
-information.
-
-## Features
-
-✔️ A set of helper functions to retrieve data from each of the 24 API endpoints.
-See: [TODO - NHTSA Endpoints](#nhtsa-api-endpoints)
-
-✔️ A helper composable function with tools to interact with the VPIC API at a lower level.
-See [TODO - useNHTSA](#useNHTSA)
-
-✔️ All functions and endpoints are typed with TypeScript and have full type hints and code
-completion in your IDE. See [NHTSA API Response Types](../guide/typescript.md#nhtsa-api-response-types)
-
-✔️ Built in runtime type-checking and error handling for all functions, so you can be sure
-you'll get back a valid response from the VPIC API. See [TODO - Error Handling](#error-handling)
+information on the API itself.
 
 ## What is the NHTSA VPIC API?
 
 ::: tip :bulb: TIP
-When this documentation mentions "API endpoints" it's referring to the 24 `Actions` listed in
+When this documentation mentions API "Endpoints" it's referring to the 24 `Methods` listed in
 the [VPIC API Docs](https://vpic.nhtsa.dot.gov/api/).
 
 :::
@@ -41,7 +38,7 @@ The VPIC API is primarily used for decoding useful information from a Vehicle Id
 (VIN) in the United States and Canada. It can also be used to get all models of a make, to decode
 WMIs, get all makes for a certain year, and more.
 
-A list of all 24 VPIC endpoints can be found in the [TODO - NHTSA API Endpoints](#nhtsa-api-endpoints)
+A list of all 24 VPIC endpoints can be found in the [NHTSA API Endpoints](../api/index.md#vpic-api-endpoints)
 section.
 
 The best part about the VPIC API is that it's free and doesn't require an API key 👍🏽. The

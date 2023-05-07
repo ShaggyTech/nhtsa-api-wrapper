@@ -9,7 +9,7 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetWMIsForManufacturer Documentation](/api/get-wmis-for-manufacturer)
+ * See: [GetWMIsForManufacturer Documentation](/api/endpoints/get-wmis-for-manufacturer)
  * :::
  *
  * `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
@@ -97,9 +97,13 @@ async function GetWMIsForManufacturer(
       : ''
     const vehicleType = params?.vehicleType || ''
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: manufacturer, params: { vehicleType } })
+    createCachedUrl({
+      endpointName,
+      path: manufacturer,
+      params: { vehicleType },
+    })
 
     if (!doFetch) {
       return getCachedUrl()

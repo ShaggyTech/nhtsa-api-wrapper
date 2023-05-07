@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeVinExtended Documentation](/api/decode-vin-extended)
+ * See: [DecodeVinExtended Documentation](/api/endpoints/decode-vin-extended)
  * :::
  *
  * `DecodeVinExtended` decodes a Vehicle Identification Number (VIN) and returns useful information
@@ -94,9 +94,9 @@ async function DecodeVinExtended(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: vin, params })
+    createCachedUrl({ endpointName, path: vin, params })
 
     if (!doFetch) {
       return getCachedUrl()

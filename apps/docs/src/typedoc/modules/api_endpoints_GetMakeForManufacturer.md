@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakeForManufacturer
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakeForManufacturer
 
 # Module: api/endpoints/GetMakeForManufacturer
 
@@ -19,7 +19,7 @@
 ▸ **GetMakeForManufacturer**(`manufacturer`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetMakeForManufacturerResults`](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakeForManufacturer Documentation](/api/get-make-for-manufacturer)
+See: [GetMakeForManufacturer Documentation](/api/endpoints/get-make-for-manufacturer)
 :::
 
 `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer

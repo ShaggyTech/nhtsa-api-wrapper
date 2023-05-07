@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllManufacturers
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllManufacturers
 
 # Module: api/endpoints/GetAllManufacturers
 
@@ -19,7 +19,7 @@
 ▸ **GetAllManufacturers**(`doFetch?`, `_dummy?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllManufacturersResults`](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetAllManufacturers Documentation](/api/get-all-manufacturers)
+See: [GetAllManufacturers Documentation](/api/endpoints/get-all-manufacturers)
 :::
 
 `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.

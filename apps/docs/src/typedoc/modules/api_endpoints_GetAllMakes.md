@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.2](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllMakes
+[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllMakes
 
 # Module: api/endpoints/GetAllMakes
 
@@ -19,7 +19,7 @@
 ▸ **GetAllMakes**(`doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`GetAllMakesResults`](api_endpoints_GetAllMakes.md#getallmakesresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetAllMakes Documentation](/api/get-all-makes)
+See: [GetAllMakes Documentation](/api/endpoints/get-all-makes)
 :::
 
 `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.

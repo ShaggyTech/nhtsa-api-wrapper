@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeWMI Documentation](/api/decode-wmi)
+ * See: [DecodeWMI Documentation](/api/endpoints/decode-wmi)
  * :::
  *
  * `DecodeWMI` provides information on the World Manufacturer Identifier for a specific `WMI` code.
@@ -54,9 +54,9 @@ async function DecodeWMI(
     ]
     catchInvalidArguments({ args })
 
-    const { get, cacheUrl, getCachedUrl } = useNHTSA()
+    const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    cacheUrl({ endpointName, path: WMI })
+    createCachedUrl({ endpointName, path: WMI })
 
     if (!doFetch) {
       return getCachedUrl()
