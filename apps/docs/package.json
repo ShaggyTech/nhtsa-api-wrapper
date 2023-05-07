@@ -6,14 +6,14 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "vitepress dev src --host",
-    "build": "vitepress build src",
-    "preview": "vitepress preview src",
+    "dev": "vitepress dev --host",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "format:typedoc": "prettier --write \"src/typedoc/**/*.md\"",
-    "clean": "rimraf src/.vitepress/dist src/.vitepress/cache .turbo",
+    "clean": "rimraf .vitepress/dist .vitepress/cache .turbo",
     "clean:all": "pnpm run clean && rimraf node_modules"
   },
   "dependencies": {

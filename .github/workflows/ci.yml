@@ -4,10 +4,10 @@ on:
   pull_request:
 
 env:
-  PATH_BUILD_DOCS: ./apps/docs/src/.vitepress/dist
+  PATH_BUILD_DOCS: ./apps/docs/.vitepress/dist
   PATH_BUILD_LIB: ./packages/lib/dist
   CACHE_PATHS_BUILD: |
-    ./apps/docs/pages/.vitepress/dist
+    ./apps/docs/.vitepress/dist
     ./packages/lib/dist
   CACHE_KEY_BUILD: build-${{ github.sha }}
 # To use Remote Caching, uncomment the next lines and follow the steps below.

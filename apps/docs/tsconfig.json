@@ -3,8 +3,8 @@
   "extends": "tsconfig/vitepress.json",
   "include": [
     "src/**/*.ts",
-    "src/.vitepress/**/*.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    ".vitepress/**/*.ts",
   ],
   "exclude": [
     "cache",

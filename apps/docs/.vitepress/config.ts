@@ -15,6 +15,7 @@ interface SiteMapLink {
 const sitemapLinks: SiteMapLink[] = []
 
 export default defineConfig({
+  srcDir: 'src',
   base: VITEPRESS_BASE,
   lang: 'en-US',
   title: '@shaggytools/nhtsa-api-wrapper',
