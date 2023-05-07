@@ -3,8 +3,6 @@
   "display": "Vite-Library-Mode",
   "extends": "./vite-library.json",
   "compilerOptions": {
-    "preserveValueImports": true,
-    "importsNotUsedAsValues": "error",
     "jsx": "preserve"
   }
 }
