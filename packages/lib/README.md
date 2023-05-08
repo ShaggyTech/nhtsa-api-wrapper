@@ -90,13 +90,23 @@ Browser global variable: `NHTSA`
 
 #### [jsDelivr](https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper)
 
-```html [jsDelivr]
+Default:
+
+```html
 <script src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.min.js"></script>
 ```
 
-#### UNPKG
+ESM:
 
-```html [UNPKG]
+```html
+<script type="module">
+  import NHTSA from 'https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm'
+</script>
+```
+
+#### [UNPKG](https://www.unpkg.com/@shaggytools/nhtsa-api-wrapper@3.0.3/dist/nhtsa-api-wrapper.iife.js)
+
+```html
 <script src="https://www.unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js"></script>
 ```
 

@@ -4,6 +4,7 @@ import { SitemapStream } from 'sitemap'
 // import { generateSitemap } from 'sitemap-ts'
 import { defineConfig, type HeadConfig } from 'vitepress'
 import { nav, sidebar } from './menu'
+import { ICON_NPM2 } from './icons'
 
 const { VITEPRESS_BASE = '/' } = process.env
 
@@ -46,6 +47,12 @@ export default defineConfig({
       {
         icon: 'github',
         link: 'https://github.com/shaggytech/nhtsa-api-wrapper',
+      },
+      {
+        icon: {
+          svg: ICON_NPM2,
+        },
+        link: 'https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper',
       },
     ],
 

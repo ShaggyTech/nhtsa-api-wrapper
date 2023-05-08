@@ -28,7 +28,13 @@ function sidebar() {
       collapsed: true,
       items: [
         { text: 'Overview', link: '/guide/' },
+        { text: 'Installation', link: '/guide/install' },
         { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'VIN Decoding', link: '/guide/vin-decoding' },
+        {
+          text: 'Offline VIN Validation',
+          link: '/guide/offline-vin-validation',
+        },
         {
           text: 'Bring Your Own Fetch (BYOF)',
           link: '/guide/bring-your-own-fetch',
