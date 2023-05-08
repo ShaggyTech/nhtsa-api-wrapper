@@ -1,6 +1,6 @@
 # BYOF - Bring Your Own Fetch
 
-::: tip 📦 INFO
+::: tip INFO
 In some cases, you may want to use this package without a `fetch` polyfill or fetch the data
 yourself.
 
