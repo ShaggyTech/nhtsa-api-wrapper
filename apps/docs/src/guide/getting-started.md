@@ -76,18 +76,18 @@ the data. The url string can then be used however you want.
 Using this package as a URL builder is useful if you want to use your own fetch implementation or
 your project runtime doesn't support native fetch and you don't want to use a polyfill.
 
-- [Option 1](../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false) (recommended):
+- [Option 1](../guide/bring-your-own-fetch#option-1-set-dofetch-to-false) (recommended):
   Use the endpoint helper functions (DecodeVin, etc.), but pass `false` as the last
   argument of the function to skip internal use of `fetch` and instead return the full VPIC url
   string to use how you want.
 
-- [Option 2](../guide/bring-your-own-fetch.md#option-2-using-createurl):
+- [Option 2](../guide/bring-your-own-fetch#option-2-using-createurl):
   Use the `createUrl` function. You can use it to build a custom VPIC url with any endpoint name,
   path, or query params.
 
 ::: tip :mag: More Info:
 
-- [BYOF - Bring Your Own Fetch](../bring-your-own-fetch.md)
+- [BYOF - Bring Your Own Fetch](../guide/bring-your-own-fetch)
 
 :::
 
