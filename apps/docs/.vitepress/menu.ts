@@ -28,6 +28,7 @@ function sidebar() {
       collapsed: true,
       items: [
         { text: 'Overview', link: '/guide/' },
+        { text: 'Why This Package', link: '/guide/why-this-package' },
         { text: 'Installation', link: '/guide/install' },
         { text: 'Getting Started', link: '/guide/getting-started' },
         { text: 'VIN Decoding', link: '/guide/vin-decoding' },
