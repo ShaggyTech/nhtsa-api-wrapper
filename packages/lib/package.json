@@ -39,7 +39,7 @@
   "module": "dist/nhtsa-api-wrapper.mjs",
   "types": "dist/types/index.d.ts",
   "source": "src/index.ts",
-  "unpkg": "dist/nhtsa-api-wrapper.iife.mjs",
+  "unpkg": "dist/nhtsa-api-wrapper.iife.js",
   "jsdelivr": "dist/nhtsa-api-wrapper.iife.js",
   "files": [
     "dist"
