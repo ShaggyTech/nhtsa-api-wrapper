@@ -33,6 +33,8 @@ response = {
 ::: tip :mag: See: [VPIC Response](../api/vpic-api-response) for more info on the response object
 :::
 
+---
+
 ## Response Object
 
 The `DecodeVinValues` function returns a Promise that resolves to an object with the following
@@ -52,6 +54,8 @@ object. This object is the decoded data for the VIN.
 - [Type - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
 
 :::
+
+---
 
 ## Accessing the Decoded Data
 

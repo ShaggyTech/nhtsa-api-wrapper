@@ -40,6 +40,8 @@ const isValid = isValidVin('WA1A4AFY2J2008189')
 // isValid = true
 ```
 
+---
+
 ## Examples
 
 The following demonstrates how to use the `isValidVin` function to validate a VIN before making

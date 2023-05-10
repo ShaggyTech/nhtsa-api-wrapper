@@ -22,7 +22,11 @@ install it via your favorite package manager for use in Node.js bundlers, framew
 
 The package is fully tree-shakeable and side-effect free.
 
+---
+
 ## Node Install
+
+Package Managers:
 
 ::: code-group
 
@@ -43,29 +47,36 @@ $ pnpm add @shaggytools/nhtsa-api-wrapper
 If you are using this package with a Node.js version < 18, please see the
 [Support for Node Versions < 18](../guide/native-fetch.md) section of the guide.
 
+Unless your node version is < 14, you should use the ES Module bundle as it is the only
+bundle that is tree-shakeable.
+
+If you still need to support older versions of Node, there are other builds you can use
+(UMD and CommonJS) but you will likely need to use a polyfill for the Fetch API and/or
+Promises.
+
+Note that if using a bundler like Webpack or Rollup, or a framework like Next or Nuxt, you
+can use the ESM (.mjs) bundle instead and it will automatically use the correct build for your target
+environment.
+
 Relevant Links:
 
 - [NPM Homepage](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
 - [Yarn Homepage](https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper)
 
-### Node Versions < 14
+### ESM Module
 
-Unless your node version is < 14, you should use the ES Module bundle instead. It is the only
-bundle that is tree-shakeable.
+`/dist/nhtsa-api-wrapper.mjs` is a modern ES Module (ESM) module.
 
-If you still need to support older versions of Node, there are also other builds you can use
-(UMD and CommonJS builds) but you will likely need to use a polyfill for the Fetch API and/or
-Promises.
+```js
+import NHTSA from '@shaggytools/nhtsa-api-wrapper'
+```
 
-Note that if you're using a bundler like Webpack or Rollup, you can use the ES Module bundle
-instead and it will automatically use the correct build for your target environment.
-
-#### UMD Module
+### UMD Module
 
 `/dist/nhtsa-api-wrapper.umd.js` is a Universal Module Definition (UMD) module.
 
 ```js
-require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.js')
+const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.cjs')
 ```
 
 #### CommonJS
@@ -73,8 +84,10 @@ require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.js')
 `/dist/nhtsa-api-wrapper.js` is a CommonJS (.cjs) file.
 
 ```js [CommonJS]
-require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.js')
+const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.cjs')
 ```
+
+---
 
 ## Node Quick Start
 
@@ -125,6 +138,9 @@ const decodedVehicle = Results[0] // equals an object of type DecodeVinValuesRes
 
 console.log('Vehicle Info: ', decodedVehicle)
 ```
+
+A more in depth explanation of how to decode a VIN can be found on the
+[VIN Decoding](../guide/vin-decoding) page.
 
 For a full example response see the
 [DecodeVinValues](../api/endpoints/decode-vin-values#returns) page.
@@ -231,11 +247,13 @@ https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper`
 https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js
 ```
 
+---
+
 ## Browser Quick Start
 
 The following are simple examples that use the jsDelivr CDN:
 
-#### ESM
+### ESM
 
 _~ 4kB (auto minified)_
 
@@ -266,7 +284,7 @@ _~ 4kB (auto minified)_
 </html>
 ```
 
-#### IIFE
+### IIFE
 
 _~ 4kB (auto minified)_
 
