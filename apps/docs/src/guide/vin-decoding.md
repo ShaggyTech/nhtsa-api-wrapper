@@ -49,7 +49,7 @@ object. This object is the decoded data for the VIN.
 ::: tip See also:
 
 - [DecodeVinValues Example Response](../api/endpoints/decode-vin-values#returns)
-- [Type - DecodeVinValuesResults](../api/endpoints/decode-vin-values#type-decodevinvaluesresults)
+- [Type - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
 
 :::
 
@@ -75,7 +75,7 @@ const model = decodedData.Model
 const engineHP = decodedData.EngineHP
 
 console.log(
-  `The vehicle is a ${year} ${make} ${model}, it has ${engineHP} horsepower.`
+  `The vehicle is a ${year} ${make} ${model} and it has ${engineHP} horsepower.`
 )
 ```
 
@@ -92,7 +92,7 @@ const { Count, Message, Results, SearchCriteria } = await DecodeVinValues(
 const { ModelYear, Make, Model, EngineHP } = Results[0]
 
 console.log(
-  `The vehicle is a ${ModelYear} ${Make} ${Model}. It has ${EngineHP} horsepower.`
+  `The vehicle is a ${ModelYear} ${Make} ${Model} and it has ${EngineHP} horsepower.`
 )
 ```
 

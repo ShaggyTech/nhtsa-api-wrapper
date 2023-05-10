@@ -1,5 +1,12 @@
 # Getting Started
 
+::: tip :mag: See Also:
+
+- [Node Quick Start](../guide/install#node-quick-start)
+- [Browser Quick Start](../guide/install#browser-quick-start)
+
+:::
+
 As most users will likely be using this package to decode VINs, the following example will show how
 to use the `DecodeVinValues` helper function to get decoded data about a VIN. Most of the helper
 functions work the same way, with the only difference being the input parameters and structure of
@@ -21,7 +28,7 @@ results = {
 
 ::: tip :mag: More Info
 
-See the [VIN Decoding](../guide/vin-decoding) section for more details.
+See the [VIN Decoding](../guide/vin-decoding) page for more details.
 
 :::
 

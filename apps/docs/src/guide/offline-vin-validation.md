@@ -40,8 +40,11 @@ const isValid = isValidVin('WA1A4AFY2J2008189')
 // isValid = true
 ```
 
+## Examples
+
 The following demonstrates how to use the `isValidVin` function to validate a VIN before making
-a request to the API.
+a request to the API. This can serve as a way to prevent making an unnecessary request to the API
+with an invalid VIN that would return no or irrelevant results.
 
 ```typescript
 import { isValidVin, DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
