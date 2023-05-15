@@ -1,95 +1,387 @@
 // Adapted from https://github.com/stackblitz/docs/blob/main/.vitepress/theme/styles/content.scss
 
-.vp-doc h1 {
-  margin-bottom: 24px;
-}
+// --------------------------------
+// -- Content
 
-.vp-doc h2 {
-  margin: 44px 0 24px;
-  border-top: 1px solid var(--vp-c-divider-light);
-  padding-top: 32px;
-}
-
-// Wrap code examples
-.vp-doc [class*='language-'] pre,
-.vp-doc [class*='language-'] code {
-  white-space: pre-wrap;
-  // break contiguous strings if there was no break opportunity (e.g. whitespace, hyphens or slashes)
-  word-break: break-word;
-}
-
-.vp-doc td,
-.vp-doc th {
-  font-size: 14px;
-  line-height: 1.5;
-  &.no-break {
-    white-space: nowrap;
+// Content body styles
+.vp-doc {
+  p,
+  li {
+    font-size: 15px;
+    line-height: 1.8;
   }
-}
 
-.vp-doc summary {
-  cursor: default;
-}
-
-.vp-doc img {
-  margin: 8px 0;
-}
-
-.vp-doc figure {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.vp-doc figcaption {
-  padding: 0.75rem 1.25rem;
-  font-size: 87%;
-  border-radius: 8px;
-  background-color: var(--vp-c-bg-soft);
-}
-
-@media (min-width: 600px) {
-  .vp-doc .float-left {
-    float: left;
-    max-width: 50%;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    margin-right: 1.5rem;
-  }
-  .vp-doc .float-right {
-    float: right;
-    max-width: 50%;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    margin-left: 1.5rem;
-  }
-}
-
-// Function/variable names in titles
-.vp-doc var {
-  font-family: var(--vp-font-family-mono);
-  font-weight: inherit;
-  font-style: inherit;
-  small {
-    padding-inline: 0.4ch;
-    font-weight: normal;
-    font-size: 90%;
-    color: var(--vp-c-text-2);
-  }
-}
-
-.vp-doc .footnotes-sep {
-  margin: 44px 0 32px;
-  border-top: 1px solid var(--vp-c-divider-light);
-}
-
-.vp-doc .footnotes {
   p {
-    margin: 0.75em 0;
+    margin: 24px 0;
+  }
+
+  p a {
+    display: inline-block;
+  }
+
+  p > img,
+  > div > img {
+    margin: 40px 0;
+    border-radius: 6px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    margin: 44px 0 24px;
+    padding-top: 0px !important;
+    border-color: transparent;
+  }
+
+  h3 {
+    margin-top: 40px !important;
+  }
+
+  h1 + p,
+  h2 + p {
+    margin-top: 0;
+  }
+
+  p > strong > a,
+  p > a,
+  li > strong > a,
+  li > a,
+  td > strong > a,
+  td > a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    transition: 0.1s ease;
+    transition-property: color, text-underline-offset;
+    :root.dark & {
+      color: rgb(180, 204, 255);
+    }
+    &:hover,
+    :root.dark &:hover {
+      color: var(--vp-c-text-1);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+  }
+
+  td,
+  th {
     font-size: 14px;
-    line-height: 24px;
+    line-height: 1.5;
+    &.no-break {
+      white-space: nowrap;
+    }
+  }
+
+  summary {
+    cursor: default;
+  }
+
+  img {
+    margin: 8px 0;
+  }
+
+  figure {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  figcaption {
+    padding: 0.75rem 1.25rem;
+    font-size: 87%;
+    border-radius: 8px;
+    background-color: var(--vp-c-bg-soft);
+  }
+
+  var {
+    font-family: var(--vp-font-family-mono);
+    font-weight: inherit;
+    font-style: inherit;
+    small {
+      padding-inline: 0.4ch;
+      font-weight: normal;
+      font-size: 90%;
+      color: var(--vp-c-text-2);
+    }
+  }
+
+  div[class*='language-'] {
+    margin: 32px 0 40px;
+  }
+
+  [class*='language-'] pre,
+  [class*='language-'] code {
+    white-space: pre-wrap;
+    // break contiguous strings if there was no break opportunity (e.g. whitespace, hyphens or slashes)
+    word-break: break-word;
+  }
+
+  .footnotes {
+    p {
+      margin: 0.75em 0;
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+
+  .footnotes-sep {
+    margin: 44px 0 32px;
+    border-top: 1px solid var(--vp-c-divider-light);
   }
 }
+
+// Don't clip text in the outline
+.VPDocAsideOutline .outline-link {
+  white-space: normal;
+  text-overflow: initial;
+  padding: 5px 0;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+// // Increase body content width if space available.
+// .VPDoc.has-aside .content-container {
+//   max-width: 820px !important;
+// }
+
+// Code Group styles
+.vp-code-group .tabs label {
+  font-size: 13px !important;
+  font-weight: 600;
+}
+
+// Custom Blocks
+.vp-doc .custom-block {
+  margin: 48px 0;
+  padding: 28px 28px;
+  padding-left: 32px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px var(--block-border-color);
+
+  p {
+    margin: 2px 0 0;
+    font-size: 14px;
+    line-height: 1.8;
+
+    &.custom-block-title {
+      position: relative;
+      margin-bottom: 8px;
+    }
+  }
+
+  ol,
+  ul,
+  p:not(.custom-block-title) {
+    color: var(--vp-c-text-1);
+  }
+
+  ol,
+  ul {
+    margin: 12px 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  a {
+    transition-duration: 0.1s;
+  }
+
+  div[class*='language-'] {
+    margin: 24px 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  summary {
+    position: relative;
+    margin: 0;
+    &::marker {
+      content: '▷\a0\a0\a0';
+    }
+  }
+
+  &[open] summary::marker {
+    content: '▽\a0\a0\a0';
+  }
+
+  &:not(.details) p.custom-block-title::before,
+  &:not(.details) summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -32px;
+    width: 12px;
+    height: 24px;
+    border-end-end-radius: 50%;
+    border-start-end-radius: 50%;
+    background-color: var(--block-icon-color);
+    -webkit-mask-image: var(--block-icon-url);
+    mask-image: var(--block-icon-url);
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  &:not(:root.dark &) {
+    --vp-custom-block-info-bg: rgba(121, 121, 121, 0.117);
+    --vp-custom-block-tip-bg: rgba(0, 235, 157, 0.083);
+    --vp-custom-block-tip-border: rgba(0, 136, 120, 0.5);
+    --vp-custom-block-tip-text: rgb(16, 122, 92);
+    --vp-custom-block-warning-text: rgb(190, 127, 0);
+    --vp-custom-block-warning-border: rgb(255, 200, 0);
+    --vp-custom-block-warning-bg: rgba(255, 200, 0, 0.118);
+    --vp-custom-block-danger-bg: rgba(255, 0, 0, 0.057);
+  }
+  :root.dark & {
+    --vp-custom-block-tip-text: hsl(132, 79%, 47%);
+    --vp-custom-block-tip-border: hsl(158, 100%, 19%);
+    --vp-custom-block-warning-text: rgb(228, 164, 3);
+    --vp-custom-block-warning-border: rgb(208, 163, 0);
+    box-shadow: inset 0 0 0 1px var(--block-border-color);
+    background-color: var(--vp-c-bg-alt);
+  }
+
+  &.info {
+    --block-border-color: var(--vp-custom-block-info-border);
+    --block-icon-color: var(--vp-custom-block-info-text);
+  }
+  &.tip {
+    --block-border-color: var(--vp-custom-block-tip-border);
+    --block-icon-color: var(--vp-custom-block-tip-text);
+  }
+  &.warning {
+    --block-border-color: var(--vp-custom-block-warning-border);
+    --block-icon-color: var(--vp-custom-block-warning-text);
+  }
+  &.danger {
+    --block-border-color: var(--vp-custom-block-danger-border);
+    --block-icon-color: var(--vp-custom-block-danger-text);
+  }
+  &.details {
+    --block-border-color: var(--vp-custom-block-details-border);
+    --block-icon-color: var(--vp-custom-block-details-text);
+  }
+}
+
+// --------------------------------
+// -- Aside / Table of Contents
+
+.VPDocAside {
+  // Add gap between title and list, but account for hardcoded `outline-marker` `top`
+  .outline-title {
+    margin-block-end: -1px;
+    transform: translateY(-6px);
+  }
+
+  // Space out links without affecting `outline-marker` too much
+  .outline-link {
+    padding: 6px 0;
+    font-size: 12.5px;
+    transition-duration: 0.1s;
+  }
+}
+
+// --------------------------------
+// Footer / Above Footer
 
 .content-container .VPDocFooter {
   margin-top: 30px;
+}
+
+.pager .pager-link {
+  background-color: var(--vp-c-bg-alt);
+}
+
+.VPLink.link.edit-link-button,
+.pager-link .title {
+  gap: 4px;
+  font-size: 13px;
+  svg {
+    transform: scale(0.92);
+  }
+
+  :root:not(.dark) & {
+    color: var(--vp-c-brand-dark);
+  }
+
+  :root.dark & {
+    color: var(--vp-c-brand-lighter);
+  }
+}
+
+.content-container footer.VPDocFooter .edit-info {
+  margin-top: 20px;
+}
+
+.edit-info {
+  padding-bottom: 24px !important;
+}
+
+// Small screens
+@media (max-width: $bp-small) {
+  // Fix custom blocks on small screens
+  .vp-doc .custom-block {
+    padding-left: 18px;
+    padding-right: 18px;
+
+    &:not(.details) p.custom-block-title::before,
+    &:not(.details) summary::before {
+      left: -18px;
+    }
+
+    p.custom-block-title {
+      margin-bottom: 14px;
+    }
+  }
+}
+
+// Large screens
+@media (min-width: $bp-large) {
+  .vp-doc {
+    .header-anchor {
+      position: absolute;
+      left: -28px;
+      padding: 0 18px;
+      transform: scale(0.94);
+    }
+  }
+
+  .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+  }
+
+  .VPDoc.has-sidebar.has-aside {
+    padding-left: 0;
+  }
+}
+
+// Extra large screens
+@media (min-width: $bp-xlarge) {
+  .VPContent.has-sidebar {
+    padding-right: 0 !important;
+  }
+
+  .VPDoc.has-sidebar.has-aside .container > .content {
+    padding-left: 52px;
+    padding-right: 52px;
+  }
 }

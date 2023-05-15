@@ -3,6 +3,39 @@
 :root {
   scroll-padding-top: calc(var(--vp-nav-height-desktop) + 30px);
   --content-max-width: 1480px;
+
+  --vp-c-text-white: hsl(0, 0%, 97%);
+
+  --vp-c-orange: hsl(30, 100%, 50%);
+  --vp-c-orange-light: hsl(30, 100%, 60%);
+  --vp-c-orange-lighter: hsl(30, 100%, 70%);
+  --vp-c-orange-dark: hsl(30, 100%, 40%);
+  --vp-c-orange-darker: hsl(30, 100%, 30%);
+
+  --vp-c-red: hsl(0, 100%, 45%);
+  --vp-c-red-light: hsl(0, 97%, 59%);
+  --vp-c-red-lighter: hsl(0, 97%, 69%);
+  --vp-c-red-dark: hsl(0, 97%, 39%);
+  --vp-c-red-darker: hsl(0, 97%, 29%);
+
+  --vp-c-blue: hsl(200, 91%, 50%);
+  --vp-c-blue-light: hsl(200, 91%, 60%);
+  --vp-c-blue-lighter: hsl(200, 91%, 70%);
+  --vp-c-blue-dark: hsl(200, 91%, 40%);
+  --vp-c-blue-darker: hsl(200, 91%, 30%);
+
+  // Highlight color (links, some borders or hover effects)
+  --vp-c-brand: hsl(208, 100%, 40%);
+  --vp-c-brand-light: hsl(208, 100%, 50%);
+  --vp-c-brand-lighter: hsl(208, 86%, 64%);
+  --vp-c-brand-dark: hsl(208, 100%, 20%);
+  --vp-c-brand-darker: hsl(208, 100%, 15%);
+
+  // --vp-c-brand: hsl(200, 91%, 25%);
+  // --vp-c-brand-light: hsl(195 85% 42%);
+  // --vp-c-brand-lighter: hsl(190 90% 48%);
+  // --vp-c-brand-dark: hsl(200 80% 32%);
+  // --vp-c-brand-darker: hsl(200 70% 24%);
 }
 
 :root:not(.dark) {
@@ -19,13 +52,6 @@
   --vp-c-text-1: hsl(220, 100%, 8%);
   --vp-c-text-2: hsl(0, 0%, 4%);
 
-  // Highlight color (links, some borders or hover effects)
-  --vp-c-brand: hsl(200, 91%, 25%);
-  --vp-c-brand-light: hsl(195 85% 42%);
-  --vp-c-brand-lighter: hsl(190 90% 48%);
-  --vp-c-brand-dark: hsl(200 80% 32%);
-  --vp-c-brand-darker: hsl(200 70% 24%);
-
   // Custom highlight colors (used on home page)
   --sb-foreground-highlight: hsl(210 90% 50%);
   --sb-foreground-highlight-high: hsl(190 100% 50%);
@@ -35,7 +61,7 @@
   --vp-custom-block-warning-text: hsl(45, 90%, 28%);
 
   // Buttons
-  --vp-button-brand-color: var(--vp);
+  --vp-button-brand-color: var(--vp-c-brand);
   --vp-button-brand-bg: var(--vp-c-brand-darker);
   --vp-button-brand-border: var(--vp-c-brand);
 }
@@ -62,14 +88,7 @@
   --vp-custom-block-info-bg: hsl(220 14% 17%);
 
   // Homepage
-  --vp-home-hero-name-color: hsl(208, 100%, 50%);
-
-  // Highlight color (links, some borders or hover effects)
-  --vp-c-brand: hsl(208, 100%, 40%);
-  --vp-c-brand-light: hsl(208, 100%, 50%);
-  --vp-c-brand-lighter: hsl(208, 86%, 64%);
-  --vp-c-brand-dark: hsl(208, 100%, 20%);
-  --vp-c-brand-darker: hsl(208, 100%, 15%);
+  --vp-home-hero-name-color: var(--vp-c-blue);
 
   // Custom highlight colors (used on home page)
   --sb-foreground-highlight: hsl(190, 91%, 69%);
