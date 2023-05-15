@@ -62,7 +62,6 @@ function sidebar() {
             },
             {
               text: 'API Functions',
-              link: '/api/endpoints/',
               collapsed: true,
               items: vpicEndpointLinks,
             },
