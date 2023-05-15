@@ -79,7 +79,7 @@ import NHTSA from '@shaggytools/nhtsa-api-wrapper'
 const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.cjs')
 ```
 
-#### CommonJS
+### CommonJS
 
 `/dist/nhtsa-api-wrapper.js` is a CommonJS (.cjs) file.
 
