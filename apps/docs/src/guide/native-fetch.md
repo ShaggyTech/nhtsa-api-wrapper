@@ -1,7 +1,5 @@
 # Support for Node Versions < 18
 
----
-
 ::: warning IMPORTANT
 This section is likely only applicable if using this package in Node versions < 18 and very
 old browsers.
@@ -10,6 +8,8 @@ old browsers.
 ::: info :bulb: Did you know?
 You can get your Node version by running `node -v` in your terminal.
 :::
+
+---
 
 ## This Package Uses Native Fetch
 

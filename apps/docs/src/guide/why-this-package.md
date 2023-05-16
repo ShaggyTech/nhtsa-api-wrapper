@@ -9,6 +9,8 @@ Put simply, all this package really does is make it easier to use the VPIC API.
   custom URLs for each of the 24 endpoints. This is useful if you want to use your own fetching
   implementation or if you want to use a different fetch library like Axios.
 
+---
+
 ## Story Time
 
 All of the VPIC endpoints require close attention when using them directly. Each endpoint requires a

@@ -1,9 +1,5 @@
 # @shaggytools/nhtsa-api-wrapper
 
----
-
-## Features
-
 ✔️ A thin Javascript client for the [NHTSA VPIC API](https://vpic.nhtsa.dot.gov/api/)
 
 ✔️ Includes a set of helper functions to retrieve data from each of the
@@ -14,6 +10,8 @@ level. See [useNHTSA](../utils/use-nhtsa-composable.md)
 
 ✔️ Built with TypeScript support in mind. Get full type hints and code
 completion. API responses are [fully typed](../guide/typescript.md#nhtsa-api-response-types)
+
+---
 
 ## Overview
 

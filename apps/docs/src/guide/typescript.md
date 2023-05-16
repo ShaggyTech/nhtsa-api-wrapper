@@ -1,7 +1,5 @@
 # Typescript Support
 
----
-
 This package is designed for full typescript support and bundles it's own types. Types can be found
 in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't need to.
 
@@ -10,6 +8,8 @@ from the NHTSA API. Please report any discrepancies you may find and they will b
 
 Check out the [API Reference](/api/) page for more details on each
 endpoint helper function and their return types.
+
+---
 
 ## Using Typescript
 

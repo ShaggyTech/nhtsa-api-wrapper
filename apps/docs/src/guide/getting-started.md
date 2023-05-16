@@ -7,6 +7,10 @@
 
 :::
 
+---
+
+## Common Usage
+
 As most users will likely be using this package to decode VINs, the following example will show how
 to use the `DecodeVinValues` helper function to get decoded data about a VIN. Most of the helper
 functions work the same way, with the only difference being the input parameters and structure of

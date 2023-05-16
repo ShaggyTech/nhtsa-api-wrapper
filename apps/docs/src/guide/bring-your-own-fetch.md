@@ -8,6 +8,8 @@ This package can be used in "_URL Builder_ mode", which means you can use the en
 functions to get the full API endpoint URL string, but skip the `fetch` request.
 :::
 
+---
+
 ## Alternate Use of This Package
 
 There are two ways to use this package as a "_URL Builder_" for the VPIC API.
@@ -37,7 +39,9 @@ body string, but fetching is left up to you.
 
 :::
 
-## Option 1: Set `doFetch` to `false`
+---
+
+### Option 1: Set `doFetch` to `false`
 
 This is the easiest way to use your own `fetch` implementation and/or not use a `fetch` polyfill.
 
@@ -66,7 +70,7 @@ only arg.
 const makes = await GetAllMakes(false)
 ```
 
-### Using `doFetch`
+#### Using `doFetch`
 
 ::: tip :bulb: TIP
 If using `doFetch` = `false` on a POST endpoint, such as `DecodeVinValuesBatch`, see
@@ -94,7 +98,9 @@ GetAllManufacturers(undefined, false) // [!code --]
 GetAllManufacturers(false) // [!code ++]
 ```
 
-## Option 2: Using `useNHTSA`
+---
+
+### Option 2: Using `useNHTSA`
 
 Another alternative is a composable function this package exports called `useNHTSA`, which returns
 an object of helper functions to interact with the API.
@@ -128,7 +134,9 @@ build the request body properly formatted for the API. See
 There are other helper functions exported by `useNHTSA` but you don't need to use them in this case.
 The other available functions are `get`, `post`, `createCachedUrl`, and `getCachedUrl`.
 
-### Caveats
+---
+
+#### Caveats
 
 Using it this way won't make the request for you, nor will it handle the path and params in a smart
 and consistent way such as when using one of the endpoint methods directly (DecodeVin, etc.).
@@ -144,7 +152,9 @@ This is why method #1 described above is recommended over this one. It simplifie
 you and still ensures runtime type safety and consistency with the VPIC API.
 :::
 
-### Options
+---
+
+#### Options
 
 Here are the CreateUrlOptions for `createUrl`:
 
@@ -156,7 +166,9 @@ Here are the CreateUrlOptions for `createUrl`:
 - `includeQueryString` - If true, the query string will be included in the url (default: true)
 - `saveUrl` - If true, the url will be cached in the composable instance (default: true)
 
-### Using With GET Endpoints
+---
+
+#### Using With GET Endpoints
 
 Here's a simplified example of retrieving data from the NHTSA API using this package as a URL
 builder ONLY. This example uses axios as the fetch implementation, but you can use any fetch
@@ -183,8 +195,6 @@ const url = createUrl({
 
 const results = await axios.get(url)
 ```
-
----
 
 To explain the above example:
 
@@ -229,8 +239,6 @@ const url = createUrl({
 The `params` are query string parameters to use for the endpoint, in this case `modelYear=2011`.
 Keep in mind, `params` will be unique to each endpoint, some have required params, some have none.
 
----
-
 All of the above will result in the following url:
 
 ```javascript
@@ -252,7 +260,9 @@ Some additional things to note:
 - If the endpoint doesn't require a `path` or `params` you can omit those keys and just provide
   `endpointName`.
 
-### Using with POST Endpoints
+---
+
+#### Using with POST Endpoints
 
 ::: tip :bulb: TIP
 `DecodeVinValuesBatch` is the only endpoint that uses a POST request.

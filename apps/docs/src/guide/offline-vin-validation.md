@@ -4,6 +4,10 @@ This package exports an offline VIN validation function called `isValidVin`, tha
 validate a VIN without making a request to the API. Useful if you want to validate a VIN before
 making a request to the API using an invalid VIN that would return no results.
 
+---
+
+## isValidVin
+
 `isValidVin` returns a boolean value of `true` if the VIN is valid, or `false` if it is not.
 
 Behind the scenes, the function uses a the
@@ -16,10 +20,19 @@ page.
 
 ::: tip
 
-You can see the implementation of `isValidVin` in the
-[source code](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/73d35828eec1392d2736a979ce874216456fc837/packages/lib/src/utils/isValidVin.ts).
+You can see implementation of the VIN Check Algorithm in the
+[source code](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/73d35828eec1392d2736a979ce874216456fc837/packages/lib/src/utils/isValidVin.ts)
+for `isValidVin`.
 
 :::
+
+### Usage
+
+```typescript
+import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
+
+const isValid = isValidVin('WA1A4AFY2J2008189') // true
+```
 
 If you need to test that the function works, you can use 17 ones `11111111111111111` as a valid
 VIN.
@@ -28,21 +41,11 @@ Straight-ones (seventeen consecutive '1's) will suffice the check-digit algorith
 value of one, multiplied against 89 (sum of weights), is still 89. And 89 % 11 is 1, the check
 digit. This is an easy way to test a vin-check algorithm.
 
----
-
-## Usage
-
 ```typescript
-import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
-
-const isValid = isValidVin('WA1A4AFY2J2008189')
-
-// isValid = true
+const isValidStraightOnes = isValidVin('11111111111111111') // true
 ```
 
----
-
-## Examples
+### Examples
 
 The following demonstrates how to use the `isValidVin` function to validate a VIN before making
 a request to the API. This can serve as a way to prevent making an unnecessary request to the API
