@@ -1,23 +1,15 @@
 :root {
   --vp-sidebar-width: 380px;
+  --navbar-box-shadow: 0 3px 3px -2px var(--vp-c-bg-alt);
 }
 
 // --------------------------------
 // -- Top Nav
 
 .VPNavBar {
-  // Remove nav border
+  // Remove nav border and use box shadow instead
   border-bottom: none !important;
-
-  // Remove extraneous fade elements
-  .curtain {
-    display: none;
-  }
-
-  // No content-body transition (background-color fix)
-  .content-body {
-    transition: none !important;
-  }
+  box-shadow: var(--navbar-box-shadow);
 
   // Correct width on non-docs pages
   .container {
@@ -26,8 +18,17 @@
 
   // Size according to Sidebar width to limit zone affected by nav overlay
   &.has-sidebar {
-    .title {
+    .container .title:first-child {
+      // remove default padding from outer .title container
       padding-left: 0 !important;
+      padding-right: 0 !important;
+      // subtract scroll bar width to get max width, so no overlap with sidebar scrollbar
+      max-width: calc(var(--vp-sidebar-width) - 12px);
+    }
+
+    // Align title with sidebar items
+    .VPNavBarTitle.has-sidebar .title {
+      padding-left: 24px !important;
     }
 
     .content {
@@ -71,18 +72,18 @@
       }
     }
   }
-}
 
-// Correct max logo height in navbar title
-.VPNavBarTitle img.logo {
-  height: 20px;
-  margin-inline-end: 12px;
-}
+  // Correct max logo height in navbar title
+  .VPNavBarTitle img.logo {
+    height: 20px;
+    margin-inline-end: 12px;
+  }
 
-// Move search away from logo
-.VPNavBarSearch.search {
-  justify-content: flex-end;
-  margin-right: 32px;
+  // Move search away from logo
+  .VPNavBarSearch.search {
+    justify-content: flex-end;
+    margin-right: 32px;
+  }
 }
 
 .VPFlyout {
@@ -101,12 +102,12 @@
 // Using existing default fallback styles where possible to negate calc()-type sizes.
 .VPSidebar {
   --active-indicator-padding: 8px;
-  --vp-new-padding: calc(16px - var(--active-indicator-padding));
+  --vp-new-padding: calc(24px - var(--active-indicator-padding));
 
   padding-left: var(--vp-new-padding) !important;
   padding-right: var(--vp-new-padding) !important;
   padding-bottom: 32px !important;
-  width: calc(var(--vp-sidebar-width) + 0px) !important;
+  width: var(--vp-sidebar-width) !important;
 
   &.open {
     max-width: 82vw !important;
@@ -133,7 +134,7 @@
       // New link styles
       &.link {
         margin: 0;
-        padding: 8px calc(var(--active-indicator-padding) - 8px) !important;
+        padding: 7px calc(var(--active-indicator-padding) - 8px) !important;
         transition-duration: 0.1s;
         transition-property: background-color;
 
@@ -157,7 +158,7 @@
     .VPSidebarItem {
       // Link section heading alignment
       .item .text {
-        padding-left: 8px !important;
+        padding-left: 12px !important;
         color: var(--vp-c-text-2) !important;
       }
 
@@ -188,42 +189,14 @@
         }
       }
 
-      // Customize top-level active link indicator but hide on not-active links
-      &.level-1.is-link > .item {
-        &::before {
-          content: '';
-          position: absolute;
-          width: 3px;
-          height: 100%;
-          top: 0;
-          left: -5px;
-          border-top-left-radius: 2px;
-          border-bottom-left-radius: 2px;
-          background-color: var(--vp-c-brand-dark);
-          // hide by default
-          opacity: 0;
-        }
-      }
-
       // Customize top-level active links
       &.level-1.is-link.has-active > .item {
-        position: relative;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
         background-color: var(--vp-c-bg-alt);
 
         :root.dark & {
           background-color: var(--vp-c-bg);
-        }
-
-        // Show on active links
-        &::before {
-          opacity: 1;
-        }
-
-        // hide default active indicator
-        .indicator {
-          display: none;
         }
       }
 
@@ -232,6 +205,12 @@
       &.level-3,
       &.level-4,
       &.level-5 {
+        // Reduce padding on collapsible sidebar items
+        &.collapsible .items {
+          padding-left: 12px;
+        }
+
+        // Helps indicate current active section
         &.has-active.collapsible,
         &.is-active {
           > .item > .indicator {
@@ -274,16 +253,20 @@
   }
 
   .VPNavBar {
+    box-shadow: unset;
+
     &.has-sidebar {
       .title {
-        position: relative;
         font-size: 0.9rem;
-        padding-left: 10px !important;
       }
 
       .content {
-        padding-left: calc(var(--vp-sidebar-width) + 0px) !important;
-        padding-right: 32px !important;
+        padding-left: var(--vp-sidebar-width) !important;
+
+        .content-body {
+          padding-right: 32px !important;
+          box-shadow: var(--navbar-box-shadow);
+        }
       }
     }
 
@@ -317,7 +300,6 @@
     &.has-sidebar {
       .title {
         font-size: 1rem;
-        padding-left: 10px !important;
       }
     }
   }
