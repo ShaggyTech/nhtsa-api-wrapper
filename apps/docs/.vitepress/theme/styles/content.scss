@@ -4,7 +4,7 @@
 // -- Content
 
 // Content body styles
-.vp-doc {
+.main > .vp-doc {
   p,
   li {
     font-size: 15px;
@@ -41,12 +41,12 @@
 
   h2 {
     margin: 44px 0 24px;
-    padding-top: 0px !important;
+    padding-top: 0px;
     border-color: transparent;
   }
 
   h3 {
-    margin-top: 40px !important;
+    margin-top: 40px;
   }
 
   h1 + p,
@@ -151,14 +151,9 @@
   line-height: 18px;
 }
 
-// // Increase body content width if space available.
-// .VPDoc.has-aside .content-container {
-//   max-width: 820px !important;
-// }
-
 // Code Group styles
 .vp-code-group .tabs label {
-  font-size: 13px !important;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -303,37 +298,39 @@
 // --------------------------------
 // Footer / Above Footer
 
-.content-container .VPDocFooter {
-  margin-top: 30px;
-}
+.VPDocFooter {
+  .edit-info {
+    font-size: 13px;
+    gap: 4px;
+    margin-top: 20px;
+    padding-bottom: 24px;
 
-.pager .pager-link {
-  background-color: var(--vp-c-bg-alt);
-}
+    svg {
+      transform: scale(0.92);
+    }
 
-.VPLink.link.edit-link-button,
-.pager-link .title {
-  gap: 4px;
-  font-size: 13px;
-  svg {
-    transform: scale(0.92);
+    .VPLink.link.edit-link-button {
+      color: var(--vp-c-text-2);
+
+      &:hover {
+        color: var(--vp-c-brand);
+      }
+    }
   }
 
-  :root:not(.dark) & {
-    color: var(--vp-c-brand-dark);
+  .pager .pager-link {
+    background-color: var(--vp-c-bg-alt);
+
+    .title {
+      :root:not(.dark) & {
+        color: var(--vp-c-brand-dark);
+      }
+
+      :root.dark & {
+        color: var(--vp-c-brand-light);
+      }
+    }
   }
-
-  :root.dark & {
-    color: var(--vp-c-brand-lighter);
-  }
-}
-
-.content-container footer.VPDocFooter .edit-info {
-  margin-top: 20px;
-}
-
-.edit-info {
-  padding-bottom: 24px !important;
 }
 
 // Small screens
@@ -356,7 +353,7 @@
 
 // Large screens
 @media (min-width: $bp-large) {
-  .vp-doc {
+  .main > .vp-doc {
     .header-anchor {
       position: absolute;
       left: -28px;
@@ -365,23 +362,23 @@
     }
   }
 
-  .VPContent.has-sidebar {
-    padding-left: var(--vp-sidebar-width) !important;
-  }
+  .Layout > .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width);
 
-  .VPDoc.has-sidebar.has-aside {
-    padding-left: 0;
+    .VPDoc.has-sidebar.has-aside {
+      padding-left: 0;
+    }
   }
 }
 
 // Extra large screens
 @media (min-width: $bp-xlarge) {
-  .VPContent.has-sidebar {
-    padding-right: 0 !important;
-  }
+  .Layout > .VPContent.has-sidebar {
+    padding-right: 0;
 
-  .VPDoc.has-sidebar.has-aside .container > .content {
-    padding-left: 52px;
-    padding-right: 52px;
+    .VPDoc.has-sidebar.has-aside .container > .content {
+      padding-left: 52px;
+      padding-right: 52px;
+    }
   }
 }

@@ -1,76 +1,21 @@
 :root {
   --vp-sidebar-width: 380px;
-  --navbar-box-shadow: 0 3px 3px -2px var(--vp-c-bg-alt);
+  --vp-navbar-menu-height: calc(var(--vp-nav-height) - 16px);
+
+  --box-shadow-navbar: 0 3px 3px -2px var(--vp-c-bg-alt);
 }
 
 // --------------------------------
 // -- Top Nav
 
-.VPNavBar {
+.Layout > .VPNav > .VPNavBar {
   // Remove nav border and use box shadow instead
-  border-bottom: none !important;
-  box-shadow: var(--navbar-box-shadow);
+  border-bottom: none;
+  box-shadow: var(--box-shadow-navbar);
 
   // Correct width on non-docs pages
   .container {
     max-width: unset;
-  }
-
-  // Size according to Sidebar width to limit zone affected by nav overlay
-  &.has-sidebar {
-    .container .title:first-child {
-      // remove default padding from outer .title container
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-      // subtract scroll bar width to get max width, so no overlap with sidebar scrollbar
-      max-width: calc(var(--vp-sidebar-width) - 12px);
-    }
-
-    // Align title with sidebar items
-    .VPNavBarTitle.has-sidebar .title {
-      padding-left: 24px !important;
-    }
-
-    .content {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-  }
-
-  // Restyle top NavBarMenu links
-  .VPNavBarMenu {
-    &.menu {
-      height: calc(100% - 16px);
-
-      a,
-      div {
-        font-size: 13px;
-        margin: 0 4px;
-        opacity: 0.8;
-        transition-duration: 0.1s;
-        transition-property: color, opacity, box-shadow;
-
-        &:hover:not(.active) {
-          opacity: 1;
-          color: var(--vp-c-text-1);
-        }
-      }
-
-      .VPNavBarMenuLink {
-        &.active {
-          color: var(--vp-c-text-1) !important;
-          box-shadow: inset 0 -1px 0 0 var(--vp-c-brand);
-          opacity: 1 !important;
-        }
-      }
-
-      // Fix enormous line-height of navbar items
-      .VPNavBarMenuLink,
-      & .VPNavBarMenuGroup {
-        min-height: var(--vp-nav-height-mobile);
-        line-height: 1.32;
-      }
-    }
   }
 
   // Correct max logo height in navbar title
@@ -84,14 +29,58 @@
     justify-content: flex-end;
     margin-right: 32px;
   }
-}
 
-.VPFlyout {
-  display: flex;
-  align-items: center;
+  // Restyle top NavBarMenu links
+  .VPNavBarMenu.menu {
+    height: var(--vp-navbar-menu-height);
 
-  .item.social-links {
-    place-content: center;
+    a {
+      font-size: 14px;
+      margin: 0 4px;
+      color: var(--vp-c-text-2);
+      transition-duration: 0.1s;
+      transition-property: color;
+
+      &:hover:not(.active) {
+        color: var(--vp-c-text-1);
+      }
+    }
+
+    .VPNavBarMenuLink,
+    .VPNavBarMenuGroup {
+      &,
+      .button {
+        height: var(--vp-navbar-menu-height);
+      }
+
+      &.active {
+        color: var(--vp-c-text-1);
+        box-shadow: inset 0 -1px 0 0 var(--vp-c-brand);
+      }
+    }
+
+    // Fix enormous line-height of navbar items
+    .VPNavBarMenuLink,
+    .VPNavBarMenuGroup {
+      line-height: 1.32;
+    }
+
+    .VPFlyout {
+      .text {
+        color: var(--vp-c-text-2);
+      }
+
+      &:hover .text {
+        color: var(--vp-c-text-1);
+      }
+    }
+  }
+
+  // Center social links in navbar extras flyout
+  .VPNavBarExtra.VPFlyout {
+    .item.social-links {
+      place-content: center;
+    }
   }
 }
 
@@ -100,23 +89,24 @@
 
 // Use empty space in docs navs more effectively.
 // Using existing default fallback styles where possible to negate calc()-type sizes.
-.VPSidebar {
+.Layout > .VPSidebar {
   --active-indicator-padding: 8px;
   --vp-new-padding: calc(24px - var(--active-indicator-padding));
 
-  padding-left: var(--vp-new-padding) !important;
-  padding-right: var(--vp-new-padding) !important;
-  padding-bottom: 32px !important;
-  width: var(--vp-sidebar-width) !important;
+  padding-left: var(--vp-new-padding);
+  padding-right: var(--vp-new-padding);
+  padding-bottom: 32px;
+  width: var(--vp-sidebar-width);
 
+  // make sure sidebar doesn't take up all horizontal screen space on mobile
+  // so user can close mobile menu by clicking on empty space to the right
   &.open {
-    max-width: 82vw !important;
+    max-width: min(var(--vp-sidebar-width), 85vw);
+    padding-top: 24px;
   }
 
   #VPSidebarNav {
-    &.nav {
-      margin-top: 8px;
-    }
+    margin-top: 0;
 
     // These styles are to adjust spacing between groups.
     .group {
@@ -128,44 +118,35 @@
       margin-top: 0px;
     }
 
-    .VPLink {
-      line-height: 1.1;
-
-      // New link styles
-      &.link {
-        margin: 0;
-        padding: 7px calc(var(--active-indicator-padding) - 8px) !important;
+    .VPSidebarItem {
+      // Style all links in the sidebar
+      > .item > .VPLink.link {
+        padding: 8px calc(var(--active-indicator-padding) / 2);
         transition-duration: 0.1s;
         transition-property: background-color;
 
         .text {
           padding: 0;
+          padding-left: 12px;
           font-size: 13px;
           line-height: 1.32;
-
-          .VPSidebarItem.is-active > .item & {
-            color: var(--vp-c-text-1) !important;
-            font-weight: bold;
-          }
         }
 
+        // Make hovered links more visible
         &:hover .text {
-          color: var(--vp-c-text-1) !important;
+          color: var(--vp-c-text-1);
         }
       }
-    }
 
-    .VPSidebarItem {
       // Link section heading alignment
       .item .text {
-        padding-left: 12px !important;
-        color: var(--vp-c-text-2) !important;
+        padding-left: 14px;
+        color: var(--vp-c-text-2);
       }
 
-      // make active links and hovered links more visible
-      .item:hover .text,
-      &.is-active .text {
-        color: var(--vp-c-text-1) !important;
+      // Make active links more visible
+      &.is-active > .item > .VPLink.link .text {
+        color: var(--vp-c-text-1);
       }
 
       // Smaller, quicker caret
@@ -173,19 +154,33 @@
         transform: scale(0.8);
       }
       .caret-icon {
-        transition-duration: 0.16s !important;
+        transition-duration: 0.16s;
       }
 
-      // Customize sidebar main sections
+      // Customize sidebar main section dropdowns
       &.level-0 {
-        padding-bottom: 10px !important;
+        padding-bottom: 10px;
 
-        &.collapsed {
-          padding: 0 !important;
+        & > .item > .text {
+          padding: 0;
+          font-size: 16px;
         }
 
-        &:not(.collapsed) > .item + .items {
-          margin-block-start: 2px;
+        // dropdown closed
+        &.collapsible.collapsed {
+          padding: 0;
+        }
+
+        // dropdown open
+        &.collapsible:not(.collapsed) {
+          & > .item[role='button'] {
+            padding-bottom: 8px;
+          }
+
+          // give the items some space away from the dropdown heading
+          & > .item + .items {
+            margin-block-start: 4px;
+          }
         }
       }
 
@@ -205,26 +200,10 @@
       &.level-3,
       &.level-4,
       &.level-5 {
-        // Reduce padding on collapsible sidebar items
-        &.collapsible .items {
-          padding-left: 12px;
-        }
-
-        // Helps indicate current active section
-        &.has-active.collapsible,
-        &.is-active {
-          > .item > .indicator {
-            width: 3px;
-            left: -1px;
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-          }
-        }
-
-        // Indicator for collapsible sidebar groups that have active children
-        &.has-active.collapsible {
-          > .item > .indicator {
-            background-color: var(--vp-c-brand-dark);
+        // dropdown open
+        &.collapsible:not(.collapsed) {
+          & > .item + .items {
+            margin-block-start: 4px;
           }
         }
 
@@ -235,9 +214,12 @@
 
             > .indicator {
               top: 0;
-              height: 100%;
+              bottom: 0;
+              left: -1px;
               width: 3px;
               background-color: var(--vp-c-brand);
+              border-top-left-radius: 2px;
+              border-bottom-left-radius: 2px;
             }
           }
         }
@@ -252,36 +234,39 @@
     --vp-sidebar-width: 308px;
   }
 
-  .VPNavBar {
+  .Layout > .VPNav > .VPNavBar {
     box-shadow: unset;
 
-    &.has-sidebar {
-      .title {
+    .container > .title {
+      // subtract scroll bar width to get max width, so no overlap with sidebar scrollbar
+      max-width: calc(var(--vp-sidebar-width) - 12px);
+      // remove default padding from outer .title container
+      padding-left: 0;
+      padding-right: 0;
+
+      // Center align title text
+      .VPNavBarTitle.has-sidebar .title {
         font-size: 0.9rem;
-      }
-
-      .content {
-        padding-left: var(--vp-sidebar-width) !important;
-
-        .content-body {
-          padding-right: 32px !important;
-          box-shadow: var(--navbar-box-shadow);
-        }
+        flex-wrap: wrap;
+        justify-content: center;
       }
     }
 
-    .VPNavBarMenu {
-      &.menu {
-        .VPNavBarMenuLink,
-        & .VPNavBarMenuGroup {
-          min-height: var(--vp-nav-height-desktop);
-        }
+    .container > .content {
+      padding-left: var(--vp-sidebar-width);
+      padding-right: 0;
+
+      .content-body {
+        padding-right: 32px;
+        box-shadow: var(--box-shadow-navbar);
       }
     }
   }
 
-  .VPSideBar {
+  .Layout > .VPSidebar {
     #VPSidebarNav {
+      margin-top: 16px;
+
       // Allow .VPLink to take up all horizontal space available
       .group {
         width: unset;
@@ -296,9 +281,9 @@
     --vp-sidebar-width: 360px;
   }
 
-  .VPNavBar {
-    &.has-sidebar {
-      .title {
+  .Layout > .VPNav > .VPNavBar {
+    .container > .title {
+      .VPNavBarTitle.has-sidebar .title {
         font-size: 1rem;
       }
     }
