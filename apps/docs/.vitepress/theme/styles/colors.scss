@@ -30,6 +30,9 @@
   --vp-c-brand-lighter: hsl(208, 86%, 64%);
   --vp-c-brand-dark: hsl(208, 100%, 20%);
   --vp-c-brand-darker: hsl(208, 100%, 15%);
+
+  // Algolia DocSearch UI
+  --docsearch-container-background: hsla(222, 85%, 5%, 0.902);
 }
 
 :root:not(.dark) {
@@ -95,13 +98,4 @@
   // Buttons
   --vp-button-brand-bg: var(--vp-c-brand-darker);
   --vp-button-brand-border: var(--vp-c-brand);
-
-  // If we want to make the dividers blueish too
-  //--vp-c-divider: var(--vp-c-divider-light-1);
-  //--vp-c-divider-light: var(--vp-c-divider-light-2);
-  //--vp-c-divider-inverse: var(--vp-c-divider-dark-1);
-  //--vp-c-divider-inverse-light: var(--vp-c-divider-dark-2);
-
-  // Algolia DocSearch UI
-  --docsearch-container-background: hsl(220 24% 30% / 0.85);
 }

@@ -1,10 +1,12 @@
 import { createWriteStream } from 'node:fs'
 import { resolve } from 'node:path'
 import { SitemapStream } from 'sitemap'
-// import { generateSitemap } from 'sitemap-ts'
+import dotenv from 'dotenv'
 import { defineConfig, type HeadConfig } from 'vitepress'
 import { nav, sidebar } from './menu'
 import { ICON_NPM2 } from './icons'
+
+dotenv.config()
 
 const { VITEPRESS_BASE = '/' } = process.env
 
@@ -12,7 +14,6 @@ interface SiteMapLink {
   url: string
   lastmod?: number
 }
-
 const sitemapLinks: SiteMapLink[] = []
 
 export default defineConfig({
@@ -33,9 +34,12 @@ export default defineConfig({
   },
 
   themeConfig: {
+    siteTitle: '@shaggytools/nhtsa-api-wrapper',
     outline: 'deep',
     nav: nav(),
     sidebar: sidebar(),
+
+    algolia: getAlgoliaConfig(process.env),
 
     editLink: {
       pattern:
@@ -137,4 +141,20 @@ function getHeadTags(): HeadConfig[] {
   ]
 
   return tags
+}
+
+function getAlgoliaConfig(env: NodeJS.ProcessEnv) {
+  if (
+    env.VITEPRESS_ALGOLIA_INDEX_NAME &&
+    env.VITEPRESS_ALGOLIA_APP_ID &&
+    env.VITEPRESS_ALGOLIA_API_KEY
+  ) {
+    return {
+      indexName: env.VITEPRESS_ALGOLIA_INDEX_NAME,
+      appId: env.VITEPRESS_ALGOLIA_APP_ID,
+      apiKey: env.VITEPRESS_ALGOLIA_API_KEY,
+    }
+  }
+
+  return undefined
 }

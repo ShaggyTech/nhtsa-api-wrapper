@@ -2,7 +2,7 @@
   --vp-sidebar-width: 380px;
   --vp-navbar-menu-height: calc(var(--vp-nav-height) - 16px);
 
-  --box-shadow-navbar: 0 3px 3px -2px var(--vp-c-bg-alt);
+  --box-shadow-navbar: 0 4px 10px -4px var(--vp-c-bg-alt);
 }
 
 // --------------------------------
@@ -13,21 +13,10 @@
   border-bottom: none;
   box-shadow: var(--box-shadow-navbar);
 
-  // Correct width on non-docs pages
-  .container {
-    max-width: unset;
-  }
-
-  // Correct max logo height in navbar title
-  .VPNavBarTitle img.logo {
-    height: 20px;
-    margin-inline-end: 12px;
-  }
-
-  // Move search away from logo
-  .VPNavBarSearch.search {
-    justify-content: flex-end;
-    margin-right: 32px;
+  .VPNavBarTitle {
+    .title {
+      font-size: 16px;
+    }
   }
 
   // Restyle top NavBarMenu links
@@ -35,7 +24,7 @@
     height: var(--vp-navbar-menu-height);
 
     a {
-      font-size: 14px;
+      font-size: 12px;
       margin: 0 4px;
       color: var(--vp-c-text-2);
       transition-duration: 0.1s;
@@ -87,8 +76,6 @@
 // --------------------------------
 // -- Sidebar Nav
 
-// Use empty space in docs navs more effectively.
-// Using existing default fallback styles where possible to negate calc()-type sizes.
 .Layout > .VPSidebar {
   --active-indicator-padding: 8px;
   --vp-new-padding: calc(24px - var(--active-indicator-padding));
@@ -108,121 +95,147 @@
   #VPSidebarNav {
     margin-top: 0;
 
-    // These styles are to adjust spacing between groups.
+    // Adjust spacing between groups.
     .group {
       padding-bottom: 8px;
       width: calc(var(--vp-sidebar-width) - 32px);
     }
-
     .group + .group {
       margin-top: 0px;
     }
+  }
 
-    .VPSidebarItem {
-      // Style all links in the sidebar
-      > .item > .VPLink.link {
-        padding: 8px calc(var(--active-indicator-padding) / 2);
-        transition-duration: 0.1s;
-        transition-property: background-color;
+  .VPSidebarItem {
+    // Style all links in the sidebar
+    > .item > .VPLink.link {
+      padding: 8px calc(var(--active-indicator-padding) / 2);
+      transition-duration: 0.1s;
+      transition-property: background-color;
 
-        .text {
-          padding: 0;
-          padding-left: 12px;
-          font-size: 13px;
-          line-height: 1.32;
-        }
-
-        // Make hovered links more visible
-        &:hover .text {
-          color: var(--vp-c-text-1);
-        }
+      .text {
+        padding: 0;
+        padding-left: 12px;
+        font-size: 13px;
+        line-height: 1.32;
       }
 
-      // Link section heading alignment
-      .item .text {
-        padding-left: 14px;
-        color: var(--vp-c-text-2);
-      }
-
-      // Make active links more visible
-      &.is-active > .item > .VPLink.link .text {
+      // Make hovered links more visible
+      &:hover .text {
         color: var(--vp-c-text-1);
       }
+    }
 
-      // Smaller, quicker caret
-      .caret {
-        transform: scale(0.8);
-      }
-      .caret-icon {
-        transition-duration: 0.16s;
-      }
+    // Link section heading alignment
+    .item .text {
+      padding-left: 14px;
+      color: var(--vp-c-text-2);
+    }
 
-      // Customize sidebar main section dropdowns
-      &.level-0 {
-        padding-bottom: 10px;
+    // Make active links more visible
+    &.is-active > .item > .VPLink.link .text {
+      color: var(--vp-c-text-1);
+    }
 
-        & > .item > .text {
-          padding: 0;
-          font-size: 16px;
-        }
+    // Smaller, quicker caret
+    .caret {
+      transform: scale(0.8);
+    }
+    .caret-icon {
+      transition-duration: 0.16s;
+    }
 
-        // dropdown closed
-        &.collapsible.collapsed {
-          padding: 0;
-        }
+    // Customize sidebar main section dropdowns
+    &.level-0 {
+      padding-bottom: 10px;
 
-        // dropdown open
-        &.collapsible:not(.collapsed) {
-          & > .item[role='button'] {
-            padding-bottom: 8px;
-          }
-
-          // give the items some space away from the dropdown heading
-          & > .item + .items {
-            margin-block-start: 4px;
-          }
-        }
+      & > .item > .text {
+        padding: 0;
+        font-size: 16px;
       }
 
-      // Customize top-level active links
-      &.level-1.is-link.has-active > .item {
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-        background-color: var(--vp-c-bg-alt);
+      // dropdown closed
+      &.collapsible.collapsed {
+        padding: 0;
+      }
 
-        :root.dark & {
+      // dropdown open
+      &.collapsible:not(.collapsed) {
+        & > .item[role='button'] {
+          padding-bottom: 8px;
+        }
+
+        // give the items some space away from the dropdown heading
+        & > .item + .items {
+          margin-block-start: 4px;
+        }
+      }
+    }
+
+    // Customize top-level active links
+    &.level-1.is-link.has-active > .item {
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      background-color: var(--vp-c-bg-alt);
+
+      :root.dark & {
+        background-color: var(--vp-c-bg);
+      }
+    }
+
+    &.level-1,
+    &.level-2,
+    &.level-3,
+    &.level-4,
+    &.level-5 {
+      // dropdown open
+      &.collapsible:not(.collapsed) {
+        & > .item + .items {
+          margin-block-start: 4px;
+        }
+      }
+
+      // Indicator for active sidebar items
+      &.is-active {
+        > .item {
           background-color: var(--vp-c-bg);
+
+          > .indicator {
+            top: 0;
+            bottom: 0;
+            left: -1px;
+            width: 3px;
+            background-color: var(--vp-c-brand);
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+          }
         }
       }
+    }
+  }
+}
 
-      &.level-1,
-      &.level-2,
-      &.level-3,
-      &.level-4,
-      &.level-5 {
-        // dropdown open
-        &.collapsible:not(.collapsed) {
-          & > .item + .items {
-            margin-block-start: 4px;
-          }
-        }
+// --------------------------------
+// -- Media Queries
 
-        // Indicator for active sidebar items
-        &.is-active {
-          > .item {
-            background-color: var(--vp-c-bg);
+// Medium screens
+@media (min-width: $bp-medium) {
+  .Layout > .VPNav > .VPNavBar {
+    padding: 0 24px;
 
-            > .indicator {
-              top: 0;
-              bottom: 0;
-              left: -1px;
-              width: 3px;
-              background-color: var(--vp-c-brand);
-              border-top-left-radius: 2px;
-              border-bottom-left-radius: 2px;
-            }
-          }
-        }
+    .VPNavBarTitle {
+      .title {
+        font-size: 14px;
+      }
+    }
+
+    .VPNavBarSearch.search {
+      padding: 0 16px;
+    }
+
+    .VPNavBarMenu.menu {
+      a,
+      .button .text {
+        font-size: 12px;
       }
     }
   }
@@ -243,22 +256,37 @@
       // remove default padding from outer .title container
       padding-left: 0;
       padding-right: 0;
+    }
 
-      // Center align title text
-      .VPNavBarTitle.has-sidebar .title {
-        font-size: 0.9rem;
-        flex-wrap: wrap;
-        justify-content: center;
+    // Center align title text
+    .VPNavBarTitle .title {
+      font-size: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .VPNavBarSearch.search {
+      padding-left: 24px;
+    }
+
+    .VPNavBarMenu.menu {
+      a,
+      .button .text {
+        font-size: 14px;
       }
     }
 
-    .container > .content {
-      padding-left: var(--vp-sidebar-width);
-      padding-right: 0;
+    &.has-sidebar {
+      padding: 0;
 
-      .content-body {
-        padding-right: 32px;
-        box-shadow: var(--box-shadow-navbar);
+      &.container > .content {
+        padding-left: var(--vp-sidebar-width);
+        padding-right: 0;
+
+        .content-body {
+          padding-right: 32px;
+          box-shadow: var(--box-shadow-navbar);
+        }
       }
     }
   }
@@ -267,7 +295,7 @@
     #VPSidebarNav {
       margin-top: 16px;
 
-      // Allow .VPLink to take up all horizontal space available
+      // Allow sidebar groups to take up all horizontal space available
       .group {
         width: unset;
       }
@@ -282,10 +310,8 @@
   }
 
   .Layout > .VPNav > .VPNavBar {
-    .container > .title {
-      .VPNavBarTitle.has-sidebar .title {
-        font-size: 1rem;
-      }
+    .VPNavBarTitle .title {
+      font-size: 18px;
     }
   }
 }
