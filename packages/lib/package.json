@@ -79,7 +79,7 @@
   "devDependencies": {
     "@vitest/coverage-c8": "0.29.8",
     "@vitest/ui": "0.29.8",
-    "eslint": "8.37.0",
+    "eslint": "8.41.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.7",
     "prettier-config": "workspace:*",

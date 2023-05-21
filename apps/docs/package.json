@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "dotenv": "16.0.3",
-    "eslint": "8.37.0",
+    "eslint": "8.41.0",
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.7",
     "prettier-config": "workspace:*",
