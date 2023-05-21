@@ -8,7 +8,7 @@ function nav() {
   return [
     { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
     { text: 'Docs', link: '/api/', activeMatch: '/api/' },
-    { text: 'Pkg Reference', link: '/typedoc/', activeMatch: '/typedoc/' },
+    { text: 'Typedocs', link: '/typedoc/', activeMatch: '/typedoc/' },
     {
       text: pkg.version,
       items: [
@@ -79,7 +79,7 @@ function sidebar() {
       ],
     },
     {
-      text: 'Package Reference',
+      text: 'Typedocs',
       collapsed: true,
       items: [{ text: 'Index', link: '/typedoc/' }, ...packageReferenceLinks],
     },
