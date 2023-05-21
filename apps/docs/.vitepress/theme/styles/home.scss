@@ -31,17 +31,6 @@
   }
 }
 
-@media (min-width: $bp-medium) {
-  .VPHero.VPHomeHero {
-    .container .main {
-      .name {
-        line-height: 48px;
-        font-size: 42px;
-      }
-    }
-  }
-}
-
 @media (min-width: $bp-large) {
   .VPHero.VPHomeHero {
     .container .main {
