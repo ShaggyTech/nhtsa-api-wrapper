@@ -1,3 +1,7 @@
+import { type DefaultTheme } from 'vitepress'
+
+type SidebarItem = DefaultTheme.SidebarItem
+
 const vpicEndpointLinks = [
   { text: 'DecodeVin', link: '/api/endpoints/decode-vin' },
   { text: 'DecodeVinExtended', link: '/api/endpoints/decode-vin-extended' },
@@ -70,7 +74,7 @@ const vpicEndpointLinks = [
   },
 ]
 
-const packageReferenceLinks = [
+const typedocLinks = [
   {
     text: 'Types',
     link: '/typedoc/modules/types',
@@ -185,4 +189,85 @@ const packageReferenceLinks = [
   },
 ]
 
-export { packageReferenceLinks, vpicEndpointLinks }
+export type LinkGroup = 'guide' | 'api' | 'typedocs'
+
+const groupLinks: Record<LinkGroup, SidebarItem[]> = {
+  guide: [
+    {
+      text: 'Install',
+      collapsed: false,
+      items: [
+        { text: 'Overview', link: '/guide/' },
+        { text: 'Why This Package', link: '/guide/why-this-package' },
+        { text: 'Installation', link: '/guide/install' },
+        { text: 'Getting Started', link: '/guide/getting-started' },
+        {
+          text: 'Bring Your Own Fetch (BYOF)',
+          link: '/guide/bring-your-own-fetch',
+        },
+        {
+          text: 'Support for Node Versions < 18',
+          link: '/guide/native-fetch',
+        },
+        { text: 'Typescript Support', link: '/guide/typescript' },
+      ],
+    },
+    {
+      text: 'Utility Functions',
+      collapsed: false,
+      items: [
+        { text: 'Overview', link: '/utils/' },
+        { text: 'isValidVin', link: '/utils/is-valid-vin' },
+        { text: 'useNHTSA', link: '/utils/use-nhtsa-composable' },
+      ],
+    },
+    {
+      text: 'Examples',
+      collapsed: false,
+      items: [
+        { text: 'VIN Decoding', link: '/guide/vin-decoding' },
+        {
+          text: 'Offline VIN Validation',
+          link: '/guide/offline-vin-validation',
+        },
+      ],
+    },
+  ],
+  api: [
+    { text: 'Overview', link: '/api/' },
+    {
+      text: 'VPIC Response',
+      link: '/api/vpic-api-response',
+    },
+    {
+      text: 'VPIC Functions',
+      items: vpicEndpointLinks,
+      collapsed: false,
+    },
+  ],
+  typedocs: [{ text: 'Index', link: '/typedoc/' }, ...typedocLinks],
+}
+
+const linkGroups: Record<LinkGroup, SidebarItem> = {
+  guide: {
+    text: 'Guide',
+    items: groupLinks.guide,
+  },
+  api: {
+    text: 'API',
+    items: groupLinks.api,
+  },
+  typedocs: {
+    text: 'Typedocs',
+    items: groupLinks.typedocs,
+  },
+}
+
+const sidebarLinks = (activeLinkGroups: LinkGroup[] = []) => {
+  return Object.entries(linkGroups).map(([key, data]) => ({
+    ...data,
+    collapsed: !activeLinkGroups.includes(key as LinkGroup),
+  }))
+}
+
+export { sidebarLinks }
