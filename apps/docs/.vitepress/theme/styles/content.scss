@@ -119,6 +119,11 @@
 
   div[class*='language-'] {
     margin: 32px 0 40px;
+    border: 1px solid var(--vp-c-brand-lighter);
+
+    :root.dark & {
+      border-color: transparent;
+    }
   }
 
   [class*='language-'] pre,

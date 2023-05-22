@@ -30,7 +30,10 @@ export default defineConfig({
   cleanUrls: true,
 
   markdown: {
-    theme: 'one-dark-pro',
+    theme: {
+      light: 'github-light',
+      dark: 'one-dark-pro',
+    },
   },
 
   themeConfig: {
