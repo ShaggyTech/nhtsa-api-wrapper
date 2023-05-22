@@ -88,6 +88,10 @@ const typedocLinks = [
     link: '/typedoc/modules/api_types',
   },
   {
+    text: 'api/useNHTSA',
+    link: '/typedoc/modules/api_useNHTSA',
+  },
+  {
     text: 'api/endpoints/',
     link: '/typedoc/modules/api_endpoints',
   },
@@ -187,6 +191,14 @@ const typedocLinks = [
     text: 'api/endpoints/GetWMIsForManufacturer',
     link: '/typedoc/modules/api_endpoints_GetWMIsForManufacturer',
   },
+  {
+    text: 'utils/',
+    link: '/typedoc/modules/utils',
+  },
+  {
+    text: 'utils/isValidVin',
+    link: '/typedoc/modules/utils_isValidVin',
+  },
 ]
 
 export type LinkGroup = 'guide' | 'api' | 'typedocs'
@@ -218,7 +230,7 @@ const groupLinks: Record<LinkGroup, SidebarItem[]> = {
       items: [
         { text: 'Overview', link: '/utils/' },
         { text: 'isValidVin', link: '/utils/is-valid-vin' },
-        { text: 'useNHTSA', link: '/utils/use-nhtsa-composable' },
+        { text: 'useNHTSA', link: '/utils/use-nhtsa' },
       ],
     },
     {
