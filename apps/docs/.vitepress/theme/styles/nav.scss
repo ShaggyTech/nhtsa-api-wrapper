@@ -2,7 +2,7 @@
   --vp-sidebar-width: 380px;
   --vp-navbar-menu-height: calc(var(--vp-nav-height) - 16px);
 
-  --box-shadow-navbar: 0 4px 10px -4px var(--vp-c-bg-alt);
+  --box-shadow-navbar: 0 4px 4px -1px var(--vp-c-bg-alt);
 }
 
 // --------------------------------
@@ -12,6 +12,11 @@
   // Remove nav border and use box shadow instead
   border-bottom: none;
   box-shadow: var(--box-shadow-navbar);
+
+  // curtain makes it frustrating to click on links close to the navbar, shrink it to zero height
+  .curtain {
+    bottom: 0;
+  }
 
   .VPNavBarTitle {
     .title {
