@@ -1,5 +1,15 @@
 # Installation
 
+You can use this package in any environment that supports the native
+[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). It works in
+modern browsers and Node.js versions > 18 out of the box.
+
+The package is available on several CDNs for use in the browser via HTML `<script>` tags. You can also
+install it via your favorite package manager for use in Node.js bundlers, frameworks, etc.
+
+The package is fully tree-shakeable and side-effect free when using the ES Module bundle (.mjs) or
+ESM CDN link.
+
 ::: warning 🔞 WARNING
 
 This package uses the
@@ -13,18 +23,9 @@ Related:
 
 :::
 
-You can use this package in any environment that supports the native
-[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). It works in
-modern browsers and Node.js versions > 18 out of the box.
-
-The package is available on several CDNs for use in the browser via HTML `<script>` tags. You can also
-install it via your favorite package manager for use in Node.js bundlers, frameworks, etc.
-
-The package is fully tree-shakeable and side-effect free.
-
 ---
 
-## Node Install
+## Node
 
 Package Managers:
 
@@ -63,7 +64,7 @@ Relevant Links:
 - [NPM Homepage](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
 - [Yarn Homepage](https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper)
 
-### ESM Module
+### ES Module
 
 `/dist/nhtsa-api-wrapper.mjs` is a modern ES Module (ESM) module.
 
@@ -73,7 +74,7 @@ import NHTSA from '@shaggytools/nhtsa-api-wrapper'
 
 ### UMD Module
 
-`/dist/nhtsa-api-wrapper.umd.js` is a Universal Module Definition (UMD) module.
+`/dist/nhtsa-api-wrapper.umd.cjs` is a Universal Module Definition (UMD) module.
 
 ```js
 const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd.cjs')
@@ -81,7 +82,7 @@ const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.umd
 
 ### CommonJS
 
-`/dist/nhtsa-api-wrapper.js` is a CommonJS (.cjs) file.
+`/dist/nhtsa-api-wrapper.cjs` is a CommonJS (.cjs) file.
 
 ```js [CommonJS]
 const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.cjs')
@@ -89,70 +90,17 @@ const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.cjs
 
 ---
 
-## Node Quick Start
-
-The following demonstrates how to import the package in Node.js.
-
-::: code-group
-
-```js [Individual Methods]
-import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
-```
-
-```js [Entire Package]
-import NHTSA from '@shaggytools/nhtsa-api-wrapper'
-```
-
-:::
-
-For a more complete example we'll show you how to use this package to decode a VIN.
-
-Decoding a VIN is as easy as importing the `DecodeVinValues` function and calling it
-with the VIN you want to decode. The following stores the complete API response in a
-variable called `response`.
-
-```typescript
-import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
-
-const response = await DecodeVinValues('WA1A4AFY2J2008189')
-
-/*
-response = {
-  Count: 136, - number of Results objects returned
-  Message: 'Results returned successfully ...',
-  SearchCriteria: 'VIN:WA1A4AFY2J2008189',
-  Results: [ {...} ] - an array with single object of type DecodeVinValuesResults
-}
-*/
-```
-
-You could also use destructuring to get the `Results` object directly and log the decoded vehicle
-info.
-
-```typescript
-const { Results } = await DecodeVinValues('WA1A4AFY2J2008189')
-
-/* This endpoint only returns a single object in the Results array
-   The first object in the array is the decoded VIN data */
-const decodedVehicle = Results[0] // equals an object of type DecodeVinValuesResults
-
-console.log('Vehicle Info: ', decodedVehicle)
-```
-
-A more in depth explanation of how to decode a VIN can be found on the
-[VIN Decoding](../guide/vin-decoding) page.
-
-For a full example response see the
-[DecodeVinValues](../api/endpoints/decode-vin-values#returns) page.
-
-The structure of `Results[0]` in the above example is of type
-[DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults).
-
----
-
-## Browser Install
+## Browser
 
 You can use the package directly in html script tags using a CDN.
+
+For targeting modern browsers, you can use the ESM versions with `<script type="module">` and
+import statements. You would then use normal ES6 import statements to import the package inside the
+module script much like you would in Node.js.
+
+For older browsers, you can use the IIFE versions with `<script src="https://...">` to import the
+package. Then use the package in a separate html script via the browser global `NHTSA`. This global
+variable is only available when using the IIFE or UMD versions.
 
 These examples use the available CDN links, but you can also download the files and host them
 yourself. Also note, if you're going to use this package in an app or bundled script, you'll likely
@@ -214,20 +162,14 @@ want to use the Node.js method instead and install from a package manager.
 
 :::
 
-For targeting modern browsers, you can use the ESM versions with `<script type="module">` and
-import statements. You would then use normal ES6 import statements to import the package inside the
-module script much like you would in Node.js.
+**CDN Homepage Links:**
 
-For older browsers, you can use the IIFE versions with `<script src="https://...">` to import the
-package. Then use the package in a separate html script via the browser global `NHTSA`. This global
-variable is only available when using the IIFE or UMD versions.
-
-CDN Homepage Links:
-
-- [jsDelivr](https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper)
+- [jsDelivr](https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper) - hosts all dist files (bundles and types)
 - [UNPKG](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/) - directory of all dist files (bundles and types)
 
-Direct links to the latest bundles of the package on the above CDNs:
+<br />
+
+**Direct links to the latest CDN bundles:**
 
 [jsDelivr (ESM)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm)
 
@@ -247,91 +189,7 @@ https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper`
 https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js
 ```
 
----
+## Next Steps
 
-## Browser Quick Start
-
-The following are simple examples that use the jsDelivr CDN:
-
-### ESM
-
-_~ 4kB (auto minified)_
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-
-  <body>
-    <h1>ESM Example</h1>
-  </body>
-
-  <script type="module">
-    // import the entire package as a single object called NHTSA
-    import NHTSA from 'https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm'
-    // log to see all exported functions
-    console.log(NHTSA)
-
-    // OR import individual functions as needed
-    import { DecodeVinValues } from 'https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm'
-    // Decode a VIN and log the results
-    const { Results } = await DecodeVinValues('11111111111111111')
-    console.log('Results', Results[0])
-  </script>
-</html>
-```
-
-### IIFE
-
-_~ 4kB (auto minified)_
-
-IIFE browser global variable: `NHTSA`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Import via jsDelivr CDN -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper"
-    ></script>
-  </head>
-
-  <body>
-    <btn id="DecodeVinValues"
-      >Click to use DecodeVinValues()</btn
-    >
-    </br>
-    Results:
-    <div id="DecodeVinValuesResults"></div>
-  </body>
-
-  <!-- Use the package in a separate script -->
-  <script>
-    // log the browser global NHTSA to see all exported functions
-    console.log(NHTSA)
-
-    // add click handler to a button that uses the DecodeVinValues() function
-    document
-      .getElementById("DecodeVinValues")
-      .addEventListener("click", async function () {
-        const response = await NHTSA.DecodeVinValues("3VWD07AJ5EM388202").catch(
-          (err) => err
-        );
-
-        // log the VPIC response
-        console.log('VPIC Response: ', response);
-
-        // add the decoded VIN results to the DOM
-        document.getElementById("DecodeVinValuesResults").innerText =
-          JSON.stringify(response.Results[0]);
-      });
-  </script>
-</html>
-```
+- [Getting Started - Node](../guide/getting-started#node-quick-start)
+- [Getting Started - Browser](../guide/getting-started#browser-quick-start)

@@ -6,7 +6,7 @@
 [24 VPIC API endpoints](../api/index.md#vpic-api-endpoints)
 
 ✔️ A helper composable function (`useNHTSA`) with tools to interact with the VPIC API at a lower
-level. See [useNHTSA](../utils/use-nhtsa-composable.md)
+level. See [useNHTSA](../utils/use-nhtsa.md)
 
 ✔️ Built with TypeScript support in mind. Get full type hints and code
 completion. API responses are [fully typed](../guide/typescript.md#nhtsa-api-response-types)
@@ -29,7 +29,7 @@ It can also be used to get all models of a make, to decode WMIs, get all makes f
 and more.
 
 A list of all 24 VPIC endpoints can be found in the
-[NHTSA API Endpoints](../api/index.md#vpic-api-endpoints) section.
+[NHTSA API Endpoints](../api/index#vpic-api-endpoints) section.
 
 ::: tip :bulb: TIP
 
@@ -56,12 +56,12 @@ For a real world example of this, check out some of my other projects that use t
 - Use it in out of the box in Javascript environments that support the
   [native Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
   See also
-  [This Package Uses Native Fetch](../guide/native-fetch.md#this-package-uses-native-fetch).
+  [This Package Uses Native Fetch](../guide/native-fetch#this-package-uses-native-fetch).
 
 - Use it in _any_ Javascript environment to simply build the url strings for the endpoints
   and do the fetching yourself. It will not use the native Fetch API internally this way.
   See also
-  [Alternate Use Of This Package](../guide/bring-your-own-fetch.md#alternate-use-of-this-package).
+  [Alternate Use Of This Package](../guide/bring-your-own-fetch#alternate-use-of-this-package).
 
 ::: warning 🔞 WARNING
 
@@ -73,8 +73,5 @@ polyfill for very old Browsers or Node.js versions < 18.
 
 ## Next Steps
 
-- [Installation](../guide/install.md)
-- [Getting Started](../guide/getting-started.md)
-- [VIN Decoding](../guide/vin-decoding.md)
-- [Offline VIN Validation](../guide/offline-vin-validation.md)
-- [NHTSA API Endpoints](../api/index.md#vpic-api-endpoints)
+- [Installation](../guide/install)
+- [Getting Started](../guide/getting-started)

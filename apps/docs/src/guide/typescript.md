@@ -1,13 +1,18 @@
 # Typescript Support
 
 This package is designed for full typescript support and bundles it's own types. Types can be found
-in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't need to.
+in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't need to use them
+directly.
 
 We've tried to be as accurate as possible typing the API responses based on testing real responses
 from the NHTSA API. Please report any discrepancies you may find and they will be fixed.
 
+::: tip :mag: See Also:
+
 Check out the [API Reference](/api/) page for more details on each
 endpoint helper function and their return types.
+
+:::
 
 ---
 
@@ -47,6 +52,13 @@ import type {
 } from '@shaggytools/nhtsa-api-wrapper'
 ```
 
+::: tip :mag: See Also:
+
+The [Typedocs - Types](../typedoc/modules/types) page lists all of the types this
+package exports and their structure.
+
+:::
+
 ## NHTSA API Response Types
 
 The NHTSA VPIC API response is an object with the following structure:
@@ -85,8 +97,12 @@ type NhtsaApiResponse<T> = {
 
 :::
 
-See [VPIC Response Structure](/api/vpic-api-response#response-structure) for more details
+::: tip :mag: See Also:
+
+The [VPIC Response](/api/vpic-api-response) page has more details
 on the response returned by the VPIC API.
+
+:::
 
 ## Note for Beginners
 
