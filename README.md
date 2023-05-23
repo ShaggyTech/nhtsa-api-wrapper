@@ -58,8 +58,9 @@ WMIs, get all makes for a certain year, and more.
 ### [https://vpic.shaggytech.com/](https://vpic.shaggytech.com/)
 
 - [Introduction](https://vpic.shaggytech.com/guide)
-- [Install](https://vpic.shaggytech.com/guide/getting-started#install)
-- [Quick Start](https://vpic.shaggytech.com//guide/getting-started#quick-start)
+- [Install](https://vpic.shaggytech.com/guide/install)
+- [Node Quick Start](https://vpic.shaggytech.com//guide/getting-started#node-quick-start)
+- [Browser Quick Start](https://vpic.shaggytech.com/guide/getting-started#browser-quick-start)
 - [API Reference](https://vpic.shaggytech.com/api/)
 
 ## Mono Repo Structure
