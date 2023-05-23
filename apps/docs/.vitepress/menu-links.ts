@@ -205,23 +205,20 @@ export type LinkGroup = 'guide' | 'api' | 'typedocs'
 
 const groupLinks: Record<LinkGroup, SidebarItem[]> = {
   guide: [
+    { text: 'Overview', link: '/guide/' },
+    { text: 'Why This Package', link: '/guide/why-this-package' },
+    { text: 'Typescript Support', link: '/guide/typescript' },
     {
-      text: 'Install',
+      text: 'Install and Use',
       collapsed: false,
       items: [
-        { text: 'Overview', link: '/guide/' },
-        { text: 'Why This Package', link: '/guide/why-this-package' },
-        { text: 'Installation', link: '/guide/install' },
+        { text: 'Install', link: '/guide/install' },
         { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Decoding a VIN', link: '/guide/vin-decoding' },
         {
-          text: 'Bring Your Own Fetch (BYOF)',
-          link: '/guide/bring-your-own-fetch',
+          text: 'Offline VIN Validation',
+          link: '/guide/offline-vin-validation',
         },
-        {
-          text: 'Support for Node Versions < 18',
-          link: '/guide/native-fetch',
-        },
-        { text: 'Typescript Support', link: '/guide/typescript' },
       ],
     },
     {
@@ -234,13 +231,16 @@ const groupLinks: Record<LinkGroup, SidebarItem[]> = {
       ],
     },
     {
-      text: 'Examples',
+      text: 'Native Fetch',
       collapsed: false,
       items: [
-        { text: 'VIN Decoding', link: '/guide/vin-decoding' },
         {
-          text: 'Offline VIN Validation',
-          link: '/guide/offline-vin-validation',
+          text: 'Support for Node Versions < 18',
+          link: '/guide/native-fetch',
+        },
+        {
+          text: 'Bring Your Own Fetch (BYOF)',
+          link: '/guide/bring-your-own-fetch',
         },
       ],
     },
