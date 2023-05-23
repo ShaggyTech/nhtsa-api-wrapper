@@ -141,6 +141,7 @@ function getHeadTags(): HeadConfig[] {
         rel: 'stylesheet',
       },
     ],
+    ['script', { defer: 'true', src: '/_vercel/insights/script.js' }],
   ]
 
   return tags
