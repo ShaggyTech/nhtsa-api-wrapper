@@ -41,8 +41,11 @@ export default defineConfig({
     outline: 'deep',
     nav: nav(),
     sidebar: sidebar(),
+    search: {
+      provider: 'local',
+    },
 
-    algolia: getAlgoliaConfig(process.env),
+    // algolia: getAlgoliaConfig(process.env),
 
     editLink: {
       pattern:
