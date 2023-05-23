@@ -9,50 +9,6 @@
 
 ---
 
-## List of Exported Functions
-
-The following is an example of how to import all of the helper functions from this package.
-In a real project, you would only import the functions you are using.
-
-If you are using this package in HTML scripts via CDN (IIFE), you can access the functions via the
-global variable `NHTSA`. For example `NHTSA.DecodeVinValues()`, `NHTSA.isValidVin()`, etc.
-
-```javascript
-import {
-  // NHTSA API Endpoints
-  DecodeVin,
-  DecodeVinExtended,
-  DecodeVinValues,
-  DecodeVinValuesBatch,
-  DecodeVinValuesExtended,
-  DecodeWMI,
-  GetAllMakes,
-  GetAllManufacturers,
-  GetCanadianVehicleSpecifications,
-  GetEquipmentPlantCodes,
-  GetMakeForManufacturer,
-  GetMakesForManufacturerAndYear,
-  GetMakesForVehicleType,
-  GetManufacturerDetails,
-  GetModelsForMake,
-  GetModelsForMakeId,
-  GetModelsForMakeIdYear,
-  GetModelsForMakeYear,
-  GetParts,
-  GetVehicleTypesForMake,
-  GetVehicleTypesForMakeId,
-  GetVehicleVariableList,
-  GetVehicleVariableValuesList,
-  GetWMIsForManufacturer,
-  // composable function returning helper functions for NHTSA API
-  useNHTSA,
-  // function for offline VIN validation
-  isValidVin,
-} from '@shaggytools/nhtsa-api-wrapper'
-```
-
----
-
 ## Node Quick Start
 
 The following demonstrates how to import the package in Node.js.
@@ -186,6 +142,50 @@ IIFE browser global variable: `NHTSA`
       });
   </script>
 </html>
+```
+
+---
+
+## List of Exported Functions
+
+The following is an example of how to import all of the helper functions from this package.
+In a real project, you would only import the functions you are using.
+
+If you are using this package in HTML scripts via CDN (IIFE), you can access the functions via the
+global variable `NHTSA`. For example `NHTSA.DecodeVinValues()`, `NHTSA.isValidVin()`, etc.
+
+```javascript
+import {
+  // NHTSA API Endpoints
+  DecodeVin,
+  DecodeVinExtended,
+  DecodeVinValues,
+  DecodeVinValuesBatch,
+  DecodeVinValuesExtended,
+  DecodeWMI,
+  GetAllMakes,
+  GetAllManufacturers,
+  GetCanadianVehicleSpecifications,
+  GetEquipmentPlantCodes,
+  GetMakeForManufacturer,
+  GetMakesForManufacturerAndYear,
+  GetMakesForVehicleType,
+  GetManufacturerDetails,
+  GetModelsForMake,
+  GetModelsForMakeId,
+  GetModelsForMakeIdYear,
+  GetModelsForMakeYear,
+  GetParts,
+  GetVehicleTypesForMake,
+  GetVehicleTypesForMakeId,
+  GetVehicleVariableList,
+  GetVehicleVariableValuesList,
+  GetWMIsForManufacturer,
+  // composable function returning helper functions for NHTSA API
+  useNHTSA,
+  // function for offline VIN validation
+  isValidVin,
+} from '@shaggytools/nhtsa-api-wrapper'
 ```
 
 ---

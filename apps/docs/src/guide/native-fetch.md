@@ -3,9 +3,9 @@
 ::: warning IMPORTANT
 This section is likely only applicable if using this package in Node versions < 18 and very
 old browsers.
-:::
 
-::: info :bulb: Did you know?
+<br />
+
 You can get your Node version by running `node -v` in your terminal.
 :::
 
@@ -24,6 +24,8 @@ globally in the browser and in Node.js versions 18+.
 
 ::: danger :exclamation: A polyfill for `fetch` is **_NOT_** bundled with this package.
 :::
+
+---
 
 ## Do I need a polyfill?
 
@@ -78,12 +80,16 @@ See Also:
 
 _Credit:_ [github.com/BuilderIO](https://github.com/BuilderIO/this-package-uses-fetch).
 
+---
+
 ## Available Polyfills
 
 There are many polyfills out there, but here are the ones we'll recommend:
 
 - node implementation: [node-fetch](https://github.com/bitinn/node-fetch)
 - browser polyfill: [whatwg-fetch](https://github.com/github/fetch)
+
+---
 
 ## Adding polyfills
 
@@ -111,6 +117,8 @@ import packageThatUsesFetch from 'package-that-uses-fetch'
 :::
 
 From then on, you're free to use the package as you see fit.
+
+---
 
 ## Why no bundled polyfill?
 

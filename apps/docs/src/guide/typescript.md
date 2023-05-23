@@ -9,8 +9,8 @@ from the NHTSA API. Please report any discrepancies you may find and they will b
 
 ::: tip :mag: See Also:
 
-Check out the [API Reference](/api/) page for more details on each
-endpoint helper function and their return types.
+Check out the [API](/api/) section for more details on each endpoint helper function and their
+return types.
 
 :::
 
@@ -38,26 +38,39 @@ finding types for this package, you may need to add the following to your `tscon
 
 ## Exported Types
 
-All exported types can be found in the `@shaggytools/nhtsa-api-wrapper/dist/types` directory.
-
-You shouldn't need to import them directly from `/dist/types`, the package root exports all of them
-directly.
-
-Here's an example of how to import specific types from this package:
-
-```ts
-import type {
-  DecodeVinResults,
-  GetAllMakesResults,
-} from '@shaggytools/nhtsa-api-wrapper'
-```
-
 ::: tip :mag: See Also:
 
 The [Typedocs - Types](../typedoc/modules/types) page lists all of the types this
 package exports and their structure.
 
+<br />
+
+You can find a full list of bundled types in the `/dist/types` directory on the
+[UNPKG Homepage](https://unpkg.com/browse/@shaggytools/nhtsa-api-wrapper/dist/types/) for this
+package.
 :::
+
+All bundled types can be found in the `@shaggytools/nhtsa-api-wrapper/dist/types` directory. You
+shouldn't need to import them directly from `/dist/types`. Instead, you can import them directly
+from the package itself.
+
+Here's an example of how to import specific types from this package:
+
+```ts
+// import types only
+import type {
+  DecodeVinResults,
+  GetAllMakesResults,
+} from '@shaggytools/nhtsa-api-wrapper'
+
+// or import types and functions at the same time
+import {
+  DecodeVin,
+  GetAllMakes,
+  type DecodeVinResults,
+  type GetAllMakesResults,
+} from '@shaggytools/nhtsa-api-wrapper'
+```
 
 ## NHTSA API Response Types
 

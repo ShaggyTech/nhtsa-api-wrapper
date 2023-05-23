@@ -1,25 +1,52 @@
 # @shaggytools/nhtsa-api-wrapper
 
+---
+
 ✔️ A thin Javascript client for the [NHTSA VPIC API](https://vpic.nhtsa.dot.gov/api/)
 
-✔️ Includes a set of helper functions to retrieve data from each of the
-[24 VPIC API endpoints](../api/index.md#vpic-api-endpoints)
+✔️ 24 helper functions to retrieve data from each of the [VPIC API endpoints](../api/index#vpic-api-endpoints)
 
-✔️ A helper composable function (`useNHTSA`) with tools to interact with the VPIC API at a lower
-level. See [useNHTSA](../utils/use-nhtsa.md)
+✔️ Works in Node.js via package managers and in browser scripts via CDN.
+
+✔️ Fully tree-shakeable and side-effect free with no dependencies or bundled polyfills.
 
 ✔️ Built with TypeScript support in mind. Get full type hints and code
-completion. API responses are [fully typed](../guide/typescript.md#nhtsa-api-response-types)
+completion in your IDE.
 
 ---
 
 ## Overview
 
-`@shaggytools/nhtsa-api-wrapper` provides an easy way to interact with the National Highway Traffic
-Safety Administration (NHTSA) Vehicle Information API (VPIC).
+This package provides an easy way to interact with the National Highway Traffic Safety
+Administration (NHTSA) Vehicle Information (VPIC) API.
 
 It's a thin javascript 'wrapper' or 'client' around the VPIC API. Included are helper functions to
 make interacting with the API and retrieving data less of a chore.
+
+---
+
+## Features
+
+- Provides a set of 24 helper functions to interact with each of the 24 endpoints, so you
+  don't have to worry about the url structure, query parameters, formatting, or fetching the data.
+  See the [VPIC API](/api/) section for more info.
+
+- Use the built in `fetch` functionionality or provide your own. The endpoint functions can be used
+  to build full VPIC URLs for you to use your own fetch implentation such as Axios or a polyfill.
+  See the [Bring Your Own Fetch](/guide/bring-your-own-fetch) guide for more info.
+
+- Provides a helper composable called `useNHTSA` that returns functions to interact with the VPIC
+  API at a lower level. See the [useNHTSA](/guide/use-nhtsa) guide for more info.
+
+- All endpoints are typed, so you get intellisense and type checking in your IDE. Response data is
+  also typed so you know exactly what to expect for each endpoint. See the
+  [TypeScript](/guide/typescript) guide for more info.
+
+- Built in runtime type checking so you can be sure you're passing the correct parameters to each
+  endpoint. The functions will throw an error if you pass missing or wrong parameters, and the error
+  message will tell you exactly what you did wrong.
+
+---
 
 ## What is the NHTSA VPIC API?
 
@@ -46,10 +73,13 @@ You can use it to build things for vehicle related apps. Creating a contact form
 would have the user first select a year and then have make and model dropdowns populated with the
 actual makes and models for that year.
 
-For a real world example of this, check out some of my other projects that use the VPIC API:
+For a real world example of this, check out some of my other projects that use this package and the
+VPIC API:
 
-- **[Dubsquared Contact Form](https://dubsquared.com/contact#contact-form)**
-- **[Simple Vin-Decoder](https://shaggytech.com/vin-decoder)**
+- [Dubsquared Contact Form](https://dubsquared.com/contact#contact-form)
+- [Simple Vin-Decoder](https://shaggytech.com/vin-decoder)
+
+---
 
 ## Where can you use this package?
 
@@ -71,7 +101,9 @@ polyfill for very old Browsers or Node.js versions < 18.
 
 :::
 
+---
+
 ## Next Steps
 
 - [Installation](../guide/install)
-- [Getting Started](../guide/getting-started)
+- [Quick Start](../guide/getting-started)

@@ -50,6 +50,7 @@ object. This object is the decoded data for the VIN.
 
 ::: tip See also:
 
+- [DecodeVinValues](../api/endpoints/decode-vin-values)
 - [DecodeVinValues Example Response](../api/endpoints/decode-vin-values#returns)
 - [Type - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
 
@@ -100,5 +101,5 @@ console.log(
 )
 ```
 
-::: tip :mag: See: [VPIC API Endpoints](../api/#vpic-api-endpoints)
+::: tip :mag: See Also: [VPIC API Endpoints](../api/#vpic-api-endpoints)
 :::

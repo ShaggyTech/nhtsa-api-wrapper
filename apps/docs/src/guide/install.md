@@ -191,5 +191,5 @@ https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js
 
 ## Next Steps
 
-- [Getting Started - Node](../guide/getting-started#node-quick-start)
-- [Getting Started - Browser](../guide/getting-started#browser-quick-start)
+- [Getting Started - Node](../guide/getting-started#node-getting-started)
+- [Getting Started - Browser](../guide/getting-started#browser-getting-started)
