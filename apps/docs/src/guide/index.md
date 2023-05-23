@@ -36,7 +36,7 @@ make interacting with the API and retrieving data less of a chore.
   See the [Bring Your Own Fetch](/guide/bring-your-own-fetch) guide for more info.
 
 - Provides a helper composable called `useNHTSA` that returns functions to interact with the VPIC
-  API at a lower level. See the [useNHTSA](/guide/use-nhtsa) guide for more info.
+  API at a lower level. See the [useNHTSA](/utils/use-nhtsa) guide for more info.
 
 - All endpoints are typed, so you get intellisense and type checking in your IDE. Response data is
   also typed so you know exactly what to expect for each endpoint. See the
