@@ -1,13 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "tsconfig/vitepress.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": [
+      "@types/node",
+      "vite-plugin-pwa/client"
+    ]
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     ".vitepress/**/*.ts",
+    ".vitepress/**/*.vue"
   ],
   "exclude": [
     "cache",
-    "dist"
+    "dist",
+    "node_modules"
   ]
 }

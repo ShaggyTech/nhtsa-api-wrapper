@@ -3,6 +3,7 @@
   "display": "Vite-Library-Mode",
   "extends": "./vite-library.json",
   "compilerOptions": {
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "preserveSymlinks": true
   }
 }
