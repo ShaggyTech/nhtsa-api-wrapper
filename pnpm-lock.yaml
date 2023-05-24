@@ -176,8 +176,8 @@ importers:
         specifier: 2.1.0
         version: 2.1.0(@types/node@18.15.11)(vite@4.2.1)
       vite-tsconfig-paths:
-        specifier: 4.0.7
-        version: 4.0.7(typescript@5.0.3)(vite@4.2.1)
+        specifier: 4.2.0
+        version: 4.2.0(typescript@5.0.3)(vite@4.2.1)
       vitest:
         specifier: 0.29.8
         version: 0.29.8(@vitest/ui@0.29.8)
@@ -6531,8 +6531,8 @@ packages:
       - supports-color
     dev: true
 
-  /vite-tsconfig-paths@4.0.7(typescript@5.0.3)(vite@4.2.1):
-    resolution: {integrity: sha512-MwIYaby6kcbQGZqMH+gAK6h0UYQGOkjsuAgw4q6bP/5vWkn8VKvnmLuCQHA2+IzHAJHnE8OFTO4lnJLFMf9+7Q==}
+  /vite-tsconfig-paths@4.2.0(typescript@5.0.3)(vite@4.2.1):
+    resolution: {integrity: sha512-jGpus0eUy5qbbMVGiTxCL1iB9ZGN6Bd37VGLJU39kTDD6ZfULTTb1bcc5IeTWqWJKiWV5YihCaibeASPiGi8kw==}
     peerDependencies:
       vite: '*'
     peerDependenciesMeta:
