@@ -42,7 +42,7 @@
     "@commitlint/cli": "17.5.1",
     "@commitlint/config-conventional": "17.4.4",
     "husky": "8.0.3",
-    "rimraf": "4.4.1",
+    "rimraf": "5.0.1",
     "turbo": "1.8.8",
     "typescript": "5.0.3"
   },
