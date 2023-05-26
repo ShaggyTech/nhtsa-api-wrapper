@@ -1,16 +1,42 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetParts
 
 # Module: api/endpoints/GetParts
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetPartsResults](api_endpoints_GetParts.md#getpartsresults)
+
 ### Functions
 
 - [GetParts](api_endpoints_GetParts.md#getparts)
 
-### Type Aliases
+## Type Aliases
 
-- [GetPartsResults](api_endpoints_GetParts.md#getpartsresults)
+### GetPartsResults
+
+Ƭ **GetPartsResults**: `Object`
+
+Objects found in the `Results` array of `GetParts` endpoint response.
+
+#### Type declaration
+
+| Name               | Type               |
+| :----------------- | :----------------- |
+| `CoverLetterURL`   | `string`           |
+| `LetterDate`       | `string`           |
+| `ManufacturerId`   | `number`           |
+| `ManufacturerName` | `string`           |
+| `ModelYearFrom`    | `number` \| `null` |
+| `ModelYearTo`      | `number` \| `null` |
+| `Name`             | `string`           |
+| `Type`             | `string`           |
+| `URL`              | `string`           |
+
+#### Defined in
+
+[api/endpoints/GetParts.ts:143](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L143)
 
 ## Functions
 
@@ -135,29 +161,3 @@ All query `params` are optional.
 #### Defined in
 
 [api/endpoints/GetParts.ts:78](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L78)
-
-## Type Aliases
-
-### GetPartsResults
-
-Ƭ **GetPartsResults**: `Object`
-
-Objects found in the `Results` array of `GetParts` endpoint response.
-
-#### Type declaration
-
-| Name               | Type               |
-| :----------------- | :----------------- |
-| `CoverLetterURL`   | `string`           |
-| `LetterDate`       | `string`           |
-| `ManufacturerId`   | `number`           |
-| `ManufacturerName` | `string`           |
-| `ModelYearFrom`    | `number` \| `null` |
-| `ModelYearTo`      | `number` \| `null` |
-| `Name`             | `string`           |
-| `Type`             | `string`           |
-| `URL`              | `string`           |
-
-#### Defined in
-
-[api/endpoints/GetParts.ts:143](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetParts.ts#L143)

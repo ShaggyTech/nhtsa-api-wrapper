@@ -1,16 +1,38 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllManufacturers
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetAllManufacturers
 
 # Module: api/endpoints/GetAllManufacturers
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetAllManufacturersResults](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)
+
 ### Functions
 
 - [GetAllManufacturers](api_endpoints_GetAllManufacturers.md#getallmanufacturers)
 
-### Type Aliases
+## Type Aliases
 
-- [GetAllManufacturersResults](api_endpoints_GetAllManufacturers.md#getallmanufacturersresults)
+### GetAllManufacturersResults
+
+Ƭ **GetAllManufacturersResults**: `Object`
+
+Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
+
+#### Type declaration
+
+| Name             | Type                                              |
+| :--------------- | :------------------------------------------------ |
+| `Country`        | `string`                                          |
+| `Mfr_CommonName` | `string` \| `null`                                |
+| `Mfr_ID`         | `number`                                          |
+| `Mfr_Name`       | `string`                                          |
+| `VehicleTypes`   | { `IsPrimary?`: `boolean` ; `Name?`: `string` }[] |
+
+#### Defined in
+
+[api/endpoints/GetAllManufacturers.ts:111](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L111)
 
 ## Functions
 
@@ -104,25 +126,3 @@ pages of 100 items.
 #### Defined in
 
 [api/endpoints/GetAllManufacturers.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L51)
-
-## Type Aliases
-
-### GetAllManufacturersResults
-
-Ƭ **GetAllManufacturersResults**: `Object`
-
-Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
-
-#### Type declaration
-
-| Name             | Type                                              |
-| :--------------- | :------------------------------------------------ |
-| `Country`        | `string`                                          |
-| `Mfr_CommonName` | `string` \| `null`                                |
-| `Mfr_ID`         | `number`                                          |
-| `Mfr_Name`       | `string`                                          |
-| `VehicleTypes`   | { `IsPrimary?`: `boolean` ; `Name?`: `string` }[] |
-
-#### Defined in
-
-[api/endpoints/GetAllManufacturers.ts:111](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetAllManufacturers.ts#L111)

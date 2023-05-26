@@ -1,16 +1,42 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeWMI
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeWMI
 
 # Module: api/endpoints/DecodeWMI
 
 ## Table of contents
 
+### Type Aliases
+
+- [DecodeWMIResults](api_endpoints_DecodeWMI.md#decodewmiresults)
+
 ### Functions
 
 - [DecodeWMI](api_endpoints_DecodeWMI.md#decodewmi)
 
-### Type Aliases
+## Type Aliases
 
-- [DecodeWMIResults](api_endpoints_DecodeWMI.md#decodewmiresults)
+### DecodeWMIResults
+
+Ƭ **DecodeWMIResults**: `Object`
+
+Objects found in the `Results` array of `DecodeWMI` endpoint response.
+
+#### Type declaration
+
+| Name                    | Type               |
+| :---------------------- | :----------------- |
+| `CommonName`            | `string`           |
+| `CreatedOn`             | `string`           |
+| `DateAvailableToPublic` | `string`           |
+| `Make`                  | `string`           |
+| `ManufacturerName`      | `string`           |
+| `ParentCompanyName`     | `string`           |
+| `URL`                   | `string`           |
+| `UpdatedOn`             | `string` \| `null` |
+| `VehicleType`           | `string`           |
+
+#### Defined in
+
+[api/endpoints/DecodeWMI.ts:76](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeWMI.ts#L76)
 
 ## Functions
 
@@ -68,29 +94,3 @@ be available in VPIC data sets.
 #### Defined in
 
 [api/endpoints/DecodeWMI.ts:37](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeWMI.ts#L37)
-
-## Type Aliases
-
-### DecodeWMIResults
-
-Ƭ **DecodeWMIResults**: `Object`
-
-Objects found in the `Results` array of `DecodeWMI` endpoint response.
-
-#### Type declaration
-
-| Name                    | Type               |
-| :---------------------- | :----------------- |
-| `CommonName`            | `string`           |
-| `CreatedOn`             | `string`           |
-| `DateAvailableToPublic` | `string`           |
-| `Make`                  | `string`           |
-| `ManufacturerName`      | `string`           |
-| `ParentCompanyName`     | `string`           |
-| `URL`                   | `string`           |
-| `UpdatedOn`             | `string` \| `null` |
-| `VehicleType`           | `string`           |
-
-#### Defined in
-
-[api/endpoints/DecodeWMI.ts:76](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeWMI.ts#L76)

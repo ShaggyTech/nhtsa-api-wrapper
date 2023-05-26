@@ -1,16 +1,37 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeIdYear
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeIdYear
 
 # Module: api/endpoints/GetModelsForMakeIdYear
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetModelsForMakeIdYearResults](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)
+
 ### Functions
 
 - [GetModelsForMakeIdYear](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyear)
 
-### Type Aliases
+## Type Aliases
 
-- [GetModelsForMakeIdYearResults](api_endpoints_GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)
+### GetModelsForMakeIdYearResults
+
+Ƭ **GetModelsForMakeIdYearResults**: `Object`
+
+Objects found in the `Results` array of `GetModelsForMakeIdYear` endpoint response.
+
+#### Type declaration
+
+| Name         | Type     |
+| :----------- | :------- |
+| `Make_ID`    | `number` |
+| `Make_Name`  | `string` |
+| `Model_ID`   | `number` |
+| `Model_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetModelsForMakeIdYear.ts:152](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L152)
 
 ## Functions
 
@@ -93,24 +114,3 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 #### Defined in
 
 [api/endpoints/GetModelsForMakeIdYear.ts:71](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L71)
-
-## Type Aliases
-
-### GetModelsForMakeIdYearResults
-
-Ƭ **GetModelsForMakeIdYearResults**: `Object`
-
-Objects found in the `Results` array of `GetModelsForMakeIdYear` endpoint response.
-
-#### Type declaration
-
-| Name         | Type     |
-| :----------- | :------- |
-| `Make_ID`    | `number` |
-| `Make_Name`  | `string` |
-| `Model_ID`   | `number` |
-| `Model_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetModelsForMakeIdYear.ts:152](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeIdYear.ts#L152)

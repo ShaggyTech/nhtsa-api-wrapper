@@ -1,16 +1,58 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetManufacturerDetails
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetManufacturerDetails
 
 # Module: api/endpoints/GetManufacturerDetails
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetManufacturerDetailsResults](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)
+
 ### Functions
 
 - [GetManufacturerDetails](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetails)
 
-### Type Aliases
+## Type Aliases
 
-- [GetManufacturerDetailsResults](api_endpoints_GetManufacturerDetails.md#getmanufacturerdetailsresults)
+### GetManufacturerDetailsResults
+
+Ƭ **GetManufacturerDetailsResults**: `Object`
+
+Objects found in the `Results` array of `GetManufacturerDetails` endpoint response.
+
+#### Type declaration
+
+| Name                       | Type                                                                                        |
+| :------------------------- | :------------------------------------------------------------------------------------------ |
+| `Address`                  | `string` \| `null`                                                                          |
+| `Address2`                 | `string` \| `null`                                                                          |
+| `City`                     | `string` \| `null`                                                                          |
+| `ContactEmail`             | `string` \| `null`                                                                          |
+| `ContactFax`               | `string` \| `null`                                                                          |
+| `ContactPhone`             | `string` \| `null`                                                                          |
+| `Country`                  | `string` \| `null`                                                                          |
+| `DBAs`                     | `string` \| `null`                                                                          |
+| `EquipmentItems`           | `unknown`[]                                                                                 |
+| `LastUpdated`              | `string`                                                                                    |
+| `ManufacturerTypes`        | { `Name`: `string` }[]                                                                      |
+| `Mfr_CommonName`           | `string` \| `null`                                                                          |
+| `Mfr_ID`                   | `number` \| `null`                                                                          |
+| `Mfr_Name`                 | `string` \| `null`                                                                          |
+| `OtherManufacturerDetails` | `string` \| `null`                                                                          |
+| `PostalCode`               | `string` \| `null`                                                                          |
+| `PrimaryProduct`           | `string` \| `null`                                                                          |
+| `PrincipalFirstName`       | `string` \| `null`                                                                          |
+| `PrincipalLastName`        | `string` \| `null`                                                                          |
+| `PrincipalPosition`        | `string` \| `null`                                                                          |
+| `StateProvince`            | `string` \| `null`                                                                          |
+| `SubmittedName`            | `string` \| `null`                                                                          |
+| `SubmittedOn`              | `string`                                                                                    |
+| `SubmittedPosition`        | `string` \| `null`                                                                          |
+| `VehicleTypes`             | { `GVWRFrom`: `string` ; `GVWRTo`: `string` ; `IsPrimary`: `boolean` ; `Name`: `string` }[] |
+
+#### Defined in
+
+[api/endpoints/GetManufacturerDetails.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L77)
 
 ## Functions
 
@@ -66,45 +108,3 @@ Multiple results are returned in case of multiple matches.
 #### Defined in
 
 [api/endpoints/GetManufacturerDetails.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L36)
-
-## Type Aliases
-
-### GetManufacturerDetailsResults
-
-Ƭ **GetManufacturerDetailsResults**: `Object`
-
-Objects found in the `Results` array of `GetManufacturerDetails` endpoint response.
-
-#### Type declaration
-
-| Name                       | Type                                                                                        |
-| :------------------------- | :------------------------------------------------------------------------------------------ |
-| `Address`                  | `string` \| `null`                                                                          |
-| `Address2`                 | `string` \| `null`                                                                          |
-| `City`                     | `string` \| `null`                                                                          |
-| `ContactEmail`             | `string` \| `null`                                                                          |
-| `ContactFax`               | `string` \| `null`                                                                          |
-| `ContactPhone`             | `string` \| `null`                                                                          |
-| `Country`                  | `string` \| `null`                                                                          |
-| `DBAs`                     | `string` \| `null`                                                                          |
-| `EquipmentItems`           | `unknown`[]                                                                                 |
-| `LastUpdated`              | `string`                                                                                    |
-| `ManufacturerTypes`        | { `Name`: `string` }[]                                                                      |
-| `Mfr_CommonName`           | `string` \| `null`                                                                          |
-| `Mfr_ID`                   | `number` \| `null`                                                                          |
-| `Mfr_Name`                 | `string` \| `null`                                                                          |
-| `OtherManufacturerDetails` | `string` \| `null`                                                                          |
-| `PostalCode`               | `string` \| `null`                                                                          |
-| `PrimaryProduct`           | `string` \| `null`                                                                          |
-| `PrincipalFirstName`       | `string` \| `null`                                                                          |
-| `PrincipalLastName`        | `string` \| `null`                                                                          |
-| `PrincipalPosition`        | `string` \| `null`                                                                          |
-| `StateProvince`            | `string` \| `null`                                                                          |
-| `SubmittedName`            | `string` \| `null`                                                                          |
-| `SubmittedOn`              | `string`                                                                                    |
-| `SubmittedPosition`        | `string` \| `null`                                                                          |
-| `VehicleTypes`             | { `GVWRFrom`: `string` ; `GVWRTo`: `string` ; `IsPrimary`: `boolean` ; `Name`: `string` }[] |
-
-#### Defined in
-
-[api/endpoints/GetManufacturerDetails.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetManufacturerDetails.ts#L77)
