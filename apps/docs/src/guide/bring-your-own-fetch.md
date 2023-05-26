@@ -77,7 +77,8 @@ still need the POST body properly formatted and certain headers set.
 
 Note that `DecodeVinValuesBatch` is the only VPIC POST endpoint.
 
-See [Using With POST Requests](../utils/use-nhtsa#post-endpoints) section for more info.
+See [Create URLs for POST Endpoints](../utils/use-nhtsa#create-urls-for-post-endpoints) section for
+more info.
 
 ### Caveats
 
@@ -150,8 +151,10 @@ context.
 ::: tip MORE INFO:
 
 - [useNHTSA](../utils/use-nhtsa)
-- [useNHTSA With GET Requests](../utils/use-nhtsa#get-endpoints)
-- [useNHTSA With POST Requests](../utils/use-nhtsa#post-endpoints)
+
+- [Create URLs for GET Endpoints](../utils/use-nhtsa#create-urls-for-get-endpoints)
+
+- [Create URLs for POST Endpoints](../utils/use-nhtsa#create-urls-for-post-endpoints)
 
 :::
 
