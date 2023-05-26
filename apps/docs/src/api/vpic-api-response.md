@@ -68,7 +68,7 @@ type NhtsaApiResponse<T> = {
 
 :::
 
-::: tip See Also: [Type - NhtsaApiResponse](typedoc/modules/api_types#nhtsaresponse)
+::: tip See Also: [Type - NhtsaApiResponse](../typedoc/modules/api_types#nhtsaresponse)
 :::
 
 ### Count
