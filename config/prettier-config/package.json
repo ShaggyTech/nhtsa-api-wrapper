@@ -5,6 +5,6 @@
   "private": true,
   "main": "prettier-config.json",
   "devDependencies": {
-    "prettier": "2.8.7"
+    "prettier": "2.8.8"
   }
 }
