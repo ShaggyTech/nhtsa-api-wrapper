@@ -1,4 +1,4 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / utils/errorHandler
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / utils/errorHandler
 
 # Module: utils/errorHandler
 

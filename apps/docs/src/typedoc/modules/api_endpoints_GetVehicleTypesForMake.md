@@ -1,16 +1,37 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMake
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMake
 
 # Module: api/endpoints/GetVehicleTypesForMake
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetVehicleTypesForMakeResults](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)
+
 ### Functions
 
 - [GetVehicleTypesForMake](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformake)
 
-### Type Aliases
+## Type Aliases
 
-- [GetVehicleTypesForMakeResults](api_endpoints_GetVehicleTypesForMake.md#getvehicletypesformakeresults)
+### GetVehicleTypesForMakeResults
+
+Ƭ **GetVehicleTypesForMakeResults**: `Object`
+
+Objects found in the `Results` array of `GetVehicleTypesForMake` endpoint response.
+
+#### Type declaration
+
+| Name              | Type     |
+| :---------------- | :------- |
+| `MakeId`          | `number` |
+| `MakeName`        | `string` |
+| `VehicleTypeId`   | `number` |
+| `VehicleTypeName` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetVehicleTypesForMake.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L73)
 
 ## Functions
 
@@ -62,24 +83,3 @@ whose name is LIKE the make name in the vPIC Dataset.
 #### Defined in
 
 [api/endpoints/GetVehicleTypesForMake.ts:32](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L32)
-
-## Type Aliases
-
-### GetVehicleTypesForMakeResults
-
-Ƭ **GetVehicleTypesForMakeResults**: `Object`
-
-Objects found in the `Results` array of `GetVehicleTypesForMake` endpoint response.
-
-#### Type declaration
-
-| Name              | Type     |
-| :---------------- | :------- |
-| `MakeId`          | `number` |
-| `MakeName`        | `string` |
-| `VehicleTypeId`   | `number` |
-| `VehicleTypeName` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetVehicleTypesForMake.ts:73](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMake.ts#L73)

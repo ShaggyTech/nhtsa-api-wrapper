@@ -1,6 +1,6 @@
-[@shaggytools/nhtsa-api-wrapper](index.md) / Exports
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](index.md) / Exports
 
-# @shaggytools/nhtsa-api-wrapper
+# @shaggytools/nhtsa-api-wrapper - v3.0.3
 
 ## Table of contents
 

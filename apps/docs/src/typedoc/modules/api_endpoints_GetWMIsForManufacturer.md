@@ -1,16 +1,41 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetWMIsForManufacturer
 
 # Module: api/endpoints/GetWMIsForManufacturer
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetWMIsForManufacturerResults](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)
+
 ### Functions
 
 - [GetWMIsForManufacturer](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturer)
 
-### Type Aliases
+## Type Aliases
 
-- [GetWMIsForManufacturerResults](api_endpoints_GetWMIsForManufacturer.md#getwmisformanufacturerresults)
+### GetWMIsForManufacturerResults
+
+Ƭ **GetWMIsForManufacturerResults**: `Object`
+
+Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint response.
+
+#### Type declaration
+
+| Name                    | Type               |
+| :---------------------- | :----------------- |
+| `Country`               | `string` \| `null` |
+| `CreatedOn`             | `string`           |
+| `DateAvailableToPublic` | `string`           |
+| `Id`                    | `number`           |
+| `Name`                  | `string`           |
+| `UpdatedOn`             | `string`           |
+| `VehicleType`           | `string`           |
+| `WMI`                   | `string`           |
+
+#### Defined in
+
+[api/endpoints/GetWMIsForManufacturer.ts:123](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L123)
 
 ## Functions
 
@@ -81,28 +106,3 @@ params are the second arg.
 #### Defined in
 
 [api/endpoints/GetWMIsForManufacturer.ts:56](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L56)
-
-## Type Aliases
-
-### GetWMIsForManufacturerResults
-
-Ƭ **GetWMIsForManufacturerResults**: `Object`
-
-Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint response.
-
-#### Type declaration
-
-| Name                    | Type               |
-| :---------------------- | :----------------- |
-| `Country`               | `string` \| `null` |
-| `CreatedOn`             | `string`           |
-| `DateAvailableToPublic` | `string`           |
-| `Id`                    | `number`           |
-| `Name`                  | `string`           |
-| `UpdatedOn`             | `string`           |
-| `VehicleType`           | `string`           |
-| `WMI`                   | `string`           |
-
-#### Defined in
-
-[api/endpoints/GetWMIsForManufacturer.ts:123](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetWMIsForManufacturer.ts#L123)

@@ -1,16 +1,34 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetCanadianVehicleSpecifications
 
 # Module: api/endpoints/GetCanadianVehicleSpecifications
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
+
 ### Functions
 
 - [GetCanadianVehicleSpecifications](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecifications)
 
-### Type Aliases
+## Type Aliases
 
-- [GetCanadianVehicleSpecificationsResults](api_endpoints_GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
+### GetCanadianVehicleSpecificationsResults
+
+Ƭ **GetCanadianVehicleSpecificationsResults**: `Object`
+
+Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpoint response.
+
+#### Type declaration
+
+| Name    | Type                                                                                                                                                                                                                |
+| :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Specs` | { `Name`: `"Make"` \| `"Model"` \| `"MYR"` \| `"OL"` \| `"OW"` \| `"OH"` \| `"WB"` \| `"CW"` \| `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F"` \| `"G"` \| `"TWF"` \| `"TWR"` \| `"WD"` ; `Value`: `string` }[] |
+
+#### Defined in
+
+[api/endpoints/GetCanadianVehicleSpecifications.ts:120](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L120)
 
 ## Functions
 
@@ -83,21 +101,3 @@ no default value is set for it so that an error will be thrown if not provided b
 #### Defined in
 
 [api/endpoints/GetCanadianVehicleSpecifications.ts:55](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L55)
-
-## Type Aliases
-
-### GetCanadianVehicleSpecificationsResults
-
-Ƭ **GetCanadianVehicleSpecificationsResults**: `Object`
-
-Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpoint response.
-
-#### Type declaration
-
-| Name    | Type                                                                                                                                                                                                                |
-| :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Specs` | { `Name`: `"Make"` \| `"Model"` \| `"MYR"` \| `"OL"` \| `"OW"` \| `"OH"` \| `"WB"` \| `"CW"` \| `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F"` \| `"G"` \| `"TWF"` \| `"TWR"` \| `"WD"` ; `Value`: `string` }[] |
-
-#### Defined in
-
-[api/endpoints/GetCanadianVehicleSpecifications.ts:120](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetCanadianVehicleSpecifications.ts#L120)

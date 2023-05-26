@@ -1,16 +1,37 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakesForManufacturerAndYear
 
 # Module: api/endpoints/GetMakesForManufacturerAndYear
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetMakesForManufacturerAndYearResults](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)
+
 ### Functions
 
 - [GetMakesForManufacturerAndYear](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyear)
 
-### Type Aliases
+## Type Aliases
 
-- [GetMakesForManufacturerAndYearResults](api_endpoints_GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)
+### GetMakesForManufacturerAndYearResults
+
+Ƭ **GetMakesForManufacturerAndYearResults**: `Object`
+
+Objects found in the `Results` array of `GetMakesForManufacturerAndYear` endpoint response.
+
+#### Type declaration
+
+| Name       | Type     |
+| :--------- | :------- |
+| `MakeId`   | `number` |
+| `MakeName` | `string` |
+| `MfrId`    | `number` |
+| `MfrName`  | `string` |
+
+#### Defined in
+
+[api/endpoints/GetMakesForManufacturerAndYear.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L105)
 
 ## Functions
 
@@ -80,24 +101,3 @@ Both `manufacturer` and `params.year` are required.
 #### Defined in
 
 [api/endpoints/GetMakesForManufacturerAndYear.ts:49](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L49)
-
-## Type Aliases
-
-### GetMakesForManufacturerAndYearResults
-
-Ƭ **GetMakesForManufacturerAndYearResults**: `Object`
-
-Objects found in the `Results` array of `GetMakesForManufacturerAndYear` endpoint response.
-
-#### Type declaration
-
-| Name       | Type     |
-| :--------- | :------- |
-| `MakeId`   | `number` |
-| `MakeName` | `string` |
-| `MfrId`    | `number` |
-| `MfrName`  | `string` |
-
-#### Defined in
-
-[api/endpoints/GetMakesForManufacturerAndYear.ts:105](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetMakesForManufacturerAndYear.ts#L105)

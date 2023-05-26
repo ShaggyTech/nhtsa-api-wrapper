@@ -1,16 +1,35 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMakeId
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleTypesForMakeId
 
 # Module: api/endpoints/GetVehicleTypesForMakeId
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetVehicleTypesForMakeIdResults](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)
+
 ### Functions
 
 - [GetVehicleTypesForMakeId](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeid)
 
-### Type Aliases
+## Type Aliases
 
-- [GetVehicleTypesForMakeIdResults](api_endpoints_GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)
+### GetVehicleTypesForMakeIdResults
+
+Ƭ **GetVehicleTypesForMakeIdResults**: `Object`
+
+Objects found in the `Results` array of `GetVehicleTypesForMakeId` endpoint response.
+
+#### Type declaration
+
+| Name              | Type     |
+| :---------------- | :------- |
+| `VehicleTypeId`   | `number` |
+| `VehicleTypeName` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetVehicleTypesForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L87)
 
 ## Functions
 
@@ -79,22 +98,3 @@ endpoint.
 #### Defined in
 
 [api/endpoints/GetVehicleTypesForMakeId.ts:46](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L46)
-
-## Type Aliases
-
-### GetVehicleTypesForMakeIdResults
-
-Ƭ **GetVehicleTypesForMakeIdResults**: `Object`
-
-Objects found in the `Results` array of `GetVehicleTypesForMakeId` endpoint response.
-
-#### Type declaration
-
-| Name              | Type     |
-| :---------------- | :------- |
-| `VehicleTypeId`   | `number` |
-| `VehicleTypeName` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetVehicleTypesForMakeId.ts:87](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleTypesForMakeId.ts#L87)

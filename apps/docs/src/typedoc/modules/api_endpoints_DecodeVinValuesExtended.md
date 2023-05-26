@@ -1,136 +1,16 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesExtended
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/DecodeVinValuesExtended
 
 # Module: api/endpoints/DecodeVinValuesExtended
 
 ## Table of contents
 
-### Functions
-
-- [DecodeVinValuesExtended](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextended)
-
 ### Type Aliases
 
 - [DecodeVinValuesExtendedResults](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)
 
-## Functions
+### Functions
 
-### DecodeVinValuesExtended
-
-▸ **DecodeVinValuesExtended**(`vin`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-::: tip :bulb: More Information
-See: [DecodeVinValuesExtended Documentation](/api/endpoints/decode-vin-values-extended)
-:::
-
-`DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
-information about the vehicle in in a _flat format_. This means the endpoint will return an
-array with a single object of results. Each key in the object is the name of a variable.
-
-This endpoint is similar to `DecodeVinValues` but returns additional information on variables
-related to other NHTSA programs like
-[NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
-
-Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
-older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
-the model year is known at the time of decoding, but it is not required.
-
-This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
-
-- Ex: "5UXWX7C5\*BA"
-- In this case, the VIN will be decoded partially with the available characters
-- In case of partial VINs, a `*` could be used to indicate the unavailable characters
-- The 9th digit is not necessary
-
-#### Parameters
-
-| Name  | Type     | Description                                     |
-| :---- | :------- | :---------------------------------------------- |
-| `vin` | `string` | Vehicle Identification Number (full or partial) |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-- Api Response
-  `object` -or- url `string` if `doFetch = false`
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L41)
-
-▸ **DecodeVinValuesExtended**(`vin`, `doFetch`, `_dummy?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-#### Parameters
-
-| Name      | Type        |
-| :-------- | :---------- |
-| `vin`     | `string`    |
-| `doFetch` | `true`      |
-| `_dummy?` | `undefined` |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L45)
-
-▸ **DecodeVinValuesExtended**(`vin`, `doFetch`, `_dummy?`): `Promise`<`string`\>
-
-#### Parameters
-
-| Name      | Type        |
-| :-------- | :---------- |
-| `vin`     | `string`    |
-| `doFetch` | `false`     |
-| `_dummy?` | `undefined` |
-
-#### Returns
-
-`Promise`<`string`\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L51)
-
-▸ **DecodeVinValuesExtended**(`vin`, `params`, `doFetch`): `Promise`<`string`\>
-
-#### Parameters
-
-| Name                | Type                 |
-| :------------------ | :------------------- |
-| `vin`               | `string`             |
-| `params`            | `Object`             |
-| `params.modelYear?` | `string` \| `number` |
-| `doFetch`           | `false`              |
-
-#### Returns
-
-`Promise`<`string`\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L57)
-
-▸ **DecodeVinValuesExtended**(`vin`, `params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-#### Parameters
-
-| Name                | Type                 |
-| :------------------ | :------------------- |
-| `vin`               | `string`             |
-| `params?`           | `Object`             |
-| `params.modelYear?` | `string` \| `number` |
-| `doFetch?`          | `true`               |
-
-#### Returns
-
-`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
-
-#### Defined in
-
-[api/endpoints/DecodeVinValuesExtended.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L63)
+- [DecodeVinValuesExtended](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextended)
 
 ## Type Aliases
 
@@ -298,3 +178,123 @@ Single object found in the `Results` array of `DecodeVinValuesExtended` endpoint
 #### Defined in
 
 [api/endpoints/DecodeVinValuesExtended.ts:117](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L117)
+
+## Functions
+
+### DecodeVinValuesExtended
+
+▸ **DecodeVinValuesExtended**(`vin`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+::: tip :bulb: More Information
+See: [DecodeVinValuesExtended Documentation](/api/endpoints/decode-vin-values-extended)
+:::
+
+`DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful
+information about the vehicle in in a _flat format_. This means the endpoint will return an
+array with a single object of results. Each key in the object is the name of a variable.
+
+This endpoint is similar to `DecodeVinValues` but returns additional information on variables
+related to other NHTSA programs like
+[NCSA](https://www.nhtsa.gov/research-data/national-center-statistics-and-analysis-ncsa), etc.
+
+Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
+older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
+the model year is known at the time of decoding, but it is not required.
+
+This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
+
+- Ex: "5UXWX7C5\*BA"
+- In this case, the VIN will be decoded partially with the available characters
+- In case of partial VINs, a `*` could be used to indicate the unavailable characters
+- The 9th digit is not necessary
+
+#### Parameters
+
+| Name  | Type     | Description                                     |
+| :---- | :------- | :---------------------------------------------- |
+| `vin` | `string` | Vehicle Identification Number (full or partial) |
+
+#### Returns
+
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+- Api Response
+  `object` -or- url `string` if `doFetch = false`
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:41](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L41)
+
+▸ **DecodeVinValuesExtended**(`vin`, `doFetch`, `_dummy?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+#### Parameters
+
+| Name      | Type        |
+| :-------- | :---------- |
+| `vin`     | `string`    |
+| `doFetch` | `true`      |
+| `_dummy?` | `undefined` |
+
+#### Returns
+
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:45](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L45)
+
+▸ **DecodeVinValuesExtended**(`vin`, `doFetch`, `_dummy?`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name      | Type        |
+| :-------- | :---------- |
+| `vin`     | `string`    |
+| `doFetch` | `false`     |
+| `_dummy?` | `undefined` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:51](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L51)
+
+▸ **DecodeVinValuesExtended**(`vin`, `params`, `doFetch`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name                | Type                 |
+| :------------------ | :------------------- |
+| `vin`               | `string`             |
+| `params`            | `Object`             |
+| `params.modelYear?` | `string` \| `number` |
+| `doFetch`           | `false`              |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L57)
+
+▸ **DecodeVinValuesExtended**(`vin`, `params?`, `doFetch?`): `Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+#### Parameters
+
+| Name                | Type                 |
+| :------------------ | :------------------- |
+| `vin`               | `string`             |
+| `params?`           | `Object`             |
+| `params.modelYear?` | `string` \| `number` |
+| `doFetch?`          | `true`               |
+
+#### Returns
+
+`Promise`<[`NhtsaResponse`](api_types.md#nhtsaresponse)<[`DecodeVinValuesExtendedResults`](api_endpoints_DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
+
+#### Defined in
+
+[api/endpoints/DecodeVinValuesExtended.ts:63](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/DecodeVinValuesExtended.ts#L63)

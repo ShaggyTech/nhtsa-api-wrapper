@@ -1,16 +1,37 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetModelsForMakeYear
 
 # Module: api/endpoints/GetModelsForMakeYear
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetModelsForMakeYearResults](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyearresults)
+
 ### Functions
 
 - [GetModelsForMakeYear](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyear)
 
-### Type Aliases
+## Type Aliases
 
-- [GetModelsForMakeYearResults](api_endpoints_GetModelsForMakeYear.md#getmodelsformakeyearresults)
+### GetModelsForMakeYearResults
+
+Ƭ **GetModelsForMakeYearResults**: `Object`
+
+Objects found in the `Results` array of `GetModelsForMakeYear` endpoint response.
+
+#### Type declaration
+
+| Name         | Type     |
+| :----------- | :------- |
+| `Make_ID`    | `number` |
+| `Make_Name`  | `string` |
+| `Model_ID`   | `number` |
+| `Model_Name` | `string` |
+
+#### Defined in
+
+[api/endpoints/GetModelsForMakeYear.ts:133](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L133)
 
 ## Functions
 
@@ -74,24 +95,3 @@ endpoint. To account for this, we pass the params object to the `createUrl` func
 #### Defined in
 
 [api/endpoints/GetModelsForMakeYear.ts:57](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L57)
-
-## Type Aliases
-
-### GetModelsForMakeYearResults
-
-Ƭ **GetModelsForMakeYearResults**: `Object`
-
-Objects found in the `Results` array of `GetModelsForMakeYear` endpoint response.
-
-#### Type declaration
-
-| Name         | Type     |
-| :----------- | :------- |
-| `Make_ID`    | `number` |
-| `Make_Name`  | `string` |
-| `Model_ID`   | `number` |
-| `Model_Name` | `string` |
-
-#### Defined in
-
-[api/endpoints/GetModelsForMakeYear.ts:133](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetModelsForMakeYear.ts#L133)

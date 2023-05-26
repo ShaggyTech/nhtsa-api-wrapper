@@ -1,16 +1,36 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakeForManufacturer
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetMakeForManufacturer
 
 # Module: api/endpoints/GetMakeForManufacturer
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetMakeForManufacturerResults](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)
+
 ### Functions
 
 - [GetMakeForManufacturer](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturer)
 
-### Type Aliases
+## Type Aliases
 
-- [GetMakeForManufacturerResults](api_endpoints_GetMakeForManufacturer.md#getmakeformanufacturerresults)
+### GetMakeForManufacturerResults
+
+Ƭ **GetMakeForManufacturerResults**: `Object`
+
+Objects found in the `Results` array of `GetMakeForManufacturer` endpoint response.
+
+#### Type declaration
+
+| Name        | Type     |
+| :---------- | :------- |
+| `Make_ID`   | `number` |
+| `Make_Name` | `string` |
+| `Mfr_Name`  | `string` |
+
+#### Defined in
+
+[api/endpoints/GetMakeForManufacturer.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L77)
 
 ## Functions
 
@@ -66,23 +86,3 @@ that is requested. Multiple results are returned in case of multiple matches.
 #### Defined in
 
 [api/endpoints/GetMakeForManufacturer.ts:36](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L36)
-
-## Type Aliases
-
-### GetMakeForManufacturerResults
-
-Ƭ **GetMakeForManufacturerResults**: `Object`
-
-Objects found in the `Results` array of `GetMakeForManufacturer` endpoint response.
-
-#### Type declaration
-
-| Name        | Type     |
-| :---------- | :------- |
-| `Make_ID`   | `number` |
-| `Make_Name` | `string` |
-| `Mfr_Name`  | `string` |
-
-#### Defined in
-
-[api/endpoints/GetMakeForManufacturer.ts:77](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetMakeForManufacturer.ts#L77)

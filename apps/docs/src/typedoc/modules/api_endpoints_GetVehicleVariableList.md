@@ -1,16 +1,38 @@
-[@shaggytools/nhtsa-api-wrapper](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
+[@shaggytools/nhtsa-api-wrapper - v3.0.3](../index.md) / [Exports](../modules.md) / api/endpoints/GetVehicleVariableList
 
 # Module: api/endpoints/GetVehicleVariableList
 
 ## Table of contents
 
+### Type Aliases
+
+- [GetVehicleVariableListResults](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)
+
 ### Functions
 
 - [GetVehicleVariableList](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelist)
 
-### Type Aliases
+## Type Aliases
 
-- [GetVehicleVariableListResults](api_endpoints_GetVehicleVariableList.md#getvehiclevariablelistresults)
+### GetVehicleVariableListResults
+
+Ƭ **GetVehicleVariableListResults**: `Object`
+
+Objects found in the `Results` array of `GetVehicleVariableList` endpoint response.
+
+#### Type declaration
+
+| Name          | Type                                               |
+| :------------ | :------------------------------------------------- |
+| `DataType`    | `"string"` \| `"int"` \| `"decimal"` \| `"lookup"` |
+| `Description` | `string`                                           |
+| `GroupName`   | `string` \| `null`                                 |
+| `ID`          | `number`                                           |
+| `Name`        | `string`                                           |
+
+#### Defined in
+
+[api/endpoints/GetVehicleVariableList.ts:54](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L54)
 
 ## Functions
 
@@ -57,25 +79,3 @@ vPIC dataset. Information on the name, description and the type of the variable 
 #### Defined in
 
 [api/endpoints/GetVehicleVariableList.ts:27](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L27)
-
-## Type Aliases
-
-### GetVehicleVariableListResults
-
-Ƭ **GetVehicleVariableListResults**: `Object`
-
-Objects found in the `Results` array of `GetVehicleVariableList` endpoint response.
-
-#### Type declaration
-
-| Name          | Type                                               |
-| :------------ | :------------------------------------------------- |
-| `DataType`    | `"string"` \| `"int"` \| `"decimal"` \| `"lookup"` |
-| `Description` | `string`                                           |
-| `GroupName`   | `string` \| `null`                                 |
-| `ID`          | `number`                                           |
-| `Name`        | `string`                                           |
-
-#### Defined in
-
-[api/endpoints/GetVehicleVariableList.ts:54](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/endpoints/GetVehicleVariableList.ts#L54)
