@@ -74,8 +74,8 @@ Returns a Promise that resolves to a **_single_** NhtsaResponse object of type
 => Promise<NhtsaResponse<DecodeVinValuesResults>>
 ```
 
-```typescript [NhtsaApiResponse]
-interface NhtsaApiResponse<DecodeVinValuesResults> = {
+```typescript [NhtsaResponse]
+interface NhtsaResponse<DecodeVinValuesResults> = {
   Count: number
   Message: string
   Results: Array<DecodeVinValuesResults>

@@ -74,7 +74,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<GetWMIsForManufacturerResults> = {
+type NhtsaResponse<GetWMIsForManufacturerResults> = {
   Count: number
   Message: string
   Results: Array<GetWMIsForManufacturerResults>

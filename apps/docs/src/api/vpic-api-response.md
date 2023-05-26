@@ -39,8 +39,8 @@ The response from the VPIC API is a JSON object with the following structure:
 
 ::: code-group
 
-```ts [Interface NhtsaApiResponse]
-type NhtsaApiResponse<T> = {
+```ts [Interface NhtsaResponse]
+type NhtsaResponse<T> = {
   Count: number
   Message: string
   Results: Array<T>
@@ -68,7 +68,7 @@ type NhtsaApiResponse<T> = {
 
 :::
 
-::: tip See Also: [Type - NhtsaApiResponse](../typedoc/modules/api_types#nhtsaresponse)
+::: tip See Also: [Type - NhtsaResponse](../typedoc/modules/api_types#nhtsaresponse)
 :::
 
 ### Count
@@ -120,12 +120,12 @@ type DecodeVinResults = {
 }
 ```
 
-And the `NhtsaApiResponse<T>` will look like this:
+And the `NhtsaResponse<T>` will look like this:
 
-```ts [NhtsaApiResponse]
-// `DecodeVinResults` takes the place of generic `<T>` in `NhtsaApiResponse<T>`
+```ts [NhtsaResponse]
+// `DecodeVinResults` takes the place of generic `<T>` in `NhtsaResponse<T>`
 
-type NhtsaApiResponse<DecodeVinResults> = {
+type NhtsaResponse<DecodeVinResults> = {
   Count: number
   Message: string
   SearchCriteria: string

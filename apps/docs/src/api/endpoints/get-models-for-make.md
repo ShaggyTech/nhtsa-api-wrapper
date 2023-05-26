@@ -48,7 +48,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<GetModelsForMakeResults> = {
+type NhtsaResponse<GetModelsForMakeResults> = {
   Count: number
   Message: string
   Results: Array<GetModelsForMakeResults>

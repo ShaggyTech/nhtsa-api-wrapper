@@ -52,8 +52,8 @@ Returns a Promise that resolves to a **_single_** NhtsaResponse object of type
 => Promise<NhtsaResponse<DecodeWMIResults>>
 ```
 
-```typescript [NhtsaApiResponse]
-interface NhtsaApiResponse<DecodeWMIResults> = {
+```typescript [NhtsaResponse]
+interface NhtsaResponse<DecodeWMIResults> = {
   Count: number
   Message: string
   Results: Array<DecodeWMIResults>

@@ -65,7 +65,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<DecodeVinResults> = {
+type NhtsaResponse<DecodeVinResults> = {
   Count: number
   Message: string
   Results: Array<DecodeVinResults>

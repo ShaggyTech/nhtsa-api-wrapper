@@ -44,8 +44,8 @@ Returns a Promise that resolves to NhtsaResponse objects of type
 => Promise<NhtsaResponse<GetAllMakesResults>>
 ```
 
-```typescript [NhtsaApiResponse]
-interface NhtsaApiResponse<GetAllMakesResults> = {
+```typescript [NhtsaResponse]
+interface NhtsaResponse<GetAllMakesResults> = {
   Count: number
   Message: string
   Results: Array<GetAllMakesResults>

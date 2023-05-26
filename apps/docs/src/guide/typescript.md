@@ -104,8 +104,8 @@ The NHTSA VPIC API response is an object with the following structure:
 
 ::: code-group
 
-```ts [Interface NhtsaApiResponse]
-type NhtsaApiResponse<T> = {
+```ts [Interface NhtsaResponse]
+type NhtsaResponse<T> = {
   Count: number
   Message: string
   Results: Array<T>
@@ -159,9 +159,9 @@ allow you to hover over the function name and see the arguments the function acc
 they are expected to be. The "type structure" of the function will be visible to you in case you
 forget what the function expects. It will also show what the function returns.
 
-You'll see `Promise<NhtsaApiResponse<GetAllMakesResults> | string>` is the return type in the case
+You'll see `Promise<NhtsaResponse<GetAllMakesResults> | string>` is the return type in the case
 of `GetAllMakes`. This means that the function returns a `Promise` that resolves to either a
-`NhtsaApiResponse` object or a `string`. All of the endpoint functions return a similar type using
+`NhtsaResponse` object or a `string`. All of the endpoint functions return a similar type using
 their own `Results` array type.
 
 ### Benefits of Typescript
@@ -176,12 +176,12 @@ For this example lets say you saved the return from the `DecodeVin` to a variabl
 const data = await DecodeVin('1G1YY22G965105609')
 ```
 
-The `data` variable is of type `NhtsaApiResponse<DecodeVinResults>`:
+The `data` variable is of type `NhtsaResponse<DecodeVinResults>`:
 
 ::: code-group
 
-```ts [NhtsaApiResponse]
-type NhtsaApiResponse<DecodeVinResults> = {
+```ts [NhtsaResponse]
+type NhtsaResponse<DecodeVinResults> = {
   Count: number
   Message: string
   Results: Array<DecodeVinResults>
