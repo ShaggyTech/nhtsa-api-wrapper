@@ -162,8 +162,8 @@ export const useNHTSA = () => {
 
   /**
    * This uses native `fetch()` to make a request to the NHTSA API. Returns a promise that
-   * resolves to a `NhtsaApiResponse<T>` object, where `T` is the type of the objects in the
-   * `Results` array of the `NhtsaApiResponse` object, e.g. `NhtsaApiResponse<DecodeVinResults>`.
+   * resolves to a `NhtsaResponse<T>` object, where `T` is the type of the objects in the
+   * `Results` array of the `NhtsaResponse` object, e.g. `NhtsaResponse<DecodeVinResults>`.
    *
    * _NOTE:_ All POST requests should use the post() method of this composable, which sets specific
    * POST fetch options before calling this method. Never call this method directly for POST
@@ -210,7 +210,7 @@ export const useNHTSA = () => {
    * @param [options] - Object containing RequestInit options + custom options
    * @param {boolean} [options.saveUrl=true] - Whether to save the URL string in the composable
    * instance
-   * @returns {Promise<NhtsaApiResponse>} Promise that resolves to a NhtsaApiResponse object
+   * @returns {Promise<NhtsaResponse>} Promise that resolves to a NhtsaResponse object
    */
   const get = async <T>(
     url?: string | CreateUrlOptions,
@@ -289,8 +289,8 @@ export const useNHTSA = () => {
 
   /**
    * This uses native `fetch()` to make a _POST_ request to the NHTSA API. Returns a promise that
-   * resolves to a `NhtsaApiResponse<T>` object, where `T` is the type of the objects in the
-   * `Results` array of the `NhtsaApiResponse` object, e.g. `NhtsaApiResponse<DecodeVinResults>`.
+   * resolves to a `NhtsaResponse<T>` object, where `T` is the type of the objects in the
+   * `Results` array of the `NhtsaResponse` object, e.g. `NhtsaResponse<DecodeVinResults>`.
    *
    * `DecodeVinValueBatch` is the only NHTSA API endpoint that uses POST requests.
    *
@@ -340,7 +340,7 @@ export const useNHTSA = () => {
    * instance after the request is made (default: true).
    * @param {string} [options.body] - Body string to send in the POST request. Default string
    * "&format=json" is always appended to the body string.
-   * @returns {Promise<NhtsaApiResponse<T>>} Promise that resolves to a NhtsaApiResponse object
+   * @returns {Promise<NhtsaResponse<T>>} Promise that resolves to a NhtsaResponse object
    * containing the response data.
    */
   const post = async <T>(

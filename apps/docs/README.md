@@ -6,5 +6,4 @@ Built With:
 
 Contains the source code for the `@shaggytools/nhtsa-api-wrapper` documentation.
 
-- published to GitHub Pages @
-  [shaggytech.com/nhtsa-api-wrapper](https://shaggytech.com/nhtsa-api-wrapper/)
+See it live at [vpic.shaggytech.com](vpic.shaggytech.com)

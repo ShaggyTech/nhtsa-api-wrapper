@@ -51,7 +51,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<GetMakeForManufacturerResults> = {
+type NhtsaResponse<GetMakeForManufacturerResults> = {
   Count: number
   Message: string
   Results: Array<GetMakeForManufacturerResults>

@@ -1,0 +1,346 @@
+:root {
+  // VPNavBar
+  --vp-navbar-menu-height: calc(var(--vp-nav-height) - 16px);
+  --vp-navbar-box-shadow: 0 4px 4px -1px var(--vp-c-bg-alt);
+
+  // VPSidebar
+  --vp-sidebar-width: 380px;
+  --vp-sidebar-item-padding-left: 12px;
+}
+
+// --------------------------------
+// -- Top Nav
+
+.Layout > .VPNav > .VPNavBar {
+  // Remove nav border and use box shadow instead
+  border-bottom: none;
+  box-shadow: var(--vp-navbar-box-shadow);
+
+  // curtain makes it frustrating to click on links close to the navbar, shrink it to zero height
+  .curtain {
+    bottom: 0;
+  }
+
+  .VPNavBarTitle {
+    .title {
+      font-size: 16px;
+    }
+  }
+
+  // Restyle top NavBarMenu links
+  .VPNavBarMenu.menu {
+    height: var(--vp-navbar-menu-height);
+
+    a {
+      font-size: 12px;
+      margin: 0 4px;
+      color: var(--vp-c-text-2);
+      transition-duration: 0.1s;
+      transition-property: color;
+
+      &:hover:not(.active) {
+        color: var(--vp-c-text-1);
+      }
+    }
+
+    .VPNavBarMenuLink,
+    .VPNavBarMenuGroup {
+      &,
+      .button {
+        height: var(--vp-navbar-menu-height);
+      }
+
+      &.active {
+        color: var(--vp-c-text-1);
+        box-shadow: inset 0 -1px 0 0 var(--vp-c-brand);
+      }
+    }
+
+    // Fix enormous line-height of navbar items
+    .VPNavBarMenuLink,
+    .VPNavBarMenuGroup {
+      line-height: 1.32;
+    }
+
+    .VPFlyout {
+      .text {
+        color: var(--vp-c-text-2);
+      }
+
+      &:hover .text {
+        color: var(--vp-c-text-1);
+      }
+    }
+  }
+
+  // Center social links in navbar extras flyout
+  .VPNavBarExtra.VPFlyout {
+    .item.social-links {
+      place-content: center;
+    }
+  }
+}
+
+// --------------------------------
+// -- Sidebar Nav
+
+.Layout > .VPSidebar {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 32px;
+  width: var(--vp-sidebar-width);
+
+  // make sure sidebar doesn't take up all horizontal screen space on mobile
+  // so user can close mobile menu by clicking on empty space to the right
+  &.open {
+    max-width: min(var(--vp-sidebar-width), 85vw);
+    padding-top: 24px;
+  }
+
+  #VPSidebarNav {
+    margin-top: 0;
+
+    // Adjust spacing between groups.
+    .group {
+      padding-bottom: 8px;
+      width: calc(var(--vp-sidebar-width) - 32px);
+    }
+    .group + .group {
+      margin-top: 0px;
+    }
+  }
+
+  .VPSidebarItem {
+    // Style all links in the sidebar
+    margin-bottom: 2px;
+
+    > .item > .VPLink.link {
+      padding: 6px 0;
+
+      .text {
+        padding: 0;
+        padding-left: var(--vp-sidebar-item-padding-left);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      // Make hovered links more visible
+      &:hover .text {
+        color: var(--vp-c-brand);
+      }
+    }
+
+    // Link section heading alignment
+    .item .text {
+      padding-left: var(--vp-sidebar-item-padding-left);
+      color: var(--vp-c-text-2);
+    }
+
+    // Make active links more visible
+    &.is-active > .item > .VPLink.link .text {
+      color: var(--vp-c-text-1);
+    }
+
+    // Smaller, quicker caret
+    .caret {
+      transform: scale(0.8);
+      margin-right: 4px;
+    }
+    .caret-icon {
+      transition-duration: 0.16s;
+    }
+
+    // Customize sidebar main section dropdowns
+    &.level-0 {
+      padding-bottom: 10px;
+
+      & > .item > .text {
+        color: var(--vp-c-text-1);
+        font-size: 16px;
+      }
+
+      // dropdown closed
+      &.collapsible.collapsed {
+        padding: 0;
+
+        & > .item > .text {
+          color: var(--vp-c-text-2);
+          font-size: 16px;
+        }
+
+        &:hover > .item > .text {
+          color: var(--vp-c-brand);
+        }
+      }
+
+      // dropdown open
+      &.collapsible:not(.collapsed) {
+        & > .item[role='button'] {
+          padding-bottom: 8px;
+        }
+
+        // give the items some space away from the dropdown heading
+        & > .item + .items {
+          margin-block-start: 4px;
+        }
+      }
+    }
+
+    &.level-1 {
+      padding-left: calc(var(--vp-sidebar-item-padding-left));
+
+      // Customize top-level active links
+      &.is-link.has-active > .item {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        background-color: var(--vp-c-bg-alt);
+
+        :root.dark & {
+          background-color: var(--vp-c-bg);
+        }
+      }
+
+      &:not(.is-link) {
+        margin-bottom: 8px;
+      }
+    }
+
+    &.level-1,
+    &.level-2,
+    &.level-3,
+    &.level-4,
+    &.level-5 {
+      // dropdown open
+      &.collapsible:not(.collapsed) {
+        & > .item + .items {
+          margin-block-start: 4px;
+        }
+      }
+
+      // Indicator for active sidebar items
+      &.is-active {
+        > .item {
+          background-color: var(--vp-c-bg);
+
+          > .indicator {
+            top: 0;
+            bottom: 0;
+            left: -1px;
+            width: 3px;
+            background-color: var(--vp-c-brand);
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+          }
+        }
+      }
+
+      & > .items {
+        padding-left: var(--vp-sidebar-item-padding-left);
+        margin-block-start: 2px;
+        margin-block-end: 4px;
+      }
+    }
+  }
+}
+
+// --------------------------------
+// -- Media Queries
+
+// Medium screens
+@media (min-width: $bp-medium) {
+  .Layout > .VPNav > .VPNavBar {
+    padding: 0 24px;
+
+    .VPNavBarTitle {
+      .title {
+        font-size: 14px;
+      }
+    }
+
+    .VPNavBarSearch.search {
+      padding: 0 16px;
+    }
+
+    .VPNavBarMenu.menu {
+      a,
+      .button .text {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+// Large screens
+@media (min-width: $bp-large) {
+  :root {
+    --vp-sidebar-width: 308px;
+  }
+
+  .Layout > .VPNav > .VPNavBar {
+    box-shadow: unset;
+
+    .container > .title {
+      // subtract scroll bar width to get max width, so no overlap with sidebar scrollbar
+      max-width: calc(var(--vp-sidebar-width) - 12px);
+      // remove default padding from outer .title container
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // Center align title text
+    .VPNavBarTitle .title {
+      font-size: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .VPNavBarSearch.search {
+      padding-left: 24px;
+    }
+
+    .VPNavBarMenu.menu {
+      a,
+      .button .text {
+        font-size: 14px;
+      }
+    }
+
+    &.has-sidebar {
+      padding: 0;
+
+      &.container > .content {
+        padding-left: var(--vp-sidebar-width);
+        padding-right: 0;
+
+        .content-body {
+          padding-right: 32px;
+          box-shadow: var(--vp-navbar-box-shadow);
+        }
+      }
+    }
+  }
+
+  .Layout > .VPSidebar {
+    #VPSidebarNav {
+      margin-top: 16px;
+
+      // Allow sidebar groups to take up all horizontal space available
+      .group {
+        width: unset;
+      }
+    }
+  }
+}
+
+// Extra large screens
+@media (min-width: $bp-xlarge) {
+  :root {
+    --vp-sidebar-width: 360px;
+  }
+
+  .Layout > .VPNav > .VPNavBar {
+    .VPNavBarTitle .title {
+      font-size: 18px;
+    }
+  }
+}

@@ -61,7 +61,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<GetAllManufacturersResults> = {
+type NhtsaResponse<GetAllManufacturersResults> = {
   Count: number
   Message: string
   Results: Array<GetAllManufacturersResults>

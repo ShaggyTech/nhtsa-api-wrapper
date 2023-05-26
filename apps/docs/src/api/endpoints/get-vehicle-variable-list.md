@@ -43,7 +43,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<GetVehicleVariableListResults> = {
+type NhtsaResponse<GetVehicleVariableListResults> = {
   Count: number
   Message: string
   Results: Array<GetVehicleVariableListResults>

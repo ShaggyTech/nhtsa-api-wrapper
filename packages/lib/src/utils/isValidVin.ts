@@ -48,7 +48,7 @@ const WEIGHTS_ARRAY: number[] = [
  * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
  * [VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
  *
- * If you need to test that the algorithm is working correctly, you can use 17 zeros `0` as
+ * If you need to test that the algorithm is working correctly, you can use 17 ones `1` as
  * the VIN and it should return `true` as the result.
  *
  * @example <caption>Browser via html script tags</caption>

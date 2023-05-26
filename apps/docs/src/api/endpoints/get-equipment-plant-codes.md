@@ -94,7 +94,7 @@ the `Results` key.
 ```
 
 ```typescript
-type NhtsaApiResponse<GetEquipmentPlantCodesResults> = {
+type NhtsaResponse<GetEquipmentPlantCodesResults> = {
   Count: number
   Message: string
   Results: Array<GetEquipmentPlantCodesResults>

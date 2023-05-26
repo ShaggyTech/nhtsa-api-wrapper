@@ -72,7 +72,7 @@ Returns a Promise that resolves to a NhtsaResponse object containing an array of
 ```
 
 ```typescript
-type NhtsaApiResponse<GetModelsForMakeYearResults> = {
+type NhtsaResponse<GetModelsForMakeYearResults> = {
   Count: number
   Message: string
   Results: Array<GetModelsForMakeYearResults>

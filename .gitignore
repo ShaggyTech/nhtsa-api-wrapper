@@ -6,6 +6,7 @@ dev/
 dist/
 distDev/
 docsDev/
+dev-dist/
 
 ### Vitepress
 **/.vitepress/dist/**

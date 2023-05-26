@@ -33,6 +33,8 @@ response = {
 ::: tip :mag: See: [VPIC Response](../api/vpic-api-response) for more info on the response object
 :::
 
+---
+
 ## Response Object
 
 The `DecodeVinValues` function returns a Promise that resolves to an object with the following
@@ -48,10 +50,13 @@ object. This object is the decoded data for the VIN.
 
 ::: tip See also:
 
+- [DecodeVinValues](../api/endpoints/decode-vin-values)
 - [DecodeVinValues Example Response](../api/endpoints/decode-vin-values#returns)
-- [Type - DecodeVinValuesResults](../api/endpoints/decode-vin-values#type-decodevinvaluesresults)
+- [Type - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
 
 :::
+
+---
 
 ## Accessing the Decoded Data
 
@@ -75,7 +80,7 @@ const model = decodedData.Model
 const engineHP = decodedData.EngineHP
 
 console.log(
-  `The vehicle is a ${year} ${make} ${model}, it has ${engineHP} horsepower.`
+  `The vehicle is a ${year} ${make} ${model} and it has ${engineHP} horsepower.`
 )
 ```
 
@@ -92,9 +97,9 @@ const { Count, Message, Results, SearchCriteria } = await DecodeVinValues(
 const { ModelYear, Make, Model, EngineHP } = Results[0]
 
 console.log(
-  `The vehicle is a ${ModelYear} ${Make} ${Model}. It has ${EngineHP} horsepower.`
+  `The vehicle is a ${ModelYear} ${Make} ${Model} and it has ${EngineHP} horsepower.`
 )
 ```
 
-::: tip :mag: See: [VPIC API Endpoints](../api/#vpic-api-endpoints)
+::: tip :mag: See Also: [VPIC API Endpoints](../api/#vpic-api-endpoints)
 :::

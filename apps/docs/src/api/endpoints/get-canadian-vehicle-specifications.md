@@ -72,7 +72,7 @@ the `Results` key.
 ```
 
 ```typescript
-type NhtsaApiResponse<GetCanadianVehicleSpecificationsResults> = {
+type NhtsaResponse<GetCanadianVehicleSpecificationsResults> = {
   Count: number
   Message: string
   Results: Array<GetCanadianVehicleSpecificationsResults>

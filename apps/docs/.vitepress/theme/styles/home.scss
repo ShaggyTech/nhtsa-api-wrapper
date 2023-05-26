@@ -1,0 +1,40 @@
+// --------------------------------
+// -- Home page
+
+.VPHero.VPHomeHero {
+  background-color: var(--vp-c-bg-alt);
+  padding: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 60px)
+    64px 64px;
+
+  .container .main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .name {
+      line-height: 36px;
+      font-size: 32px;
+    }
+  }
+}
+
+.VPFeatures.VPHomeFeatures {
+  padding-top: 48px;
+
+  .container .items {
+    row-gap: 16px;
+
+    .item span {
+      border: 2px solid var(--vp-c-bg-alt);
+      box-shadow: 0 2px 4px 0 var(--vp-c-bg-alt);
+    }
+  }
+}
+
+@media (min-width: $bp-large) {
+  .VPHero.VPHomeHero {
+    .container .main {
+      padding-left: 48px;
+    }
+  }
+}

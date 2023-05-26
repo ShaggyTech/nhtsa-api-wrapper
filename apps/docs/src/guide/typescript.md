@@ -1,15 +1,20 @@
 # Typescript Support
 
----
-
 This package is designed for full typescript support and bundles it's own types. Types can be found
-in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't need to.
+in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't need to use them
+directly.
 
 We've tried to be as accurate as possible typing the API responses based on testing real responses
 from the NHTSA API. Please report any discrepancies you may find and they will be fixed.
 
-Check out the [API Reference](/api/) page for more details on each
-endpoint helper function and their return types.
+::: tip :mag: See Also:
+
+Check out the [API](/api/) section for more details on each endpoint helper function and their
+return types.
+
+:::
+
+---
 
 ## Using Typescript
 
@@ -31,19 +36,65 @@ finding types for this package, you may need to add the following to your `tscon
 
 :::
 
+There is the potential for some confusion when using the package with Typescript. This is due to
+the fact that the NHTSA API uses `PascalCase` for it's endpoint names, and Javascript
+conventions are to use `camelCase` for function names and `PascalCase` for classes/types.
+
+In this package the endpoint wrapper functions aren't `camelCased` like most javascript functions,
+they are `PascalCased`. For example `DecodeVin` and `GetAllMakes` instead of `decodeVin` and
+`getAllMakes`.
+
+The decision was made to name package endpoint functions with the same name and casing as the
+endpoints themselves, mostly for the sake of consistency between this package and the
+[official VPIC documentation](https://vpic.nhtsa.dot.gov/api/).
+
+The package types are also `PascalCased` just like the endpoint functions. This can be confusing when
+importing from this package while using intellesense/code completion in your code editor as it will
+show the function names and types all grouped together in `PascalCase`. It may be hard to tell the
+difference between the function names and the types if you don't know what to look for.
+
+Every endpoint function has a corresponding `Results` type with the same name and casing as the
+function. For example `DecodeVin` has a `DecodeVinResults` type, `GetAllMakes` has a
+`GetAllMakesResults` type, etc.
+
+A few endpoints also have other associated types, such as
+[`DecodeVinExtendedVariable`](../typedoc/modules/api_endpoints_DecodeVinExtended#decodevinextendedvariable)
+that describe possible `Variable` values found in the `Results` array of the `DecodeVinExtended`
+endpoint.
+
 ## Exported Types
 
-All exported types can be found in the `@shaggytools/nhtsa-api-wrapper/dist/types` directory.
+::: tip :mag: See Also:
 
-You shouldn't need to import them directly from `/dist/types`, the package root exports all of them
-directly.
+The [Typedocs - Types](../typedoc/modules/types) page lists all of the types this
+package exports and their structure.
+
+<br />
+
+You can find a full list of bundled types in the `/dist/types` directory on the
+[UNPKG Homepage](https://unpkg.com/browse/@shaggytools/nhtsa-api-wrapper/dist/types/) for this
+package.
+:::
+
+All bundled types can be found in the `@shaggytools/nhtsa-api-wrapper/dist/types` directory. You
+shouldn't need to import them directly from `/dist/types`. Instead, you can import them directly
+from the package itself.
 
 Here's an example of how to import specific types from this package:
 
 ```ts
+// import types only
 import type {
   DecodeVinResults,
   GetAllMakesResults,
+} from '@shaggytools/nhtsa-api-wrapper'
+
+// or import types and functions at the same time
+import {
+  DecodeVin,
+  GetAllMakes,
+  type DecodeVinResults,
+  type GetAllMakesResults,
 } from '@shaggytools/nhtsa-api-wrapper'
 ```
 
@@ -53,8 +104,8 @@ The NHTSA VPIC API response is an object with the following structure:
 
 ::: code-group
 
-```ts [Interface NhtsaApiResponse]
-type NhtsaApiResponse<T> = {
+```ts [Interface NhtsaResponse]
+type NhtsaResponse<T> = {
   Count: number
   Message: string
   Results: Array<T>
@@ -85,8 +136,12 @@ type NhtsaApiResponse<T> = {
 
 :::
 
-See [VPIC Response Structure](/api/vpic-api-response#response-structure) for more details
+::: tip :mag: See Also:
+
+The [VPIC Response](/api/vpic-api-response) page has more details
 on the response returned by the VPIC API.
+
+:::
 
 ## Note for Beginners
 
@@ -104,9 +159,9 @@ allow you to hover over the function name and see the arguments the function acc
 they are expected to be. The "type structure" of the function will be visible to you in case you
 forget what the function expects. It will also show what the function returns.
 
-You'll see `Promise<NhtsaApiResponse<GetAllMakesResults> | string>` is the return type in the case
+You'll see `Promise<NhtsaResponse<GetAllMakesResults> | string>` is the return type in the case
 of `GetAllMakes`. This means that the function returns a `Promise` that resolves to either a
-`NhtsaApiResponse` object or a `string`. All of the endpoint functions return a similar type using
+`NhtsaResponse` object or a `string`. All of the endpoint functions return a similar type using
 their own `Results` array type.
 
 ### Benefits of Typescript
@@ -121,12 +176,12 @@ For this example lets say you saved the return from the `DecodeVin` to a variabl
 const data = await DecodeVin('1G1YY22G965105609')
 ```
 
-The `data` variable is of type `NhtsaApiResponse<DecodeVinResults>`:
+The `data` variable is of type `NhtsaResponse<DecodeVinResults>`:
 
 ::: code-group
 
-```ts [NhtsaApiResponse]
-type NhtsaApiResponse<DecodeVinResults> = {
+```ts [NhtsaResponse]
+type NhtsaResponse<DecodeVinResults> = {
   Count: number
   Message: string
   Results: Array<DecodeVinResults>

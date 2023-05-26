@@ -78,8 +78,8 @@ Returns a Promise that resolves to a **_single_** NhtsaResponse object of type
 => Promise<NhtsaResponse<DecodeVinValuesExtendedResults>>
 ```
 
-```typescript [NhtsaApiResponse]
-interface NhtsaApiResponse<DecodeVinValuesExtendedResults> = {
+```typescript [NhtsaResponse]
+interface NhtsaResponse<DecodeVinValuesExtendedResults> = {
   Count: number
   Message: string
   Results: Array<DecodeVinValuesExtendedResults>
