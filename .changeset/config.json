@@ -3,7 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [],
+  "linked": [["@shaggytools/nhtsa-api-wrapper", "docs"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
