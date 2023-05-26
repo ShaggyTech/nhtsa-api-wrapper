@@ -1,4 +1,8 @@
 // scrollbar
+:root {
+  scroll-padding-top: calc(var(--vp-nav-height-desktop) + 30px);
+}
+
 ::-webkit-scrollbar {
   width: 12px;
 }

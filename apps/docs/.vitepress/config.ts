@@ -34,10 +34,7 @@ export default withPwa(
     cleanUrls: true,
 
     markdown: {
-      theme: {
-        light: 'github-light',
-        dark: 'one-dark-pro',
-      },
+      theme: 'one-dark-pro',
     },
 
     themeConfig: {

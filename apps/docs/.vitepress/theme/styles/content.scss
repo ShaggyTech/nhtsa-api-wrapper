@@ -133,52 +133,41 @@
     word-break: break-word;
   }
 
-  .footnotes {
-    p {
-      margin: 0.75em 0;
-      font-size: 14px;
-      line-height: 24px;
+  // Smaller header anchors
+  .header-anchor {
+    transform: scale(0.9);
+  }
+}
+
+// Style specific pages
+.main > .vp-doc {
+  // Make header on the guide index page smaller as the package name is long
+  &._guide_ {
+    h1 {
+      font-size: 24px;
     }
   }
-
-  .footnotes-sep {
-    margin: 44px 0 32px;
-    border-top: 1px solid var(--vp-c-divider-light);
-  }
-}
-
-// Don't clip text in the outline
-.VPDocAsideOutline .outline-link {
-  white-space: normal;
-  text-overflow: initial;
-  padding: 5px 0;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-// Code Group styles
-.vp-code-group .tabs label {
-  font-size: 13px;
-  font-weight: 600;
 }
 
 // Custom Blocks
-.vp-doc .custom-block {
+.main > .vp-doc .custom-block {
   margin: 48px 0;
-  padding: 28px 28px;
-  padding-left: 32px;
+  padding: 28px 28px 28px 32px;
   border: none;
   border-radius: 8px;
-  box-shadow: inset 0 0 0 1px var(--block-border-color);
+  box-shadow: inset 0 0 1px 1px var(--block-border-color);
 
   p {
     margin: 2px 0 0;
     font-size: 14px;
-    line-height: 1.8;
 
     &.custom-block-title {
       position: relative;
       margin-bottom: 8px;
+    }
+
+    + p {
+      margin-top: 8px;
     }
   }
 
@@ -216,8 +205,26 @@
     }
   }
 
-  &[open] summary::marker {
-    content: '▽\a0\a0\a0';
+  // Custom block border and icon colors based on block type
+  &.info {
+    --block-border-color: var(--vp-custom-block-info-border);
+    --block-icon-color: var(--vp-custom-block-info-text);
+  }
+  &.tip {
+    --block-border-color: var(--vp-custom-block-tip-border);
+    --block-icon-color: var(--vp-custom-block-tip-text);
+  }
+  &.warning {
+    --block-border-color: var(--vp-custom-block-warning-border);
+    --block-icon-color: var(--vp-custom-block-warning-text);
+  }
+  &.danger {
+    --block-border-color: var(--vp-custom-block-danger-border);
+    --block-icon-color: var(--vp-custom-block-danger-text);
+  }
+  &.details {
+    --block-border-color: var(--vp-custom-block-details-border);
+    --block-icon-color: var(--vp-custom-block-details-text);
   }
 
   &:not(.details) p.custom-block-title::before,
@@ -241,45 +248,15 @@
     mask-size: contain;
   }
 
-  &:not(:root.dark &) {
-    --vp-custom-block-info-bg: rgba(121, 121, 121, 0.117);
-    --vp-custom-block-tip-bg: rgba(0, 235, 157, 0.083);
-    --vp-custom-block-tip-border: rgba(0, 136, 120, 0.5);
-    --vp-custom-block-tip-text: rgb(16, 122, 92);
-    --vp-custom-block-warning-text: rgb(190, 127, 0);
-    --vp-custom-block-warning-border: rgb(255, 200, 0);
-    --vp-custom-block-warning-bg: rgba(255, 200, 0, 0.118);
-    --vp-custom-block-danger-bg: rgba(255, 0, 0, 0.057);
+  &[open] summary::marker {
+    content: '▽\a0\a0\a0';
   }
-  :root.dark & {
-    --vp-custom-block-tip-text: hsl(132, 79%, 47%);
-    --vp-custom-block-tip-border: hsl(158, 100%, 19%);
-    --vp-custom-block-warning-text: rgb(228, 164, 3);
-    --vp-custom-block-warning-border: rgb(208, 163, 0);
-    box-shadow: inset 0 0 0 1px var(--block-border-color);
-    background-color: var(--vp-c-bg-alt);
-  }
+}
 
-  &.info {
-    --block-border-color: var(--vp-custom-block-info-border);
-    --block-icon-color: var(--vp-custom-block-info-text);
-  }
-  &.tip {
-    --block-border-color: var(--vp-custom-block-tip-border);
-    --block-icon-color: var(--vp-custom-block-tip-text);
-  }
-  &.warning {
-    --block-border-color: var(--vp-custom-block-warning-border);
-    --block-icon-color: var(--vp-custom-block-warning-text);
-  }
-  &.danger {
-    --block-border-color: var(--vp-custom-block-danger-border);
-    --block-icon-color: var(--vp-custom-block-danger-text);
-  }
-  &.details {
-    --block-border-color: var(--vp-custom-block-details-border);
-    --block-icon-color: var(--vp-custom-block-details-text);
-  }
+// Code Group styles
+.main > .vp-code-group .tabs label {
+  font-size: 13px;
+  font-weight: 600;
 }
 
 // --------------------------------
@@ -298,6 +275,15 @@
     font-size: 12.5px;
     transition-duration: 0.1s;
   }
+}
+
+// Don't clip text in the outline
+.VPDocAsideOutline .outline-link {
+  white-space: normal;
+  text-overflow: initial;
+  padding: 5px 0;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 // --------------------------------
@@ -341,17 +327,29 @@
 // Small screens
 @media (max-width: $bp-small) {
   // Fix custom blocks on small screens
-  .vp-doc .custom-block {
+  .main > .vp-doc .custom-block {
     padding-left: 18px;
     padding-right: 18px;
+
+    p.custom-block-title {
+      margin-bottom: 14px;
+    }
 
     &:not(.details) p.custom-block-title::before,
     &:not(.details) summary::before {
       left: -18px;
     }
+  }
+}
 
-    p.custom-block-title {
-      margin-bottom: 14px;
+// Medium Screens
+@media (min-width: $bp-medium) {
+  .main > .vp-doc {
+    // Revert font-size decrease on smaller screens
+    &._guide_ {
+      h1 {
+        font-size: 32px;
+      }
     }
   }
 }
@@ -371,7 +369,7 @@
     padding-left: var(--vp-sidebar-width);
 
     .VPDoc.has-sidebar.has-aside {
-      padding-left: 0;
+      padding: 32px 16px 0;
     }
   }
 }

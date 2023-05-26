@@ -1,8 +1,11 @@
 :root {
-  --vp-sidebar-width: 380px;
+  // VPNavBar
   --vp-navbar-menu-height: calc(var(--vp-nav-height) - 16px);
+  --vp-navbar-box-shadow: 0 4px 4px -1px var(--vp-c-bg-alt);
 
-  --box-shadow-navbar: 0 4px 4px -1px var(--vp-c-bg-alt);
+  // VPSidebar
+  --vp-sidebar-width: 380px;
+  --vp-sidebar-item-padding-left: 12px;
 }
 
 // --------------------------------
@@ -11,7 +14,7 @@
 .Layout > .VPNav > .VPNavBar {
   // Remove nav border and use box shadow instead
   border-bottom: none;
-  box-shadow: var(--box-shadow-navbar);
+  box-shadow: var(--vp-navbar-box-shadow);
 
   // curtain makes it frustrating to click on links close to the navbar, shrink it to zero height
   .curtain {
@@ -82,11 +85,8 @@
 // -- Sidebar Nav
 
 .Layout > .VPSidebar {
-  --active-indicator-padding: 8px;
-  --vp-new-padding: calc(24px - var(--active-indicator-padding));
-
-  padding-left: var(--vp-new-padding);
-  padding-right: var(--vp-new-padding);
+  padding-left: 8px;
+  padding-right: 8px;
   padding-bottom: 32px;
   width: var(--vp-sidebar-width);
 
@@ -112,27 +112,27 @@
 
   .VPSidebarItem {
     // Style all links in the sidebar
+    margin-bottom: 2px;
+
     > .item > .VPLink.link {
-      padding: 8px calc(var(--active-indicator-padding) / 2);
-      transition-duration: 0.1s;
-      transition-property: background-color;
+      padding: 6px 0;
 
       .text {
         padding: 0;
-        padding-left: 12px;
-        font-size: 13px;
-        line-height: 1.32;
+        padding-left: var(--vp-sidebar-item-padding-left);
+        font-size: 14px;
+        line-height: 1.5;
       }
 
       // Make hovered links more visible
       &:hover .text {
-        color: var(--vp-c-text-1);
+        color: var(--vp-c-brand);
       }
     }
 
     // Link section heading alignment
     .item .text {
-      padding-left: 14px;
+      padding-left: var(--vp-sidebar-item-padding-left);
       color: var(--vp-c-text-2);
     }
 
@@ -144,6 +144,7 @@
     // Smaller, quicker caret
     .caret {
       transform: scale(0.8);
+      margin-right: 4px;
     }
     .caret-icon {
       transition-duration: 0.16s;
@@ -154,13 +155,22 @@
       padding-bottom: 10px;
 
       & > .item > .text {
-        padding: 0;
+        color: var(--vp-c-text-1);
         font-size: 16px;
       }
 
       // dropdown closed
       &.collapsible.collapsed {
         padding: 0;
+
+        & > .item > .text {
+          color: var(--vp-c-text-2);
+          font-size: 16px;
+        }
+
+        &:hover > .item > .text {
+          color: var(--vp-c-brand);
+        }
       }
 
       // dropdown open
@@ -176,14 +186,22 @@
       }
     }
 
-    // Customize top-level active links
-    &.level-1.is-link.has-active > .item {
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
-      background-color: var(--vp-c-bg-alt);
+    &.level-1 {
+      padding-left: calc(var(--vp-sidebar-item-padding-left));
 
-      :root.dark & {
-        background-color: var(--vp-c-bg);
+      // Customize top-level active links
+      &.is-link.has-active > .item {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        background-color: var(--vp-c-bg-alt);
+
+        :root.dark & {
+          background-color: var(--vp-c-bg);
+        }
+      }
+
+      &:not(.is-link) {
+        margin-bottom: 8px;
       }
     }
 
@@ -214,6 +232,12 @@
             border-bottom-left-radius: 2px;
           }
         }
+      }
+
+      & > .items {
+        padding-left: var(--vp-sidebar-item-padding-left);
+        margin-block-start: 2px;
+        margin-block-end: 4px;
       }
     }
   }
@@ -290,7 +314,7 @@
 
         .content-body {
           padding-right: 32px;
-          box-shadow: var(--box-shadow-navbar);
+          box-shadow: var(--vp-navbar-box-shadow);
         }
       }
     }
