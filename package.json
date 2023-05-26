@@ -32,12 +32,12 @@
     "format": "turbo run format",
     "test": "turbo run test",
     "coverage": "pnpm --filter @shaggytools/nhtsa-api-wrapper run coverage",
-    "clean": "turbo run clean"
-  },
-  "dependencies": {
-    "@changesets/cli": "2.26.1"
+    "clean": "turbo run clean",
+    "ci:version": "changeset version",
+    "ci:publish": "pnpm run build && pnpm publish -r"
   },
   "devDependencies": {
+    "@changesets/cli": "2.26.1",
     "@commitlint/cli": "17.5.1",
     "@commitlint/config-conventional": "17.4.4",
     "husky": "8.0.3",
