@@ -1,26 +1,33 @@
-# Installation
+# Install
 
-You can use this package in any environment that supports the native
-[Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). It works in
-modern browsers and Node.js versions > 18 out of the box.
-
-The package is available on several CDNs for use in the browser via HTML `<script>` tags. You can also
-install it via your favorite package manager for use in Node.js bundlers, frameworks, etc.
-
-The package is fully tree-shakeable and side-effect free when using the ES Module bundle (.mjs) or
-ESM CDN link.
-
-::: warning 🔞 WARNING
+::: warning 🔞 IMPORTANT
 
 This package uses the
 [built-in Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) with no bundled
-polyfill for very old Browsers or Node.js versions < 18.
+polyfill for Node.js versions < 18 or very old Browsers.
 
-Related:
-
-- [This Package Uses Native Fetch](../guide/native-fetch.md#this-package-uses-native-fetch)
 - [Alternate Use Without Polyfills](../guide/bring-your-own-fetch.md)
 
+- [Support for Node Versions < 18](../guide/native-fetch.md#this-package-uses-native-fetch)
+
+:::
+
+There are several options for installing this package for use in Javascript projects.
+
+- Node: install this package via your favorite package manager
+
+- Browser: available on several CDNs for use in the browser via HTML `<script>` tags.
+
+The package is fully tree-shakeable and side-effect free when using the ES Module bundle (.mjs) or
+**ESM** CDN link. Tree-shaking is a process that removes unused code from the final bundle. This can
+significantly reduce the size of the final bundle by only importing the code you are actually using.
+
+::: tip 📦 Package Contents
+
+A full directory listing of the package contents is available at
+[https://unpkg.com/@shaggytools/nhtsa-api-wrapper/](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/).
+
+All package bundles are located in the `/dist` directory.
 :::
 
 ---
@@ -45,24 +52,28 @@ $ pnpm add @shaggytools/nhtsa-api-wrapper
 
 :::
 
-If you are using this package with a Node.js version < 18, please see the
-[Support for Node Versions < 18](../guide/native-fetch.md) section of the guide.
+In modern Node environments that support ES Modules, you simply import the package
+and use it via `@shaggytools/nhtsa-api-wrapper`. This will use the `.mjs` bundle of the package by
+default. See the [ES Module](#es-module) section for more details.
 
-Unless your node version is < 14, you should use the ES Module bundle as it is the only
-bundle that is tree-shakeable.
+In older node environments, you can use the CommonJS (.cjs) or UMD (umd.cjs) bundles. In this case
+you will likely need to use a polyfill for the Fetch API and/or Promises. See the
+[UMD Module](#umd-module) and [CommonJS](#commonjs) sections for more details.
 
-If you still need to support older versions of Node, there are other builds you can use
-(UMD and CommonJS) but you will likely need to use a polyfill for the Fetch API and/or
-Promises.
+If you are using this package with a Node.js version < 18, please read the
+[Support for Node Versions < 18](../guide/native-fetch.md) section of the guide. This package
+doesn't include a polyfill for the Fetch API, so you'll need to provide your own polyfill or fetch
+implentation in this case.
 
-Note that if using a bundler like Webpack or Rollup, or a framework like Next or Nuxt, you
-can use the ESM (.mjs) bundle instead and it will automatically use the correct build for your target
-environment.
+Unless your node version is < 14, you should use the ES Module bundle (default) as it is the only
+bundle that is tree-shakeable. The CommonJS and UMD bundles are not tree-shakeable.
 
 Relevant Links:
 
 - [NPM Homepage](https://www.npmjs.com/package/@shaggytools/nhtsa-api-wrapper)
 - [Yarn Homepage](https://yarnpkg.com/package/@shaggytools/nhtsa-api-wrapper)
+
+After installing the package, you can import it into your project several ways:
 
 ### ES Module
 
@@ -92,9 +103,9 @@ const NHTSA = require('@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.cjs
 
 ## Browser
 
-You can use the package directly in html script tags using a CDN.
+For use in browsers, you can install the package via CDN and HTML `<script>` tags.
 
-For targeting modern browsers, you can use the ESM versions with `<script type="module">` and
+For targeting modern browsers, use the ESM versions with `<script type="module">` and
 import statements. You would then use normal ES6 import statements to import the package inside the
 module script much like you would in Node.js.
 
@@ -165,31 +176,55 @@ want to use the Node.js method instead and install from a package manager.
 **CDN Homepage Links:**
 
 - [jsDelivr](https://www.jsdelivr.com/package/npm/@shaggytools/nhtsa-api-wrapper) - hosts all dist files (bundles and types)
+
 - [UNPKG](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/) - directory of all dist files (bundles and types)
 
-<br />
+**Direct links to the latest version CDN bundles:**
 
-**Direct links to the latest CDN bundles:**
-
-[jsDelivr (ESM)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm)
+### [jsDelivr (ESM)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm)
 
 ```
 https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper/+esm
 ```
 
-[jsDelivr (IIFE)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper)
+### [jsDelivr (IIFE)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper)
 
 ```
 https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper`
 ```
 
-[UNPKG (IIFE)](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js)
+### [UNPKG (IIFE)](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js)
+
+Note that all dist bundles are available in the
+[UNPKG directory](https://unpkg.com/@shaggytools/nhtsa-api-wrapper/), but this example uses the
+IIFE version.
 
 ```
 https://unpkg.com/@shaggytools/nhtsa-api-wrapper/dist/nhtsa-api-wrapper.iife.js
 ```
 
+If you need to import a specific version, you can use the following url format. These
+examples will use version 3.0.3, but you can replace the `@3.0.3` part with any version you need.
+
+[jsDelivr (ESM)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper@3.0.3/+esm)
+
+```
+https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper@3.0.3/+esm
+```
+
+[jsDelivr (IIFE)](https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper@3.0.3/dist/nhtsa-api-wrapper.iife.min.js)
+
+```
+https://cdn.jsdelivr.net/npm/@shaggytools/nhtsa-api-wrapper@3.0.3/dist/nhtsa-api-wrapper.iife.min.js
+```
+
+[UNPKG (IIFE)](https://unpkg.com/@shaggytools/nhtsa-api-wrapper@3.0.3/dist/nhtsa-api-wrapper.iife.js)
+
+```
+https://unpkg.com/@shaggytools/nhtsa-api-wrapper@3.0.3/dist/nhtsa-api-wrapper.iife.js
+```
+
 ## Next Steps
 
-- [Getting Started - Node](../guide/getting-started#node-getting-started)
-- [Getting Started - Browser](../guide/getting-started#browser-getting-started)
+- [Node - Getting Started](../guide/getting-started#node-getting-started)
+- [Browser - Getting Started](../guide/getting-started#browser-getting-started)

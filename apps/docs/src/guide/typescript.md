@@ -36,6 +36,32 @@ finding types for this package, you may need to add the following to your `tscon
 
 :::
 
+There is the potential for some confusion when using the package with Typescript. This is due to
+the fact that the NHTSA API uses `PascalCase` for it's endpoint names, and Javascript
+conventions are to use `camelCase` for function names and `PascalCase` for classes/types.
+
+In this package the endpoint wrapper functions aren't `camelCased` like most javascript functions,
+they are `PascalCased`. For example `DecodeVin` and `GetAllMakes` instead of `decodeVin` and
+`getAllMakes`.
+
+The decision was made to name package endpoint functions with the same name and casing as the
+endpoints themselves, mostly for the sake of consistency between this package and the
+[official VPIC documentation](https://vpic.nhtsa.dot.gov/api/).
+
+The package types are also `PascalCased` just like the endpoint functions. This can be confusing when
+importing from this package while using intellesense/code completion in your code editor as it will
+show the function names and types all grouped together in `PascalCase`. It may be hard to tell the
+difference between the function names and the types if you don't know what to look for.
+
+Every endpoint function has a corresponding `Results` type with the same name and casing as the
+function. For example `DecodeVin` has a `DecodeVinResults` type, `GetAllMakes` has a
+`GetAllMakesResults` type, etc.
+
+A few endpoints also have other associated types, such as
+[`DecodeVinExtendedVariable`](typedoc/modules/api_endpoints_DecodeVinExtended#decodevinextendedvariable)
+that describe possible `Variable` values found in the `Results` array of the `DecodeVinExtended`
+endpoint.
+
 ## Exported Types
 
 ::: tip :mag: See Also:

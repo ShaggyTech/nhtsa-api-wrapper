@@ -1,6 +1,9 @@
 # Getting Started
 
-::: tip :mag: See Also:
+This section will show you how to get started using this package and show some simple
+examples for both Node.js and the browser.
+
+::: tip Make sure you've installed the package before continuing.
 
 - [Install - Node](../guide/install#node)
 - [Install - Browser](../guide/install#browser)
@@ -46,14 +49,17 @@ response = {
 */
 ```
 
-- A more in depth explanation of how to decode a VIN can be found on the
-  [VIN Decoding](../guide/vin-decoding) page.
+Further Reading:
 
-- For a full example response see the
-  [DecodeVinValues](../api/endpoints/decode-vin-values#returns) page.
+- A more in depth explanation of how to decode a VIN and parse the data can be found on the
+  [Decoding a VIN](../guide/vin-decoding) page.
 
-- The structure of `Results[0]` in the above example is of type
-  [DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults).
+- For a full example response see [DecodeVinValues](../api/endpoints/decode-vin-values#returns)
+  documentation.
+
+- The structure of `Results[0]` in the above example can be seen on the
+  [Typedocs - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
+  page.
 
 ---
 

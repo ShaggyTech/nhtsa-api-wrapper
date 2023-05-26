@@ -13,6 +13,9 @@ You can get your Node version by running `node -v` in your terminal.
 
 ## This Package Uses Native Fetch
 
+::: danger A polyfill for `fetch` is **_NOT_** bundled with this package:exclamation:
+:::
+
 This package uses the native [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 method internally, for both Node and Browser.
 
@@ -21,9 +24,6 @@ It has also been available in modern browsers for years now.
 
 The terms `native` or `built-in` mean you don't have to explicitly import it, it's available
 globally in the browser and in Node.js versions 18+.
-
-::: danger :exclamation: A polyfill for `fetch` is **_NOT_** bundled with this package.
-:::
 
 ---
 

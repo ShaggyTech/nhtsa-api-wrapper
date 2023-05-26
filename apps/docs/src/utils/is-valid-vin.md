@@ -7,13 +7,10 @@ const isValidVin: (vin: string) => boolean
 ---
 
 Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
-[VIN Check Algorithm](<https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit>).
-
-`isValidVin` returns a boolean value of `true` if the VIN is valid, or `false` if it is not.
-
-Behind the scenes, the function uses a the
 [VIN Check Algorithm](<https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit>)
 to validate the VIN.
+
+`isValidVin` returns a boolean value of `true` if the VIN is valid, or `false` if it is not.
 
 For an interactive view of how the VIN digit is calculated see the
 [VPIC Check Digit Calculator](https://vpic.nhtsa.dot.gov/decoder/CheckDigit/Index/5yj3e1eaxhf000316)

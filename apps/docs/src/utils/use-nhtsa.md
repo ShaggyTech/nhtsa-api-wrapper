@@ -37,6 +37,8 @@ It also contains functions for building and returning the URL string for the VPI
 
 ::: tip See Also:
 
+- [useNHTSA Reference](../typedoc/modules/api_useNHTSA)
+
 - [Alternate Use of This Package](../guide/bring-your-own-fetch#option-2-using-usenhtsa)
 
 :::

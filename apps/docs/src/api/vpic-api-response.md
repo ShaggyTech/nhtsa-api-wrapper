@@ -68,6 +68,9 @@ type NhtsaApiResponse<T> = {
 
 :::
 
+::: tip See Also: [Type - NhtsaApiResponse](typedoc/modules/api_types#nhtsaresponse)
+:::
+
 ### Count
 
 The `Count` property is a `number` that represents the number of results in the `Results` array.
