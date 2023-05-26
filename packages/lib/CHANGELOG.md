@@ -1,5 +1,11 @@
 # @shaggytools/nhtsa-api-wrapper
 
+## 3.0.4
+
+### Patch Changes
+
+- 99adf18: Fix UNPKG CDN delivery by using correct filename for "unpkg" field in package.json
+
 ## 3.0.3
 
 ### Patch Changes
@@ -35,10 +41,10 @@ The following changes are breaking and will require some changes to your code.
 - Each endpoint now has its own method that you can import and use directly.
 
 ```ts
-import { DecodeVin, GetAllMakes } from '@shaggytools/nhtsa-api-wrapper'
+import { DecodeVin, GetAllMakes } from "@shaggytools/nhtsa-api-wrapper";
 
-const getAllMakesResponse = await GetAllMakes()
-const decodeVinResponse = await DecodeVin('1G1YY22G965105609')
+const getAllMakesResponse = await GetAllMakes();
+const decodeVinResponse = await DecodeVin("1G1YY22G965105609");
 ```
 
 - The `fetch` method is no longer polyfilled by default. Node v18+ now supports the `fetch` API natively and
