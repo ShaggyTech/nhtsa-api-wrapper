@@ -26,7 +26,10 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
+    "build:lib": "pnpm --filter @shaggytools/nhtsa-api-wrapper run build",
+    "build:docs": "pnpm --filter docs run build",
     "dev": "turbo run dev --parallel",
+    "dev:lib": "pnpm --filter @shaggytools/nhtsa-api-wrapper run dev",
     "dev:docs": "pnpm --filter docs run dev",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
@@ -35,7 +38,7 @@
     "coverage": "pnpm --filter @shaggytools/nhtsa-api-wrapper run coverage",
     "clean": "turbo run clean",
     "ci:version": "changeset version",
-    "ci:publish": "pnpm run build && pnpm publish -r"
+    "ci:publish": "pnpm run build:lib && pnpm publish -r"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.1",
