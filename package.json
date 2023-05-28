@@ -37,8 +37,8 @@
     "test": "turbo run test",
     "coverage": "pnpm --filter @shaggytools/nhtsa-api-wrapper run coverage",
     "clean": "turbo run clean",
-    "ci:version": "changeset version",
-    "ci:publish": "pnpm run build:lib && pnpm publish -r"
+    "ci:version": "changeset version && pnpm i --lockfile-only && pnpm run build",
+    "ci:publish": "pnpm run build && pnpm publish -r"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.1",
