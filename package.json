@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/ShaggyTech/nhtsa-api-wrapper/issues"
   },
-  "packageManager": "pnpm@8.1.0",
+  "packageManager": "pnpm@8.6.0",
   "workspaces": [
     "apps/*",
     "config/*",
@@ -22,7 +22,7 @@
   ],
   "engines": {
     "node": ">=18.13.0",
-    "pnpm": ">=7.27.1"
+    "pnpm": ">=8.6.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
