@@ -53,7 +53,8 @@
       },
       "require": "./dist/nhtsa-api-wrapper.cjs"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
   },
   "publishConfig": {
     "access": "public"
