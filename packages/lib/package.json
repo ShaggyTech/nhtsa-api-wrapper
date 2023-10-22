@@ -35,12 +35,12 @@
   "libraryName": "nhtsa-api-wrapper",
   "sideEffects": false,
   "type": "module",
-  "main": "dist/nhtsa-api-wrapper.cjs",
-  "module": "dist/nhtsa-api-wrapper.mjs",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
-  "unpkg": "dist/nhtsa-api-wrapper.iife.js",
-  "jsdelivr": "dist/nhtsa-api-wrapper.iife.js",
+  "main": "./dist/nhtsa-api-wrapper.cjs",
+  "module": "./dist/nhtsa-api-wrapper.mjs",
+  "types": "./dist/types/index.d.ts",
+  "source": "./src/index.ts",
+  "unpkg": "./dist/nhtsa-api-wrapper.umd.cjs",
+  "jsdelivr": "./dist/nhtsa-api-wrapper.iife.js",
   "files": [
     "dist"
   ],
