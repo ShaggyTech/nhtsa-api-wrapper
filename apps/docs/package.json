@@ -4,6 +4,7 @@
   "version": "3.0.4",
   "description": "Documentation for @shaggytools/nhtsa-api-wrapper",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vitepress dev --host",
@@ -34,7 +35,7 @@
     "tsconfig": "workspace:*",
     "typescript": "5.2.2",
     "vite-plugin-pwa": "0.16.5",
-    "vitepress": "1.0.0-beta.1",
+    "vitepress": "1.0.0-rc.23",
     "workbox-window": "7.0.0"
   },
   "eslintConfig": {
