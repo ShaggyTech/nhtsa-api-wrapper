@@ -60,9 +60,7 @@ export default defineConfig({
     globals: true,
     watch: false, // turned off for CI/CD runs
     coverage: {
-      provider: 'c8',
-      all: true,
-      src: ['./src'],
+      provider: 'v8',
       exclude: [
         '**/*/types.ts',
         '**/__tests__/**/*',
