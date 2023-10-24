@@ -100,8 +100,8 @@ importers:
         specifier: 8.8.0
         version: 8.8.0(eslint@8.52.0)
       eslint-plugin-markdown:
-        specifier: 3.0.0
-        version: 3.0.0(eslint@8.52.0)
+        specifier: 3.0.1
+        version: 3.0.1(eslint@8.52.0)
       eslint-plugin-prettier:
         specifier: 4.2.1
         version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.52.0)(prettier@2.8.8)
@@ -4193,8 +4193,8 @@ packages:
       eslint: 8.52.0
     dev: false
 
-  /eslint-plugin-markdown@3.0.0(eslint@8.52.0):
-    resolution: {integrity: sha512-hRs5RUJGbeHDLfS7ELanT0e29Ocyssf/7kBM+p7KluY5AwngGkDf8Oyu4658/NZSGTTq05FZeWbkxXtbVyHPwg==}
+  /eslint-plugin-markdown@3.0.1(eslint@8.52.0):
+    resolution: {integrity: sha512-8rqoc148DWdGdmYF6WSQFT3uQ6PO7zXYgeBpHAOAakX/zpq+NvFYbDA/H7PYzHajwtmaOzAwfxyl++x0g1/N9A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
