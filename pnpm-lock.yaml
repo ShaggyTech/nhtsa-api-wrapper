@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -77,13 +77,13 @@ importers:
         version: 5.0.4
       vite-plugin-pwa:
         specifier: 0.16.5
-        version: 0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@6.6.0)
+        version: 0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
       vitepress:
         specifier: 1.0.0-beta.1
         version: 1.0.0-beta.1(@algolia/client-search@4.17.1)(@types/node@18.13.0)(sass@1.62.1)
       workbox-window:
-        specifier: 6.6.0
-        version: 6.6.0
+        specifier: 7.0.0
+        version: 7.0.0
 
   config/eslint-config-custom:
     dependencies:
@@ -180,7 +180,7 @@ importers:
         version: 5.0.4
       vite:
         specifier: 4.3.9
-        version: 4.3.9(@types/node@18.13.0)(sass@1.62.1)
+        version: 4.3.9(@types/node@20.5.1)
       vite-plugin-dts:
         specifier: 2.3.0
         version: 2.3.0(@types/node@20.5.1)(vite@4.3.9)
@@ -2730,7 +2730,7 @@ packages:
     peerDependencies:
       vite-plugin-pwa: ^0.14.0
     dependencies:
-      vite-plugin-pwa: 0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@6.6.0)
+      vite-plugin-pwa: 0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
 
   /@vitejs/plugin-vue@4.2.3(vite@4.3.9)(vue@3.3.4):
@@ -6556,7 +6556,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.3.9(@types/node@18.13.0)(sass@1.62.1)
+      vite: 4.3.9(@types/node@18.15.11)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6583,14 +6583,14 @@ packages:
       kolorist: 1.8.0
       magic-string: 0.29.0
       ts-morph: 18.0.0
-      vite: 4.3.9(@types/node@18.13.0)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.5.1)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
     dev: true
 
-  /vite-plugin-pwa@0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@6.6.0):
+  /vite-plugin-pwa@0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0):
     resolution: {integrity: sha512-Ahol4dwhMP2UHPQXkllSlXbihOaDFnvBIDPmAxoSZ1EObBUJGP4CMRyCyAVkIHjd6/H+//vH0DM2ON+XxHr81g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -6603,7 +6603,7 @@ packages:
       pretty-bytes: 6.1.1
       vite: 4.3.9(@types/node@18.13.0)(sass@1.62.1)
       workbox-build: 7.0.0
-      workbox-window: 6.6.0
+      workbox-window: 7.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6619,7 +6619,7 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.1(typescript@5.0.4)
-      vite: 4.3.9(@types/node@18.13.0)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.5.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6655,6 +6655,72 @@ packages:
       postcss: 8.4.23
       rollup: 3.23.0
       sass: 1.62.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite@4.3.9(@types/node@18.15.11):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 18.15.11
+      esbuild: 0.17.19
+      postcss: 8.4.23
+      rollup: 3.23.0
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite@4.3.9(@types/node@20.5.1):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 20.5.1
+      esbuild: 0.17.19
+      postcss: 8.4.23
+      rollup: 3.23.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -6766,7 +6832,7 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.3.9(@types/node@18.13.0)(sass@1.62.1)
+      vite: 4.3.9(@types/node@18.15.11)
       vite-node: 0.34.6(@types/node@18.15.11)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
@@ -6969,10 +7035,6 @@ packages:
       workbox-core: 7.0.0
     dev: true
 
-  /workbox-core@6.6.0:
-    resolution: {integrity: sha512-GDtFRF7Yg3DD859PMbPAYPeJyg5gJYXuBQAC+wyrWuuXgpfoOrIQIvFRZnQ7+czTIQjIr1DhLEGFzZanAT/3bQ==}
-    dev: true
-
   /workbox-core@7.0.0:
     resolution: {integrity: sha512-81JkAAZtfVP8darBpfRTovHg8DGAVrKFgHpOArZbdFd78VqHr5Iw65f2guwjE2NlCFbPFDoez3D3/6ZvhI/rwQ==}
     dev: true
@@ -7045,13 +7107,6 @@ packages:
 
   /workbox-sw@7.0.0:
     resolution: {integrity: sha512-SWfEouQfjRiZ7GNABzHUKUyj8pCoe+RwjfOIajcx6J5mtgKkN+t8UToHnpaJL5UVVOf5YhJh+OHhbVNIHe+LVA==}
-    dev: true
-
-  /workbox-window@6.6.0:
-    resolution: {integrity: sha512-L4N9+vka17d16geaJXXRjENLFldvkWy7JyGxElRD0JvBxvFEd8LOhr+uXCcar/NzAmIBRv9EZ+M+Qr4mOoBITw==}
-    dependencies:
-      '@types/trusted-types': 2.0.3
-      workbox-core: 6.6.0
     dev: true
 
   /workbox-window@7.0.0:
