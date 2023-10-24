@@ -84,7 +84,7 @@
     "eslint-config-custom": "workspace:*",
     "prettier": "2.8.8",
     "prettier-config": "workspace:*",
-    "rimraf": "5.0.1",
+    "rimraf": "5.0.5",
     "tsconfig": "workspace:*",
     "typedoc": "0.24.7",
     "typedoc-config": "workspace:*",
