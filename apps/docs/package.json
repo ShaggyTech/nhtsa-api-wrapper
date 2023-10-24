@@ -4,6 +4,7 @@
   "version": "3.0.4",
   "description": "Documentation for @shaggytools/nhtsa-api-wrapper",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vitepress dev --host",
