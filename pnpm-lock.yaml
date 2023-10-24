@@ -43,8 +43,8 @@ importers:
         specifier: 18.18.6
         version: 18.18.6
       '@vite-pwa/vitepress':
-        specifier: 0.0.5
-        version: 0.0.5(vite-plugin-pwa@0.16.5)
+        specifier: 0.2.3
+        version: 0.2.3(vite-plugin-pwa@0.16.5)
       dotenv:
         specifier: 16.3.1
         version: 16.3.1
@@ -2733,10 +2733,10 @@ packages:
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  /@vite-pwa/vitepress@0.0.5(vite-plugin-pwa@0.16.5):
-    resolution: {integrity: sha512-B6xy9wxi9fen+/AnRkY2+XCrbhqh2b/TsVTka6qFQ3zJ8zHSoEUHUucYT3KHMcY5I124G0ZmPKNW+UF9Jx1k4w==}
+  /@vite-pwa/vitepress@0.2.3(vite-plugin-pwa@0.16.5):
+    resolution: {integrity: sha512-6k9151CmILbSJQ88hLEMLL+MOQZDURKg2c4Wo5UcaEaOWU0jv7S+mo8nqyg86sM6ry8Jlnp6Zfv6AE0FqnfEyQ==}
     peerDependencies:
-      vite-plugin-pwa: ^0.14.0
+      vite-plugin-pwa: '>=0.16.5 <1'
     dependencies:
       vite-plugin-pwa: 0.16.5(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
