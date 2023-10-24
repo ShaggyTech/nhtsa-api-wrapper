@@ -91,7 +91,7 @@
     "typescript": "5.2.2",
     "vite": "4.3.9",
     "vite-plugin-dts": "2.3.0",
-    "vite-tsconfig-paths": "4.2.0",
+    "vite-tsconfig-paths": "4.2.1",
     "vitest": "0.34.6",
     "vitest-fetch-mock": "0.2.2"
   },
