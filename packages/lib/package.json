@@ -88,7 +88,7 @@
     "tsconfig": "workspace:*",
     "typedoc": "0.24.7",
     "typedoc-config": "workspace:*",
-    "typescript": "5.0.4",
+    "typescript": "5.2.2",
     "vite": "4.3.9",
     "vite-plugin-dts": "2.3.0",
     "vite-tsconfig-paths": "4.2.0",
