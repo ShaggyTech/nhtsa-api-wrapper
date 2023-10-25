@@ -27,7 +27,7 @@
     "dotenv": "16.3.1",
     "eslint": "8.52.0",
     "eslint-config-custom": "workspace:*",
-    "prettier": "2.8.8",
+    "prettier": "3.0.3",
     "prettier-config": "workspace:*",
     "rimraf": "5.0.5",
     "sass": "1.69.4",

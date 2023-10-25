@@ -82,7 +82,7 @@
     "@vitest/ui": "0.34.6",
     "eslint": "8.52.0",
     "eslint-config-custom": "workspace:*",
-    "prettier": "2.8.8",
+    "prettier": "3.0.3",
     "prettier-config": "workspace:*",
     "rimraf": "5.0.5",
     "tsconfig": "workspace:*",
