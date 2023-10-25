@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@shaggytools/nhtsa-api-wrapper": "workspace:*",
-    "vue": "3.3.4"
+    "vue": "3.3.7"
   },
   "devDependencies": {
     "@types/node": "18.18.6",
