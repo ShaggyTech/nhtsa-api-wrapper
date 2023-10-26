@@ -72,7 +72,7 @@ The following are simple examples that use the jsDelivr CDN:
 _~ 4kB (auto minified)_
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />

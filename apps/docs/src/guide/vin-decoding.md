@@ -89,9 +89,8 @@ console.log(
 ```typescript
 import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const { Count, Message, Results, SearchCriteria } = await DecodeVinValues(
-  'WA1A4AFY2J2008189'
-)
+const { Count, Message, Results, SearchCriteria } =
+  await DecodeVinValues('WA1A4AFY2J2008189')
 
 // Destructure to get the specific data you want to use
 const { ModelYear, Make, Model, EngineHP } = Results[0]
