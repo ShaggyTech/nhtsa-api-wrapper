@@ -37,6 +37,7 @@ module.exports = {
     "coverage/",
     "dist/",
     "dev/",
+    "dev-dist",
     "typeDoc/",
   ],
   // 0 = off, 1 = warn, 2 = error
