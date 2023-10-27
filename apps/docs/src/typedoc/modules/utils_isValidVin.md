@@ -20,6 +20,18 @@ Provides **offline** validation of Vehicle Identification Numbers (VINs) using t
 If you need to test that the algorithm is working correctly, you can use 17 ones `1` as
 the VIN and it should return `true` as the result.
 
+#### Parameters
+
+| Name  | Type     | Description                    |
+| :---- | :------- | :----------------------------- |
+| `vin` | `string` | Vehicle Identification Number. |
+
+#### Returns
+
+`boolean`
+
+True for a valid VIN, false for an invalid VIN.
+
 **`Example`**
 
 Browser via html script tags
@@ -38,18 +50,6 @@ import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
 const isValid = isValidVin('3VWD07AJ5EM388202')
 console.log(isValid) // true
 ```
-
-#### Parameters
-
-| Name  | Type     | Description                    |
-| :---- | :------- | :----------------------------- |
-| `vin` | `string` | Vehicle Identification Number. |
-
-#### Returns
-
-`boolean`
-
-True for a valid VIN, false for an invalid VIN.
 
 #### Defined in
 
