@@ -1,7 +1,7 @@
 ## Types This Package Exports
 
 ::: tip :bulb: INFO
-All types used by this package can be found in the [Typedoc Section](../typedoc/modules/types).
+All types used by this package can be found in the [Typedoc Section](../typedoc/types).
 :::
 
 Each endpoint function returns a `NhtsaResponse<T>` object where `T` is one of the `Results` types

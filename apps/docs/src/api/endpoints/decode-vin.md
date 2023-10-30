@@ -15,7 +15,7 @@ async function DecodeVin(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/modules/api_endpoints_DecodeVin)
+See: [Package Reference](../../typedoc/api/endpoints/DecodeVin)
 :::
 
 ## Description

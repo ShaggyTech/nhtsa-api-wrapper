@@ -58,7 +58,8 @@ function. For example `DecodeVin` has a `DecodeVinResults` type, `GetAllMakes` h
 `GetAllMakesResults` type, etc.
 
 A few endpoints also have other associated types, such as
-[`DecodeVinExtendedVariable`](../typedoc/modules/api_endpoints_DecodeVinExtended#decodevinextendedvariable)
+typedoc/api/endpoints/DecodeVinValues/type-aliases/DecodeVinValuesResults
+[`DecodeVinExtendedVariable`](../typedoc/api/endpoints/DecodeVinExtended#DecodeVinExtendedVariable)
 that describe possible `Variable` values found in the `Results` array of the `DecodeVinExtended`
 endpoint.
 
@@ -66,7 +67,7 @@ endpoint.
 
 ::: tip :mag: See Also:
 
-The [Typedocs - Types](../typedoc/modules/types) page lists all of the types this
+The [Typedocs - Types](../typedoc/types) page lists all of the types this
 package exports and their structure.
 
 <br />

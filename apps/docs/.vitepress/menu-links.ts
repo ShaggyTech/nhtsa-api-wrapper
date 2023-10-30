@@ -76,167 +76,149 @@ const vpicEndpointLinks = [
 
 const typedocLinks = [
   {
-    text: 'Modules',
+    text: '/api',
     collapsed: true,
     items: [
+      { text: 'Index', link: '/typedoc/api' },
       {
-        text: '/api',
-        collapsed: true,
-        items: [
-          { text: 'Index', link: '/typedoc/modules/api' },
-          {
-            text: 'useNHTSA',
-            link: '/typedoc/modules/api_useNHTSA',
-          },
-          {
-            text: '/endpoints/',
-            collapsed: true,
-            items: [
-              { text: 'Index', link: '/typedoc/modules/api_endpoints' },
-              {
-                text: 'DecodeVin',
-                link: '/typedoc/modules/api_endpoints_DecodeVin',
-              },
-              {
-                text: 'DecodeVinExtended',
-                link: '/typedoc/modules/api_endpoints_DecodeVinExtended',
-              },
-              {
-                text: 'DecodeVinValues',
-                link: '/typedoc/modules/api_endpoints_DecodeVinValues',
-              },
-              {
-                text: 'DecodeVinValuesBatch',
-                link: '/typedoc/modules/api_endpoints_DecodeVinValuesBatch',
-              },
-              {
-                text: 'DecodeVinValuesExtended',
-                link: '/typedoc/modules/api_endpoints_DecodeVinValuesExtended',
-              },
-              {
-                text: 'DecodeWMI',
-                link: '/typedoc/modules/api_endpoints_DecodeWMI',
-              },
-              {
-                text: 'GetAllMakes',
-                link: '/typedoc/modules/api_endpoints_GetAllMakes',
-              },
-              {
-                text: 'GetAllManufacturers',
-                link: '/typedoc/modules/api_endpoints_GetAllManufacturers',
-              },
-              {
-                text: 'GetCanadianVehicleSpecifications',
-                link: '/typedoc/modules/api_endpoints_GetCanadianVehicleSpecifications',
-              },
-              {
-                text: 'GetEquipmentPlantCodes',
-                link: '/typedoc/modules/api_endpoints_GetEquipmentPlantCodes',
-              },
-              {
-                text: 'GetMakeForManufacturer',
-                link: '/typedoc/modules/api_endpoints_GetMakeForManufacturer',
-              },
-              {
-                text: 'GetMakesForManufacturerAndYear',
-                link: '/typedoc/modules/api_endpoints_GetMakesForManufacturerAndYear',
-              },
-              {
-                text: 'GetMakesForVehicleType',
-                link: '/typedoc/modules/api_endpoints_GetMakesForVehicleType',
-              },
-              {
-                text: 'GetManufacturerDetails',
-                link: '/typedoc/modules/api_endpoints_GetManufacturerDetails',
-              },
-              {
-                text: 'GetModelsForMake',
-                link: '/typedoc/modules/api_endpoints_GetModelsForMake',
-              },
-              {
-                text: 'GetModelsForMakeId',
-                link: '/typedoc/modules/api_endpoints_GetModelsForMakeId',
-              },
-              {
-                text: 'GetModelsForMakeIdYear',
-                link: '/typedoc/modules/api_endpoints_GetModelsForMakeIdYear',
-              },
-              {
-                text: 'GetModelsForMakeYear',
-                link: '/typedoc/modules/api_endpoints_GetModelsForMakeYear',
-              },
-              {
-                text: 'GetParts',
-                link: '/typedoc/modules/api_endpoints_GetParts',
-              },
-              {
-                text: 'GetVehicleTypesForMake',
-                link: '/typedoc/modules/api_endpoints_GetVehicleTypesForMake',
-              },
-              {
-                text: 'GetVehicleTypesForMakeId',
-                link: '/typedoc/modules/api_endpoints_GetVehicleTypesForMakeId',
-              },
-              {
-                text: 'GetVehicleVariableList',
-                link: '/typedoc/modules/api_endpoints_GetVehicleVariableList',
-              },
-              {
-                text: 'GetVehicleVariableValuesList',
-                link: '/typedoc/modules/api_endpoints_GetVehicleVariableValuesList',
-              },
-              {
-                text: 'GetWMIsForManufacturer',
-                link: '/typedoc/modules/api_endpoints_GetWMIsForManufacturer',
-              },
-            ],
-          },
-        ],
+        text: 'useNHTSA',
+        link: '/typedoc/api/useNHTSA',
       },
       {
-        text: '/utils',
+        text: '/endpoints/',
         collapsed: true,
         items: [
-          { text: 'Index', link: '/typedoc/modules/utils' },
+          { text: 'Index', link: '/typedoc/api/endpoints' },
           {
-            text: 'argHandler',
-            link: '/typedoc/modules/utils_argHandler',
+            text: 'DecodeVin',
+            link: '/typedoc/api/endpoints/DecodeVin',
           },
           {
-            text: 'errorHandler',
-            link: '/typedoc/modules/utils_errorHandler',
+            text: 'DecodeVinExtended',
+            link: '/typedoc/api/endpoints/DecodeVinExtended',
           },
           {
-            text: 'getTypeof',
-            link: '/typedoc/modules/utils_getTypeof',
+            text: 'DecodeVinValues',
+            link: '/typedoc/api/endpoints/DecodeVinValues',
           },
           {
-            text: 'isValidVin',
-            link: '/typedoc/modules/utils_isValidVin',
+            text: 'DecodeVinValuesBatch',
+            link: '/typedoc/api/endpoints/DecodeVinValuesBatch',
           },
           {
-            text: 'queryString',
-            link: '/typedoc/modules/utils_queryString',
+            text: 'DecodeVinValuesExtended',
+            link: '/typedoc/api/endpoints/DecodeVinValuesExtended',
+          },
+          {
+            text: 'DecodeWMI',
+            link: '/typedoc/api/endpoints/DecodeWMI',
+          },
+          {
+            text: 'GetAllMakes',
+            link: '/typedoc/api/endpoints/GetAllMakes',
+          },
+          {
+            text: 'GetAllManufacturers',
+            link: '/typedoc/api/endpoints/GetAllManufacturers',
+          },
+          {
+            text: 'GetCanadianVehicleSpecifications',
+            link: '/typedoc/api/endpoints/GetCanadianVehicleSpecifications',
+          },
+          {
+            text: 'GetEquipmentPlantCodes',
+            link: '/typedoc/api/endpoints/GetEquipmentPlantCodes',
+          },
+          {
+            text: 'GetMakeForManufacturer',
+            link: '/typedoc/api/endpoints/GetMakeForManufacturer',
+          },
+          {
+            text: 'GetMakesForManufacturerAndYear',
+            link: '/typedoc/api/endpoints/GetMakesForManufacturerAndYear',
+          },
+          {
+            text: 'GetMakesForVehicleType',
+            link: '/typedoc/api/endpoints/GetMakesForVehicleType',
+          },
+          {
+            text: 'GetManufacturerDetails',
+            link: '/typedoc/api/endpoints/GetManufacturerDetails',
+          },
+          {
+            text: 'GetModelsForMake',
+            link: '/typedoc/api/endpoints/GetModelsForMake',
+          },
+          {
+            text: 'GetModelsForMakeId',
+            link: '/typedoc/api/endpoints/GetModelsForMakeId',
+          },
+          {
+            text: 'GetModelsForMakeIdYear',
+            link: '/typedoc/api/endpoints/GetModelsForMakeIdYear',
+          },
+          {
+            text: 'GetModelsForMakeYear',
+            link: '/typedoc/api/endpoints/GetModelsForMakeYear',
+          },
+          {
+            text: 'GetParts',
+            link: '/typedoc/api/endpoints/GetParts',
+          },
+          {
+            text: 'GetVehicleTypesForMake',
+            link: '/typedoc/api/endpoints/GetVehicleTypesForMake',
+          },
+          {
+            text: 'GetVehicleTypesForMakeId',
+            link: '/typedoc/api/endpoints/GetVehicleTypesForMakeId',
+          },
+          {
+            text: 'GetVehicleVariableList',
+            link: '/typedoc/api/endpoints/GetVehicleVariableList',
+          },
+          {
+            text: 'GetVehicleVariableValuesList',
+            link: '/typedoc/api/endpoints/GetVehicleVariableValuesList',
+          },
+          {
+            text: 'GetWMIsForManufacturer',
+            link: '/typedoc/api/endpoints/GetWMIsForManufacturer',
           },
         ],
       },
     ],
   },
   {
-    text: 'Types',
+    text: '/utils',
     collapsed: true,
     items: [
-      { text: 'Index', link: '/typedoc/modules/types' },
-      { text: '/api/types', link: '/typedoc/modules/api_types' },
+      { text: 'Index', link: '/typedoc/utils' },
       {
-        text: '/api/endpoints/types',
-        link: '/typedoc/modules/api_endpoints_types',
+        text: 'argHandler',
+        link: '/typedoc/utils/argHandler',
       },
       {
-        text: '/utils/types',
-        link: '/typedoc/modules/utils_types',
+        text: 'errorHandler',
+        link: '/typedoc/utils/errorHandler',
+      },
+      {
+        text: 'getTypeof',
+        link: '/typedoc/utils/getTypeof',
+      },
+      {
+        text: 'isValidVin',
+        link: '/typedoc/utils/isValidVin',
+      },
+      {
+        text: 'queryString',
+        link: '/typedoc/utils/queryString',
       },
     ],
+  },
+  {
+    text: 'Types Index',
+    link: '/typedoc/types',
   },
 ]
 

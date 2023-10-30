@@ -10,7 +10,7 @@ async function DecodeWMI(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/modules/api_endpoints_DecodeWMI)
+See: [Package Reference](../../typedoc/api/endpoints/DecodeWMI)
 :::
 
 ## Description

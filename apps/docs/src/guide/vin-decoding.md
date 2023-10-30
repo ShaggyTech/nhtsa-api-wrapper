@@ -52,7 +52,7 @@ object. This object is the decoded data for the VIN.
 
 - [DecodeVinValues](../api/endpoints/decode-vin-values)
 - [DecodeVinValues Example Response](../api/endpoints/decode-vin-values#returns)
-- [Type - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
+- [Type - DecodeVinValuesResults](../typedoc/api/endpoints/DecodeVinValues#decodevinvaluesresults)
 
 :::
 

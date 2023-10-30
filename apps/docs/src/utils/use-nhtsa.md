@@ -47,7 +47,7 @@ It also contains functions for building and returning the URL string for the VPI
 
 ::: tip See Also:
 
-- [useNHTSA Reference](../typedoc/modules/api_useNHTSA)
+- [useNHTSA Reference](../typedoc/api/useNHTSA)
 
 - [Alternate Use of This Package](../guide/bring-your-own-fetch#option-2-using-usenhtsa)
 
@@ -159,7 +159,7 @@ get()
 
 ## Options
 
-[`CreateUrlOptions`](../typedoc/modules/api_useNHTSA#createurloptions):
+[`CreateUrlOptions`](../typedoc/api/useNHTSA#createurloptions):
 
 - `endpointName` - The name of the endpoint to use, see [VPIC API Endpoints](../api/#vpic-api-endpoints)
   (required)
