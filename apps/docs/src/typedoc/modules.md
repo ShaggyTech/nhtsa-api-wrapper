@@ -1,49 +1,71 @@
-[@shaggytools/nhtsa-api-wrapper - v3.0.4](index.md) / Exports
+**@shaggytools/nhtsa-api-wrapper - v3.0.4** ( [Readme](index.md) \| API )
+
+***
 
 # @shaggytools/nhtsa-api-wrapper - v3.0.4
 
-## Table of contents
+## API
 
-### Modules
+| Module | Description |
+| :------ | :------ |
+| [api](api.md) | - |
+| [api/useNHTSA](api/useNHTSA.md) | - |
 
-- [api](modules/api.md)
-- [api/endpoints](modules/api_endpoints.md)
-- [api/endpoints/DecodeVin](modules/api_endpoints_DecodeVin.md)
-- [api/endpoints/DecodeVinExtended](modules/api_endpoints_DecodeVinExtended.md)
-- [api/endpoints/DecodeVinValues](modules/api_endpoints_DecodeVinValues.md)
-- [api/endpoints/DecodeVinValuesBatch](modules/api_endpoints_DecodeVinValuesBatch.md)
-- [api/endpoints/DecodeVinValuesExtended](modules/api_endpoints_DecodeVinValuesExtended.md)
-- [api/endpoints/DecodeWMI](modules/api_endpoints_DecodeWMI.md)
-- [api/endpoints/GetAllMakes](modules/api_endpoints_GetAllMakes.md)
-- [api/endpoints/GetAllManufacturers](modules/api_endpoints_GetAllManufacturers.md)
-- [api/endpoints/GetCanadianVehicleSpecifications](modules/api_endpoints_GetCanadianVehicleSpecifications.md)
-- [api/endpoints/GetEquipmentPlantCodes](modules/api_endpoints_GetEquipmentPlantCodes.md)
-- [api/endpoints/GetMakeForManufacturer](modules/api_endpoints_GetMakeForManufacturer.md)
-- [api/endpoints/GetMakesForManufacturerAndYear](modules/api_endpoints_GetMakesForManufacturerAndYear.md)
-- [api/endpoints/GetMakesForVehicleType](modules/api_endpoints_GetMakesForVehicleType.md)
-- [api/endpoints/GetManufacturerDetails](modules/api_endpoints_GetManufacturerDetails.md)
-- [api/endpoints/GetModelsForMake](modules/api_endpoints_GetModelsForMake.md)
-- [api/endpoints/GetModelsForMakeId](modules/api_endpoints_GetModelsForMakeId.md)
-- [api/endpoints/GetModelsForMakeIdYear](modules/api_endpoints_GetModelsForMakeIdYear.md)
-- [api/endpoints/GetModelsForMakeYear](modules/api_endpoints_GetModelsForMakeYear.md)
-- [api/endpoints/GetParts](modules/api_endpoints_GetParts.md)
-- [api/endpoints/GetVehicleTypesForMake](modules/api_endpoints_GetVehicleTypesForMake.md)
-- [api/endpoints/GetVehicleTypesForMakeId](modules/api_endpoints_GetVehicleTypesForMakeId.md)
-- [api/endpoints/GetVehicleVariableList](modules/api_endpoints_GetVehicleVariableList.md)
-- [api/endpoints/GetVehicleVariableValuesList](modules/api_endpoints_GetVehicleVariableValuesList.md)
-- [api/endpoints/GetWMIsForManufacturer](modules/api_endpoints_GetWMIsForManufacturer.md)
-- [api/endpoints/types](modules/api_endpoints_types.md)
-- [api/types](modules/api_types.md)
-- [api/useNHTSA](modules/api_useNHTSA.md)
-- [constants](modules/constants.md)
-- [global](modules/global.md)
-- [index](modules/index.md)
-- [types](modules/types.md)
-- [utils](modules/utils.md)
-- [utils/argHandler](modules/utils_argHandler.md)
-- [utils/errorHandler](modules/utils_errorHandler.md)
-- [utils/getTypeof](modules/utils_getTypeof.md)
-- [utils/isValidVin](modules/utils_isValidVin.md)
-- [utils/queryString](modules/utils_queryString.md)
-- [utils/types](modules/utils_types.md)
-- [vite-env](modules/vite_env.md)
+## API Endpoints
+
+| Module | Description |
+| :------ | :------ |
+| [api/endpoints](api/endpoints.md) | - |
+| [api/endpoints/DecodeVin](api/endpoints/DecodeVin.md) | - |
+| [api/endpoints/DecodeVinExtended](api/endpoints/DecodeVinExtended.md) | - |
+| [api/endpoints/DecodeVinValues](api/endpoints/DecodeVinValues.md) | - |
+| [api/endpoints/DecodeVinValuesBatch](api/endpoints/DecodeVinValuesBatch.md) | - |
+| [api/endpoints/DecodeVinValuesExtended](api/endpoints/DecodeVinValuesExtended.md) | - |
+| [api/endpoints/DecodeWMI](api/endpoints/DecodeWMI.md) | - |
+| [api/endpoints/GetAllMakes](api/endpoints/GetAllMakes.md) | - |
+| [api/endpoints/GetAllManufacturers](api/endpoints/GetAllManufacturers.md) | - |
+| [api/endpoints/GetCanadianVehicleSpecifications](api/endpoints/GetCanadianVehicleSpecifications.md) | - |
+| [api/endpoints/GetEquipmentPlantCodes](api/endpoints/GetEquipmentPlantCodes.md) | - |
+| [api/endpoints/GetMakeForManufacturer](api/endpoints/GetMakeForManufacturer.md) | - |
+| [api/endpoints/GetMakesForManufacturerAndYear](api/endpoints/GetMakesForManufacturerAndYear.md) | - |
+| [api/endpoints/GetMakesForVehicleType](api/endpoints/GetMakesForVehicleType.md) | - |
+| [api/endpoints/GetManufacturerDetails](api/endpoints/GetManufacturerDetails.md) | - |
+| [api/endpoints/GetModelsForMake](api/endpoints/GetModelsForMake.md) | - |
+| [api/endpoints/GetModelsForMakeId](api/endpoints/GetModelsForMakeId.md) | - |
+| [api/endpoints/GetModelsForMakeIdYear](api/endpoints/GetModelsForMakeIdYear.md) | - |
+| [api/endpoints/GetModelsForMakeYear](api/endpoints/GetModelsForMakeYear.md) | - |
+| [api/endpoints/GetParts](api/endpoints/GetParts.md) | - |
+| [api/endpoints/GetVehicleTypesForMake](api/endpoints/GetVehicleTypesForMake.md) | - |
+| [api/endpoints/GetVehicleTypesForMakeId](api/endpoints/GetVehicleTypesForMakeId.md) | - |
+| [api/endpoints/GetVehicleVariableList](api/endpoints/GetVehicleVariableList.md) | - |
+| [api/endpoints/GetVehicleVariableValuesList](api/endpoints/GetVehicleVariableValuesList.md) | - |
+| [api/endpoints/GetWMIsForManufacturer](api/endpoints/GetWMIsForManufacturer.md) | - |
+
+## Other
+
+| Module | Description |
+| :------ | :------ |
+| [constants](constants.md) | - |
+| [global](global.md) | - |
+| [index](module.index.md) | - |
+| [vite-env](vite-env.md) | - |
+
+## Types
+
+| Module | Description |
+| :------ | :------ |
+| [api/endpoints/types](api/endpoints/types.md) | - |
+| [api/types](api/types.md) | - |
+| [types](types.md) | - |
+| [utils/types](utils/types.md) | - |
+
+## Utility Functions
+
+| Module | Description |
+| :------ | :------ |
+| [utils](utils.md) | - |
+| [utils/argHandler](utils/argHandler.md) | - |
+| [utils/errorHandler](utils/errorHandler.md) | - |
+| [utils/getTypeof](utils/getTypeof.md) | - |
+| [utils/isValidVin](utils/isValidVin.md) | - |
+| [utils/queryString](utils/queryString.md) | - |

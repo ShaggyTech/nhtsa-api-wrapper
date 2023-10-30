@@ -12,6 +12,12 @@ module.exports = {
   extends: 'typedoc-config',
   out,
   // typedoc-plugin-markdown options
-  entryDocument: './index.md',
+  entryFileName: 'index.md',
   readme: './README.md',
+  outputFileStrategy: 'modules',
+  parametersFormat: 'table',
+  propertiesFormat: 'table',
+  enumMembersFormat: 'table',
+  typeDeclarationFormat: 'table',
+  indexFormat: 'table',
 }

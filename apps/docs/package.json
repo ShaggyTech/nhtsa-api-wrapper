@@ -12,7 +12,7 @@
     "preview": "vitepress preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"src/**/*.{js,ts,md}\"",
     "format:typedoc": "prettier --write \"src/typedoc/**/*.md\"",
     "clean": "rimraf .vitepress/dist .vitepress/cache .turbo",
     "clean:all": "pnpm run clean && rimraf node_modules"

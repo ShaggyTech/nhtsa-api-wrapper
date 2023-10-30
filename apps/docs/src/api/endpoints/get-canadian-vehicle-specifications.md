@@ -15,7 +15,7 @@ async function GetCanadianVehicleSpecifications(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/modules/api_endpoints_GetCanadianVehicleSpecifications)
+See: [Package Reference](../../typedoc/api/endpoints/GetCanadianVehicleSpecifications)
 :::
 
 ## Description

@@ -10,7 +10,7 @@ async function GetMakeForManufacturer(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/modules/api_endpoints_GetMakeForManufacturer)
+See: [Package Reference](../../typedoc/api/endpoints/GetMakeForManufacturer)
 :::
 
 ## Description

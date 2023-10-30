@@ -10,7 +10,7 @@ async function DecodeVinValuesBatch(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/modules/api_endpoints_DecodeVinValuesBatch)
+See: [Package Reference](../../typedoc/api/endpoints/DecodeVinValuesBatch)
 :::
 
 ## Description
