@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
+ * See: [GetMakesForVehicleType Documentation](/guide/vpic/endpoints/get-makes-for-vehicle-type)
  * :::
  *
  * `GetMakesForVehicleType` returns all the Makes in the vPIC dataset for a specified vehicle type

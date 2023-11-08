@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetEquipmentPlantCodes Documentation](/api/endpoints/get-equipment-plant-codes)
+ * See: [GetEquipmentPlantCodes Documentation](/guide/vpic/endpoints/get-equipment-plant-codes)
  * :::
  *
  * `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,

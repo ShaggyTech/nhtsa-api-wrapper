@@ -48,7 +48,7 @@ Objects found in the `Results` array of `GetParts` endpoint response.
 > **GetParts**(`doFetch`?, `_dummy`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetPartsResults`](GetParts.md#getpartsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetParts Documentation](/api/endpoints/get-parts)
+See: [GetParts Documentation](/guide/vpic/endpoints/get-parts)
 :::
 
 `GetParts` provides a list of ORGs with letter date in the given range of the dates and with

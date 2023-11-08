@@ -58,5 +58,5 @@ import type {
 ::: tip :bulb: TIP
 You can find specific details on each endpoint's `Results` types on their respective pages.
 
-See [DecodeVinResults](../api/endpoints/decode-vin#type-decodevinresults) for example.
+See [DecodeVinResults](../guide/vpic/endpoints/decode-vin#type-decodevinresults) for example.
 :::

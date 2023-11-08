@@ -41,7 +41,7 @@ Objects found in the `Results` array of `GetAllMakes` endpoint response.
 > **GetAllMakes**(`doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetAllMakesResults`](GetAllMakes.md#getallmakesresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetAllMakes Documentation](/api/endpoints/get-all-makes)
+See: [GetAllMakes Documentation](/guide/vpic/endpoints/get-all-makes)
 :::
 
 `GetAllMakes` provides a list of all the Makes available in the vPIC Dataset.

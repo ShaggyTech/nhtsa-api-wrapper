@@ -44,7 +44,7 @@ Objects found in the `Results` array of `GetAllManufacturers` endpoint response.
 > **GetAllManufacturers**(`doFetch`?, `_dummy`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetAllManufacturersResults`](GetAllManufacturers.md#getallmanufacturersresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetAllManufacturers Documentation](/api/endpoints/get-all-manufacturers)
+See: [GetAllManufacturers Documentation](/guide/vpic/endpoints/get-all-manufacturers)
 :::
 
 `GetAllManufacturers` provides a list of all the Manufacturers available in the vPIC Dataset.

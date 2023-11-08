@@ -43,7 +43,7 @@ Objects found in the `Results` array of `GetModelsForMake` endpoint response.
 > **GetModelsForMake**(`makeName`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetModelsForMakeResults`](GetModelsForMake.md#getmodelsformakeresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetModelsForMake Documentation](/api/endpoints/get-models-for-make)
+See: [GetModelsForMake Documentation](/guide/vpic/endpoints/get-models-for-make)
 :::
 
 `GetModelsForMake` returns the Models in the vPIC dataset for a specified `makeName`

@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetMakesForManufacturerAndYear Documentation](/api/endpoints/get-makes-for-manufacturer-and-year)
+ * See: [GetMakesForManufacturerAndYear Documentation](/guide/vpic/endpoints/get-makes-for-manufacturer-and-year)
  * :::
  *
  * `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified

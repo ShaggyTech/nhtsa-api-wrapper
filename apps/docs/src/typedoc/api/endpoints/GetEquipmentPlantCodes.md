@@ -69,7 +69,7 @@ Objects found in the `Results` array of `GetEquipmentPlantCodes` endpoint respon
 > **GetEquipmentPlantCodes**(`params`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetEquipmentPlantCodesResults`](GetEquipmentPlantCodes.md#getequipmentplantcodesresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetEquipmentPlantCodes Documentation](/api/endpoints/get-equipment-plant-codes)
+See: [GetEquipmentPlantCodes Documentation](/guide/vpic/endpoints/get-equipment-plant-codes)
 :::
 
 `GetEquipmentPlantCodes` returns assigned Equipment Plant Codes. Can be filtered by Year,

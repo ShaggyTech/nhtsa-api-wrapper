@@ -10,7 +10,7 @@ async function GetVehicleTypesForMakeId(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/api/endpoints/GetVehicleTypesForMakeId)
+See: [Package Reference](../../../typedoc/api/endpoints/GetVehicleTypesForMakeId)
 :::
 
 ## Description
@@ -49,7 +49,7 @@ endpoint.
 
 Set `doFetch` to `false` if you want to fetch the data yourself.
 
-- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -87,7 +87,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMakeId/449?format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
 ## Type - GetVehicleTypesForMakeIdResults
@@ -122,7 +122,7 @@ const response = await GetVehicleTypesForMakeId(449)
 
 - Does _NOT_ fetch data from VPIC API
 
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 - Returns:
 

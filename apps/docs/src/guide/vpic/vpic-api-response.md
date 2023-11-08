@@ -134,11 +134,11 @@ type NhtsaResponse<DecodeVinResults> = {
 ```
 
 ::: tip :bulb: TIP
-Check out the [Api Reference](/api/) section for specific details on each
-endpoint's `Results` array types.
+Check out the [VPIC](/guide/vpic/) section for specific details on each endpoint's `Results` array
+types.
 
-Here's [DecodeVinResults](../api/endpoints/decode-vin#type-decodevinresults) that was mentioned in the above
-example.
+Here's [DecodeVinResults](./endpoints/decode-vin#type-decodevinresults) that was mentioned in
+the above example.
 :::
 
 ### SearchCriteria

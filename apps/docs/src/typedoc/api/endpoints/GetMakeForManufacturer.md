@@ -42,7 +42,7 @@ Objects found in the `Results` array of `GetMakeForManufacturer` endpoint respon
 > **GetMakeForManufacturer**(`manufacturer`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetMakeForManufacturerResults`](GetMakeForManufacturer.md#getmakeformanufacturerresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakeForManufacturer Documentation](/api/endpoints/get-make-for-manufacturer)
+See: [GetMakeForManufacturer Documentation](/guide/vpic/endpoints/get-make-for-manufacturer)
 :::
 
 `GetMakeForManufacturer` returns all the Makes in the vPIC dataset for a specified manufacturer

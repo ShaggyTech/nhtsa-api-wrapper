@@ -41,7 +41,7 @@ Objects found in the `Results` array of `GetVehicleTypesForMakeId` endpoint resp
 > **GetVehicleTypesForMakeId**(`makeId`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetVehicleTypesForMakeIdResults`](GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetVehicleTypesForMakeId Documentation](/api/endpoints/get-vehicle-types-for-make-id)
+See: [GetVehicleTypesForMakeId Documentation](/guide/vpic/endpoints/get-vehicle-types-for-make-id)
 :::
 
 `GetVehicleTypesForMakeId` returns the Models in the vPIC dataset for a specified Make

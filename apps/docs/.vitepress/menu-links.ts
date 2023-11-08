@@ -3,74 +3,86 @@ import { type DefaultTheme } from 'vitepress'
 type SidebarItem = DefaultTheme.SidebarItem
 
 const vpicEndpointLinks = [
-  { text: 'DecodeVin', link: '/api/endpoints/decode-vin' },
-  { text: 'DecodeVinExtended', link: '/api/endpoints/decode-vin-extended' },
-  { text: 'DecodeVinValues', link: '/api/endpoints/decode-vin-values' },
+  { text: 'DecodeVin', link: '/guide/vpic/endpoints/decode-vin' },
+  {
+    text: 'DecodeVinExtended',
+    link: '/guide/vpic/endpoints/decode-vin-extended',
+  },
+  { text: 'DecodeVinValues', link: '/guide/vpic/endpoints/decode-vin-values' },
   {
     text: 'DecodeVinValuesBatch',
-    link: '/api/endpoints/decode-vin-values-batch',
+    link: '/guide/vpic/endpoints/decode-vin-values-batch',
   },
   {
     text: 'DecodeVinValuesExtended',
-    link: '/api/endpoints/decode-vin-values-extended',
+    link: '/guide/vpic/endpoints/decode-vin-values-extended',
   },
-  { text: 'DecodeWMI', link: '/api/endpoints/decode-wmi' },
-  { text: 'GetAllMakes', link: '/api/endpoints/get-all-makes' },
-  { text: 'GetAllManufacturers', link: '/api/endpoints/get-all-manufacturers' },
+  { text: 'DecodeWMI', link: '/guide/vpic/endpoints/decode-wmi' },
+  { text: 'GetAllMakes', link: '/guide/vpic/endpoints/get-all-makes' },
+  {
+    text: 'GetAllManufacturers',
+    link: '/guide/vpic/endpoints/get-all-manufacturers',
+  },
   {
     text: 'GetCanadianVehicleSpecifications',
-    link: '/api/endpoints/get-canadian-vehicle-specifications',
+    link: '/guide/vpic/endpoints/get-canadian-vehicle-specifications',
   },
   {
     text: 'GetEquipmentPlantCodes',
-    link: '/api/endpoints/get-equipment-plant-codes',
+    link: '/guide/vpic/endpoints/get-equipment-plant-codes',
   },
   {
     text: 'GetMakeForManufacturer',
-    link: '/api/endpoints/get-make-for-manufacturer',
+    link: '/guide/vpic/endpoints/get-make-for-manufacturer',
   },
   {
     text: 'GetMakesForManufacturerAndYear',
-    link: '/api/endpoints/get-makes-for-manufacturer-and-year',
+    link: '/guide/vpic/endpoints/get-makes-for-manufacturer-and-year',
   },
   {
     text: 'GetMakesForVehicleType',
-    link: '/api/endpoints/get-makes-for-vehicle-type',
+    link: '/guide/vpic/endpoints/get-makes-for-vehicle-type',
   },
   {
     text: 'GetManufacturerDetails',
-    link: '/api/endpoints/get-manufacturer-details',
+    link: '/guide/vpic/endpoints/get-manufacturer-details',
   },
-  { text: 'GetModelsForMake', link: '/api/endpoints/get-models-for-make' },
-  { text: 'GetModelsForMakeId', link: '/api/endpoints/get-models-for-make-id' },
+  {
+    text: 'GetModelsForMake',
+    link: '/guide/vpic/endpoints/get-models-for-make',
+  },
+  {
+    text: 'GetModelsForMakeId',
+    link: '/guide/vpic/endpoints/get-models-for-make-id',
+  },
   {
     text: 'GetModelsForMakeIdYear',
-    link: '/api/endpoints/get-models-for-make-id-year',
+    link: '/guide/vpic/endpoints/get-models-for-make-id-year',
   },
   {
     text: 'GetModelsForMakeYear',
-    link: '/api/endpoints/get-models-for-make-year',
+    link: '/guide/vpic/endpoints/get-models-for-make-year',
   },
-  { text: 'GetParts', link: '/api/endpoints/get-parts' },
+  { text: 'GetParts', link: '/guide/vpic/endpoints/get-parts' },
   {
     text: 'GetVehicleTypesForMake',
-    link: '/api/endpoints/get-vehicle-types-for-make',
+    link: '/guide/vpic/endpoints/get-vehicle-types-for-make',
   },
   {
     text: 'GetVehicleTypesForMakeId',
-    link: '/api/endpoints/get-vehicle-types-for-make-id',
+    link: '/guide/vpic/endpoints/get-vehicle-types-for-make-id',
   },
   {
     text: 'GetVehicleVariableList',
-    link: '/api/endpoints/get-vehicle-variable-list',
+    link: '/guide/vpic/endpoints/get-vehicle-variable-list',
   },
   {
     text: 'GetVehicleVariableValuesList',
-    link: '/api/endpoints/get-vehicle-variable-values-list',
+    link: '/guide/vpic/endpoints/get-vehicle-variable-values-list',
   },
   {
     text: 'GetWMIsForManufacturer',
-    link: '/api/endpoints/get-wmis-for-manufacturer',
+    link: '/guide/vpic/endpoints/get-wmis-for-manufacturer',
   },
 ]
 
@@ -217,12 +229,12 @@ const typedocLinks = [
     ],
   },
   {
-    text: 'Types Index',
+    text: 'Types',
     link: '/typedoc/types',
   },
 ]
 
-export type LinkGroup = 'guide' | 'api' | 'typedocs'
+export type LinkGroup = 'guide' | 'typedocs'
 
 const groupLinks: Record<LinkGroup, SidebarItem[]> = {
   guide: [
@@ -231,12 +243,19 @@ const groupLinks: Record<LinkGroup, SidebarItem[]> = {
     { text: 'Getting Started', link: '/guide/getting-started' },
     { text: 'Typescript', link: '/guide/typescript' },
     {
-      text: 'Bring Your Own Fetch (BYOF)',
-      link: '/guide/bring-your-own-fetch',
-    },
-    {
-      text: 'Support for Node Versions < 18',
-      link: '/guide/native-fetch',
+      text: 'VPIC',
+      items: [
+        { text: 'Overview', link: '/guide/vpic/' },
+        {
+          text: 'VPIC Response',
+          link: '/guide/vpic/vpic-api-response',
+        },
+        {
+          text: 'VPIC Functions',
+          items: vpicEndpointLinks,
+          collapsed: true,
+        },
+      ],
     },
     {
       text: 'Examples',
@@ -256,17 +275,18 @@ const groupLinks: Record<LinkGroup, SidebarItem[]> = {
         { text: 'useNHTSA', link: '/utils/use-nhtsa' },
       ],
     },
-  ],
-  api: [
-    { text: 'Overview', link: '/api/' },
     {
-      text: 'VPIC Response',
-      link: '/api/vpic-api-response',
-    },
-    {
-      text: 'VPIC Functions',
-      items: vpicEndpointLinks,
-      collapsed: false,
+      text: 'Misc',
+      items: [
+        {
+          text: 'Bring Your Own Fetch (BYOF)',
+          link: '/guide/bring-your-own-fetch',
+        },
+        {
+          text: 'Support for Node Versions < 18',
+          link: '/guide/native-fetch',
+        },
+      ],
     },
   ],
   typedocs: [{ text: 'Index', link: '/typedoc/' }, ...typedocLinks],
@@ -276,10 +296,6 @@ const linkGroups: Record<LinkGroup, SidebarItem> = {
   guide: {
     text: 'Guide',
     items: groupLinks.guide,
-  },
-  api: {
-    text: 'API',
-    items: groupLinks.api,
   },
   typedocs: {
     text: 'Typedocs',

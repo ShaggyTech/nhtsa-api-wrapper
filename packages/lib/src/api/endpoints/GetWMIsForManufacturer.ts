@@ -9,7 +9,7 @@ import type { AtLeastOne, IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetWMIsForManufacturer Documentation](/api/endpoints/get-wmis-for-manufacturer)
+ * See: [GetWMIsForManufacturer Documentation](/guide/vpic/endpoints/get-wmis-for-manufacturer)
  * :::
  *
  * `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a

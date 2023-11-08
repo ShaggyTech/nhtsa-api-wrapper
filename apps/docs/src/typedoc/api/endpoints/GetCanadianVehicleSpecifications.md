@@ -40,7 +40,7 @@ Objects found in the `Results` array of `GetCanadianVehicleSpecifications` endpo
 > **GetCanadianVehicleSpecifications**(`params`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetCanadianVehicleSpecificationsResults`](GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetCanadianVehicleSpecifications Documentation](/api/endpoints/get-canadian-vehicle-specifications)
+See: [GetCanadianVehicleSpecifications Documentation](/guide/vpic/endpoints/get-canadian-vehicle-specifications)
 :::
 
 `GetCanadianVehicleSpecifications` returns data from the Canadian Vehicle Specifications (CVS).

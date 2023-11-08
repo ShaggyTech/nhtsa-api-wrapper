@@ -10,7 +10,7 @@ async function DecodeWMI(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/api/endpoints/DecodeWMI)
+See: [Package Reference](../../../typedoc/api/endpoints/DecodeWMI)
 :::
 
 ## Description
@@ -38,7 +38,7 @@ be available in VPIC data sets.
 
 Set `doFetch` to `false` if you want to fetch the data yourself.
 
-- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -75,7 +75,7 @@ Returns the URL string that can be used to fetch the data, does _not_ fetch the 
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeWMI/WVW?format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
 ## Type - DecodeWMIResults
@@ -123,7 +123,7 @@ const response = await DecodeWMI('1CG', true)
 
 - Does _NOT_ fetch data from VPIC API
 
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 - Returns:
 

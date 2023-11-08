@@ -10,7 +10,7 @@ async function DecodeVinValuesBatch(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/api/endpoints/DecodeVinValuesBatch)
+See: [Package Reference](../../../typedoc/api/endpoints/DecodeVinValuesBatch)
 :::
 
 ## Description
@@ -53,7 +53,7 @@ the model year if it is known at the time of decoding, but it is not required.
 
 Set `doFetch` to `false` if you want to fetch the data yourself.
 
-- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -91,7 +91,7 @@ Returns a URL string that can be used to fetch the data, does _not_ fetch the da
 ```
 
 ::: tip :bulb: See:
-[Using doFetch](../../guide/bring-your-own-fetch#using-dofetch) for info on how to
+[Using doFetch](../../bring-your-own-fetch#using-dofetch) for info on how to
 use the URL string to fetch the data in a POST request such as this endpoint.
 :::
 
@@ -157,9 +157,9 @@ const response = await DecodeVinValuesBatch('5UXWX7C5*BA; 5YJSA3DS*EF, 2015')
 
 - Does _NOT_ fetch data from VPIC API
 
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
-- See: [Using with POST Endpoints](../../guide/bring-your-own-fetch#using-with-post-endpoints)
+- See: [Using with POST Endpoints](../../bring-your-own-fetch#using-with-post-endpoints)
 
 - Returns:
 

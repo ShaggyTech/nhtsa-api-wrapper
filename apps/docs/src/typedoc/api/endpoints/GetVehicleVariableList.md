@@ -44,7 +44,7 @@ Objects found in the `Results` array of `GetVehicleVariableList` endpoint respon
 > **GetVehicleVariableList**(`doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetVehicleVariableListResults`](GetVehicleVariableList.md#getvehiclevariablelistresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetVehicleVariableList Documentation](/api/endpoints/get-vehicle-variable-list)
+See: [GetVehicleVariableList Documentation](/guide/vpic/endpoints/get-vehicle-variable-list)
 :::
 
 `GetVehicleVariableList` provides a list of all the Vehicle related variables that are in the

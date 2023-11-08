@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeVinValuesBatch Documentation](/api/endpoints/decode-vin-values-batch)
+ * See: [DecodeVinValuesBatch Documentation](/guide/vpic/endpoints/decode-vin-values-batch)
  * :::
  *
  * `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns

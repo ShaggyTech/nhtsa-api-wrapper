@@ -64,7 +64,7 @@ Objects found in the `Results` array of `GetManufacturerDetails` endpoint respon
 > **GetManufacturerDetails**(`manufacturer`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetManufacturerDetailsResults`](GetManufacturerDetails.md#getmanufacturerdetailsresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForVehicleType Documentation](/api/endpoints/get-makes-for-vehicle-type)
+See: [GetMakesForVehicleType Documentation](/guide/vpic/endpoints/get-makes-for-vehicle-type)
 :::
 
 `GetManufacturerDetails` provides the details for a specific manufacturer that is requested.

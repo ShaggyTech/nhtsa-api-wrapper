@@ -65,7 +65,7 @@ Last Updated: 02/14/2023
 > **DecodeVin**(`vin`): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`DecodeVinResults`](DecodeVin.md#decodevinresults)\>\>
 
 ::: tip :bulb: More Information
-See: [DecodeVin Documentation](/api/endpoints/decode-vin)
+See: [DecodeVin Documentation](/guide/vpic/endpoints/decode-vin)
 :::
 
 `DecodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about

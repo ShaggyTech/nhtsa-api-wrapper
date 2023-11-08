@@ -189,7 +189,7 @@ Single object found in the `Results` array of `DecodeVinValuesExtended` endpoint
 > **DecodeVinValuesExtended**(`vin`): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`DecodeVinValuesExtendedResults`](DecodeVinValuesExtended.md#decodevinvaluesextendedresults)\>\>
 
 ::: tip :bulb: More Information
-See: [DecodeVinValuesExtended Documentation](/api/endpoints/decode-vin-values-extended)
+See: [DecodeVinValuesExtended Documentation](/guide/vpic/endpoints/decode-vin-values-extended)
 :::
 
 `DecodeVinValuesExtended` decodes a Vehicle Identification Number (VIN) and returns useful

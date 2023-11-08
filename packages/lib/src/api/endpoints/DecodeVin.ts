@@ -9,7 +9,7 @@ import type { IArgToValidate, NhtsaResponse } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [DecodeVin Documentation](/api/endpoints/decode-vin)
+ * See: [DecodeVin Documentation](/guide/vpic/endpoints/decode-vin)
  * :::
  *
  * `DecodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about

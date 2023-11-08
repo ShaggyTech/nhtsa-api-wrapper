@@ -43,7 +43,7 @@ Objects found in the `Results` array of `GetModelsForMakeYear` endpoint response
 > **GetModelsForMakeYear**(`params`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetModelsForMakeYearResults`](GetModelsForMakeYear.md#getmodelsformakeyearresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetModelsForMakeYear Documentation](/api/endpoints/get-models-for-make-year)
+See: [GetModelsForMakeYear Documentation](/guide/vpic/endpoints/get-models-for-make-year)
 :::
 
 `GetModelsForMakeYear` returns the Models in the vPIC dataset for a specified Model Year and

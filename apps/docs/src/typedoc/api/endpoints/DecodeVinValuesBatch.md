@@ -189,7 +189,7 @@ Objects found in the `Results` array of `DecodeVinValuesBatch` endpoint response
 > **DecodeVinValuesBatch**(`inputString`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`DecodeVinValuesBatchResults`](DecodeVinValuesBatch.md#decodevinvaluesbatchresults)\>\>
 
 ::: tip :bulb: More Information
-See: [DecodeVinValuesBatch Documentation](/api/endpoints/decode-vin-values-batch)
+See: [DecodeVinValuesBatch Documentation](/guide/vpic/endpoints/decode-vin-values-batch)
 :::
 
 `DecodeVinValuesBatch` decodes a batch of Vehicle Identification Numbers (VINs) and returns

@@ -15,7 +15,7 @@ async function DecodeVinExtended (
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../typedoc/api/endpoints/DecodeVinExtended)
+See: [Package Reference](../../../typedoc/api/endpoints/DecodeVinExtended)
 :::
 
 ## Description
@@ -54,7 +54,7 @@ Any `params` that are not listed in the table above will be ignored.
 As `params` is optional, it also has type `| boolean`, so you can set `doFetch` without
 having to pass `undefined` in place of intentionally undefined `params`.
 
-- See [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
   for more info.
 
 :::
@@ -91,7 +91,7 @@ Returns the URL string that can be used to fetch the data, does _not_ fetch the 
 // ex: => 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinExtended/WA1A4AFY2J2008189?format=json'
 ```
 
-::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+::: tip :bulb: See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 :::
 
 ## Type DecodeVinExtendedResults
@@ -157,7 +157,7 @@ const response = await DecodeVinExtended('5UXWX7C5*BA')
 
 - Does _NOT_ fetch data from VPIC API
 
-- See: [BYOF - Bring Your Own Fetch](../../guide/bring-your-own-fetch.md#option-1-set-dofetch-to-false)
+- See: [BYOF - Bring Your Own Fetch](../../bring-your-own-fetch.md#option-1-set-dofetch-to-false)
 
 - Returns:
 

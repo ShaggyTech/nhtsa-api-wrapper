@@ -43,7 +43,7 @@ Objects found in the `Results` array of `GetMakesForManufacturerAndYear` endpoin
 > **GetMakesForManufacturerAndYear**(`manufacturer`, `params`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetMakesForManufacturerAndYearResults`](GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetMakesForManufacturerAndYear Documentation](/api/endpoints/get-makes-for-manufacturer-and-year)
+See: [GetMakesForManufacturerAndYear Documentation](/guide/vpic/endpoints/get-makes-for-manufacturer-and-year)
 :::
 
 `GetMakesForManufacturerAndYear` returns all the Makes in the vPIC dataset for a specified

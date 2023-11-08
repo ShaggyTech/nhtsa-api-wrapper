@@ -13,7 +13,7 @@ import type { NhtsaResponse, IArgToValidate, AtLeastOne } from '@/types'
 
 /**
  * ::: tip :bulb: More Information
- * See: [GetModelsForMakeYear Documentation](/api/endpoints/get-models-for-make-year)
+ * See: [GetModelsForMakeYear Documentation](/guide/vpic/endpoints/get-models-for-make-year)
  * :::
  *
  * `GetModelsForMakeYear` returns the Models in the vPIC dataset for a specified Model Year and

@@ -48,7 +48,7 @@ Objects found in the `Results` array of `DecodeWMI` endpoint response.
 > **DecodeWMI**(`WMI`, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`DecodeWMIResults`](DecodeWMI.md#decodewmiresults)\>\>
 
 ::: tip :bulb: More Information
-See: [DecodeWMI Documentation](/api/endpoints/decode-wmi)
+See: [DecodeWMI Documentation](/guide/vpic/endpoints/decode-wmi)
 :::
 
 `DecodeWMI` provides information on the World Manufacturer Identifier for a specific `WMI` code.

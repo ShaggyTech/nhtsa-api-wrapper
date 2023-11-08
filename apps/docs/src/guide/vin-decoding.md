@@ -30,7 +30,7 @@ response = {
 */
 ```
 
-::: tip :mag: See: [VPIC Response](../api/vpic-api-response) for more info on the response object
+::: tip :mag: See: [VPIC Response](../guide/vpic/vpic-api-response) for more info on the response object
 :::
 
 ---
@@ -50,8 +50,8 @@ object. This object is the decoded data for the VIN.
 
 ::: tip See also:
 
-- [DecodeVinValues](../api/endpoints/decode-vin-values)
-- [DecodeVinValues Example Response](../api/endpoints/decode-vin-values#returns)
+- [DecodeVinValues](../guide/vpic/endpoints/decode-vin-values)
+- [DecodeVinValues Example Response](../guide/vpic/endpoints/decode-vin-values#returns)
 - [Type - DecodeVinValuesResults](../typedoc/api/endpoints/DecodeVinValues#decodevinvaluesresults)
 
 :::
@@ -100,5 +100,5 @@ console.log(
 )
 ```
 
-::: tip :mag: See Also: [VPIC API Endpoints](../api/#vpic-api-endpoints)
+::: tip :mag: See Also: [VPIC API Endpoints](../guide/vpic/#vpic-api-endpoints)
 :::

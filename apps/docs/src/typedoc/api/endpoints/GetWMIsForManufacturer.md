@@ -47,7 +47,7 @@ Objects found in the `Results` array of `GetWMIsForManufacturer` endpoint respon
 > **GetWMIsForManufacturer**(`params`?, `doFetch`?): `Promise`\<[`NhtsaResponse`](../types.md#nhtsaresponset)\<[`GetWMIsForManufacturerResults`](GetWMIsForManufacturer.md#getwmisformanufacturerresults)\>\>
 
 ::: tip :bulb: More Information
-See: [GetWMIsForManufacturer Documentation](/api/endpoints/get-wmis-for-manufacturer)
+See: [GetWMIsForManufacturer Documentation](/guide/vpic/endpoints/get-wmis-for-manufacturer)
 :::
 
 `GetWMIsForManufacturer` provides information on the World Manufacturer Identifier (WMI) for a
