@@ -3,5 +3,5 @@
  * @category API
  */
 
-export * from './endpoints'
+export * from './vpic'
 export { useNHTSA } from './useNHTSA'

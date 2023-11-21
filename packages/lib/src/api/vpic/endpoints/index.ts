@@ -1,5 +1,5 @@
 /**
- * @module api/endpoints
+ * @module api/vpic/endpoints
  * @category API Endpoints
  */
 

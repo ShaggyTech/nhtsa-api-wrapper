@@ -1,5 +1,5 @@
 /**
- * @module api/endpoints/types
+ * @module api/vpic/endpoints/types
  * @category Types
  */
 
