@@ -63,4 +63,20 @@ describe('GetAllMakes', () => {
     expect(results).toEqual(mockUrl)
     expect(fetchMock.requests().length).toEqual(0)
   })
+
+  /*****************************
+   * rejects with error
+   ***************************/
+
+  it.each([1234, ['a', 'b'], { a: 'b' }, null])(
+    'rejects with error if doFetch is neither boolean nor undefined, %#',
+    async (arg) => {
+      await expect(() =>
+        // @ts-expect-error - arg is not a boolean
+        GetAllMakes(arg)
+      ).rejects.toThrowError(/error validating argument named "doFetch"/)
+
+      expect(fetchMock.requests().length).toEqual(0)
+    }
+  )
 })

@@ -4,7 +4,7 @@
  */
 
 import { useNHTSA } from '@/api'
-import { rejectWithError } from '@/utils'
+import { rejectWithError, validateArgument } from '@/utils'
 import type { NhtsaResponse } from '@/types'
 
 /**
@@ -34,6 +34,12 @@ async function GetAllMakes(
   const endpointName = 'GetAllMakes'
 
   try {
+    validateArgument({
+      name: 'doFetch',
+      value: doFetch,
+      types: ['boolean'],
+    })
+
     const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
     createCachedUrl({ endpointName })
