@@ -35,7 +35,7 @@
     "tsconfig": "workspace:*",
     "typescript": "5.2.2",
     "vite-plugin-pwa": "0.16.5",
-    "vitepress": "1.0.0-rc.24",
+    "vitepress": "1.0.0-rc.31",
     "workbox-window": "7.0.0"
   },
   "eslintConfig": {
