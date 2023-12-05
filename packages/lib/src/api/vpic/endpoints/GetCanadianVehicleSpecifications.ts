@@ -1,6 +1,6 @@
 /**
- * @module api/endpoints/GetCanadianVehicleSpecifications
- * @category API Endpoints
+ * @module api/vpic/endpoints/GetCanadianVehicleSpecifications
+ * @category API - VPIC (VIN Decoding)
  */
 
 import { useNHTSA } from '@/api'

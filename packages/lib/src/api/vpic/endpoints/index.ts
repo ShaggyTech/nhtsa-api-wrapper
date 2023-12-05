@@ -1,6 +1,6 @@
 /**
  * @module api/vpic/endpoints
- * @category API Endpoints
+ * @category API - VPIC (VIN Decoding)
  */
 
 export { DecodeVin } from './DecodeVin'

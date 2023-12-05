@@ -1,6 +1,6 @@
 /**
- * @module api/endpoints/DecodeVinExtended
- * @category API Endpoints
+ * @module api/vpic/endpoints/DecodeVinExtended
+ * @category API - VPIC (VIN Decoding)
  */
 
 import { useNHTSA } from '@/api'

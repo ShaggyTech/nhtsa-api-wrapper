@@ -1,6 +1,6 @@
 /**
- * @module api/endpoints/GetMakesForManufacturerAndYear
- * @category API Endpoints
+ * @module api/vpic/endpoints/GetMakesForManufacturerAndYear
+ * @category API - VPIC (VIN Decoding)
  */
 
 import { useNHTSA } from '@/api'
