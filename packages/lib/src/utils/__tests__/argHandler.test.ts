@@ -1,652 +1,778 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, test } from 'vitest'
 import { catchInvalidArguments, validateArgument } from '../argHandler'
 
-describe('argHandler.ts - exports', () => {
-  it('catchInvalidArguments function', () => {
+describe('utils/argHandler.ts - exports:', () => {
+  test('catchInvalidArguments function', () => {
     expect(catchInvalidArguments).toBeDefined()
     expect(catchInvalidArguments).toBeInstanceOf(Function)
   })
 
-  it('validateArgument function', () => {
+  test('validateArgument function', () => {
     expect(validateArgument).toBeDefined()
     expect(validateArgument).toBeInstanceOf(Function)
   })
 })
 
-describe('validateArgument', () => {
-  describe('all modes', () => {
-    it('throws error when arg is empty array', () => {
-      expect(() => validateArgument([] as any)).toThrowError()
+describe('validateArgument()', () => {
+  describe('all modes - throws error with invalid argData passed to validateArgument():', () => {
+    /****************
+     * Throws Error
+     ****************/
+    describe('argData is undefined or is not an object:', () => {
+      test.each([
+        '',
+        'string',
+        123,
+        1234n,
+        0,
+        -0,
+        0n,
+        [],
+        ['1', '2', '3'],
+        () => 'a function',
+        true,
+        false,
+        null,
+        undefined,
+        NaN,
+        new Date(),
+        new String(),
+        new Error(),
+      ])('argData: %s', (argData) => {
+        expect(() =>
+          validateArgument(
+            // @ts-expect-error Type 'x' is not assignable to type 'IArgToValidate'.
+            argData
+          )
+        ).toThrowError(
+          /'argData' argument is required and must be an object containing valid options/
+        )
+      })
     })
 
-    it('throws error when arg is empty object', () => {
-      expect(() => validateArgument({} as any)).toThrowError()
+    describe('argData.name is undefined or is not a string:', () => {
+      test.each([
+        123,
+        1234n,
+        0,
+        -0,
+        0n,
+        [],
+        ['1', '2', '3'],
+        {},
+        { a: '1', b: '2', c: '3' },
+        () => 'a function',
+        true,
+        false,
+        null,
+        undefined,
+        NaN,
+        new Date(),
+        new Object(),
+      ])('argData.name: %s', (name) => {
+        expect(() =>
+          validateArgument({
+            // @ts-expect-error Type 'x' is not assignable to type 'string'.
+            name,
+            value: 'some string',
+          })
+        ).toThrowError(/'argData.name', is required and must be of type string/)
+      })
+    })
+
+    describe('argData.required is defined and is not a boolean:', () => {
+      test.each([
+        'string',
+        123,
+        1234n,
+        0,
+        -0,
+        0n,
+        [],
+        ['1', '2', '3'],
+        {},
+        { a: '1', b: '2', c: '3' },
+        () => 'a function',
+        null,
+        NaN,
+        new Date(),
+        new String(),
+        new Object(),
+      ])('argData.required: %s', (required) => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: 'some string',
+            // @ts-expect-error Type 'x' is not assignable to type 'boolean'.
+            required,
+          })
+        ).toThrowError(/'argData.required' must be of type boolean if provided/)
+      })
+    })
+
+    describe('argData.requiredBy is defined and is not an array of length > 0:', () => {
+      test.each([
+        'string',
+        123,
+        1234n,
+        [],
+        {},
+        { a: '1', b: '2', c: '3' },
+        () => 'a function',
+        true,
+        new Date(),
+        new String(),
+      ])('argData.requiredBy: %s', (requiredBy) => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: 'some string',
+            // @ts-expect-error Type 'x' is not assignable to type ...
+            requiredBy,
+          })
+        ).toThrowError(
+          /'argData.requiredBy' must be an arrry of objects if provided/
+        )
+      })
+    })
+
+    describe('argData.requiredBy.value is defined and argData.requiredBy.name is not a string:', () => {
+      test.each([
+        123,
+        1234n,
+        0,
+        -0,
+        0n,
+        [],
+        ['1', '2', '3'],
+        {},
+        { a: '1', b: '2', c: '3' },
+        () => 'a function',
+        true,
+        false,
+        null,
+        undefined,
+        NaN,
+        new Date(),
+        new Object(),
+      ])('argData.requiredBy.name: %s', (requiredByName) => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: 'defined value',
+            requiredBy: [
+              {
+                // @ts-expect-error Type 'x' is not assignable to type 'string'.
+                name: requiredByName,
+                value: 1234,
+              },
+            ],
+          })
+        ).toThrowError(
+          /'argData.requiredBy' requires both a name and value if value is defined/
+        )
+      })
+    })
+
+    describe('argData.types is defined and is not an array of strings with length > 0:', () => {
+      test.each([
+        123,
+        'string',
+        true,
+        {},
+        [],
+        [undefined],
+        [null],
+        [1234],
+        [true],
+        [{}],
+        ['string', 1234],
+        () => 'a function',
+        1234n,
+        new Date(),
+        new String(),
+        new Object(),
+      ])('argData.types: %s', (types) => {
+        expect(() =>
+          validateArgument({
+            name: 'test',
+            value: 'some string',
+            // @ts-expect-error Type 'x' is not assignable to type 'string[]'.
+            types,
+          })
+        ).toThrowError(
+          /'argData.types' must be an array of strings if provided/
+        )
+      })
     })
   })
 
-  describe('errorMode: "error" (default)', () => {
-    describe('only required', () => {
+  describe('argument validation logic', () => {
+    describe('if argData.required: true', () => {
       /****************
        * Returns true
        ****************/
-      it('returns true with defined value', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '3VWD07AJ5EM388203',
-            required: true,
-          })
-        ).toEqual(true)
+      describe('returns true - if argData.value is defined or "truthy":', () => {
+        const testValues = [
+          true,
+          'string',
+          '0',
+          123,
+          -123,
+          3.14,
+          -3.14,
+          1234n,
+          Infinity,
+          -Infinity,
+          [],
+          ['1', '2', '3'],
+          {},
+          { a: '1', b: '2', c: '3' },
+          () => 'a function',
+          new Date(),
+          new String(),
+          new Object(),
+        ]
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 1234,
-            required: true,
+        describe('returns true - errorMode: "error" (default)', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                required: true,
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
+        })
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
+        describe('returns true - errorMode: "boolean"', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                required: true,
+                errorMode: 'boolean',
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: { a: '1', b: '2', c: '3' },
-            required: true,
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: () => 'this is a function',
-            required: true,
-          })
-        ).toEqual(true)
+        })
       })
 
-      it('returns true when value is empty array', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: [],
-            required: true,
-          })
-        ).toEqual(true)
-      })
+      /********************************
+       * Throws Error or Returns False
+       ********************************/
+      describe('throws error or returns false - if argData.value is undefined or "falsey"', () => {
+        const testValues = ['', undefined, false, null, NaN, 0, -0, 0n]
 
-      it('returns true when value is empty object', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: {},
-            required: true,
+        describe('throws error - errorMode: "error" (default)', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(() =>
+              validateArgument({
+                name: 'testValue',
+                value,
+                required: true,
+              })
+            ).toThrowError(
+              /error validating argument named "testValue", it is required/
+            )
           })
-        ).toEqual(true)
-      })
+        })
 
-      /****************
-       * Throws Error
-       ****************/
-      it('throws error when value is undefined', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            required: true,
+        describe('returns false - errorMode: "boolean":', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'testValue',
+                value,
+                required: true,
+                errorMode: 'boolean',
+              })
+            ).toEqual(false)
           })
-        ).toThrowError()
-      })
-
-      it('throws error when value is null', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: null,
-            required: true,
-          })
-        ).toThrowError()
-      })
-
-      it('throws error when value is empty string', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: '',
-            required: true,
-          })
-        ).toThrowError()
+        })
       })
     })
 
-    describe('only types', () => {
+    describe('if argData.types is defined', () => {
       /****************
        * Returns true
        ****************/
-      it('returns true with matching type', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '3VWD07AJ5EM388203',
-            types: ['string'],
-          })
-        ).toEqual(true)
+      describe('returns true - if argData.value is undefined because type match will be skipped', () => {
+        const testValues = ['', new String(), undefined]
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 132,
-            types: ['string', 'number'],
+        describe('returns true - errorMode: "error" (default)', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                types: ['string'],
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
+        })
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: ['array'],
+        describe('returns true - errorMode: "boolean"', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                types: ['string'],
+                errorMode: 'boolean',
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: { a: '1', b: '2', c: '3' },
-            types: ['object', 'boolean'],
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: () => 'this is a function',
-            types: ['function'],
-          })
-        ).toEqual(true)
+        })
       })
 
-      it('returns true with undefined value', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            types: ['string'],
+      describe('returns true - if typeof argData.value matches at least one type:', () => {
+        const testValues: [unknown, string[]][] = [
+          /* match single type */
+          ['string', ['string']],
+          [123, ['number']],
+          [true, ['boolean']],
+          [false, ['boolean']],
+          [null, ['null']],
+          [() => 'a function', ['function']],
+          [1234n, ['bigint']],
+          [{ a: '1', b: '2', c: '3' }, ['object']],
+          [['1', '2', '3'], ['array']],
+          [[], ['array']],
+          [{}, ['object']],
+          [new Date(), ['date']],
+          [new Error(), ['error']],
+          [new TypeError(), ['error']],
+          [new RangeError(), ['error']],
+          [new ReferenceError(), ['error']],
+          [new SyntaxError(), ['error']],
+          [new URIError(), ['error']],
+          [new EvalError(), ['error']],
+          /* match multiple types */
+          [{}, ['object', 'array']],
+          [123, ['number', 'string']],
+          ['string', ['string', 'number']],
+          [123, ['string', 'number', 'boolean']],
+          [true, ['string', 'number', 'boolean']],
+          [undefined, ['string', 'number', 'boolean', 'undefined']],
+          [null, ['string', 'number', 'boolean', 'undefined', 'null']],
+          [() => 'a function', ['string', 'number', 'function']],
+        ]
+
+        describe('returns true - errorMode: "error" (default)', () => {
+          test.each(testValues)('typeof "%s" = %s', (value, types) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                types,
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
+        })
+
+        describe('returns true - errorMode: "boolean"', () => {
+          test.each(testValues)('typeof "%s" = %s', (value, types) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                types,
+                errorMode: 'boolean',
+              })
+            ).toEqual(true)
+          })
+        })
       })
 
-      it('returns true with empty string when tested against type string', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '',
-            types: ['string'],
-          })
-        ).toEqual(true)
-      })
+      /********************************
+       * Throws Error or Returns False
+       ********************************/
+      describe('throws error or returns false - if typeof argData.value does not match at least one type:', () => {
+        const testValues: [unknown, string[]][] = [
+          /* mis-match single type */
+          [123, ['string']],
+          [true, ['string']],
+          [false, ['string']],
+          [null, ['string']],
+          [() => 'a function', ['string']],
+          [1234n, ['string']],
+          [{ a: '1', b: '2', c: '3' }, ['string']],
+          [['1', '2', '3'], ['string']],
+          [[], ['string']],
+          [{}, ['string']],
+          [new Date(), ['string']],
+          [new String(), ['object']],
+          [new Error(), ['object']],
+          [new TypeError(), ['object']],
+          [new RangeError(), ['object']],
+          [new ReferenceError(), ['object']],
+          [new SyntaxError(), ['object']],
+          [new URIError(), ['object']],
+          [new EvalError(), ['object']],
+          /* mis-match multiple types */
+          [{}, ['string', 'number']],
+          [123, ['string', 'boolean']],
+          [true, ['string', 'number']],
+          [null, ['string', 'number', 'boolean', 'undefined']],
+          [() => 'a function', ['string', 'number', 'boolean']],
+        ]
 
-      it('returns true with empty array when tested against type array', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: [],
-            types: ['array'],
+        describe('throws error - errorMode: "error" (default)', () => {
+          test.each(testValues)('typeof "%s" != type(s) %s', (value, types) => {
+            expect(() =>
+              validateArgument({
+                name: 'testValue',
+                value,
+                types,
+              })
+            ).toThrowError(
+              /error validating argument named "testValue", must be of type\(s\)/
+            )
           })
-        ).toEqual(true)
-      })
+        })
 
-      it('returns true with empty object when tested against type object', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: {},
-            types: ['object'],
+        describe('returns false - errorMode: "boolean"', () => {
+          test.each(testValues)('typeof "%s" != type(s) %s', (value, types) => {
+            expect(
+              validateArgument({
+                name: 'testValue',
+                value,
+                types,
+                errorMode: 'boolean',
+              })
+            ).toEqual(false)
           })
-        ).toEqual(true)
-      })
-
-      /****************
-       * Throws Error
-       ****************/
-      it('throws error when types do not match and value is defined', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: null,
-            types: ['string'],
-          })
-        ).toThrowError()
-
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: 123,
-            types: ['string'],
-          })
-        ).toThrowError()
-
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: ['number', 'object'],
-          })
-        ).toThrowError()
-      })
-
-      it('throws error when types array is empty', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: [] as any,
-          })
-        ).toThrowError()
-      })
-
-      it('throws error when types is not an array', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: 'string' as any,
-          })
-        ).toThrowError()
-
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: { a: '1' } as any,
-          })
-        ).toThrowError()
+        })
       })
     })
 
-    describe('required and types', () => {
+    describe('if argData.required: true && argData.types is defined', () => {
       /****************
        * Returns True
        ****************/
-      it('returns true if value is defined and types match', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '3VWD07AJ5EM388203',
-            required: true,
-            types: ['string'],
-          })
-        ).toEqual(true)
+      describe('returns true - if argData.value is defined and matches at least one type:', () => {
+        const testValues: [unknown, string[]][] = [
+          /* match single type */
+          ['string', ['string']],
+          [123, ['number']],
+          [true, ['boolean']],
+          [() => 'a function', ['function']],
+          [1234n, ['bigint']],
+          [{ a: '1', b: '2', c: '3' }, ['object']],
+          [['1', '2', '3'], ['array']],
+          [[], ['array']],
+          [{}, ['object']],
+          [new Date(), ['date']],
+          [new String(), ['string']],
+          [new Error(), ['error']],
+          [new TypeError(), ['error']],
+          [new RangeError(), ['error']],
+          [new ReferenceError(), ['error']],
+          [new SyntaxError(), ['error']],
+          [new URIError(), ['error']],
+          [new EvalError(), ['error']],
+          /* match multiple types */
+          [{}, ['object', 'array']],
+          [123, ['number', 'string']],
+          ['string', ['string', 'number']],
+          [123, ['string', 'number', 'boolean']],
+          [true, ['string', 'number', 'boolean']],
+          [() => 'a function', ['string', 'number', 'function']],
+        ]
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 132,
-            required: true,
-            types: ['string', 'number'],
+        describe('returns true - errorMode: "error" (default)', () => {
+          test.each(testValues)('typeof "%s" === %s', (value, types) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                required: true,
+                types,
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
+        })
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: ['array'],
+        describe('returns true - errorMode: "boolean"', () => {
+          test.each(testValues)('typeof "%s" === %s', (value, types) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                required: true,
+                types,
+                errorMode: 'boolean',
+              })
+            ).toEqual(true)
           })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: { a: '1', b: '2', c: '3' },
-            required: true,
-            types: ['object', 'boolean'],
-          })
-        ).toEqual(true)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: () => 'this is a function',
-            required: true,
-            types: ['function'],
-          })
-        ).toEqual(true)
-      })
-
-      it('returns true with empty array when tested against type array', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: [],
-            required: true,
-            types: ['array'],
-          })
-        ).toEqual(true)
-      })
-
-      it('returns true with empty object when tested against type object', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: {},
-            required: true,
-            types: ['object'],
-          })
-        ).toEqual(true)
+        })
       })
 
       /****************
        * Throws Error
        ****************/
-      it('throws error if value is undefined', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            required: true,
-            types: ['string'],
-          })
-        ).toThrowError()
-      })
+      describe('throws error or returns false - if typeof argData.value does not match at least one type:', () => {
+        const testValues: [unknown, string[]][] = [
+          /* mis-match single type */
+          [123, ['string']],
+          [123, ['string']],
+          [true, ['string']],
+          [false, ['string']],
+          [null, ['string']],
+          [() => 'a function', ['string']],
+          [1234n, ['string']],
+          [{ a: '1', b: '2', c: '3' }, ['string']],
+          [['1', '2', '3'], ['string']],
+          [[], ['string']],
+          [{}, ['string']],
+          [new Date(), ['string']],
+          [new String(), ['object']],
+          [new Error(), ['object']],
+          /* mis-match multiple types */
+          [{}, ['string', 'number']],
+          [123, ['string', 'boolean']],
+          [true, ['string', 'number']],
+          [null, ['string', 'number', 'boolean', 'undefined']],
+          [() => 'a function', ['string', 'number', 'boolean']],
+        ]
 
-      it('throws error if value is null', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: null,
-            required: true,
-            types: ['string'],
-          })
-        ).toThrowError()
-      })
+        describe('throws error - errorMode: "error" (default)', () => {
+          test.each(testValues)(
+            'typeof "%s" !== type(s) %s',
+            (value, types) => {
+              expect(() =>
+                validateArgument({
+                  name: 'testValue',
+                  value,
+                  required: true,
+                  types,
+                })
+              ).toThrowError(
+                /error validating argument named "testValue", is required and must be of type\(s\)/
+              )
+            }
+          )
+        })
 
-      it('throws error with empty string when tested against type string', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: '',
-            required: true,
-            types: ['string'],
-          })
-        ).toThrowError()
-      })
-
-      it('throws error when type of value does not match', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: 123,
-            required: true,
-            types: ['array'],
-          })
-        ).toThrowError()
-
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: ['number', 'string', 'object'],
-          })
-        ).toThrowError()
-      })
-    })
-  })
-
-  describe('errorMode: "boolean"', () => {
-    describe('only required', () => {
-      /****************
-       * Returns true
-       * - same as default mode
-       ****************/
-
-      /****************
-       * Returns false
-       ****************/
-      it('returns false when value is undefined', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(false)
-      })
-
-      it('returns false when value is null', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: null,
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(false)
-      })
-
-      it('returns false when value is empty string', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '',
-            required: true,
-            errorMode: 'boolean',
-          })
-        ).toEqual(false)
+        describe('returns false - errorMode: "boolean"', () => {
+          test.each(testValues)(
+            'typeof "%s" !== type(s) %s',
+            (value, types) => {
+              expect(
+                validateArgument({
+                  name: 'testValue',
+                  value,
+                  required: true,
+                  types,
+                  errorMode: 'boolean',
+                })
+              ).toEqual(false)
+            }
+          )
+        })
       })
     })
 
-    describe('only types', () => {
+    describe('if argData.requiredBy is defined', () => {
       /****************
        * Returns true
-       * - same as default mode
        ****************/
+      describe('returns true - if argData.value is defined when requiredBy another defined value:', () => {
+        const testValues = [
+          true,
+          'string',
+          '0',
+          123,
+          -123,
+          3.14,
+          -3.14,
+          1234n,
+          Infinity,
+          -Infinity,
+          [],
+          ['1', '2', '3'],
+          {},
+          { a: '1', b: '2', c: '3' },
+          () => 'a function',
+          new Date(),
+          new String(),
+          new Object(),
+        ]
 
-      /****************
-       * Returns false
-       ****************/
-      it('returns false when types do not match and value is defined', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: null,
-            types: ['string'],
-            errorMode: 'boolean',
+        describe('returns true - errorMode: "error" (default)', () => {
+          it.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                requiredBy: [{ name: 'test2', value: 'string' }],
+              })
+            ).toEqual(true)
           })
-        ).toBe(false)
+        })
 
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 123,
-            types: ['string'],
-            errorMode: 'boolean',
+        describe('returns true - errorMode: "boolean"', () => {
+          it.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                requiredBy: [{ name: 'test2', value: 'string' }],
+                errorMode: 'boolean',
+              })
+            ).toEqual(true)
           })
-        ).toBe(false)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: ['number', 'object'],
-            errorMode: 'boolean',
-          })
-        ).toBe(false)
+        })
       })
 
-      /****************
-       * Throws Error
-       ****************/
-      it('throws error when types array is empty', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: [] as any,
-            errorMode: 'boolean',
+      /********************************
+       * Throws Error or Returns False
+       *******************************/
+      describe('throws error or returns false - if argData.value is undefined when requiredBy another defined value', () => {
+        const testValues = [undefined, false, null, '', NaN, 0, -0, 0n]
+
+        describe('throws error - errorMode: "error" (default)', () => {
+          test.each([testValues])('argData.value: %s', (value) => {
+            expect(() =>
+              validateArgument({
+                name: 'test',
+                value,
+                requiredBy: [{ name: 'test2', value: 132 }],
+              })
+            ).toThrowError(
+              /error validating argument named "test", it is required if "test2" is passed/
+            )
           })
-        ).toThrowError()
+        })
+
+        describe('returns false - errorMode: "boolean"', () => {
+          test.each([testValues])('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                requiredBy: [{ name: 'test2', value: 132 }],
+                errorMode: 'boolean',
+              })
+            ).toEqual(false)
+          })
+        })
       })
 
-      it('throws error when types is not an array', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: 'string' as any,
-            errorMode: 'boolean',
-          })
-        ).toThrowError()
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            types: { a: '1' } as any,
-            errorMode: 'boolean',
-          })
-        ).toThrowError()
-      })
-    })
+      describe('throws error or returns false - if argData.value is required but undefined when requiredBy another defined value', () => {
+        const testValues = [undefined, false, null, '', NaN, 0, -0, 0n]
 
-    describe('required and types', () => {
-      /****************
-       * Returns true
-       * - same as default mode
-       ****************/
+        describe('throws error - errorMode: "error" (default)', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(() =>
+              validateArgument({
+                name: 'test',
+                value,
+                required: true,
+                requiredBy: [{ name: 'test2', value: 132 }],
+              })
+            ).toThrowError(
+              /error validating argument named "test", it is required if "test2" is passed/
+            )
+          })
+        })
 
-      /****************
-       * Returns false
-       ****************/
-      it('returns false if value is undefined', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: undefined,
-            required: true,
-            types: ['string'],
-            errorMode: 'boolean',
+        describe('returns false - errorMode: "boolean"', () => {
+          test.each(testValues)('argData.value: %s', (value) => {
+            expect(
+              validateArgument({
+                name: 'test',
+                value,
+                required: true,
+                requiredBy: [{ name: 'test2', value: 132 }],
+                errorMode: 'boolean',
+              })
+            ).toEqual(false)
           })
-        ).toBe(false)
-      })
-
-      it('returns false if value is null', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: null,
-            required: true,
-            types: ['string'],
-            errorMode: 'boolean',
-          })
-        ).toBe(false)
-      })
-
-      it('returns false with empty string when tested against type string', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: '',
-            required: true,
-            types: ['string'],
-            errorMode: 'boolean',
-          })
-        ).toBe(false)
-      })
-
-      it('returns false when type of value does not match', () => {
-        expect(
-          validateArgument({
-            name: 'test',
-            value: 123,
-            required: true,
-            types: ['array'],
-            errorMode: 'boolean',
-          })
-        ).toBe(false)
-
-        expect(
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: ['number', 'string', 'object'],
-            errorMode: 'boolean',
-          })
-        ).toBe(false)
-      })
-
-      /****************
-       * Throws Error
-       ****************/
-      it('throws error when types array is empty', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: [] as any,
-            errorMode: 'boolean',
-          })
-        ).toThrowError()
-      })
-
-      it('throws error when types is not an array', () => {
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: 'string' as any,
-            errorMode: 'boolean',
-          })
-        ).toThrowError()
-        expect(() =>
-          validateArgument({
-            name: 'test',
-            value: ['1', '2', '3'],
-            required: true,
-            types: { a: '1' } as any,
-            errorMode: 'boolean',
-          })
-        ).toThrowError()
+        })
       })
     })
   })
 })
 
 describe('catchInvalidArguments', () => {
-  describe('all modes', () => {
+  describe('all modes- throws error with invalid options passed to catchInvalidArguments():', () => {
     /****************
      * Throws Error
      ****************/
-    it('throws error with empty or invalid args array', () => {
-      expect(() => catchInvalidArguments(undefined as any)).toThrowError()
-      expect(() => catchInvalidArguments({} as any)).toThrowError()
+    describe('options are undefined or not an object:', () => {
+      test.each([
+        '',
+        'string',
+        123,
+        1234n,
+        0,
+        -0,
+        0n,
+        [],
+        ['1', '2', '3'],
+        () => 'a function',
+        true,
+        false,
+        null,
+        undefined,
+        NaN,
+        new Date(),
+        new String(),
+        new Error(),
+      ])('options: %s', (argData) => {
+        expect(() =>
+          catchInvalidArguments(
+            // @ts-expect-error Type 'x' is not assignable to type ...
+            argData
+          )
+        ).toThrowError(
+          /catchInvalidArguments requires "args" that must be an array of IArgToValidate objects/
+        )
+      })
+    })
 
-      expect(() =>
-        catchInvalidArguments({ args: 'string' } as any)
-      ).toThrowError()
-
-      expect(() => catchInvalidArguments({ args: [] })).toThrowError()
-
-      expect(() => catchInvalidArguments({ args: {} } as any)).toThrowError()
+    describe('options.args is undefined or is not an array of length > 0:', () => {
+      test.each([
+        '',
+        'string',
+        123,
+        1234n,
+        0,
+        -0,
+        0n,
+        [],
+        () => 'a function',
+        true,
+        false,
+        null,
+        undefined,
+        NaN,
+        new Date(),
+        new String(),
+        new Error(),
+      ])('options.args: %s', (args) => {
+        expect(() =>
+          catchInvalidArguments(
+            // @ts-expect-error Type 'x' is not assignable to type 'IArgToValidate'.
+            { args }
+          )
+        ).toThrowError(
+          /catchInvalidArguments requires "args" that must be an array of IArgToValidate objects/
+        )
+      })
     })
   })
 
-  describe('mode: "default" (default)', () => {
+  describe('options.mode: "default"', () => {
     /****************
      * Returns true
      ****************/
-    it('returns true if all args are valid', () => {
+    test('returns true if all args are valid', () => {
       const args = [
         { name: 'make', value: 'Audi', required: true, types: ['string'] },
         { name: 'params', value: { a: '1' }, types: ['object'] },
@@ -662,7 +788,7 @@ describe('catchInvalidArguments', () => {
     /****************
      * Throws Error
      ****************/
-    it('throws error if validation fails', () => {
+    test('throws error if validation fails', () => {
       expect(() =>
         catchInvalidArguments({
           args: [
@@ -674,7 +800,7 @@ describe('catchInvalidArguments', () => {
             },
           ],
         })
-      ).toThrowError()
+      ).toThrowError(/error validating argument named "make"/)
 
       expect(() =>
         catchInvalidArguments({
@@ -687,7 +813,7 @@ describe('catchInvalidArguments', () => {
             },
           ],
         })
-      ).toThrowError()
+      ).toThrowError(/error validating argument named "make"/)
 
       expect(() =>
         catchInvalidArguments({
@@ -699,15 +825,15 @@ describe('catchInvalidArguments', () => {
             },
           ],
         })
-      ).toThrowError()
+      ).toThrowError(/error validating argument named "modelYear"/)
     })
   })
 
-  describe('atLeast mode', () => {
+  describe('options.mode: "atLeast"', () => {
     /****************
      * Returns true
      ****************/
-    it('returns true if at least one two args defined', () => {
+    test('returns true if at least one of two args defined', () => {
       const args = [
         { name: 'make', value: undefined, types: ['string'] },
         { name: 'year', value: 1999, types: ['number'] },
@@ -715,7 +841,7 @@ describe('catchInvalidArguments', () => {
       expect(catchInvalidArguments({ mode: 'atLeast', args })).toEqual(true)
     })
 
-    it('returns true if both args defined', () => {
+    test('returns true if both args defined', () => {
       const args = [
         { name: 'make', value: 'Audi', types: ['string'] },
         { name: 'year', value: 1999, types: ['number'] },
@@ -723,7 +849,7 @@ describe('catchInvalidArguments', () => {
       expect(catchInvalidArguments({ mode: 'atLeast', args })).toEqual(true)
     })
 
-    it('returns true if at least one of three args defined', () => {
+    test('returns true if at least one of three args defined', () => {
       const args = [
         { name: 'make', value: null, types: ['string'] },
         { name: 'year', value: undefined, types: ['number'] },
@@ -735,14 +861,14 @@ describe('catchInvalidArguments', () => {
     /****************
      * Throws Error
      ****************/
-    it('throws error if not at least one', () => {
+    test('throws error if not at least one', () => {
       expect(() =>
         catchInvalidArguments({
           mode: 'atLeast',
           args: [
             {
-              name: 'model',
-              value: '',
+              name: 'modelYear',
+              value: null,
               types: ['string'],
             },
             {
@@ -752,12 +878,14 @@ describe('catchInvalidArguments', () => {
             },
             {
               name: 'model',
-              value: null,
+              value: '',
               types: ['string'],
             },
           ],
         })
-      ).toThrowError()
+      ).toThrowError(
+        /must provide at least one of the following arguments: modelYear, make, model/
+      )
     })
   })
 })

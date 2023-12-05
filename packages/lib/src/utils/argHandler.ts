@@ -8,16 +8,30 @@ import type { AtLeastOne } from '@/types'
 
 export type IArgToValidate = {
   name: string
-  value: unknown
-  errorMode?: 'error' | 'boolean'
-} & AtLeastOne<{
+  value?: unknown
   required?: boolean
+  requiredBy?: Array<{
+    name: string
+    value: unknown
+  }>
   types?: string[]
-}>
+  errorMode?: 'error' | 'boolean'
+} & (
+  | AtLeastOne<{
+      required?: boolean
+      types?: string[]
+    }>
+  | {
+      requiredBy: Array<{
+        name: string
+        value: unknown
+      }>
+    }
+)
 
 /**
- * Will validate a single argument based on the provided options and throws an error with a message
- * detailing the invalid argument(s) and what was expected.
+ * Will validate a single argument based on the provided arg object and throws an error with a
+ * message detailing the invalid argument(s) and what was expected.
  *
  * There are two modes for this function:
  * - 'error' - (default) - Throws an error if the argument fails validation.
@@ -36,23 +50,22 @@ export type IArgToValidate = {
  * such as in Array.filter() or 'if' statements. It will return false if the argument is invalid
  * and true if the argument is valid.
  *
- * ### Options
+ * ### `argData` Object
  *
  * The main purpose for this function is to throw a helpful Error message to the user when they
  * are using the endpoint functions in a way that would cause the NHTSA API to return an error.
- * In default mode, it uses the `options.name` and `options.types` array (if provided) to build the
+ * In default mode, it uses the `argData.name` and `argData.types` array (if provided) to build the
  * error message in the case of validation failure.
  *
- * - `options.name` and `options.value` are required in each arg object. It's ok to pass undefined
+ * - `argData.name` and `argData.value` are required in the arg object. It's ok to pass undefined
  * as the value, i.e. `{ value: someVarThatMightBeUndefined }`, but you must provide a name for the
  * argument. If you didn't provide a name then the error message would not be as helpful.
  *
- * - `options.required` and `options.types` are optional.
+ * - `argData.required` and `argData.types` are optional.
  *
- * At least one of `options.required` or `options.types` must be provided as part of each arg
- * object. At least one of these options must be provided for each arg object, otherwise it will
- * always return true. You probably don't need to validate that arg if you don't provide at least
- * one of these options.
+ * At least one of `argData.required` or `argData.types` must be provided as part of each arg
+ * object. At least one of these must be provided, otherwise it will always return true. You
+ * probably don't need to validate that arg if you don't provide at least* one of these options.
  *
  * ### Validation Logic
  *
@@ -70,60 +83,133 @@ export type IArgToValidate = {
  * - If neither `required` nor `types` are provided, it will not peerform validation and will
  * simply return true.
  *
- * @param options - options object
- * @param {string} options.name - name of the argument
- * @param {unknown} options.value - value of the argument
- * @param {boolean} [options.required] - if true, will validate that value is defined
- * @param {(string[])} [options.types] - array of strings to validate value against
- * @param {("error"|"boolean")} [options.errorMode='error'] - 'error' or 'boolean' - 'error' will
+ * @param argData - options object
+ * @param argData.name - name of the argument
+ * @param argData.value - value of the argument
+ * @param [argData.required] - if true, will validate that value is defined
+ * @param [argData.requiredBy] - array of objects with name and value properties. Will validate
+ * that value is defined if any of the `value`s in requiredBy array are defined.
+ * @param [argData.requiredBy.name] - name of the argument that requires this argument to be defined
+ * @param [argData.requiredBy.value] - value of the argument that requires this argument to be
+ * defined
+ * @param [argData.types] - array of strings to validate value against
+ * @param [argData.errorMode='error'] - 'error' or 'boolean' - 'error' will
  * throw an error if the argument is invalid, 'boolean' will return false if the argument is invalid
- * @returns {(Error|boolean)} - true if validation passes, mode 'error' throws Error in the case of
+ * @returns - true if validation passes, mode 'error' throws Error in the case of
  * validation failure, mode 'boolean' returns false in the case of validation failure
  */
-export const validateArgument = ({
-  name,
-  value,
-  required,
-  types,
-  errorMode = 'error',
-}: IArgToValidate): boolean => {
-  if (getTypeof(name) !== 'string') {
-    throw Error(`'name', is required and must be of type string`)
+export const validateArgument = (argData: IArgToValidate): boolean => {
+  if (getTypeof(argData) !== 'object') {
+    throw Error(
+      `'argData' argument is required and must be an object containing valid options`
+    )
   }
 
+  const {
+    name,
+    value,
+    required,
+    requiredBy,
+    types,
+    errorMode = 'error',
+  } = argData
+  /* later we will use this to store types normalized to lowercase */
+  let typesLowercased: string[] = []
+
+  /* validate and typeguard argData passed to function */
+  if (getTypeof(name) !== 'string') {
+    throw Error(`'argData.name', is required and must be of type string`)
+  }
+  if (required !== undefined && getTypeof(required) !== 'boolean') {
+    throw Error(`'argData.required' must be of type boolean if provided`)
+  }
+  if (requiredBy) {
+    if (getTypeof(requiredBy) !== 'array' || !requiredBy.length) {
+      throw Error(
+        `'argData.requiredBy' must be an arrry of objects if provided`
+      )
+    }
+    requiredBy.forEach(({ name: requiredByName, value: requiredByValue }) => {
+      if (requiredByValue) {
+        if (getTypeof(requiredByName) !== 'string') {
+          throw Error(
+            `'argData.requiredBy' requires both a name and value if value is defined`
+          )
+        }
+      }
+    })
+  }
+  if (types) {
+    if (getTypeof(types) !== 'array' || !types.length) {
+      throw Error(`'argData.types' must be an array of strings if provided`)
+    }
+    types.forEach((type) => {
+      if (getTypeof(type) !== 'string') {
+        throw Error(`'argData.types' must be an array of strings if provided`)
+      }
+    })
+    /* normalize all passed types to lowercase */
+    typesLowercased = types.map((type) => type.toLowerCase())
+  }
+
+  /* for argument validation error messages */
   let error = ''
   const typeofValue = getTypeof(value)
   const errorPrepend = `error validating argument named "${name}",`
   const errorAppend = `received value: ${value} - of type: <${typeofValue}>`
 
-  if (types && (getTypeof(types) !== 'array' || !types.length)) {
-    throw Error(`${errorPrepend} 'types' must be an array of strings`)
-  }
+  /*
+   * If provided an array of requiredBy objects with name and value properties, will validate
+   * `argData.value` is defined if any of the `value`s in requiredBy array are defined.
+   */
+  if (requiredBy && requiredBy.length) {
+    try {
+      requiredBy.forEach(({ name: requiredByName, value: requiredByValue }) => {
+        if (requiredByValue) {
+          /*
+           * If options.value is falsey throw an error because this requiredBy.value requires it
+           * be defined
+           */
+          if (!value) {
+            throw Error(`${errorPrepend} it is required if "${requiredByName}" is passed,
+          ${errorAppend}`)
+          }
+        }
+      })
+    } catch (err) {
+      error = (err as Error).message
+    }
 
-  /* ex: if types = ['string', 'number'] then you'll get '<string | number>' */
-  const joinedTypes = types ? `<${types.join(' | ')}>` : ''
+    /* exit early if requiredBy checks do not pass */
+    if (error.length) {
+      if (errorMode === 'boolean') return false
+      else throw Error(error)
+    }
+  }
 
   /* argument validation logic */
   if (required && !types) {
     if (!value) {
-      error = `${errorPrepend} is required, ${errorAppend}`
+      error = `${errorPrepend} it is required, ${errorAppend}`
     }
   } else if (types && !required) {
     /* if value is not defined and is not required then we don't need to validate the type */
     if (value !== undefined && !types.includes(typeofValue)) {
-      error = `${errorPrepend} must be of type(s) ${joinedTypes}, ${errorAppend}`
+      error = `${errorPrepend} must be of type(s) ${typesLowercased}, ${errorAppend}`
     }
   } else if (required && types) {
     if (!value || !types.includes(typeofValue)) {
-      error = `${errorPrepend} is required and must be of type(s) ${joinedTypes}, ${errorAppend}`
+      error = `${errorPrepend} is required and must be of type(s) ${typesLowercased}, ${errorAppend}`
     }
   }
 
+  /* if any argument validation has failed, throw an error or return false dependign on mode */
   if (error.length) {
     if (errorMode === 'boolean') return false
     else throw Error(error)
   }
 
+  /* else all validation has passed, return true */
   return true
 }
 
@@ -139,24 +225,23 @@ export const validateArgument = ({
  * options in each arg. See the description for `validateArgument` for more details on how
  * validation logic works and how to override the default error throwing behavior.
  *
- * @param {Object} options - options object
- * @param {IArgToValidate[]} options.args - array of IArgToValidate objects
- * @param {boolean} [options.mode=default] - 'default' or 'atLeast' - 'default' will validate all
+ * @param options - options object with args array and mode
+ * @param options.args - array of IArgToValidate objects
+ * @param [options.mode="default"] - 'default' or 'atLeast' - 'default' will validate all
  * args, 'atLeast' will validate at least one arg in in the array has a defined value
- * @returns {boolean} - true if validation passes, throws error in the case of validation failure
+ * @returns - true if validation passes, throws error in the case of validation failure
  */
-export const catchInvalidArguments = ({
-  args,
-  mode = 'default',
-}: {
+export const catchInvalidArguments = (options: {
   args: IArgToValidate[]
   mode?: 'default' | 'atLeast'
 }) => {
-  if (getTypeof(args) !== 'array' || !args.length) {
+  if (getTypeof(options?.args) !== 'array' || !options?.args.length) {
     throw Error(
       `catchInvalidArguments requires "args" that must be an array of IArgToValidate objects`
     )
   }
+
+  const { args, mode = 'default' } = options
 
   if (mode === 'default') {
     args.forEach((arg) => validateArgument(arg))
