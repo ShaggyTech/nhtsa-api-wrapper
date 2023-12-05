@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "18.18.7",
-    "@vite-pwa/vitepress": "0.2.3",
+    "@vite-pwa/vitepress": "0.3.1",
     "dotenv": "16.3.1",
     "eslint": "8.52.0",
     "eslint-config-custom": "workspace:*",
@@ -34,8 +34,8 @@
     "sitemap": "7.1.1",
     "tsconfig": "workspace:*",
     "typescript": "5.2.2",
-    "vite-plugin-pwa": "0.16.5",
-    "vitepress": "1.0.0-rc.24",
+    "vite-plugin-pwa": "0.17.3",
+    "vitepress": "1.0.0-rc.31",
     "workbox-window": "7.0.0"
   },
   "eslintConfig": {

@@ -14,7 +14,7 @@
 
 🏡 Chores
 
-- Add dependency `@vitest/coverage-v8`
+- Add dependency `@vitest/coverage-v8` - `v1.0.1`
 - Remove dependency `@vitest/coverage-c8`
 
 - Update dependency `pnpm` to `v8.9.2`
@@ -26,14 +26,14 @@
 - Update dependency `rimraf` to `v5.0.5`
 - Update dependency `typedoc` to `v0.25.2`
 - Update dependency `typedoc-plugin-markdown` to `v3.16.0`
-- Update dependency `vite` to `v4.5.0`
-- Update dependency `@vite-pwa/vitepress` to `v0.2.3`
-- Update dependency `vitepress` to `v1.0.0-rc.24`
-- Update dependency `vite-plugin-dts` to `v3.0.0`
-- Update dependency `vite-plugin-pwa` to `v0.16.5`
+- Update dependency `vite` to `v5.0.5`
+- Update dependency `@vite-pwa/vitepress` to `v0.3.1`
+- Update dependency `vitepress` to `v1.0.0-rc.31`
+- Update dependency `vite-plugin-dts` to `v3.6.4`
+- Update dependency `vite-plugin-pwa` to `v0.17.3`
 - Update dependency `vite-tsconfig-paths` to `v4.2.1`
-- Update dependency `vitest` to `v0.34.6`
-- Update dependency `@vitest/ui` to `v0.34.6`
+- Update dependency `vitest` to `v1.0.1`
+- Update dependency `@vitest/ui` to `v1.0.1`
 - Update dependency `prettier` to `v3.0.0`
 - Update dependency `eslint` to `v8.52.0`
 - Update dependency `eslint-config-prettier` to `v9.0.0`
