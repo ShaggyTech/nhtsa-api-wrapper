@@ -36,9 +36,6 @@
   - [safetyRatings](exports.md#safetyratings)
   - [useNHTSA](exports.md#usenhtsa)
 - [Exported Types](exports.md#exported-types)
-  - [ApiTypes](exports.md#apitypes)
-  - [AtLeastOne](exports.md#atleastone)
-  - [CreateUrlOptions](exports.md#createurloptions)
   - [DecodeVinExtendedResults](exports.md#decodevinextendedresults)
   - [DecodeVinExtendedVariable](exports.md#decodevinextendedvariable)
   - [DecodeVinResults](exports.md#decodevinresults)
@@ -66,14 +63,7 @@
   - [GetVehicleVariableListResults](exports.md#getvehiclevariablelistresults)
   - [GetVehicleVariableValuesListResults](exports.md#getvehiclevariablevalueslistresults)
   - [GetWMIsForManufacturerResults](exports.md#getwmisformanufacturerresults)
-  - [IArgToValidate](exports.md#iargtovalidate)
-  - [Impossible](exports.md#impossible)
   - [NhtsaResponse](exports.md#nhtsaresponse)
-  - [NoExtraProperties](exports.md#noextraproperties)
-  - [QueryStringParams](exports.md#querystringparams)
-  - [QueryStringParamsEncoded](exports.md#querystringparamsencoded)
-  - [QueryStringTypes](exports.md#querystringtypes)
-  - [RequireOnlyOne](exports.md#requireonlyone)
   - [SafetyRatingsOptions](exports.md#safetyratingsoptions)
   - [SafetyRatingsOptionsBase](exports.md#safetyratingsoptionsbase)
   - [SafetyRatingsOptionsEmpty](exports.md#safetyratingsoptionsempty)
@@ -200,18 +190,6 @@ Re-exports [useNHTSA](api/useNHTSA.md#usenhtsa)
 
 ## Exported Types
 
-### ApiTypes
-
-Re-exports [ApiTypes](api/types.md#apitypes)
-
-### AtLeastOne
-
-Re-exports [AtLeastOne](utils/types.md#atleastonet-r)
-
-### CreateUrlOptions
-
-Re-exports [CreateUrlOptions](api/useNHTSA.md#createurloptions)
-
 ### DecodeVinExtendedResults
 
 Re-exports [DecodeVinExtendedResults](api/vpic/endpoints/DecodeVinExtended.md#decodevinextendedresults)
@@ -320,37 +298,9 @@ Re-exports [GetVehicleVariableValuesListResults](api/vpic/endpoints/GetVehicleVa
 
 Re-exports [GetWMIsForManufacturerResults](api/vpic/endpoints/GetWMIsForManufacturer.md#getwmisformanufacturerresults)
 
-### IArgToValidate
-
-Re-exports [IArgToValidate](utils/argHandler.md#iargtovalidate)
-
-### Impossible
-
-Re-exports [Impossible](utils/types.md#impossiblek)
-
 ### NhtsaResponse
 
 Re-exports [NhtsaResponse](api/types.md#nhtsaresponseresultstype-apitype)
-
-### NoExtraProperties
-
-Re-exports [NoExtraProperties](utils/types.md#noextrapropertiest-u)
-
-### QueryStringParams
-
-Re-exports [QueryStringParams](utils/queryString.md#querystringparams)
-
-### QueryStringParamsEncoded
-
-Re-exports [QueryStringParamsEncoded](utils/queryString.md#querystringparamsencodedt)
-
-### QueryStringTypes
-
-Re-exports [QueryStringTypes](utils/queryString.md#querystringtypes)
-
-### RequireOnlyOne
-
-Re-exports [RequireOnlyOne](utils/types.md#requireonlyonet-keys)
 
 ### SafetyRatingsOptions
 
