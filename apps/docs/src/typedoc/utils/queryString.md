@@ -50,7 +50,7 @@ Object returned by encodeQueryStringParams()
 
 ### QueryStringTypes
 
-> **QueryStringTypes**: `string` \| `number` \| `boolean`
+> **QueryStringTypes**: `string` \| `number` \| `boolean` \| `undefined`
 
 Valid URI component types
 
@@ -105,7 +105,7 @@ formats at this time. This means the default query string will be `"?format=json
 
 #### Source
 
-[utils/queryString.ts:100](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L100)
+[utils/queryString.ts:96](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L96)
 
 ***
 
@@ -129,10 +129,6 @@ filtered out, and that all values are valid. If you need to be sure that all key
 in the returned object, you can use the `validateArgument()` function to check the types of all
 values are valid before calling this function.
 
-This function is not exported by the package, but is used internally by other
-functions. However, it _is_ exported by the package as part of the composable function
-`useQueryString`, and renamed to `encodeParams` for less verbose use.
-
 #### Type parameters
 
 | Parameter |
@@ -155,4 +151,4 @@ boolean are filtered out of final object.
 
 #### Source
 
-[utils/queryString.ts:44](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L44)
+[utils/queryString.ts:40](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/queryString.ts#L40)

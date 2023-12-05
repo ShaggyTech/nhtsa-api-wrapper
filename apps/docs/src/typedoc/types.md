@@ -9,6 +9,7 @@
 ## Contents
 
 - [References](types.md#references)
+  - [ApiTypes](types.md#apitypes)
   - [AtLeastOne](types.md#atleastone)
   - [CreateUrlOptions](types.md#createurloptions)
   - [DecodeVinExtendedResults](types.md#decodevinextendedresults)
@@ -39,13 +40,32 @@
   - [GetVehicleVariableValuesListResults](types.md#getvehiclevariablevalueslistresults)
   - [GetWMIsForManufacturerResults](types.md#getwmisformanufacturerresults)
   - [IArgToValidate](types.md#iargtovalidate)
+  - [Impossible](types.md#impossible)
   - [NhtsaResponse](types.md#nhtsaresponse)
+  - [NoExtraProperties](types.md#noextraproperties)
   - [QueryStringParams](types.md#querystringparams)
   - [QueryStringParamsEncoded](types.md#querystringparamsencoded)
   - [QueryStringTypes](types.md#querystringtypes)
   - [RequireOnlyOne](types.md#requireonlyone)
+  - [SafetyRatingsOptions](types.md#safetyratingsoptions)
+  - [SafetyRatingsOptionsBase](types.md#safetyratingsoptionsbase)
+  - [SafetyRatingsOptionsEmpty](types.md#safetyratingsoptionsempty)
+  - [SafetyRatingsOptionsMake](types.md#safetyratingsoptionsmake)
+  - [SafetyRatingsOptionsModel](types.md#safetyratingsoptionsmodel)
+  - [SafetyRatingsOptionsModelYear](types.md#safetyratingsoptionsmodelyear)
+  - [SafetyRatingsOptionsVehicleId](types.md#safetyratingsoptionsvehicleid)
+  - [SafetyRatingsResponseByOptions](types.md#safetyratingsresponsebyoptions)
+  - [SafetyRatingsResponseByVariant](types.md#safetyratingsresponsebyvariant)
+  - [SafetyRatingsResultsByOptions](types.md#safetyratingsresultsbyoptions)
+  - [SafetyRatingsResultsByVariant](types.md#safetyratingsresultsbyvariant)
+  - [SafetyRatingsResultsData](types.md#safetyratingsresultsdata)
+  - [SafetyRatingsResultsVariants](types.md#safetyratingsresultsvariants)
 
 ## References
+
+### ApiTypes
+
+Re-exports [ApiTypes](api/types.md#apitypes)
 
 ### AtLeastOne
 
@@ -57,119 +77,127 @@ Re-exports [CreateUrlOptions](api/useNHTSA.md#createurloptions)
 
 ### DecodeVinExtendedResults
 
-Re-exports [DecodeVinExtendedResults](api/endpoints/DecodeVinExtended.md#decodevinextendedresults)
+Re-exports [DecodeVinExtendedResults](api/vpic/endpoints/DecodeVinExtended.md#decodevinextendedresults)
 
 ### DecodeVinExtendedVariable
 
-Re-exports [DecodeVinExtendedVariable](api/endpoints/DecodeVinExtended.md#decodevinextendedvariable)
+Re-exports [DecodeVinExtendedVariable](api/vpic/endpoints/DecodeVinExtended.md#decodevinextendedvariable)
 
 ### DecodeVinResults
 
-Re-exports [DecodeVinResults](api/endpoints/DecodeVin.md#decodevinresults)
+Re-exports [DecodeVinResults](api/vpic/endpoints/DecodeVin.md#decodevinresults)
 
 ### DecodeVinValuesBatchResults
 
-Re-exports [DecodeVinValuesBatchResults](api/endpoints/DecodeVinValuesBatch.md#decodevinvaluesbatchresults)
+Re-exports [DecodeVinValuesBatchResults](api/vpic/endpoints/DecodeVinValuesBatch.md#decodevinvaluesbatchresults)
 
 ### DecodeVinValuesExtendedResults
 
-Re-exports [DecodeVinValuesExtendedResults](api/endpoints/DecodeVinValuesExtended.md#decodevinvaluesextendedresults)
+Re-exports [DecodeVinValuesExtendedResults](api/vpic/endpoints/DecodeVinValuesExtended.md#decodevinvaluesextendedresults)
 
 ### DecodeVinValuesResults
 
-Re-exports [DecodeVinValuesResults](api/endpoints/DecodeVinValues.md#decodevinvaluesresults)
+Re-exports [DecodeVinValuesResults](api/vpic/endpoints/DecodeVinValues.md#decodevinvaluesresults)
 
 ### DecodeVinVariable
 
-Re-exports [DecodeVinVariable](api/endpoints/DecodeVin.md#decodevinvariable)
+Re-exports [DecodeVinVariable](api/vpic/endpoints/DecodeVin.md#decodevinvariable)
 
 ### DecodeWMIResults
 
-Re-exports [DecodeWMIResults](api/endpoints/DecodeWMI.md#decodewmiresults)
+Re-exports [DecodeWMIResults](api/vpic/endpoints/DecodeWMI.md#decodewmiresults)
 
 ### GetAllMakesResults
 
-Re-exports [GetAllMakesResults](api/endpoints/GetAllMakes.md#getallmakesresults)
+Re-exports [GetAllMakesResults](api/vpic/endpoints/GetAllMakes.md#getallmakesresults)
 
 ### GetAllManufacturersResults
 
-Re-exports [GetAllManufacturersResults](api/endpoints/GetAllManufacturers.md#getallmanufacturersresults)
+Re-exports [GetAllManufacturersResults](api/vpic/endpoints/GetAllManufacturers.md#getallmanufacturersresults)
 
 ### GetCanadianVehicleSpecificationsResults
 
-Re-exports [GetCanadianVehicleSpecificationsResults](api/endpoints/GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
+Re-exports [GetCanadianVehicleSpecificationsResults](api/vpic/endpoints/GetCanadianVehicleSpecifications.md#getcanadianvehiclespecificationsresults)
 
 ### GetEquipmentPlantCodesParams
 
-Re-exports [GetEquipmentPlantCodesParams](api/endpoints/GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
+Re-exports [GetEquipmentPlantCodesParams](api/vpic/endpoints/GetEquipmentPlantCodes.md#getequipmentplantcodesparams)
 
 ### GetEquipmentPlantCodesResults
 
-Re-exports [GetEquipmentPlantCodesResults](api/endpoints/GetEquipmentPlantCodes.md#getequipmentplantcodesresults)
+Re-exports [GetEquipmentPlantCodesResults](api/vpic/endpoints/GetEquipmentPlantCodes.md#getequipmentplantcodesresults)
 
 ### GetMakeForManufacturerResults
 
-Re-exports [GetMakeForManufacturerResults](api/endpoints/GetMakeForManufacturer.md#getmakeformanufacturerresults)
+Re-exports [GetMakeForManufacturerResults](api/vpic/endpoints/GetMakeForManufacturer.md#getmakeformanufacturerresults)
 
 ### GetMakesForManufacturerAndYearResults
 
-Re-exports [GetMakesForManufacturerAndYearResults](api/endpoints/GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)
+Re-exports [GetMakesForManufacturerAndYearResults](api/vpic/endpoints/GetMakesForManufacturerAndYear.md#getmakesformanufacturerandyearresults)
 
 ### GetMakesForVehicleTypeResults
 
-Re-exports [GetMakesForVehicleTypeResults](api/endpoints/GetMakesForVehicleType.md#getmakesforvehicletyperesults)
+Re-exports [GetMakesForVehicleTypeResults](api/vpic/endpoints/GetMakesForVehicleType.md#getmakesforvehicletyperesults)
 
 ### GetManufacturerDetailsResults
 
-Re-exports [GetManufacturerDetailsResults](api/endpoints/GetManufacturerDetails.md#getmanufacturerdetailsresults)
+Re-exports [GetManufacturerDetailsResults](api/vpic/endpoints/GetManufacturerDetails.md#getmanufacturerdetailsresults)
 
 ### GetModelsForMakeIdResults
 
-Re-exports [GetModelsForMakeIdResults](api/endpoints/GetModelsForMakeId.md#getmodelsformakeidresults)
+Re-exports [GetModelsForMakeIdResults](api/vpic/endpoints/GetModelsForMakeId.md#getmodelsformakeidresults)
 
 ### GetModelsForMakeIdYearResults
 
-Re-exports [GetModelsForMakeIdYearResults](api/endpoints/GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)
+Re-exports [GetModelsForMakeIdYearResults](api/vpic/endpoints/GetModelsForMakeIdYear.md#getmodelsformakeidyearresults)
 
 ### GetModelsForMakeResults
 
-Re-exports [GetModelsForMakeResults](api/endpoints/GetModelsForMake.md#getmodelsformakeresults)
+Re-exports [GetModelsForMakeResults](api/vpic/endpoints/GetModelsForMake.md#getmodelsformakeresults)
 
 ### GetModelsForMakeYearResults
 
-Re-exports [GetModelsForMakeYearResults](api/endpoints/GetModelsForMakeYear.md#getmodelsformakeyearresults)
+Re-exports [GetModelsForMakeYearResults](api/vpic/endpoints/GetModelsForMakeYear.md#getmodelsformakeyearresults)
 
 ### GetPartsResults
 
-Re-exports [GetPartsResults](api/endpoints/GetParts.md#getpartsresults)
+Re-exports [GetPartsResults](api/vpic/endpoints/GetParts.md#getpartsresults)
 
 ### GetVehicleTypesForMakeIdResults
 
-Re-exports [GetVehicleTypesForMakeIdResults](api/endpoints/GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)
+Re-exports [GetVehicleTypesForMakeIdResults](api/vpic/endpoints/GetVehicleTypesForMakeId.md#getvehicletypesformakeidresults)
 
 ### GetVehicleTypesForMakeResults
 
-Re-exports [GetVehicleTypesForMakeResults](api/endpoints/GetVehicleTypesForMake.md#getvehicletypesformakeresults)
+Re-exports [GetVehicleTypesForMakeResults](api/vpic/endpoints/GetVehicleTypesForMake.md#getvehicletypesformakeresults)
 
 ### GetVehicleVariableListResults
 
-Re-exports [GetVehicleVariableListResults](api/endpoints/GetVehicleVariableList.md#getvehiclevariablelistresults)
+Re-exports [GetVehicleVariableListResults](api/vpic/endpoints/GetVehicleVariableList.md#getvehiclevariablelistresults)
 
 ### GetVehicleVariableValuesListResults
 
-Re-exports [GetVehicleVariableValuesListResults](api/endpoints/GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)
+Re-exports [GetVehicleVariableValuesListResults](api/vpic/endpoints/GetVehicleVariableValuesList.md#getvehiclevariablevalueslistresults)
 
 ### GetWMIsForManufacturerResults
 
-Re-exports [GetWMIsForManufacturerResults](api/endpoints/GetWMIsForManufacturer.md#getwmisformanufacturerresults)
+Re-exports [GetWMIsForManufacturerResults](api/vpic/endpoints/GetWMIsForManufacturer.md#getwmisformanufacturerresults)
 
 ### IArgToValidate
 
 Re-exports [IArgToValidate](utils/argHandler.md#iargtovalidate)
 
+### Impossible
+
+Re-exports [Impossible](utils/types.md#impossiblek)
+
 ### NhtsaResponse
 
-Re-exports [NhtsaResponse](api/types.md#nhtsaresponset)
+Re-exports [NhtsaResponse](api/types.md#nhtsaresponseresultstype-apitype)
+
+### NoExtraProperties
+
+Re-exports [NoExtraProperties](utils/types.md#noextrapropertiest-u)
 
 ### QueryStringParams
 
@@ -186,3 +214,55 @@ Re-exports [QueryStringTypes](utils/queryString.md#querystringtypes)
 ### RequireOnlyOne
 
 Re-exports [RequireOnlyOne](utils/types.md#requireonlyonet-keys)
+
+### SafetyRatingsOptions
+
+Re-exports [SafetyRatingsOptions](api/safetyRatings.md#safetyratingsoptions)
+
+### SafetyRatingsOptionsBase
+
+Re-exports [SafetyRatingsOptionsBase](api/safetyRatings.md#safetyratingsoptionsbase)
+
+### SafetyRatingsOptionsEmpty
+
+Re-exports [SafetyRatingsOptionsEmpty](api/safetyRatings.md#safetyratingsoptionsempty)
+
+### SafetyRatingsOptionsMake
+
+Re-exports [SafetyRatingsOptionsMake](api/safetyRatings.md#safetyratingsoptionsmake)
+
+### SafetyRatingsOptionsModel
+
+Re-exports [SafetyRatingsOptionsModel](api/safetyRatings.md#safetyratingsoptionsmodel)
+
+### SafetyRatingsOptionsModelYear
+
+Re-exports [SafetyRatingsOptionsModelYear](api/safetyRatings.md#safetyratingsoptionsmodelyear)
+
+### SafetyRatingsOptionsVehicleId
+
+Re-exports [SafetyRatingsOptionsVehicleId](api/safetyRatings.md#safetyratingsoptionsvehicleid)
+
+### SafetyRatingsResponseByOptions
+
+Re-exports [SafetyRatingsResponseByOptions](api/safetyRatings.md#safetyratingsresponsebyoptionsoptions)
+
+### SafetyRatingsResponseByVariant
+
+Re-exports [SafetyRatingsResponseByVariant](api/safetyRatings.md#safetyratingsresponsebyvariantvariant)
+
+### SafetyRatingsResultsByOptions
+
+Re-exports [SafetyRatingsResultsByOptions](api/safetyRatings.md#safetyratingsresultsbyoptionsoptions)
+
+### SafetyRatingsResultsByVariant
+
+Re-exports [SafetyRatingsResultsByVariant](api/safetyRatings.md#safetyratingsresultsbyvariantvariant)
+
+### SafetyRatingsResultsData
+
+Re-exports [SafetyRatingsResultsData](api/safetyRatings.md#safetyratingsresultsdata)
+
+### SafetyRatingsResultsVariants
+
+Re-exports [SafetyRatingsResultsVariants](api/safetyRatings.md#safetyratingsresultsvariants)

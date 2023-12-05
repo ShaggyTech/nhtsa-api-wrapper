@@ -15,6 +15,8 @@
   - [QueryStringTypes](types.md#querystringtypes)
 - [Type Aliases](types.md#type-aliases)
   - [AtLeastOne`<T, R>`](types.md#atleastonet-r)
+  - [Impossible`<K>`](types.md#impossiblek)
+  - [NoExtraProperties`<T, U>`](types.md#noextrapropertiest-u)
   - [RequireOnlyOne`<T, Keys>`](types.md#requireonlyonet-keys)
 
 ## References
@@ -54,6 +56,48 @@ https://stackoverflow.com/a/49725198
 #### Source
 
 [utils/types.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/types.ts#L18)
+
+***
+
+### Impossible`<K>`
+
+> **Impossible**\<`K`\>: `{ [P in K]: never }`
+
+A type that, when passed a union of keys, creates an object which cannot have those properties.
+Used in conjunction with `NoExtraProperties` to create a type that can only have the properties
+you want it to have.
+https://stackoverflow.com/a/57117594
+
+#### Type parameters
+
+| Parameter |
+| :------ |
+| `K` extends keyof `never` |
+
+#### Source
+
+[utils/types.ts:38](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/types.ts#L38)
+
+***
+
+### NoExtraProperties`<T, U>`
+
+> **NoExtraProperties**\<`T`, `U`\>: `U` & [`Impossible`](types.md#impossiblek)\<`Exclude`\<keyof `U`, keyof `T`\>\>
+
+Provide it the type that contains only the properties you want, and then a type that extends that
+type, based on what the caller provided using generics.
+https://stackoverflow.com/a/57117594
+
+#### Type parameters
+
+| Parameter | Default |
+| :------ | :------ |
+| `T` | - |
+| `U` extends `T` | `T` |
+
+#### Source
+
+[utils/types.ts:47](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/types.ts#L47)
 
 ***
 

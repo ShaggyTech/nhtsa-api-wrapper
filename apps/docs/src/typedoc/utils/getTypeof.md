@@ -21,8 +21,11 @@ Gets type of `value` using `Object.prototype.toString.call(value)`.
 
 Why? Because `typeof` is not reliable for all types of values.
 
-Object.prototype.toString gives more accurate results in the case someone has used an object wrapper
-for primitive data types such as `new Number()` or `new String()`.
+Values of null, Arrray, Error, new Date(), new String(), and /regex/ are all typeof 'object'.
+
+Object.prototype.toString.call gives more accurate results in the case someone has used an object
+wrapper for primitive data types such as `new Number()` or `new String()`.
+
 It will also accurately recognize any Error types, Error, TypeError, etc., as 'error'.
 
 #### Parameters
@@ -39,4 +42,4 @@ It will also accurately recognize any Error types, Error, TypeError, etc., as 'e
 
 #### Source
 
-[utils/getTypeof.ts:18](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/getTypeof.ts#L18)
+[utils/getTypeof.ts:21](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/getTypeof.ts#L21)

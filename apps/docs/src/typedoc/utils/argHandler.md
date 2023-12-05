@@ -13,14 +13,14 @@
 - [Functions](argHandler.md#functions)
   - [catchInvalidArguments()](argHandler.md#catchinvalidarguments)
   - [validateArgument()](argHandler.md#validateargument)
-  - [Options](argHandler.md#options)
+  - [`argData` Object](argHandler.md#argdata-object)
   - [Validation Logic](argHandler.md#validation-logic)
 
 ## Type Aliases
 
 ### IArgToValidate
 
-> **IArgToValidate**: `object` & [`AtLeastOne`](types.md#atleastonet-r)\<`object`\>
+> **IArgToValidate**: `object` & [`AtLeastOne`](types.md#atleastonet-r)\<`object`\> \| `object`
 
 #### Type declaration
 
@@ -28,6 +28,9 @@
 | :------ | :------ | :------ |
 | `errorMode` | `"error"` \| `"boolean"` | - |
 | `name` | `string` | - |
+| `required` | `boolean` | - |
+| `requiredBy` | `object`[] | - |
+| `types` | `string`[] | - |
 | `value` | `unknown` | - |
 
 #### Source
@@ -55,7 +58,7 @@ validation logic works and how to override the default error throwing behavior.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `object` | options object |
+| `options` | `object` | options object with args array and mode |
 | `options.args` | [`IArgToValidate`](argHandler.md#iargtovalidate)[] | array of IArgToValidate objects |
 | `options.mode`? | `"default"` \| `"atLeast"` | 'default' or 'atLeast' - 'default' will validate all<br />args, 'atLeast' will validate at least one arg in in the array has a defined value |
 
@@ -67,16 +70,16 @@ validation logic works and how to override the default error throwing behavior.
 
 #### Source
 
-[utils/argHandler.ts:148](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L148)
+[utils/argHandler.ts:234](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L234)
 
 ***
 
 ### validateArgument()
 
-> **validateArgument**(`options`): `boolean`
+> **validateArgument**(`argData`): `boolean`
 
-Will validate a single argument based on the provided options and throws an error with a message
-detailing the invalid argument(s) and what was expected.
+Will validate a single argument based on the provided arg object and throws an error with a
+message detailing the invalid argument(s) and what was expected.
 
 There are two modes for this function:
 - 'error' - (default) - Throws an error if the argument fails validation.
@@ -95,23 +98,22 @@ invalid and return true if the argument is valid.
 such as in Array.filter() or 'if' statements. It will return false if the argument is invalid
 and true if the argument is valid.
 
-### Options
+### `argData` Object
 
 The main purpose for this function is to throw a helpful Error message to the user when they
 are using the endpoint functions in a way that would cause the NHTSA API to return an error.
-In default mode, it uses the `options.name` and `options.types` array (if provided) to build the
+In default mode, it uses the `argData.name` and `argData.types` array (if provided) to build the
 error message in the case of validation failure.
 
-- `options.name` and `options.value` are required in each arg object. It's ok to pass undefined
+- `argData.name` and `argData.value` are required in the arg object. It's ok to pass undefined
 as the value, i.e. `{ value: someVarThatMightBeUndefined }`, but you must provide a name for the
 argument. If you didn't provide a name then the error message would not be as helpful.
 
-- `options.required` and `options.types` are optional.
+- `argData.required` and `argData.types` are optional.
 
-At least one of `options.required` or `options.types` must be provided as part of each arg
-object. At least one of these options must be provided for each arg object, otherwise it will
-always return true. You probably don't need to validate that arg if you don't provide at least
-one of these options.
+At least one of `argData.required` or `argData.types` must be provided as part of each arg
+object. At least one of these must be provided, otherwise it will always return true. You
+probably don't need to validate that arg if you don't provide at least* one of these options.
 
 ### Validation Logic
 
@@ -133,7 +135,7 @@ simply return true.
 
 | Parameter | Type | Description |
 | :------ | :------ | :------ |
-| `options` | [`IArgToValidate`](argHandler.md#iargtovalidate) | options object |
+| `argData` | [`IArgToValidate`](argHandler.md#iargtovalidate) | options object |
 
 #### Returns
 
@@ -144,4 +146,4 @@ validation failure, mode 'boolean' returns false in the case of validation failu
 
 #### Source
 
-[utils/argHandler.ts:83](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L83)
+[utils/argHandler.ts:101](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/utils/argHandler.ts#L101)

@@ -24,6 +24,7 @@
 | Member | Type | Description |
 | :------ | :------ | :------ |
 | `allowEmptyParams` | `boolean` | - |
+| `apiType` | [`ApiTypes`](types.md#apitypes) | - |
 | `endpointName` | `string` | - |
 | `includeQueryString` | `boolean` | - |
 | `params` | [`QueryStringParams`](../utils/queryString.md#querystringparams) | - |
@@ -32,7 +33,7 @@
 
 #### Source
 
-[api/useNHTSA.ts:15](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/useNHTSA.ts#L15)
+[api/useNHTSA.ts:20](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/useNHTSA.ts#L20)
 
 ## Functions
 
@@ -71,15 +72,15 @@ The functions returned by the composable are:
 > | Member | Type | Description |
 > | :------ | :------ | :------ |
 > | `clearCachedUrl` | () => `string` | - |
-> | `createCachedUrl` | (`input`) => `string` | - |
+> | `createCachedUrl` | (`options`) => `string` | - |
 > | `createPostBody` | (`data`) => `string` | - |
 > | `createUrl` | (`options`) => `string` | - |
-> | `get` | \<`T`\>(`url`?, `options`?) => `Promise`\<[`NhtsaResponse`](types.md#nhtsaresponset)\<`T`\>\> | - |
+> | `get` | \<`ResultsType`, `ApiType`\>(`url`?, `options`?) => `Promise`\<[`NhtsaResponse`](types.md#nhtsaresponseresultstype-apitype)\<`ResultsType`, `ApiType`\>\> | - |
 > | `getCachedUrl` | () => `string` | - |
-> | `post` | \<`T`\>(`url`?, `options`?) => `Promise`\<[`NhtsaResponse`](types.md#nhtsaresponset)\<`T`\>\> | - |
+> | `post` | \<`ResultsType`, `ApiType`\>(`url`?, `options`?) => `Promise`\<[`NhtsaResponse`](types.md#nhtsaresponseresultstype-apitype)\<`ResultsType`, `ApiType`\>\> | - |
 > | `setCachedUrl` | (`url`) => `string` | - |
 >
 
 #### Source
 
-[api/useNHTSA.ts:50](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/useNHTSA.ts#L50)
+[api/useNHTSA.ts:56](https://github.com/ShaggyTech/nhtsa-api-wrapper/blob/main/packages/lib/src/api/useNHTSA.ts#L56)
