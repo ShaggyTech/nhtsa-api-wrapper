@@ -15,7 +15,7 @@ async function GetModelsForMakeYear(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetModelsForMakeYear)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetModelsForMakeYear)
 :::
 
 ## Description

@@ -58,7 +58,7 @@ Further Reading:
   documentation.
 
 - The structure of `Results[0]` in the above example can be seen on the
-  [Typedocs - DecodeVinValuesResults](../typedoc/api/endpoints/DecodeVinValues#decodevinvaluesresults)
+  [Typedocs - DecodeVinValuesResults](../typedoc/api/vpic/endpoints/DecodeVinValues#decodevinvaluesresults)
   page.
 
 ---

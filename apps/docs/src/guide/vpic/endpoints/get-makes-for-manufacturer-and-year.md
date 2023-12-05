@@ -13,7 +13,7 @@ async function GetMakesForManufacturerAndYear(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetMakesForManufacturerAndYear)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetMakesForManufacturerAndYear)
 :::
 
 ## Description

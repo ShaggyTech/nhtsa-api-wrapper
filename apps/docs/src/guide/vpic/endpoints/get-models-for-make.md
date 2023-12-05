@@ -10,7 +10,7 @@ async function GetModelsForMake(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetModelsForMake)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetModelsForMake)
 :::
 
 ## Description

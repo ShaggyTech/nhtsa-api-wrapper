@@ -31,7 +31,7 @@ async function GetEquipmentPlantCodes(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetEquipmentPlantCodes)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetEquipmentPlantCodes)
 :::
 
 ## Description

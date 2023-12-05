@@ -136,7 +136,7 @@ function. For example `DecodeVin` has a `DecodeVinResults` type, `GetAllMakes` h
 `GetAllMakesResults` type, etc.
 
 A few endpoints also have other associated types, such as
-[`DecodeVinExtendedVariable`](../typedoc/api/endpoints/DecodeVinExtended#DecodeVinExtendedVariable)
+[`DecodeVinExtendedVariable`](../typedoc/api/vpic/endpoints/DecodeVinExtended#DecodeVinExtendedVariable)
 that describe possible `Variable` values found in the `Results` array of the `DecodeVinExtended`
 endpoint.
 

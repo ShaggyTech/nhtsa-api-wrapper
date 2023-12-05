@@ -10,7 +10,7 @@ async function GetVehicleTypesForMakeId(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetVehicleTypesForMakeId)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetVehicleTypesForMakeId)
 :::
 
 ## Description

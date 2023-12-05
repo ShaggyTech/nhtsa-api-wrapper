@@ -18,7 +18,7 @@ async function GetParts(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetParts)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetParts)
 :::
 
 ## Description

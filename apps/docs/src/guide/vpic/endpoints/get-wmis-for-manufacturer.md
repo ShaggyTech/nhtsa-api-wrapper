@@ -13,7 +13,7 @@ async function GetWMIsForManufacturer(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetWMIsForManufacturer)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetWMIsForManufacturer)
 :::
 
 ## Description

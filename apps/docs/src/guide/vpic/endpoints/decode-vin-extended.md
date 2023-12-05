@@ -15,7 +15,7 @@ async function DecodeVinExtended (
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/DecodeVinExtended)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/DecodeVinExtended)
 :::
 
 ## Description

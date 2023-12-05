@@ -10,7 +10,7 @@ async function GetVehicleVariableValuesList(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetVehicleVariableValuesList)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetVehicleVariableValuesList)
 :::
 
 ## Description

@@ -10,7 +10,7 @@ async function GetMakesForVehicleType(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetMakesForVehicleType)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetMakesForVehicleType)
 :::
 
 ## Description

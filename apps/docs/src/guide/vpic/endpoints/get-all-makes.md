@@ -9,7 +9,7 @@ async function GetAllMakes(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetAllMakes)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetAllMakes)
 :::
 
 ## Description

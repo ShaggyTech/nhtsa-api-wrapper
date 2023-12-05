@@ -103,99 +103,99 @@ const typedocLinks = [
           { text: 'Index', link: '/typedoc/api/endpoints' },
           {
             text: 'DecodeVin',
-            link: '/typedoc/api/endpoints/DecodeVin',
+            link: '/typedoc/api/vpic/endpoints/DecodeVin',
           },
           {
             text: 'DecodeVinExtended',
-            link: '/typedoc/api/endpoints/DecodeVinExtended',
+            link: '/typedoc/api/vpic/endpoints/DecodeVinExtended',
           },
           {
             text: 'DecodeVinValues',
-            link: '/typedoc/api/endpoints/DecodeVinValues',
+            link: '/typedoc/api/vpic/endpoints/DecodeVinValues',
           },
           {
             text: 'DecodeVinValuesBatch',
-            link: '/typedoc/api/endpoints/DecodeVinValuesBatch',
+            link: '/typedoc/api/vpic/endpoints/DecodeVinValuesBatch',
           },
           {
             text: 'DecodeVinValuesExtended',
-            link: '/typedoc/api/endpoints/DecodeVinValuesExtended',
+            link: '/typedoc/api/vpic/endpoints/DecodeVinValuesExtended',
           },
           {
             text: 'DecodeWMI',
-            link: '/typedoc/api/endpoints/DecodeWMI',
+            link: '/typedoc/api/vpic/endpoints/DecodeWMI',
           },
           {
             text: 'GetAllMakes',
-            link: '/typedoc/api/endpoints/GetAllMakes',
+            link: '/typedoc/api/vpic/endpoints/GetAllMakes',
           },
           {
             text: 'GetAllManufacturers',
-            link: '/typedoc/api/endpoints/GetAllManufacturers',
+            link: '/typedoc/api/vpic/endpoints/GetAllManufacturers',
           },
           {
             text: 'GetCanadianVehicleSpecifications',
-            link: '/typedoc/api/endpoints/GetCanadianVehicleSpecifications',
+            link: '/typedoc/api/vpic/endpoints/GetCanadianVehicleSpecifications',
           },
           {
             text: 'GetEquipmentPlantCodes',
-            link: '/typedoc/api/endpoints/GetEquipmentPlantCodes',
+            link: '/typedoc/api/vpic/endpoints/GetEquipmentPlantCodes',
           },
           {
             text: 'GetMakeForManufacturer',
-            link: '/typedoc/api/endpoints/GetMakeForManufacturer',
+            link: '/typedoc/api/vpic/endpoints/GetMakeForManufacturer',
           },
           {
             text: 'GetMakesForManufacturerAndYear',
-            link: '/typedoc/api/endpoints/GetMakesForManufacturerAndYear',
+            link: '/typedoc/api/vpic/endpoints/GetMakesForManufacturerAndYear',
           },
           {
             text: 'GetMakesForVehicleType',
-            link: '/typedoc/api/endpoints/GetMakesForVehicleType',
+            link: '/typedoc/api/vpic/endpoints/GetMakesForVehicleType',
           },
           {
             text: 'GetManufacturerDetails',
-            link: '/typedoc/api/endpoints/GetManufacturerDetails',
+            link: '/typedoc/api/vpic/endpoints/GetManufacturerDetails',
           },
           {
             text: 'GetModelsForMake',
-            link: '/typedoc/api/endpoints/GetModelsForMake',
+            link: '/typedoc/api/vpic/endpoints/GetModelsForMake',
           },
           {
             text: 'GetModelsForMakeId',
-            link: '/typedoc/api/endpoints/GetModelsForMakeId',
+            link: '/typedoc/api/vpic/endpoints/GetModelsForMakeId',
           },
           {
             text: 'GetModelsForMakeIdYear',
-            link: '/typedoc/api/endpoints/GetModelsForMakeIdYear',
+            link: '/typedoc/api/vpic/endpoints/GetModelsForMakeIdYear',
           },
           {
             text: 'GetModelsForMakeYear',
-            link: '/typedoc/api/endpoints/GetModelsForMakeYear',
+            link: '/typedoc/api/vpic/endpoints/GetModelsForMakeYear',
           },
           {
             text: 'GetParts',
-            link: '/typedoc/api/endpoints/GetParts',
+            link: '/typedoc/api/vpic/endpoints/GetParts',
           },
           {
             text: 'GetVehicleTypesForMake',
-            link: '/typedoc/api/endpoints/GetVehicleTypesForMake',
+            link: '/typedoc/api/vpic/endpoints/GetVehicleTypesForMake',
           },
           {
             text: 'GetVehicleTypesForMakeId',
-            link: '/typedoc/api/endpoints/GetVehicleTypesForMakeId',
+            link: '/typedoc/api/vpic/endpoints/GetVehicleTypesForMakeId',
           },
           {
             text: 'GetVehicleVariableList',
-            link: '/typedoc/api/endpoints/GetVehicleVariableList',
+            link: '/typedoc/api/vpic/endpoints/GetVehicleVariableList',
           },
           {
             text: 'GetVehicleVariableValuesList',
-            link: '/typedoc/api/endpoints/GetVehicleVariableValuesList',
+            link: '/typedoc/api/vpic/endpoints/GetVehicleVariableValuesList',
           },
           {
             text: 'GetWMIsForManufacturer',
-            link: '/typedoc/api/endpoints/GetWMIsForManufacturer',
+            link: '/typedoc/api/vpic/endpoints/GetWMIsForManufacturer',
           },
         ],
       },

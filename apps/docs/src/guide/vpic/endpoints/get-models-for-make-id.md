@@ -10,7 +10,7 @@ async function GetModelsForMakeId(
 ```
 
 ::: tip :bulb: More In Depth
-See: [Package Reference](../../../typedoc/api/endpoints/GetModelsForMakeId)
+See: [Package Reference](../../../typedoc/api/vpic/endpoints/GetModelsForMakeId)
 :::
 
 ## Description
