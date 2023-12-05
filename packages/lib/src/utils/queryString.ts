@@ -7,7 +7,7 @@ import { NHTSA_RESPONSE_FORMAT } from '@/constants'
 import { validateArgument } from '@/utils'
 
 /** Valid URI component types */
-export type QueryStringTypes = string | number | boolean
+export type QueryStringTypes = string | number | boolean | undefined
 
 /** Object to build the query string with */
 export type QueryStringParams = Record<string, QueryStringTypes>
@@ -31,10 +31,6 @@ export type QueryStringParamsEncoded<T> = { [key in keyof T]: string }
  * filtered out, and that all values are valid. If you need to be sure that all keys are present
  * in the returned object, you can use the `validateArgument()` function to check the types of all
  * values are valid before calling this function.
- *
- * This function is not exported by the package, but is used internally by other
- * functions. However, it _is_ exported by the package as part of the composable function
- * `useQueryString`, and renamed to `encodeParams` for less verbose use.
  *
  * @param {QueryStringParams} params - An object of search parameters to be encoded.
  * @returns {QueryStringParamsEncoded} - A new object of same keys as the original object with
@@ -62,8 +58,8 @@ export const encodeQueryStringParams = <T extends QueryStringParams>(
       })
     )
     .reduce((acc, [key, value]) => {
-      /* can expect only strings, numbers, and booleans after filtering */
-      acc[key as keyof T] = encodeURIComponent(value)
+      /* can expect only strings, numbers, booleans, and undefined after filtering */
+      if (value !== undefined) acc[key as keyof T] = encodeURIComponent(value)
       return acc
     }, {} as QueryStringParamsEncoded<T>)
 
