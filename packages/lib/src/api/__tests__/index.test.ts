@@ -25,6 +25,7 @@ import {
   GetVehicleVariableValuesList,
   GetWMIsForManufacturer,
   useNHTSA,
+  safetyRatings,
 } from '../'
 
 describe('api/index.ts', () => {
@@ -151,5 +152,10 @@ describe('api/index.ts', () => {
   it('exports useNHTSA function', () => {
     expect(useNHTSA).toBeDefined()
     expect(useNHTSA).toBeInstanceOf(Function)
+  })
+
+  it('exports safetyRatings function', () => {
+    expect(safetyRatings).toBeDefined()
+    expect(safetyRatings).toBeInstanceOf(Function)
   })
 })

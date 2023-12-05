@@ -32,6 +32,7 @@ export {
   GetVehicleVariableValuesList,
   GetWMIsForManufacturer,
   useNHTSA,
+  safetyRatings,
 } from '@/api'
 
 /**
@@ -71,4 +72,17 @@ export type {
   GetVehicleVariableValuesListResults,
   GetWMIsForManufacturerResults,
   NhtsaResponse,
+  SafetyRatingsOptions,
+  SafetyRatingsOptionsBase,
+  SafetyRatingsOptionsEmpty,
+  SafetyRatingsOptionsMake,
+  SafetyRatingsOptionsModel,
+  SafetyRatingsOptionsModelYear,
+  SafetyRatingsOptionsVehicleId,
+  SafetyRatingsResponseByOptions,
+  SafetyRatingsResponseByVariant,
+  SafetyRatingsResultsByOptions,
+  SafetyRatingsResultsByVariant,
+  SafetyRatingsResultsData,
+  SafetyRatingsResultsVariants,
 } from '@/types'
