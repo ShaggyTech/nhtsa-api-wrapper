@@ -5,6 +5,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { coverageConfigDefaults } from 'vitest/config'
 
 const packageName = 'nhtsa-api-wrapper'
 
@@ -23,8 +24,9 @@ export default defineConfig({
     tsconfigPaths(),
     dts({
       entryRoot: './src',
-      outputDir: './dist/types',
+      outDir: './dist/types',
       insertTypesEntry: true,
+      exclude: ['**/__tests__/**/*', 'node_modules/**'],
     }),
   ],
   resolve: {
@@ -40,35 +42,38 @@ export default defineConfig({
     ],
   },
   build: {
-    outDir: 'dist',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'NHTSA',
       formats,
       fileName: (format) => fileName[format],
     },
-    sourcemap: true,
+    outDir: 'dist',
     reportCompressedSize: true,
-    rollupOptions: {
-      output: {
-        sourcemap: true,
-      },
-    },
+    sourcemap: true,
   },
   test: {
+    setupFiles: ['./.vitest/setup.ts'],
     environment: 'node',
     globals: true,
-    watch: false, // turned off for CI/CD runs
+    typecheck: { checker: 'tsc', enabled: true },
+    // output of @vitest/ui reporter=html that can be used to view test results via vite preview
+    outputFile: './.vitest/dist/ui/index.html',
     coverage: {
       provider: 'v8',
+      reportsDirectory: './.vitest/dist/coverage',
       exclude: [
+        ...coverageConfigDefaults.exclude,
         '**/*/types.ts',
         '**/__tests__/**/*',
         '**/.vitest/**/*',
-        'vite-env.d.ts',
-        'global.d.ts',
+        '**/*/vite-env.d.ts',
+        '**/*/global.d.ts',
+        '**/*/types.d.ts',
+        '**/*/typedoc.cjs',
       ],
     },
-    setupFiles: ['./.vitest/setup.ts'],
+    // uncomment to enable in source file testing
+    // includeSource: ['src/**/*.{js,ts}'],
   },
 })

@@ -9,7 +9,10 @@
       ".vitest/*": [
         "./.vitest/*"
       ]
-    }
+    },
+    "types": [
+      "vitest/importMeta"
+    ]
   },
   "include": [
     "src/**/*.ts",
