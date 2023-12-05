@@ -26,6 +26,7 @@ export default defineConfig({
       entryRoot: './src',
       outDir: './dist/types',
       insertTypesEntry: true,
+      rollupTypes: true,
       exclude: ['**/__tests__/**/*', 'node_modules/**'],
     }),
   ],
