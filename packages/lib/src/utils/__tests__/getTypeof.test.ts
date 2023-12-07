@@ -1,37 +1,66 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import { getTypeof } from '../getTypeof'
 
 describe('getTypeof.ts - exports', () => {
-  it('getTypeof function', () => {
+  test('getTypeof function', () => {
     expect(getTypeof).toBeDefined()
     expect(getTypeof).toBeInstanceOf(Function)
   })
 })
 
-describe('getTypeof', () => {
-  it('it returns correct type', () => {
-    expect(getTypeof(undefined)).toBe('undefined')
-    expect(getTypeof(null)).toBe('null')
-    expect(getTypeof(true)).toBe('boolean')
-    expect(getTypeof('this is a string')).toBe('string')
-    expect(getTypeof(() => 'this is a function')).toBe('function')
-    expect(getTypeof({ an: 'object' })).toBe('object')
-    expect(getTypeof(['an', 'array'])).toBe('array')
+describe('getTypeof()', () => {
+  describe('returns correct type for primitive values:', () => {
+    test.each([
+      [undefined, 'undefined'],
+      [null, 'null'],
+      [true, 'boolean'],
+      [false, 'boolean'],
+      ['this is a string', 'string'],
+      [123, 'number'],
+      [123.456, 'number'],
+      [NaN, 'number'],
+      [Infinity, 'number'],
+      [0, 'number'],
+      [-0, 'number'],
+      [Infinity, 'number'],
+      [-Infinity, 'number'],
+      [123n, 'bigint'],
+      [Symbol('test'), 'symbol'],
+    ])('value: %s = type: "%s"', (value, type) => {
+      expect(getTypeof(value)).toBe(type)
+    })
   })
 
-  it('it handles different Error types as type "error"', () => {
-    const error = new Error('this is an error')
-    const typeError = new TypeError('this is a type error')
-    const rangeError = new RangeError('this is a range error')
-    const referenceError = new ReferenceError('this is a reference error')
-    const syntaxError = new SyntaxError('this is a syntax error')
-    const uriError = new URIError('this is a URI error')
+  describe('returns correct type for non-primitive values:', () => {
+    test.each([
+      [{ message: 'test' }, 'object'],
+      [{}, 'object'],
+      [[1, 2, 3], 'array'],
+      [() => null, 'function'],
+      [class {}, 'function'],
+      [new Map(), 'map'],
+      [new Date(), 'date'],
+      [new RegExp('test'), 'regexp'],
+      [Promise.resolve(), 'promise'],
+      [new Set(), 'set'],
+      [new WeakMap(), 'weakmap'],
+      [new WeakSet(), 'weakset'],
+    ])(`value: %s = type: "%s"`, (value, type) => {
+      expect(getTypeof(value)).toBe(type)
+    })
+  })
 
-    expect(getTypeof(error)).toBe('error')
-    expect(getTypeof(typeError)).toBe('error')
-    expect(getTypeof(rangeError)).toBe('error')
-    expect(getTypeof(referenceError)).toBe('error')
-    expect(getTypeof(syntaxError)).toBe('error')
-    expect(getTypeof(uriError)).toBe('error')
+  describe('returns type "error" for all Error types:', () => {
+    test.each([
+      [Error(), 'error'],
+      [TypeError(), 'error'],
+      [SyntaxError(), 'error'],
+      [EvalError(), 'error'],
+      [RangeError(), 'error'],
+      [ReferenceError(), 'error'],
+      [URIError(), 'error'],
+    ])(`value: %s = type: "%s"`, (error) => {
+      expect(getTypeof(error)).toBe('error')
+    })
   })
 })
