@@ -46,80 +46,100 @@ const WEIGHTS_ARRAY: number[] = [
 
 /**
  * Provides **offline** validation of Vehicle Identification Numbers (VINs) using the
- * [VIN Check Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
+ * [VIN Check Digit Algorithm](https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/Check_digit).
  *
- * If you need to test that the algorithm is working correctly, you can use 17 ones `1` as
- * the VIN and it should return `true` as the result.
+ * This function uses the check digit algorithm to validate the structure of the VIN, but does not
+ * check the VIN against any database of actual vehicles.
  *
- * @example <caption>Browser via html script tags</caption>
- * const isValid = NHTSA.isValidVin('3VWD07AJ5EM388202')
- * console.log(isValid) // true
+ * Note that it's possible to generate a random VIN that will pass this validation but does not
+ * correspond to an actual vehicle. See the {@link generateRandomVIN} function for more details.
  *
- * @example <caption>Imported as a module</caption>
- * import { isValidVin } from '@shaggytools/nhtsa-api-wrapper'
+ * @example
  * const isValid = isValidVin('3VWD07AJ5EM388202')
  * console.log(isValid) // true
  *
- * @param {string} vin - Vehicle Identification Number.
- * @returns {boolean} True for a valid VIN, false for an invalid VIN.
+ * @param vin - Vehicle Identification Number.
+ * @returns True for a valid VIN, false for an invalid VIN.
  */
 export function isValidVin(vin: string): boolean {
-  /* A valid VIN must be a string and is always exactly 17 digits */
-  if (typeof vin !== 'string' || vin.length != 17) {
-    return false
-  }
-
+  /* If the vin is not a string, it is not valid */
+  if (typeof vin !== 'string') return false
   /* Normalize the vin to all uppercase letters */
-  vin = vin.toUpperCase()
-  /* split the vin digits into an array */
-  const vinArray: string[] = vin.split('')
+  vin = vin.trimEnd().toUpperCase()
+  /* Valid VIN must be 17 characters long */
+  if (vin.length !== 17) return false
   /* checkDigit will be tested against the checkSum later */
-  const checkDigit: string = vinArray[8]
+  let checkDigit: string | number = vin[8]
 
-  /*
-   * In a valid VIN, the checkDigit can either be:
-   * a number, 0-9 inclusive OR the character 'X'
-   */
+  /* In a valid VIN, the checkDigit can either be: a number, 0-9 inclusive, or the char 'X' */
   if (isNaN(parseInt(checkDigit)) && checkDigit !== 'X') {
     return false
-  }
+  } else checkDigit = checkDigit === 'X' ? 10 : parseInt(checkDigit)
 
   /*
-   * The checkValue must be a digit and 'X' is the only valid alphabetic check value.
-   * As per the algorithm, a checkDigit of 'X' is equal to a checkValue of `10` and needs to be
-   * converted as such.
-   */
-  const checkValue: number = checkDigit === 'X' ? 10 : parseInt(checkDigit)
-
-  /*
-   * Maps the vinArray and converts any values (digits) that are alphabetic, into numbers, using the
+   * Maps the vin chars and converts any values (digits) that are alphabetic into numbers, using the
    * TRANSLITERATION_TABLE. Then these numbers are multiplied against their corresponding weight in
    * the WEIGHTS_ARRAY, matched by index position. All 17 of those digitValues are then added
    * together and divided by 11. The remainder, or % modulo, of that division will be the final
    * 'checksum'.
    */
   const checksum: number =
-    vinArray
-      .map((digit: string, index: number) => {
-        let digitValue: number
+    vin
+      .split('')
+      .map((digit, index) => {
+        let value: number
         /* Use the transliteration table to convert any Not a Number(NaN) values to numbers */
         isNaN(parseInt(digit))
-          ? (digitValue = TRANSLITERATION_TABLE[digit])
-          : (digitValue = parseInt(digit))
-
-        /* Convert the digitValue to a weighted number corresponding to it's position, by index */
-        const weight: number = WEIGHTS_ARRAY[index]
-
-        /* The final step for each digit is to multiply the digit by it's corresponding weight */
-        return digitValue * weight
+          ? (value = TRANSLITERATION_TABLE[digit])
+          : (value = parseInt(digit))
+        /* Multiply the digit by it's corresponding weight */
+        return value * WEIGHTS_ARRAY[index]
       })
       /* Finally, get the sum of all digits and divide by 11, the modulo of that is the checksum */
-      .reduce((acc, currValue) => acc + currValue, 0) % 11
+      .reduce((sum, value) => sum + value, 0) % 11
 
   /*
    * The checksum is compared against the checkValue we set earlier (the 9th digit of the VIN). As
    * per the algorithm, if they are equal to each other, then the VIN must be valid and we return
    * true, otherwise the VIN is invalid and we return false.
    */
-  return checksum === checkValue
+  return checksum === checkDigit
+}
+
+/**
+ * Generates a random valid Vehicle Identification Number (VIN) that will pass the VIN validation
+ * check digit algorithm implemented in the {@link isValidVin} function.
+ *
+ * Used internally to generate random VINs for testing purposes.
+ *
+ * Note that these VINs are structurally valid but do not correspond to actual vehicles and will not
+ * return any data from the NHTSA API.
+ *
+ * This works by generating a random string of 16 characters composed of the characters from the
+ * transliteration table and the numbers 0-9. Then it calculates the check digit and replaces the
+ * 9th character with the correct check digit so that the VIN will pass the validation algorithm.
+ *
+ * @param vin - Vehicle Identification Number string.
+ * @returns A randomly generated, structurally valid 17-character VIN.
+ */
+export function generateRandomVIN() {
+  let vin = ''
+  // Generate the first 16 characters of the VIN
+  for (let i = 0; i < 17; i++) {
+    const charSet = 'ABCDEFGHJKLMNPRSTUVWXYZ0123456789'
+    vin += charSet.charAt(Math.floor(Math.random() * charSet.length))
+  }
+
+  // Calculate the check digit
+  let sum = 0
+  for (let i = 0; i < 17; i++) {
+    const digit = TRANSLITERATION_TABLE[vin[i]] || parseInt(vin[i], 10)
+    sum += digit * WEIGHTS_ARRAY[i]
+  }
+  const checkDigit = sum % 11
+  /* v8 ignore next */
+  const checkChar = checkDigit === 10 ? 'X' : checkDigit.toString()
+
+  // Replace the 9th character (check digit) in the VIN
+  return vin.substring(0, 8) + checkChar + vin.substring(9)
 }

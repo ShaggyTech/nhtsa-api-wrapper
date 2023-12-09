@@ -1,40 +1,82 @@
-import { describe, expect, it } from 'vitest'
-import { isValidVin } from '../isValidVin'
+import { describe, expect, test } from 'vitest'
+import { isValidVin, generateRandomVIN } from '../isValidVin'
 
-describe('isValidVin.ts - exports', () => {
-  it('isValidVin function', () => {
+describe('isValidVin.ts - exports:', () => {
+  test('isValidVin function', () => {
     expect(isValidVin).toBeDefined()
     expect(isValidVin).toBeInstanceOf(Function)
   })
+
+  test('generateRandomVIN function', () => {
+    expect(generateRandomVIN).toBeDefined()
+    expect(generateRandomVIN).toBeInstanceOf(Function)
+  })
 })
 
-describe('isValidVin - utility helper function', () => {
-  it('it should return true with a valid VIN', () => {
-    // All zeros
-    expect(isValidVin('00000000000000000')).toBe(true)
-    // valid uppercase
-    expect(isValidVin('3VWD07AJ5EM388202')).toBe(true)
-    expect(isValidVin('1FMJK2AT1KEA36140')).toBe(true)
-    expect(isValidVin('5XYZU3LA1EG176607')).toBe(true)
-    // valid lowercase
-    expect(isValidVin('3vwd07aj5em388202')).toBe(true)
+describe('isValidVin())', () => {
+  describe('returns true when passed a known valid VIN', () => {
+    test.each([
+      '3VWD07AJ5EM388202',
+      '3VWD07AJ5EM388202 ',
+      '1FMJK2AT1KEA36140',
+      '5XYZU3LA1EG176607',
+      '1M8GDM9AXKP042788',
+      '3vwd07aj5em388202',
+    ])('%s', (vin) => {
+      expect(isValidVin(vin)).toBe(true)
+    })
   })
 
-  it('it should fail with invalid arguments', async () => {
-    // known invalid VIN
-    expect(isValidVin('3VWD07AJ5EM388203')).toBe(false)
-    // VIN too short
-    expect(isValidVin('3VWD07AJ5EM38820')).toBe(false)
-    expect(isValidVin('1234567890')).toBe(false)
-    expect(isValidVin('')).toBe(false)
-    // invalid check digit (vin[8])
-    expect(isValidVin('3VWD07AJAEM388203')).toBe(false)
-    // check digit is equal to 'X' but vin is invalid
-    expect(isValidVin('3VWD07AJXEM388203')).toBe(false)
-    // invalid argument type
-    expect(isValidVin([] as unknown as string)).toBe(false)
-    expect(isValidVin({} as unknown as string)).toBe(false)
-    // missing argument
-    expect(isValidVin(undefined as unknown as string)).toBe(false)
+  describe('returns true when passed a structurally valid VIN that does not correspond to an actual vehicle', () => {
+    test.each([
+      '00000000000000000',
+      '11111111111111111',
+      generateRandomVIN(),
+      generateRandomVIN(),
+      generateRandomVIN(),
+      generateRandomVIN(),
+    ])('%s', (vin) => {
+      expect(isValidVin(vin)).toBe(true)
+    })
+  })
+
+  describe('returns false when passed an invalid VIN', () => {
+    test.each([
+      '3VWD07AJ5EM3882020',
+      '3VWD07AJ5EM388203',
+      '3VWD07AJAEM388203',
+      '3VWD07AJXEM388203',
+      '3VWD07AJ5EM38820',
+      '1234567890',
+      '',
+    ])('%s', (vin) => {
+      expect(isValidVin(vin)).toBe(false)
+    })
+  })
+
+  describe('returns false when passed arg that is not a string', () => {
+    test.each([[], {}, undefined, null, true, false, 0, 1, NaN, () => {}])(
+      '%s',
+      (vin) => {
+        // @ts-expect-error Type 'x' is not assignable to type 'string'.
+        expect(isValidVin(vin)).toBe(false)
+      }
+    )
+  })
+})
+
+describe('generateRandomVIN()', () => {
+  test('returns a string', () => {
+    expect(typeof generateRandomVIN()).toBe('string')
+  })
+
+  test('returns a string that is 17 characters long', () => {
+    expect(generateRandomVIN().length).toBe(17)
+  })
+
+  test('returns a string that is 17 characters long and is a valid VIN', () => {
+    const vin = generateRandomVIN()
+    expect(vin.length).toBe(17)
+    expect(isValidVin(vin)).toBe(true)
   })
 })
