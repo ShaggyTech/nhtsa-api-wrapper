@@ -273,11 +273,11 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * (default: `true`)
  * @returns - Parsed API response `object` -or- url `string` if `doFetch = false`
  */
-function safetyRatings<T extends SafetyRatingsOptions>(
+function safetyRatings<T extends NoInvalidOptions<SafetyRatingsOptions>>(
   options: NoInvalidOptions<T>,
   doFetch?: true
 ): Promise<SafetyRatingsResponseByOptions<T>>
-function safetyRatings<T extends SafetyRatingsOptions>(
+function safetyRatings<T extends NoInvalidOptions<SafetyRatingsOptions>>(
   options: NoInvalidOptions<T> | undefined,
   doFetch: false
 ): Promise<string>
@@ -289,13 +289,13 @@ function safetyRatings(
   doFetch?: true
 ): Promise<SafetyRatingsResponseByVariant<'getModelYears'>>
 function safetyRatings(doFetch: false): Promise<string>
-function safetyRatings<T extends SafetyRatingsOptions>(
+function safetyRatings<T extends NoInvalidOptions<SafetyRatingsOptions>>(
   options?: NoInvalidOptions<T> | boolean,
   doFetch?: boolean
 ): Promise<unknown>
 /* Implementation */
 async function safetyRatings(
-  options?: SafetyRatingsOptions | boolean,
+  options?: NoInvalidOptions<SafetyRatingsOptions> | boolean,
   doFetch: boolean = true
 ): Promise<unknown> {
   const endpointName = 'SafetyRatings'
@@ -389,8 +389,6 @@ async function safetyRatings(
           )}. Valid options are: ${validKeys.join(', ')}`
         )
       }
-
-      // const { vehicleId, modelYear, make, model } = options
 
       /* Build the API URL path */
       path = buildPath(options)
@@ -519,11 +517,6 @@ export type SafetyRatingsOptions =
  */
 export type NoInvalidOptions<T extends SafetyRatingsOptions> =
   NoExtraProperties<SafetyRatingsOptionsBase, T>
-
-// export type NoInvalidOptions<T extends SafetyRatingsOptions> =
-//   T extends SafetyRatingsOptions
-//     ? NoExtraProperties<SafetyRatingsOptionsBase, T>
-//     : never
 
 /**
  * Variant names to used to type the `Results[]` of the `Safety Ratings API` response based on the

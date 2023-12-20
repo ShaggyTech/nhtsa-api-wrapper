@@ -303,29 +303,29 @@ import type {
  * (default: `true`)
  * @returns - Parsed API response `object` -or- url `string` if `doFetch = false`
  */
-function recalls(
-  doFetch?: true
-): Promise<RecallsResponseByVariant<'getModelYears'>>
-function recalls(doFetch: false): Promise<string>
-function recalls<T extends RecallsOptions>(
-  options: NoInvalidOptions<T> | undefined,
-  doFetch: false
-): Promise<string>
-function recalls<T extends RecallsOptions>(
+function recalls<T extends NoInvalidOptions<RecallsOptions>>(
   options: NoInvalidOptions<T>,
   doFetch?: true
 ): Promise<RecallsResponseByOptions<T>>
+function recalls<T extends NoInvalidOptions<RecallsOptions>>(
+  options: NoInvalidOptions<T> | undefined,
+  doFetch: false
+): Promise<string>
 function recalls(
   options?: undefined,
   doFetch?: true
 ): Promise<RecallsResponseByVariant<'getModelYears'>>
-function recalls<T extends RecallsOptions>(
+function recalls(
+  doFetch?: true
+): Promise<RecallsResponseByVariant<'getModelYears'>>
+function recalls(doFetch: false): Promise<string>
+function recalls<T extends NoInvalidOptions<RecallsOptions>>(
   options?: NoInvalidOptions<T> | boolean,
   doFetch?: boolean
-): Promise<RecallsResponse | string>
+): Promise<unknown>
 /* Implementation */
 async function recalls(
-  options?: RecallsOptions | boolean,
+  options?: NoInvalidOptions<RecallsOptions> | boolean,
   doFetch: boolean = true
 ): Promise<unknown> {
   const endpointName = 'recalls'
@@ -346,7 +346,7 @@ async function recalls(
       args: [
         { name: 'options', value: options, types: ['object'] },
         {
-          name: 'vehicleId',
+          name: 'campaignNumber',
           value: options?.campaignNumber,
           types: ['string'],
         },
@@ -407,19 +407,23 @@ async function recalls(
     const hasVehicle = modelYear && make && model
     const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    /* use the Recalls API if campaignNumber or full vehicle is passed */
+    /* use the Recalls API if campaignNumber or full vehicle is passed, ignores vehicle if campaignNumber exists */
     if (campaignNumber || hasVehicle) {
       if (campaignNumber) {
-        path = `/recalls/campaignNumber`
+        path = `campaignNumber`
       } else if (hasVehicle) {
-        path = `/recalls/recallsByVehicle`
+        path = `recallsByVehicle`
       }
+
+      const params = campaignNumber
+        ? { campaignNumber }
+        : { modelYear, make, model }
 
       createCachedUrl({
         apiType: 'recalls',
         endpointName,
         path,
-        params: { ...encodedParams },
+        params,
       })
 
       if (!doFetch) {

@@ -335,24 +335,21 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * @param [doFetch=true] - If false, will return the url string instead of fetching the data
  * @returns NHTSA Api Response `object`
  */
-// Most specific: Overloads with generics
-function products<T extends ProductsOptions>(
+function products<T extends NoInvalidOptions<ProductsOptions>>(
   issueType: ProductsIssueType,
   options: NoInvalidOptions<T>,
   doFetch?: true
 ): Promise<ProductsResponseByOptions<T>>
-function products<T extends ProductsOptions>(
+function products<T extends NoInvalidOptions<ProductsOptions>>(
   issueType: ProductsIssueType,
   options: NoInvalidOptions<T> | undefined,
   doFetch: false
 ): Promise<string>
-// Next, overloads with both issueType and doFetch
 function products(
   issueType: ProductsIssueType,
   doFetch?: true
 ): Promise<ProductsResponseByVariant<'getModelYears'>>
 function products(issueType: ProductsIssueType, doFetch: false): Promise<string>
-// Then, overloads with only issueType
 function products(
   issueType: ProductsIssueType
 ): Promise<ProductsResponseByVariant<'getModelYears'>>
@@ -361,8 +358,7 @@ function products(
   options?: undefined,
   doFetch?: true
 ): Promise<ProductsResponseByVariant<'getModelYears'>>
-// Most general: Catch-all overload
-function products<T extends ProductsOptions>(
+function products<T extends NoInvalidOptions<ProductsOptions>>(
   issueType: ProductsIssueType,
   options?: NoInvalidOptions<T> | boolean,
   doFetch?: boolean
@@ -370,7 +366,7 @@ function products<T extends ProductsOptions>(
 /* Implementation */
 async function products(
   issueType: ProductsIssueType,
-  options?: ProductsOptions | boolean,
+  options?: NoInvalidOptions<ProductsOptions> | boolean,
   doFetch: boolean = true
 ): Promise<unknown> {
   const endpointName = 'products'
