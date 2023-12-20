@@ -440,7 +440,7 @@ describe.skip('IDE Tooltips - manual test of results type on hover', async () =>
       }[];
     }
     ******************************/
-    const result_1 = await products(issueType, 'why does this work?>??????????')
+    const result_1 = await products(issueType)
     const result_2 = await products(issueType, undefined)
     const result_3 = await products(issueType, {})
     const result_4 = await products(issueType, {}, true)

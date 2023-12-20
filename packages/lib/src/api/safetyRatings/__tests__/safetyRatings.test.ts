@@ -14,10 +14,14 @@ const modelYear = modelYearNumber
 const make = 'Audi'
 const model = 'A5'
 
-// https://api.nhtsa.gov/safetyRatings/modelyear/2013/make/Acura/model/rdx
+// https://api.nhtsa.gov/SafetyRatings
+// https://api.nhtsa.gov/SafetyRatings/modelyear/2013
+// https://api.nhtsa.gov/SafetyRatings/modelyear/2013/make/honda
+// https://api.nhtsa.gov/SafetyRatings/modelyear/2013/make/honda/model/accord
+// https://api.nhtsa.gov/SafetyRatings/vehicleId/7523
 
 const baseUrl = 'https://api.nhtsa.gov/SafetyRatings/'
-const mockUrl = `${baseUrl}?format=json`
+const mockUrlBase = `${baseUrl}?format=json`
 const mockUrlVehicleId = `${baseUrl}vehicleId/${vehicleIdString}?format=json`
 const mockUrlModelYear = `${baseUrl}modelYear/${modelYearString}?format=json`
 const mockUrlMake = `${baseUrl}modelYear/${modelYearString}/make/${make}?format=json`
@@ -52,31 +56,31 @@ describe('safetyRatings()', () => {
   describe('Fetches API data with: ', () => {
     test.each<TestEach>([
       // no arguments, empty object, undefined - returns all available model years
-      { description: 'no arguments', args: [], expectedUrl: mockUrl },
+      { description: 'no arguments', args: [], expectedUrl: mockUrlBase },
       {
         description: 'doFetch = true as first argument',
         args: [true],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       {
         description: 'undefined as first argument',
         args: [undefined],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       {
         description: 'undefined as first argument and doFetch = true',
         args: [undefined, true],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       {
         description: 'empty object as first argument',
         args: [{}],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       {
         description: 'empty object as first argument and doFetch = true',
         args: [{}, true],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       // options.modelYear
       {
@@ -203,17 +207,17 @@ describe('safetyRatings()', () => {
       {
         description: 'doFetch = false as first argument',
         args: [false],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       {
         description: 'undefined as first argument and doFetch = false',
         args: [undefined, false],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       {
         description: 'empty object and doFetch = false',
         args: [{}, false],
-        expectedUrl: mockUrl,
+        expectedUrl: mockUrlBase,
       },
       // options.modelYear
       {
@@ -561,7 +565,7 @@ describe.skip('IDE Tooltips - manual test of results type on hover', async () =>
           }[];
         }
     ******************************/
-    const result_1 = await safetyRatings('why does this work??????????????????')
+    const result_1 = await safetyRatings()
     const result_2 = await safetyRatings(undefined)
     const result_3 = await safetyRatings({})
     const result_4 = await safetyRatings({}, true)

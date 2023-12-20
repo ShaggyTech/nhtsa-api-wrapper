@@ -2,7 +2,6 @@ import { describe, expectTypeOf, test } from 'vitest'
 
 import {
   products,
-  type NoInvalidOptions,
   type ProductsIssueType,
   type ProductsOptions,
   type ProductsOptionsEmpty,
@@ -27,7 +26,7 @@ test('Typecheck: products() - parameters - ', () => {
   expectTypeOf<typeof products>().parameters.toMatchTypeOf<
     [
       issueType: ProductsIssueType,
-      options?: boolean | NoInvalidOptions<ProductsOptions> | undefined,
+      options?: boolean | ProductsOptions | undefined,
       doFetch?: boolean | undefined,
     ]
   >()
@@ -76,6 +75,25 @@ describe('Typecheck: products() - returns correct type of response data - ', () 
     expectTypeOf(result).toEqualTypeOf<
       ProductsResponseByOptions<ProductsOptionsEmpty>
     >()
+
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'default'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'getMakes'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'getModels'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptions>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptionsMake>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptionsModelYear>
+    >()
   })
 
   test('with issueType = "r"', async () => {
@@ -87,6 +105,25 @@ describe('Typecheck: products() - returns correct type of response data - ', () 
     expectTypeOf(result).toEqualTypeOf<
       ProductsResponseByOptions<ProductsOptionsEmpty>
     >()
+
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'default'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'getMakes'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'getModels'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptions>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptionsMake>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptionsModelYear>
+    >()
   })
 
   test('with issueType = "recalls"', async () => {
@@ -97,6 +134,25 @@ describe('Typecheck: products() - returns correct type of response data - ', () 
     >()
     expectTypeOf(result).toEqualTypeOf<
       ProductsResponseByOptions<ProductsOptionsEmpty>
+    >()
+
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'default'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'getMakes'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByVariant<'getModels'>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptions>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptionsMake>
+    >()
+    expectTypeOf(result).not.toEqualTypeOf<
+      ProductsResponseByOptions<ProductsOptionsModelYear>
     >()
   })
 
@@ -312,90 +368,6 @@ describe('Typecheck: products() - returns correct type of response data - ', () 
     >()
     expectTypeOf(result).not.toEqualTypeOf<
       ProductsResponseByOptions<ProductsOptionsMake>
-    >()
-  })
-
-  test('with issueType, options.modelYear, and options.make = undefined', async () => {
-    const result = await products(issueType, { modelYear, make: undefined })
-
-    expectTypeOf(result).toEqualTypeOf<ProductsResponseByVariant<'getMakes'>>()
-    expectTypeOf(result).toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsModelYear>
-    >()
-
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'default'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'getModelYears'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'getModels'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptions>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsEmpty>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsMake>
-    >()
-  })
-
-  test('with issueType, options.modelYear, and options.make', async () => {
-    const result = await products(issueType, { modelYear, make })
-
-    expectTypeOf(result).toEqualTypeOf<ProductsResponseByVariant<'getModels'>>()
-    expectTypeOf(result).toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsMake>
-    >()
-
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'default'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'getModelYears'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'getMakes'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptions>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsEmpty>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsModelYear>
-    >()
-  })
-
-  test('with issueType, options.modelYear, options.make, and doFetch = true', async () => {
-    const result = await products(issueType, { modelYear, make }, true)
-
-    expectTypeOf(result).toEqualTypeOf<ProductsResponseByVariant<'getModels'>>()
-    expectTypeOf(result).toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsMake>
-    >()
-
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'default'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'getModelYears'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByVariant<'getMakes'>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptions>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsEmpty>
-    >()
-    expectTypeOf(result).not.toEqualTypeOf<
-      ProductsResponseByOptions<ProductsOptionsModelYear>
     >()
   })
 })
