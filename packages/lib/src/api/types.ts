@@ -3,6 +3,7 @@
  * @category Types
  */
 
+export * from './products/types'
 export * from './safetyRatings/types'
 export * from './vpic/endpoints/types'
 
@@ -58,6 +59,15 @@ export type NhtsaResponse<
       /** Search terms (VIN, WMI, etc) used in the request URL. */
       SearchCriteria: string | null
     }
+  : ApiType extends 'recalls'
+  ? {
+      /** The number of items returned in the Results object. Will = 0 if no results */
+      Count: number
+      /** A message describing the results. If Count is 0 check the Message for helpful info */
+      Message: string
+      /** An array of objects of type 'ResultsType', specific to each individual API endpoint. */
+      Results: Array<ResultsType>
+    }
   : ApiType extends 'safetyRatings'
   ? {
       /** The number of items returned in the Results object. Will = 0 if no Results */
@@ -67,23 +77,14 @@ export type NhtsaResponse<
       /** An array of objects of type 'ResultsType', specific to each individual API endpoint. */
       Results: Array<ResultsType>
     }
-  : ApiType extends 'recalls'
-  ? {
-      /** The number of items returned in the Results object. Will = 0 if no results */
-      Count: number
-      /** A message describing the results. If Count is 0 check the Message for helpful info */
-      Message: string
-      /** An array of objects of type 'ResultsType', specific to each individual API endpoint. */
-      results: Array<ResultsType>
-    }
   : ApiType extends 'complaints' | 'products'
   ? {
       /** The number of items returned in the Results object. Will = 0 if no results */
-      count: number
+      Count: number
       /** A message describing the results. If count is 0 check the message for helpful info */
-      message: string
+      Message: string
       /** An array of objects of type 'ResultsType', specific to each individual API endpoint. */
-      results: Array<ResultsType>
+      Results: Array<ResultsType>
     }
   : ApiType extends 'cssiStation'
   ? {

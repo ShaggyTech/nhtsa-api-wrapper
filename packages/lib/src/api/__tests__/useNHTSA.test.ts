@@ -297,7 +297,7 @@ describe('useNHTSA', () => {
           endpointName: 'someEndpoint',
           apiType,
         })
-        expect(url).toBe(`https://api.nhtsa.gov/someEndpoint/`)
+        expect(url).toBe(`https://api.nhtsa.gov/someEndpoint/?format=json`)
       })
     })
 

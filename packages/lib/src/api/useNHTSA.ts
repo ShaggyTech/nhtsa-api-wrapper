@@ -121,13 +121,11 @@ export const useNHTSA = () => {
       saveUrl = true,
     } = options
 
-    let { includeQueryString = true } = options
+    const { includeQueryString = true } = options
 
     if (!endpointName || typeof endpointName !== 'string') {
       throw Error('options.endpointName is required to create a URL string')
     }
-
-    if (apiType !== 'vpic') includeQueryString = false
 
     const queryString = includeQueryString
       ? createQueryString(params, allowEmptyParams)
@@ -180,7 +178,9 @@ export const useNHTSA = () => {
    * objects in the `Results` or `results` array of the `NhtsaResponse` object.
    *
    * For example, `NhtsaResponse<DecodeVinResults>` has a `Results` key, which
-   * contains an array of `DecodeVinResults` objects.
+   * contains an array of `DecodeVinResults` objects. Some of the NHTSA API endpoints have a
+   * `results` key instead of `Results`, so the `ApiType` generic is used to specify the type of
+   * the `Results` or `results` array.
    *
    * This function returns the API response contents after parsing the response data as JSON.
    *
@@ -325,11 +325,28 @@ export const useNHTSA = () => {
           )
         }
 
-        /* Ensure response data exists and return it */
+        /* Ensure response data exists */
         const data = await response.json()
         if (!data) {
           throw Error(`API returned no data, response was: ${responseDetails}`)
-        } else return data
+        }
+        /* Convert lowercase 'results' key to uppercase 'Results' key */
+        if (data.results) {
+          data.Results = data.results
+          delete data.results
+        }
+        /* Convert lowercase 'count' key to uppercase 'Count' key */
+        if (data.count) {
+          data.Count = data.count
+          delete data.count
+        }
+        /* Convert lowercase 'message' key to uppercase 'Message' key */
+        if (data.message) {
+          data.Message = data.message
+          delete data.message
+        }
+        /* Return the parsed API response */
+        return data
       })
       .catch((error: Error) => {
         error.message = `There was an error fetching NHTSA API data: ${error.message}`
