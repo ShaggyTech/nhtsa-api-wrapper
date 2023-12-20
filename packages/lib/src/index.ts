@@ -33,17 +33,24 @@ export {
   GetWMIsForManufacturer,
   useNHTSA,
   safetyRatings,
+  products,
 } from '@/api'
 
 /**
  * @category Exported Utility Functions
  */
-export { createQueryString, encodeQueryStringParams, isValidVin } from '@/utils'
+export {
+  createQueryString,
+  encodeQueryStringParams,
+  generateRandomVIN,
+  isValidVin,
+} from '@/utils'
 
 /**
  * @category Exported Types
  */
 export type {
+  NhtsaResponse,
   DecodeVinExtendedResults,
   DecodeVinResults,
   DecodeVinValuesBatchResults,
@@ -71,18 +78,30 @@ export type {
   GetVehicleVariableListResults,
   GetVehicleVariableValuesListResults,
   GetWMIsForManufacturerResults,
-  NhtsaResponse,
+  ProductsIssueType,
+  ProductsOptions,
+  ProductsOptionsBase,
+  ProductsOptionsEmpty,
+  ProductsOptionsMake,
+  ProductsOptionsModelYear,
+  ProductsResponse,
+  ProductsResponseByOptions,
+  ProductsResponseByVariant,
+  ProductsResultsByOptions,
+  ProductsResultsByVariant,
+  ProductsResultsData,
+  ProductsResultsVariant,
   SafetyRatingsOptions,
   SafetyRatingsOptionsBase,
   SafetyRatingsOptionsEmpty,
   SafetyRatingsOptionsMake,
-  SafetyRatingsOptionsModel,
   SafetyRatingsOptionsModelYear,
+  SafetyRatingsOptionsVehicle,
   SafetyRatingsOptionsVehicleId,
   SafetyRatingsResponseByOptions,
   SafetyRatingsResponseByVariant,
   SafetyRatingsResultsByOptions,
   SafetyRatingsResultsByVariant,
   SafetyRatingsResultsData,
-  SafetyRatingsResultsVariants,
+  SafetyRatingsResultsVariant,
 } from '@/types'
