@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'vitest'
-import { safetyRatings } from '../'
+import { safetyRatings } from '../safetyRatings'
 
 // Mocks
 import { createMockResponse } from '.vitest/helpers'
@@ -17,10 +17,11 @@ const model = 'A5'
 // https://api.nhtsa.gov/safetyRatings/modelyear/2013/make/Acura/model/rdx
 
 const baseUrl = 'https://api.nhtsa.gov/SafetyRatings/'
-const mockUrlVehicleId = `${baseUrl}vehicleId/${vehicleIdString}`
-const mockUrlModelYear = `${baseUrl}modelYear/${modelYearString}`
-const mockUrlMake = `${baseUrl}modelYear/${modelYearString}/make/${make}`
-const mockUrlModel = `${baseUrl}modelYear/${modelYearString}/make/${make}/model/${model}`
+const mockUrl = `${baseUrl}?format=json`
+const mockUrlVehicleId = `${baseUrl}vehicleId/${vehicleIdString}?format=json`
+const mockUrlModelYear = `${baseUrl}modelYear/${modelYearString}?format=json`
+const mockUrlMake = `${baseUrl}modelYear/${modelYearString}/make/${make}?format=json`
+const mockUrlModel = `${baseUrl}modelYear/${modelYearString}/make/${make}/model/${model}?format=json`
 
 const expectedFetchOptions = {
   saveUrl: true,
@@ -51,31 +52,31 @@ describe('safetyRatings()', () => {
   describe('Fetches API data with: ', () => {
     test.each<TestEach>([
       // no arguments, empty object, undefined - returns all available model years
-      { description: 'no arguments', args: [], expectedUrl: baseUrl },
+      { description: 'no arguments', args: [], expectedUrl: mockUrl },
       {
         description: 'doFetch = true as first argument',
         args: [true],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       {
         description: 'undefined as first argument',
         args: [undefined],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       {
         description: 'undefined as first argument and doFetch = true',
         args: [undefined, true],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       {
         description: 'empty object as first argument',
         args: [{}],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       {
         description: 'empty object as first argument and doFetch = true',
         args: [{}, true],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       // options.modelYear
       {
@@ -202,17 +203,17 @@ describe('safetyRatings()', () => {
       {
         description: 'doFetch = false as first argument',
         args: [false],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       {
         description: 'undefined as first argument and doFetch = false',
         args: [undefined, false],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       {
         description: 'empty object and doFetch = false',
         args: [{}, false],
-        expectedUrl: baseUrl,
+        expectedUrl: mockUrl,
       },
       // options.modelYear
       {
@@ -560,7 +561,7 @@ describe.skip('IDE Tooltips - manual test of results type on hover', async () =>
           }[];
         }
     ******************************/
-    const result_1 = await safetyRatings()
+    const result_1 = await safetyRatings('why does this work??????????????????')
     const result_2 = await safetyRatings(undefined)
     const result_3 = await safetyRatings({})
     const result_4 = await safetyRatings({}, true)

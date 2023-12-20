@@ -8,15 +8,15 @@ export type {
   SafetyRatingsOptionsBase,
   SafetyRatingsOptionsEmpty,
   SafetyRatingsOptionsMake,
-  SafetyRatingsOptionsModel,
   SafetyRatingsOptionsModelYear,
+  SafetyRatingsOptionsVehicle,
   SafetyRatingsOptionsVehicleId,
   SafetyRatingsResponseByOptions,
   SafetyRatingsResponseByVariant,
   SafetyRatingsResultsByOptions,
   SafetyRatingsResultsByVariant,
   SafetyRatingsResultsData,
-  SafetyRatingsResultsVariants,
-} from '.'
+  SafetyRatingsResultsVariant,
+} from './safetyRatings'
 
 export {}

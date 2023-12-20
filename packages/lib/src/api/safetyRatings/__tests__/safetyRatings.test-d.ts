@@ -1,17 +1,17 @@
 import { describe, expectTypeOf, test } from 'vitest'
 
-import { safetyRatings, type NoInvalidOptions } from '../'
-
-import type {
-  SafetyRatingsOptions,
-  SafetyRatingsOptionsEmpty,
-  SafetyRatingsOptionsMake,
-  SafetyRatingsOptionsModel,
-  SafetyRatingsOptionsModelYear,
-  SafetyRatingsOptionsVehicleId,
-  SafetyRatingsResponseByOptions,
-  SafetyRatingsResponseByVariant,
-} from '../types'
+import {
+  safetyRatings,
+  type NoInvalidOptions,
+  type SafetyRatingsOptions,
+  type SafetyRatingsOptionsEmpty,
+  type SafetyRatingsOptionsMake,
+  type SafetyRatingsOptionsVehicle,
+  type SafetyRatingsOptionsModelYear,
+  type SafetyRatingsOptionsVehicleId,
+  type SafetyRatingsResponseByOptions,
+  type SafetyRatingsResponseByVariant,
+} from '../safetyRatings'
 
 const vehicleIdString = '1234'
 const vehicleIdNumber = 1234
@@ -89,7 +89,7 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ modelYear: modelYearString })
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'modelYear'>
+      | SafetyRatingsResponseByVariant<'getMakes'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModelYear>
     >()
   })
@@ -98,7 +98,7 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ modelYear: modelYearString }, true)
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'modelYear'>
+      | SafetyRatingsResponseByVariant<'getMakes'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModelYear>
     >()
   })
@@ -107,7 +107,7 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ modelYear: modelYearNumber })
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'modelYear'>
+      | SafetyRatingsResponseByVariant<'getMakes'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModelYear>
     >()
   })
@@ -116,29 +116,29 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ modelYear: modelYearNumber }, true)
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'modelYear'>
+      | SafetyRatingsResponseByVariant<'getMakes'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModelYear>
     >()
   })
 
   test('with options.make', async () => {
     expectTypeOf(await safetyRatings({ modelYear, make })).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'make'>
+      | SafetyRatingsResponseByVariant<'getModels'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsMake>
     >()
   })
 
   test('with options.make and doFetch = true', async () => {
     expectTypeOf(await safetyRatings({ modelYear, make }, true)).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'make'>
+      | SafetyRatingsResponseByVariant<'getModels'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsMake>
     >()
   })
 
   test('with options.model', async () => {
     expectTypeOf(await safetyRatings({ modelYear, make, model })).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'model'>
-      | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModel>
+      | SafetyRatingsResponseByVariant<'vehicle'>
+      | SafetyRatingsResponseByOptions<SafetyRatingsOptionsVehicle>
     >()
   })
 
@@ -146,8 +146,8 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ modelYear, make, model }, true)
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'model'>
-      | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModel>
+      | SafetyRatingsResponseByVariant<'vehicle'>
+      | SafetyRatingsResponseByOptions<SafetyRatingsOptionsVehicle>
     >()
   })
 
@@ -191,7 +191,7 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ vehicleId: undefined, modelYear })
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'modelYear'>
+      | SafetyRatingsResponseByVariant<'getMakes'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModelYear>
     >()
   })
@@ -200,7 +200,7 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ vehicleId: undefined, modelYear, make })
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'make'>
+      | SafetyRatingsResponseByVariant<'getModels'>
       | SafetyRatingsResponseByOptions<SafetyRatingsOptionsMake>
     >()
   })
@@ -209,8 +209,8 @@ describe('Typecheck: safetyRatings() - return correct type of response data - ',
     expectTypeOf(
       await safetyRatings({ vehicleId: undefined, modelYear, make, model })
     ).toEqualTypeOf<
-      | SafetyRatingsResponseByVariant<'model'>
-      | SafetyRatingsResponseByOptions<SafetyRatingsOptionsModel>
+      | SafetyRatingsResponseByVariant<'vehicle'>
+      | SafetyRatingsResponseByOptions<SafetyRatingsOptionsVehicle>
     >()
   })
 })
