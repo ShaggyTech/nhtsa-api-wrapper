@@ -241,7 +241,7 @@ import type {
  * ```js
  * // Get complaint information for a specific ODI Number
  * await complaints({
- *   odiNumber: '11549247',
+ *   odiNumber: 11549247,
  * })
  * .then((response) => {
  *   response.Results.forEach((result) => {
