@@ -25,6 +25,10 @@ import {
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
   GetWMIsForManufacturer,
+  complaints,
+  products,
+  recalls,
+  safetyRatings,
   useNHTSA,
   // Utility functions
   createQueryString,
@@ -151,6 +155,26 @@ describe('api/index.ts', () => {
   it('exports GetWMIsForManufacturer function', () => {
     expect(GetWMIsForManufacturer).toBeDefined()
     expect(GetWMIsForManufacturer).toBeInstanceOf(Function)
+  })
+
+  it('exports complaints function', () => {
+    expect(complaints).toBeDefined()
+    expect(complaints).toBeInstanceOf(Function)
+  })
+
+  it('exports products function', () => {
+    expect(products).toBeDefined()
+    expect(products).toBeInstanceOf(Function)
+  })
+
+  it('exports recalls function', () => {
+    expect(recalls).toBeDefined()
+    expect(recalls).toBeInstanceOf(Function)
+  })
+
+  it('exports safetyRatings function', () => {
+    expect(safetyRatings).toBeDefined()
+    expect(safetyRatings).toBeInstanceOf(Function)
   })
 
   it('exports useNHTSA function', () => {

@@ -3,7 +3,9 @@
  * @category Types
  */
 
+export * from './complaints/types'
 export * from './products/types'
+export * from './recalls/types'
 export * from './safetyRatings/types'
 export * from './vpic/endpoints/types'
 

@@ -3,6 +3,7 @@
  * @category API
  */
 
+export { complaints } from './complaints/complaints'
 export { products } from './products/products'
 export { recalls } from './recalls/recalls'
 export { safetyRatings } from './safetyRatings/safetyRatings'
