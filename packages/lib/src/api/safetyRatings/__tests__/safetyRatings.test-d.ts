@@ -12,14 +12,13 @@ import {
   type SafetyRatingsResponseByVariant,
 } from '../safetyRatings'
 
-const vehicleIdString = '1234'
-const vehicleIdNumber = 1234
-// const vehicleId = vehicleIdNumber
 const modelYearString = '2018'
 const modelYearNumber = 2018
 const modelYear = modelYearNumber
 const make = 'Audi'
 const model = 'A5'
+const vehicleIdString = '1234'
+const vehicleIdNumber = 1234
 
 test('Typecheck: safetyRatings() - parameters - ', () => {
   expectTypeOf<typeof safetyRatings>().toBeFunction()

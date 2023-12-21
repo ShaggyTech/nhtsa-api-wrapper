@@ -12,33 +12,6 @@ import {
 import type { NhtsaResponse, NoExtraProperties } from '@/types'
 
 /**
- * The products() function is used by the recalls() and complaints() functions to get
- * model years, makes, and models based on query string ?issueType=r or ?issueType=c
- * to then query for recalls or complaints based on a specific model year, make, and model
- *
- * There seems to be no other `issueTypes` other than `r` and `c`
- *
- * `issueType` is required
- * 'c' or 'complaints' = complaints
- * 'r' or 'recalls' = recalls
- *
- * If you pass no options, it will get all model years for the issueType and use url:
- * api.nhtsa.gov/products/vehicle/modelYears?issueType={issueType}
- *
- * If you pass options.modelYear, it will get all makes for the issueType and use url:
- * api.nhtsa.gov/products/vehicle/makes?modelYear={modelYear}&issueType={issueType}
- *
- * If you pass options.modelYear and options.make, will get all models for the issueType and use url:
- * api.nhtsa.gov/products/vehicle/models?modelYear={modelYear}&make={make}&issueType={issueType}
- *
- * Throws an error:
- * - if issueType is not passed or is not a string of 'r' 'recalls' 'c' or 'complaints'
- * - if options is not an object
- * - if options.modelYear is neither a string nor number
- * - if options.make is not a string
- * - if you pass options.make you must also pass options.modelYear
- *
- *
  * # Products API
  *
  * ::: tip :bulb: More Information

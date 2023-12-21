@@ -5,12 +5,12 @@ import { recalls } from '../recalls'
 import { createMockResponse } from '.vitest/helpers'
 import { mockResults } from '.vitest/data'
 
-const campaignNumber = '20V505000'
 const modelYearString = '2020'
 const modelYearNumber = 2020
 const modelYear = modelYearNumber
 const make = 'Volkswagen'
 const model = 'Atlas'
+const campaignNumber = '20V505000'
 
 // Use Products API:
 // https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r
@@ -239,7 +239,7 @@ describe('recalls()', () => {
         args: [{ modelYear, make, model }, false],
         expectedUrl: mockUrlVehicle,
       },
-      // options.vehicleId
+      // options.campaignNumber
       {
         description: 'options.campaignNumber and doFetch = false',
         args: [{ campaignNumber }, false],
@@ -263,8 +263,6 @@ describe('recalls()', () => {
       const results = await recalls(...args)
 
       expect(results).toEqual(expectedUrl)
-      console.log('results: ', results)
-      console.log('expectedUrl: ', expectedUrl)
       expect(fetchMock.requests().length).toEqual(0)
     })
   })

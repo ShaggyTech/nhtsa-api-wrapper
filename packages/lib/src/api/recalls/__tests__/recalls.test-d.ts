@@ -12,12 +12,12 @@ import {
   type RecallsResponseByVariant,
 } from '../recalls'
 
-const campaignNumber = '20V505000'
 const modelYearString = '2020'
 const modelYearNumber = 2020
 const modelYear = modelYearNumber
 const make = 'Volkswagen'
 const model = 'Atlas'
+const campaignNumber = '20V505000'
 
 test('Typecheck: recalls() - parameters - ', () => {
   expectTypeOf<typeof recalls>().toBeFunction()

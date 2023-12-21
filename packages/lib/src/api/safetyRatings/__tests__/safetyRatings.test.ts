@@ -5,14 +5,14 @@ import { safetyRatings } from '../safetyRatings'
 import { createMockResponse } from '.vitest/helpers'
 import { mockResults } from '.vitest/data'
 
-const vehicleIdString = '1234'
-const vehicleIdNumber = 1234
-const vehicleId = vehicleIdNumber
 const modelYearString = '2018'
 const modelYearNumber = 2018
 const modelYear = modelYearNumber
 const make = 'Audi'
 const model = 'A5'
+const vehicleIdString = '1234'
+const vehicleIdNumber = 1234
+const vehicleId = vehicleIdNumber
 
 // https://api.nhtsa.gov/SafetyRatings
 // https://api.nhtsa.gov/SafetyRatings/modelyear/2013

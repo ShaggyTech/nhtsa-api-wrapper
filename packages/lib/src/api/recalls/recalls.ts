@@ -23,8 +23,8 @@ import type {
  * See: [Recalls Documentation] /guide/recalls
  * :::
  *
- * You can use `recalls()` as a thin wrapper for the `NHTSA Recalls API` to get safety
- * ratings for a vehicle.
+ * You can use `recalls()` as a thin wrapper for the `NHTSA Recalls API` to get recall information
+ * based on a vehicle's `modelYear`, `make`, and `model` or a specific `campaignNumber`.
  *
  * This function is designed to handle all of the different possible workflows and return the
  * correct data/url for each one, all depending on which options you pass to the function. In this
@@ -277,8 +277,7 @@ import type {
  * - `results` - An array of objects containing the response data
  *
  * In order to keep parity with the other APIs and make it easier to type the responses, this
- * function will return the data as an object with lowercase `results` converted to uppercase
- * `Results`:
+ * function will return the data as an object with lowercase `results` converted to uppercase:
  * - `Count` - The number of results returned
  * - `Message` - A message from the NHTSA API
  * - `Results` - An array of objects containing the response data
@@ -450,7 +449,7 @@ export { recalls }
  * This is so Intellisense will show the full type contents of the return to the end user when they
  * save the results to a variable and then hover over that variable. If these types are moved to
  * another file, Intellisense will only show the type name, not the full type contents for the
- * products() NhstaResponse return type.
+ * recalls() NhstaResponse return type.
  *
  * Any type that is used directly in the function overloads and not in this file will cause this.
  * So, theoretically, you could move all of those types here and the others live in their own file,
@@ -469,7 +468,7 @@ export type RecallsOptionsBase = {
 }
 
 /**
- * Options to get all available recall `modelYear`s via the `Products API`.
+ * Options to get all available `modelYear`s via the `Products API`.
  *
  * Builds path: `/products/vehicle/modelYears?issueType=r`
  */
@@ -481,7 +480,7 @@ export type RecallsOptionsEmpty = {
 }
 
 /**
- * Options to get all available recall `make`s for a specific `modelYear` via the `Products API`.
+ * Options to get all available `make`s for a specific `modelYear` via the `Products API`.
  *
  * Builds path: `/products/vehicle/makes?modelYear={modelYear}&issueType=r`
  */
@@ -493,7 +492,7 @@ export type RecallsOptionsModelYear = {
 }
 
 /**
- * Options to get all available recall `models`s for a specific `modelYear` and `make` via the
+ * Options to get all available `models`s for a specific `modelYear` and `make` via the
  * `Products API`.
  *
  * Builds path: `/products/vehicle/models?modelYear={modelYear}&make={make}&issueType=r`
@@ -506,7 +505,7 @@ export type RecallsOptionsMake = {
 }
 
 /**
- * Options to get all available `recalls` for a specific vehicle by `modelYear`, `make`, and
+ * Options to get all available recalls for a specific vehicle by `modelYear`, `make`, and
  * `model`.
  *
  * Builds path: `/recalls/recallsByVehicle?make={make}&model={model}&modelYear={modelYear}`
@@ -519,7 +518,7 @@ export type RecallsOptionsVehicle = {
 }
 
 /**
- * Options to get `recalls` for a specific `campaignNumber`.
+ * Options to get recalls for a specific `campaignNumber`.
  *
  * Builds path: `/recalls/campaignNumber?campaignNumber={campaignNumber}`
  */
@@ -625,7 +624,7 @@ export type RecallsResultsData = {
  * Types the `Results[]` of the `Recalls API` response based on the `RecallsResultsVariant` that is
  * passed to this type.
  *
- * Used to type no args `()` or `undefined` as the first arg passed to `safetyRatings()`.
+ * Used to type no args `()` or `undefined` as the first arg passed to `recalls()`.
  *
  * Also used in .test-d.ts files to easily match the expected return type of the function.
  */
