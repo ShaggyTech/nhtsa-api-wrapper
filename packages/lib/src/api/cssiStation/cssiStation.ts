@@ -1,6 +1,14 @@
 /**
 Rough Draft Notes:
 
+After testing out the API and looking at the docs, I think the docs are wrong or for an abandoned
+version of the API. 
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+From the official docs at https://www.nhtsa.gov/nhtsa-datasets-and-apis#car-seat-inspection-locator
+
 Approach A. Get by Zip Code
 Make the request with a zip code to get the list of CSSIStations at the specific zip code only (nearby zip codes are not included).
 
@@ -71,7 +79,7 @@ Rules:
 - If zip is provided, cannot provide other options except for filters
 - If state is provided, cannot provide other options except for filters
 - lat, long, and miles must be provided together
-- filters are optional, either one/none OR both can be sent in.
+- filters are optional, either one/none OR both can be sent in according to docs
 
 By zip:
 
@@ -109,19 +117,37 @@ doesn't seem to work, gives 404 error
 
 By lat, long, and miles:
 
-It doesn't appear the query string does anything, even with the example in the official docs.  If you change the lat and long and miles the results are the same
-as if you has just hit the baseURL of https://api.nhtsa.gov/CSSIStation with no query string.  I'm not sure if this is a bug or if the docs are wrong.
+It doesn't appear the query string does anything, even with the example in the official docs.
+If you change the lat and long and miles the results are the same as if you has just hit the baseURL
+of https://api.nhtsa.gov/CSSIStation with no query string.
 
-In practice you can send whatever query string names and values you want, it will ignore the query and still return the same data.
+I'm not sure if this is a bug or if the docs are wrong.
 
-I also don't know how to apply filters in this case although the docs say you can.
+In practice you can send whatever query string names and values you want, it will ignore the query
+and still return the same data.
+
+I also don't know how to apply filters in this case although the docs say you can, and again the
+query string in any combination doesn't seem to change the data returned, which appears to be the
+first 100 stations in the database.
+
+If you go here:
+https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
+You get data returned with:
+StartLatitude: 42.75565
+StartLongitude: -92.79417
+
+Also the same data when using:
+https://api.nhtsa.gov/CSSIStation
+
+Which does not match the query string.  This appears to be broken on the NHTSA side.
 
 ---
 
 Filters:
 
-Cannot use with lat, long, and miles, more accurately I don't know how to use it with lat, long, and miles query string or what the query name even is because query
-strings don't do anything for the language filter.
+Cannot use with lat, long, and miles, but more accurately I don't know how to use it with lat, long,
+and miles query string or what the query names for filters are because query strings don't do
+anything for the language filter.
 
 lang:
 
@@ -131,15 +157,16 @@ https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
 By state:
 https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
 
-Apparently you can pass whatever language string you want after the /lang/ part of the path, it doesn't have to be /lang/spanish as described in the docs.
-It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same data as /lang/spanish)
+Apparently you can pass whatever language string you want after the /lang/ part of the path, it
+doesn't have to be /lang/spanish as described in the docs. It returns the same data no matter the
+path after /lang (e.g. /lang/blahblahblah returns the same data as /lang/spanish)
 
 cpsweek:
 
 By zip:
 https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
 
-By state:
+By state (DOES NOT WORK):
 https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek <-- gives 404 error
 
 
@@ -147,8 +174,8 @@ Does not work with state, gives 404 error if added to the path as described in t
 
 ---
 
-It's very possible you get a repsonse with empty Results and a Count of 0, in which case this means it found no stations.  This is not an error, it's just a response
-with no data.
+It's very possible you get a repsonse with empty Results and a Count of 0, in which case this means
+it found no stations.  This is not an error, it's just a response with no data.
 
 Needs more real world testing before we try to implement.
 
