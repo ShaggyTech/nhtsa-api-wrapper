@@ -1,8 +1,10 @@
 /**
-Rough Draft Notes:
+ * @module api/cssiStation
+ * @category API - CSSI Station Locator API
+ */
 
-After testing out the API and looking at the docs, I think the docs are wrong or for an abandoned
-version of the API. 
+/**
+Rough Draft Notes:
 
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
@@ -70,55 +72,191 @@ Request parameters and method names are case sensitive
 Possible Options:
 - zip: string | number
 - state: string
-- lat: string | number 
-- long: string | number
-- miles: string | number
-- filters: { lang: string; cpsweek: boolean }
+- location: {
+    lat: string | number;
+    long: string | number;
+    miles: string | number
+  }
+- filters: {
+    lang: string;
+    cpsweek: boolean
+  }
+
+Possible Options Combinations:
+- zip
+- zip + filters
+- state
+- state + filter.lang
+- location
+- location + filters (same as location only)
 
 Rules:
-- If zip is provided, cannot provide other options except for filters
-- If state is provided, cannot provide other options except for filters
-- lat, long, and miles must be provided together
+- CSSIStation is not case sensitive for the path name
+- If zip is provided, cannot provide state or location
+- If state is provided, cannot provide zip or location
+- lat, long, and miles must be provided all or none
 - filters are optional, either one/none OR both can be sent in according to docs
+- filters.cpsweek not compatible with state
+
+---
+
+Examples:
+
+FIRST 100 STATIONS (no options):
+
+cssiStation()
+- returns first 100 stations
+- uses base url of /CSSIStation
+
+cssiStation({})
+- returns first 100 stations
+- uses base url of /CSSIStation
+
+---
+
+ZIP:
+Path - https://api.nhtsa.gov/CSSIStation/zip/63640
+cssiStation({ zip: 63640 })
+
+Path- https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
+cssiStation({ zip: 63640, filters: { lang: 'spanish' } })
+
+Path - https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
+cssiStation({ zip: 63640, filters: { cpsweek: true } })
+
+Path - https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek?lang=spanish
+cssiStation({ zip: 63640, filters: { lang: 'spanish', cpsweek: true } })
+
+---
+
+STATE:
+Path - https://api.nhtsa.gov/CSSIStation/state/NV
+cssiStation({ state: 'NV' })
+cssiStation({ state: 'nv' })
+cssiStation({ state: 'Nv' })
+cssiStation({ state: 'Nevada' })
+cssiStation({ state: 'nevada' })
+
+Path - https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
+cssiStation({ state: 'NV', filters: { lang: 'spanish' } })
+
+---
+
+LOCATION (lat, long, miles):
+- returns first 100 stations, same as no options
+- query string has no effect on returned data
+- uses base url of /CSSIStation with query string of ?lat=32.71325&long=-97.28864&miles=50
+- filters are added to query string as &lang=spanish &cpsweek=true
+
+Path - https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
+All paths here use query string to represent passed options as seen in the path above.
+
+cssiStation({
+  location: {
+    lat: 32.71325,
+    long: -97.28864,
+    miles: 50
+  }
+})
+
+cssiStation({
+  location: {
+    lat: 32.71325,
+    long: -97.28864,
+    miles: 50
+  },
+  filters: {
+    lang: 'spanish'
+  }
+})
+
+cssiStation({
+  location: {
+    lat: 32.71325,
+    long: -97.28864,
+    miles: 50
+  },
+  filters: {
+    cpsweek: true
+  }
+})
+
+cssiStation({
+  location: {
+    lat: 32.71325,
+    long: -97.28864,
+    miles: 50
+  },
+  filters: {
+    lang: 'spanish',
+    cpsweek: true
+  }
+})
+
+----------------------------------------------------------------------------
 
 By zip:
 
 Uses url path to specify zip code:
-https://api.nhtsa.gov/CSSIStation/zip/63640
+- https://api.nhtsa.gov/CSSIStation/zip/63640
 
 Fitering by lang:
-https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
-
-Apparently you can pash whatever language string you want after the /lang/ part of the path, it doesn't have to be /lang/spanish as described in the docs.
-It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same data as /lang/spanish)
+- https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
+- Apparently you can pash whatever language string you want after the /lang/ part of the path, it
+  doesn't have to be /lang/spanish as described in the docs.
+- It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same
+  data as /lang/spanish)
 
 Filtering by cpsweek:
-https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
+- https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek
+
+Filtering by cpsweek and lang as query string:
+- https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek?lang=spanish
 
 ---
 
 By state:
 
 Uses url path to specify state:
-https://api.nhtsa.gov/CSSIStation/state/NV
+- https://api.nhtsa.gov/CSSIStation/state/NV
+- state can be NV, nv, nevada, Nevada, etc.
 
 Filtering by lang:
-https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
+- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
+- Apparently you can pash whatever language string you want after the /lang/ part of the path, it
+  doesn't have to be /lang/spanish as described in the docs.
+- It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same
+  data as /lang/spanish)
 
-Apparently you can pash whatever language string you want after the /lang/ part of the path, it doesn't have to be /lang/spanish as described in the docs.
-It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same data as /lang/spanish)
+Filtering by cpsweek (DOES NOT WORK WITH STATE!):
+- https://api.nhtsa.gov/CSSIStation/state/NV/?cpsweek=true <-- ignores query, returns same data as
+  /state/NV
+- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek <-- gives 404 error
+- https://api.nhtsa.gov/CSSIStation/cpsweek/state/NV <-- gives 404 error with differing path
+  order
 
-Filtering by cpsweek:
-https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek
-
-doesn't seem to work, gives 404 error
+Filtering by cpsweek and lang (DOES NOT WORK WITH STATE!):
+- https://api.nhtsa.gov/CSSIStation/state/NV?cpsweek&lang=spanish <-- ignores query, returns same
+  data as /state/NV?lang=spanish
+- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek?lang=spanish <-- gives 404 error
+- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish/cpsweek <-- gives 404 error
+- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek/lang/spanish <-- gives 404 error
 
 ---
 
 By lat, long, and miles:
 
-It doesn't appear the query string does anything, even with the example in the official docs.
-If you change the lat and long and miles the results are the same as if you has just hit the baseURL
+In real world use, this will return the same data no matter what query string you send, the same as
+if you sent no query string at all.  It appears the query string does nothing for this endpoint as
+described in the official docs.  You will get the same 100 stations returned no matter what query
+string you send.
+
+After testing out the API and looking at the docs, I think the docs are wrong or at the very least
+the lat/long/miles query is broken or abandoned, possibly in favor of the official site and form at:
+https://www.nhtsa.gov/equipment/car-seats-and-booster-seats#installation-help-inspection
+
+It doesn't appear the query string does anything, even with the example in the official docs. If you
+change the lat and long and miles the results are the same as if you has just hit the baseURL
 of https://api.nhtsa.gov/CSSIStation with no query string.
 
 I'm not sure if this is a bug or if the docs are wrong.
@@ -132,45 +270,67 @@ first 100 stations in the database.
 
 If you go here:
 https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
+
 You get data returned with:
 StartLatitude: 42.75565
 StartLongitude: -92.79417
 
-Also the same data when using:
+Which does not match the lat and long you sent in the query string. It should be:
+StartLatitude: 32.71325
+StartLongitude: -97.28864
+
+This will also return the same data as when you send the query string:
 https://api.nhtsa.gov/CSSIStation
 
-Which does not match the query string.  This appears to be broken on the NHTSA side.
+This appears to be broken on the NHTSA side, possibly because whatever API they were using to
+convert lat and long to a geo location is no longer available or because they are using a different
+internal API behind an auth wall for their offical seat install locator site at
+https://www.nhtsa.gov/equipment/car-seats-and-booster-seats#installation-help-inspection and have
+abandoned this api.nhtsa.gove/CSSIStation API.
 
 ---
 
 Filters:
 
-Cannot use with lat, long, and miles, but more accurately I don't know how to use it with lat, long,
-and miles query string or what the query names for filters are because query strings don't do
-anything for the language filter.
+Cannot use with lat, long, and miles, or more accurately, query strings do nothing for this endpoint
+so determining if you can use filters with lat, long, and miles is impossible.
 
 lang:
-
-By zip:
-https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
-
-By state:
-https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
 
 Apparently you can pass whatever language string you want after the /lang/ part of the path, it
 doesn't have to be /lang/spanish as described in the docs. It returns the same data no matter the
 path after /lang (e.g. /lang/blahblahblah returns the same data as /lang/spanish)
 
+By zip with lang:
+- https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
+
+By zip with lang and cpsweek (cpsweek sent as query string = true):
+- https://api.nhtsa.gov//CSSIStation/zip/67951/lang/spanish?cpsweek=true
+- Returns: Count = 0 because there are no stations with CPSWeekEventFlag = "Yes" in zip 63640 but will
+  still return 200 status code and empty Results[]
+
+By state with lang:
+- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
+
+By state with lang and cpsweek (cpsweek sent as query string = true):
+- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish?cpsweek=true <-- responds with same data
+  as above, query strings do nothing it appears, includes stations with CPSWeekEventFlag = "No" when
+  it should only include stations with CPSWeekEventFlag = "Yes"
+
 cpsweek:
 
-By zip:
-https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
+By zip With cpsweek:
+- https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
 
-By state (DOES NOT WORK):
-https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek <-- gives 404 error
+By zip with cpsweek and lang as query string:
+- https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek?lang=spanish
+- Returns: Count = 0 because there are no stations with CPSWeekEventFlag = "Yes" in zip 63640 that
+  have spanish speaking technicians but will still return 200 status code and empty Results[]
 
-
-Does not work with state, gives 404 error if added to the path as described in the docs
+By state with cpsweek (DOES NOT WORK):
+- https://api.nhtsa.gov/CSSIStation/state/NV?cpsweek=true <-- ignores query, returns same data as /state/NV
+- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek <- gives 404 error
+- https://api.nhtsa.gov/CSSIStation/cpsweek/state/NV <- also gives 404 error with differing path order
 
 ---
 
