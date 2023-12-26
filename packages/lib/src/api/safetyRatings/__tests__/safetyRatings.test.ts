@@ -408,7 +408,7 @@ describe('safetyRatings()', () => {
           notAnOption: 'invalid option with TS error',
         })
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -424,7 +424,7 @@ describe('safetyRatings()', () => {
           true
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -440,7 +440,7 @@ describe('safetyRatings()', () => {
           false
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -453,7 +453,9 @@ describe('safetyRatings()', () => {
           // @ts-expect-error Type 'never[]' is not assignable to type 'string | number | undefined'
           vehicleId: [],
         })
-      ).rejects.toThrowError(/error validating argument named "vehicleId"/)
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
+      )
 
       expect(fetchMock.requests().length).toEqual(0)
     })
@@ -466,7 +468,7 @@ describe('safetyRatings()', () => {
           modelYear,
         })
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -484,7 +486,7 @@ describe('safetyRatings()', () => {
           true
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -503,7 +505,7 @@ describe('safetyRatings()', () => {
           false
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -520,7 +522,7 @@ describe('safetyRatings()', () => {
           vehicleId,
         })
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, vehicleId/
+        /Invalid keys for options: notAnOption. Valid keys are: modelYear, make, model, vehicleId/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -536,22 +538,14 @@ describe('safetyRatings()', () => {
  * The actual types and typed returns are tested in safetyRatings.test-d.ts via Vitest type
  * checking, these are simply hovering tooltip tests.
  *
- * All of these calls to safetyRatings() mimic all of tests in the test.each() tests above.
- * They are separated here to allow for testing of the IDE tooltips for each possible response
- * type individually by hovering over the saved `result_x` and/or the function name each time it is
- * called.
- *
  * This cannot be achieved in test.each() tests because the way .each() is typed, it will show all
- * possible SafetyRatingsResultsVariants types at once when hovering over the saved results of
- * safetyRatings(). This will still happen even if you only include arguments that would return
- * the same type of response.
+ * possible return types at once, which is not helpful for the end user.
  *
  * We cannot use expectTypeOf() because it will not work with test.each() tests in the same
  * file, and expectTypeOf() will not show the IDE tooltips as a user would see them.
  *
  * Order of `Results` keys does not matter, only that they are all present with no extraneous
  * keys.
- *
  ******************************/
 describe.skip('IDE Tooltips - manual test of results type on hover', async () => {
   test('/SafetyRatings/', async () => {

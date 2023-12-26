@@ -400,7 +400,7 @@ describe('recalls()', () => {
           notAnOption: 'invalid option with TS error',
         })
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, campaignNumber/
+        /Invalid keys for options: notAnOption. Valid keys are:/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -416,7 +416,7 @@ describe('recalls()', () => {
           true
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, campaignNumber/
+        /Invalid keys for options: notAnOption. Valid keys are:/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -432,7 +432,7 @@ describe('recalls()', () => {
           false
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, campaignNumber/
+        /Invalid keys for options: notAnOption. Valid keys are:/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -445,7 +445,9 @@ describe('recalls()', () => {
           // @ts-expect-error Type 'never[]' is not assignable to type 'string | undefined'
           campaignNumber: [],
         })
-      ).rejects.toThrowError(/error validating argument named "campaignNumber"/)
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
 
       expect(fetchMock.requests().length).toEqual(0)
     })
@@ -458,7 +460,7 @@ describe('recalls()', () => {
           modelYear,
         })
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, campaignNumber/
+        /Invalid keys for options: notAnOption. Valid keys are:/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -476,7 +478,7 @@ describe('recalls()', () => {
           true
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, campaignNumber/
+        /Invalid keys for options: notAnOption. Valid keys are:/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -495,7 +497,7 @@ describe('recalls()', () => {
           false
         )
       ).rejects.toThrowError(
-        /Invalid options: notAnOption. Valid options are: modelYear, make, model, campaignNumber/
+        /Invalid keys for options: notAnOption. Valid keys are:/
       )
 
       expect(fetchMock.requests().length).toEqual(0)
@@ -504,14 +506,16 @@ describe('recalls()', () => {
     test('with invalid options and all valid options', async () => {
       await expect(() =>
         recalls({
-          notAnOption: 'no TS error, campaignNumber error takes precedence',
+          notAnOption: 'no TS error, campaignNumber TS error takes precedence',
           modelYear,
           make,
           model,
           // @ts-expect-error Type 'number' is not assignable to type 'undefined'
           campaignNumber: 123,
         })
-      ).rejects.toThrowError(/error validating argument named "campaignNumber"/)
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
 
       expect(fetchMock.requests().length).toEqual(0)
     })
@@ -523,25 +527,17 @@ describe('recalls()', () => {
  * to ensure the correct types are displayed for the end user. These are not meant to be
  * run as tests and testing of hovering must be done manually.
  *
- * The actual types and typed returns are tested in safetyRatings.test-d.ts via Vitest type
- * checking, these are simply hovering tooltip tests.
- *
- * All of these calls to safetyRatings() mimic all of tests in the test.each() tests above.
- * They are separated here to allow for testing of the IDE tooltips for each possible response
- * type individually by hovering over the saved `result_x` and/or the function name each time it is
- * called.
+ * The actual types and typed returns are tested in recalls.test-d.ts via Vitest type checking,
+ * these are simply hovering tooltip tests.
  *
  * This cannot be achieved in test.each() tests because the way .each() is typed, it will show all
- * possible SafetyRatingsResultsVariants types at once when hovering over the saved results of
- * safetyRatings(). This will still happen even if you only include arguments that would return
- * the same type of response.
+ * possible return types at once, which is not helpful for the end user.
  *
  * We cannot use expectTypeOf() because it will not work with test.each() tests in the same
  * file, and expectTypeOf() will not show the IDE tooltips as a user would see them.
  *
  * Order of `Results` keys does not matter, only that they are all present with no extraneous
  * keys.
- *
  ******************************/
 describe.skip('IDE Tooltips - manual test of results type on hover', async () => {
   test('/products/vehicle/modelYears', async () => {

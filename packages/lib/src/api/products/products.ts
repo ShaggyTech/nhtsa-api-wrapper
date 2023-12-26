@@ -9,7 +9,11 @@ import {
   encodeQueryStringParams,
   rejectWithError,
 } from '@/utils'
-import type { NhtsaResponse, NoExtraProperties } from '@/types'
+import type {
+  NhtsaResponse,
+  NoExtraProperties,
+  QueryStringParamsEncoded,
+} from '@/types'
 
 /**
  * # Products API
@@ -68,10 +72,10 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *
  * Valid `options` combinations:
  *
- * - `recalls(issueType)`
- * - `recalls(issueType, {})`
- * - `recalls(issueType, { modelYear })`
- * - `recalls(issueType, { modelYear, make })`
+ * - `products(issueType)`
+ * - `products(issueType, {})`
+ * - `products(issueType, { modelYear })`
+ * - `products(issueType, { modelYear, make })`
  *
  * Real Example URLs - with issueType `r`:
  * - https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r
@@ -90,47 +94,27 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *
  * See the `Returns` section below for more details.
  *
- * ### Some Notes on `campaignNumber`
- *
- * The `campaignNumber` is found in `Results[x].NHTSACampaignNumber` with options
- * `{ modelYear, make, model }` or `{ campaignNumber }`.
- *
- * - If you already know the `campaignNumber` you can pass `{ campaignNumber }` and directly get
- *   recall information for that campaign number.
- * - If you don't have a `campaignNumber` number, you can pass `{ modelYear, make, model }` options
- *   to get the `campaignNumber`s for that particular vehicle.
- * - The other paths are used if you want to get the `modelYear`s, `make`s, or `model`s
- *    availaible in the Recalls API dataset, so you can then use that information to get the
- *   `campaignNumber`s for that particular vehicle.
- *
  * ## Rules
  *
- * There are several rules to follow when using this API or you will get a network error response
- * from the NHTSA API.
+ * There are several rules to follow when using this API or you will errors from the NHTSA API.
  *
- * 1. If you provide a `campaignNumber` then you cannot provide any other options.
+ * 1. You must provide an `issueType`.
  * 2. If you provide a `make` then you must also provide a `modelYear`.
- * 3. If you provide a `model` then you must also provide a `make` and `modelYear`.
- * 4. You must use lowercase `recalls` in the path, it is case sensitive and will return a
- *    403 forbidden error otherwise.
- *
- * FYI: Rules #1-3 will return a 400 Bad Request error from the NHTSA API if you break them.
  *
  * Consequences of breaking the rules:
  *
- * - Rule #1 - if passing `campaignNumber` and any other valid combination of options, this function
- *   will silently ignore the other options and only use the `campaignNumber`. It will _not_ throw
- *   an `Error` but you will get Typescript errors.
- * - Rules #2 and #3 - this function will throw an `Error` as a fail safe to prevent you from
- *   getting a network error from the NHTSA API.
- * - Rule #4 - enforced by this function internally when fetching the data or returning the URL
- *   string.
+ * - Rule #1 - if you don't pass a valid `issueType` you will get some data back, but it will be
+ *   invalid and not what you expect. This function also enforces this rule internally and will throw
+ *   an `Error` if you pass an invalid `issueType`.
+ * - Rule #2 - this function will throw an `Error` as a fail safe to prevent you from getting a
+ *   404 network error from the NHTSA API.
  *
  * There will also be TypeScript errors if you pass invalid options or invalid combinations of
  * options.
  *
  * To clarify, this function will `throw Error`s in the following cases:
  *
+ * - If you pass an invalid or no `issueType`.
  * - If you pass options not listed above.
  * - If you pass an invalid combination of options.
  * - If you pass a valid combination of options but include options not listed above.
@@ -141,54 +125,62 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *
  * ### Get All Model Years
  *
- * Uses the `Products API` to get all available model years in the recalls dataset.
+ * Get all available model years in the recalls or complaints dataset, based on the `issueType`.
  *
- * If you pass no arguments, an empty object `{}`, `undefined`, or `true` as the first argument, the
- * path and query string: `/products/vehicle/modelYears?issueType=r` will be used.
+ * If you pass no options, an empty object `{}`, `undefined`, or `true` as options, the
+ * path and query string: `/products/vehicle/modelYears?issueType={issueType}` will be used.
  *
+ * Example: Get a list of available model years in the recalls dataset
  * ```js
- * // Get a list of available model years in the recalls dataset
- * await recalls().then((response) => {
+ * await products('r').then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "2024", "2023", "2022", etc
  *   })
  * })
+ *
+ * // Or use doFetch = false to get the url string instead of fetching the data
+ * const url = await products('r', false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r&format=json"
  * ```
  *
  * ### Get Makes for Model Year
  *
- * Uses the `Products API` to get all available makes in the recalls dataset for a specific model
- * year.
+ * Get all available makes in the recalls or complaints dataset, based on the `issueType`, for a
+ * specific `modelYear`.
  *
  * If you pass a `modelYear` as the only option, the path and query string
- * `/products/vehicle/makes?modelYear={modelYear}&issueType=r` will be used.
+ * `/products/vehicle/makes?modelYear={modelYear}&issueType={issueType}` will be used.
  *
+ * Example: Get a list of available makes for the 2013 model year in the recalls dataset
  * ```js
- * // Get a list of available makes for the 2013 model year
- * await recalls({
- *   modelYear: 2013,
- * })
+ * await products('r', { modelYear: 2013 })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "ACURA", "AUDI", "BENTLEY", etc.
- *     console.log(results.make) // "JETTA", "ACCORD", etc.
+ *     console.log(result.make) // "JETTA", "ACCORD", etc.
  *   })
  * })
+ *
+ * // Or use doFetch = false to get the url string instead of fetching the data
+ * const url = await products('r', { modelYear: 2013 }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/products/vehicle/makes?modelYear=2013&issueType=r&format=json"
  * ```
  *
- * If you need to get all available model years, first call the function with no arguments.
+ * If you need to get all available model years, first call the function with no options.
  *
  * ### Get Models for Make
  *
- * Uses the `Products API` to get all available models in the recalls dataset for a specific model
- * year and make.
+ * Get all available models in the recalls or complaints dataset, based on the `issueType` for a
+ * specific `modelYear` and `make`.
  *
- * If you pass a `modelYear` and `make` as the only options, the path and query string
- * `/products/vehicle/models?modelYear={modelYear}&make={make}&issueType=r` will be used.
+ * If you pass a `modelYear` and `make` as options, the path and query string
+ * `/products/vehicle/models?modelYear={modelYear}&make={make}&issueType={issueType}` will be used.
  *
+ * Example: Get a list of available models for a 2013 Honda in the recalls dataset
  * ```js
- * // Get a list of available models for a 2013 Honda
- * await recalls({
+ * await products('r', {
  *   modelYear: 2013,
  *   make: 'Honda',
  * })
@@ -199,77 +191,15 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *     console.log(result.model) // "ACCORD", "CIVIC", etc.
  *   })
  * })
+ *
+ * // Or use doFetch = false to get the url string instead of fetching the data
+ * const url = await products('r', { modelYear: 2013, make: 'Honda' }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/products/vehicle/models?modelYear=2013&make=Honda&issueType=r&format=json"
  * ```
  *
  * If you need to get makes for a particular model year, first call the function with `modelYear` as
  * the only option to get all of the available makes.
- *
- * ### Get Recalls for Year, Make, and Model
- *
- * Uses the `Recalls API` to get all available recalls for a specific model year, make, and model.
- *
- * If you pass a `modelYear`, `make`, and `model` as the only options, the path and query string
- * `/recalls/recallsByVehicle?&modelYear={modelYear}&make={make}&model={model}` will be used.
- *
- * ```js
- * // Get as list of recalls for a 2013 Honda Accord
- * await recalls({
- *   modelYear: 2013,
- *   make: 'Honda',
- *   model: 'Accord',
- * })
- * .then((response) => {
- *   response.Results.forEach((result) => {
- *     console.log(result.NHTSACampaignNumber) // "13V132000", "19V182000", etc.
- *     console.log(result.Summary) // "Honda (American Honda Motor Co.) is recalling certain..."
- *     console.log(result.Consequence) // "An explosion of an inflator within the driver frontal..."
- *     console.log(result.Remedy) // "Honda will notify owners, and dealers will replace the..."
- *     console.log(result.ModelYear) // "2013"
- *     console.log(result.Make) // "HONDA"
- *     console.log(result.Model) // "ACCORD"
- *     // ...more properties
- *   })
- * })
- * ```
- *
- * Note that there will be multiple objects in the `Results[]`, each with a different
- * `NHTSACampaignNumber`, depending on how many recalls there are for that year, make, and model.
- *
- * You can use the `NHTSACampaignNumber` as `options.campaignNumber` to get more information about
- * the specific recall and how many vehicles were affected by it.
- *
- * ### Get Recall Information for Campaign Number
- *
- * Uses the `Recalls API` to get recall information for a specific `campaignNumber`.
- *
- * If you pass `options.campaignNumber`, the path and query string
- * `/recalls/campaignNumber?campaignNumber={campaignNumber}` will be used.
- *
- * All other options will be ignored if you provide `options.campaignNumber`.
- *
- * There could be more than one object in the `Results[]`, depending on how many different vehicles
- * were affected by the recall. Each model year, make, and model affected will have it's own object
- * in the `Results[]`.
- *
- * ```js
- * // Get recall information for a specific campaign number
- * await recalls({
- *   campaignNumber: '12V176000',
- * })
- * .then((response) => {
- *   response.Results.forEach((result) => {
- *     console.log(result.PotentialNumberofUnitsAffected) // 7600, 2230, etc.
- *     console.log(result.NHTSACampaignNumber) // "13V132000", "19V182000", etc.
- *     console.log(result.Summary) // "Honda (American Honda Motor Co.) is recalling certain 2013..."
- *     console.log(result.Consequence) // "An explosion of an inflator within the driver frontal..."
- *     console.log(result.Remedy) // "Honda will notify owners, and dealers will replace the..."
- *     console.log(result.ModelYear) // "2013"
- *     console.log(result.Make) // "HONDA"
- *     console.log(result.Model) // "ACCORD"
- *     // ...more properties
- *   })
- * })
- * ```
  *
  * ## Returns
  *
@@ -291,14 +221,9 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *
  * The `Results[]` will be typed based on the `options` passed to the function.
  *
- * - `{}`, `{ modelYear }`, and `{ modelYear, make }` will be typed as `ProductsResultsData`
- *   properties.
- * - `{ modelYear, make, model }` and `{ campaignNumber }` will be typed as `RecallsResultsData`
- *   properties.
- *
- * - See types `ProductsResultsData` and `RecallsResultsData` for a list of all possible properties.
- * - See type `RecallsResultsByVariant` for clarity on which properties will be included based on
- *   the `options` passed.
+ * - See type `ProductsResultsData` for a list of all possible properties.
+ * - See type `ProductsResultsByVariant` for clarity on which properties will be included in the
+ *   `Results[]` based on the `options` passed.
  *
  *
  * @param issueType - Issue Type to search ('r' | 'recalls' | 'c' | 'complaints') - Required
@@ -345,6 +270,9 @@ async function products(
   const endpointName = 'products'
 
   try {
+    let path = ''
+    let encodedParams: QueryStringParamsEncoded<ProductsOptions> = {}
+
     if (typeof options === 'boolean') {
       /* If first argument is boolean, it is doFetch */
       doFetch = options
@@ -360,7 +288,12 @@ async function products(
           required: true,
           types: ['string'],
         },
-        { name: 'options', value: options, types: ['object'] },
+        {
+          name: 'options',
+          value: options,
+          types: ['object'],
+          validKeys: ['modelYear', 'make'],
+        },
         {
           name: 'modelYear',
           value: options?.modelYear,
@@ -391,35 +324,9 @@ async function products(
         ? 'c'
         : issueType
 
-    let path = ''
-    let encodedParams = {}
-    /*
-     * Throw an error if options object contains invalid properties.
-     *
-     * This must be after the catchInvalidArguments() call above so we can ensure we have an actual
-     * object here and not 'null' 'array' etc., which typeof will let into the 'if' block as they
-     * are all considered typeof === 'object'.  We only use typeof here to make the TS compiler
-     * happy.
-     */
-    if (typeof options === 'object') {
-      const validKeys: Array<keyof ProductsOptionsBase> = ['modelYear', 'make']
-      const optionsKeys = Object.keys(options) as Array<
-        keyof ProductsOptionsBase
-      >
-      const invalidKeys = optionsKeys.filter((key) => {
-        return !validKeys.includes(key)
-      })
-
-      if (invalidKeys.length > 0) {
-        throw new Error(
-          `Invalid options: ${invalidKeys.join(
-            ', '
-          )}. Valid options are: ${validKeys.join(', ')}`
-        )
-      }
-
+    /* options are guaranteed to be an object by now because of catchInvalidArguments() */
+    if (options) {
       const { modelYear, make } = encodeQueryStringParams(options)
-
       encodedParams = { modelYear, make }
 
       /* Build the API URL path */
@@ -427,7 +334,7 @@ async function products(
       else if (modelYear) path = `vehicle/makes`
     }
 
-    /* If there were no options passed, then path should still be an empty string */
+    /* If there were no options passed, then path should still be vehicle/modelYears */
     if (!path) path = `vehicle/modelYears`
 
     const { get, createCachedUrl, getCachedUrl } = useNHTSA()

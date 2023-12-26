@@ -132,34 +132,41 @@ import type {
  * If you pass no arguments, an empty object `{}`, `undefined`, or `true` as the first argument, the
  * path and query string: `/products/vehicle/modelYears?issueType=c` will be used.
  *
+ * Example: Get a list of available model years in the complaints dataset
  * ```js
- * // Get a list of available model years in the complaints dataset
  * await complaints().then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "2024", "2023", "2022", etc
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await complaints(false)
+ * console.log(url) // "https://api.nhtsa.gov/products/vehicle/modelYears?issueType=c&format=json"
  * ```
  *
  * ### Get Makes for Model Year
  *
- * Uses the `Products API` to get all available makes in the complaints dataset for a specific model
- * year.
+ * Uses the `Products API` to get all available makes in the complaints dataset for a specific
+ * `modelYear`.
  *
  * If you pass a `modelYear` as the only option, the path and query string
  * `/products/vehicle/makes?modelYear={modelYear}&issueType=c` will be used.
  *
+ * Example: Get a list of available makes for the 2013 model year
  * ```js
- * // Get a list of available makes for the 2013 model year
- * await complaints({
- *   modelYear: 2013,
- * })
+ * await complaints({ modelYear: 2013 })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "ACURA", "AUDI", "BENTLEY", etc.
- *     console.log(results.make) // "JETTA", "ACCORD", etc.
+ *     console.log(result.make) // "JETTA", "ACCORD", etc.
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await complaints({ modelYear: 2013 }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/products/vehicle/makes?modelYear=2013&issueType=c&format=json"
  * ```
  *
  * If you need to get all available model years, first call the function with no arguments.
@@ -167,17 +174,14 @@ import type {
  * ### Get Models for Make
  *
  * Uses the `Products API` to get all available models in the complaints dataset for a specific
- * model year and make.
+ * `modelYear` and `make`.
  *
  * If you pass a `modelYear` and `make` as the only options, the path and query string
  * `/products/vehicle/models?modelYear={modelYear}&make={make}&issueType=c` will be used.
  *
+ * Example: Get a list of available models for a 2013 Honda
  * ```js
- * // Get a list of available models for a 2013 Honda
- * await complaints({
- *   modelYear: 2013,
- *   make: 'Honda',
- * })
+ * await complaints({ modelYear: 2013, make: 'Honda' })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "2013"
@@ -185,6 +189,11 @@ import type {
  *     console.log(result.model) // "ACCORD", "CIVIC", etc.
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await complaints({ modelYear: 2013, make: 'Honda' }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/products/vehicle/models?modelYear=2013&make=Honda&issueType=c&format=json"
  * ```
  *
  * If you need to get makes for a particular model year, first call the function with `modelYear` as
@@ -192,14 +201,14 @@ import type {
  *
  * ### Get Complaints for Year, Make, and Model
  *
- * Uses the `Complaints API` to get all available complaints for a specific model year, make, and
- * model.
+ * Uses the `Complaints API` to get all available complaints for a specific `modelYear`, `make`, and
+ * `model`.
  *
  * If you pass a `modelYear`, `make`, and `model` as the only options, the path and query string
  * `/complaints/complaintsByVehicle?&modelYear={modelYear}&make={make}&model={model}` will be used.
  *
+ * Example: Get as list of complaints for a 2013 Honda Accord
  * ```js
- * // Get as list of complaints for a 2013 Honda Accord
  * await complaints({
  *   modelYear: 2013,
  *   make: 'Honda',
@@ -217,6 +226,11 @@ import type {
  *     // ...more properties
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await complaints({ modelYear: 2013, make: 'Honda', model: 'Accord' }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/complaints/complaintsByVehicle?modelYear=2013&make=Honda&model=Accord&format=json"
  * ```
  *
  * Note that there will be multiple objects in the `Results[]`, each with a different
@@ -238,8 +252,8 @@ import type {
  * There will likely be only one object in the `Results[]`, but you should always check that this is
  * the case before dismissing the possibility of multiple objects in the `Results[]`.
  *
+ * Example: Get complaint information for a specific ODI Number
  * ```js
- * // Get complaint information for a specific ODI Number
  * await complaints({
  *   odiNumber: 11549247,
  * })
@@ -255,6 +269,11 @@ import type {
  *     // ...more properties
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await complaints({ odiNumber: 11549247 }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/complaints/odiNumber?odiNumber=11549247&format=json"
  * ```
  *
  * ## Returns
@@ -338,11 +357,11 @@ async function complaints(
     /* This will also ensure we have an actual object using our custom getTypeof() function */
     catchInvalidArguments({
       args: [
-        { name: 'options', value: options, types: ['object'] },
         {
-          name: 'odiNumber',
-          value: options?.odiNumber,
-          types: ['string', 'number'],
+          name: 'options',
+          value: options,
+          types: ['object'],
+          validKeys: ['modelYear', 'make', 'model', 'odiNumber'],
         },
         {
           name: 'modelYear',
@@ -361,39 +380,16 @@ async function complaints(
           requiredBy: [{ name: 'model', value: options?.model }],
         },
         { name: 'model', value: options?.model, types: ['string'] },
+        {
+          name: 'odiNumber',
+          value: options?.odiNumber,
+          types: ['string', 'number'],
+        },
       ],
     })
 
-    /*
-     * Throw an error if options object contains invalid properties.
-     *
-     * This must be after the catchInvalidArguments() call above so we can ensure we have an actual
-     * object here and not 'null' 'array' etc., which typeof will let into the 'if' block as they
-     * are all considered typeof === 'object'.  We only use typeof here to make the TS compiler
-     * happy.
-     */
-    if (typeof options === 'object') {
-      const validKeys: Array<keyof ComplaintsOptionsBase> = [
-        'modelYear',
-        'make',
-        'model',
-        'odiNumber',
-      ]
-      const optionsKeys = Object.keys(options) as Array<
-        keyof ComplaintsOptionsBase
-      >
-      const invalidKeys = optionsKeys.filter((key) => {
-        return !validKeys.includes(key)
-      })
-
-      if (invalidKeys.length > 0) {
-        throw new Error(
-          `Invalid options: ${invalidKeys.join(
-            ', '
-          )}. Valid options are: ${validKeys.join(', ')}`
-        )
-      }
-
+    /* options are guaranteed to be an object by now because of catchInvalidArguments() */
+    if (options) {
       encodedParams = encodeQueryStringParams(options)
     }
 

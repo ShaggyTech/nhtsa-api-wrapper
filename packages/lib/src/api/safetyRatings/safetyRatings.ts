@@ -132,7 +132,7 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * await safetyRatings().then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.ModelYear) // "2024", "2023", "2022", etc
- *     console.log(results.VehicleId) // 0
+ *     console.log(result.VehicleId) // 0
  *   })
  * })
  * ```
@@ -151,7 +151,7 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.Make) // "ACURA", "AUDI", "BENTLEY", etc.
- *     console.log(results.VehicleId) // 0
+ *     console.log(result.VehicleId) // 0
  *   })
  * })
  * ```
@@ -334,7 +334,12 @@ async function safetyRatings(
     /* This will also ensure we have an actual object using our custom getTypeof() function */
     catchInvalidArguments({
       args: [
-        { name: 'options', value: options, types: ['object'] },
+        {
+          name: 'options',
+          value: options,
+          types: ['object'],
+          validKeys: ['modelYear', 'make', 'model', 'vehicleId'],
+        },
         {
           name: 'vehicleId',
           value: options?.vehicleId,
@@ -360,36 +365,8 @@ async function safetyRatings(
       ],
     })
 
-    /*
-     * Throw an error if options object contains invalid properties.
-     *
-     * This must be after the catchInvalidArguments() call above so we can ensure we have an actual
-     * object here and not 'null' 'array' etc., which typeof will let into the 'if' block as they
-     * are all considered typeof === 'object'.  We only use typeof here to make the TS compiler
-     * happy.
-     */
-    if (typeof options === 'object') {
-      const validKeys: Array<keyof SafetyRatingsOptionsBase> = [
-        'modelYear',
-        'make',
-        'model',
-        'vehicleId',
-      ]
-      const optionsKeys = Object.keys(options) as Array<
-        keyof SafetyRatingsOptionsBase
-      >
-      const invalidKeys = optionsKeys.filter((key) => {
-        return !validKeys.includes(key)
-      })
-
-      if (invalidKeys.length > 0) {
-        throw new Error(
-          `Invalid options: ${invalidKeys.join(
-            ', '
-          )}. Valid options are: ${validKeys.join(', ')}`
-        )
-      }
-
+    /* options are guaranteed to be an object by now because of catchInvalidArguments() */
+    if (options) {
       /* Build the API URL path */
       path = buildPath(options)
     }
