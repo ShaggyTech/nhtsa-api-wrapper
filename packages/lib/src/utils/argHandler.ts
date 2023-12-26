@@ -15,6 +15,7 @@ export type IArgToValidate = {
     value: unknown
   }>
   types?: string[]
+  validKeys?: string[]
   errorMode?: 'error' | 'boolean'
 } & (
   | AtLeastOne<{
@@ -26,6 +27,10 @@ export type IArgToValidate = {
         name: string
         value: unknown
       }>
+    }
+  | {
+      value: Record<string, unknown>
+      validKeys: string[]
     }
 )
 
@@ -111,10 +116,11 @@ export const validateArgument = (argData: IArgToValidate): boolean => {
     required,
     requiredBy,
     types,
+    validKeys,
     errorMode = 'error',
   } = argData
   /* later we will use this to store types normalized to lowercase */
-  let typesLowercased: string[] = []
+  const typesLowercased: string[] = []
 
   /* validate and typeguard argData passed to function */
   if (getTypeof(name) !== 'string') {
@@ -126,12 +132,17 @@ export const validateArgument = (argData: IArgToValidate): boolean => {
   if (requiredBy) {
     if (getTypeof(requiredBy) !== 'array' || !requiredBy.length) {
       throw Error(
-        `'argData.requiredBy' must be an arrry of objects if provided`
+        `'argData.requiredBy' must be an array of objects if provided`
       )
     }
-    requiredBy.forEach(({ name: requiredByName, value: requiredByValue }) => {
-      if (requiredByValue) {
-        if (getTypeof(requiredByName) !== 'string') {
+    requiredBy.forEach((arg) => {
+      if (getTypeof(arg) !== 'object') {
+        throw Error(
+          `'argData.requiredBy' must be an array of objects if provided`
+        )
+      }
+      if (arg.value) {
+        if (getTypeof(arg.name) !== 'string') {
           throw Error(
             `'argData.requiredBy' requires both a name and value if value is defined`
           )
@@ -147,10 +158,23 @@ export const validateArgument = (argData: IArgToValidate): boolean => {
       if (getTypeof(type) !== 'string') {
         throw Error(`'argData.types' must be an array of strings if provided`)
       }
+      /* normalize all passed types to lowercase */
+      typesLowercased.push(type.toLowerCase())
     })
-    /* normalize all passed types to lowercase */
-    typesLowercased = types.map((type) => type.toLowerCase())
   }
+  if (validKeys) {
+    if (getTypeof(validKeys) !== 'array' || !validKeys.length) {
+      throw Error(`'argData.validKeys' must be an array of strings if provided`)
+    }
+    validKeys.forEach((key) => {
+      if (getTypeof(key) !== 'string') {
+        throw Error(
+          `'argData.validKeys' must be an array of strings if provided`
+        )
+      }
+    })
+  }
+  /* End of argData validation */
 
   /* for argument validation error messages */
   let error = ''
@@ -187,23 +211,45 @@ export const validateArgument = (argData: IArgToValidate): boolean => {
     }
   }
 
-  /* argument validation logic */
-  if (required && !types) {
-    if (!value) {
-      error = `${errorPrepend} it is required, ${errorAppend}`
+  /*
+   * If provided an array of validKeys and value is an object, will validate that the object
+   * contains only the valid keys in the array.
+   */
+  if (getTypeof(value) === 'object' && validKeys) {
+    try {
+      catchInvalidKeys({
+        name,
+        obj: value as Record<string, unknown>,
+        validKeys,
+      })
+    } catch (err) {
+      error = (err as Error).message
     }
-  } else if (types && !required) {
-    /* if value is not defined and is not required then we don't need to validate the type */
-    if (value !== undefined && !types.includes(typeofValue)) {
-      error = `${errorPrepend} must be of type(s) ${typesLowercased}, ${errorAppend}`
-    }
-  } else if (required && types) {
-    if (!value || !types.includes(typeofValue)) {
-      error = `${errorPrepend} is required and must be of type(s) ${typesLowercased}, ${errorAppend}`
+
+    /* exit early if validKeys checks do not pass */
+    if (error.length) {
+      if (errorMode === 'boolean') return false
+      else throw Error(error)
     }
   }
 
-  /* if any argument validation has failed, throw an error or return false dependign on mode */
+  /* argument validation logic */
+  if (required && !typesLowercased.length) {
+    if (value === undefined) {
+      error = `${errorPrepend} it is required, ${errorAppend}`
+    }
+  } else if (!required && typesLowercased.length) {
+    /* if value is not defined and is not required then we don't need to validate the type */
+    if (value !== undefined && !typesLowercased.includes(typeofValue)) {
+      error = `${errorPrepend} must be of type(s) ${typesLowercased}, ${errorAppend}`
+    }
+  } else if (required && typesLowercased.length) {
+    if (value === undefined || !typesLowercased.includes(typeofValue)) {
+      error = `${errorPrepend} it is required and must be of type(s) ${typesLowercased}, ${errorAppend}`
+    }
+  }
+
+  /* if any argument validation has failed, throw an error or return false depending on mode */
   if (error.length) {
     if (errorMode === 'boolean') return false
     else throw Error(error)
@@ -254,6 +300,90 @@ export const catchInvalidArguments = (options: {
           .join(', ')}`
       )
     }
+  }
+
+  return true
+}
+
+/**
+ * Checks if the provided object contains any invalid keys.
+ * Throws an error if invalid keys are found.
+ *
+ * ILYSS
+ *
+ * @param options - Options object passed to function.
+ * @param options.name - The name of the object being checked.
+ * @param options.obj - The object to be checked for invalid keys.
+ * @param options.validKeys - An array of valid keys to check against.
+ * @returns Returns true if no invalid keys are found.
+ * @throws Throws an error if invalid keys are found.
+ */
+export const catchInvalidKeys = (
+  options:
+    | {
+        name: string
+        obj: Record<string, unknown> | undefined
+        validKeys: string[]
+      }
+    | Array<{
+        name: string
+        obj: Record<string, unknown> | undefined
+        validKeys: string[]
+      }>
+) => {
+  /* error messages */
+  const errorPrepend = `catchInvalidKeys requires`
+
+  /* recursively call itself if options is an array */
+  if (Array.isArray(options)) {
+    if (!options.length) {
+      throw new Error(
+        `${errorPrepend} an object or array of objects as the only argument`
+      )
+    }
+    options.forEach((option) => catchInvalidKeys(option))
+    return true
+  }
+
+  if (!options || getTypeof(options) !== 'object') {
+    throw new Error(
+      `${errorPrepend} an object or array of objects as the only argument`
+    )
+  }
+
+  const { name, obj, validKeys } = options
+
+  /* function typeguard */
+  if (getTypeof(name) !== 'string' || !name.length) {
+    throw new Error(`${errorPrepend} 'options.name' be a string`)
+  }
+  if (obj !== undefined && getTypeof(obj) !== 'object') {
+    throw new Error(`${errorPrepend} 'options.obj' be an object if defined`)
+  }
+  if (getTypeof(validKeys) !== 'array' || !validKeys.length) {
+    throw new Error(
+      `${errorPrepend} 'options.validKeys' be an array of strings`
+    )
+  }
+  validKeys.forEach((key) => {
+    if (getTypeof(key) !== 'string') {
+      throw new Error(
+        `${errorPrepend} 'options.validKeys' be an array of strings`
+      )
+    }
+  })
+  /* end of function typeguard */
+
+  if (obj === undefined) return true
+
+  const invalidKeys = Object.keys(obj).filter((key) => !validKeys.includes(key))
+
+  if (invalidKeys.length) {
+    throw new Error(
+      `Invalid keys for ${name}: ${invalidKeys.join(
+        ', '
+      )}. Valid keys are: ${validKeys.join(', ')}`
+    )
   }
 
   return true
