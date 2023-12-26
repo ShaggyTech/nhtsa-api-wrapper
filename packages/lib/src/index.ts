@@ -7,6 +7,7 @@
  * @category Exported NHTSA API Functions
  */
 export {
+  /* vPIC API */
   DecodeVin,
   DecodeVinExtended,
   DecodeVinValues,
@@ -31,10 +32,13 @@ export {
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
   GetWMIsForManufacturer,
+  /* Other APIs */
   complaints,
+  cssiStation,
   products,
   recalls,
   safetyRatings,
+  /* NHTSA Helper Function */
   useNHTSA,
 } from '@/api'
 
@@ -94,6 +98,15 @@ export type {
   ComplaintsResultsByVariant,
   ComplaintsResultsData,
   ComplaintsResultsVariant,
+  CSSIOptions,
+  CSSIOptionsBase,
+  CSSIOptionsEmpty,
+  CSSIOptionsCanBeQuery,
+  CSSIOptionsLocation,
+  CSSIOptionsState,
+  CSSIOptionsZip,
+  CSSIResponse,
+  CSSIResultsData,
   ProductsIssueType,
   ProductsOptions,
   ProductsOptionsBase,
