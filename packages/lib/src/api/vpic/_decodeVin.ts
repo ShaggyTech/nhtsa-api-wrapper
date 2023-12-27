@@ -5,93 +5,216 @@
 
 import { useNHTSA } from '@/api'
 import { catchInvalidArguments, rejectWithError } from '@/utils'
-import type { IArgToValidate, NhtsaResponse } from '@/types'
+import type { NhtsaResponse } from '@/types'
 
 /**
+ * # DecodeVin VPIC Endpoint
+ *
  * ::: tip :bulb: More Information
  * See: [DecodeVin Documentation](/guide/vpic/endpoints/decode-vin)
  * :::
  *
- * `decodeVin` decodes a Vehicle Identification Number (VIN) and returns useful information about
- * the vehicle.
+ * You can use `decodeVin()` as a thin wrapper for the `DecodeVin` VPIC API endpoint.
  *
- * Providing `params.modelYear` allows for the decoding to specifically be done in the current, or
- * older (pre-1980), model year ranges. It is recommended to always provide `params.modelYear` if
- * the model year is known at the time of decoding, but it is not required.
+ * From the [Official Documentation](https://vpic.nhtsa.dot.gov/api/):
  *
- * This endpoint also supports partial VIN decoding (VINs that are less than 17 characters).
- *   - Ex: 5UXWX7C5*BA
- *   - In this case, the VIN will be decoded partially with the available characters
- *   - In case of partial VINs, a `*` could be used to indicate the unavailable characters
- *   - The 9th digit is not necessary
+ * > The Decode VIN API will decode the VIN and the decoded output will be made available in the
+ *   format of Key-value pairs. The IDs (VariableID and ValueID) represent the unique ID associated
+ *   with the Variable/Value. In case of text variables, the ValueID is not applicable. Model Year
+ *   in the request allows for the decoding to specifically be done in the current, or older
+ *   (pre-1980), model year ranges. It is recommended to always send in the model year. This API
+ *   also supports partial VIN decoding (VINs that are less than 17 characters). In this case, the
+ *   VIN will be decoded partially with the available characters. In case of partial VINs, a "*"
+ *   could be used to indicate the unavailable characters. The 9th digit is not necessary.
+ *
+ * ## Options
+ *
+ * The DecodeVin endpoint uses a path and/or query string to get different data. This function uses
+ * the options passed to build the correct url path and query string.
+ *
+ * Valid `options` are:
+ *
+ * - `modelYear` - Model Year of the vehicle to search for (optional)
+ *
+ * All are optional and the only valid options you can pass to this function.
+ *
+ * Real Example URLs:
+ * - https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5UXWX7C5*BA?format=json
+ * - https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5UXWX7C5*BA?modelYear=2011&format=json
+ *
+ * Note that `format=json` will always be appended to the query string when using this package as it
+ * is required by the VPIC API.
+ *
+ * Returned data will be structured as `{ Count, Message, Results, SearchCriteria }` for any
+ * combination of options.
+ *
+ * See the `Returns` section below for more details.
+ *
+ * ## Errors
+ *
+ * This function will throw Errors in the following use cases:
+ *
+ * - If you pass options not listed above.
+ * - If you pass a valid options but include options not listed above.
+ *
+ * It will also throw Errors if there are problems with the fetch request or response.
+ *
+ * ## Usage
+ *
+ * The following describes in more detail the use of the different options and the paths they use.
+ *
+ * ### Decode a VIN
+ *
+ * If you pass only a `vin` and no options, the path and query string `/DecodeVin/{vin}?format=json`
+ * will be used.
+ *
+ * You can provide either a full or partial VIN to decode.
+ *
+ * Example: Decode a full VIN
+ * ```js
+ * await decodeVin('WVWVA7AU0KW204939')
+ * .then((response) => {
+ *   response.Results.forEach((result) => {
+ *     console.log(result.Value) // "Golf R", "2019", "Volkswagen", etc.
+ *     console.log(result.ValueId) // "1234", "567", etc.
+ *     console.log(result.Variable) // "Model", "Model Year", etc.
+ *     console.log(result.VariableId) // 142, 143, etc.
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await decodeVin('5UXWX7C5*BA', false)
+ * console.log(url) // "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/WVWVA7AU0KW204939?format=json"
+ * ```
+ *
+ * Example: Decode a Partial VIN
+ * ```js
+ * await decodeVin('5UXWX7C5*BA')
+ * .then((response) => {
+ *   response.Results.forEach((result) => {
+ *     console.log(result.Value) // "X5", "BMW", etc.
+ *     console.log(result.ValueId) // "1234", "567", etc.
+ *     console.log(result.Variable) // "Model", "Model Year", etc.
+ *     console.log(result.VariableId) // 142, 143, etc.
+ *   })
+ * })
+ * ```
+ *
+ * ### Decode a VIN with a Specific Model Year
+ *
+ * Uses the `Products API` to get all available models in the recalls dataset for a specific
+ * `modelYear` and `make`.
+ *
+ * If you pass a `options.modelYear`, the path and query string
+ * `/DecodeVin/{vin}?modelYear={modelYear}&format=json` will be used.
+ *
+ * Example: Decode a VIN with a specific model year
+ * ```js
+ * await decodeVin('5UXWX7C5*BA', { modelYear: 2011 })
+ * .then((response) => {
+ *   response.Results.forEach((result) => {
+ *     console.log(result.Value) // "X5", "BMW", etc.
+ *     console.log(result.ValueId) // "1234", "567", etc.
+ *     console.log(result.Variable) // "Model", "Model Year", etc.
+ *     console.log(result.VariableId) // 142, 143, etc.
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await decodeVin('5UXWX7C5*BA', { modelYear: 2011 }, false)
+ * console.log(url)
+ * // "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/5UXWX7C5*BA?modelYear=2011&format=json"
+ * ```
+ *
+ * ## Returns
+ *
+ * The return from this function will be a parsed JSON response, typed to reflect the different
+ * types of objects you can expect to get back from the API in the `Results[]`.
+ *
+ * Returned data will be stuctured as `{ Count, Message, Results, SearchCriteria }`.
+ *
+ * - `Count` - The number of results returned
+ * - `Message` - A message from the NHTSA API
+ * - `Results` - An array of objects containing the response data
+ * - `SearchCriteria` - The search criteria used to get the results
+ *
+ * The `Results[]` will be typed as `DecodeVinResultsData`.  See that type for a list of all
+ * possible properties returned in the `Results` array.
  *
  * @param vin - Vehicle Identification Number (full or partial)
- * @param [params] - Object of Query Search names and values to append to the URL as a query string
- * @param [params.modelYear] - Optional Model Year search parameter
- * @param [doFetch=true] - Whether to fetch the data or just return the URL
+ * @param [options] - Object of Query Search names and values to append to the URL as a query string
+ * @param [options.modelYear] - Optional Model Year search parameter
+ * @param [doFetch=true] - If false, will return the url string instead of fetching the data
  * (default: `true`)
- * @returns {(Promise<NhtsaResponse<DecodeVinResults> | string>)} - Api Response `object`
- * -or- url `string` if `doFetch = false`
+ * @returns - Parsed API response `object` -or- url `string`
  */
-function decodeVin(vin: string): Promise<DecodeVinResponse>
-function decodeVin(vin: string, doFetch: true): Promise<DecodeVinResponse>
-function decodeVin(vin: string, doFetch: false): Promise<string>
 function decodeVin(
   vin: string,
-  params: { modelYear?: string | number },
-  doFetch: false
-): Promise<string>
-function decodeVin(
-  vin: string,
-  params?: { modelYear?: string | number },
+  options?: { modelYear?: string | number },
   doFetch?: true
 ): Promise<DecodeVinResponse>
 function decodeVin(
   vin: string,
-  params?:
+  options: { modelYear?: string | number },
+  doFetch: false
+): Promise<string>
+function decodeVin(vin: string, doFetch: true): Promise<DecodeVinResponse>
+function decodeVin(vin: string, doFetch: false): Promise<string>
+function decodeVin(vin: string): Promise<DecodeVinResponse>
+function decodeVin(
+  vin: string,
+  options?:
     | {
         modelYear?: string | number
       }
     | boolean,
   doFetch?: boolean
-): Promise<DecodeVinResponse | string>
+): Promise<unknown>
 /* Implementation */
 async function decodeVin(
   vin: string,
-  params?:
+  options?:
     | {
         modelYear?: string | number
       }
     | boolean,
   doFetch = true
-): Promise<DecodeVinResponse | string> {
+): Promise<unknown> {
   const endpointName = 'DecodeVin'
 
   try {
-    if (typeof params === 'boolean') {
-      doFetch = params
-      params = undefined
+    if (typeof options === 'boolean') {
+      /* If first argument is boolean, it is doFetch */
+      doFetch = options
+      /* Set options undefined so it will pass argument check below, otherwise invalid type */
+      options = undefined
     }
 
-    const args: IArgToValidate[] = [
-      { name: 'vin', value: vin, required: true, types: ['string'] },
-      { name: 'params', value: params, types: ['object'] },
-      {
-        name: 'modelYear',
-        value: params?.modelYear,
-        types: ['string', 'number'],
-      },
-    ]
-    catchInvalidArguments({ args })
+    catchInvalidArguments({
+      args: [
+        { name: 'vin', value: vin, required: true, types: ['string'] },
+        {
+          name: 'options',
+          value: options,
+          types: ['object'],
+          validKeys: ['modelYear'],
+        },
+        {
+          name: 'modelYear',
+          value: options?.modelYear,
+          types: ['string', 'number'],
+        },
+      ],
+    })
 
     const { get, createCachedUrl, getCachedUrl } = useNHTSA()
 
-    createCachedUrl({ endpointName, path: vin, params })
+    createCachedUrl({ endpointName, path: vin, params: options })
 
     if (!doFetch) {
       return getCachedUrl()
     } else {
-      return get<DecodeVinResults, 'vpic'>()
+      return get<DecodeVinResultsData, 'vpic'>()
     }
   } catch (error) {
     return rejectWithError(error)
@@ -103,7 +226,7 @@ export { decodeVin }
 /**
  * Objects in the `Results` array of `DecodeVin` endpoint response.
  */
-export type DecodeVinResults = {
+export type DecodeVinResultsData = {
   Value: string | null
   ValueId: string | null
   Variable: DecodeVinVariable
@@ -261,4 +384,4 @@ export type DecodeVinVariable =
   | 'Lane Centering Assistance'
   | (string & Record<string, never>)
 
-export type DecodeVinResponse = NhtsaResponse<DecodeVinResults, 'vpic'>
+export type DecodeVinResponse = NhtsaResponse<DecodeVinResultsData, 'vpic'>

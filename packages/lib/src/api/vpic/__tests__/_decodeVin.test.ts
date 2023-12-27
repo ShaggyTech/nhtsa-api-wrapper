@@ -5,16 +5,14 @@ import { decodeVin } from '../_decodeVin'
 import { createMockResponse } from '.vitest/helpers'
 import { mockResults } from '.vitest/data'
 
-const endpointName = 'DecodeVin'
 const vin = 'WA1A4AFY2J2008189'
 const modelYearString = '2018'
 const modelYearNumber = 2018
 const modelYear = modelYearNumber
-const params = { modelYear }
 
-const baseUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles'
-const mockUrl = `${baseUrl}/${endpointName}/${vin}?format=json`
-const mockUrlWithParams = `${baseUrl}/${endpointName}/${vin}?modelYear=${modelYear}&format=json`
+const baseUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin'
+const mockUrl = `${baseUrl}/${vin}?format=json`
+const mockUrlModelYear = `${baseUrl}/${vin}?modelYear=${modelYear}&format=json`
 
 const expectedFetchOptions = {
   saveUrl: true,
@@ -26,13 +24,6 @@ type TestEach = {
   args: Parameters<typeof decodeVin>
   expectedUrl: string
 }
-
-describe('api/endpoints/decodeVin.ts', () => {
-  test('exports decodeVin function', () => {
-    expect(decodeVin).toBeDefined()
-    expect(decodeVin).toBeInstanceOf(Function)
-  })
-})
 
 describe('decodeVin()', () => {
   beforeEach(() => {
@@ -49,41 +40,42 @@ describe('decodeVin()', () => {
   /*****************************
    * doFetch = true (default)
    ****************************/
-  describe('Fetches API data:', () => {
+  describe('Fetches API data with: ', () => {
     test.each<TestEach>([
+      // vin with no options
       {
-        description: 'when passed a VIN string',
+        description: 'vin with no options',
         args: [vin],
         expectedUrl: mockUrl,
       },
       {
-        description: 'when passed a VIN string and doFetch = true',
+        description: 'vin with no options and doFetch = true',
         args: [vin, true],
         expectedUrl: mockUrl,
       },
+      // options.modelYear
       {
-        description: 'when passed a VIN string and params',
-        args: [vin, { ...params }],
-        expectedUrl: mockUrlWithParams,
-      },
-      {
-        description: 'when passed a VIN string, params, and doFetch = true',
-        args: [vin, { ...params }, true],
-        expectedUrl: mockUrlWithParams,
-      },
-      {
-        description: 'when params.modelYear passed as a string',
+        description: 'options.modelYear as string',
         args: [vin, { modelYear: modelYearString }],
-        expectedUrl: mockUrlWithParams,
+        expectedUrl: mockUrlModelYear,
       },
       {
-        description: 'when params.modelYear passed as a number',
+        description: 'options.modelYear as string and doFetch = true',
+        args: [vin, { modelYear: modelYearString }, true],
+        expectedUrl: mockUrlModelYear,
+      },
+      {
+        description: 'options.modelYear as number',
         args: [vin, { modelYear: modelYearNumber }],
-        expectedUrl: mockUrlWithParams,
+        expectedUrl: mockUrlModelYear,
+      },
+      {
+        description: 'options.modelYear as number and doFetch = true',
+        args: [vin, { modelYear: modelYearNumber }, true],
+        expectedUrl: mockUrlModelYear,
       },
     ])('$description', async ({ args, expectedUrl }) => {
       const results = await decodeVin(...args)
-
       expect(results).toEqual(mockResults)
       expect(fetchMock).toHaveBeenCalledWith(expectedUrl, expectedFetchOptions)
       expect(fetchMock.requests().length).toEqual(1)
@@ -94,18 +86,24 @@ describe('decodeVin()', () => {
 
   /*****************************
    * doFetch = false
-   ****************************/
-  describe('Returns API URL string:', () => {
+   ***************************/
+  describe('Returns API URL string with: ', () => {
     test.each<TestEach>([
       {
-        description: 'when passed a VIN string and doFetch = false',
+        description: 'vin and doFetch = false',
         args: [vin, false],
         expectedUrl: mockUrl,
       },
+      // options.modelYear
       {
-        description: 'when passed a VIN string, params, and doFetch = false',
-        args: [vin, { ...params }, false],
-        expectedUrl: mockUrlWithParams,
+        description: 'options.modelYear as string and doFetch = false',
+        args: [vin, { modelYear: modelYearString }, false],
+        expectedUrl: mockUrlModelYear,
+      },
+      {
+        description: 'options.modelYear as number and doFetch = false',
+        args: [vin, { modelYear: modelYearNumber }, false],
+        expectedUrl: mockUrlModelYear,
       },
     ])('$description', async ({ args, expectedUrl }) => {
       const results = await decodeVin(...args)
@@ -118,62 +116,236 @@ describe('decodeVin()', () => {
   /*****************************
    * rejects with error
    ***************************/
-  describe('Rejects with Error if:', () => {
-    describe('VIN is undefined or is not a string', () => {
-      test.each([
-        undefined,
-        123,
-        { object: 123 },
-        ['array'],
-        true,
-        false,
-        null,
-        () => 'function',
-      ])('%s', async (arg) => {
+  describe('Rejects with Error if: ', () => {
+    test.each([123, { object: 123 }, ['array'], true, false, null, () => {}])(
+      'vin is undefined or is not a string, <%s>',
+      async (arg) => {
         await expect(() =>
-          decodeVin(arg as unknown as string)
-        ).rejects.toThrowError(/error validating argument named "vin"/)
+          decodeVin(
+            // @ts-expect-error Type (x) is not assignable to type 'string
+            arg
+          )
+        ).rejects.toThrowError(
+          /error validating argument named "vin", it is required and must be of type/
+        )
 
         expect(fetchMock.requests().length).toEqual(0)
-      })
-    })
+      }
+    )
 
-    describe('params is neither an object nor boolean', () => {
-      test.each(['string', 123, ['array'], null, () => 'function'])(
-        '%s',
-        async (params) => {
-          await expect(() =>
-            decodeVin(
-              vin,
-              // @ts-expect-error Type 'x' is not assignable to type ...
-              params
-            )
-          ).rejects.toThrowError(/error validating argument named "params"/)
-
-          expect(fetchMock.requests().length).toEqual(0)
-        }
-      )
-    })
-
-    describe('params.modelYear is neither a string nor number', () => {
-      test.each([
-        { modelYear: true },
-        { modelYear: false },
-        { modelYear: ['a', 'b'] },
-        { modelYear: { a: 'b' } },
-        { modelYear: null },
-        { modelYear: () => 'function' },
-      ])('%s', async (params) => {
+    test.each(['string', 123, ['array'], null, () => {}])(
+      'options is neither an object nor boolean, <%s>',
+      async (arg) => {
         await expect(() =>
           decodeVin(
             vin,
-            // @ts-expect-error Types of property 'modelYear' are incompatible.
-            params
+            // @ts-expect-error Type (x) is not assignable to type ...
+            arg
           )
-        ).rejects.toThrowError(/error validating argument named "modelYear"/)
+        ).rejects.toThrowError(
+          /error validating argument named "options", must be of type/
+        )
 
         expect(fetchMock.requests().length).toEqual(0)
-      })
+      }
+    )
+
+    test.each([{ object: 123 }, ['array'], true, false, null, () => {}])(
+      'options.modelYear is neither a string nor number, <%s>',
+      async (arg) => {
+        await expect(() =>
+          decodeVin(vin, {
+            // @ts-expect-error Type (x) is not assignable to type 'string | number | undefined
+            modelYear: arg,
+          })
+        ).rejects.toThrowError(
+          /error validating argument named "modelYear", must be of type/
+        )
+
+        expect(fetchMock.requests().length).toEqual(0)
+      }
+    )
+
+    test('with invalid options', async () => {
+      await expect(() =>
+        decodeVin(vin, {
+          // @ts-expect-error 'notAnOption' does not exist in type ...
+          notAnOption: 'invalid option with TS error',
+        })
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
     })
+
+    test('with invalid options and doFetch = true', async () => {
+      await expect(() =>
+        decodeVin(
+          vin,
+          {
+            // @ts-expect-error 'notAnOption' does not exist in type ...
+            notAnOption: 'invalid option with TS error',
+          },
+          true
+        )
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
+    })
+
+    test('with invalid options and doFetch = false', async () => {
+      await expect(() =>
+        decodeVin(
+          vin,
+          {
+            // @ts-expect-error 'notAnOption' does not exist in type ...
+            notAnOption: 'invalid option with TS error',
+          },
+          false
+        )
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
+    })
+
+    test('with invalid options and wrong type for valid options', async () => {
+      await expect(() =>
+        decodeVin(vin, {
+          notAnOption: 'no TS error, modelYear error takes precedence',
+          // @ts-expect-error Type 'never[]' is not assignable to type 'string | undefined'
+          modelYear: [],
+        })
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
+    })
+
+    test('with invalid options and valid options', async () => {
+      await expect(() =>
+        decodeVin(vin, {
+          // @ts-expect-error 'notAnOption' does not exist in type ...
+          notAnOption: 'invalid option with TS error',
+          modelYear,
+        })
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
+    })
+
+    test('with invalid options and valid options and doFetch = true', async () => {
+      await expect(() =>
+        decodeVin(
+          vin,
+          {
+            // @ts-expect-error 'notAnOption' does not exist in type ...
+            notAnOption: 'invalid option with TS error',
+            modelYear,
+          },
+          true
+        )
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
+    })
+
+    test('with invalid options and valid options and doFetch = false', async () => {
+      await expect(() =>
+        decodeVin(
+          vin,
+          {
+            // @ts-expect-error Type 'string' is not assignable to type 'never'.
+            notAnOption: 'invalid option with TS error',
+            modelYear,
+          },
+          false
+        )
+      ).rejects.toThrowError(
+        /Invalid keys for options: notAnOption. Valid keys are:/
+      )
+
+      expect(fetchMock.requests().length).toEqual(0)
+    })
+  })
+})
+
+/*******************************
+ * These are here to test the IDE intellisense tooltips when hovering the function and results,
+ * to ensure the correct types are displayed for the end user. These are not meant to be
+ * run as tests and testing of hovering must be done manually.
+ *
+ * The actual types and typed returns are tested in decodeVin.test-d.ts via Vitest type checking,
+ * these are simply hovering tooltip tests.
+ *
+ * This cannot be achieved in test.each() tests because the way .each() is typed, it will show all
+ * possible return types at once, which is not helpful for the end user.
+ *
+ * We cannot use expectTypeOf() because it will not work with test.each() tests in the same
+ * file, and expectTypeOf() will not show the IDE tooltips as a user would see them.
+ *
+ * Order of `Results` keys does not matter, only that they are all present with no extraneous
+ * keys.
+ ******************************/
+describe.skip('IDE Tooltips - manual test of results type on hover', async () => {
+  test('/DecodeVin/{vin}', async () => {
+    /******Expected Tooltip*******\
+    const result_x: {
+      Count: number;
+      Message: string;
+      Results: DecodeVinResultsData[];
+      SearchCriteria: string | null;
+    }
+    ******************************/
+    const result_1 = await decodeVin(vin)
+    const result_2 = await decodeVin(vin, true)
+    const result_3 = await decodeVin(vin, undefined)
+
+    for (const result of [result_1, result_2, result_3]) {
+      expect(result)
+    }
+  })
+
+  test('/DecodeVin/{vin}?modelYear={modelYear}', async () => {
+    /******Expected Tooltip*******\
+    const result_x: {
+      Count: number;
+      Message: string;
+      Results: DecodeVinResultsData[];
+      SearchCriteria: string | null;
+    }
+    ******************************/
+    const result_1 = await decodeVin(vin, { modelYear: modelYearString })
+    const result_2 = await decodeVin(vin, { modelYear: modelYearNumber })
+    const result_3 = await decodeVin(vin, { modelYear }, true)
+    const result_4 = await decodeVin(vin, { modelYear }, undefined)
+
+    for (const result of [result_1, result_2, result_3, result_4]) {
+      expect(result)
+    }
+  })
+
+  test('returns a string if doFetch = false', async () => {
+    /******Expected Tooltip*******\
+        const result_x: string
+    ******************************/
+    const result_1 = await decodeVin(vin, false)
+    const result_2 = await decodeVin(vin, {}, false)
+    const result_3 = await decodeVin(vin, undefined, false)
+    const result_4 = await decodeVin(vin, { modelYear: modelYearString }, false)
+    const result_5 = await decodeVin(vin, { modelYear: modelYearNumber }, false)
+
+    for (const result of [result_1, result_2, result_3, result_4, result_5]) {
+      expect(result)
+    }
   })
 })
