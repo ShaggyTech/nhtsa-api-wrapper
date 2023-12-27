@@ -16,346 +16,361 @@ import type {
 } from '@/types'
 
 /**
-Rough Draft Notes:
-
-----------------------------------------------------------------------------
-----------------------------------------------------------------------------
-
-From the official docs at https://www.nhtsa.gov/nhtsa-datasets-and-apis#car-seat-inspection-locator
-
-Approach A. Get by Zip Code
-Make the request with a zip code to get the list of CSSIStations at the specific zip code only (nearby zip codes are not included).
-
-/CSSIStation/zip/63640
-Response Fields: Response is a list of CSSIStations for a given zip code.
-
-Working Sample: https://api.nhtsa.gov/CSSIStation/zip/63640
-
----
-
-Approach B. Get by State
-Make the request with the state abbreviation to get the list of CSSIStations in that state only.
-
-/api/CSSIStation/state/NV
-Response Fields: Response is a list of CSSIStations in a given state.
-
-Working Sample: https://api.nhtsa.gov/CSSIStation/state/NV
-
----
-
-Approach C. Get by Geo location
-Make the request with an interested latitude and longitude location along with the miles nearby to look out for CSSIStations.
-
-/CSSIStation?lat=30.1783&long=-96.3911&miles=50
-Response Fields: Response is a list of CSSIStations nearby the interested geographical location spotted by its latitude and longitude.
-
-Working Sample: https://api.nhtsa.gov/CSSIStation?lat=30.1783&long=-96.3911&miles=50
-
----
----
-
-Filters. Optional Filters
-
-Filter 1: Filter by Spanish speaking Stations
-
-Make the request with a zip code/state/geographical location to get the list of CSSIStations filtered by spanish speaking (attach string - /lang/spanish) and stations participating in CPSWeek event (attach string - /cpsweek). Below filters in the request string are optional, either one/none OR both can be sent in.
-
-/CSSIStation/zip/67951/lang/spanish
-Response Fields: Response is a list of CSSIStations for a given zip code applying the respective filter.
-
-Working Sample: https://api.nhtsa.gov//CSSIStation/zip/67951/lang/spanish
-
----
-
-Filter 2: Filter by Stations participating in CPSWeek
-
-Make the request with a zip code/state/geographical location to get the list of CSSIStations filtered by stations participating in CPSWeek event (attach string - /cpsweek). Below filters in the request string are optional, either one/none OR both can be sent in.
-
-/CSSIStation/zip/37066/cpsweek
-Response Fields: Response is a list of CSSIStations for a given zip code applying the respective filter.
-
-Working Sample: https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek
-
-Notes
-Request parameters and method names are case sensitive
-
-----------------------------------------------------------------------------
-
-Possible Options:
-- zip: string | number
-- state: string
-- location: {
-    lat: string | number;
-    long: string | number;
-    miles: string | number
-  }
-- filters: {
-    lang: string;
-    cpsweek: boolean
-  }
-
-Possible Options Combinations:
-- zip
-- zip + filters
-- state
-- state + filter.lang
-- location
-- location + filters (same as location only)
-
-Rules:
-- CSSIStation is not case sensitive for the path name, can be /CSSIStation or /cssistation, etc.
-- If zip is provided, cannot provide state or location
-- If state is provided, cannot provide zip or location
-- lat, long, and miles must be provided all or none
-- filters are optional, either one/none OR both can be sent in according to docs
-- filters.cpsweek not compatible with state
-
----
-
-Examples:
-
-FIRST 100 STATIONS (no options):
-
-cssiStation()
-- returns first 100 stations
-- uses base url of /CSSIStation
-
-cssiStation({})
-- returns first 100 stations
-- uses base url of /CSSIStation
-
----
-
-ZIP:
-Path - https://api.nhtsa.gov/CSSIStation/zip/63640
-cssiStation({ zip: 63640 })
-
-Path- https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
-cssiStation({ zip: 63640, filters: { lang: 'spanish' } })
-
-Path - https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
-cssiStation({ zip: 63640, filters: { cpsweek: true } })
-
-Path - https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek?lang=spanish
-cssiStation({ zip: 63640, filters: { lang: 'spanish', cpsweek: true } })
-
----
-
-STATE:
-Path - https://api.nhtsa.gov/CSSIStation/state/NV
-cssiStation({ state: 'NV' })
-cssiStation({ state: 'nv' })
-cssiStation({ state: 'Nv' })
-cssiStation({ state: 'Nevada' })
-cssiStation({ state: 'nevada' })
-
-Path - https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
-cssiStation({ state: 'NV', filters: { lang: 'spanish' } })
-
----
-
-LOCATION (lat, long, miles):
-- returns first 100 stations, same as no options
-- query string has no effect on returned data, returns same data as no query string
-- these options appears to be broken or abandoned by NHTSA
-- uses base url of /CSSIStation with query string of ?lat=32.71325&long=-97.28864&miles=50
-- filters are added to query string as &lang=spanish &cpsweek=true
-
-Path - https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
-All paths here use query string to represent passed options as seen in the path above.
-
-cssiStation({
-  location: {
-    lat: 32.71325,
-    long: -97.28864,
-    miles: 50
-  }
-})
-
-cssiStation({
-  location: {
-    lat: 32.71325,
-    long: -97.28864,
-    miles: 50
-  },
-  filters: {
-    lang: 'spanish'
-  }
-})
-
-cssiStation({
-  location: {
-    lat: 32.71325,
-    long: -97.28864,
-    miles: 50
-  },
-  filters: {
-    cpsweek: true
-  }
-})
-
-cssiStation({
-  location: {
-    lat: 32.71325,
-    long: -97.28864,
-    miles: 50
-  },
-  filters: {
-    lang: 'spanish',
-    cpsweek: true
-  }
-})
-
-----------------------------------------------------------------------------
-
-By zip:
-
-Uses url path to specify zip code:
-- https://api.nhtsa.gov/CSSIStation/zip/63640
-
-Fitering by lang:
-- https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
-- Apparently you can pash whatever language string you want after the /lang/ part of the path, it
-  doesn't have to be /lang/spanish as described in the docs.
-- It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same
-  data as /lang/spanish)
-
-Filtering by cpsweek:
-- https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek
-
-Filtering by cpsweek and lang as query string:
-- https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek?lang=spanish
-
----
-
-By state:
-
-Uses url path to specify state:
-- https://api.nhtsa.gov/CSSIStation/state/NV
-- state can be NV, nv, nevada, Nevada, etc.
-
-Filtering by lang:
-- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
-- Apparently you can pash whatever language string you want after the /lang/ part of the path, it
-  doesn't have to be /lang/spanish as described in the docs.
-- It returns the same data no matter the path after /lang (e.g. /lang/blahblahblah returns the same
-  data as /lang/spanish)
-
-Filtering by cpsweek (DOES NOT WORK WITH STATE!):
-- https://api.nhtsa.gov/CSSIStation/state/NV/?cpsweek=true <-- ignores query, returns same data as
-  /state/NV
-- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek <-- gives 404 error
-- https://api.nhtsa.gov/CSSIStation/cpsweek/state/NV <-- gives 404 error with differing path
-  order
-
-Filtering by cpsweek and lang (DOES NOT WORK WITH STATE!):
-- https://api.nhtsa.gov/CSSIStation/state/NV?cpsweek&lang=spanish <-- ignores query, returns same
-  data as /state/NV?lang=spanish
-- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek?lang=spanish <-- gives 404 error
-- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish/cpsweek <-- gives 404 error
-- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek/lang/spanish <-- gives 404 error
-
----
-
-By lat, long, and miles:
-
-In real world use, this will return the same data no matter what query string you send, the same as
-if you sent no query string at all.  It appears the query string does nothing for this endpoint as
-described in the official docs.  You will get the same 100 stations returned no matter what query
-string you send.
-
-After testing out the API and looking at the docs, I think the docs are wrong or at the very least
-the lat/long/miles query is broken or abandoned, possibly in favor of the official site and form at:
-https://www.nhtsa.gov/equipment/car-seats-and-booster-seats#installation-help-inspection
-
-It doesn't appear the query string does anything, even with the example in the official docs. If you
-change the lat and long and miles the results are the same as if you has just hit the baseURL
-of https://api.nhtsa.gov/CSSIStation with no query string.
-
-I'm not sure if this is a bug or if the docs are wrong.
-
-In practice you can send whatever query string names and values you want, it will ignore the query
-and still return the same data.
-
-I also don't know how to apply filters in this case although the docs say you can, and again the
-query string in any combination doesn't seem to change the data returned, which appears to be the
-first 100 stations in the database.
-
-If you go here:
-https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
-
-You get data returned with:
-StartLatitude: 42.75565
-StartLongitude: -92.79417
-
-Which does not match the lat and long you sent in the query string. It should be:
-StartLatitude: 32.71325
-StartLongitude: -97.28864
-
-This will also return the same data as when you send the query string:
-https://api.nhtsa.gov/CSSIStation
-
-This appears to be broken on the NHTSA side, possibly because whatever API they were using to
-convert lat and long to a geo location is no longer available or because they are using a different
-internal API behind an auth wall for their offical seat install locator site at
-https://www.nhtsa.gov/equipment/car-seats-and-booster-seats#installation-help-inspection and have
-abandoned this api.nhtsa.gove/CSSIStation API.
-
----
-
-Filters:
-
-Cannot use with lat, long, and miles, or more accurately, query strings do nothing for this endpoint
-so determining if you can use filters with lat, long, and miles is impossible.
-
-lang:
-
-Apparently you can pass whatever language string you want after the /lang/ part of the path, it
-doesn't have to be /lang/spanish as described in the docs. It returns the same data no matter the
-path after /lang (e.g. /lang/blahblahblah returns the same data as /lang/spanish)
-
-By zip with lang:
-- https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
-
-By zip with lang and cpsweek (cpsweek sent as query string = true):
-- https://api.nhtsa.gov//CSSIStation/zip/67951/lang/spanish?cpsweek=true
-- Returns: Count = 0 because there are no stations with CPSWeekEventFlag = "Yes" in zip 63640 but will
-  still return 200 status code and empty Results[]
-
-By state with lang:
-- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
-
-By state with lang and cpsweek (cpsweek sent as query string = true):
-- https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish?cpsweek=true <-- responds with same data
-  as above, query strings do nothing it appears, includes stations with CPSWeekEventFlag = "No" when
-  it should only include stations with CPSWeekEventFlag = "Yes"
-
-cpsweek:
-
-By zip With cpsweek:
-- https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
-
-By zip with cpsweek and lang as query string:
-- https://api.nhtsa.gov/CSSIStation/zip/37066/cpsweek?lang=spanish
-- Returns: Count = 0 because there are no stations with CPSWeekEventFlag = "Yes" in zip 63640 that
-  have spanish speaking technicians but will still return 200 status code and empty Results[]
-
-By state with cpsweek (DOES NOT WORK):
-- https://api.nhtsa.gov/CSSIStation/state/NV?cpsweek=true <-- ignores query, returns same data as /state/NV
-- https://api.nhtsa.gov/CSSIStation/state/NV/cpsweek <- gives 404 error
-- https://api.nhtsa.gov/CSSIStation/cpsweek/state/NV <- also gives 404 error with differing path order
-
----
-
-It's very possible you get a repsonse with empty Results and a Count of 0, in which case this means
-it found no stations.  This is not an error, it's just a response with no data.
-
-Needs more real world testing before we try to implement.
-
- */
-
-/**
- * # CSSI Station
+ * # CSSI Station API
+ *
+ * ::: tip :bulb: More Information
+ * See: [CSSI Station Documentation] /guide/cssi-station/
+ * :::
+ *
+ * You can use `cssiStation()` as a thin wrapper for the `NHTSA Car Seat Inspection Locator API` to
+ * get safety ratings for a vehicle.
+ *
+ * This function is designed to handle all of the different possible workflows and return the
+ * correct data/url for each one, all depending on which options you pass to the function. In this
+ * sense it is a single universal function that can handle the entirety of the Safety Ratings
+ * API.
+ *
+ * From the
+ * [Official Documentation](https://www.nhtsa.gov/nhtsa-datasets-and-apis#car-seat-inspection-locator):
+ *
+ * > Car crashes are a leading cause of death and injuries for children. Data show a high number of
+ *   child car seats are not installed properly. Car seat inspection stations make it easier for
+ *   parents and caregivers to check to see if their car seat is installed correctly. NHTSA provides
+ *   information to help people locate a car seat inspection station. Information for each station
+ *   is reported to NHTSA and we attempt to validate the station locations using a commercial
+ *   geographic database so this data will, in most cases, be able to be used for driving
+ *   directions.
+ *
+ * ## Options
+ *
+ * The CSSI Station API uses a path and query string to get different data. This function uses the
+ * options passed to build the correct url path and query string.
+ *
+ * Valid `options` are:
+ *
+ * - `state` - State to search
+ * - `zip` - Zip code to search
+ * - `location` - Object containing `lat`, `long`, and `miles` to search
+ * - `filters` - Object containing `lang` and `cpsweek` to filter results
+ *
+ * All are optional and the only valid options you can pass to this function.
+ *
+ * Valid `options` combinations:
+ *
+ * No options:
+ * - `cssiStation()` - Get first 100 stations
+ * - `cssiStation({})` - Get first 100 stations
+ *
+ * With options.state:
+ * - `cssiStation({ state: 'NV' })`
+ * - `cssiStation({ state: 'nv' })`
+ * - `cssiStation({ state: 'Nv' })`
+ * - `cssiStation({ state: 'Nevada' })`
+ * - `cssiStation({ state: 'nevada' })`
+ * - `cssiStation({ state: 'NV', filters: { lang: 'spanish' } })`
+ * - Note: `filters.cpsweek` not compatible with `state`
+ *
+ * With options.zip:
+ * - `cssiStation({ zip: 63640 })`
+ * - `cssiStation({ zip: 63640, filters: { lang: 'spanish' } })`
+ * - `cssiStation({ zip: 63640, filters: { cpsweek: true } })`
+ * - `cssiStation({ zip: 63640, filters: { lang: 'spanish', cpsweek: true } })`
+ *
+ * With options.location:
+ * - `cssiStation({ location: { lat: 32.71325, long: -97.28864, miles: 50 } })`
+ * - `cssiStation({ location, filters: { lang: 'spanish' } })`
+ * - `cssiStation({ location, filters: { cpsweek: true } })`
+ * - `cssiStation({ location, filters: { lang: 'spanish', cpsweek: true } })`
+ *
+ * Real Example URLs, w/trailing slash also ok:
+ *
+ * - https://api.nhtsa.gov/CSSIStation
+ * - https://api.nhtsa.gov/CSSIStation/state/NV
+ * - https://api.nhtsa.gov/CSSIStation/state/NV/lang/spanish
+ * - https://api.nhtsa.gov/CSSIStation/zip/63640
+ * - https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish
+ * - https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek
+ * - https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek?lang=spanish
+ * - https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
+ * - https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50&lang=spanish
+ * - https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50&cpsweek=true
+ * - https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50&lang=spanish&cpsweek=true
+ *
+ * Note that `?format=json` will always be appended to the URL when using this package, even
+ * though it is not required by the CSSI Station API.
+ *
+ * Returned data will be structured as `{ Count, Message, Results, StartLatitude, StartLongitude }`
+ * for any combination of options.
+ *
+ * See the `Returns` section below for more details.
+ *
+ * ### Some Notes on this API
+ *
+ * Based on real world testing, it appears that this API may be broken or partially abandoned by
+ * NHTSA.  For example:
+ *
+ * - if you search by state, you cannot use filters.cpsweek, it will return a 404 Unknown error
+ *   if added as a path and will have no effect if added as a query string to the path.
+ * - location query string has no effect on returned data, it will return the same data as if you
+ *   sent no query string at all to the base url, the first 100 stations in the database.
+ * - as a consequence of the above, it appears that filters will also have no effect when used with
+ *   the location query string
+ *
+ * When using the location query string, the lat and long in the returned data will not match the
+ * lat and long you sent in the query string.  For example, if you send:
+ *
+ * https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50
+ *
+ * You get data returned with:
+ * - StartLatitude: 42.75565
+ * - StartLongitude: -92.79417
+ *
+ * Which does not match the lat and long you sent in the query string. It should be:
+ * - StartLatitude: 32.71325
+ * - StartLongitude: -97.28864
+ *
+ * This will also return the same data as when you send no query string:
+ *
+ * https://api.nhtsa.gov/CSSIStation
+ *
+ * This appears to be broken on the NHTSA side, possibly because whatever API they were using to
+ * convert lat and long to a geo location is no longer available or because they are using a
+ * different internal API behind an auth wall for their offical seat install locator site at
+ * https://www.nhtsa.gov/equipment/car-seats-and-booster-seats#installation-help-inspection and have
+ * abandoned this part of the CSSI API.
+ *
+ * In practice you can send whatever query string names and values you want, it will ignore the
+ * query and still return the same data as if you sent no query.
+ *
+ * ## Rules
+ *
+ * There are several rules to follow when using this API or you will get a network error response
+ * from the NHTSA API.
+ *
+ * 1. You can only pass one of the following options exclusively: `state`, `zip`, or `location`.
+ * 2. If you pass `state`, you cannot pass `filters.cpsweek`.
+ * 3. If you pass `location`, you must pass all of the following options: `lat`, `long`, and
+ *   `miles`.
+ *
+ * FYI: Rules #1-2 will return a 404 Unknown error from the NHTSA API if you break them.
+ *
+ * Consequences of breaking the rules:
+ *
+ * - Rule #1 - If you pass more than one of the following options: `state`, `zip`, or `location`,
+ *   this function will throw an error to prevent you from getting a 404 error from the NHTSA API.
+ * - Rule #2 - If you pass `state` and `filters.cpsweek`, this function will throw an error to
+ *   prevent you from getting a 404 error from the NHTSA API.
+ * - Rule #3 - If you pass `location` and do not pass all of the following options: `lat`, `long`,
+ *   and `miles`, this function will throw an error.
+ *
+ * There will also be TypeScript errors if you pass invalid options or invalid combinations of
+ * options.
+ *
+ * To clarify, this function will `throw Error`s in the following cases:
+ *
+ * - If you pass options not listed above.
+ * - If you pass an invalid combination of options.
+ * - If you pass a valid combination of options but include options not listed above.
+ *
+ * ## Usage
+ *
+ * The following describes in more detail the use of the different options and the paths they use.
+ *
+ * ### Get First 100 Stations
+ *
+ * Get a list of the first 100 stations in the `CSSI Station API` database.
+ *
+ * If you pass no arguments, an empty object `{}`, `undefined`, or `true` as the first argument, the
+ * path `/CSSIStation` will be used.
+ *
+ * ```js
+ * await cssiStation().then((response) => {
+ *   response.Results.forEach((station) => {
+ *     console.log(station.AddressLine1) // "1000 E. 14th St.", etc.
+ *     console.log(station.City) // "Rolla", etc.
+ *     console.log(station.State) // "MO", etc.
+ *     console.log(station.CPSWeekEventFlag) // "Yes" or "No"
+ *     // ...more properties
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await cssiStation(false)
+ * console.log(url) // "https://api.nhtsa.gov/CSSIStation?format=json"
+ * ```
+ *
+ * ### Get Stations by State
+ *
+ * Get a list of all available stations in the `CSSI Station API` for a specific state.
+ *
+ * If you pass a `state` as the only option, the path `/state/:state` will be used.
+ *
+ * ```js
+ * await cssiStation({ state: 'Texas' })
+ * .then((response) => {
+ *   response.Results.forEach((station) => {
+ *     console.log(station.AddressLine1) // "1000 E. 14th St.", etc.
+ *     console.log(station.City) // "Rolla", etc.
+ *     console.log(station.State) // "MO", etc.
+ *     console.log(station.CPSWeekEventFlag) // "Yes" or "No"
+ *     // ...more properties
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await cssiStation({ state: 'Texas' }, false)
+ * console.log(url) // "https://api.nhtsa.gov/CSSIStation/state/Texas?format=json"
+ * ```
+ *
+ * ### Get Stations by Zip Code
+ *
+ * Get a list of all available stations in the `CSSI Station API` for a specific zip code.
+ *
+ * If you pass a `zip` as the only option, the path `/zip/:zip` will be used.
+ *
+ * ```js
+ * // Get the models for a 2013 Honda
+ * await cssiStation({ zip: 63640 })
+ * .then((response) => {
+ *   response.Results.forEach((station) => {
+ *     console.log(station.AddressLine1) // "1000 E. 14th St.", etc.
+ *     console.log(station.City) // "Rolla", etc.
+ *     console.log(station.State) // "MO", etc.
+ *     console.log(station.CPSWeekEventFlag) // "Yes" or "No"
+ *     // ...more properties
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await cssiStation({ zip: 63640 }, false)
+ * console.log(url) // "https://api.nhtsa.gov/CSSIStation/zip/63640?format=json"
+ * ```
+ *
+ * ### Get Stations by Location
+ *
+ * Gets a list of all available stations in the `CSSI Station API` for a specific locatiion
+ * (`latitude` and `longitude`) and radius (`miles`).
+ *
+ * If you pass a `location` as the only option, the path `/` will be used with the following query
+ * string: `?lat={long}&long={long}&miles={miles}`.
+ *
+ * Note that this appears to be broken and returns the same data (first 100 stations) as if you
+ * sent no query string at all to the base url of `/CSSIStation`.
+ *
+ * ```js
+ * await cssiStation({ location: { lat: 32.71325, long: -97.28864, miles: 50 } })
+ * .then((response) => {
+ *   response.Results.forEach((station) => {
+ *     console.log(station.AddressLine1) // "1000 E. 14th St.", etc.
+ *     console.log(station.City) // "Rolla", etc.
+ *     console.log(station.State) // "MO", etc.
+ *     console.log(station.CPSWeekEventFlag) // "Yes" or "No"
+ *     // ...more properties
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await cssiStation({ location: { lat: 32.71325, long: -97.28864, miles: 50 } }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/CSSIStation?lat=32.71325&long=-97.28864&miles=50&format=json"
+ * ```
+ *
+ * ### Get by State Filtered by Language
+ *
+ * Get a list of all available stations in the `CSSI Station API` for a specific state and language.
+ *
+ * If you pass a `state` and `filters.lang` as options, the path `/state/:state/lang/:lang` will be
+ * used.
+ *
+ * Note: `filter.cpsweek` is not compatible with `state`.
+ *
+ * ```js
+ * await cssiStation({ state: 'Texas', filters: { lang: 'spanish' } })
+ * .then((response) => {
+ *   response.Results.forEach((station) => {
+ *     console.log(station.AddressLine1) // "1000 E. 14th St.", etc.
+ *     console.log(station.City) // "Rolla", etc.
+ *     console.log(station.State) // "MO", etc.
+ *     console.log(station.CPSWeekEventFlag) // "Yes" or "No"
+ *     // ...more properties
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await cssiStation({ state: 'Texas', filters: { lang: 'spanish' } }, false)
+ * console.log(url) // "https://api.nhtsa.gov/CSSIStation/state/Texas/lang/spanish?format=json"
+ * ```
+ *
+ * ### Get by Zip Code Filtered by Language and/or CPSWeek
+ *
+ * Get a list of all available stations in the `CSSI Station API` for a specific zip code and
+ * language and/or CPSWeek.
+ *
+ * If you pass a `zip` and `filters.lang` as options, the path `/zip/:zip/lang/:lang` will be used.
+ *
+ * If you pass a `zip` and `filters.cpsweek` as options, the path `/zip/:zip/cpsweek` will be used.
+ *
+ * If you pass a `zip` and `filters.lang` and `filters.cpsweek` as options, the path and query
+ * `/zip/:zip/cpsweek?lang={lang}` will be used.
+ *
+ * ```js
+ * await cssiStation({ zip: 63640, filters: { lang: 'spanish' } })
+ * .then((response) => {
+ *   response.Results.forEach((station) => {
+ *     console.log(station.AddressLine1) // "1000 E. 14th St.", etc.
+ *     console.log(station.City) // "Rolla", etc.
+ *     console.log(station.State) // "MO", etc.
+ *     console.log(station.CPSWeekEventFlag) // "Yes" or "No"
+ *     // ...more properties
+ *   })
+ * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * await cssiStation({ zip: 63640, filters: { lang: 'spanish' } }, false)
+ * // "https://api.nhtsa.gov/CSSIStation/zip/63640/lang/spanish?format=json"
+ * await cssiStation({ zip: 63640, filters: { cpsweek: true } }, false)
+ * // "https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek?format=json"
+ * await cssiStation({ zip: 63640, filters: { lang: 'spanish', cpsweek: true } }, false)
+ * // "https://api.nhtsa.gov/CSSIStation/zip/63640/cpsweek?lang=spanish&format=json"
+ * ```
+ *
+ * ## Returns
+ *
+ * The return from this function will be a parsed JSON response, typed to reflect the different
+ * types of objects you can expect to get back from the API in the `Results[]`.
+ *
+ * Returned data will be structured as `{ Count, Message, Results, StartLatitude, StartLongitude }`
+ *
+ * The return will be an object with the following properties:
+ *
+ * - `Count` - The number of results returned
+ * - `Message` - A message from the NHTSA API
+ * - `Results` - An array of objects containing the response data
+ * - `StartLatitude` - The latitude of the starting point used to search for stations
+ * - `StartLongitude` - The longitude of the starting point used to search for stations
+ *
+ * The `Results[]` typings will have the same properties no matter which options you pass to the
+ * function.
+ *
+ * It's very possible you get a repsonse with empty Results and a Count of 0, in which case this
+ * means it found no stations.  This is not an error, it's just a response with no data.
+ *
+ * - See type `CSSIResultsData` for a list of all possible properties in the `Results[]`
+ *
+ * @param [options] - Object of options, fetch data from the API depending on options passed
+ * @param [options.state] - State to search
+ * @param [options.zip] - Zip code to search
+ * @param [options.location] - Object containing `lat`, `long`, and `miles` to search
+ * @param [options.location.lat] - Latitude of the location to search
+ * @param [options.location.long] - Longitude of the location to search
+ * @param [options.location.miles] - Radius in miles to search
+ * @param [options.filters] - Object containing `lang` and `cpsweek` to filter results
+ * @param [options.filters.lang] - Language to filter results by (e.g. 'spanish')
+ * @param [options.filters.cpsweek] - If true, will filter results by stations participating in
+ * CPSWeek
+ * @param [doFetch=true] - If false, will return the url string instead of fetching the data
+ * (default: `true`)
+ * @returns - Parsed API response `object` -or- url `string` if `doFetch = false`
  */
 function cssiStation(
   options: CSSIOptions,

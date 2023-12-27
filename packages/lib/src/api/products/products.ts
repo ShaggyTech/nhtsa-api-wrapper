@@ -180,10 +180,7 @@ import type {
  *
  * Example: Get a list of available models for a 2013 Honda in the recalls dataset
  * ```js
- * await products('r', {
- *   modelYear: 2013,
- *   make: 'Honda',
- * })
+ * await products('r', { modelYear: 2013, make: 'Honda' })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "2013"

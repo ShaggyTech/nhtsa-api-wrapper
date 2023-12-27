@@ -188,10 +188,7 @@ import type {
  *
  * Example: Get a list of available models for a 2013 Honda
  * ```js
- * await recalls({
- *   modelYear: 2013,
- *   make: 'Honda',
- * })
+ * await recalls({ modelYear: 2013, make: 'Honda' })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.modelYear) // "2013"
@@ -219,11 +216,7 @@ import type {
  *
  * Example: Get as list of recalls for a 2013 Honda Accord
  * ```js
- * await recalls({
- *   modelYear: 2013,
- *   make: 'Honda',
- *   model: 'Accord',
- * })
+ * await recalls({ modelYear: 2013, make: 'Honda', model: 'Accord' })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.NHTSACampaignNumber) // "13V132000", "19V182000", etc.
@@ -264,9 +257,7 @@ import type {
  *
  * // Example: Get recall information for a specific campaign number
  * ```js
- * await recalls({
- *   campaignNumber: '12V176000',
- * })
+ * await recalls({ campaignNumber: '12V176000' })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.PotentialNumberofUnitsAffected) // 7600, 2230, etc.

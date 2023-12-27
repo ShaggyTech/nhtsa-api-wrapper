@@ -127,14 +127,18 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * If you pass no arguments, an empty object `{}`, `undefined`, or `true` as the first argument, the
  * path `/SafetyRatings` will be used.
  *
+ * Example: Get a list of all available model years
  * ```js
- * // Get a list of available model years
  * await safetyRatings().then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.ModelYear) // "2024", "2023", "2022", etc
  *     console.log(result.VehicleId) // 0
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await safetyRatings(false)
+ * console.log(url) // "https://api.nhtsa.gov/SafetyRatings?format=json"
  * ```
  *
  * ### Get Makes for Model Year
@@ -143,17 +147,19 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *
  * If you pass a `modelYear` as the only option, the path `/modelYear/:modelYear` will be used.
  *
+ * Example: Get a list of available makes for the 2013 model year
  * ```js
- * // Get a list of available makes for the 2013 model year
- * await safetyRatings({
- *   modelYear: 2013,
- * })
+ * await safetyRatings({ modelYear: 2013 })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.Make) // "ACURA", "AUDI", "BENTLEY", etc.
  *     console.log(result.VehicleId) // 0
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await safetyRatings({ modelYear: 2013 }, false)
+ * console.log(url) // "https://api.nhtsa.gov/SafetyRatings/modelYear/2013?format=json"
  * ```
  *
  * If you need to get all available model years, first call the function with no arguments.
@@ -166,18 +172,19 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * If you pass a `modelYear` and `make` as the only options, the path
  * `/modelYear/:modelYear/make/:make` will be used.
  *
+ * Example: Get a list of available models for 2013 Honda vehicles
  * ```js
- * // Get the models for a 2013 Honda
- * await safetyRatings({
- *   modelYear: 2013,
- *   make: 'Honda',
- * })
+ * await safetyRatings({ modelYear: 2013, make: 'Honda' })
  * .then((response) => {
- *   response.Results.forEach((model) => {
- *     console.log(model.Model) // "Accord", "Civic", etc
- *     console.log(model.VehicleId) // 0
+ *   response.Results.forEach((result) => {
+ *     console.log(result.Model) // "Accord", "Civic", etc
+ *     console.log(result.VehicleId) // 0
  *   })
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await safetyRatings({ modelYear: 2013, make: 'Honda' }, false)
+ * console.log(url) // "https://api.nhtsa.gov/SafetyRatings/modelYear/2013/make/Honda?format=json"
  * ```
  *
  * If you need to get makes for a particular model year, first call the function with `modelYear` as
@@ -191,13 +198,9 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * If you pass a `modelYear`, `make`, and `model` as the only options, the
  * `/modelYear/:modelYear/make/:make/model/:model` path will be used.
  *
+ * Example: Get a list of available vehicle variants for a 2013 Honda Accord
  * ```js
- * // Get as list of VehicleId(s) for a 2013 Honda Accord
- * await safetyRatings({
- *   modelYear: 2013,
- *   make: 'Honda',
- *   model: 'Accord',
- * })
+ * await safetyRatings({ modelYear: 2013, make: 'Honda',  model: 'Accord' })
  * .then((response) => {
  *   // First Object in the Results array
  *   console.log(response.Results[0].VehicleId) // 7523
@@ -206,6 +209,11 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *   console.log(response.Results[1].VehicleId) // 7522
  *   console.log(response.Results[1].VehicleDescription) // "2013 Honda Accord 2 DR FWD"
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await safetyRatings({ modelYear: 2013, make: 'Honda',  model: 'Accord' }, false)
+ * console.log(url)
+ * // "https://api.nhtsa.gov/SafetyRatings/modelYear/2013/make/Honda/model/Accord?format=json"
  * ```
  *
  * Note that there may be multiple objects in the `Results[]`, each with a different `VehicleId`.
@@ -231,11 +239,9 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *
  * There will only be one object that contains all of the safety ratings in the `Results[]`.
  *
+ * Example: Get safety ratings for a 2013 Honda Accord 4 DR FWD
  * ```js
- * // Get the Safety Ratings for a 2013 Honda Accord 4 DR FWD
- * await safetyRatings({
- *   vehicleId: 7523,
- * })
+ * await safetyRatings({ vehicleId: 7523 })
  * .then((response) => {
  *   console.log(response.Results[0].ComplaintsCount)
  *   console.log(response.Results[0].InvestigationCount)
@@ -243,6 +249,10 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  *   console.log(response.Results[0].VehiclePicture)
  *   // ...more properties
  * })
+ *
+ * // or use doFetch = false to get the url string instead of fetching the data
+ * const url = await safetyRatings({ vehicleId: 7523 }, false)
+ * console.log(url) // "https://api.nhtsa.gov/SafetyRatings/vehicleId/7523?format=json"
  * ```
  *
  * ## Returns
@@ -262,7 +272,7 @@ import type { NhtsaResponse, NoExtraProperties } from '@/types'
  * combination of SafetyRatingsResultsData properties.
  *
  * - See type `SafetyRatingsResultsData` for a list of all possible properties.
- * - See type `RecallsResultsByVariant` for clarity on which properties will be included based on
+ * - See type `SafetyRatingsResultsByVariant` for clarity on which properties will be included based on
  *   the `options` passed.
  *
  * @param [options] - Object of options, fetch data from the API depending on options passed

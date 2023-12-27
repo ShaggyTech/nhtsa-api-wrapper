@@ -209,11 +209,7 @@ import type {
  *
  * Example: Get as list of complaints for a 2013 Honda Accord
  * ```js
- * await complaints({
- *   modelYear: 2013,
- *   make: 'Honda',
- *   model: 'Accord',
- * })
+ * await complaints({ modelYear: 2013, make: 'Honda', model: 'Accord' })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.odiNumber) // 11549247, 11483831, etc.
@@ -254,9 +250,7 @@ import type {
  *
  * Example: Get complaint information for a specific ODI Number
  * ```js
- * await complaints({
- *   odiNumber: 11549247,
- * })
+ * await complaints({  odiNumber: 11549247 })
  * .then((response) => {
  *   response.Results.forEach((result) => {
  *     console.log(result.odiNumber) // 11549247, 11483831, etc.
