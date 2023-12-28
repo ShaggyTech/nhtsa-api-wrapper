@@ -155,7 +155,7 @@ function decodeVin(
 ): Promise<DecodeVinResponse>
 function decodeVin(
   vin: string,
-  options: { modelYear?: string | number },
+  options: { modelYear?: string | number } | undefined,
   doFetch: false
 ): Promise<string>
 function decodeVin(vin: string, doFetch: true): Promise<DecodeVinResponse>

@@ -10,6 +10,9 @@ const modelYearString = '2018'
 const modelYearNumber = 2018
 const modelYear = modelYearNumber
 
+// https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/{vin}?format=json
+// https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/{vin}?modelYear={modelYear}&format=json
+
 const baseUrl = 'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin'
 const mockUrl = `${baseUrl}/${vin}?format=json`
 const mockUrlModelYear = `${baseUrl}/${vin}?modelYear=${modelYear}&format=json`
@@ -44,33 +47,33 @@ describe('decodeVin()', () => {
     test.each<TestEach>([
       // vin with no options
       {
-        description: 'vin with no options',
+        description: 'vin and no options',
         args: [vin],
         expectedUrl: mockUrl,
       },
       {
-        description: 'vin with no options and doFetch = true',
+        description: 'vin, no options, and doFetch = true',
         args: [vin, true],
         expectedUrl: mockUrl,
       },
       // options.modelYear
       {
-        description: 'options.modelYear as string',
+        description: 'vin and options.modelYear as string',
         args: [vin, { modelYear: modelYearString }],
         expectedUrl: mockUrlModelYear,
       },
       {
-        description: 'options.modelYear as string and doFetch = true',
+        description: 'vin, options.modelYear as string, and doFetch = true',
         args: [vin, { modelYear: modelYearString }, true],
         expectedUrl: mockUrlModelYear,
       },
       {
-        description: 'options.modelYear as number',
+        description: 'vin and options.modelYear as number',
         args: [vin, { modelYear: modelYearNumber }],
         expectedUrl: mockUrlModelYear,
       },
       {
-        description: 'options.modelYear as number and doFetch = true',
+        description: 'vin, options.modelYear as number, and doFetch = true',
         args: [vin, { modelYear: modelYearNumber }, true],
         expectedUrl: mockUrlModelYear,
       },
@@ -96,12 +99,12 @@ describe('decodeVin()', () => {
       },
       // options.modelYear
       {
-        description: 'options.modelYear as string and doFetch = false',
+        description: 'vin, options.modelYear as string and doFetch = false',
         args: [vin, { modelYear: modelYearString }, false],
         expectedUrl: mockUrlModelYear,
       },
       {
-        description: 'options.modelYear as number and doFetch = false',
+        description: 'vin, options.modelYear as number and doFetch = false',
         args: [vin, { modelYear: modelYearNumber }, false],
         expectedUrl: mockUrlModelYear,
       },
@@ -338,9 +341,13 @@ describe.skip('IDE Tooltips - manual test of results type on hover', async () =>
     /******Expected Tooltip*******\
         const result_x: string
     ******************************/
+
+    /* https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/{vin}?format=json */
     const result_1 = await decodeVin(vin, false)
     const result_2 = await decodeVin(vin, {}, false)
     const result_3 = await decodeVin(vin, undefined, false)
+
+    /* https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/{vin}?modelYear={modelYear}&format=json */
     const result_4 = await decodeVin(vin, { modelYear: modelYearString }, false)
     const result_5 = await decodeVin(vin, { modelYear: modelYearNumber }, false)
 
