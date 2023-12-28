@@ -17,6 +17,7 @@ export const isError = (error: unknown): boolean => {
 
 /**
  * Handles errors by returning an Error instance.
+ *
  * Accepts any type of value but will return default error message of `an unknown error occurred` if
  * `error` is not an Error type or a message string.
  *

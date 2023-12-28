@@ -7,7 +7,6 @@ const pkg = require('@shaggytools/nhtsa-api-wrapper/package.json')
 function nav() {
   return [
     { text: 'Guide', link: '/guide/', activeMatch: '/guide|utils/' },
-    { text: 'API', link: '/api/', activeMatch: '/api/' },
     { text: 'Typedocs', link: '/typedoc/', activeMatch: '/typedoc/' },
     {
       text: pkg.version,
@@ -25,7 +24,6 @@ function sidebar() {
   return {
     '/guide/': sidebarLinks(['guide']),
     '/utils/': sidebarLinks(['guide']),
-    '/api/': sidebarLinks(['api']),
     '/typedoc/': sidebarLinks(['typedocs']),
   }
 }

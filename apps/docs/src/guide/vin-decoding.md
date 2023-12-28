@@ -30,7 +30,7 @@ response = {
 */
 ```
 
-::: tip :mag: See: [VPIC Response](../api/vpic-api-response) for more info on the response object
+::: tip :mag: See: [VPIC Response](../guide/vpic/vpic-api-response) for more info on the response object
 :::
 
 ---
@@ -50,9 +50,9 @@ object. This object is the decoded data for the VIN.
 
 ::: tip See also:
 
-- [DecodeVinValues](../api/endpoints/decode-vin-values)
-- [DecodeVinValues Example Response](../api/endpoints/decode-vin-values#returns)
-- [Type - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
+- [DecodeVinValues](../guide/vpic/endpoints/decode-vin-values)
+- [DecodeVinValues Example Response](../guide/vpic/endpoints/decode-vin-values#returns)
+- [Type - DecodeVinValuesResults](../typedoc/api/vpic/endpoints/DecodeVinValues#decodevinvaluesresults)
 
 :::
 
@@ -89,9 +89,8 @@ console.log(
 ```typescript
 import { DecodeVinValues } from '@shaggytools/nhtsa-api-wrapper'
 
-const { Count, Message, Results, SearchCriteria } = await DecodeVinValues(
-  'WA1A4AFY2J2008189'
-)
+const { Count, Message, Results, SearchCriteria } =
+  await DecodeVinValues('WA1A4AFY2J2008189')
 
 // Destructure to get the specific data you want to use
 const { ModelYear, Make, Model, EngineHP } = Results[0]
@@ -101,5 +100,5 @@ console.log(
 )
 ```
 
-::: tip :mag: See Also: [VPIC API Endpoints](../api/#vpic-api-endpoints)
+::: tip :mag: See Also: [VPIC API Endpoints](../guide/vpic/#vpic-api-endpoints)
 :::

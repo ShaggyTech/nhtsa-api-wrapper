@@ -61,7 +61,7 @@ WMIs, get all makes for a certain year, and more.
 - [Install](https://vpic.shaggytech.com/guide/install)
 - [Node Quick Start](https://vpic.shaggytech.com//guide/getting-started#node-quick-start)
 - [Browser Quick Start](https://vpic.shaggytech.com/guide/getting-started#browser-quick-start)
-- [API Reference](https://vpic.shaggytech.com/api/)
+- [API Reference](https://vpic.shaggytech.com/guide/vpic/)
 
 ## Mono Repo Structure
 
@@ -129,9 +129,9 @@ const { Results } = await DecodeVinValues("WA1A4AFY2J2008189");
 const decodedVehicle = Results[0]; // equals an object of type DecodeVinValuesResults
 ```
 
-For a full example response see: [DecodeVinValues](https://vpic.shaggytech.com/api/endpoints/decode-vin-values#returns)
+For a full example response see: [DecodeVinValues](https://vpic.shaggytech.com/guide/vpic/endpoints/decode-vin-values#returns)
 
-All available endpoints can be found here: [VPIC API Endpoints](https://vpic.shaggytech.com/api/#vpic-api-endpoints)
+All available endpoints can be found here: [VPIC API Endpoints](https://vpic.shaggytech.com/guide/vpic/#vpic-api-endpoints)
 
 ## Browser Install
 

@@ -120,7 +120,7 @@ want to use the Node.js method instead and install from a package manager.
 ::: code-group
 
 ```html [jsDelivr (ESM)]
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head></head>
   <body>
@@ -138,7 +138,7 @@ want to use the Node.js method instead and install from a package manager.
 ```
 
 ```html [jsDelivr (IIFE)]
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <!-- Import the package in the head tag -->
@@ -155,7 +155,7 @@ want to use the Node.js method instead and install from a package manager.
 ```
 
 ```html [UNPKG  (IIFE)]
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <!-- Import the package in the head tag -->

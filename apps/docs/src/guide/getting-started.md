@@ -54,11 +54,11 @@ Further Reading:
 - A more in depth explanation of how to decode a VIN and parse the data can be found on the
   [Decoding a VIN](../guide/vin-decoding) page.
 
-- For a full example response see [DecodeVinValues](../api/endpoints/decode-vin-values#returns)
+- For a full example response see [DecodeVinValues](../guide/vpic/endpoints/decode-vin-values#returns)
   documentation.
 
 - The structure of `Results[0]` in the above example can be seen on the
-  [Typedocs - DecodeVinValuesResults](../typedoc/modules/api_endpoints_DecodeVinValues#decodevinvaluesresults)
+  [Typedocs - DecodeVinValuesResults](../typedoc/api/vpic/endpoints/DecodeVinValues#decodevinvaluesresults)
   page.
 
 ---
@@ -72,7 +72,7 @@ The following are simple examples that use the jsDelivr CDN:
 _~ 4kB (auto minified)_
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -200,5 +200,5 @@ import {
 
 - [VIN Decoding](../guide/vin-decoding)
 - [Offline VIN Validation](../guide/offline-vin-validation)
-- [VPIC API Response](../api/vpic-api-response)
-- [VPIC API Endpoints](../api/endpoints/#vpic-api-endpoints)
+- [VPIC API Response](../guide/vpic/vpic-api-response)
+- [VPIC API Endpoints](../guide/vpic/endpoints/#vpic-api-endpoints)

@@ -40,14 +40,14 @@ API. It is used internally by the package and by users to make direct requests t
 
 It contains functions for making HTTP requests to the VPIC API. All request methods return a
 Promise that resolves to an object containing the full response data. See the
-[VPIC API Response](../api/vpic-api-response) page for more info on the full response returned by the
+[VPIC API Response](../guide/vpic/vpic-api-response) page for more info on the full response returned by the
 request functions.
 
 It also contains functions for building and returning the URL string for the VPIC API endpoints.
 
 ::: tip See Also:
 
-- [useNHTSA Reference](../typedoc/modules/api_useNHTSA)
+- [useNHTSA Reference](../typedoc/api/useNHTSA)
 
 - [Alternate Use of This Package](../guide/bring-your-own-fetch#option-2-using-usenhtsa)
 
@@ -159,9 +159,9 @@ get()
 
 ## Options
 
-[`CreateUrlOptions`](../typedoc/modules/api_useNHTSA#createurloptions):
+[`CreateUrlOptions`](../typedoc/api/useNHTSA#createurloptions):
 
-- `endpointName` - The name of the endpoint to use, see [VPIC API Endpoints](../api/#vpic-api-endpoints)
+- `endpointName` - The name of the endpoint to use, see [VPIC API Endpoints](../guide/vpic/#vpic-api-endpoints)
   (required)
 
 - `path` - The final path to use in the full url path (default: `""`)

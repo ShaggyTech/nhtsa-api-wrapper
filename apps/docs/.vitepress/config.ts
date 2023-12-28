@@ -42,10 +42,6 @@ export default withPwa(
       outline: 'deep',
       nav: nav(),
       sidebar: sidebar(),
-
-      // search: {
-      //   provider: 'local',
-      // },
       algolia: getAlgoliaConfig(process.env),
 
       editLink: {

@@ -1,4 +1,13 @@
+/**
+ * @module exports
+ * @category Package Exports
+ */
+
+/**
+ * @category Exported NHTSA API Functions
+ */
 export {
+  /* vPIC API */
   DecodeVin,
   DecodeVinExtended,
   DecodeVinValues,
@@ -23,9 +32,119 @@ export {
   GetVehicleVariableList,
   GetVehicleVariableValuesList,
   GetWMIsForManufacturer,
+  /* Other APIs */
+  complaints,
+  cssiStation,
+  products,
+  recalls,
+  safetyRatings,
+  /* NHTSA Helper Function */
   useNHTSA,
 } from '@/api'
 
-export { createQueryString, encodeQueryStringParams, isValidVin } from '@/utils'
+/**
+ * @category Exported Utility Functions
+ */
+export {
+  createQueryString,
+  encodeQueryStringParams,
+  generateRandomVIN,
+  isValidVin,
+} from '@/utils'
 
-export * from '@/types'
+/**
+ * @category Exported Types
+ */
+export type {
+  NhtsaResponse,
+  DecodeVinExtendedResults,
+  DecodeVinResults,
+  DecodeVinValuesBatchResults,
+  DecodeVinValuesExtendedResults,
+  DecodeVinValuesResults,
+  DecodeVinExtendedVariable,
+  DecodeVinVariable,
+  GetCanadianVehicleSpecificationsResults,
+  GetEquipmentPlantCodesResults,
+  GetMakeForManufacturerResults,
+  DecodeWMIResults,
+  GetAllMakesResults,
+  GetAllManufacturersResults,
+  GetEquipmentPlantCodesParams,
+  GetMakesForManufacturerAndYearResults,
+  GetMakesForVehicleTypeResults,
+  GetManufacturerDetailsResults,
+  GetModelsForMakeIdResults,
+  GetModelsForMakeIdYearResults,
+  GetModelsForMakeResults,
+  GetModelsForMakeYearResults,
+  GetPartsResults,
+  GetVehicleTypesForMakeIdResults,
+  GetVehicleTypesForMakeResults,
+  GetVehicleVariableListResults,
+  GetVehicleVariableValuesListResults,
+  GetWMIsForManufacturerResults,
+  ComplaintsOptions,
+  ComplaintsOptionsBase,
+  ComplaintsOptionsEmpty,
+  ComplaintsOptionsMake,
+  ComplaintsOptionsModelYear,
+  ComplaintsOptionsOdiNumber,
+  ComplaintsOptionsVehicle,
+  ComplaintsResponse,
+  ComplaintsResponseByOptions,
+  ComplaintsResponseByVariant,
+  ComplaintsResultsByOptions,
+  ComplaintsResultsByVariant,
+  ComplaintsResultsData,
+  ComplaintsResultsVariant,
+  CSSIOptions,
+  CSSIOptionsBase,
+  CSSIOptionsEmpty,
+  CSSIOptionsCanBeQuery,
+  CSSIOptionsLocation,
+  CSSIOptionsState,
+  CSSIOptionsZip,
+  CSSIResponse,
+  CSSIResultsData,
+  ProductsIssueType,
+  ProductsOptions,
+  ProductsOptionsBase,
+  ProductsOptionsEmpty,
+  ProductsOptionsMake,
+  ProductsOptionsModelYear,
+  ProductsResponse,
+  ProductsResponseByOptions,
+  ProductsResponseByVariant,
+  ProductsResultsByOptions,
+  ProductsResultsByVariant,
+  ProductsResultsData,
+  ProductsResultsVariant,
+  RecallsOptions,
+  RecallsOptionsBase,
+  RecallsOptionsCampaignNumber,
+  RecallsOptionsEmpty,
+  RecallsOptionsMake,
+  RecallsOptionsModelYear,
+  RecallsOptionsVehicle,
+  RecallsResponse,
+  RecallsResponseByOptions,
+  RecallsResponseByVariant,
+  RecallsResultsByOptions,
+  RecallsResultsByVariant,
+  RecallsResultsData,
+  RecallsResultsVariant,
+  SafetyRatingsOptions,
+  SafetyRatingsOptionsBase,
+  SafetyRatingsOptionsEmpty,
+  SafetyRatingsOptionsMake,
+  SafetyRatingsOptionsModelYear,
+  SafetyRatingsOptionsVehicle,
+  SafetyRatingsOptionsVehicleId,
+  SafetyRatingsResponseByOptions,
+  SafetyRatingsResponseByVariant,
+  SafetyRatingsResultsByOptions,
+  SafetyRatingsResultsByVariant,
+  SafetyRatingsResultsData,
+  SafetyRatingsResultsVariant,
+} from '@/types'

@@ -4,38 +4,39 @@
   "version": "3.0.4",
   "description": "Documentation for @shaggytools/nhtsa-api-wrapper",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vitepress dev --host",
     "build": "vitepress build",
     "preview": "vitepress preview",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,md}\"",
     "format:typedoc": "prettier --write \"src/typedoc/**/*.md\"",
     "clean": "rimraf .vitepress/dist .vitepress/cache .turbo",
     "clean:all": "pnpm run clean && rimraf node_modules"
   },
   "dependencies": {
     "@shaggytools/nhtsa-api-wrapper": "workspace:*",
-    "vue": "3.3.4"
+    "vue": "3.3.7"
   },
   "devDependencies": {
-    "@types/node": "18.13.0",
-    "@vite-pwa/vitepress": "0.0.5",
-    "dotenv": "16.0.3",
-    "eslint": "8.41.0",
+    "@types/node": "18.18.7",
+    "@vite-pwa/vitepress": "0.3.1",
+    "dotenv": "16.3.1",
+    "eslint": "8.52.0",
     "eslint-config-custom": "workspace:*",
-    "prettier": "2.8.8",
+    "prettier": "3.0.3",
     "prettier-config": "workspace:*",
-    "rimraf": "5.0.1",
-    "sass": "1.62.1",
+    "rimraf": "5.0.5",
+    "sass": "1.69.4",
     "sitemap": "7.1.1",
     "tsconfig": "workspace:*",
-    "typescript": "5.0.4",
-    "vite-plugin-pwa": "0.15.1",
-    "vitepress": "1.0.0-beta.1",
-    "workbox-window": "6.6.0"
+    "typescript": "5.2.2",
+    "vite-plugin-pwa": "0.17.3",
+    "vitepress": "1.0.0-rc.31",
+    "workbox-window": "7.0.0"
   },
   "eslintConfig": {
     "extends": [

@@ -8,9 +8,16 @@ distDev/
 docsDev/
 dev-dist/
 
+### Vite
+**/vite.config.ts.timestamp*
+
 ### Vitepress
 **/.vitepress/dist/**
 **/.vitepress/cache/**
+
+### Vitest
+**/.vitest/dist/**
+**/*/tsconfig.vitest-temp.json
 
 ### Turbo
 .turbo
@@ -48,6 +55,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+!**/public/coverage
 
 # nyc test coverage
 .nyc_output

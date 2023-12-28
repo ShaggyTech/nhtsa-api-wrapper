@@ -5,80 +5,28 @@ in the `@shaggytools/nhtsa-api-wrapper/dist/types`. In most cases you shouldn't 
 directly.
 
 We've tried to be as accurate as possible typing the API responses based on testing real responses
-from the NHTSA API. Please report any discrepancies you may find and they will be fixed.
-
-::: tip :mag: See Also:
-
-Check out the [API](/api/) section for more details on each endpoint helper function and their
-return types.
-
-:::
+from the NHTSA API. Please report any discrepancies you find via the
+[Github Repo](https://github.com/ShaggyTech/nhtsa-api-wrapper/issues/new/choose) and they will be
+fixed.
 
 ---
-
-## Using Typescript
-
-This package was designed with typescript support in mind and therefore should work out of the box
-with most modern code editors.
-
-If for some reason you're not getting any type hints or code completion, or receive errors about not
-finding types for this package, you may need to add the following to your `tsconfig.json` file:
-
-::: code-group
-
-```json [tsconfig.json]
-{
-  "compilerOptions": {
-    "types": ["@shaggytools/nhtsa-api-wrapper"]
-  }
-}
-```
-
-:::
-
-There is the potential for some confusion when using the package with Typescript. This is due to
-the fact that the NHTSA API uses `PascalCase` for it's endpoint names, and Javascript
-conventions are to use `camelCase` for function names and `PascalCase` for classes/types.
-
-In this package the endpoint wrapper functions aren't `camelCased` like most javascript functions,
-they are `PascalCased`. For example `DecodeVin` and `GetAllMakes` instead of `decodeVin` and
-`getAllMakes`.
-
-The decision was made to name package endpoint functions with the same name and casing as the
-endpoints themselves, mostly for the sake of consistency between this package and the
-[official VPIC documentation](https://vpic.nhtsa.dot.gov/api/).
-
-The package types are also `PascalCased` just like the endpoint functions. This can be confusing when
-importing from this package while using intellesense/code completion in your code editor as it will
-show the function names and types all grouped together in `PascalCase`. It may be hard to tell the
-difference between the function names and the types if you don't know what to look for.
-
-Every endpoint function has a corresponding `Results` type with the same name and casing as the
-function. For example `DecodeVin` has a `DecodeVinResults` type, `GetAllMakes` has a
-`GetAllMakesResults` type, etc.
-
-A few endpoints also have other associated types, such as
-[`DecodeVinExtendedVariable`](../typedoc/modules/api_endpoints_DecodeVinExtended#decodevinextendedvariable)
-that describe possible `Variable` values found in the `Results` array of the `DecodeVinExtended`
-endpoint.
 
 ## Exported Types
 
 ::: tip :mag: See Also:
 
-The [Typedocs - Types](../typedoc/modules/types) page lists all of the types this
-package exports and their structure.
+The [Typedocs - Types](../typedoc/types) page lists all of the types this package exports and their
+structure.
 
-<br />
-
-You can find a full list of bundled types in the `/dist/types` directory on the
-[UNPKG Homepage](https://unpkg.com/browse/@shaggytools/nhtsa-api-wrapper/dist/types/) for this
-package.
 :::
 
 All bundled types can be found in the `@shaggytools/nhtsa-api-wrapper/dist/types` directory. You
 shouldn't need to import them directly from `/dist/types`. Instead, you can import them directly
 from the package itself.
+
+You can find a full list of bundled types in the `/dist/types` directory on the
+[UNPKG Homepage](https://unpkg.com/browse/@shaggytools/nhtsa-api-wrapper/dist/types/) for this
+package.
 
 Here's an example of how to import specific types from this package:
 
@@ -97,6 +45,23 @@ import {
   type GetAllMakesResults,
 } from '@shaggytools/nhtsa-api-wrapper'
 ```
+
+::: warning :mag: Note:
+
+If for some reason you're not getting any type hints or code completion, or receive errors about not
+finding types for this package, you may need to add the following to your `tsconfig.json` file:
+
+::: code-group
+
+```json [tsconfig.json]
+{
+  "compilerOptions": {
+    "types": ["@shaggytools/nhtsa-api-wrapper"]
+  }
+}
+```
+
+:::
 
 ## NHTSA API Response Types
 
@@ -138,12 +103,44 @@ type NhtsaResponse<T> = {
 
 ::: tip :mag: See Also:
 
-The [VPIC Response](/api/vpic-api-response) page has more details
+The [VPIC Response](./vpic/vpic-api-response) page has more details
 on the response returned by the VPIC API.
 
 :::
 
-## Note for Beginners
+## Using Typescript With This Package
+
+This package was designed with typescript support in mind and therefore will work out of the box
+with most modern code editors. You should get type hints, code completion, and TS errors for all of
+the package functions and types.
+
+There is the potential for some confusion when using the package with Typescript. This is due to
+the fact that the NHTSA API uses `PascalCase` for it's endpoint names, and Javascript
+conventions are to use `camelCase` for function names and `PascalCase` for classes/types.
+
+In this package the endpoint wrapper functions aren't `camelCased` like most javascript functions,
+they are `PascalCased`. For example `DecodeVin` and `GetAllMakes` instead of `decodeVin` and
+`getAllMakes`.
+
+The decision was made to name package endpoint functions with the same name and casing as the
+endpoints themselves, mostly for the sake of consistency between this package and the
+[official VPIC documentation](https://vpic.nhtsa.dot.gov/api/).
+
+The package types are also `PascalCased` just like the endpoint functions. This can be confusing when
+importing from this package while using intellesense/code completion in your code editor as it will
+show the function names and types all grouped together in `PascalCase`. It may be hard to tell the
+difference between the function names and the types if you don't know what to look for.
+
+Every endpoint function has a corresponding `Results` type with the same name and casing as the
+function. For example `DecodeVin` has a `DecodeVinResults` type, `GetAllMakes` has a
+`GetAllMakesResults` type, etc.
+
+A few endpoints also have other associated types, such as
+[`DecodeVinExtendedVariable`](../typedoc/api/vpic/endpoints/DecodeVinExtended#DecodeVinExtendedVariable)
+that describe possible `Variable` values found in the `Results` array of the `DecodeVinExtended`
+endpoint.
+
+## Notes for Beginners
 
 If you're new to Typescript, you may be wondering what 'full typescript support' means.
 
@@ -215,15 +212,15 @@ appear. This is what is known as "intellisense" or "code completion".
 
 If you were to attempt accessing `Results[0].Other` you would see that it does not exist in type
 `DecodeVinResults`. Your code editor would let you know that you're trying to access a property
-that doesn't exist. In this way you can avoid common mistakes like typos and accessing properties
-that don't exist.
+that doesn't exist. In this way you can avoid common mistakes like typos and accessing non-existing
+properties.
 
 Similarly, if you saved the `Results[0].ValueId` value to a variable, your code editor will know
 that it's of type `number` and warn you if you try to use in ways that numbers can't be used, such
 as `Results[0].ValueId.toUpperCase()` or similar. You would be warned that `toUpperCase` does not
 exist on type `number`.
 
-<br>
+### Conclusion
 
 These are just some of the benefits of having Typescript support. The key takeaway is that it will
 help you avoid common mistakes and make you a more efficient developer. It can be adopted into an

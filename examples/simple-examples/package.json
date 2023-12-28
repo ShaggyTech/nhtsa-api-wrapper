@@ -1,0 +1,10 @@
+{
+  "name": "simple-examples",
+  "version": "0.0.1",
+  "description": "Simple Examples for Node and Browser demonstrating use of @shaggytools/nhtsa-api-wrapper",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@shaggytools/nhtsa-api-wrapper": "workspace:*"
+  }
+}

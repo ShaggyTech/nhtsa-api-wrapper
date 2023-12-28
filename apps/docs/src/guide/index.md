@@ -4,7 +4,7 @@
 
 ✔️ A thin Javascript client for the [NHTSA VPIC API](https://vpic.nhtsa.dot.gov/api/)
 
-✔️ 24 helper functions to retrieve data from each of the [VPIC API endpoints](../api/index#vpic-api-endpoints)
+✔️ 24 helper functions to retrieve data from each of the [VPIC API endpoints](../guide/vpic/index#vpic-api-endpoints)
 
 ✔️ Works in Node.js via package managers and in browser scripts via CDN.
 
@@ -29,7 +29,7 @@ make interacting with the API and retrieving data less of a chore.
 
 - Provides a set of 24 helper functions to interact with each of the 24 endpoints, so you
   don't have to worry about the url structure, query parameters, formatting, or fetching the data.
-  See the [VPIC API](/api/) section for more info.
+  See the [VPIC API](/guide/vpic/) section for more info.
 
 - Use the built in `fetch` functionionality or provide your own. The endpoint functions can be used
   to build full VPIC URLs for you to use your own fetch implentation such as Axios or a polyfill.
@@ -56,7 +56,7 @@ It can also be used to get all models of a make, to decode WMIs, get all makes f
 and more.
 
 A list of all 24 VPIC endpoints can be found in the
-[NHTSA API Endpoints](../api/index#vpic-api-endpoints) section.
+[NHTSA API Endpoints](../guide/vpic/index#vpic-api-endpoints) section.
 
 ::: tip :bulb: TIP
 

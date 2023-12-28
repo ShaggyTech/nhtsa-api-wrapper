@@ -19,7 +19,7 @@ hero:
       link: /guide/
     - theme: alt
       text: VPIC Helper Functions
-      link: /api/
+      link: /guide/vpic/
 
 features:
   - title: Simplify the VPIC API
