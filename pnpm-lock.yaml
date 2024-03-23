@@ -44,7 +44,7 @@ importers:
         version: 18.18.7
       '@vite-pwa/vitepress':
         specifier: 0.3.1
-        version: 0.3.1(vite-plugin-pwa@0.17.3)
+        version: 0.3.1(vite-plugin-pwa@0.19.7)
       dotenv:
         specifier: 16.3.1
         version: 16.3.1
@@ -76,8 +76,8 @@ importers:
         specifier: 5.2.2
         version: 5.2.2
       vite-plugin-pwa:
-        specifier: 0.17.3
-        version: 0.17.3(vite@5.0.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
+        specifier: 0.19.7
+        version: 0.19.7(vite@5.0.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
       vitepress:
         specifier: 1.0.0-rc.31
         version: 1.0.0-rc.31(@algolia/client-search@4.20.0)(@types/node@18.18.7)(sass@1.69.4)(search-insights@2.11.0)(typescript@5.2.2)
@@ -2379,7 +2379,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
       cross-spawn: 7.0.3
-      fast-glob: 3.3.1
+      fast-glob: 3.3.2
       is-glob: 4.0.3
       open: 9.1.0
       picocolors: 1.0.0
@@ -2862,12 +2862,12 @@ packages:
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  /@vite-pwa/vitepress@0.3.1(vite-plugin-pwa@0.17.3):
+  /@vite-pwa/vitepress@0.3.1(vite-plugin-pwa@0.19.7):
     resolution: {integrity: sha512-krgiYQCWXUkpQCx+IHdsanFFpAzfH5pY86MARDa6as5ZNmG18mb/gC6MEahFV67V0xfMfTaNL4B8dQNzzcikLw==}
     peerDependencies:
       vite-plugin-pwa: '>=0.17.2 <1'
     dependencies:
-      vite-plugin-pwa: 0.17.3(vite@5.0.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
+      vite-plugin-pwa: 0.19.7(vite@5.0.5)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
 
   /@vitejs/plugin-vue@4.5.1(vite@5.0.5)(vue@3.3.10):
@@ -4433,16 +4433,6 @@ packages:
     resolution: {integrity: sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==}
     dev: false
 
-  /fast-glob@3.3.1:
-    resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
-    engines: {node: '>=8.6.0'}
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.5
-
   /fast-glob@3.3.2:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
     engines: {node: '>=8.6.0'}
@@ -4452,7 +4442,6 @@ packages:
       glob-parent: 5.1.2
       merge2: 1.4.1
       micromatch: 4.0.5
-    dev: true
 
   /fast-json-stable-stringify@2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
@@ -4753,7 +4742,7 @@ packages:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.3.1
+      fast-glob: 3.3.2
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 3.0.0
@@ -7553,13 +7542,17 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa@0.17.3(vite@5.0.5)(workbox-build@7.0.0)(workbox-window@7.0.0):
-    resolution: {integrity: sha512-ilOs0mGxIxKQN3FZYX8pys5DmY/wI9A6oojlY5rrd7mAxCVcSbtjDVAhm62C+3Ww6KQrNr/jmiRUCplC8AsaBw==}
+  /vite-plugin-pwa@0.19.7(vite@5.0.5)(workbox-build@7.0.0)(workbox-window@7.0.0):
+    resolution: {integrity: sha512-18TECxoGPQE7tVZzKxbf5Icrl5688n1JGMPSgGotTsh89vLDxevY7ICfD3CFVfonZXh8ckuyJXg0NXE5+FAl2A==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
+      '@vite-pwa/assets-generator': ^0.2.4
       vite: ^3.1.0 || ^4.0.0 || ^5.0.0
       workbox-build: ^7.0.0
       workbox-window: ^7.0.0
+    peerDependenciesMeta:
+      '@vite-pwa/assets-generator':
+        optional: true
     dependencies:
       debug: 4.3.4
       fast-glob: 3.3.2
@@ -8003,6 +7996,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
