@@ -91,7 +91,7 @@
     "typedoc": "0.25.2",
     "typedoc-config": "workspace:*",
     "typescript": "5.2.2",
-    "vite": "5.0.5",
+    "vite": "5.0.6",
     "vite-plugin-dts": "3.6.4",
     "vite-tsconfig-paths": "4.2.1",
     "vitest": "1.0.1",
